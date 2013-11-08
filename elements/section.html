@@ -1,0 +1,18 @@
+<polymer-element name="cxx-section" constructor="CxxSectionElement" attributes="id title">
+  <template>
+    <style>
+      :host { display: block; }
+      :host:target {background-color: inherit;}
+      :host:target > section > h1 {background-color: #fed;}
+    </style>
+
+    <section>
+      <h1>{{sec_num}} {{title}}<content select="cxx-title"/> <span style="float:right"><a href="#{{id}}">[{{id}}]</a></span></h1>
+      <content/>
+    </section>
+  </template>
+  <script src="section.js"></script>
+</polymer-element>
+<polymer-element name="cxx-title" noscript>
+  <template><content/></template>
+</polymer-element>

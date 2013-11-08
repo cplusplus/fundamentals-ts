@@ -1,0 +1,13 @@
+<polymer-element name="cxx-email">
+  <template><a href="mailto:{{value}}"><content/></a></template>
+  <script>
+(function() {
+    Polymer('cxx-email', {
+        applyAuthorStyles: true,
+        'created': function() {
+            this.value = this.textContent;
+        },
+    })
+})();
+</script>
+</polymer-element>

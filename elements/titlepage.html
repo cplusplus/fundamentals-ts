@@ -1,0 +1,54 @@
+<!--
+Has children: cxx-docnum, time[pubdate], cxx-editor, cxx-revises,
+and <h1> for the title.
+
+The 'stage' attribute currently can only be "draft", but I'll extend this to
+support other TS and IS stages as we need them.
+
+cxx-titlepage sets the document title based on its <h1> child.
+-->
+<polymer-element name="cxx-titlepage" attributes="stage">
+  <template>
+    <style>
+      :host {display:block; clear: both; page: 'title'; page-break-after: always}
+      th { text-align: left; vertical-align: top; }
+      h1 {margin-left: auto; margin-right: auto; text-align: center;}
+      p.warning {margin-left: auto; margin-right: auto; text-align: center;}
+      
+      @media print {
+        h1 {margin:3.5in auto;}
+      }
+    </style>
+    <table style="float:right">
+      <template if="{{docnum}}">
+        <tr><th>Document Number:</th><td><content select="cxx-docnum"/></td></tr>
+      </template>
+      <template if="{{pubdate}}">
+        <tr><th>Date:</th><td><content select="time[pubdate]"/></td></tr>
+      </template>
+      <template if="{{revises}}">
+        <tr><th>Revises:</th><td><content select="cxx-revises"/></td></tr>
+      </template>
+      <template if="{{editor}}">
+        <tr><th>Editor:</th><td><content select="cxx-editor"/></td></tr>
+      </template>
+    </table>
+    <br clear="both"/>
+    <h1>{{title_prefix}}, {{title}}</h1>
+    <template if="{{stage == 'draft'}">
+      <p class="warning"><strong>Note: this is an early draft. It’s known to be
+      incomplet and incorrekt, and it has lots of b<span
+      style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span
+      style="width:1.5em"> </span>for<span
+      style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span
+      style="position:relative; top:-0.15ex">n</span>g.</strong></p>
+    </template>
+  </template>
+  <script src="titlepage.js"></script>
+</polymer-element>
+<polymer-element name="cxx-docnum" noscript>
+  <template><content/></template>
+</polymer-element>
+<polymer-element name="cxx-editor" noscript>
+  <template><content/></template>
+</polymer-element>

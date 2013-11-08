@@ -1,0 +1,20 @@
+@page {
+    @top-left { content: "© ISO/IEC"; }
+    @bottom-right { content: counter(page); }
+}
+@page title {
+    @top-left { content: normal; }
+    @bottom-right { content: normal; }
+}
+
+body { max-width: 7in; }
+
+p {margin-top: .5em; margin-bottom: .5em}
+p:first-child, ul, ol {margin-top: 0}
+
+del {text-decoration: line-through; color: #8B0040;}
+ins {text-decoration: underline; color: #005100;}
+
+pre { margin-left: 1em; }
+
+cxx-clause { page-break-before: always; }

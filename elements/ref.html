@@ -1,0 +1,16 @@
+<!--
+    The 'to' attribute is the id of a <cxx-section> element (or subclass).
+
+    The 'insynopsis' attribute should be present if the reference is from
+    within a comment in a header or class synopsis. This will append ", <title>"
+    to the expansion. Otherwise, the reference is enclosed in parentheses.
+-->
+
+<polymer-element name="cxx-ref" attributes="to insynopsis">
+  <template
+      ><template if="{{insynopsis}}">// <i><a href="#{{to}}">{{to_elem.sec_num}}</a>, {{to_elem.text_title}}</i></template
+      ><template if="{{!insynopsis}}">(<a href="#{{to}}">{{to_elem.sec_num}}</a>)</template
+  ></template>
+  <script src="ref.js"></script>
+</polymer-element>
+

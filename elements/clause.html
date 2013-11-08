@@ -1,0 +1,12 @@
+<polymer-element name="cxx-clause" extends="cxx-section">
+  <script>
+    (function() {
+      var clause_num = 1;
+      Polymer('cxx-clause', {
+        created: function() {
+          this.update_sec_nums(clause_num++);
+        },
+      });
+    })();
+  </script>
+</polymer-element>
