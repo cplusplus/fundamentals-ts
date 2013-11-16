@@ -1,0 +1,33 @@
+<!-- Draws a table of contents based on the <cxx-clause> and <cxx-section> elements. -->
+
+<polymer-element name="cxx-toc">
+  <template>
+    <style>
+      :host { display: block; }
+      li { list-style-type: none; }
+      ol { font-weight: normal; }
+      nav > ol { padding-left: 0; font-weight: bold; }
+      .marker { margin-right: 1em; }
+
+      /* Enable when custom markers are supported:
+       * http://www.w3.org/TR/css3-lists/#marker-pseudoelement
+       * li { list-style-type: inline; }
+       * .marker { display: marker; }
+       */
+    </style>
+    <nav>
+      <h1>Contents</h1>
+      <template bind="" id="hierarchy">
+        <template if="{{sections}}">
+          <ol>
+            <template repeat="{{sections}}">
+              <li><a href="#{{elem.id}}"><span class="marker">{{elem.sec_num}}</span>{{elem.text_title}}</a><template bind="" ref="hierarchy"
+              ></template></li>
+            </template>
+          </ol>
+        </template>
+      </template>
+    </nav>
+  </template>
+  <script src="toc.js"></script>
+</polymer-element>

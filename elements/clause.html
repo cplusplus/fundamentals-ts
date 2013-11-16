@@ -5,6 +5,7 @@
       Polymer('cxx-clause', {
         created: function() {
           this.update_sec_nums(clause_num++);
+          CxxSectionElement.prototype.created.apply(this);
         },
       });
     })();
