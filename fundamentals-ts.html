@@ -311,7 +311,7 @@ namespace std {
         <cxx-exception-safety>If any exception is thrown, value of <code><var>init</var></code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by exception safety guarantee of <code>T</code>'s assignment.</cxx-exception-safety>
         <cxx-remarks>The function shall not participate in overload resolution unless  <code>is_same&lt;typename remove_reference&lt;U&gt;::type, T&gt;::value</code> is  <code>true</code>.</cxx-remarks>
       </cxx-function>
-      <p>[<i>Note:</i> The reason to provide such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous. —<i>end note</i>]</p>
+      <p>[<i>Note:</i> The reason for providing such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous. —<i>end note</i>]</p>
 
       <cxx-function>
         <cxx-signature>template &lt;class... Args&gt; void optional&lt;T&gt;::emplace(Args&amp;&amp;... <var>args</var>);</cxx-signature>
