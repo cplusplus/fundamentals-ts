@@ -1,4 +1,5 @@
 @page {
+    margin: 10%;
     @top-left { content: "© ISO/IEC"; }
     @bottom-right { content: counter(page); }
 }
@@ -7,7 +8,12 @@
     @bottom-right { content: normal; }
 }
 
-body { max-width: 7in; }
+@media screen {
+    body { max-width: 7in; }
+}
+
+/* Needed to make the <cxx-titlepage>'s vertical spacing work. */
+html, body {height: 100%}
 
 p {margin-top: .5em; margin-bottom: .5em}
 p:first-child, ul, ol {margin-top: 0}
@@ -18,3 +24,6 @@ ins {text-decoration: underline; color: #005100;}
 pre { margin-left: 1em; }
 
 cxx-clause { page-break-before: always; }
+@media not paged {
+    cxx-clause, cxx-toc { margin-top: 3em; }
+}
