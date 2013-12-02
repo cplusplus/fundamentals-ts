@@ -21,7 +21,7 @@
 <polymer-element name="cxx-signature" noscript>
   <template><style>
       :host {padding-left: 2em;display:block;text-indent:-2em;}
-    </style><content/></template>
+    </style><content></content></template>
 </polymer-element>
 <polymer-element name="cxx-attribute">
   <template>
@@ -30,7 +30,7 @@
       dt { float: left; font-style: italic; padding-right: 1ex;}
       dd { margin-left: 0em; }
     </style>
-    <dt>{{heading}}:</dt><dd><content/></dd>
+    <dt>{{heading}}:</dt><dd><content></content></dd>
   </template>
   <script>
     Polymer('cxx-attribute', {
