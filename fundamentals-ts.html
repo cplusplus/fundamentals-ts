@@ -287,7 +287,7 @@ namespace std {
         <cxx-postconditions><code>*this</code> is engaged.</cxx-postconditions>
         <cxx-exception-safety>If any exception is thrown, the value of <code><var>init</var></code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</cxx-exception-safety>
         <cxx-remarks>The function shall not participate in overload resolution unless  <code>is_same&lt;typename remove_reference&lt;U&gt;::type, T&gt;::value</code> is  <code>true</code>.</cxx-remarks>
-        <cxx-notes>The reason to provide such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous.</cxx-notes>
+        <cxx-notes>The reason for providing such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous.</cxx-notes>
       </cxx-function>
 
       <cxx-function>
