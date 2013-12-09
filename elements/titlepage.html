@@ -10,13 +10,16 @@ cxx-titlepage sets the document title based on its <h1> child.
 <polymer-element name="cxx-titlepage" attributes="stage">
   <template>
     <style>
-      :host { display: block; page: 'title'; page-break-after: always }
-      :host { display: flex; width: 100%; min-height: 100%;
-              flex-direction: column; justify-content: space-between; align-items: center;}
+      :host { display: block; page: 'title'; page-break-after: always; min-height: 100%; }
 
-      table { align-self: flex-end; }
+      /* position:relative on :host makes position:absolute on its children work
+         relative to :host's bounds. */
+      :host { position: relative; }
+      table { position: absolute; right: 0; top: 0; }
+      h1 { position: absolute; top: 40%; }
+      p.warning { position: absolute; bottom: 5%; }
+
       h1 {text-align: center;}
-      p.warning {text-align: center;}
 
       th { text-align: left; vertical-align: top; }
     </style>
