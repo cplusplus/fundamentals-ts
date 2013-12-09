@@ -1,0 +1,14 @@
+<!-- This element creates a button that creates a standalone HTML version of
+     the current page in a new window so you can save it.
+     This will only work with the ShadowDOM polyfill, since you can't create
+     ShadowDOM without script.
+-->
+<polymer-element name="cxx-publish-button">
+  <template>
+    <style>
+      :host {display: block;}
+    </style>
+    <button on-click="{{publish}}">Publish to new window</button>
+  </template>
+  <script src="publish.js"></script>
+</polymer-element>
