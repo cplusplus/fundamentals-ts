@@ -10,12 +10,15 @@
   
   
   
-<title>Working Draft, Technical Specification on C++ Extensions for Library Fundamentals</title><style>.polymer-veiled { opacity: 0; }.polymer-unveil { transition: opacity 0.3s ease 0s; }element { display: none ! important; }template { display: none ! important; }style { display: none ! important; }cxx-section { display: block; }cxx-section:target { background-color: inherit; }cxx-section:target > section > h1 { background-color: rgb(255, 238, 221); }cxx-clause { display: block; }cxx-clause:target { background-color: inherit; }cxx-clause:target > section > h1 { background-color: rgb(255, 238, 221); }cxx-toc { display: block; }cxx-toc li { list-style-type: none; }cxx-toc ol { font-weight: normal; }cxx-toc nav > ol { padding-left: 0px; font-weight: bold; }cxx-toc .marker { margin-right: 1em; }cxx-function { display: block; }cxx-function:not(:last-child) { margin-bottom: 3ex; }cxx-function > dl { margin: 0px 0px 0px 2em; }cxx-function > pre { margin: 0px; }cxx-signature { padding-left: 2em; display: block; text-indent: -2em; }cxx-attribute { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-attribute dt { float: left; font-style: italic; padding-right: 1ex; }cxx-attribute dd { margin-left: 0em; }cxx-requires { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-requires dt { float: left; font-style: italic; padding-right: 1ex; }cxx-requires dd { margin-left: 0em; }cxx-effects { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-effects dt { float: left; font-style: italic; padding-right: 1ex; }cxx-effects dd { margin-left: 0em; }cxx-synchronization { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-synchronization dt { float: left; font-style: italic; padding-right: 1ex; }cxx-synchronization dd { margin-left: 0em; }cxx-postconditions { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-postconditions dt { float: left; font-style: italic; padding-right: 1ex; }cxx-postconditions dd { margin-left: 0em; }cxx-returns { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-returns dt { float: left; font-style: italic; padding-right: 1ex; }cxx-returns dd { margin-left: 0em; }cxx-throws { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-throws dt { float: left; font-style: italic; padding-right: 1ex; }cxx-throws dd { margin-left: 0em; }cxx-exception-safety { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-exception-safety dt { float: left; font-style: italic; padding-right: 1ex; }cxx-exception-safety dd { margin-left: 0em; }cxx-remarks { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-remarks dt { float: left; font-style: italic; padding-right: 1ex; }cxx-remarks dd { margin-left: 0em; }cxx-error-conditions { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-error-conditions dt { float: left; font-style: italic; padding-right: 1ex; }cxx-error-conditions dd { margin-left: 0em; }cxx-notes { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-notes dt { float: left; font-style: italic; padding-right: 1ex; }cxx-notes dd { margin-left: 0em; }cxx-titlepage { display: block; page-break-after: always; min-height: 100%; }cxx-titlepage { position: relative; }cxx-titlepage table { position: absolute; right: 0px; top: 0px; }cxx-titlepage h1 { position: absolute; top: 40%; }cxx-titlepage p.warning { position: absolute; bottom: 5%; }cxx-titlepage h1 { text-align: center; }cxx-titlepage th { text-align: left; vertical-align: top; }cxx-publish-button { display: block; }[touch-action="none"] {  }[touch-action="auto"] {  }[touch-action="pan-x"] {  }[touch-action="pan-y"] {  }[touch-action="pan-x pan-y"], [touch-action="pan-y pan-x"] {  }@page { margin: 10%; }@media screen {
+  
+  
+  
+<title>Working Draft, Technical Specification on C++ Extensions for Library Fundamentals</title><style>template { display: none ! important; }element { display: none ! important; }[unresolved] { opacity: 0; display: block; overflow: hidden; }[resolved] { display: block; overflow: hidden; transition: opacity 0.2s ease 0s; }[unresolved] { opacity: 0; display: block; overflow: hidden; }[resolved] { display: block; overflow: hidden; transition: opacity 0.2s ease 0s; }style { display: none ! important; }cxx-section { display: block; }cxx-section:target { background-color: inherit; }cxx-section:target > section > h1 { background-color: rgb(255, 238, 221); }cxx-clause { display: block; }cxx-clause:target { background-color: inherit; }cxx-clause:target > section > h1 { background-color: rgb(255, 238, 221); }cxx-toc { display: block; }cxx-toc li { list-style-type: none; }cxx-toc ol { font-weight: normal; }cxx-toc nav > ol { padding-left: 0px; font-weight: bold; }cxx-toc .marker { margin-right: 1em; }cxx-function { display: block; }cxx-function:not(:last-child) { margin-bottom: 3ex; }cxx-function > dl { margin: 0px 0px 0px 2em; }cxx-function > pre { margin: 0px; }cxx-signature { padding-left: 2em; display: block; text-indent: -2em; }cxx-attribute { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-attribute dt { float: left; font-style: italic; padding-right: 1ex; }cxx-attribute dd { margin-left: 0em; }cxx-requires { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-requires dt { float: left; font-style: italic; padding-right: 1ex; }cxx-requires dd { margin-left: 0em; }cxx-effects { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-effects dt { float: left; font-style: italic; padding-right: 1ex; }cxx-effects dd { margin-left: 0em; }cxx-synchronization { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-synchronization dt { float: left; font-style: italic; padding-right: 1ex; }cxx-synchronization dd { margin-left: 0em; }cxx-postconditions { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-postconditions dt { float: left; font-style: italic; padding-right: 1ex; }cxx-postconditions dd { margin-left: 0em; }cxx-returns { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-returns dt { float: left; font-style: italic; padding-right: 1ex; }cxx-returns dd { margin-left: 0em; }cxx-throws { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-throws dt { float: left; font-style: italic; padding-right: 1ex; }cxx-throws dd { margin-left: 0em; }cxx-exception-safety { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-exception-safety dt { float: left; font-style: italic; padding-right: 1ex; }cxx-exception-safety dd { margin-left: 0em; }cxx-remarks { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-remarks dt { float: left; font-style: italic; padding-right: 1ex; }cxx-remarks dd { margin-left: 0em; }cxx-error-conditions { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-error-conditions dt { float: left; font-style: italic; padding-right: 1ex; }cxx-error-conditions dd { margin-left: 0em; }cxx-notes { display: block; margin-top: 0.5em; margin-bottom: 0.5em; }cxx-notes dt { float: left; font-style: italic; padding-right: 1ex; }cxx-notes dd { margin-left: 0em; }cxx-titlepage { display: block; page-break-after: always; min-height: 100%; }cxx-titlepage { position: relative; }cxx-titlepage table { position: absolute; right: 0px; top: 0px; }cxx-titlepage h1 { position: absolute; top: 40%; }cxx-titlepage p.warning { position: absolute; bottom: 5%; }cxx-titlepage h1 { text-align: center; }cxx-titlepage th { text-align: left; vertical-align: top; }cxx-ednote { display: block; }cxx-ednote aside { background-color: rgb(238, 238, 238); border-color: rgb(136, 136, 136); border-style: dashed; }cxx-publish-button { display: block; }[touch-action="none"] {  }[touch-action="auto"] {  }[touch-action="pan-x"] {  }[touch-action="pan-y"] {  }[touch-action="pan-x pan-y"], [touch-action="pan-y pan-x"] {  }[touch-action="none"] {  }body [touch-action="none"] {  }[touch-action="auto"] {  }body [touch-action="auto"] {  }[touch-action="pan-x"] {  }body [touch-action="pan-x"] {  }[touch-action="pan-y"] {  }body [touch-action="pan-y"] {  }[touch-action="pan-x pan-y"], [touch-action="pan-y pan-x"] {  }body [touch-action="pan-x pan-y"], body [touch-action="pan-y pan-x"] {  }@page { margin: 10%; }@media screen {
   body { max-width: 7in; }
-}html, body { height: 100%; }p { margin-top: 0.5em; margin-bottom: 0.5em; }p:first-child, ul, ol { margin-top: 0px; }del { text-decoration: line-through; color: rgb(139, 0, 64); }ins { text-decoration: underline; color: rgb(0, 81, 0); }pre { margin-left: 1em; }cxx-clause { page-break-before: always; }@media not paged {
+}html, body { height: 100%; }p { margin-top: 0.5em; margin-bottom: 0.5em; }p:first-child, ul, ol { margin-top: 0px; }aside { float: right; max-width: 40%; margin: 1ex; border: 1px solid black; padding: 1ex; }del { text-decoration: line-through; color: rgb(139, 0, 64); }ins { text-decoration: underline; color: rgb(0, 81, 0); }pre { margin-left: 1em; }cxx-clause { page-break-before: always; }@media not paged {
   cxx-clause, cxx-toc { margin-top: 3em; }
 }</style></head>
-<body class="">
+<body>
 <cxx-titlepage stage="draft">
     
     <table>
@@ -52,6 +55,38 @@
               <li><a href="#general"><span class="marker">1</span>General</a>
         
           <ol>
+            
+              <li><a href="#general.scope"><span class="marker">1.1</span>Scope</a>
+        
+          <ol>
+            
+          </ol>
+        
+      </li>
+            
+              <li><a href="#general.references"><span class="marker">1.2</span>Normative references</a>
+        
+          <ol>
+            
+          </ol>
+        
+      </li>
+            
+              <li><a href="#general.namespaces"><span class="marker">1.3</span>Namespaces and headers</a>
+        
+          <ol>
+            
+          </ol>
+        
+      </li>
+            
+              <li><a href="#general.plans"><span class="marker">1.4</span>Future plans (Informative)</a>
+        
+          <ol>
+            
+          </ol>
+        
+      </li>
             
           </ol>
         
@@ -213,6 +248,140 @@
     <section>
       <h1>1 General <span style="float:right"><a href="#general">[general]</a></span></h1>
       
+  <cxx-section id="general.scope" title="Scope">
+    
+
+    <section>
+      <h1>1.1 Scope <span style="float:right"><a href="#general.scope">[general.scope]</a></span></h1>
+      
+    <p>This technical specification describes extensions to the C++
+    Standard Library <cxx-ref to="general.references">(<a href="#general.references">1.2</a>)</cxx-ref>. These extensions are classes
+    and functions that are likely to be used widely within a program
+    and/or on the interface boundaries between libraries written by
+    different organizations.</p>
+
+    <p>This technical specification is non-normative. Some of the
+    library components in this technical specification may be
+    considered for standardization in a future version of C++, but
+    they are not currently part of any C++ standard. Some of the
+    components in this technical specification may never be
+    standardized, and others may be standardized in a substantially
+    changed form.</p>
+
+    <p>The goal of this technical specification it to build more
+    widespread existing practice for an expanded C++ standard
+    library. It gives advice on extensions to those vendors who wish
+    to provide them.</p>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="general.references" title="Normative references">
+    
+
+    <section>
+      <h1>1.2 Normative references <span style="float:right"><a href="#general.references">[general.references]</a></span></h1>
+      
+    <p>The following referenced document is indispensable for the
+    application of this document. For dated references, only the
+    edition cited applies. For undated references, the latest edition
+    of the referenced document (including any amendments) applies.</p>
+
+    <ul>
+      <li>ISO/IEC 14882:2011, Programming Languages — C++</li>
+    </ul>
+
+    <p>ISO/IEC 14882:2011 is herein called the C++ Standard. The library
+    described in ISO/IEC 14882:2011 clauses 17–30 is herein called the C++
+    Standard Library.</p>
+
+    <p>Unless otherwise specified, the whole of the C++ Standard's
+    Library introduction [lib.library] is included into this Technical
+    Specification by reference.</p>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="general.namespaces" title="Namespaces and headers">
+    
+
+    <section>
+      <h1>1.3 Namespaces and headers <span style="float:right"><a href="#general.namespaces">[general.namespaces]</a></span></h1>
+      
+    <cxx-ednote>
+    
+    <aside><strong>Editor's note:</strong> This section reflects the <a href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">consensus
+    between the LWG and LEWG at the Chicago 2013
+    meeting</a>.</aside>
+  </cxx-ednote>
+
+    <p>Since the extensions described in this technical specification
+    are experimental and not part of the C++ standard library, they
+    should not be declared directly within namespace
+    <code>std</code>. Unless otherwise specifed, all components
+    described in this technical specification are declared in
+    namespace <code>std::experimental::fundamentals_v1</code> or a
+    subnamespace thereof.  Each header described in this technical
+    specification shall import the contents of
+    <code>std::experimental::fundamentals_v1</code> into
+    <code>std::experimental</code> as if by</p>
+
+    <pre><code>namespace std {
+  namespace experimental {
+    inline namespace fundamentals_v1 {}
+  }
+}</code></pre>
+
+    <p>Unless otherwise specified, references to other entities
+    described in this technical specification are assumed to be
+    qualified with <code>std::experimental::fundamentals_v1::</code>,
+    and references to entities described in the standard are assumed
+    to be qualified with <code>std::</code>.</p>
+
+    <p>Extensions that are expected to eventually be added to an
+    existing header <code>&lt;meow&gt;</code> are provided inside the
+    <code>&lt;experimental/meow&gt;</code> header, which shall include
+    the standard contents of <code>&lt;meow&gt;</code> as if by</p>
+    <pre><code>#include &lt;meow&gt;</code></pre>
+
+    <p><cxx-note>[ <em>Note:</em> This implies that this technical specification cannot
+    remove an existing overload of a function. — <em>end note</em> ]</cxx-note></p>
+
+    <p>New headers are also provided in the
+    <code>&lt;experimental/&gt;</code> directory, but without such an
+    <code>#include</code>.</p>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="general.plans" title="Future plans (Informative)">
+    
+
+    <section>
+      <h1>1.4 Future plans (Informative) <span style="float:right"><a href="#general.plans">[general.plans]</a></span></h1>
+      
+    <p>This section describes tentative plans for future versions of
+    this technical specification and plans for moving content into
+    future versions of the C++ Standard.</p>
+
+    <p>The C++ committee intends to release a new version of this
+    technical specification approximately every year, containing the
+    library extensions we hope to add to a near-future version of the
+    C++ Standard.  Future versions will define their contents in
+    <code>std::experimental::fundamentals_v2</code>,
+    <code>std::experimental::fundamentals_v3</code>, etc., with the
+    most recent implemented version inlined into
+    <code>std::experimental</code>.</p>
+
+    <p>When an extension defined in this or a future version of this
+    technical specification represents enough existing practice, it
+    will be moved into the next version of the C++ Standard by
+    removing the <code>experimental::fundamentals_v<var>N</var></code>
+    segment of its namespace and by removing the
+    <code>experimental/</code> prefix from its header's path.</p>
+  
+    </section>
+  </cxx-section>
 
     </section>
   </cxx-clause>
