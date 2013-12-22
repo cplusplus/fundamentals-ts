@@ -1,0 +1,14 @@
+<polymer-element name="cxx-ednote">
+  <template>
+    <style>
+      :host { display: block; }
+      aside { background-color: #eee; border-color: #888; border-style: dashed }
+    </style>
+    <aside><strong>Editor's note:</strong> <content></content></aside>
+  </template>
+  <script>
+    Polymer('cxx-ednote', {
+      applyAuthorStyles: true,
+    });
+  </script>
+</polymer-element>

@@ -18,6 +18,11 @@ html, body {height: 100%}
 p {margin-top: .5em; margin-bottom: .5em}
 p:first-child, ul, ol {margin-top: 0}
 
+aside { float: right; max-width: 40%;
+        margin: 1ex;
+        border: 1px solid black;
+        padding: 1ex; }
+
 del {text-decoration: line-through; color: #8B0040;}
 ins {text-decoration: underline; color: #005100;}
 

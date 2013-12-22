@@ -12,6 +12,8 @@
   <link rel="import" href="elements/function.html"/>
   <link rel="import" href="elements/titlepage.html"/>
   <link rel="import" href="elements/email.html"/>
+  <link rel="import" href="elements/ednote.html"/>
+  <link rel="import" href="elements/note.html"/>
   <link rel="import" href="elements/publish.html"/>
 </head>
 <body>
@@ -29,6 +31,111 @@
 <cxx-toc></cxx-toc>
 
 <cxx-clause id="general" title="General">
+  <cxx-section id="general.scope" title="Scope">
+    <p>This technical specification describes extensions to the C++
+    Standard Library <cxx-ref
+    to="general.references"></cxx-ref>. These extensions are classes
+    and functions that are likely to be used widely within a program
+    and/or on the interface boundaries between libraries written by
+    different organizations.</p>
+
+    <p>This technical specification is non-normative. Some of the
+    library components in this technical specification may be
+    considered for standardization in a future version of C++, but
+    they are not currently part of any C++ standard. Some of the
+    components in this technical specification may never be
+    standardized, and others may be standardized in a substantially
+    changed form.</p>
+
+    <p>The goal of this technical specification it to build more
+    widespread existing practice for an expanded C++ standard
+    library. It gives advice on extensions to those vendors who wish
+    to provide them.</p>
+  </cxx-section>
+
+  <cxx-section id="general.references" title="Normative references">
+    <p>The following referenced document is indispensable for the
+    application of this document. For dated references, only the
+    edition cited applies. For undated references, the latest edition
+    of the referenced document (including any amendments) applies.</p>
+
+    <ul>
+      <li>ISO/IEC 14882:2011, Programming Languages — C++</li>
+    </ul>
+
+    <p>ISO/IEC 14882:2011 is herein called the C++ Standard. The library
+    described in ISO/IEC 14882:2011 clauses 17–30 is herein called the C++
+    Standard Library.</p>
+
+    <p>Unless otherwise specified, the whole of the C++ Standard's
+    Library introduction [lib.library] is included into this Technical
+    Specification by reference.</p>
+  </cxx-section>
+
+  <cxx-section id="general.namespaces" title="Namespaces and headers">
+    <cxx-ednote>This section reflects the <a
+    href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">consensus
+    between the LWG and LEWG at the Chicago 2013
+    meeting</a>.</cxx-ednote>
+
+    <p>Since the extensions described in this technical specification
+    are experimental and not part of the C++ standard library, they
+    should not be declared directly within namespace
+    <code>std</code>. Unless otherwise specifed, all components
+    described in this technical specification are declared in
+    namespace <code>std::experimental::fundamentals_v1</code> or a
+    subnamespace thereof.  Each header described in this technical
+    specification shall import the contents of
+    <code>std::experimental::fundamentals_v1</code> into
+    <code>std::experimental</code> as if by</p>
+
+    <pre><code>namespace std {
+  namespace experimental {
+    inline namespace fundamentals_v1 {}
+  }
+}</code></pre>
+
+    <p>Unless otherwise specified, references to other entities
+    described in this technical specification are assumed to be
+    qualified with <code>std::experimental::fundamentals_v1::</code>,
+    and references to entities described in the standard are assumed
+    to be qualified with <code>std::</code>.</p>
+
+    <p>Extensions that are expected to eventually be added to an
+    existing header <code>&lt;meow></code> are provided inside the
+    <code>&lt;experimental/meow></code> header, which shall include
+    the standard contents of <code>&lt;meow></code> as if by</p>
+    <pre><code>#include &lt;meow></code></pre>
+
+    <p><cxx-note>This implies that this technical specification cannot
+    remove an existing overload of a function.</cxx-note></p>
+
+    <p>New headers are also provided in the
+    <code>&lt;experimental/></code> directory, but without such an
+    <code>#include</code>.</p>
+  </cxx-section>
+
+  <cxx-section id="general.plans" title="Future plans (Informative)">
+    <p>This section describes tentative plans for future versions of
+    this technical specification and plans for moving content into
+    future versions of the C++ Standard.</p>
+
+    <p>The C++ committee intends to release a new version of this
+    technical specification approximately every year, containing the
+    library extensions we hope to add to a near-future version of the
+    C++ Standard.  Future versions will define their contents in
+    <code>std::experimental::fundamentals_v2</code>,
+    <code>std::experimental::fundamentals_v3</code>, etc., with the
+    most recent implemented version inlined into
+    <code>std::experimental</code>.</p>
+
+    <p>When an extension defined in this or a future version of this
+    technical specification represents enough existing practice, it
+    will be moved into the next version of the C++ Standard by
+    removing the <code>experimental::fundamentals_v<var>N</var></code>
+    segment of its namespace and by removing the
+    <code>experimental/</code> prefix from its header's path.</p>
+  </cxx-section>
 </cxx-clause>
 
 <cxx-clause id="optional" title="Optional objects">
