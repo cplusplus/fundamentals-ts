@@ -18,7 +18,7 @@
     <nav>
       <h1>Contents</h1>
       <template bind="" id="hierarchy">
-        <template if="{{sections}}">
+        <template if="{{sections.length > 0}}">
           <ol>
             <template repeat="{{sections}}">
               <li><a href="#{{elem.id}}"><span class="marker">{{elem.sec_num}}</span>{{elem.text_title}}</a><template bind="" ref="hierarchy"
