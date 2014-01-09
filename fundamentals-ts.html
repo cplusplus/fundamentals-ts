@@ -159,6 +159,8 @@
 
 <pre>
 namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
   <cxx-ref insynopsis="" to="optional.object"></cxx-ref>
   template &lt;class T&gt; class optional;
 
@@ -195,9 +197,12 @@ namespace std {
   template &lt;class T&gt; void swap(optional&lt;T&gt;&amp;, optional&lt;T&gt;&amp;) noexcept(<em>see below</em>);
   template &lt;class T&gt; constexpr optional&lt;<em>see below</em>&gt; make_optional(T&amp;&amp;);
 
+} // <i>namespace fundamentals_v1</i>
+} // <i>namespace experimental</i>
+
   <cxx-ref insynopsis="" to="optional.hash"></cxx-ref>
   template &lt;class T&gt; struct hash;
-  template &lt;class T&gt; struct hash&lt;optional&lt;T&gt;&gt;;
+  template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;
 } // <i>namespace std</i>
 </pre>
 
@@ -215,58 +220,53 @@ namespace std {
   <cxx-section id="optional.object">
     <cxx-title><code>optional</code> for object types</cxx-title>
 
-<pre>
-namespace std {
+<pre>template &lt;class T&gt;
+class optional
+{
+public:
+  typedef T value_type;
 
-  template &lt;class T&gt;
-  class optional
-  {
-  public:
-    typedef T value_type;
+  <cxx-ref insynopsis="" to="optional.object.ctor"></cxx-ref>
+  constexpr optional() noexcept;
+  constexpr optional(nullopt_t) noexcept;
+  optional(const optional&amp;);
+  optional(optional&amp;&amp;) noexcept(<em>see below</em>);
+  constexpr optional(const T&amp;);
+  constexpr optional(T&amp;&amp;);
+  template &lt;class... Args&gt; constexpr explicit optional(in_place_t, Args&amp;&amp;...);
+  template &lt;class U, class... Args&gt;
+    constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
 
-    <cxx-ref insynopsis="" to="optional.object.ctor"></cxx-ref>
-    constexpr optional() noexcept;
-    constexpr optional(nullopt_t) noexcept;
-    optional(const optional&amp;);
-    optional(optional&amp;&amp;) noexcept(<em>see below</em>);
-    constexpr optional(const T&amp;);
-    constexpr optional(T&amp;&amp;);
-    template &lt;class... Args&gt; constexpr explicit optional(in_place_t, Args&amp;&amp;...);
-    template &lt;class U, class... Args&gt;
-      constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
+  <cxx-ref insynopsis="" to="optional.object.dtor"></cxx-ref>
+  ~optional();
 
-    <cxx-ref insynopsis="" to="optional.object.dtor"></cxx-ref>
-    ~optional();
+  <cxx-ref insynopsis="" to="optional.object.assign"></cxx-ref>
+  optional&amp; operator=(nullopt_t) noexcept;
+  optional&amp; operator=(const optional&amp;);
+  optional&amp; operator=(optional&amp;&amp;) noexcept(<em>see below</em>);
+  template &lt;class U&gt; optional&amp; operator=(U&amp;&amp;);
+  template &lt;class... Args&gt; void emplace(Args&amp;&amp;...);
+  template &lt;class U, class... Args&gt;
+    void emplace(initializer_list&lt;U&gt;, Args&amp;&amp;...);
 
-    <cxx-ref insynopsis="" to="optional.object.assign"></cxx-ref>
-    optional&amp; operator=(nullopt_t) noexcept;
-    optional&amp; operator=(const optional&amp;);
-    optional&amp; operator=(optional&amp;&amp;) noexcept(<em>see below</em>);
-    template &lt;class U&gt; optional&amp; operator=(U&amp;&amp;);
-    template &lt;class... Args&gt; void emplace(Args&amp;&amp;...);
-    template &lt;class U, class... Args&gt;
-      void emplace(initializer_list&lt;U&gt;, Args&amp;&amp;...);
+  <cxx-ref insynopsis="" to="optional.object.swap"></cxx-ref>
+  void swap(optional&amp;) noexcept(<em>see below</em>);
 
-    <cxx-ref insynopsis="" to="optional.object.swap"></cxx-ref>
-    void swap(optional&amp;) noexcept(<em>see below</em>);
+  <cxx-ref insynopsis="" to="optional.object.observe"></cxx-ref>
+  constexpr T const* operator -&gt;() const;
+  T* operator -&gt;();
+  constexpr T const&amp; operator *() const;
+  T&amp; operator *();
+  constexpr explicit operator bool() const noexcept;
+  constexpr T const&amp; value() const;
+  T&amp; value();
+  template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const&amp;;
+  template &lt;class U&gt; T value_or(U&amp;&amp;) &amp;&amp;;
 
-    <cxx-ref insynopsis="" to="optional.object.observe"></cxx-ref>
-    constexpr T const* operator -&gt;() const;
-    T* operator -&gt;();
-    constexpr T const&amp; operator *() const;
-    T&amp; operator *();
-    constexpr explicit operator bool() const noexcept;
-    constexpr T const&amp; value() const;
-    T&amp; value();
-    template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const&amp;;
-    template &lt;class U&gt; T value_or(U&amp;&amp;) &amp;&amp;;
-
-  private:
-    bool init; // <i>exposition only</i>
-    T*   val;  // <i>exposition only</i>
-  };
-
-} // <i>namespace std</i></pre>
+private:
+  bool init; // <i>exposition only</i>
+  T*   val;  // <i>exposition only</i>
+};</pre>
 
     <p>Engaged instances of <code>optional&lt;T&gt;</code> where <code>T</code> is of object type shall contain a value of type <code>T</code> within its own storage. This value is referred to as the <dfn>contained value</dfn> of the optional object. Implementations are not permitted to use additional storage, such as dynamic memory, to allocate its contained value.  The contained value shall be allocated in a region of the <code>optional&lt;T&gt;</code> storage suitably aligned for the type <code>T</code>.</p>
 
@@ -534,13 +534,11 @@ namespace std {
   <cxx-section id="optional.bad_optional_access">
     <cxx-title>Class <code>bad_optional_access</code></cxx-title>
 
-<pre>namespace std {
-  class bad_optional_access : public logic_error {
-  public:
-    explicit bad_optional_access(const string&amp; <var>what_arg</var>);
-    explicit bad_optional_access(const char* <var>what_arg</var>);
-  };
-}</pre>
+<pre>class bad_optional_access : public logic_error {
+public:
+  explicit bad_optional_access(const string&amp; <var>what_arg</var>);
+  explicit bad_optional_access(const char* <var>what_arg</var>);
+};</pre>
 
     <p>The class <code>bad_optional_access</code> defines the type of objects thrown as exceptions to report the situation where an attempt is made to access the value of a disengaged optional object.</p>
 
@@ -638,7 +636,7 @@ namespace std {
 
   <cxx-section id="optional.hash" title="Hash support">
     <cxx-function>
-      <cxx-signature>template &lt;class T&gt; struct hash&lt;optional&lt;T&gt;&gt;;</cxx-signature>
+      <cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;</cxx-signature>
 
       <cxx-requires>the template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (20.9.12).
       The template specialization <code>hash&lt;optional&lt;T&gt;&gt;</code> shall meet the requirements of class template <code>hash</code>.
