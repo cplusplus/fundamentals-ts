@@ -277,15 +277,15 @@ private:
 
     <cxx-section id="optional.object.ctor" title="Constructors">
       <cxx-function>
-        <cxx-signature>constexpr optional&lt;T&gt;::optional() noexcept;</cxx-signature>
-        <cxx-signature>constexpr optional&lt;T&gt;::optional(nullopt_t) noexcept;</cxx-signature>
+        <cxx-signature>constexpr optional() noexcept;</cxx-signature>
+        <cxx-signature>constexpr optional(nullopt_t) noexcept;</cxx-signature>
 
         <cxx-postconditions><code>*this</code> is disengaged.</cxx-postconditions>
         <cxx-remarks>No <code>T</code> object referenced is initialized. For every object type <code>T</code> these constructors shall be <code>constexpr</code> constructors (7.1.5).</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;::optional(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
+        <cxx-signature>optional(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
 
         <cxx-requires><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>If <code><var>rhs</var></code> is engaged initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>*<var>rhs</var></code>.</cxx-effects>
@@ -294,7 +294,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;::optional(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
+        <cxx-signature>optional(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
 
         <cxx-requires><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>If <code><var>rhs</var></code> is engaged initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*<var>rhs</var>)</code>. <code>bool(<var>rhs</var>)</code> is unchanged.</cxx-effects>
@@ -304,7 +304,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;::optional(const T&amp; <var>v</var>);</cxx-signature>
+        <cxx-signature>optional(const T&amp; <var>v</var>);</cxx-signature>
 
         <cxx-requires><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code><var>v</var></code>.</cxx-effects>
@@ -314,7 +314,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;::optional(T&amp;&amp; <var>v</var>);</cxx-signature>
+        <cxx-signature>optional(T&amp;&amp; <var>v</var>);</cxx-signature>
 
         <cxx-requires><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(<var>v</var>)</code>.</cxx-effects>
@@ -347,7 +347,7 @@ private:
 
     <cxx-section id="optional.object.dtor" title="Destructor">
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;::~optional();</cxx-signature>
+        <cxx-signature>~optional();</cxx-signature>
 
         <cxx-effects>If <code>is_trivially_destructible&lt;T&gt;::value != true</code> and <code>*this</code> is engaged, calls <code><var>val</var>-&gt;T::~T()</code>.</cxx-effects>
         <cxx-remarks>If <code>is_trivially_destructible&lt;T&gt;::value == true</code> then this destructor shall be a trivial destructor.</cxx-remarks>
@@ -356,7 +356,7 @@ private:
 
     <cxx-section id="optional.object.assign" title="Assignment">
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;&amp; optional&lt;T&gt;::operator=(nullopt_t) noexcept;</cxx-signature>
+        <cxx-signature>optional&lt;T&gt;&amp; operator=(nullopt_t) noexcept;</cxx-signature>
 
         <cxx-effects>If <code>*this</code> is engaged calls <code><var>val</var>-&gt;T::~T()</code> to destroy the contained value; otherwise no effect.</cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
@@ -364,7 +364,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;&amp; optional&lt;T&gt;::operator=(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
+        <cxx-signature>optional&lt;T&gt;&amp; operator=(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
 
         <cxx-requires><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_copy_assignable&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>
@@ -381,7 +381,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>optional&lt;T&gt;&amp; optional&lt;T&gt;::operator=(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
+        <cxx-signature>optional&lt;T&gt;&amp; operator=(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
 
         <cxx-requires><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_move_assignable&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>
@@ -399,7 +399,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; optional&lt;T&gt;::operator=(U&amp;&amp; <var>v</var>);</cxx-signature>
+        <cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; operator=(U&amp;&amp; <var>v</var>);</cxx-signature>
 
         <cxx-requires><code>is_constructible&lt;T, U&gt;::value</code> is <code>true</code> and <code>is_assignable&lt;U, T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>If <code>*this</code> is engaged assigns <code>std::forward&lt;U&gt;(<var>v</var>)</code> to the contained value; otherwise initializes the contained value as if direct-non-list-initializing object of type <code>T</code> with <code>std::forward&lt;U&gt;(<var>v</var>)</code>.</cxx-effects>
@@ -411,7 +411,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class... Args&gt; void optional&lt;T&gt;::emplace(Args&amp;&amp;... <var>args</var>);</cxx-signature>
+        <cxx-signature>template &lt;class... Args&gt; void emplace(Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
         <cxx-requires><code>is_constructible&lt;T, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if constructing an object of type <code>T</code> with the arguments <code>std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
@@ -421,7 +421,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U, class... Args&gt; <wbr/>void optional&lt;T&gt;::emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
+        <cxx-signature>template &lt;class U, class... Args&gt; <wbr/>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
         <cxx-requires><code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if constructing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
@@ -434,7 +434,7 @@ private:
 
     <cxx-section id="optional.object.swap" title="Swap">
       <cxx-function>
-        <cxx-signature>void optional&lt;T&gt;::swap(optional&lt;T&gt;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
+        <cxx-signature>void swap(optional&lt;T&gt;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
 
         <cxx-requires>LValues of type T shall be swappable and <code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>
@@ -453,8 +453,8 @@ private:
 
     <cxx-section id="optional.object.observe" title="Observers">
       <cxx-function>
-        <cxx-signature>constexpr T const* optional&lt;T&gt;::operator-&gt;() const;</cxx-signature>
-        <cxx-signature>T* optional&lt;T&gt;::operator-&gt;();</cxx-signature>
+        <cxx-signature>constexpr T const* operator-&gt;() const;</cxx-signature>
+        <cxx-signature>T* operator-&gt;();</cxx-signature>
 
         <cxx-requires><code>*this</code> is engaged.</cxx-requires>
         <cxx-returns><code><var>val</var></code>.</cxx-returns>
@@ -463,8 +463,8 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr T const&amp; optional&lt;T&gt;::operator*() const;</cxx-signature>
-        <cxx-signature>T&amp; optional&lt;T&gt;::operator*();</cxx-signature>
+        <cxx-signature>constexpr T const&amp; operator*() const;</cxx-signature>
+        <cxx-signature>T&amp; operator*();</cxx-signature>
 
         <cxx-requires><code>*this</code> is engaged.</cxx-requires>
         <cxx-returns><code>*<var>val</var></code>.</cxx-returns>
@@ -473,15 +473,15 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr explicit optional&lt;T&gt;::operator bool() noexcept;</cxx-signature>
+        <cxx-signature>constexpr explicit operator bool() noexcept;</cxx-signature>
 
         <cxx-returns><code><var>init</var></code>.</cxx-returns>
         <cxx-remarks>this function shall be a <code>constexpr</code> function.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr T const&amp; optional&lt;T&gt;::value() const;</cxx-signature>
-        <cxx-signature>T&amp; optional&lt;T&gt;::value();</cxx-signature>
+        <cxx-signature>constexpr T const&amp; value() const;</cxx-signature>
+        <cxx-signature>T&amp; value();</cxx-signature>
 
         <cxx-returns><code><var>*val</var></code>, if <code>bool(*this)</code>.</cxx-returns>
         <cxx-throws><code>bad_optional_access</code> if <code>!*this</code>.</cxx-throws>
@@ -489,7 +489,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U&gt; constexpr T optional&lt;T&gt;::value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
+        <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
 
         <cxx-requires><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_convertible&lt;U&amp;&amp;, T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-returns><code>bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-returns>
@@ -499,7 +499,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U&gt; T optional&lt;T&gt;::value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
+        <cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
 
         <cxx-requires><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_convertible&lt;U&amp;&amp;, T&gt;::value</code> is <code>true</code>.</cxx-requires>
         <cxx-returns><code>bool(*this) ? std::move(**this) : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-returns>
