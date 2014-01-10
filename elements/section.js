@@ -5,6 +5,8 @@
         text_title: "",
         title_element: null,
 
+        applyAuthorStyles: true,
+
         update_sec_nums: function(sec_num) {
             this.sec_num = sec_num + '';
             var child_index = 1;

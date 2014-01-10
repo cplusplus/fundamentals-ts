@@ -3,6 +3,8 @@
         // Hierarchy :: [{ elem: Element, sections: Hierarchy }]
         sections: [],
 
+        applyAuthorStyles: true,
+
         collectSections: function(root) {
             var sections = [];
             for (var child = root.firstElementChild; child;

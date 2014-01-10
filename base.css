@@ -12,6 +12,12 @@
     body { max-width: 7in; }
 }
 
+@media print {
+    /* Current PDF output from browsers doesn't preserve links, so avoid
+       the affordance that says the text is a link. */
+    a[href] { color:black; text-decoration:none; }
+}
+
 /* Needed to make the <cxx-titlepage>'s vertical spacing work. */
 html, body {height: 100%}
 

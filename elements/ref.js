@@ -6,6 +6,7 @@
         observe: {
             'in_elem.index': 'indexChanged'
         },
+        applyAuthorStyles: true,
 
         inChanged: function() {
             this.in_elem = document.getElementById(this.in);
