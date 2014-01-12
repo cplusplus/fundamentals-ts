@@ -20,9 +20,13 @@
 
 /* Needed to make the <cxx-titlepage>'s vertical spacing work. */
 html, body {height: 100%}
+body { margin-left: 1.5em }
 
 p {margin-top: .5em; margin-bottom: .5em}
 p:first-child, ul, ol {margin-top: 0}
+
+[para_num]::before { content: attr(para_num); float: left;
+                     font-size: 60%; margin-left: -2em; width: 1.5em; text-align: right; }
 
 aside { float: right; max-width: 40%;
         margin: 1ex;
