@@ -3,18 +3,36 @@
         to: "",
         insynopsis: false,
 
-        created: function() {
-            // https://github.com/Polymer/polymer/issues/342
-            this.to = this.getAttribute("to");
-            this.insynopsis = this.hasAttribute("insynopsis");
+        observe: {
+            'in_elem.index': 'indexChanged'
+        },
 
-            this.to_elem = document.getElementById(this.to);
-            if (this.to_elem == null) {
-                console.error("Broken link", this.to, "from", this);
+        inChanged: function() {
+            this.in_elem = document.getElementById(this.in);
+            if (this.in &&
+                !(this.in_elem &&
+                  this.in_elem.tagName.toUpperCase() == 'CXX-FOREIGN-INDEX')) {
+                console.error('<cxx-ref>.in (', this.in,
+                              ') must be a <cxx-foreign-index>; was',
+                              this.in_elem);
             }
-            if (!this.to_elem instanceof CxxSectionElement) {
-                console.error("Reference from", this,
-                              "refers to non-section element", this.to_elem);
+        },
+        toChanged: function() {
+            if (!this.in) {
+                this.to_elem = document.getElementById(this.to);
+                if (!this.to_elem) {
+                    console.error("Broken link", this.to, "from", this);
+                }
+                if (!this.to_elem instanceof CxxSectionElement) {
+                    console.error("Reference from", this,
+                                  "refers to non-section element", this.to_elem);
+                }
+            }
+        },
+
+        indexChanged: function() {
+            if (!(this.to in this.in_elem.index)) {
+                console.error(this.to, 'not found in', this.in_elem);
             }
         }
     });

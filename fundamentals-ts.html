@@ -2,13 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <script src="bower_components/platform/platform.js"></script>
-  <script src="bower_components/polymer/polymer.js"></script>
   <link rel="stylesheet" href="base.css"/>
+  <script src="bower_components/platform/platform.js"></script>
+  <link rel="import" href="bower_components/polymer/polymer.html"/>
   <link rel="import" href="elements/section.html"/>
   <link rel="import" href="elements/clause.html"/>
   <link rel="import" href="elements/toc.html"/>
   <link rel="import" href="elements/ref.html"/>
+  <link rel="import" href="elements/foreign-index.html"/>
   <link rel="import" href="elements/function.html"/>
   <link rel="import" href="elements/titlepage.html"/>
   <link rel="import" href="elements/email.html"/>
@@ -60,16 +61,18 @@
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:2011, Programming Languages — C++</li>
+      <li>ISO/IEC 14882:2011, Programming Languages — C++
+      <cxx-foreign-index id="cxx" src="cxx11_index.json" name="C++11"></cxx-foreign-index></li>
     </ul>
 
-    <p>ISO/IEC 14882:2011 is herein called the C++ Standard. The library
+    <p>ISO/IEC 14882:2011 is herein called the C++ Standard. References to
+    clauses within the C++ Standard are written as "C++11 &#xa7;3.2". The library
     described in ISO/IEC 14882:2011 clauses 17–30 is herein called the C++
     Standard Library.</p>
 
-    <p>Unless otherwise specified, the whole of the C++ Standard's
-    Library introduction [lib.library] is included into this Technical
-    Specification by reference.</p>
+    <p>Unless otherwise specified, the whole of the C++ Standard's Library
+    introduction <cxx-ref in="cxx" to="library"></cxx-ref> is included into this
+    Technical Specification by reference.</p>
   </cxx-section>
 
   <cxx-section id="general.namespaces" title="Namespaces and headers">
@@ -281,7 +284,7 @@ private:
         <cxx-signature>constexpr optional(nullopt_t) noexcept;</cxx-signature>
 
         <cxx-postconditions><code>*this</code> is disengaged.</cxx-postconditions>
-        <cxx-remarks>No <code>T</code> object referenced is initialized. For every object type <code>T</code> these constructors shall be <code>constexpr</code> constructors (7.1.5).</cxx-remarks>
+        <cxx-remarks>No <code>T</code> object referenced is initialized. For every object type <code>T</code> these constructors shall be <code>constexpr</code> constructors <cxx-ref in="cxx" to="dcl.constexpr"></cxx-ref>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -638,7 +641,7 @@ public:
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;</cxx-signature>
 
-      <cxx-requires>the template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (20.9.12).
+      <cxx-requires>the template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> <cxx-ref in="cxx" to="unord.hash"></cxx-ref>.
       The template specialization <code>hash&lt;optional&lt;T&gt;&gt;</code> shall meet the requirements of class template <code>hash</code>.
       For an object <code><var>o</var></code> of type <code>optional&lt;T&gt;</code>, if <code>bool(<var>o</var>) == true</code>,
       <code>hash&lt;optional&lt;T&gt;&gt;()(<var>o</var>)</code> shall evaluate to the same value as <code>hash&lt;T&gt;()(*<var>o</var>)</code>.</cxx-requires>
