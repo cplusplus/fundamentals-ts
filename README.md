@@ -95,8 +95,8 @@ a standalone version of the document, that doesn't rely on any custom
 elements, scripts, or external CSS.  The result of this transformation
 is what actually gets published in the C++ committee mailings.
 
-It should be compatible back to ~IE 8 and should degrade fairly
-gracefully in even older browsers.
+It's tested back to IE 8 and should degrade fairly gracefully in even
+older browsers.
 
 
 ### `<cxx-ednote>`
