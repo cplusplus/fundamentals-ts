@@ -2,8 +2,11 @@
      the current page in a new window so you can save it.
      This will only work with the ShadowDOM polyfill, since you can't create
      ShadowDOM without script.
+
+     If the 'source' attribute is present, a "Sources at ..." comment
+     will appear at the top of the result document.
 -->
-<polymer-element name="cxx-publish-button">
+<polymer-element name="cxx-publish-button" attributes="source">
   <template>
     <style>
       :host {display: block;}

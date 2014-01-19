@@ -64,7 +64,12 @@
     Polymer('cxx-publish-button', {
         publish: function() {
             var copy = cloneStaticAndInline(document);
-            var published = new Blob(['<!DOCTYPE html>',
+            var source = '';
+            if (this.source) {
+                var source = '<!-- Sources at ' + this.source + ' -->\n';
+            }
+            var published = new Blob(['<!DOCTYPE html>\n',
+                                      source,
                                       copy.documentElement.outerHTML],
                                      {type: 'text/html'});
             window.open(URL.createObjectURL(published), '_blank');
