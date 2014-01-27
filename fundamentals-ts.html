@@ -7,6 +7,8 @@
   <link rel="import" href="bower_components/polymer/polymer.html"/>
   <link rel="import" href="elements/section.html"/>
   <link rel="import" href="elements/clause.html"/>
+  <link rel="import" href="elements/table.html"/>
+  <link rel="import" href="elements/definition-section.html"/>
   <link rel="import" href="elements/toc.html"/>
   <link rel="import" href="elements/ref.html"/>
   <link rel="import" href="elements/foreign-index.html"/>
@@ -117,17 +119,21 @@
     <p>New headers are also provided in the
     <code>&lt;experimental/></code> directory, but without such an
     <code>#include</code>.</p>
+
+    <table is="cxx-table" id="tab.cxx.headers">
+      <caption>C++ library headers</caption>
+      <tr><td><code>&lt;experimental/optional></code></td></tr>
+    </table>
   </cxx-section>
 
   <cxx-section id="general.defns" title="Terms and definitions">
     <p>For the purposes of this document, the terms and definitions
     given in the C++ Standard and the folowing apply.</p>
 
-    <!--
-    <cxx-section id="general.defns.foo" title="Foo">
-      <p>Foo's definition.</p>
-    </cxx-section>
-    -->
+    <dl is="cxx-definition-section">
+      <dt id="general.defns.direct-non-list-init">direct-non-list-initialization</dt>
+      <dd>A direct-initialization that is not list-initialization.</dd>
+    </dl>
   </cxx-section>
 
   <cxx-section id="general.plans" title="Future plans (Informative)">

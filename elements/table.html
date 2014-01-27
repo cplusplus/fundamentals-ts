@@ -1,0 +1,29 @@
+<!--
+    Uses the HTML <table> content model, but automatically adds a number to
+    the <caption>.  Use this as <table is="cxx-table">, unlike the other custom
+    elements.
+-->
+<polymer-element name="cxx-table" extends="table">
+  <template>
+    <style>
+      :host { border: thin solid black;
+              margin-left: auto; margin-right: auto; }
+      caption { white-space: nowrap; }
+      /* @polyfill caption caption */
+      ::content caption { display: inline; }
+    </style>
+
+    <caption>Table {{table_num}} — <content select="caption"></content></caption>
+    <content></content>
+  </template>
+  <script>
+    (function() {
+      var next_table_num = 1;
+      Polymer('cxx-table', {
+        created: function() {
+          this.table_num = next_table_num++;
+        }
+      });
+    })();
+  </script>
+</polymer-element>

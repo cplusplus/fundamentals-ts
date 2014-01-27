@@ -1,0 +1,22 @@
+<!--
+    Uses the HTML <table> content model, but automatically adds a number to
+    the <caption>.  Use this as <table is="cxx-table">, unlike the other custom
+    elements.
+-->
+<polymer-element name="cxx-definition-section" extends="dl">
+  <template>
+    <style>
+      dt { font-weight: bold; }
+      dd { margin-left: 0; }
+    </style>
+
+    <content></content>
+  </template>
+  <template id="cxx-definition-section-term" bind="">
+    {{parent_section.sec_num}}.{{term_number}}
+    <span style="float:right"><a href="#{{id}}">[{{id}}]</a></span>
+    <br clear="both"/>
+    <content></content>
+  </template>
+  <script src="definition-section.js"></script>
+</polymer-element>

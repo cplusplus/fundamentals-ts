@@ -99,6 +99,12 @@ It's tested back to IE 8 and should degrade fairly gracefully in even
 older browsers.
 
 
+### `<dl is="cxx-definition-section">`
+
+Numbers the terms in the `<dl>` with the parent `<cxx-section>`'s section
+number, and formats and links the `id`.
+
+
 ### `<cxx-ednote>`
 
 An editor's note that won't appear in the final published document.
@@ -135,3 +141,7 @@ Links to a section in the current document, whose `id` is given by the
 "`(1.2.3)`", unless the `insynopsis` attribute is also present, in
 which case the reference is displayed as a C++ comment, "`// 1.2.3,
 title of referenced section`".
+
+### `<table is="cxx-table">`
+
+Adds a "Table # —" prefix to the table `<caption>`.
