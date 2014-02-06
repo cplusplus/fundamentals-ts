@@ -1261,7 +1261,10 @@ private:
   </cxx-returns><cxx-postconditions para_num="9" id="optional.object.assign.9">
     
     <dt>Postconditions:</dt><dd><code>bool(<var>rhs</var>) == bool(*this)</code>.</dd>
-  </cxx-postconditions></dl>
+  </cxx-postconditions><cxx-exception-safety para_num="10" id="optional.object.assign.10">
+    
+    <dt>Exception safety:</dt><dd>If any exception is thrown, values of <code><var>init</var></code> and <code><var>rhs.init</var></code> remain unchanged. If an exception is thrown during the call to <code>T</code>'s copy constructor, no effect. If an exception is thrown during the call to <code>T</code>'s copy assignment, the state of its contained value is as defined by the exception safety guarantee of <code>T</code>'s copy constructor.</dd>
+  </cxx-exception-safety></dl>
   </cxx-function>
 
       <cxx-function para_num="11" id="optional.object.assign.11">
@@ -1291,7 +1294,10 @@ private:
   </cxx-postconditions><cxx-remarks para_num="16" id="optional.object.assign.16">
     
     <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable&lt;T&gt;::value &amp;&amp; is_nothrow_move_constructible&lt;T&gt;::value</pre></dd>
-  </cxx-remarks></dl>
+  </cxx-remarks><cxx-exception-safety para_num="17" id="optional.object.assign.17">
+    
+    <dt>Exception safety:</dt><dd>If any exception is thrown, values of <code><var>init</var></code> and <code><var>rhs.init</var></code> remain unchanged. If an exception is thrown during the call to <code>T</code>'s move constructor, the state of <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s move constructor. If an exception is thrown during the call to <code>T</code>'s move assignment, the state of <code><var>*val</var></code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s move assignment.</dd>
+  </cxx-exception-safety></dl>
   </cxx-function>
 
       <cxx-function para_num="18" id="optional.object.assign.18">
@@ -1311,7 +1317,10 @@ private:
   </cxx-returns><cxx-postconditions para_num="22" id="optional.object.assign.22">
     
     <dt>Postconditions:</dt><dd><code>*this</code> is engaged.</dd>
-  </cxx-postconditions><cxx-remarks para_num="24" id="optional.object.assign.24">
+  </cxx-postconditions><cxx-exception-safety para_num="23" id="optional.object.assign.23">
+    
+    <dt>Exception safety:</dt><dd>If any exception is thrown, the value of <code><var>init</var></code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</dd>
+  </cxx-exception-safety><cxx-remarks para_num="24" id="optional.object.assign.24">
     
     <dt>Remarks:</dt><dd>The function shall not participate in overload resolution unless  <code>is_same&lt;typename remove_reference&lt;U&gt;::type, T&gt;::value</code> is  <code>true</code>.</dd>
   </cxx-remarks><cxx-notes para_num="25" id="optional.object.assign.25">
@@ -1337,7 +1346,10 @@ private:
   </cxx-postconditions><cxx-throws para_num="30" id="optional.object.assign.30">
     
     <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
-  </cxx-throws></dl>
+  </cxx-throws><cxx-exception-safety para_num="31" id="optional.object.assign.31">
+    
+    <dt>Exception safety:</dt><dd>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> is disengaged, and the previous <code><var>*val</var></code> (if any) has been destroyed.</dd>
+  </cxx-exception-safety></dl>
   </cxx-function>
 
       <cxx-function para_num="32" id="optional.object.assign.32">
@@ -1357,7 +1369,10 @@ private:
   </cxx-postconditions><cxx-throws para_num="36" id="optional.object.assign.36">
     
     <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
-  </cxx-throws><cxx-remarks para_num="38" id="optional.object.assign.38">
+  </cxx-throws><cxx-exception-safety para_num="37" id="optional.object.assign.37">
+    
+    <dt>Exception safety:</dt><dd>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> is disengaged, and the previous <code><var>*val</var></code> (if any) has been destroyed.</dd>
+  </cxx-exception-safety><cxx-remarks para_num="38" id="optional.object.assign.38">
     
     <dt>Remarks:</dt><dd>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</dd>
   </cxx-remarks></dl>
@@ -1398,7 +1413,10 @@ private:
   </cxx-throws><cxx-remarks para_num="5" id="optional.object.swap.5">
     
     <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_constructible&lt;T&gt;::value &amp;&amp; <wbr>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre></dd>
-  </cxx-remarks></dl>
+  </cxx-remarks><cxx-exception-safety para_num="6" id="optional.object.swap.6">
+    
+    <dt>Exception safety:</dt><dd>If any exception is thrown, values of <code><var>init</var></code> and <code><var>rhs.init</var></code> remain unchanged. If an exception is thrown during the call to function <code>swap</code> the state of <code><var>*val</var></code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>swap</code> for lvalues of <code>T</code>. If an exception is thrown during the call to <code>T</code>'s move constructor, the state of <code><var>*val</var></code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s move constructor.</dd>
+  </cxx-exception-safety></dl>
   </cxx-function>
     
     </section>
@@ -1497,7 +1515,10 @@ private:
   </cxx-returns><cxx-throws para_num="21" id="optional.object.observe.21">
     
     <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
-  </cxx-throws><cxx-remarks para_num="23" id="optional.object.observe.23">
+  </cxx-throws><cxx-exception-safety para_num="22" id="optional.object.observe.22">
+    
+    <dt>Exception safety:</dt><dd>If <code><var>init</var> == true</code> and exception is thrown during the call to <code>T</code>'s constructor, the value of <code><var>init</var></code> and <code><var>v</var></code> remains unchanged and the state of <code><var>*val</var></code> is determined by the exception safety guarantee of the selected constructor of <code>T</code>. Otherwise, when exception is thrown during the call to <code>T</code>'s constructor, the value of <code><var>*this</var></code> remains unchanged and the state of <code><var>v</var></code> is determined by the exception safety guarantee of the selected constructor of <code>T</code>.</dd>
+  </cxx-exception-safety><cxx-remarks para_num="23" id="optional.object.observe.23">
     
     <dt>Remarks:</dt><dd>If the selected constructor of <code>T</code> is a <code>constexpr</code> constructor, this function shall be a <code>constexpr</code> function.</dd>
   </cxx-remarks></dl>
@@ -1517,7 +1538,10 @@ private:
   </cxx-returns><cxx-throws para_num="27" id="optional.object.observe.27">
     
     <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
-  </cxx-throws></dl>
+  </cxx-throws><cxx-exception-safety para_num="28" id="optional.object.observe.28">
+    
+    <dt>Exception safety:</dt><dd>If <code><var>init</var> == true</code> and exception is thrown during the call to <code>T</code>'s constructor, the value of <code><var>init</var></code> and <code><var>v</var></code> remains unchanged and the state of <code><var>*val</var></code> is determined by the exception safety guarantee of the <code>T</code>'s constructor. Otherwise, when exception is thrown during the call to <code>T</code>'s constructor, the value of <code><var>*this</var></code> remains unchanged and the state of <code><var>v</var></code> is determined by the exception safety guarantee of the selected constructor of <code>T</code>.</dd>
+  </cxx-exception-safety></dl>
   </cxx-function>
     
     </section>
