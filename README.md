@@ -54,10 +54,9 @@ Custom C++-specific elements
 
 These automatically number clauses and sections, fill in
 table-of-contents data, and allow cross-linking. `<cxx-clause>` is for
-top-level sections, while `<cxx-section>` can be nested
-arbitrarily. The title of the section is given in either the `title`
-attribute or a nested `<cxx-title>` element. The `id` attribute is
-used for cross-linking.
+top-level sections, while `<cxx-section>` can be nested arbitrarily.
+The title of the section is given in a nested `<h1>` element.
+The `id` attribute is used for cross-linking.
 
 ### `<cxx-titlepage>`
 

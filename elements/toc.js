@@ -13,7 +13,9 @@
                     continue;
                 sections.push(this.collectSections(child));
             }
-            return {elem: root, sections: sections};
+            return {elem: root,
+                    title: root.querySelector('h1'),
+                    sections: sections};
         },
 
         created: function() {

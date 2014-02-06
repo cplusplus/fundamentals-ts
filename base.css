@@ -1,37 +1,60 @@
 @page {
     margin: 10%;
-    @top-left { content: "© ISO/IEC"; }
-    @bottom-right { content: counter(page); }
+    @top-left { content: "© ISO/IEC"; font-size: 10pt; }
+    @top-right { content: string(docnum); font-weight: bold; font-size: 10pt; }
+    @bottom-left { content: string(current-section, last); font-size: 10pt; }
+    @bottom-right { content: counter(page); font-size: 10pt; }
 }
+cxx-titlepage { page: title; page-break-after: always; }
 @page title {
-    @top-left { content: normal; }
+    @top-left { content: "© ISO 2014 — All rights reserved"; }
+    @top-right { content: normal; }
+    @bottom-left { content: normal; }
     @bottom-right { content: normal; }
 }
 
 @media screen {
-    body { max-width: 7in; }
+    body { max-width: 7in;
+           /* Make room for paragraph numbers. */
+           margin-left: 2em }
 }
 
 @media print {
-    /* Current PDF output from browsers doesn't preserve links, so avoid
-       the affordance that says the text is a link. */
-    a[href] { color:black; text-decoration:none; }
+    html { font-size: 10pt; }
+    pre,code { font-size: 8pt; }
+    /* Note that only Prince generates clickable links. */
+    a[href] { text-decoration:none; }
 }
 
 /* Needed to make the <cxx-titlepage>'s vertical spacing work. */
 html, body {height: 100%}
-body { margin-left: 1.5em }
 
-cxx-clause ^ h1 { font-size: 150%; }
+cxx-docnum { string-set: docnum content(); }
+
+cxx-clause { page-break-before: always; }
+@media screen {
+    cxx-clause, cxx-toc { margin-top: 3em; }
+}
+
+cxx-clause ^ header { font-size: 150%; }
 cxx-toc ^ h1 { font-size: 150%; }
-cxx-clause cxx-section ^ h1 { font-size: 117% }
-cxx-clause cxx-section cxx-section ^ h1 { font-size: 100% }
+cxx-clause cxx-section ^ header { font-size: 117%; }
+cxx-clause cxx-section cxx-section ^ header { font-size: 100%; }
+
+[data-bookmark-label] { bookmark-label: attr(data-bookmark-label); }
+h1 { bookmark-level: 1; }
+cxx-toc ^ h1 { bookmark-level: 2; }
+cxx-clause h1 { bookmark-level: 2; }
+cxx-clause cxx-section h1 { bookmark-level: 3; }
+cxx-clause cxx-section cxx-section h1 { bookmark-level: 4; }
+
+* ^ .section-number { string-set: current-section "§ " content(); }
 
 p {margin-top: .5em; margin-bottom: .5em}
 p:first-child, ul, ol {margin-top: 0}
 
 [para_num]::before { content: attr(para_num); float: left;
-                     font-size: 60%; margin-left: -2em; width: 1.5em; text-align: right; }
+                     font-size: 70%; margin-left: -2.5em; width: 1.5em; text-align: right; }
 
 aside { float: right; max-width: 40%;
         margin: 1ex;
@@ -43,7 +66,10 @@ ins {text-decoration: underline; color: #005100;}
 
 pre { margin-left: 1em; }
 
-cxx-clause { page-break-before: always; }
-@media not paged {
-    cxx-clause, cxx-toc { margin-top: 3em; }
+/* This is here rather than inside elements/toc.html because browsers
+   don't understand leader() or target-counter(), so they drop them
+   inside the CSSOM. */
+@media print {
+    /* Generate page numbers in the table of contents. */
+    cxx-toc ^ a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
 }

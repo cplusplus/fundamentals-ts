@@ -28,6 +28,23 @@
         return document.createComment(scriptComment);
     }
 
+    function fetch(url) {
+        return new Promise(function(resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.onload = function() {
+                resolve(this.responseText);
+            }
+            request.onerror = function() {
+                reject(this);
+            }
+            request.onabort = function() {
+                reject(this);
+            }
+            request.open('GET', url);
+            request.send();
+        });
+    }
+
     function cloneStaticAndInline(doc) {
         var copy = doc.cloneNode(true);
         function removeAll(nodes) {
@@ -40,39 +57,51 @@
         removeAll(copy.querySelectorAll('cxx-publish-button'));
 
         // Inline all style sheets.
-        removeAll(copy.querySelectorAll('style'));
-        removeAll(copy.querySelectorAll('link'));
-        var allStyles = '';
-        forEach(doc.styleSheets,
-                function(sheet) {
+        var sheetUpdates = Array.prototype.map.call(
+            copy.querySelectorAll('link[rel="stylesheet"]'),
+            function(extSheet) {
+                return fetch(extSheet.href).catch(function(error) {
+                    console.warning('Could not fetch', extSheet.href,
+                                    'falling back to stylesheet contents.',
+                                    error);
+                    var styleText = '';
+                    var sheet = extSheet.sheet;
                     if (!sheet.disabled) {
                         forEach(sheet.cssRules, function(rule) {
-                            allStyles += rule.cssText;
+                            styleText += rule.cssText;
                         });
                     }
+                    return styleText;
+                }).then(function(styleText) {
+                    var inlinedStyle = copy.createElement('style');
+                    inlinedStyle.textContent = styleText;
+                    extSheet.parentNode.insertBefore(inlinedStyle, extSheet);
+                    extSheet.parentNode.removeChild(extSheet);
                 });
-        var allStylesElem = copy.createElement('style');
-        allStylesElem.textContent = allStyles;
-        copy.head.appendChild(allStylesElem);
+            });
 
         copy.head.insertBefore(declareCustomTagNamesForIE8(),
                                copy.head.firstElementChild);
 
-        return copy;
+        return Promise.all(sheetUpdates).then(function() {
+            return copy;
+        });
     }
 
     Polymer('cxx-publish-button', {
         publish: function() {
-            var copy = cloneStaticAndInline(document);
+            var copyPromise = cloneStaticAndInline(document);
             var source = '';
             if (this.source) {
                 var source = '<!-- Sources at ' + this.source + ' -->\n';
             }
-            var published = new Blob(['<!DOCTYPE html>\n',
-                                      source,
-                                      copy.documentElement.outerHTML],
-                                     {type: 'text/html'});
-            window.open(URL.createObjectURL(published), '_blank');
+            copyPromise.then(function(copy) {
+                var published = new Blob(['<!DOCTYPE html>\n',
+                                          source,
+                                          copy.documentElement.outerHTML],
+                                         {type: 'text/html'});
+                window.open(URL.createObjectURL(published), '_blank');
+            });
         }
     });
 })();

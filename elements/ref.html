@@ -16,7 +16,7 @@
                  ><template if="{{in_elem.index}}">{{in_elem.name}} &#xa7;{{in_elem.index[to]}}</template
                  ><template if="{{!in}}"><a href="#{{to}}">{{to_elem.sec_num}}</a></template
       ></template
-      ><template if="{{insynopsis}}">// <i><template bind="" ref="target_num"></template>, {{to_elem.text_title}}</i></template
+      ><template if="{{insynopsis}}">// <i><template bind="" ref="target_num"></template>, {{to_elem.title_element.textContent}}</i></template
       ><template if="{{!insynopsis}}">(<template bind="" ref="target_num"></template>)</template
   ></template>
   <script src="ref.js"></script>

@@ -2,8 +2,6 @@
     Polymer('cxx-section', {
         // String section number, like "17.2.3". 1-based.
         sec_num: "?",
-        text_title: "",
-        title_element: null,
 
         applyAuthorStyles: true,
 
@@ -18,19 +16,18 @@
             }
         },
 
-        created: function() {
-            var title_element = this.querySelector('cxx-title');
-            if (title_element && title_element.parentElement != this)
-                title_element = null;
-            if (title_element && this.title)
-                console.warn(this, 'has two titles');
-            if (!title_element && !this.title)
-                console.warn(this, 'has no title');
-            this.text_title = this.title;
-            if (title_element) {
-                this.title_element = title_element;
-                this.text_title = title_element.textContent;
+        sec_numChanged: function() {
+            if (this.title_element) {
+                this.title_element.setAttribute(
+                    'data-bookmark-label',
+                    this.sec_num + ' ' + this.title_element.textContent);
             }
+        },
+
+        ready: function() {
+            var title_element = this.querySelector('h1');
+            if (title_element && title_element.parentElement == this)
+                this.title_element = title_element;
 
             this.numberParagraphChildren();
         },

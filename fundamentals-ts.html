@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <link rel="stylesheet" href="base.css"/>
+  <script src="promise-0.1.1.min.js"></script>
   <script src="bower_components/platform/platform.js"></script>
   <link rel="import" href="bower_components/polymer/polymer.html"/>
   <link rel="import" href="elements/section.html"/>
@@ -34,8 +35,10 @@
 
 <cxx-toc></cxx-toc>
 
-<cxx-clause id="general" title="General">
-  <cxx-section id="general.scope" title="Scope">
+<cxx-clause id="general">
+  <h1>General</h1>
+  <cxx-section id="general.scope">
+    <h1>Scope</h1>
     <p>This technical specification describes extensions to the C++
     Standard Library <cxx-ref
     to="general.references"></cxx-ref>. These extensions are classes
@@ -57,28 +60,32 @@
     to provide them.</p>
   </cxx-section>
 
-  <cxx-section id="general.references" title="Normative references">
+  <cxx-section id="general.references">
+    <h1>Normative references</h1>
+
     <p>The following referenced document is indispensable for the
     application of this document. For dated references, only the
     edition cited applies. For undated references, the latest edition
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:2011, Programming Languages — C++
+      <li>ISO/IEC 14882:2011, <cite>Programming Languages — C++</cite>
       <cxx-foreign-index id="cxx" src="cxx11_index.json" name="C++11"></cxx-foreign-index></li>
     </ul>
 
-    <p>ISO/IEC 14882:2011 is herein called the C++ Standard. References to
-    clauses within the C++ Standard are written as "C++11 &#xa7;3.2". The library
-    described in ISO/IEC 14882:2011 clauses 17–30 is herein called the C++
-    Standard Library.</p>
+    <p>ISO/IEC 14882:2011 is herein called the <dfn>C++ Standard</dfn>.
+    References to clauses within the C++ Standard are written as "C++11
+    &#xa7;3.2". The library described in ISO/IEC 14882:2011 clauses 17–30 is
+    herein called the <dfn>C++ Standard Library</dfn>.</p>
 
     <p>Unless otherwise specified, the whole of the C++ Standard's Library
     introduction <cxx-ref in="cxx" to="library"></cxx-ref> is included into this
     Technical Specification by reference.</p>
   </cxx-section>
 
-  <cxx-section id="general.namespaces" title="Namespaces and headers">
+  <cxx-section id="general.namespaces">
+    <h1>Namespaces and headers</h1>
+
     <cxx-ednote>This section reflects the <a
     href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">consensus
     between the LWG and LEWG at the Chicago 2013
@@ -126,7 +133,9 @@
     </table>
   </cxx-section>
 
-  <cxx-section id="general.defns" title="Terms and definitions">
+  <cxx-section id="general.defns">
+    <h1>Terms and definitions</h1>
+
     <p>For the purposes of this document, the terms and definitions
     given in the C++ Standard and the folowing apply.</p>
 
@@ -136,7 +145,9 @@
     </dl>
   </cxx-section>
 
-  <cxx-section id="general.plans" title="Future plans (Informative)">
+  <cxx-section id="general.plans">
+    <h1>Future plans (Informative)</h1>
+
     <p>This section describes tentative plans for future versions of
     this technical specification and plans for moving content into
     future versions of the C++ Standard.</p>
@@ -159,13 +170,17 @@
   </cxx-section>
 </cxx-clause>
 
-<cxx-clause id="optional" title="Optional objects">
-  <cxx-section id="optional.general" title="In general">
+<cxx-clause id="optional">
+  <h1>Optional objects</h1>
+
+  <cxx-section id="optional.general">
+    <h1>In general</h1>
+
     <p>This subclause describes class template <code>optional</code> that represents <em>optional objects</em>. An <dfn>optional object for object types</dfn> is an object that contains the storage for another object and manages the lifetime of this contained object, if any. The contained object may be initialized after the optional object has been initialized, and may be destroyed before the optional object has been destroyed. The initialization state of the contained object is tracked by the optional object.</p>
   </cxx-section>
 
   <cxx-section id="optional.synop">
-    <cxx-title>Header <code>&lt;experimental/optional&gt;</code> synopsis</cxx-title>
+    <h1>Header <code>&lt;experimental/optional&gt;</code> synopsis</h1>
 
 <pre>
 namespace std {
@@ -219,7 +234,9 @@ inline namespace fundamentals_v1 {
     <p>A program that necessitates the instantiation of template <code>optional</code> for a reference type, or for possibly cv-qualified types <code>in_place_t</code> or <code>nullopt_t</code> is ill-formed.</p>
   </cxx-section>
 
-  <cxx-section id="optional.defs" title="Definitions">
+  <cxx-section id="optional.defs">
+    <h1>Definitions</h1>
+
     <p>An instance of <code>optional&lt;T&gt;</code> is said to be <dfn>disengaged</dfn> if it has been default constructed, constructed with or assigned with a value of type <code>nullopt_t</code>, constructed with or assigned with a disengaged optional object of type <code>optional&lt;T&gt;</code>.
     </p>
 
@@ -228,7 +245,7 @@ inline namespace fundamentals_v1 {
   </cxx-section>
 
   <cxx-section id="optional.object">
-    <cxx-title><code>optional</code> for object types</cxx-title>
+    <h1><code>optional</code> for object types</h1>
 
 <pre>template &lt;class T&gt;
 class optional
@@ -285,7 +302,9 @@ private:
 
     <p><code>T</code> shall be an object type and shall satisfy the requirements of <code>Destructible</code> (Table 24).</p>
 
-    <cxx-section id="optional.object.ctor" title="Constructors">
+    <cxx-section id="optional.object.ctor">
+      <h1>Constructors</h1>
+
       <cxx-function>
         <cxx-signature>constexpr optional() noexcept;</cxx-signature>
         <cxx-signature>constexpr optional(nullopt_t) noexcept;</cxx-signature>
@@ -355,7 +374,9 @@ private:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="optional.object.dtor" title="Destructor">
+    <cxx-section id="optional.object.dtor">
+      <h1>Destructor</h1>
+
       <cxx-function>
         <cxx-signature>~optional();</cxx-signature>
 
@@ -364,7 +385,9 @@ private:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="optional.object.assign" title="Assignment">
+    <cxx-section id="optional.object.assign">
+      <h1>Assignment</h1>
+
       <cxx-function>
         <cxx-signature>optional&lt;T&gt;&amp; operator=(nullopt_t) noexcept;</cxx-signature>
 
@@ -442,7 +465,9 @@ private:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="optional.object.swap" title="Swap">
+    <cxx-section id="optional.object.swap">
+      <h1>Swap</h1>
+
       <cxx-function>
         <cxx-signature>void swap(optional&lt;T&gt;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
 
@@ -461,7 +486,9 @@ private:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="optional.object.observe" title="Observers">
+    <cxx-section id="optional.object.observe">
+      <h1>Observers</h1>
+
       <cxx-function>
         <cxx-signature>constexpr T const* operator-&gt;() const;</cxx-signature>
         <cxx-signature>T* operator-&gt;();</cxx-signature>
@@ -519,7 +546,9 @@ private:
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="optional.inplace" title="In-place construction">
+  <cxx-section id="optional.inplace">
+    <h1>In-place construction</h1>
+
     <cxx-function>
       <cxx-signature>struct in_place_t{};</cxx-signature>
       <cxx-signature>constexpr in_place_t in_place{};</cxx-signature>
@@ -529,7 +558,9 @@ private:
     </p>
   </cxx-section>
 
-  <cxx-section id="optional.nullopt" title="Disengaged state indicator">
+  <cxx-section id="optional.nullopt">
+    <h1>Disengaged state indicator</h1>
+
     <cxx-function>
       <cxx-signature>struct nullopt_t{<em>see below</em>};</cxx-signature>
       <cxx-signature>constexpr nullopt_t nullopt(<em>unspecified</em>);</cxx-signature>
@@ -542,7 +573,7 @@ private:
   </cxx-section>
 
   <cxx-section id="optional.bad_optional_access">
-    <cxx-title>Class <code>bad_optional_access</code></cxx-title>
+    <h1>Class <code>bad_optional_access</code></h1>
 
 <pre>class bad_optional_access : public logic_error {
 public:
@@ -567,7 +598,9 @@ public:
     </cxx-function>
   </cxx-section>
 
-  <cxx-section id="optional.relops" title="Relational operators">
+  <cxx-section id="optional.relops">
+    <h1>Relational operators</h1>
+
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp; <var>x</var>, const optional&lt;T&gt;&amp; <var>y</var>);</cxx-signature>
 
@@ -586,7 +619,7 @@ public:
   </cxx-section>
 
   <cxx-section id="optional.nullops">
-    <cxx-title>Comparison with <code>nullopt</code></cxx-title>
+    <h1>Comparison with <code>nullopt</code></h1>
 
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp; <var>x</var>, nullopt_t) noexcept;</cxx-signature>
@@ -609,7 +642,7 @@ public:
   </cxx-section>
 
   <cxx-section id="optional.comp_with_t">
-    <cxx-title>Comparison with <code>T</code></cxx-title>
+    <h1>Comparison with <code>T</code></h1>
 
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
@@ -630,7 +663,9 @@ public:
     </cxx-function>
   </cxx-section>
 
-  <cxx-section id="optional.specalg" title="Specialized algorithms">
+  <cxx-section id="optional.specalg">
+    <h1>Specialized algorithms</h1>
+
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; void swap(optional&lt;T&gt;&amp; <var>x</var>, optional&lt;T&gt;&amp; <var>y</var>) noexcept(noexcept(<var>x</var>.swap(<var>y</var>)));</cxx-signature>
 
@@ -644,7 +679,9 @@ public:
     </cxx-function>
   </cxx-section>
 
-  <cxx-section id="optional.hash" title="Hash support">
+  <cxx-section id="optional.hash">
+    <h1>Hash support</h1>
+
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;</cxx-signature>
 

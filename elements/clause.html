@@ -3,9 +3,9 @@
     (function() {
       var clause_num = 1;
       Polymer('cxx-clause', {
-        created: function() {
+        ready: function() {
           this.update_sec_nums(clause_num++);
-          CxxSectionElement.prototype.created.apply(this);
+          CxxSectionElement.prototype.ready.apply(this);
         },
       });
     })();

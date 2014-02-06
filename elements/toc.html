@@ -4,16 +4,20 @@
   <template>
     <style>
       :host { display: block; }
-      li { list-style-type: none; }
-      ol { font-weight: normal; }
-      nav > ol { padding-left: 0; font-weight: bold; }
-      .marker { margin-right: 1em; }
+      nav > ol { font-weight: bold; }
+      ol { font-weight: normal; padding-left: 0; margin-left: 0; }
 
-      /* Enable when custom markers are supported:
-       * http://www.w3.org/TR/css3-lists/#marker-pseudoelement
-       * li { list-style-type: inline; }
-       * .marker { display: marker; }
-       */
+      /* Browsers don't support ::marker or display:marker, so emulate it. */
+      li { list-style-type: none; }
+      .marker { display: inline-block; }
+
+      li .marker { width: 2em; text-align: left; }
+      ol ol { margin-left: 2em; }
+      li li .marker { width: 3em; }
+      ol ol ol { margin-left: 3em; }
+      li li li .marker { width: 3.5em; }
+      ol ol ol ol { margin-left: 3.5em; }
+      li li li li .marker { width: 4.5em; }
     </style>
     <nav>
       <h1>Contents</h1>
@@ -21,7 +25,7 @@
         <template if="{{sections.length > 0}}">
           <ol>
             <template repeat="{{sections}}">
-              <li><a href="#{{elem.id}}"><span class="marker">{{elem.sec_num}}</span>{{elem.text_title}}</a><template bind="" ref="hierarchy"
+              <li><span class="marker">{{elem.sec_num}}</span><a href="#{{elem.id}}">{{title.textContent}}</a><template bind="" ref="hierarchy"
               ></template></li>
             </template>
           </ol>

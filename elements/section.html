@@ -2,22 +2,22 @@
     Recognizes attributes 'id' and 'title', but marking these as attributes
     cause problems for the ShadowDOM polyfill.
 -->
-<polymer-element name="cxx-section" constructor="CxxSectionElement" attributes="">
+<polymer-element name="cxx-section" constructor="CxxSectionElement">
   <template>
     <style>
       :host { display: block; }
       :host:target {background-color: inherit;}
       :host:target > section > h1 {background-color: #fed;}
-      h1::after { clear:both; display: block; content: " "; height: 0 }
+      /* @polyfill header > h1 */
+      ::content h1 { display: inline; font-size: 100%; }
+      header { font-weight: bold; margin-top: 20px; margin-bottom: 20px; }
+      header::after { clear:both; display: block; content: " "; height: 0 }
     </style>
 
     <section>
-      <h1>{{sec_num}} {{title}}<content select="cxx-title"></content> <span style="float:right"><a href="#{{id}}">[{{id}}]</a></span></h1>
+      <header><span class="section-number">{{sec_num}}</span> <content select="h1"></content> <span style="float:right"><a href="#{{id}}">[{{id}}]</a></span></header>
       <content></content>
     </section>
   </template>
   <script src="section.js"></script>
-</polymer-element>
-<polymer-element name="cxx-title" noscript>
-  <template><content></content></template>
 </polymer-element>
