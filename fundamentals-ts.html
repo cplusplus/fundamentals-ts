@@ -366,8 +366,23 @@ body ^^ [touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; to
 [touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; touch-action-delay: none; }
 body ^^ [touch-action="pan-x pan-y"],body ^^ [touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; touch-action-delay: none; }
 </style>
-  <link rel="import" href="elements/framework.html">
-<style>@page {
+  <link rel="import" href="bower_components/cxx-html-doc-framework/framework.html">
+<style>/* Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+@page {
     margin: 10%;
     @top-left { content: "© ISO/IEC"; font-size: 10pt; }
     @top-right { content: string(docnum); font-weight: bold; font-size: 10pt; }
@@ -2785,9 +2800,9 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
   </table>
 
     <cxx-example>
-  	
-  	<p>[ <em>Example:</em>
-  	A sample conforming implementation for operator== would be:
+    
+    <p>[ <em>Example:</em>
+    A sample conforming implementation for operator== would be:
 <pre><code>template&lt;class T&gt; using __identity = typename std::decay&lt;T&gt;::type;
 template&lt;class charT, class traits&gt;
 constexpr bool operator==(
@@ -2808,7 +2823,7 @@ constexpr bool operator==(
   return lhs.compare(rhs) == 0;
 }</code></pre>
     
-  	</p><p>— <em>end example</em> ]
+    </p><p>— <em>end example</em> ]
   </p></cxx-example>
 
     <cxx-function para_num="2" id="string.view.comparison.2">
