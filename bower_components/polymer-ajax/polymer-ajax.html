@@ -10,6 +10,8 @@ license that can be found in the LICENSE file.
 /**
  * polymer-ajax can be used to perform XMLHttpRequests.
  *
+ * Note: The params attribute must be double quoted JSON
+ * 
  * Example:
  *
  *     <polymer-ajax auto url="http://gdata.youtube.com/feeds/api/videos/" 
@@ -39,7 +41,7 @@ license that can be found in the LICENSE file.
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="polymer-xhr.html">
 
-<polymer-element name="polymer-ajax" attributes="url handleAs auto params response method headers">
+<polymer-element name="polymer-ajax" attributes="url handleAs auto params response method headers body contentType">
   <script>
     Polymer('polymer-ajax', {
       /**
@@ -130,6 +132,14 @@ license that can be found in the LICENSE file.
        * @default null
        */
       body: null,
+      /**
+       * Content type to use when sending data.
+       *
+       * @attribute contentType
+       * @type string
+       * @default 'application/x-www-form-urlencoded'
+       */
+      contentType: 'application/x-www-form-urlencoded',
       ready: function() {
         this.xhr = document.createElement('polymer-xhr');
       },
@@ -214,9 +224,12 @@ license that can be found in the LICENSE file.
         if (args.params && typeof(args.params) == 'string') {
           args.params = JSON.parse(args.params);
         }
-        args.headers = this.headers || args.headers;
+        args.headers = this.headers || args.headers || {};
         if (args.headers && typeof(args.headers) == 'string') {
           args.headers = JSON.parse(args.headers);
+        }
+        if (this.contentType) {
+          args.headers['content-type'] = this.contentType;
         }
         args.callback = this.receive.bind(this);
         args.url = this.url;

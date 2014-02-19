@@ -3,9 +3,15 @@
     (function() {
       var clause_num = 1;
       Polymer('cxx-clause', {
-        ready: function() {
-          this.update_sec_nums(clause_num++);
-          CxxSectionElement.prototype.ready.apply(this);
+        attached: function() {
+          this.super();
+          var my_clause_num = clause_num++;
+
+          this.async(function() {
+            // async() lets the descendant elements upgrade; after which we
+            // need to traverse them to collect section numbers.
+            this.update_sec_nums(my_clause_num);
+          });
         },
       });
     })();
