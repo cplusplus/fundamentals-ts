@@ -66,15 +66,11 @@ p:first-child, ul, ol {margin-top: 0}
 [para_num]::before { content: attr(para_num); float: left;
                      font-size: 70%; margin-left: -2.5em; width: 1.5em; text-align: right; }
 
-aside { float: right; max-width: 40%;
-        margin: 1ex;
-        border: 1px solid black;
-        padding: 1ex; }
-
 del {text-decoration: line-through; color: #8B0040;}
 ins {text-decoration: underline; color: #005100;}
 
 pre { margin-left: 1em; }
+pre > code { display: inline-block; }
 
 /* This is here rather than inside elements/toc.html because browsers
    don't understand leader() or target-counter(), so they drop them
@@ -83,4 +79,7 @@ pre { margin-left: 1em; }
     /* Generate page numbers in the table of contents. */
     cxx-toc ^ a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
     cxx-toc a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
+
+    cxx-footnote ^ aside { float: footnote; footnote-policy: line; }
+    cxx-footnote aside { float: footnote; footnote-policy: line; }
 }

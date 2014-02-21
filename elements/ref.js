@@ -23,11 +23,17 @@
                 this.to_elem = document.getElementById(this.to);
                 if (!this.to_elem) {
                     console.error("Broken link", this.to, "from", this);
+                    return;
                 }
-                if (!this.to_elem instanceof CxxSectionElement) {
-                    console.error("Reference from", this,
-                                  "refers to non-section element", this.to_elem);
-                }
+                this.async(function() {
+                    // Async makes sure the to_elem is upgraded.
+                    if (!(this.to_elem instanceof CxxSectionElement ||
+                          this.to_elem instanceof CxxTableElement)) {
+                        console.error("Reference from", this,
+                                      "refers to non-section, non-table element",
+                                      this.to_elem);
+                    }
+                });
             }
         },
 

@@ -1,5 +1,11 @@
 {
     "dcl.constexpr": "7.1.5",
     "library": "17",
-    "unord.hash": "20.8.12"
+    "utility.swap": "20.2.2",
+    "unord.hash": "20.8.12",
+    "strings.general": "21.1",
+    "char.traits": "21.2",
+    "container.requirements": "23.2",
+    "iterator.range": "24.6.5",
+    "futures.task.nonmembers": "30.6.9.2"
 }

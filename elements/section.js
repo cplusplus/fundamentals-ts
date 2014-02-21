@@ -41,7 +41,8 @@
                  child = child.nextElementSibling) {
                 if (child instanceof CxxSectionElement)
                     return para_num;
-                else if (child instanceof HTMLParagraphElement)
+                else if (child instanceof HTMLParagraphElement &&
+                         !child.classList.contains('cont'))
                     this.numberParagraph(para_num++, child);
                 else if (child instanceof CxxFunctionElement) {
                     this.numberParagraph(para_num++, child);

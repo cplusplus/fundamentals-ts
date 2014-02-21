@@ -3,17 +3,24 @@
     the <caption>.  Use this as <table is="cxx-table">, unlike the other custom
     elements.
 -->
-<polymer-element name="cxx-table" extends="table">
+<polymer-element name="cxx-table" extends="table" constructor="CxxTableElement">
   <template>
     <style>
-      :host { border: thin solid black;
-              margin-left: auto; margin-right: auto; }
+      :host { margin-left: auto; margin-right: auto;
+              border-collapse: collapse;
+              border: thin solid black; }
       caption { white-space: nowrap; }
       /* @polyfill caption caption */
       ::content caption { display: inline; }
+
+      th, td { border-style: solid none; border-color: black;
+               border-width: thin; }
+      th { border-bottom: double medium; }
+      :host(.center) td { text-align: center; }
+      :host(.list) td { border: none; }
     </style>
 
-    <caption>Table {{table_num}} — <content select="caption"></content></caption>
+    <caption>Table {{table_num}} — <wbr><content select="caption"></content></caption>
     <content></content>
   </template>
   <script>

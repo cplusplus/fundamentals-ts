@@ -1,5 +1,5 @@
 <!--
-    The 'to' attribute is the id of a <cxx-section> element (or subclass).
+    The 'to' attribute is the id of a <cxx-section> or <cxx-table> element (or subclass).
 
     The 'insynopsis' attribute should be present if the reference is from
     within a comment in a header or class synopsis. This will append ", <title>"
@@ -14,10 +14,12 @@
   <template
       ><template id="target_num"
                  ><template if="{{in_elem.index}}">{{in_elem.name}} &#xa7;{{in_elem.index[to]}}</template
-                 ><template if="{{!in}}"><a href="#{{to}}">{{to_elem.sec_num}}</a></template
+                 ><template if="{{!in}}"><a href="#{{to}}"
+                   ><template if="{{to_elem.sec_num}}">{{to_elem.sec_num}}</template
+                   ><template if="{{to_elem.table_num}}">Table {{to_elem.table_num}}</template></a></template
       ></template
       ><template if="{{insynopsis}}">// <i><template bind="" ref="target_num"></template>, {{to_elem.title_element.textContent}}</i></template
-      ><template if="{{!insynopsis}}">(<template bind="" ref="target_num"></template>)</template
+      ><template if="{{!insynopsis}}"><template bind="" ref="target_num"></template></template
   ></template>
   <script src="ref.js"></script>
 </polymer-element>
