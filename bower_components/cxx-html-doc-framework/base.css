@@ -51,29 +51,19 @@ cxx-clause { page-break-before: always; }
     cxx-clause, cxx-toc { margin-top: 3em; }
 }
 
-/* Rule pairs where the first has a '^' and the second doesn't, are intended
- * to work both with and without the Shadow DOM polyfill.  TODO(jyasskin):
- * Figure out what the Polymer folks recommend instead of this. */
-
 cxx-clause ^ header { font-size: 150%; }
-cxx-clause header { font-size: 150%; }
 cxx-toc ^ h1 { font-size: 150%; }
-cxx-toc h1 { font-size: 150%; }
 cxx-clause cxx-section ^ header { font-size: 117%; }
-cxx-clause cxx-section header { font-size: 117%; }
 cxx-clause cxx-section cxx-section ^ header { font-size: 100%; }
-cxx-clause cxx-section cxx-section header { font-size: 100%; }
 
 [data-bookmark-label] { bookmark-label: attr(data-bookmark-label); }
 h1 { bookmark-level: 1; }
 cxx-toc ^ h1 { bookmark-level: 2; }
-cxx-toc h1 { bookmark-level: 2; }
 cxx-clause h1 { bookmark-level: 2; }
 cxx-clause cxx-section h1 { bookmark-level: 3; }
 cxx-clause cxx-section cxx-section h1 { bookmark-level: 4; }
 
 * ^ .section-number { string-set: current-section "§ " content(); }
-* .section-number { string-set: current-section "§ " content(); }
 
 p {margin-top: .5em; margin-bottom: .5em}
 p:first-child, ul, ol {margin-top: 0}
@@ -93,8 +83,6 @@ pre > code { display: inline-block; }
 @media print {
     /* Generate page numbers in the table of contents. */
     cxx-toc ^ a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
-    cxx-toc a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
 
     cxx-footnote ^ aside { float: footnote; footnote-policy: line; }
-    cxx-footnote aside { float: footnote; footnote-policy: line; }
 }

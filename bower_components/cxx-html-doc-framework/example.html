@@ -17,9 +17,11 @@ limitations under the License.
   <template>
     <style>
       :host { display: block }
+      :host(.inline) { display: inline }
+      .nowrap { white-space: nowrap; }
     </style>
-    <p>[ <em>Example:</em>
+    <span class="nowrap">[ <em>Example:</em></span>
     <content></content>
-    <p>— <em>end example</em> ]
+    <span class="nowrap">— <em>end example</em> ]</span>
   </template>
 </polymer-element>

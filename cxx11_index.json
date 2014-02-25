@@ -1,7 +1,9 @@
 {
     "dcl.constexpr": "7.1.5",
     "library": "17",
+    "allocator.requirements": "17.6.3.5",
     "utility.swap": "20.2.2",
+    "allocator.uses.construction": "20.6.7.2",
     "unord.hash": "20.8.12",
     "strings.general": "21.1",
     "char.traits": "21.2",

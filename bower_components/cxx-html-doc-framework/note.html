@@ -13,11 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<polymer-element name="cxx-note">
-  <template>[ <em>Note:</em> <content></content> — <em>end note</em> ]</template>
-  <script>
-    Polymer('cxx-note', {
-      applyAuthorStyles: true,
-    });
-  </script>
+<polymer-element name="cxx-note" noscript>
+  <template><style>
+      .nowrap { white-space: nowrap; }
+    </style><span class="nowrap">[ <em>Note:</em></span>
+    <content></content>
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </template>
 </polymer-element>
