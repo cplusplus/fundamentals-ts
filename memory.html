@@ -1,6 +1,24 @@
 <cxx-clause id="memory">
   <h1>Memory</h1>
 
+  <cxx-section id="header.memory.synop">
+    <h1>Header &lt;experimental/memory> synopsis</h1>
+
+<pre><code>#include &lt;memory>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+// See <cxx-ref in="cxx" to="allocator.uses"></cxx-ref>, uses_allocator
+template &lt;class T, class Alloc> constexpr bool uses_allocator_v
+  = uses_allocator&lt;T, Alloc>::value;
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+  </cxx-section>
+
   <cxx-section id="memory.type.erased.allocator">
     <h1>Type-erased allocator</h1>
 
