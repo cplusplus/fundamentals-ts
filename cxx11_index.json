@@ -1,13 +1,19 @@
 {
+    "basic.stc.dynamic.deallocation": "3.7.4.2",
     "dcl.constexpr": "7.1.5",
     "library": "17",
     "allocator.requirements": "17.6.3.5",
     "utility.swap": "20.2.2",
     "allocator.uses.construction": "20.6.7.2",
+    "func.wrap.func": "20.8.11.2",
+    "func.wrap.func.con": "20.8.11.2.1",
+    "func.wrap.func.mod": "20.8.11.2.2",
     "unord.hash": "20.8.12",
     "strings.general": "21.1",
     "char.traits": "21.2",
     "container.requirements": "23.2",
     "iterator.range": "24.6.5",
+    "futures.promise": "30.6.5",
+    "futures.task": "30.6.9",
     "futures.task.nonmembers": "30.6.9.2"
 }

@@ -1,0 +1,1144 @@
+<cxx-clause id="memresource">
+  <h1>Polymorphic Memory Resources</h1>
+
+  <cxx-section id="memresource.type.erased.allocator">
+    <h1>Type-erased allocator</h1>
+
+    <p>
+      A <dfn>type-erased allocator</dfn> is an allocator or memory resource, <code>alloc</code>,
+      used to allocate internal data structures for an object <code>X</code> of type <code>C</code>,
+      but where <code>C</code> is not dependent on the type of <code>alloc</code>.
+      Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
+      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memresource.class"></cxx-ref>).
+      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memresource.type.erased.allocator"></cxx-ref>:
+    </p>
+
+    <table is="cxx-table" id="tab:memresource.type.erased.allocator">
+      <caption>Computed <code>memory_resource</code> for type-erased allocator</caption>
+      <thead>
+        <tr>
+          <th>If the type of <code>alloc</code> is</th>
+          <th>then the value of <code>rptr</code> is</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>non-existent — no <code>alloc</code> specified</td>
+        <td>The value of <code>experimental::pmr::get_default_resource()</code> at the time of construction.</td>
+      </tr>
+      <tr>
+        <td><code>nullptr_t</code></td>
+        <td>The value of <code>experimental::pmr::get_default_resource()</code> at the time of construction.</td>
+      </tr>
+      <tr>
+        <td>a pointer type convertible to <code>pmr::memory_resource*</code></td>
+        <td><code>static_cast&lt;experimental::pmr::memory_resource*>(alloc)</code></td>
+      </tr>
+      <tr>
+        <td><code>pmr::polymorphic_allocator&lt;U></code></td>
+        <td><code>alloc.resource()</code></td>
+      </tr>
+      <tr>
+        <td>any other type meeting the Allocator requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>)</td>
+        <td>a pointer to a value of type <code>experimental::pmr::resource_adaptor&lt;A></code> where <code>A</code> is the type of <code>alloc</code>.
+        <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
+      </tr>
+      <tr>
+        <td>None of the above</td>
+        <td>The program is ill-formed.</td>
+      </tr>
+    </table>
+
+    <p>Additionally, class <code>C</code> shall meet the following requirements:</p>
+    <ul>
+      <li><code>C::allocator_type</code> shall be identical to <code>std::experimental::erased_type</code>.</li>
+      <li><code>X.get_memory_resource()</code> returns <code>rptr</code>.</li>
+    </ul>
+  </cxx-section>
+
+  <cxx-section id="memresource.synop">
+    <h1>Header <code>&lt;experimental/memory_resource></code> synopsis</h1>
+
+    <pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  class memory_resource;
+
+  bool operator==(const memory_resource& a,
+                  const memory_resource& b) noexcept;
+  bool operator!=(const memory_resource& a,
+                  const memory_resource& b) noexcept;
+
+  template &lt;class Tp> class polymorphic_allocator;
+
+  template &lt;class T1, class T2>
+  bool operator==(const polymorphic_allocator&lt;T1>& a,
+                  const polymorphic_allocator&lt;T2>& b) noexcept;
+  template &lt;class T1, class T2>
+  bool operator!=(const polymorphic_allocator&lt;T1>& a,
+                  const polymorphic_allocator&lt;T2>& b) noexcept;
+
+  // The name resource_adaptor_imp is for exposition only.
+  template &lt;class Allocator> class resource_adaptor_imp;
+
+  template &lt;class Allocator>
+    using resource_adaptor = resource_adaptor_imp&lt;
+      allocator_traits&lt;Allocator>::rebind_alloc&lt;char>>;
+
+  // Global memory resources
+  memory_resource* new_delete_resource() noexcept;
+  memory_resource* null_memory_resource() noexcept;
+
+  // The default memory resource
+  memory_resource* set_default_resource(memory_resource* r) noexcept;
+  memory_resource* get_default_resource() noexcept;
+
+  // Standard memory resources
+  struct pool_options;
+  class synchronized_pool_resource;
+  class unsynchronized_pool_resource;
+  class monotonic_buffer_resource;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="memresource.class">
+    <h1>Class <code>memory_resource</code></h1>
+
+    <cxx-section id="memresource.class.overview">
+      <h1>Class <code>memory_resource</code> overview</h1>
+      <p>
+        The <code>memory_resource</code> class is an abstract interface to an unbounded set of classes encapsulating memory resources.
+      </p>
+
+      <pre><code>class memory_resource {
+  // For exposition only
+  static constexpr size_t max_align = alignof(max_align_t);
+
+public:
+  virtual ~memory_resource();
+
+  void* allocate(size_t bytes, size_t alignment = max_align);
+  void deallocate(void* p, size_t bytes,
+                  size_t alignment = max_align);
+
+  bool is_equal(const memory_resource& other) const noexcept;
+
+protected:
+  virtual void* do_allocate(size_t bytes, size_t alignment) = 0;
+  virtual void do_deallocate(void* p, size_t bytes,
+                             size_t alignment) = 0;
+
+  virtual bool do_is_equal(const memory_resource& other) const noexcept = 0;
+};</code></pre>
+
+    </cxx-section>
+
+    <cxx-section id="memresource.class.public">
+      <h1><code>memory_resource</code> public member functions</h1>
+
+      <cxx-function>
+        <cxx-signature>~memory_resource();</cxx-signature>
+
+        <cxx-effects>Destroys this memory_resource.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void* allocate(size_t bytes, size_t alignment = max_align);</cxx-signature>
+
+        <cxx-effects>Equivalent to <code>return do_allocate(bytes, alignment);</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void deallocate(void* p, size_t bytes, size_t alignment = max_align);</cxx-signature>
+
+        <cxx-effects>Equivalent to <code>do_deallocate(p, bytes, alignment);</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>bool is_equal(const memory_resource& other) const noexcept;</cxx-signature>
+        <cxx-effects>Equivalent to <code>return do_is_equal(other);</code></cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.class.priv">
+      <h1><code>memory_resource</code> protected virtual member functions</h1>
+
+      <cxx-function>
+        <cxx-signature>virtual void* do_allocate(size_t bytes, size_t alignment) = 0;</cxx-signature>
+
+        <cxx-preconditions>alignment shall be a power of two.</cxx-preconditions>
+        <cxx-returns>A derived class shall implement this function to return a pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>) with a size of at least <code>bytes</code>.
+        The returned storage is aligned to the specified alignment, if such alignment is supported;
+        otherwise it is aligned to <code>max_align</code>.</cxx-returns>
+        <cxx-throws>a derived class implementation shall throw an appropriate exception if it is unable to allocate memory with the requested size and alignment.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>virtual void do_deallocate(void* p, size_t bytes, size_t alignment) = 0;</cxx-signature>
+        <cxx-preconditions><code>p</code> shall have been returned from a prior call to <code>allocate(bytes, alignment)</code> on a memory resource equal to <code>*this</code>,
+        and the storage at <code>p</code> shall not yet have been deallocated.</cxx-preconditions>
+        <cxx-effects>A derived class shall implement this function to dispose of allocated storage.</cxx-effects>
+        <cxx-throws>Nothing.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>virtual bool do_is_equal(const memory_resource& other) const noexcept = 0;</cxx-signature>
+
+        <cxx-returns>A derived class shall implement this function to return <code>true</code> if memory allocated from this can be deallocated from other and vice-versa;
+        otherwise it shall return false.
+        <cxx-note>The most-derived type of other might not match the type of this.
+        For a derived class, D, a typical implementation of this function will compute <code>dynamic_cast&lt;D*>(&other)</code> and go no further (i.e., return <code>false</code>) if it returns <code>nullptr</code>.</cxx-note></cxx-returns>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.class.eq">
+      <h1><code>memory_resource</code> equality</h1>
+
+      <cxx-function>
+        <cxx-signature>bool operator==(const memory_resource& a, const memory_resource& b) noexcept;</cxx-signature>
+
+        <cxx-returns><code>&a == &b || a.is_equal(b)</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>bool operator!=(const memory_resource& a, const memory_resource& b) noexcept;</cxx-signature>
+        <cxx-returns><code>!(a == b)</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="memresource.polymorphic.allocator.class">
+    <h1>Class template <code>polymorphic_allocator</code></h1>
+
+    <cxx-section id="memresource.polymorphic.allocator.overview">
+      <h1>Class template <code>polymorphic_allocator</code> overview</h1>
+
+      <p>
+        A specialization of class template <code>pmr::polymorphic_allocator</code> conforms to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>).
+        Constructed with different memory resources, different instances of the same specialization of <code>pmr::polymorphic_allocator</code> can exhibit entirely different allocation behavior.
+        This runtime polymorphism allows objects that use <code>polymorphic_allocator</code> to behave as if they used different allocator types at run time even though they use the same static allocator type.
+      </p>
+
+      <pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+template &lt;class Tp>
+class polymorphic_allocator {
+  memory_resource* m_resource; // For exposition only
+
+public:
+  typedef Tp value_type;
+
+  polymorphic_allocator() noexcept;
+  polymorphic_allocator(memory_resource* r);
+
+  polymorphic_allocator(const polymorphic_allocator& other) = default;
+
+  template &lt;class U>
+    polymorphic_allocator(const polymorphic_allocator&lt;U>& other) noexcept;
+
+  polymorphic_allocator&
+    operator=(const polymorphic_allocator& rhs) = default;
+
+  Tp* allocate(size_t n);
+  void deallocate(Tp* p, size_t n);
+
+  template &lt;typename T, typename... Args>
+    void construct(T* p, Args&&... args);
+
+  // Specializations for pair using piecewise construction
+  template &lt;class T1, class T2, class... Args1, class... Args2>
+    void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
+                   tuple&lt;Args1...> x, tuple&lt;Args2...> y);
+  template &lt;class T1, class T2>
+    void construct(pair&lt;T1,T2>* p);
+  template &lt;class T1, class T2, class U, class V>
+    void construct(pair&lt;T1,T2>* p, U&& x, V&& y);
+  template &lt;class T1, class T2, class U, class V>
+    void construct(pair&lt;T1,T2>* p, const std::pair&lt;U, V>& pr);
+  template &lt;class T1, class T2, class U, class V>
+    void construct(pair&lt;T1,T2>* p, pair&lt;U, V>&& pr);
+
+  template &lt;typename T>
+    void destroy(T* p);
+
+  // Return a default-constructed allocator (no allocator propagation)
+  polymorphic_allocator select_on_container_copy_construction() const;
+
+  memory_resource* resource() const;
+};
+
+} // namespace pmr
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="memresource.polymorphic.allocator.ctor">
+      <h1><code>polymorphic_allocator</code> constructors</h1>
+
+      <cxx-function>
+        <cxx-signature>polymorphic_allocator() noexcept;</cxx-signature>
+
+        <cxx-effects>Sets <code>m_resource</code> to <code>get_default_resource()</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>polymorphic_allocator(memory_resource* r);</cxx-signature>
+
+        <cxx-preconditions><code>r</code> is non-null.</cxx-preconditions>
+        <cxx-effects>Sets <code>m_resource</code> to <code>r</code>.</cxx-effects>
+        <cxx-throws>nothing</cxx-throws>
+        <cxx-notes>This constructor provides an implicit conversion from <code>memory_resource*</code>.</cxx-notes>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U>
+polymorphic_allocator(const polymorphic_allocator&lt;U>& other) noexcept;</cxx-signature>
+        <cxx-effects>sets <code>m_resource</code> to <code>other.resource()</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.polymorphic.allocator.mem">
+      <h1><code>polymorphic_allocator</code> member functions</h1>
+
+      <cxx-function>
+        <cxx-signature>Tp* allocate(size_t n);</cxx-signature>
+        <cxx-returns>Equivalent to <code>static_cast&lt;Tp*>(m_resource->allocate(n * sizeof(Tp), alignof(Tp)))</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void deallocate(Tp* p, size_t n);</cxx-signature>
+        <cxx-preconditions><code>p</code> was allocated from a memory resource, <code>x</code>, equal to <code>*m_resource</code>, using <code>x.allocate(n * sizeof(Tp), alignof(Tp))</code>.</cxx-preconditions>
+        <cxx-effects>Equivalent to <code>m_resource->deallocate(p, n * sizeof(Tp), alignof(Tp))</code>.</cxx-effects>
+        <cxx-throws>Nothing.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T1, class T2, class... Args1, class... Args2>
+void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
+               tuple&lt;Args1...> x, tuple&lt;Args2...> y);</cxx-signature>
+        <cxx-effects>
+          Let <code>xprime</code> be a <code>tuple</code> constructed from <code>x</code> according to the appropriate rule from the following list.
+          <cxx-note>The following description can be summarized as constructing a <code>std::pair&lt;T1,T2></code> object at <code>p</code>
+          as if by separate <i>uses-allocator construction</i> with allocator <code>this->resource()</code> (<cxx-ref to="mods.allocator.uses"></cxx-ref>)
+          of <code>p->first</code> using the elements of <code>x</code>
+          and <code>p->second</code> using the elements of <code>y</code>.</cxx-note>
+          <ul>
+            <li>If <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>false</code> and
+            <code>is_constructible&lt;T,Args1...>::value</code> is <code>true</code>, then <code>xprime</code> is <code>x</code>.</li>
+            <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>true</code> and
+            <code>is_constructible&lt;T1,allocator_arg_t,memory_resource*,Args1...>::value</code> is <code>true</code>,
+            then <code>xprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), move(x))</code>.</li>
+            <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>true</code> and
+            <code>is_constructible&lt;T1,Args1...,memory_resource*>::value</code> is <code>true</code>,
+            then <code>xprime</code> is <code>tuple_cat(move(x), make_tuple(this->resource()))</code>.</li>
+            <li>Otherwise the program is ill formed.</li>
+          </ul>
+          and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
+          <ul>
+            <li>If <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>false</code> and
+            <code>is_constructible&lt;T,Args2...>::value</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
+            <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>true</code> and
+            <code>is_constructible&lt;T2,allocator_arg_t,memory_resource*,Args2...>::value</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), move(y))</code>.</li>
+            <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>true</code> and
+            <code>is_constructible&lt;T2,Args2...,memory_resource*>::value</code> is <code>true</code>, then
+            <code>yprime</code> is <code>tuple_cat(move(y), make_tuple(this->resource()))</code>.</li>
+            <li>Otherwise the program is ill formed.</li>
+          </ul>
+          then this function constructs a <code>std::pair&lt;T1,T2></code> object at <code>p</code> using constructor arguments <code>piecewise_construct, xprime, yprime</code>.
+        </cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T1, class T2>
+void construct(std::pair&lt;T1,T2>* p);</cxx-signature>
+        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct, tuple&lt;>(), tuple&lt;>());</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T1, class T2, class U, class V>
+void construct(std::pair&lt;T1,T2>* p, U&& x, V&& y);</cxx-signature>
+        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct, forward_as_tuple(std::forward&lt;U>(x)), forward_as_tuple(std::forward&lt;V>(y)));</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T1, class T2, class U, class V>
+void construct(std::pair&lt;T1,T2>* p, const std::pair&lt;U, V>& pr);</cxx-signature>
+        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct, forward_as_tuple(pr.first), forward_as_tuple(pr.second));</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T1, class T2, class U, class V>
+void construct(std::pair&lt;T1,T2>* p, std::pair&lt;U, V>&& pr);</cxx-signature>
+        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct,
+        forward_as_tuple(std::forward&lt;U>(pr.first)),
+        forward_as_tuple(std::forward&lt;V>(pr.second)));</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;typename T>
+void destroy(T* p);</cxx-signature>
+        <cxx-effects><code>p->~T()</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>polymorphic_allocator select_on_container_copy_construction() const;</cxx-signature>
+        <cxx-returns><code>polymorphic_allocator()</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>memory_resource* resource() const;</cxx-signature>
+        <cxx-returns>m_resource.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.polymorphic.allocator.eq">
+      <h1>polymorphic_allocator equality</h1>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T1, class T2>
+bool operator==(const polymorphic_allocator&lt;T1>& a,
+                const polymorphic_allocator&lt;T2>& b) noexcept;</cxx-signature>
+        <cxx-returns><code>*a.resource() == *b.resource()</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T1, class T2>
+bool operator!=(const polymorphic_allocator&lt;T1>& a,
+                const polymorphic_allocator&lt;T2>& b) noexcept;</cxx-signature>
+        <cxx-returns><code>! (a == b)</code></cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="memresource.resource.adaptor">
+    <h1>template alias <code>resource_adaptor</code></h1>
+
+    <cxx-section id="memresource.resource.adaptor.overview">
+      <h1><code>resource_adaptor</code></h1>
+
+      <p>
+        An instance of <code>resource_adaptor&lt;Allocator></code> is an adaptor that wraps a <code>memory_resource</code> interface around <code>Allocator</code>.
+        In order that <code>resource_adaptor&lt;X&lt;T>></code> and <code>resource_adaptor&lt;X&lt;U>></code> are the same type for any allocator template <code>X</code> and types <code>T</code> and <code>U</code>,
+        <code>resource_adaptor&lt;Allocator></code> is rendered as an alias to a class template such that <code>Allocator</code> is rebound to a <code>char</code> value type in every specialization of the class template.
+        The requirements on this class template are defined below.
+        The name <code>resource_adaptor_imp</code> is for exposition only and is not normative,
+        but the definitions of the members of that class, whatever its name, are normative.
+        In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
+      </p>
+      <ul>
+        <li><code>typename allocator_traits&lt;Allocator>::pointer</code> shall be identical to typename <code>allocator_traits&lt;Allocator>::value_type*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator>::const_pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type const*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator>::void_pointer</code> shall be identical to <code>void*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator>::const_void_pointer</code> shall be identical to <code>void const*</code>.</li>
+      </ul>
+
+      <pre><code>
+// The name resource_adaptor_imp is for exposition only.
+template &lt;class Allocator>
+class resource_adaptor_imp : public memory_resource {
+  // for exposition only
+  Allocator m_alloc;
+
+public:
+  typedef Allocator allocator_type;
+
+  resource_adaptor_imp() = default;
+  resource_adaptor_imp(const resource_adaptor_imp&) = default;
+  resource_adaptor_imp(resource_adaptor_imp&&) = default;
+
+  explicit resource_adaptor_imp(const Allocator& a2);
+  explicit resource_adaptor_imp(Allocator&& a2);
+
+  resource_adaptor_imp& operator=(const resource_adaptor_imp&) = default;
+
+  allocator_type get_allocator() const { return m_alloc; }
+
+protected:
+  virtual void* do_allocate(size_t bytes, size_t alignment);
+  virtual void do_deallocate(void* p, size_t bytes, size_t alignment);
+
+  virtual bool do_is_equal(const memory_resource& other) const noexcept;
+};
+
+template &lt;class Allocator>
+  using resource_adaptor = typename resource_adaptor_imp&lt;
+    allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;</code></pre>
+    </cxx-section>
+
+    <cxx-section id="memresource.resource.adaptor.ctor">
+      <h1><code>resource_adaptor_imp</code> constructors</h1>
+
+      <cxx-function>
+        <cxx-signature>explicit resource_adaptor_imp(const Allocator& a2);</cxx-signature>
+        <cxx-effects>Initializes <code>m_alloc</code> with <code>a2</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>explicit resource_adaptor_imp(Allocator&& a2);</cxx-signature>
+        <cxx-effects>Initializes <code>m_alloc</code> with <code>std::move(a2)</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.resource.adaptor.mem">
+      <h1><code>resource_adaptor_imp</code> member functions</h1>
+
+      <cxx-function>
+        <cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
+        <cxx-returns>Allocated memory obtained by calling <code>m_alloc.allocate</code>. The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memresource"></cxx-ref>).</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature>
+        <cxx-requires><code>p</code> was previously allocated using <code>A.allocate</code>, where <code>A == m_alloc</code>, and not subsequently deallocated.</cxx-requires>
+        <cxx-effects>Returns memory to the allocator using <code>m_alloc.deallocate()</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>bool do_is_equal(const memory_resource& other) const;</cxx-signature>
+        <p>Let <code>p</code> be <code>dynamic_cast&lt;const resource_adaptor_imp*>(&other)</code>.</p>
+        <cxx-returns><code>false</code> if <code>p</code> is null, otherwise the value of <code>m_alloc == p->m_alloc</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="memresource.global">
+    <h1>Access to program-wide <code>memory_resource</code> objects</h1>
+
+    <cxx-function>
+      <cxx-signature>memory_resource* new_delete_resource() noexcept;</cxx-signature>
+
+      <cxx-returns>A pointer to a static-duration object of a type derived from <code>memory_resource</code> that can serve as a resource for allocating memory using <code>::operator new</code> and <code>::operator delete</code>. The same value is returned every time this function is called. For return value <code>p</code> and memory resource <code>r</code>, <code>p->is_equal(r)</code> returns <code>&r == p</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>memory_resource* null_memory_resource() noexcept;</cxx-signature>
+
+      <cxx-returns>
+        A pointer to a static-duration object of a type derived from <code>memory_resource</code>
+        for which <code>allocate()</code> always throws <code>bad_alloc</code> and
+        for which <code>deallocate()</code> has no effect.
+        The same value is returned every time this function is called.
+        For return value <code>p</code> and memory resource <code>r</code>, <code>p->is_equal(r)</code> returns <code>&r == p</code>.
+      </cxx-returns>
+    </cxx-function>
+
+    <p>
+      The default memory resource pointer is a pointer to a memory resource
+      that is used by certain facilities when an explicit memory resource is not supplied through the interface.
+      Its initial value is the return value of <code>new_delete_resource()</code>.
+    </p>
+
+    <cxx-function>
+      <cxx-signature>memory_resource* set_default_resource(memory_resource* r) noexcept;</cxx-signature>
+
+      <cxx-effects>
+        If <code>r</code> is non-null, sets the value of the default memory resource pointer to <code>r</code>,
+        otherwise sets the default memory resource pointer to <code>new_delete_resource()</code>.
+      </cxx-effects>
+      <cxx-postconditions><code>get_default_resource() == r</code>.</cxx-postconditions>
+      <cxx-returns>The previous value of the default memory resource pointer.</cxx-returns>
+      <cxx-remarks>
+        Calling the <code>set_default_resource</code> and <code>get_default_resource</code> functions shall not incur a data race.
+        A call to the <code>set_default_resource</code> function shall synchronize with subsequent calls to the <code>set_default_resource</code> and <code>get_default_resource</code> functions.
+      </cxx-remarks>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>memory_resource* get_default_resource() noexcept;</cxx-signature>
+      <cxx-returns>The current value of the default memory resource pointer.</cxx-returns>
+    </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="memresource.pool">
+    <h1>Pool resource classes</h1>
+
+    <cxx-section id="memresource.pool.overview">
+      <h1>Classes <code>synchronized_pool_resource</code> and <code>unsynchronized_pool_resource</code></h1>
+
+      <p>
+        The <code>synchronized_pool_resource</code> and <code>unsynchronized_pool_resource</code> classes (collectively, <dfn>pool resource classes</dfn>)
+        are general-purpose memory resources having the following qualities:
+      </p>
+      <ul>
+        <li>Each resource owns the allocated memory, and frees it on destruction –
+        even if deallocate has not been called for some of the allocated blocks.</li>
+        <li>A pool resource (see <cxx-ref to="fig:memresource.pool.resources"></cxx-ref>) consists of a collection of pools, serving requests for different block sizes.
+        Each individual pool manages a collection of chunks that are in turn divided into blocks of uniform size, returned via calls to <code>do_allocate</code>.
+        Each call to <code>do_allocate(size, alignment)</code> is dispatched to the pool serving the smallest blocks accommodating at least <code>size</code> bytes.</li>
+        <li>When a particular pool is exhausted, allocating a block from that pool results in the allocation of an additional chunk of memory from the upstream allocator (supplied at construction), thus replenishing the pool.
+        With each successive replenishment, the chunk size obtained increases geometrically.
+        <cxx-note>By allocating memory in chunks, the pooling strategy increases the chance that consecutive allocations will be close together in memory.</cxx-note></li>
+        <li>Allocation requests that exceed the largest block size of any pool are fulfilled directly from the upstream allocator.</li>
+        <li>A <code>pool_options</code> struct may be passed to the pool resource constructors to tune the largest block size and the maximum chunk size.</li>
+      </ul>
+      <cxx-example><cxx-ref to="fig:memresource.pool.resources"></cxx-ref> shows a possible data structure that implements a pool resource.
+      <cxx-figure id="fig:memresource.pool.resources">
+        <img src="PooledResourcesImage.png" width="100%"/>
+        <figcaption>pool resource</figcaption>
+      </cxx-figure>
+      </cxx-example>
+
+      <p>
+        A <code>synchronized_pool_resource</code> may be accessed from multiple threads without external synchronization
+        and may have thread-specific pools to reduce synchronization costs.
+        An <code>unsynchronized_pool_resource</code> class may not be accessed from multiple threads simultaneously
+        and thus avoids the cost of synchronization entirely in single-threaded applications.
+      </p>
+
+<pre><code>struct pool_options {
+  size_t max_blocks_per_chunk = 0;
+  size_t largest_required_pool_block = 0;
+};
+
+class synchronized_pool_resource : public memory_resource {
+public:
+  synchronized_pool_resource(const pool_options& opts, memory_resource* upstream);
+
+  synchronized_pool_resource()
+      : synchronized_pool_resource(pool_options(), get_default_resource()) { }
+  explicit synchronized_pool_resource(memory_resource* upstream)
+      : synchronized_pool_resource(pool_options(), upstream) { }
+  explicit synchronized_pool_resource(pool_options& opts)
+      : synchronized_pool_resource(opts, get_default_resource()) { }
+
+  synchronized_pool_resource(
+      const synchronized_pool_resource&) = delete;
+  virtual ~synchronized_pool_resource();
+
+  synchronized_pool_resource& operator=(
+      const synchronized_pool_resource&) = delete;
+
+  void release();
+  memory_resource* upstream_resource() const;
+  pool_options options() const;
+
+protected:
+  virtual void* do_allocate(size_t bytes, size_t alignment);
+  virtual void do_deallocate(void* p, size_t bytes, size_t alignment);
+
+  virtual bool do_is_equal(const memory_resource& other) const noexcept;
+};
+
+class unsynchronized_pool_resource : public memory_resource {
+public:
+  unsynchronized_pool_resource(const pool_options& opts, memory_resource* upstream);
+
+  unsynchronized_pool_resource()
+      : unsynchronized_pool_resource(pool_options(), get_default_resource()) { }
+  explicit unsynchronized_pool_resource(memory_resource* upstream)
+      : unsynchronized_pool_resource(pool_options(), upstream) { }
+  explicit unsynchronized_pool_resource(const pool_options& opts)
+      : unsynchronized_pool_resource(opts, get_default_resource()) { }
+
+  unsynchronized_pool_resource(
+      const unsynchronized_pool_resource&) = delete;
+  virtual ~unsynchronized_pool_resource();
+
+  unsynchronized_pool_resource& operator=(
+      const unsynchronized_pool_resource&) = delete;
+
+  void release();
+  memory_resource* upstream_resource() const;
+  pool_options options() const;
+
+protected:
+  virtual void* do_allocate(size_t bytes, size_t alignment);
+  virtual void do_deallocate(void* p, size_t bytes, size_t alignment);
+
+  virtual bool do_is_equal(const memory_resource& other) const noexcept;
+};</code></pre>
+    </cxx-section>
+
+    <cxx-section id="memresource.pool.options">
+      <h1><code>pool_options</code> data members</h1>
+
+      <p>
+        The members of <code>pool_options</code> comprise a set of constructor options for pool resources.
+        The effect of each option on the pool resource behavior is described below:
+      </p>
+
+      <cxx-function>
+        <cxx-signature>size_t max_blocks_per_chunk;</cxx-signature>
+
+        <p>
+          The maximum number of blocks that will be allocated at once from the upstream memory resource to replenish a pool.
+          If the value of <code>max_blocks_per_chunk</code> is zero or is greater than an implementation-defined limit, that limit is used instead.
+          The implementation may choose to use a smaller value than is specified in this field and may use different values for different pools.
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>size_t largest_required_pool_block;</cxx-signature>
+
+        <p>
+          The largest allocation size that is required to be fulfilled using the pooling mechanism.
+          Attempts to allocate a single block larger than this threshold will be allocated directly from the upstream memory resource.
+          If <code>largest_required_pool_block</code> is zero or is greater than an implementation-defined limit, that limit is used instead.
+          The implementation may choose a pass-through threshold larger than specified in this field.
+        </p>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.pool.ctor">
+      <h1>pool resource constructors and destructors</h1>
+
+      <cxx-function>
+        <cxx-signature>synchronized_pool_resource(const pool_options& opts, memory_resource* upstream);</cxx-signature>
+        <cxx-signature>unsynchronized_pool_resource(const pool_options& opts, memory_resource* upstream);</cxx-signature>
+
+        <cxx-preconditions><code>upstream</code> is the address of a valid memory resource.</cxx-preconditions>
+        <cxx-effects>
+          Constructs a pool resource object that will obtain memory from upstream whenever the pool resource is unable to satisfy a memory request from its own internal data structures.
+          The resulting object will hold a copy of <code>upstream</code>, but will not own the resource to which <code>upstream</code> points.
+          <cxx-note>The intention is that calls to <code>upstream->allocate()</code> will be substantially fewer than calls to <code>this->allocate()</code> in most cases.</cxx-note>
+          The behavior of the pooling mechanism is tuned according to the value of the opts argument.
+        </cxx-effects>
+        <cxx-throws>Nothing unless <code>upstream->allocate()</code> throws.
+        It is unspecified if or under what conditions this constructor calls <code>upstream->allocate()</code>.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>virtual ~synchronized_pool_resource();</cxx-signature>
+        <cxx-signature>virtual ~unsynchronized_pool_resource();</cxx-signature>
+        <cxx-effects>calls <code>this->release()</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.pool.mem">
+      <h1>pool resource members</h1>
+
+      <cxx-function>
+        <cxx-signature>void release();</cxx-signature>
+        <cxx-effects>
+          Calls <code>upstream_resource()->deallocate()</code> as necessary to release all allocated memory.
+          <cxx-note>memory is released back to <code>upstream_resource()</code> even if <code>deallocate</code> has not been called for some of the allocated blocks.</cxx-note>
+        </cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>memory_resource* upstream_resource() const;</cxx-signature>
+        <cxx-returns>The value of the <code>upstream</code> argument provided to the constructor of this object.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>pool_options options() const;</cxx-signature>
+
+        <cxx-returns>
+          The options that control the pooling behavior of this resource.
+          The values in the returned struct may differ from those supplied to the pool resource constructor
+          in that values of zero will be replaced with implementation-defined defaults and sizes may be rounded to unspecified granularity.
+        </cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>virtual void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
+
+        <cxx-returns>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>3.7.4.2 ) with a size of at least <code>bytes</code>.
+        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memresource"></cxx-ref>).</cxx-returns>
+        <cxx-effects>
+          If the pool selected for a block of <code>size</code> bytes is unable to satisfy the memory request from its own internal data structures,
+          it will call <code>upstream_resource()->allocate()</code> to obtain more memory.
+          If <code>bytes</code> is larger than that which the largest pool can handle,
+          then memory will be allocated using <code>upstream_resource()->allocate()</code>.
+        </cxx-effects>
+        <cxx-throws>Nothing unless <code>upstream_resource()->allocate()</code> throws.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>virtual void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature>
+
+        <cxx-effects>Return the memory at <code>p</code> to the pool.
+        It is unspecified if or under what circumstances this operation will result in a call to <code>upstream_resource()->deallocate()</code>.</cxx-effects>
+        <cxx-throws>Nothing</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>virtual bool unsynchronized_pool_resource::do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
+        <cxx-returns><code>this == dynamic_cast&lt;unsynchronized_pool_resource*>(&other)</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>virtual bool synchronized_pool_resource::do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
+
+        <cxx-returns><code>this == dynamic_cast&lt;synchronized_pool_resource*>(&other)</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="memresource.monotonic.buffer">
+    <h1>Class <code>monotonic_buffer_resource</code></h1>
+
+    <cxx-section id="memresource.monotonic.buffer.overview">
+      <h1>Class <code>monotonic_buffer_resource</code> overview</h1>
+
+      <p>
+        A <code>monotonic_buffer_resource</code> is a special-purpose memory resource
+        intended for very fast memory allocations in situations where memory is used to build up a few objects
+        and then is released all at once when the memory resource object is destroyed.
+        It has the following qualities:
+      </p>
+      <ul>
+        <li>A call to <code>deallocate</code> has no effect,
+        thus the amount of memory consumed increases monotonically until the resource is destroyed.</li>
+        <li>The program can supply an initial buffer, which the allocator uses to satisfy memory requests.</li>
+        <li>When the initial buffer (if any) is exhausted,
+        it obtains additional buffers from an upstream memory resource supplied at construction.
+        Each additional buffer is larger than the previous one, following a geometric progression.</li>
+        <li>It is intended for access from one thread of control at a time.
+        Specifically, calls to <code>allocate</code> and <code>deallocate</code> do not synchronize with one another.</li>
+        <li>It owns the allocated memory and frees it on destruction,
+        even if deallocate has not been called for some of the allocated blocks.</li>
+      </ul>
+<pre><code>class monotonic_buffer_resource : public memory_resource {
+  memory_resource* upstream_rsrc; // exposition only
+  void* current_buffer; // exposition only
+  size_t next_buffer_size; // exposition only
+
+public:
+  explicit monotonic_buffer_resource(memory_resource* upstream);
+  monotonic_buffer_resource(size_t initial_size,
+                            memory_resource* upstream);
+  monotonic_buffer_resource(void* buffer, size_t buffer_size,
+                            memory_resource* upstream);
+
+  monotonic_buffer_resource()
+      : monotonic_buffer_resource(get_default_resource()) { }
+  explicit monotonic_buffer_resource(size_t initial_size)
+      : monotonic_buffer_resource(initial_size,
+                                  get_default_resource()) { }
+  monotonic_buffer_resource(void* buffer, size_t buffer_size)
+      : monotonic_buffer_resource(buffer, buffer_size,
+                                  get_default_resource()) { }
+
+  monotonic_buffer_resource(const monotonic_buffer_resource&) = delete;
+
+  virtual ~monotonic_buffer_resource();
+
+  monotonic_buffer_resource operator=(
+      const monotonic_buffer_resource&) = delete;
+
+  void release();
+  memory_resource* upstream_resource() const;
+
+protected:
+  virtual void* do_allocate(size_t bytes, size_t alignment);
+  virtual void do_deallocate(void* p, size_t bytes,
+                             size_t alignment);
+
+  virtual bool do_is_equal(const memory_resource& other) const noexcept;
+};</code></pre>
+    </cxx-section>
+
+    <cxx-section id="memresource.monotonic.buffer.ctor">
+      <h1><code>monotonic_buffer_resource</code> constructor and destructor</h1>
+
+      <cxx-function>
+        <cxx-signature>explicit monotonic_buffer_resource(memory_resource* upstream);</cxx-signature>
+        <cxx-signature>monotonic_buffer_resource(size_t initial_size, memory_resource* upstream);</cxx-signature>
+
+        <cxx-preconditions><code>upstream</code> shall be the address of a valid memory resource.
+        <code>initial_size</code>, if specified, shall be greater than zero.</cxx-preconditions>
+        <cxx-effects>Sets <code>upstream_rsrc</code> to <code>upstream</code> and <code>current_buffer</code> to <code>nullptr</code>.
+        If <code>initial_size</code> is specified, sets <code>next_buffer_size</code> to at least <code>initial_size</code>;
+        otherwise sets <code>next_buffer_size</code> to an implementation-defined size.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>monotonic_buffer_resource(void* buffer, size_t buffer_size, memory_resource* upstream);</cxx-signature>
+
+        <cxx-preconditions><code>upstream</code> shall be the address of a valid memory resource.
+        <code>buffer_size</code> shall be no larger than the number of bytes in <code>buffer</code>.</cxx-preconditions>
+        <cxx-effects>Sets <code>upstream_rsrc</code> to <code>upstream</code>, <code>current_buffer</code> to <code>buffer</code>, and <code>next_buffer_size</code> to <code>initial_size</code> (but not less than 1),
+        then increases <code>next_buffer_size</code> by an implementation-defined growth factor (which need not be integral).</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>~monotonic_buffer_resource();</cxx-signature>
+        <cxx-effects>Calls this->release().</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memresource.monotonic.buffer.mem">
+      <h1>monotonic_buffer_resource members</h1>
+
+      <cxx-function>
+        <cxx-signature>void release();</cxx-signature>
+        <cxx-effects>Calls <code>upstream_rsrc->deallocate()</code> as necessary to release all allocated memory.</cxx-effects>
+        <p><cxx-note>memory is released back to <code>upstream_rsrc</code> even if some blocks that were allocated from <code>this</code> have not been deallocated from <code>this</code>.</cxx-note></p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>memory_resource* upstream_resource() const;</cxx-signature>
+        <cxx-returns>the value of <code>upstream_rsrc</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
+
+        <cxx-returns>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>) with a size of at least <code>bytes</code>.
+        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memresource"></cxx-ref>).</cxx-returns>
+        <cxx-effects>
+          If the unused space in <code>current_buffer</code> can fit a block with the specified bytes and alignment,
+          then allocate the return block from <code>current_buffer</code>;
+          otherwise set <code>current_buffer</code> to <code>upstream_rsrc->allocate(n, m)</code>,
+          where <code>n</code> is not less than <code>max(bytes, next_buffer_size)</code> and <code>m</code> is not less than <code>alignment</code>,
+          and increase <code>next_buffer_size</code> by an implementation-defined growth factor (which need not be integral),
+          then allocate the return block from the newly-allocated <code>current_buffer</code>.
+        </cxx-effects>
+        <cxx-throws>Nothing unless <code>upstream_rsrc->allocate()</code> throws.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature>
+        <cxx-effects>None</cxx-effects>
+        <cxx-throws>Nothing</cxx-throws>
+        <cxx-remarks>Memory used by this resource increases monotonically until its destruction.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>bool do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
+        <cxx-returns><code>this == dynamic_cast&lt;monotonic_buffer_resource*>(&other)</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="memresource.aliases">
+    <h1>Alias templates using polymorphic memory resources</h1>
+
+    <cxx-section id="header.string.synop">
+      <h1>Header &lt;experimental/string> synopsis</h1>
+<pre><code>#include &lt;string>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  // basic_string using polymorphic allocator in namespace pmr
+  template &lt;class charT, class traits = char_traits&lt;charT>>
+   using basic_string =
+     std::basic_string&lt;charT, traits, polymorphic_allocator&lt;charT>>;
+
+  // basic_string typedef names using polymorphic allocator in namespace
+  // std::experimental::pmr
+  typedef basic_string&lt;char> string;
+  typedef basic_string&lt;char16_t> u16string;
+  typedef basic_string&lt;char32_t> u32string;
+  typedef basic_string&lt;wchar_t> wstring;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.deque.synop">
+      <h1>Header &lt;experimental/deque> synopsis</h1>
+<pre><code>#include &lt;deque>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class T>
+  using deque = std::deque&lt;T,polymorphic_allocator&lt;T>>;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.forward_list.synop">
+      <h1>Header &lt;experimental/forward_list> synopsis</h1>
+<pre><code>#include &lt;forward_list>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class T>
+  using forward_list =
+    std::forward_list&lt;T,polymorphic_allocator&lt;T>>;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.list.synop">
+      <h1>Header &lt;experimental/list> synopsis</h1>
+<pre><code>#include &lt;list>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class T>
+  using list = std::list&lt;T,polymorphic_allocator&lt;T>>;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.vector.synop">
+      <h1>Header &lt;experimental/vector> synopsis</h1>
+<pre><code>#include &lt;vector>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class T>
+  using vector = std::vector&lt;T,polymorphic_allocator&lt;T>>;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.map.synop">
+      <h1>Header &lt;experimental/map> synopsis</h1>
+<pre><code>#include &lt;map>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class Key, class T, class Compare = less&lt;Key>>
+  using map = std::map&lt;Key, T, Compare,
+                       polymorphic_allocator&lt;pair&lt;const Key,T>>>;
+
+  template &lt;class Key, class T, class Compare = less&lt;Key>>
+  using multimap = std::multimap&lt;Key, T, Compare,
+                                 polymorphic_allocator&lt;pair&lt;const Key,T>>>;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.set.synop">
+      <h1>Header &lt;experimental/set> synopsis</h1>
+<pre><code>#include &lt;set>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class Key, class Compare = less&lt;Key>>
+  using set = std::set&lt;Key, Compare,
+                       polymorphic_allocator&lt;Key>>;
+
+  template &lt;class Key, class Compare = less&lt;Key>>
+  using multiset = std::multiset&lt;Key, Compare,
+                                 polymorphic_allocator&lt;Key>>;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.unordered_map.synop">
+      <h1>Header &lt;experimental/unordered_map> synopsis</h1>
+<pre><code>#include &lt;unordered_map>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class Key, class T,
+  class Hash = hash&lt;Key>,
+  class Pred = std::equal_to&lt;Key>>
+  using unordered_map =
+    std::unordered_map&lt;Key, T, Hash, Pred,
+                       polymorphic_allocator&lt;pair&lt;const Key,T>>>;
+
+  template &lt;class Key, class T,
+  class Hash = hash&lt;Key>,
+  class Pred = std::equal_to&lt;Key>>
+  using unordered_multimap =
+    std::unordered_multimap&lt;Key, T, Hash, Pred,
+                            polymorphic_allocator&lt;pair&lt;const Key,T>>>;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.unordered_set.synop">
+      <h1>Header &lt;experimental/unordered_set> synopsis</h1>
+<pre><code>#include &lt;unordered_set>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class Key,
+  class Hash = hash&lt;Key>,
+  class Pred = equal_to&lt;Key>>
+  using unordered_set = std::unordered_set&lt;Key, Hash, Pred,
+                                           polymorphic_allocator&lt;Key>>;
+
+  template &lt;class Key,
+  class Hash = hash&lt;Key>,
+  class Pred = equal_to&lt;Key>>
+  using unordered_multiset =
+    std::unordered_multiset&lt;Key, Hash, Pred,
+                            polymorphic_allocator&lt;Key>>;
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="header.regex.synop">
+      <h1>Header &lt;experimental/regex> synopsis</h1>
+<pre><code>#include &lt;regex>
+#include &lt;exerimental/string>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+namespace pmr {
+
+  template &lt;class BidirectionalIterator>
+  using match_results =
+    std::match_results&lt;BidirectionalIterator,
+                       polymorphic_allocator&lt;sub_match&lt;BidirectionalIterator>>>;
+
+  typedef match_results&lt;const char*> cmatch;
+  typedef match_results&lt;const wchar_t*> wcmatch;
+  typedef match_results&lt;string::const_iterator> smatch;
+  typedef match_results&lt;wstring::const_iterator> wsmatch;
+
+} // namespace pmr
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+  </cxx-section>
+</cxx-clause>

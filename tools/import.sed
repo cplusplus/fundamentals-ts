@@ -1,0 +1,16 @@
+s,\[\s*Note:\s*,<cxx-note>,
+s,\s*(-|–|—)+\s*end\s*note\],</cxx-note>,
+s,\[\s*Example:\s*,<cxx-example>,
+s,\s*(-|–|—)+\s*end\s*example\],</cxx-example>,
+
+s,(<p>)?(<i>)?Effect(s?)(</i>)?:\s*(</i>)?\s*,<cxx-effects>,
+s,(<p>)?(<i>)?Requires(</i>)?:\s*(</i>)?\s*,<cxx-requires>,
+s,(<p>)?(<i>)?Synchronization(</i>)?:\s*(</i>)?\s*,<cxx-synchronization>,
+s,(<p>)?(<i>)?Remark(s?)(</i>)?:\s*(</i>)?\s*,<cxx-remarks>,
+s,(<p>)?(<i>)?Throws(</i>)?:\s*(</i>)?\s*,<cxx-throws>,
+s,(<p>)?(<i>)?Returns(</i>)?:\s*(</i>)?\s*,<cxx-returns>,
+s,(<p>)?(<i>)?Precondition(s?)(</i>)?:\s*(</i>)?\s*,<cxx-preconditions>,
+s,(<p>)?(<i>)?Post(-?)condition(s?)(</i>)?:\s*(</i>)?\s*,<cxx-postconditions>,
+s,(<p>)?(<i>)?Error conditions(</i>)?:\s*(</i>)?\s*,<cxx-error-conditions>,
+s,(<p>)?(<i>)?Note(s?)(</i>)?:\s*(</i>)?\s*,<cxx-notes>,
+

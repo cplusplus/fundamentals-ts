@@ -40,11 +40,14 @@ limitations under the License.
   </template>
   <script>
     (function() {
-      var next_table_num = 1;
+      function renumberTables() {
+        document.querySelectorAll('[is=cxx-table]').array().forEach(function(table, index) {
+          table.table_num = index + 1;
+        });
+      }
       Polymer('cxx-table', {
-        created: function() {
-          this.table_num = next_table_num++;
-        }
+        attached: renumberTables,
+        detached: renumberTables,
       });
     })();
   </script>

@@ -20,6 +20,12 @@ limitations under the License.
 
         applyAuthorStyles: true,
 
+        checkInvariants: function() {
+            if (!this.id) {
+                console.error(this, 'is missing an id.');
+            }
+        },
+
         update_sec_nums: function(sec_num) {
             this.sec_num = sec_num + '';
             var child_index = 1;

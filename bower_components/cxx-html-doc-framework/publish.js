@@ -60,7 +60,24 @@ limitations under the License.
         });
     }
 
+    function inlineImages(images) {
+        Array.prototype.forEach.call(images,
+            function(image) {
+                if (image.naturalWidth == 0)
+                    console.error(image, "hasn't loaded yet.");
+                var canvas = document.createElement('canvas');
+                canvas.width = image.naturalWidth;
+                canvas.height = image.naturalHeight;
+                canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+                image.src = canvas.toDataURL();
+            });
+    }
+
     function cloneStaticAndInline(doc) {
+        // Inline the images on the source document instead of the copy
+        // because the copy doesn't have time to load the images.
+        inlineImages(doc.getElementsByTagName('img'));
+
         var copy = doc.cloneNode(true);
         function removeAll(nodes) {
             forEach(nodes, function(node) {

@@ -16,18 +16,21 @@ limitations under the License.
 <polymer-element name="cxx-clause" extends="cxx-section">
   <script>
     (function() {
-      var clause_num = 1;
+      function updateTocClauses() {
+        this.super();
+        var toc = document.querySelector('cxx-toc');
+        if (toc) {
+          toc.clauses = document.querySelectorAll('cxx-clause');
+        }
+      }
       Polymer('cxx-clause', {
-        attached: function() {
-          this.super();
-          var my_clause_num = clause_num++;
-
-          this.async(function() {
-            // async() lets the descendant elements upgrade; after which we
-            // need to traverse them to collect section numbers.
-            this.update_sec_nums(my_clause_num);
-          });
+        // Convenience function at the clause level, which gets called from <cxx-toc>.
+        set_clause_num: function(clause_num) {
+          this.update_sec_nums(clause_num);
         },
+
+        attached: updateTocClauses,
+        detached: updateTocClauses,
       });
     })();
   </script>

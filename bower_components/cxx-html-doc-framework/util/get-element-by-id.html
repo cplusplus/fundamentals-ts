@@ -1,0 +1,84 @@
+<!-- Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!--
+Put this element in another element's <template> as:
+  <cxx-get-element-by-id elemId="{{idToLookUp}}" elem="{{variableToFillIn}}">
+  </cxx-get-element-by-id>
+
+Then the containing element can define a method `variableToFillInChanged` that
+will be called when an element with the right ID is added to the document.
+-->
+<polymer-element name="cxx-get-element-by-id" attributes="elemId elem">
+  <script>
+    (function() {
+      'use strict';
+
+      // Maps IDs to an array of elements waiting for that ID to appear.
+      var pendingIds = {};
+
+      // Watches for all node changes that might make an ID appear, and checks
+      // the result against the pendingIDs.
+      var shared_observer = new MutationObserver(function(mutations) {
+        // We only seem to get a mutation record for the top node of a subtree
+        // that gets added to the DOM, which means that looking at just the
+        // addedNodes' IDs misses a bunch of IDs. Instead, we'll just search
+        // for all the IDs we care about, any time anything changes.
+        Object.keys(pendingIds).forEach(function(id) {
+          var elem = document.getElementById(id);
+          if (elem) {
+            pendingIds[id].forEach(function(waiting) {
+              if (waiting.elemId == id)
+                waiting.elem = elem;
+            });
+            delete pendingIds[id];
+          }
+        });
+
+        if (Object.keys(pendingIds).length == 0)
+          shared_observer.disconnect();
+      });
+
+      // Adds `to_notify` to the pendingIds list, waiting for `id` to appear,
+      // and makes sure the MutationObserver is watching.
+      function watchFor(id, to_notify) {
+        if (!pendingIds.hasOwnProperty(id))
+          pendingIds[id] = [];
+        pendingIds[id].push(to_notify);
+
+        shared_observer.observe(document, {
+          childList: true,
+          attributes: true,
+          subtree: true,
+          attributeFilter: ['id'],
+        });
+      }
+
+      Polymer('cxx-get-element-by-id', {
+        elemId: '',
+        elemIdChanged: function() {
+          if (!this.elemId) {
+            this.elem = null;
+            return;
+          }
+          this.elem = document.getElementById(this.elemId);
+          if (!this.elem) {
+            watchFor(this.elemId, this);
+          }
+        },
+      });
+    })();
+  </script>
+</polymer-element>

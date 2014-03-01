@@ -1,0 +1,151 @@
+<cxx-clause id="mods">
+  <h1>Modifications to the C++ Standard Library</h1>
+
+  <p>
+    Implementations that conform to this technical specification shall
+    behave as if the modifications contained in this section are made to the C++ Standard.
+  </p>
+
+  <cxx-section id="mods.allocator.uses">
+    <h1>Uses-allocator construction</h1>
+
+    <p>
+      The following changes to the <code>uses_allocator</code> trait and to the description of uses-allocator construction
+      allow a <code>memory_resource</code> pointer act as an allocator in many circumstances.
+      <cxx-note>Existing programs that uses standard allocators would be unaffected by this change.</cxx-note>
+    </p>
+
+    <blockquote>
+      <p><b>20.7.7 uses_allocator [allocator.uses]</b></p>
+      <p><b>20.7.7.1 uses_allocator trait [allocator.uses.trait]</b></p>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T, class Alloc> struct uses_allocator;</cxx-signature>
+        <cxx-remarks>
+          automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
+          Meets the BinaryTypeTrait requirements (20.10.1).
+          The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
+          and <ins>either</ins> <code>is_convertible&lt;Alloc, T::allocator_type>::value != false</code>
+          <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> ([utility.erased_type])</ins>,
+          otherwise it shall be derived from <code>false_type</code>.
+          A program may specialize this template to derive from <code>true_type</code> for a user-defined type <code>T</code> that does not have a nested <code>allocator_type</code> but nonetheless can be constructed with an allocator where either:
+          <ul>
+            <li>the first argument of a constructor has type <code>allocator_arg_t</code> and the second argument has type <code>Alloc</code> or</li>
+            <li>the last argument of a constructor has type <code>Alloc</code>.</li>
+          </ul>
+        </cxx-remarks>
+      </cxx-function>
+
+      <p><b>20.7.7.2 uses-allocator construction [allocator.uses.construction]</b></p>
+
+      <p>
+        <def>Uses-allocator construction</def> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,
+        using constructor arguments <code>v1, v2, ..., vN</code> of types <code>V1, V2, ..., VN</code>, respectively,
+        and an allocator <code>alloc</code> of type <code>Alloc</code>,
+        <ins>where <code>Alloc</code> either (1) meets the requirements of an allocator (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>),
+        or (2) is a pointer type convertible to <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memresource.class"></cxx-ref>),</ins>
+        according to the following rules:
+      </p>
+    </blockquote>
+  </cxx-section>
+
+  <cxx-section id="mods.func.wrap">
+    <h1>Additions to <code>std::function</code></h1>
+
+    <p>In <cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>, the following declarations are added as public members of class template function:</p>
+    <pre><code><ins>typedef experimental::erased_type allocator_type;
+
+experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
+
+    <p>
+      In <cxx-ref in="cxx" to="func.wrap.func.con"></cxx-ref>, the introductory paragraph is changed as follows,
+      giving the constructors of the function class template support for a type-erased allocator:
+    </p>
+
+    <blockquote>
+      When a <code>function</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
+      the second argument <ins>is treated as a <i>type-erased allocator</i> (<cxx-ref to="memresource.type.erased.allocator"></cxx-ref>).</ins>
+      <del>shall have a type that conforms to the requirements for Allocator (Table 17.6.3.5).
+      A copy of the allocator argument is used to allocate memory, if necessary, for the internal data structures of the constructed function object.</del>
+      <ins>If the constructor moves or makes a copy of a function object (including an instance of the <code>function</code> class template),
+      then that move or copy is performed by <i>using-allocator construction</i> with allocator <code>get_memory_resource()</code>.</ins>
+    </blockquote>
+
+    <p>In <cxx-ref in="cxx" to="func.wrap.func.con"></cxx-ref>, the assignment operators are enhanced to take the type-erased allocator into account:</p>
+
+    <cxx-function>
+      <cxx-signature>function& operator=(const function& f);</cxx-signature>
+
+      <cxx-effects><code>function(<ins>allocator_arg, get_memory_resource(), </ins>f).swap(*this);</code></cxx-effects>
+      <cxx-returns><code>*this</code></cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>function& operator=(function&& f);</cxx-signature>
+      <cxx-effects><del>Replaces the target of <code>*this</code> with the target of <code>f</code>.
+      </del><ins><code>function(allocator_arg, get_memory_resource(), std::move(f)).swap(*this);</code></ins></cxx-effects>
+      <cxx-returns><code>*this</code></cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>function& operator=(nullptr_t);</cxx-signature>
+
+      <cxx-effects>If <code>*this != NULL</code>, destroys the target of <code>this</code>.</cxx-effects>
+      <cxx-postconditions><code>!(*this)</code>.</cxx-postconditions>
+      <cxx-returns><code>*this</code></cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template&lt;class F> function& operator=(F&& f);</cxx-signature>
+
+      <cxx-effects><code>function(<ins>allocator_arg, get_memory_resource(), </ins>std::forward&lt;F>(f)).swap(*this);</code></cxx-effects>
+      <cxx-returns><code>*this</code></cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template&lt;class F> function& operator=(reference_wrapper&lt;F> f)<del> noexcept</del>;</cxx-signature>
+
+      <cxx-effects>function(<ins>allocator_arg, get_memory_resource(), </ins>f).swap(*this);</cxx-effects>
+      <cxx-returns><code>*this</code></cxx-returns>
+    </cxx-function>
+
+    <p>In <cxx-ref in="cxx" to="func.wrap.func.mod"></cxx-ref> a precondition is added to the definition of swap:</p>
+
+    <cxx-function>
+      <cxx-signature>void swap(function& other) noexcept;</cxx-signature>
+      <ins><cxx-preconditions><code>this->get_memory_resource() == other->get_memory_resource()</code>.</cxx-preconditions></ins>
+      <cxx-effects>Interchanges the targets of *this and other.</cxx-effects>
+    </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="mods.futures.promise">
+    <h1>Additions to <code>std::promise</code></h1>
+
+    <p>In <cxx-ref in="cxx" to="futures.promise"></cxx-ref>, the following declarations are added as public members of class template <code>promise</code>:</p>
+    <pre><code><ins>typedef experimental::erased_type allocator_type;
+
+experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
+
+    <p>and the following paragraph is inserted before the first (introductory) paragraph of the section.</p>
+
+    <blockquote>
+      <ins>When a promise constructor that takes a first argument of type allocator_arg_t is invoked,
+      the second argument is treated as a type-erased allocator (<cxx-ref to="memresource.type.erased.allocator"></cxx-ref>).</ins>
+    </blockquote>
+  </cxx-section>
+
+  <cxx-section id="mods.futures.task">
+    <h1>Additions to <code>std::packaged_task</code></h1>
+
+    <p>In <cxx-ref in="cxx" to="futures.task"></cxx-ref>, the following declarations are added as public members of class template <code>packaged_task</code>:</p>
+
+    <pre><code><ins>typedef experimental::erased_type allocator_type;
+
+experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
+
+    <p>and the following paragraph is inserted before the first (introductory) paragraph of the section.</p>
+
+    <blockquote><ins>When a packaged_task constructor that takes a first argument of type allocator_arg_t is invoked,
+    the second argument is treated as a type-erased allocator (<cxx-ref to="memresource.type.erased.allocator"></cxx-ref>).</ins></blockquote>
+  </cxx-section>
+</cxx-clause>

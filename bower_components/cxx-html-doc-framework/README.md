@@ -19,6 +19,20 @@ Contributor License Agreement at https://developers.google.com/open-source/cla/i
 Custom C++-specific elements
 ----------------------------
 
+Some of these elements define a `checkInvariants()` method, so you can run:
+
+    document.querySelectorAll('*').array().forEach(
+        function(node){ if (node.checkInvariants) node.checkInvariants(); });
+
+to see if you've gotten anything wrong.
+
+### `<cxx-include href="other.html">`
+
+This one isn't really C++-specific: it allows partitioning a main document
+into multiple pieces. `other.html`'s body will be copied in place of the
+`<cxx-include>` element.
+
+
 ### `<cxx-clause>` and `<cxx-section>`
 
 These automatically number clauses and sections, fill in

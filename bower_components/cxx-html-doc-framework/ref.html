@@ -13,6 +13,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+<link rel="import" href="util/get-element-by-id.html"/>
+
 <!--
     The 'to' attribute is the id of a <cxx-section> or <cxx-table> element (or subclass).
 
@@ -27,13 +29,16 @@ limitations under the License.
 
 <polymer-element name="cxx-ref" attributes="to insynopsis in">
   <template
+      ><cxx-get-element-by-id elemId="{{in}}" elem="{{inElem}}"></cxx-get-element-by-id
+      ><template if="{{!in}}"><cxx-get-element-by-id elemId="{{to}}" elem="{{toElem}}"></cxx-get-element-by-id></template
       ><template id="target_num"
-                 ><template if="{{in_elem.index}}">{{in_elem.name}} &#xa7;{{in_elem.index[to]}}</template
-                 ><template if="{{!in}}"><a href="#{{to}}"
-                   ><template if="{{to_elem.sec_num}}">{{to_elem.sec_num}}</template
-                   ><template if="{{to_elem.table_num}}">Table {{to_elem.table_num}}</template></a></template
+                 ><template if="{{inElem.index}}">{{inElem.name}} <span title="{{to}}">&#xa7;{{inElem.index[to]}}</span></template
+                 ><template if="{{!in}}"><a title="{{to}}" href="#{{to}}"
+                   ><template if="{{toElem.sec_num}}">{{toElem.sec_num}}</template
+                   ><template if="{{toElem.table_num}}">Table {{toElem.table_num}}</template
+                   ><template if="{{toElem.figure_num}}">Figure {{toElem.figure_num}}</template></a></template
       ></template
-      ><template if="{{insynopsis}}">// <i><template bind="" ref="target_num"></template>, {{to_elem.title_element.textContent}}</i></template
+      ><template if="{{insynopsis}}">// <i><template bind="" ref="target_num"></template>, {{toElem.title_element.textContent}}</i></template
       ><template if="{{!insynopsis}}"><template bind="" ref="target_num"></template></template
   ></template>
   <script src="ref.js"></script>

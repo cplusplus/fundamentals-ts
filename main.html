@@ -69,20 +69,19 @@
   </cxx-section>
 
   <cxx-section id="general.namespaces">
-    <h1>Namespaces and headers</h1>
+    <h1>Namespaces, headers, and modifications to standard classes</h1>
 
-    <cxx-ednote>This section reflects the <a
-    href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">consensus
-    between the LWG and LEWG at the Chicago 2013
-    meeting</a>.</cxx-ednote>
+    <cxx-ednote>This section reflects the consensus between the LWG and LEWG at the
+    <a href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">Chicago 2013</a> and
+    <a href="http://wiki.edg.com/twiki/bin/view/Wg21issaquah/ChangesToExistingInTS">Issaquah 2014</a> meetings.</cxx-ednote>
 
     <p>Since the extensions described in this technical specification
     are experimental and not part of the C++ standard library, they
     should not be declared directly within namespace
-    <code>std</code>. Unless otherwise specifed, all components
-    described in this technical specification are declared in
-    namespace <code>std::experimental::fundamentals_v1</code> or a
-    subnamespace thereof.  Each header described in this technical
+    <code>std</code>.
+    Unless otherwise specified, all components described in this technical specification that are not modifications of existing interfaces in the C++ Standard Library
+    are declared in namespace <code>std::experimental::fundamentals_v1</code> or a subnamespace thereof.
+    Each header described in this technical
     specification shall import the contents of
     <code>std::experimental::fundamentals_v1</code> into
     <code>std::experimental</code> as if by</p>
@@ -92,6 +91,12 @@
     inline namespace fundamentals_v1 {}
   }
 }</code></pre>
+
+    <p>
+      This technical specification also describes some experimental modifications to existing interfaces in the C++ Standard Library.
+      These modifications are described by quoting the affected parts of the standard
+      and using <ins>underlining</ins> to represent added text and <del>strike-through</del> to represent deleted text.
+    </p>
 
     <p>Unless otherwise specified, references to other entities
     described in this technical specification are assumed to be
@@ -104,9 +109,6 @@
     <code>&lt;experimental/meow></code> header, which shall include
     the standard contents of <code>&lt;meow></code> as if by</p>
     <pre><code>#include &lt;meow></code></pre>
-
-    <p><cxx-note>This implies that this technical specification cannot
-    remove an existing overload of a function.</cxx-note></p>
 
     <p>New headers are also provided in the
     <code>&lt;experimental/></code> directory, but without such an
@@ -156,6 +158,9 @@
     <code>experimental/</code> prefix from its header's path.</p>
   </cxx-section>
 </cxx-clause>
+
+<cxx-include href="mods.html"></cxx-include>
+<cxx-include href="utilities.html"></cxx-include>
 
 <cxx-clause id="optional">
   <h1>Optional objects</h1>
@@ -1690,6 +1695,8 @@ constexpr bool operator==(
     </cxx-function>
   </cxx-section>
 </cxx-clause>
+
+<cxx-include href="memory-resource.html"></cxx-include>
 
 <cxx-publish-button source="https://github.com/cplusplus/fundamentals-ts"></cxx-publish-button>
 </body>

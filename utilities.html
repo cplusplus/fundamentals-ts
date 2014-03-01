@@ -1,0 +1,34 @@
+<cxx-clause id="utilities">
+  <h1>General utilities library</h1>
+
+  <cxx-section id="utility.synop">
+    <h1>Header <code>&lt;experimental/utility></code> synopsis</h1>
+
+<pre><code>#include &lt;utility>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+ <cxx-ref to="utility.erased.type"></cxx-ref>, erased-type placeholder
+ struct erased_type { };
+
+}
+}
+}</code></pre>
+
+  </cxx-section>
+
+  <cxx-section id="utility.erased.type">
+    <h1>Class <code>erased_type</code></h1>
+
+    <cxx-function>
+      <cxx-signature>struct erased_type { };</cxx-signature>
+
+      <p>
+        The <code>erased_type</code> <code>struct</code> is an empty <code>struct</code> that serves as a placeholder for a type <code>T</code> in situations where the actual type <code>T</code> is determined at runtime.
+        For example, the nested type, <code>allocator_type</code>, is an alias for <code>erased_type</code> in classes that use <i>type-erased allocators</i> (see <cxx-ref to="memresource.type.erased.allocator"></cxx-ref>).
+      </p>
+    </cxx-function>
+  </cxx-section>
+</cxx-clause>

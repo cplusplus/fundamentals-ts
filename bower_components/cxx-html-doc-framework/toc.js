@@ -15,10 +15,12 @@ limitations under the License.
 
 (function() {
     Polymer('cxx-toc', {
-        // Hierarchy :: [{ elem: Element, sections: Hierarchy }]
+        // Hierarchy :: [{ elem: Element, title: H1, sections: Hierarchy }]
         sections: [],
 
-        applyAuthorStyles: true,
+        // Updated with the list of <cxx-clause> elements in the document each
+        // time such an element is attached or detached.
+        clauses: [],
 
         collectSections: function(root) {
             var sections = [];
@@ -33,9 +35,15 @@ limitations under the License.
                     sections: sections};
         },
 
-        created: function() {
-            var clauses = window.document.querySelectorAll('cxx-clause');
-            this.sections = clauses.array().map(this.collectSections, this);
+        clausesChanged: function() {
+            this.sections = this.clauses.array().map(function(clause, index) {
+                clause.set_clause_num(index + 1);
+                return this.collectSections(clause);
+            }, this);
+        },
+
+        attached: function() {
+            this.clauses = document.querySelectorAll('cxx-clause');
         }
     })
 })();

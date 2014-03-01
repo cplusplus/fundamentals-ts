@@ -19,42 +19,53 @@ limitations under the License.
         insynopsis: false,
 
         observe: {
-            'in_elem.index': 'indexChanged'
+            'inElem.index': 'indexChanged'
         },
         applyAuthorStyles: true,
 
-        inChanged: function() {
-            this.in_elem = document.getElementById(this.in);
-            if (this.in &&
-                !(this.in_elem &&
-                  this.in_elem.tagName.toUpperCase() == 'CXX-FOREIGN-INDEX')) {
-                console.error('<cxx-ref>.in (', this.in,
-                              ') must be a <cxx-foreign-index>; was',
-                              this.in_elem);
+        checkInvariants: function() {
+            if (this.in) {
+                if (!this.inElem) {
+                    console.error(this, '.in (', this.in,
+                                  ') must refer to a <cxx-foreign-index> element.');
+                }
+            } else {
+                if (!this.to) {
+                    console.error('<cxx-ref>', this,
+                                  'must have an `in` or `to` attribute.');
+                } else if (!this.toElem) {
+                    console.error(this, '.to (', this.to,
+                                  ') must refer to the ID of another element.');
+                }
             }
         },
-        toChanged: function() {
-            if (!this.in) {
-                this.to_elem = document.getElementById(this.to);
-                if (!this.to_elem) {
-                    console.error("Broken link", this.to, "from", this);
-                    return;
-                }
+
+        inElemChanged: function() {
+            if (this.inElem &&
+                this.inElem.tagName.toUpperCase() != 'CXX-FOREIGN-INDEX') {
+                console.error('<cxx-ref>.in (', this.in,
+                              ') must be a <cxx-foreign-index>; was',
+                              this.inElem);
+            }
+        },
+        toElemChanged: function() {
+            if (this.toElem) {
                 this.async(function() {
-                    // Async makes sure the to_elem is upgraded.
-                    if (!(this.to_elem instanceof CxxSectionElement ||
-                          this.to_elem instanceof CxxTableElement)) {
+                    // Async makes sure the toElem is upgraded.
+                    if (!(this.toElem instanceof CxxSectionElement ||
+                          this.toElem instanceof CxxTableElement ||
+                          this.toElem instanceof CxxFigureElement)) {
                         console.error("Reference from", this,
-                                      "refers to non-section, non-table element",
-                                      this.to_elem);
+                                      "refers to non-section, non-table, non-figure element",
+                                      this.toElem);
                     }
                 });
             }
         },
 
         indexChanged: function() {
-            if (!(this.to in this.in_elem.index)) {
-                console.error(this.to, 'not found in', this.in_elem);
+            if (!(this.to in this.inElem.index)) {
+                console.error(this.to, 'not found in', this.inElem);
             }
         }
     });
