@@ -52,9 +52,34 @@ inline namespace fundamentals_v1 {
 template &lt;class T> constexpr size_t tuple_size_v
   = tuple_size&lt;T>::value;
 
+<cxx-ref insynopsis="" to="tuple.apply"></cxx-ref>
+template &lt;typename F, typename Tuple>
+constexpr decltype(auto) apply(F&& f, Tuple&& t);
+
 } // namespace fundamentals_v1
 } // namespace experimental
 } // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="tuple.apply">
+      <h1>Calling a function with a <code>tuple</code> of arguments</h1>
+
+      <cxx-function>
+        <cxx-signature>template &lt;typename F, typename Tuple>
+constexpr decltype(auto) apply(F&& f, Tuple&& t);</cxx-signature>
+
+        <cxx-effects>
+          <p>Given the exposition only function</p>
+          <pre><code>template &lt;typename F, typename Tuple, size_t... I>
+constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
+    F&& f, Tuple&& t, index_sequence&lt;I...>) {
+  return std::forward&lt;F>(f)(std::get&lt;I>(std::forward&lt;Tuple>(t))...);
+}</code></pre>
+          <p>Equivalent to</p>
+          <pre><code>return apply_impl(std::forward&lt;F>(f), std::forward&lt;Tuple>(t),
+    make_index_sequence&lt;tuple_size&lt;decay_t&lt;Tuple>>::value>{});</code></pre>
+        </cxx-effects>
+      </cxx-function>
     </cxx-section>
   </cxx-section>
 
