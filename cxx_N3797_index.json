@@ -1,6 +1,7 @@
 {
     "basic.stc.dynamic.deallocation": "3.7.4.2",
     "dcl.constexpr": "7.1.5",
+    "temp.deduct": "14.8.2",
     "library": "17",
     "hash.requirements": "17.6.3.4",
     "allocator.requirements": "17.6.3.5",
@@ -24,6 +25,7 @@
     "strings.general": "21.1",
     "char.traits": "21.2",
     "container.requirements": "23.2",
+    "iterator.traits": "24.4.1",
     "iterator.range": "24.7",
     "algorithms.general": "25.1",
     "rand.req.urng": "26.5.1.3",

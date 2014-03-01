@@ -118,6 +118,27 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
     </cxx-function>
   </cxx-section>
 
+  <cxx-section id="mods.iterator.traits">
+    <h1>Changes to <code>std::iterator_traits</code></h1>
+
+    <p>In <cxx-ref in="cxx" to="iterator.traits"></cxx-ref>, the definition of <code>iterator_traits</code> is changed as follows:</p>
+    <blockquote>
+      <p>
+        The template <code>iterator_traits&lt;Iterator></code><del> is defined as</del>
+        <ins> shall have the following as publicly accessible members, and have no other members, if and only if <code>Iterator</code> has valid (<cxx-ref in="cxx" to="temp.deduct"></cxx-ref>) member types <code>difference_type</code>, <code>value_type</code>, <code>pointer</code>, <code>reference</code>, and <code>iterator_category</code>; otherwise, the template shall have no members:</ins>
+      </p>
+<pre><code><del>namespace std {
+  template&lt;class Iterator> struct iterator_traits {</del>
+    typedef typename Iterator::difference_type difference_type;
+    typedef typename Iterator::value_type value_type;
+    typedef typename Iterator::pointer pointer;
+    typedef typename Iterator::reference reference;
+    typedef typename Iterator::iterator_category iterator_category;
+<del>  };
+}</del></code></pre>
+    </blockquote>
+  </cxx-section>
+
   <cxx-section id="mods.futures.promise">
     <h1>Additions to <code>std::promise</code></h1>
 
