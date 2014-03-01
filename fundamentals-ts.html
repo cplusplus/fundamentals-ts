@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-THROWS");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXAMPLE");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-RANGE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>element {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-REQUIRES");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXAMPLE");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>element {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -590,43 +590,23 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">4</span><a href="#optional">Optional objects</a>
+              <li><span class="marker">4</span><a href="#func">Function objects</a>
         
           <ol>
             
-              <li><span class="marker">4.1</span><a href="#optional.general">In general</a>
+              <li><span class="marker">4.1</span><a href="#header.functional.synop">Header &lt;experimental/functional&gt; synopsis</a>
         
       </li>
             
-              <li><span class="marker">4.2</span><a href="#optional.synop">Header &lt;experimental/optional&gt; synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">4.3</span><a href="#optional.defs">Definitions</a>
-        
-      </li>
-            
-              <li><span class="marker">4.4</span><a href="#optional.object">optional for object types</a>
+              <li><span class="marker">4.2</span><a href="#func.searchers">Searchers</a>
         
           <ol>
             
-              <li><span class="marker">4.4.1</span><a href="#optional.object.ctor">Constructors</a>
+              <li><span class="marker">4.2.1</span><a href="#func.searchers.default">Class template default_searcher</a>
         
-      </li>
+          <ol>
             
-              <li><span class="marker">4.4.2</span><a href="#optional.object.dtor">Destructor</a>
-        
-      </li>
-            
-              <li><span class="marker">4.4.3</span><a href="#optional.object.assign">Assignment</a>
-        
-      </li>
-            
-              <li><span class="marker">4.4.4</span><a href="#optional.object.swap">Swap</a>
-        
-      </li>
-            
-              <li><span class="marker">4.4.5</span><a href="#optional.object.observe">Observers</a>
+              <li><span class="marker">4.2.1.1</span><a href="#func.searchers.default.creation">default_searcher creation functions</a>
         
       </li>
             
@@ -634,35 +614,11 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">4.5</span><a href="#optional.inplace">In-place construction</a>
+              <li><span class="marker">4.2.2</span><a href="#func.searchers.boyer_moore">Class template boyer_moore_searcher</a>
         
-      </li>
+          <ol>
             
-              <li><span class="marker">4.6</span><a href="#optional.nullopt">Disengaged state indicator</a>
-        
-      </li>
-            
-              <li><span class="marker">4.7</span><a href="#optional.bad_optional_access">Class bad_optional_access</a>
-        
-      </li>
-            
-              <li><span class="marker">4.8</span><a href="#optional.relops">Relational operators</a>
-        
-      </li>
-            
-              <li><span class="marker">4.9</span><a href="#optional.nullops">Comparison with nullopt</a>
-        
-      </li>
-            
-              <li><span class="marker">4.10</span><a href="#optional.comp_with_t">Comparison with T</a>
-        
-      </li>
-            
-              <li><span class="marker">4.11</span><a href="#optional.specalg">Specialized algorithms</a>
-        
-      </li>
-            
-              <li><span class="marker">4.12</span><a href="#optional.hash">Hash support</a>
+              <li><span class="marker">4.2.2.1</span><a href="#func.searchers.boyer_moore.creation">boyer_moore_searcher creation functions</a>
         
       </li>
             
@@ -670,35 +626,11 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">5</span><a href="#any">Class any</a>
+              <li><span class="marker">4.2.3</span><a href="#func.searchers.boyer_moore_horspool">Class template boyer_moore_horspool_searcher</a>
         
           <ol>
             
-              <li><span class="marker">5.1</span><a href="#any.synop">Header &lt;experimental/any&gt; synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">5.2</span><a href="#any.bad_any_cast">Class bad_any_cast</a>
-        
-      </li>
-            
-              <li><span class="marker">5.3</span><a href="#any.class">Class any</a>
-        
-          <ol>
-            
-              <li><span class="marker">5.3.1</span><a href="#any.cons">any construct/destruct</a>
-        
-      </li>
-            
-              <li><span class="marker">5.3.2</span><a href="#any.assign">any assignments</a>
-        
-      </li>
-            
-              <li><span class="marker">5.3.3</span><a href="#any.modifiers">any modifiers</a>
-        
-      </li>
-            
-              <li><span class="marker">5.3.4</span><a href="#any.observers">any observers</a>
+              <li><span class="marker">4.2.3.1</span><a href="#func.searchers.boyer_moore_horspool.creation">boyer_moore_horspool_searcher creation functions</a>
         
       </li>
             
@@ -706,7 +638,7 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">5.4</span><a href="#any.nonmembers">Non-member functions</a>
+          </ol>
         
       </li>
             
@@ -714,43 +646,43 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">6</span><a href="#string.view">string_view</a>
+              <li><span class="marker">5</span><a href="#optional">Optional objects</a>
         
           <ol>
             
-              <li><span class="marker">6.1</span><a href="#string.view.synop">Header &lt;experimental/string_view&gt; synopsis</a>
+              <li><span class="marker">5.1</span><a href="#optional.general">In general</a>
         
       </li>
             
-              <li><span class="marker">6.2</span><a href="#string.view.template">Class template basic_string_view</a>
+              <li><span class="marker">5.2</span><a href="#optional.synop">Header &lt;experimental/optional&gt; synopsis</a>
         
       </li>
             
-              <li><span class="marker">6.3</span><a href="#string.view.cons">basic_string_view constructors and assignment operators</a>
+              <li><span class="marker">5.3</span><a href="#optional.defs">Definitions</a>
         
       </li>
             
-              <li><span class="marker">6.4</span><a href="#string.view.iterators">basic_string_view iterator support</a>
-        
-      </li>
-            
-              <li><span class="marker">6.5</span><a href="#string.view.capacity">basic_string_view capacity</a>
-        
-      </li>
-            
-              <li><span class="marker">6.6</span><a href="#string.view.access">basic_string_view element access</a>
-        
-      </li>
-            
-              <li><span class="marker">6.7</span><a href="#string.view.modifiers">basic_string_view modifiers</a>
-        
-      </li>
-            
-              <li><span class="marker">6.8</span><a href="#string.view.ops">basic_string_view string operations</a>
+              <li><span class="marker">5.4</span><a href="#optional.object">optional for object types</a>
         
           <ol>
             
-              <li><span class="marker">6.8.1</span><a href="#string.view.find">Searching basic_string_view</a>
+              <li><span class="marker">5.4.1</span><a href="#optional.object.ctor">Constructors</a>
+        
+      </li>
+            
+              <li><span class="marker">5.4.2</span><a href="#optional.object.dtor">Destructor</a>
+        
+      </li>
+            
+              <li><span class="marker">5.4.3</span><a href="#optional.object.assign">Assignment</a>
+        
+      </li>
+            
+              <li><span class="marker">5.4.4</span><a href="#optional.object.swap">Swap</a>
+        
+      </li>
+            
+              <li><span class="marker">5.4.5</span><a href="#optional.object.observe">Observers</a>
         
       </li>
             
@@ -758,51 +690,35 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">6.9</span><a href="#string.view.comparison">basic_string_view non-member comparison functions</a>
+              <li><span class="marker">5.5</span><a href="#optional.inplace">In-place construction</a>
         
       </li>
             
-              <li><span class="marker">6.10</span><a href="#string.view.io">Inserters and extractors</a>
+              <li><span class="marker">5.6</span><a href="#optional.nullopt">Disengaged state indicator</a>
         
       </li>
             
-              <li><span class="marker">6.11</span><a href="#string.view.hash">Hash support</a>
+              <li><span class="marker">5.7</span><a href="#optional.bad_optional_access">Class bad_optional_access</a>
         
       </li>
             
-          </ol>
+              <li><span class="marker">5.8</span><a href="#optional.relops">Relational operators</a>
         
       </li>
             
-              <li><span class="marker">7</span><a href="#memresource">Polymorphic Memory Resources</a>
-        
-          <ol>
-            
-              <li><span class="marker">7.1</span><a href="#memresource.type.erased.allocator">Type-erased allocator</a>
+              <li><span class="marker">5.9</span><a href="#optional.nullops">Comparison with nullopt</a>
         
       </li>
             
-              <li><span class="marker">7.2</span><a href="#memresource.synop">Header &lt;experimental/memory_resource&gt; synopsis</a>
+              <li><span class="marker">5.10</span><a href="#optional.comp_with_t">Comparison with T</a>
         
       </li>
             
-              <li><span class="marker">7.3</span><a href="#memresource.class">Class memory_resource</a>
-        
-          <ol>
-            
-              <li><span class="marker">7.3.1</span><a href="#memresource.class.overview">Class memory_resource overview</a>
+              <li><span class="marker">5.11</span><a href="#optional.specalg">Specialized algorithms</a>
         
       </li>
             
-              <li><span class="marker">7.3.2</span><a href="#memresource.class.public">memory_resource public member functions</a>
-        
-      </li>
-            
-              <li><span class="marker">7.3.3</span><a href="#memresource.class.priv">memory_resource protected virtual member functions</a>
-        
-      </li>
-            
-              <li><span class="marker">7.3.4</span><a href="#memresource.class.eq">memory_resource equality</a>
+              <li><span class="marker">5.12</span><a href="#optional.hash">Hash support</a>
         
       </li>
             
@@ -810,23 +726,35 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">7.4</span><a href="#memresource.polymorphic.allocator.class">Class template polymorphic_allocator</a>
+              <li><span class="marker">6</span><a href="#any">Class any</a>
         
           <ol>
             
-              <li><span class="marker">7.4.1</span><a href="#memresource.polymorphic.allocator.overview">Class template polymorphic_allocator overview</a>
+              <li><span class="marker">6.1</span><a href="#any.synop">Header &lt;experimental/any&gt; synopsis</a>
         
       </li>
             
-              <li><span class="marker">7.4.2</span><a href="#memresource.polymorphic.allocator.ctor">polymorphic_allocator constructors</a>
+              <li><span class="marker">6.2</span><a href="#any.bad_any_cast">Class bad_any_cast</a>
         
       </li>
             
-              <li><span class="marker">7.4.3</span><a href="#memresource.polymorphic.allocator.mem">polymorphic_allocator member functions</a>
+              <li><span class="marker">6.3</span><a href="#any.class">Class any</a>
+        
+          <ol>
+            
+              <li><span class="marker">6.3.1</span><a href="#any.cons">any construct/destruct</a>
         
       </li>
             
-              <li><span class="marker">7.4.4</span><a href="#memresource.polymorphic.allocator.eq">polymorphic_allocator equality</a>
+              <li><span class="marker">6.3.2</span><a href="#any.assign">any assignments</a>
+        
+      </li>
+            
+              <li><span class="marker">6.3.3</span><a href="#any.modifiers">any modifiers</a>
+        
+      </li>
+            
+              <li><span class="marker">6.3.4</span><a href="#any.observers">any observers</a>
         
       </li>
             
@@ -834,19 +762,7 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">7.5</span><a href="#memresource.resource.adaptor">template alias resource_adaptor</a>
-        
-          <ol>
-            
-              <li><span class="marker">7.5.1</span><a href="#memresource.resource.adaptor.overview">resource_adaptor</a>
-        
-      </li>
-            
-              <li><span class="marker">7.5.2</span><a href="#memresource.resource.adaptor.ctor">resource_adaptor_imp constructors</a>
-        
-      </li>
-            
-              <li><span class="marker">7.5.3</span><a href="#memresource.resource.adaptor.mem">resource_adaptor_imp member functions</a>
+              <li><span class="marker">6.4</span><a href="#any.nonmembers">Non-member functions</a>
         
       </li>
             
@@ -854,27 +770,43 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">7.6</span><a href="#memresource.global">Access to program-wide memory_resource objects</a>
-        
-      </li>
-            
-              <li><span class="marker">7.7</span><a href="#memresource.pool">Pool resource classes</a>
+              <li><span class="marker">7</span><a href="#string.view">string_view</a>
         
           <ol>
             
-              <li><span class="marker">7.7.1</span><a href="#memresource.pool.overview">Classes synchronized_pool_resource and unsynchronized_pool_resource</a>
+              <li><span class="marker">7.1</span><a href="#string.view.synop">Header &lt;experimental/string_view&gt; synopsis</a>
         
       </li>
             
-              <li><span class="marker">7.7.2</span><a href="#memresource.pool.options">pool_options data members</a>
+              <li><span class="marker">7.2</span><a href="#string.view.template">Class template basic_string_view</a>
         
       </li>
             
-              <li><span class="marker">7.7.3</span><a href="#memresource.pool.ctor">pool resource constructors and destructors</a>
+              <li><span class="marker">7.3</span><a href="#string.view.cons">basic_string_view constructors and assignment operators</a>
         
       </li>
             
-              <li><span class="marker">7.7.4</span><a href="#memresource.pool.mem">pool resource members</a>
+              <li><span class="marker">7.4</span><a href="#string.view.iterators">basic_string_view iterator support</a>
+        
+      </li>
+            
+              <li><span class="marker">7.5</span><a href="#string.view.capacity">basic_string_view capacity</a>
+        
+      </li>
+            
+              <li><span class="marker">7.6</span><a href="#string.view.access">basic_string_view element access</a>
+        
+      </li>
+            
+              <li><span class="marker">7.7</span><a href="#string.view.modifiers">basic_string_view modifiers</a>
+        
+      </li>
+            
+              <li><span class="marker">7.8</span><a href="#string.view.ops">basic_string_view string operations</a>
+        
+          <ol>
+            
+              <li><span class="marker">7.8.1</span><a href="#string.view.find">Searching basic_string_view</a>
         
       </li>
             
@@ -882,19 +814,15 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">7.8</span><a href="#memresource.monotonic.buffer">Class monotonic_buffer_resource</a>
-        
-          <ol>
-            
-              <li><span class="marker">7.8.1</span><a href="#memresource.monotonic.buffer.overview">Class monotonic_buffer_resource overview</a>
+              <li><span class="marker">7.9</span><a href="#string.view.comparison">basic_string_view non-member comparison functions</a>
         
       </li>
             
-              <li><span class="marker">7.8.2</span><a href="#memresource.monotonic.buffer.ctor">monotonic_buffer_resource constructor and destructor</a>
+              <li><span class="marker">7.10</span><a href="#string.view.io">Inserters and extractors</a>
         
       </li>
             
-              <li><span class="marker">7.8.3</span><a href="#memresource.monotonic.buffer.mem">monotonic_buffer_resource members</a>
+              <li><span class="marker">7.11</span><a href="#string.view.hash">Hash support</a>
         
       </li>
             
@@ -902,51 +830,195 @@ pre > code { display: inline-block; }
         
       </li>
             
-              <li><span class="marker">7.9</span><a href="#memresource.aliases">Alias templates using polymorphic memory resources</a>
+              <li><span class="marker">8</span><a href="#memresource">Polymorphic Memory Resources</a>
         
           <ol>
             
-              <li><span class="marker">7.9.1</span><a href="#header.string.synop">Header &lt;experimental/string&gt; synopsis</a>
+              <li><span class="marker">8.1</span><a href="#memresource.type.erased.allocator">Type-erased allocator</a>
         
       </li>
             
-              <li><span class="marker">7.9.2</span><a href="#header.deque.synop">Header &lt;experimental/deque&gt; synopsis</a>
+              <li><span class="marker">8.2</span><a href="#memresource.synop">Header &lt;experimental/memory_resource&gt; synopsis</a>
         
       </li>
             
-              <li><span class="marker">7.9.3</span><a href="#header.forward_list.synop">Header &lt;experimental/forward_list&gt; synopsis</a>
+              <li><span class="marker">8.3</span><a href="#memresource.class">Class memory_resource</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.3.1</span><a href="#memresource.class.overview">Class memory_resource overview</a>
         
       </li>
             
-              <li><span class="marker">7.9.4</span><a href="#header.list.synop">Header &lt;experimental/list&gt; synopsis</a>
+              <li><span class="marker">8.3.2</span><a href="#memresource.class.public">memory_resource public member functions</a>
         
       </li>
             
-              <li><span class="marker">7.9.5</span><a href="#header.vector.synop">Header &lt;experimental/vector&gt; synopsis</a>
+              <li><span class="marker">8.3.3</span><a href="#memresource.class.priv">memory_resource protected virtual member functions</a>
         
       </li>
             
-              <li><span class="marker">7.9.6</span><a href="#header.map.synop">Header &lt;experimental/map&gt; synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">7.9.7</span><a href="#header.set.synop">Header &lt;experimental/set&gt; synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">7.9.8</span><a href="#header.unordered_map.synop">Header &lt;experimental/unordered_map&gt; synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">7.9.9</span><a href="#header.unordered_set.synop">Header &lt;experimental/unordered_set&gt; synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">7.9.10</span><a href="#header.regex.synop">Header &lt;experimental/regex&gt; synopsis</a>
+              <li><span class="marker">8.3.4</span><a href="#memresource.class.eq">memory_resource equality</a>
         
       </li>
             
           </ol>
+        
+      </li>
+            
+              <li><span class="marker">8.4</span><a href="#memresource.polymorphic.allocator.class">Class template polymorphic_allocator</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.4.1</span><a href="#memresource.polymorphic.allocator.overview">Class template polymorphic_allocator overview</a>
+        
+      </li>
+            
+              <li><span class="marker">8.4.2</span><a href="#memresource.polymorphic.allocator.ctor">polymorphic_allocator constructors</a>
+        
+      </li>
+            
+              <li><span class="marker">8.4.3</span><a href="#memresource.polymorphic.allocator.mem">polymorphic_allocator member functions</a>
+        
+      </li>
+            
+              <li><span class="marker">8.4.4</span><a href="#memresource.polymorphic.allocator.eq">polymorphic_allocator equality</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">8.5</span><a href="#memresource.resource.adaptor">template alias resource_adaptor</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.5.1</span><a href="#memresource.resource.adaptor.overview">resource_adaptor</a>
+        
+      </li>
+            
+              <li><span class="marker">8.5.2</span><a href="#memresource.resource.adaptor.ctor">resource_adaptor_imp constructors</a>
+        
+      </li>
+            
+              <li><span class="marker">8.5.3</span><a href="#memresource.resource.adaptor.mem">resource_adaptor_imp member functions</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">8.6</span><a href="#memresource.global">Access to program-wide memory_resource objects</a>
+        
+      </li>
+            
+              <li><span class="marker">8.7</span><a href="#memresource.pool">Pool resource classes</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.7.1</span><a href="#memresource.pool.overview">Classes synchronized_pool_resource and unsynchronized_pool_resource</a>
+        
+      </li>
+            
+              <li><span class="marker">8.7.2</span><a href="#memresource.pool.options">pool_options data members</a>
+        
+      </li>
+            
+              <li><span class="marker">8.7.3</span><a href="#memresource.pool.ctor">pool resource constructors and destructors</a>
+        
+      </li>
+            
+              <li><span class="marker">8.7.4</span><a href="#memresource.pool.mem">pool resource members</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">8.8</span><a href="#memresource.monotonic.buffer">Class monotonic_buffer_resource</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.8.1</span><a href="#memresource.monotonic.buffer.overview">Class monotonic_buffer_resource overview</a>
+        
+      </li>
+            
+              <li><span class="marker">8.8.2</span><a href="#memresource.monotonic.buffer.ctor">monotonic_buffer_resource constructor and destructor</a>
+        
+      </li>
+            
+              <li><span class="marker">8.8.3</span><a href="#memresource.monotonic.buffer.mem">monotonic_buffer_resource members</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">8.9</span><a href="#memresource.aliases">Alias templates using polymorphic memory resources</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.9.1</span><a href="#header.string.synop">Header &lt;experimental/string&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.2</span><a href="#header.deque.synop">Header &lt;experimental/deque&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.3</span><a href="#header.forward_list.synop">Header &lt;experimental/forward_list&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.4</span><a href="#header.list.synop">Header &lt;experimental/list&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.5</span><a href="#header.vector.synop">Header &lt;experimental/vector&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.6</span><a href="#header.map.synop">Header &lt;experimental/map&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.7</span><a href="#header.set.synop">Header &lt;experimental/set&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.8</span><a href="#header.unordered_map.synop">Header &lt;experimental/unordered_map&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.9</span><a href="#header.unordered_set.synop">Header &lt;experimental/unordered_set&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">8.9.10</span><a href="#header.regex.synop">Header &lt;experimental/regex&gt; synopsis</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">9</span><a href="#algorithms">Algorithms library</a>
+        
+          <ol>
+            
+              <li><span class="marker">9.1</span><a href="#header.algorithm.synop">Header &lt;experimental/algorithm&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">9.2</span><a href="#alg.search">Search</a>
         
       </li>
             
@@ -1010,20 +1082,23 @@ pre > code { display: inline-block; }
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:2011, <cite>Programming Languages — C++</cite>
-      <cxx-foreign-index id="cxx" src="cxx11_index.json" name="C++11">
-    <polymer-ajax auto="" url="cxx11_index.json" handleas="json" on-polymer-response="{{ attachIndex }}">
+      <li>ISO/IEC 14882:—<cxx-footnote><!--
+    Be sure not to introduce whitespace here, as it appears around the footnote.
+  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3797.pdf">N3797</a>.</aside></cxx-footnote>,
+      <cite>Programming Languages — C++</cite>
+      <cxx-foreign-index id="cxx" src="cxx_N3797_index.json" name="C++14">
+    <polymer-ajax auto="" url="cxx_N3797_index.json" handleas="json" on-polymer-response="{{ attachIndex }}">
     </polymer-ajax>
   </cxx-foreign-index></li>
     </ul>
 
-    <p para_num="2" id="general.references.2">ISO/IEC 14882:2011 is herein called the <dfn>C++ Standard</dfn>.
-    References to clauses within the C++ Standard are written as "C++11
-    §3.2". The library described in ISO/IEC 14882:2011 clauses 17–30 is
+    <p para_num="2" id="general.references.2">ISO/IEC 14882:— is herein called the <dfn>C++ Standard</dfn>.
+    References to clauses within the C++ Standard are written as "C++14
+    §3.2". The library described in ISO/IEC 14882:— clauses 17–30 is
     herein called the <dfn>C++ Standard Library</dfn>.</p>
 
     <p para_num="3" id="general.references.3">Unless otherwise specified, the whole of the C++ Standard's Library
-    introduction (<cxx-ref in="cxx" to="library"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="library">§17</span></cxx-ref>) is included into this
+    introduction (<cxx-ref in="cxx" to="library"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="library">§17</span></cxx-ref>) is included into this
     Technical Specification by reference.</p>
   
     </section>
@@ -1227,8 +1302,8 @@ pre > code { display: inline-block; }
         <def>Uses-allocator construction</def> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,
         using constructor arguments <code>v1, v2, ..., vN</code> of types <code>V1, V2, ..., VN</code>, respectively,
         and an allocator <code>alloc</code> of type <code>Alloc</code>,
-        <ins>where <code>Alloc</code> either (1) meets the requirements of an allocator (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>),
-        or (2) is a pointer type convertible to <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref in="" to="memresource.class"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.class" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.class" href="#memresource.class">7.3</a></cxx-ref>),</ins>
+        <ins>where <code>Alloc</code> either (1) meets the requirements of an allocator (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>),
+        or (2) is a pointer type convertible to <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref in="" to="memresource.class"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.class" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.class" href="#memresource.class">8.3</a></cxx-ref>),</ins>
         according to the following rules:
       </p>
     </blockquote>
@@ -1244,26 +1319,26 @@ pre > code { display: inline-block; }
       
     
 
-    <p para_num="1" id="mods.func.wrap.1">In <cxx-ref in="cxx" to="func.wrap.func"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="func.wrap.func">§20.8.11.2</span></cxx-ref>, the following declarations are added as public members of class template function:</p>
+    <p para_num="1" id="mods.func.wrap.1">In <cxx-ref in="cxx" to="func.wrap.func"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="func.wrap.func">§20.9.11.2</span></cxx-ref>, the following declarations are added as public members of class template function:</p>
     <pre><code><ins>typedef experimental::erased_type allocator_type;
 
 experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
 
     <p para_num="2" id="mods.func.wrap.2">
-      In <cxx-ref in="cxx" to="func.wrap.func.con"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="func.wrap.func.con">§20.8.11.2.1</span></cxx-ref>, the introductory paragraph is changed as follows,
+      In <cxx-ref in="cxx" to="func.wrap.func.con"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="func.wrap.func.con">§20.9.11.2.1</span></cxx-ref>, the introductory paragraph is changed as follows,
       giving the constructors of the function class template support for a type-erased allocator:
     </p>
 
     <blockquote>
       When a <code>function</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
-      the second argument <ins>is treated as a <i>type-erased allocator</i> (<cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">7.1</a></cxx-ref>).</ins>
+      the second argument <ins>is treated as a <i>type-erased allocator</i> (<cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">8.1</a></cxx-ref>).</ins>
       <del>shall have a type that conforms to the requirements for Allocator (Table 17.6.3.5).
       A copy of the allocator argument is used to allocate memory, if necessary, for the internal data structures of the constructed function object.</del>
       <ins>If the constructor moves or makes a copy of a function object (including an instance of the <code>function</code> class template),
       then that move or copy is performed by <i>using-allocator construction</i> with allocator <code>get_memory_resource()</code>.</ins>
     </blockquote>
 
-    <p para_num="3" id="mods.func.wrap.3">In <cxx-ref in="cxx" to="func.wrap.func.con"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="func.wrap.func.con">§20.8.11.2.1</span></cxx-ref>, the assignment operators are enhanced to take the type-erased allocator into account:</p>
+    <p para_num="3" id="mods.func.wrap.3">In <cxx-ref in="cxx" to="func.wrap.func.con"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="func.wrap.func.con">§20.9.11.2.1</span></cxx-ref>, the assignment operators are enhanced to take the type-erased allocator into account:</p>
 
     <cxx-function para_num="4" id="mods.func.wrap.4">
     
@@ -1369,7 +1444,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
     </dl>
   </cxx-function>
 
-    <p para_num="20" id="mods.func.wrap.20">In <cxx-ref in="cxx" to="func.wrap.func.mod"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="func.wrap.func.mod">§20.8.11.2.2</span></cxx-ref> a precondition is added to the definition of swap:</p>
+    <p para_num="20" id="mods.func.wrap.20">In <cxx-ref in="cxx" to="func.wrap.func.mod"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="func.wrap.func.mod">§20.9.11.2.2</span></cxx-ref> a precondition is added to the definition of swap:</p>
 
     <cxx-function para_num="21" id="mods.func.wrap.21">
     
@@ -1401,7 +1476,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
       
     
 
-    <p para_num="1" id="mods.futures.promise.1">In <cxx-ref in="cxx" to="futures.promise"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="futures.promise">§30.6.5</span></cxx-ref>, the following declarations are added as public members of class template <code>promise</code>:</p>
+    <p para_num="1" id="mods.futures.promise.1">In <cxx-ref in="cxx" to="futures.promise"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="futures.promise">§30.6.5</span></cxx-ref>, the following declarations are added as public members of class template <code>promise</code>:</p>
     <pre><code><ins>typedef experimental::erased_type allocator_type;
 
 experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
@@ -1410,7 +1485,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
 
     <blockquote>
       <ins>When a promise constructor that takes a first argument of type allocator_arg_t is invoked,
-      the second argument is treated as a type-erased allocator (<cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">7.1</a></cxx-ref>).</ins>
+      the second argument is treated as a type-erased allocator (<cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">8.1</a></cxx-ref>).</ins>
     </blockquote>
   
     </section>
@@ -1424,7 +1499,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
       
     
 
-    <p para_num="1" id="mods.futures.task.1">In <cxx-ref in="cxx" to="futures.task"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="futures.task">§30.6.9</span></cxx-ref>, the following declarations are added as public members of class template <code>packaged_task</code>:</p>
+    <p para_num="1" id="mods.futures.task.1">In <cxx-ref in="cxx" to="futures.task"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="futures.task">§30.6.9</span></cxx-ref>, the following declarations are added as public members of class template <code>packaged_task</code>:</p>
 
     <pre><code><ins>typedef experimental::erased_type allocator_type;
 
@@ -1433,7 +1508,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
     <p para_num="2" id="mods.futures.task.2">and the following paragraph is inserted before the first (introductory) paragraph of the section.</p>
 
     <blockquote><ins>When a packaged_task constructor that takes a first argument of type allocator_arg_t is invoked,
-    the second argument is treated as a type-erased allocator (<cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">7.1</a></cxx-ref>).</ins></blockquote>
+    the second argument is treated as a type-erased allocator (<cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">8.1</a></cxx-ref>).</ins></blockquote>
   
     </section>
   </cxx-section>
@@ -1492,11 +1567,465 @@ inline namespace fundamentals_v1 {
 
       <p para_num="2" id="utility.erased.type.2">
         The <code>erased_type</code> <code>struct</code> is an empty <code>struct</code> that serves as a placeholder for a type <code>T</code> in situations where the actual type <code>T</code> is determined at runtime.
-        For example, the nested type, <code>allocator_type</code>, is an alias for <code>erased_type</code> in classes that use <i>type-erased allocators</i> (see <cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">7.1</a></cxx-ref>).
+        For example, the nested type, <code>allocator_type</code>, is an alias for <code>erased_type</code> in classes that use <i>type-erased allocators</i> (see <cxx-ref in="" to="memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.type.erased.allocator" href="#memresource.type.erased.allocator">8.1</a></cxx-ref>).
       </p>
     
     </dl>
   </cxx-function>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="func">
+    
+
+    <section>
+      <header><span class="section-number">4</span> <h1 data-bookmark-label="4 Function objects">Function objects</h1> <span style="float:right"><a href="#func">[func]</a></span></header>
+      
+  
+
+  <cxx-section id="header.functional.synop">
+    
+
+    <section>
+      <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 Header <experimental/functional> synopsis">Header <code>&lt;experimental/functional&gt;</code> synopsis</h1> <span style="float:right"><a href="#header.functional.synop">[header.functional.synop]</a></span></header>
+      
+    
+
+<pre><code>#include &lt;functional&gt;
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  <cxx-ref in="" insynopsis="" to="func.searchers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="func.searchers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="func.searchers" href="#func.searchers">4.2</a>, Searchers</i></cxx-ref>
+  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+    class default_searcher;
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+    class boyer_moore_searcher;
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+    class boyer_moore_horspool_searcher;
+
+
+  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+  default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
+  make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+                        BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+  boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+  make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                            Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+  boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+  make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                                     Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="func.searchers">
+    
+
+    <section>
+      <header><span class="section-number">4.2</span> <h1 data-bookmark-label="4.2 Searchers">Searchers</h1> <span style="float:right"><a href="#func.searchers">[func.searchers]</a></span></header>
+      
+    
+
+    <p para_num="1" id="func.searchers.1">
+      This sub-clause provides function object types (<cxx-ref in="cxx" to="function.objects"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="function.objects">§20.9</span></cxx-ref>) for operations
+      that search for a sequence <cxx-range begin="pat_first" end="pat_last">[<code>pat_first</code>, <code>pat_last</code>)</cxx-range> in another sequence <cxx-range begin="first" end="last">[<code>first</code>, <code>last</code>)</cxx-range>
+      that is provided to the object's function call operator.
+      The first sequence (the pattern to be searched for) is provided to the object's constructor,
+      and the second (the sequence to be searched) is provided to the function call operator.
+    </p>
+
+    <p para_num="2" id="func.searchers.2">
+      Each specialization of a class template specified in this sub-clause <cxx-ref in="" to="func.searchers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="func.searchers" elem="{{toElem}}"></cxx-get-element-by-id><a title="func.searchers" href="#func.searchers">4.2</a></cxx-ref> shall meet the <code>CopyConstructible</code> and <code>CopyAssignable</code> requirements.
+      Template parameters named <code>ForwardIterator</code>, <code>ForwardIterator1</code>, <code>ForwardIterator2</code>, <code>RandomAccessIterator</code>, <code>RandomAccessIterator1</code>, <code>RandomAccessIterator2</code>, and <code>BinaryPredicate</code> of templates specified in this sub-clause <cxx-ref in="" to="func.searchers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="func.searchers" elem="{{toElem}}"></cxx-get-element-by-id><a title="func.searchers" href="#func.searchers">4.2</a></cxx-ref> shall meet the same requirements and semantics as specified in <cxx-ref in="cxx" to="algorithms.general"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="algorithms.general">§25.1</span></cxx-ref>.
+      Template parameters named <code>Hash</code> shall meet the requirements as specified in <cxx-ref in="cxx" to="hash.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="hash.requirements">§17.6.3.4</span></cxx-ref>.
+    </p>
+
+    <cxx-section id="func.searchers.default">
+    
+
+    <section>
+      <header><span class="section-number">4.2.1</span> <h1 data-bookmark-label="4.2.1 Class template default_searcher">Class template <code>default_searcher</code></h1> <span style="float:right"><a href="#func.searchers.default">[func.searchers.default]</a></span></header>
+      
+      
+
+      <pre><code>template&lt;class ForwardIterator1, class BinaryPredicate = equal_to&lt;&gt;&gt;
+class default_searcher {
+public:
+  default_searcher(ForwardIterator1 pat_first, ForwardIterator1 pat_last,
+                   BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class ForwardIterator2&gt;
+  ForwardIterator2
+  operator()(ForwardIterator2 first, ForwardIterator2 last) const;
+
+private:
+  ForwardIterator1 pat_first_; <i>// exposition only</i>
+  ForwardIterator1 pat_last_;  <i>// exposition only</i>
+  BinaryPredicate  pred_;      <i>// exposition only</i>
+};
+</code></pre>
+
+      <cxx-function para_num="1" id="func.searchers.default.1">
+    
+    <pre><code><cxx-signature>default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="2" id="func.searchers.default.2">
+    
+    <dt>Effects:</dt><dd>Constructs a <code>default_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>, <code>pat_last_</code> with <code>pat_last</code>, and <code>pred_</code> with <code>pred</code>.</dd>
+  </cxx-effects>
+        <cxx-throws para_num="3" id="func.searchers.default.3">
+    
+    <dt>Throws:</dt><dd>Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>ForwardIterator1</code>.</dd>
+  </cxx-throws>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="4" id="func.searchers.default.4">
+    
+    <pre><code><cxx-signature>template&lt;class ForwardIterator2&gt;
+ForwardIterator2 operator()(ForwardIterator2 first, ForwardIterator2 last) const;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="5" id="func.searchers.default.5">
+    
+    <dt>Effects:</dt><dd>Equivalent to <code>std::search(first, last, pat_first_, pat_last_, pred_)</code>.</dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-section id="func.searchers.default.creation">
+    
+
+    <section>
+      <header><span class="section-number">4.2.1.1</span> <h1 data-bookmark-label="4.2.1.1 default_searcher creation functions"><code>default_searcher</code> creation functions</h1> <span style="float:right"><a href="#func.searchers.default.creation">[func.searchers.default.creation]</a></span></header>
+      
+        
+
+        <cxx-function para_num="1" id="func.searchers.default.creation.1">
+    
+    <pre><code><cxx-signature>template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
+make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+                      BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+
+    <dl>
+      
+          
+
+          <cxx-effects para_num="2" id="func.searchers.default.creation.2">
+    
+    <dt>Effects:</dt><dd>Equivalent to <code>default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(pat_first, pat_last, pred)</code>.</dd>
+  </cxx-effects>
+        
+    </dl>
+  </cxx-function>
+      
+    </section>
+  </cxx-section>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="func.searchers.boyer_moore">
+    
+
+    <section>
+      <header><span class="section-number">4.2.2</span> <h1 data-bookmark-label="4.2.2 Class template boyer_moore_searcher">Class template <code>boyer_moore_searcher</code></h1> <span style="float:right"><a href="#func.searchers.boyer_moore">[func.searchers.boyer_moore]</a></span></header>
+      
+      
+
+<pre><code>template&lt;class RandomAccessIterator1,
+         class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator1&gt;::value_type&gt;,
+         class BinaryPredicate = equal_to&lt;&gt;&gt;
+class boyer_moore_searcher {
+public:
+  boyer_moore_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+                       Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator2&gt;
+  RandomAccessIterator2
+  operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
+
+private:
+  RandomAccessIterator1 pat_first_; <i>// exposition only</i>
+  RandomAccessIterator1 pat_last_;  <i>// exposition only</i>
+  Hash                  hash_;      <i>// exposition only</i>
+  BinaryPredicate       pred_;      <i>// exposition only</i>
+};
+</code></pre>
+
+      <cxx-function para_num="1" id="func.searchers.boyer_moore.1">
+    
+    <pre><code><cxx-signature>boyer_moore_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+Hash hf = Hash(),
+BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="2" id="func.searchers.boyer_moore.2">
+    
+    <dt>Requires:</dt><dd>The value type of <code>RandomAccessIterator1</code> shall meet the <code>DefaultConstructible</code>, <code>CopyConstructible</code>, and <code>CopyAssignable</code> requirements.</dd>
+  </cxx-requires>
+        <cxx-requires para_num="3" id="func.searchers.boyer_moore.3">
+    
+    <dt>Requires:</dt><dd>For any two values <code>A</code> and <code>B</code> of the type <code>iterator_traits&lt;RandomAccessIterator1&gt;::value_type</code>, if <code>pred(A,B)==true</code>, then <code>hf(A)==hf(B)</code> shall be true.</dd>
+  </cxx-requires>
+        <cxx-effects para_num="4" id="func.searchers.boyer_moore.4">
+    
+    <dt>Effects:</dt><dd>Constructs a <code>boyer_moore_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>, <code>pat_last_</code> with <code>pat_last</code>, <code>hash_</code> with <code>hf</code>, and <code>pred_</code> with <code>pred</code>.</dd>
+  </cxx-effects>
+        <cxx-throws para_num="5" id="func.searchers.boyer_moore.5">
+    
+    <dt>Throws:</dt><dd>Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+        or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>,
+        or the copy constructor or <code>operator()</code> of <code>Hash</code>.
+        May throw <code>bad_alloc</code> if cannot allocate additional memory for internal data structures needed.</dd>
+  </cxx-throws>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="6" id="func.searchers.boyer_moore.6">
+    
+    <pre><code><cxx-signature>template&lt;class RandomAccessIterator2&gt;
+RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="7" id="func.searchers.boyer_moore.7">
+    
+    <dt>Requires:</dt><dd><code>RandomAccessIterator1</code> and <code>RandomAccessIterator2</code> shall have the same value type.</dd>
+  </cxx-requires>
+        <cxx-effects para_num="8" id="func.searchers.boyer_moore.8">
+    
+    <dt>Effects:</dt><dd>Finds a subsequence of equal values in a sequence.</dd>
+  </cxx-effects>
+        <cxx-returns para_num="9" id="func.searchers.boyer_moore.9">
+    
+    <dt>Returns:</dt><dd>
+          The first iterator <code>i</code> in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)">[<code>first</code>, <code>last - (pat_last_ - pat_first_)</code>)</cxx-range>
+          such that for every non-negative integer <code>n</code> less than <code>pat_last_ - pat_first_</code> the following condition holds:
+          <code>pred(*(i + n), *(pat_first_ + n)) != false</code>.
+          Returns <code>first</code> if <cxx-range begin="pat_first_" end="pat_last_">[<code>pat_first_</code>, <code>pat_last_</code>)</cxx-range> is empty,
+          otherwise returns <code>last</code> if no such iterator is found.
+        </dd>
+  </cxx-returns>
+        <cxx-complexity para_num="10" id="func.searchers.boyer_moore.10">
+    
+    <dt>Complexity:</dt><dd>At most <code>(last - first) * (pat_last_ - pat_first_)</code> applications of the predicate.</dd>
+  </cxx-complexity>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-section id="func.searchers.boyer_moore.creation">
+    
+
+    <section>
+      <header><span class="section-number">4.2.2.1</span> <h1 data-bookmark-label="4.2.2.1 boyer_moore_searcher creation functions"><code>boyer_moore_searcher</code> creation functions</h1> <span style="float:right"><a href="#func.searchers.boyer_moore.creation">[func.searchers.boyer_moore.creation]</a></span></header>
+      
+        
+
+        <cxx-function para_num="1" id="func.searchers.boyer_moore.creation.1">
+    
+    <pre><code><cxx-signature>template&lt;class RandomAccessIterator,
+class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+class BinaryPredicate = equal_to&lt;&gt;&gt;
+  boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+  make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                            Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+
+    <dl>
+      
+          
+
+          <cxx-effects para_num="2" id="func.searchers.boyer_moore.creation.2">
+    
+    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(pat_first, pat_last, hf, pred)</code>.</dd>
+  </cxx-effects>
+        
+    </dl>
+  </cxx-function>
+      
+    </section>
+  </cxx-section>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="func.searchers.boyer_moore_horspool">
+    
+
+    <section>
+      <header><span class="section-number">4.2.3</span> <h1 data-bookmark-label="4.2.3 Class template boyer_moore_horspool_searcher">Class template <code>boyer_moore_horspool_searcher</code></h1> <span style="float:right"><a href="#func.searchers.boyer_moore_horspool">[func.searchers.boyer_moore_horspool]</a></span></header>
+      
+      
+
+<pre><code>
+template&lt;class RandomAccessIterator1,
+         class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator1&gt;::value_type&gt;,
+         class BinaryPredicate = equal_to&lt;&gt;&gt;
+class boyer_moore_horspool_searcher {
+public:
+  boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+                                BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator2&gt;
+  RandomAccessIterator2
+  operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
+
+private:
+  RandomAccessIterator1 pat_first_; <i>// exposition only</i>
+  RandomAccessIterator1 pat_last_;  <i>// exposition only</i>
+  Hash                  hash_;      <i>// exposition only</i>
+  BinaryPredicate       pred_;      <i>// exposition only</i>
+};
+</code></pre>
+
+      <cxx-function para_num="1" id="func.searchers.boyer_moore_horspool.1">
+    
+    <pre><code><cxx-signature>boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="2" id="func.searchers.boyer_moore_horspool.2">
+    
+    <dt>Requires:</dt><dd>The value type of <code>RandomAccessIterator1</code> shall meet the <code>DefaultConstructible</code>, <code>CopyConstructible</code>, and <code>CopyAssignable</code> requirements.</dd>
+  </cxx-requires>
+        <cxx-requires para_num="3" id="func.searchers.boyer_moore_horspool.3">
+    
+    <dt>Requires:</dt><dd>For any two values <code>A</code> and <code>B</code> of the type <code>iterator_traits&lt;RandomAccessIterator1&gt;::value_type</code>,
+        if <code>pred(A,B)==true</code>, then <code>hf(A)==hf(B)</code> shall be true.</dd>
+  </cxx-requires>
+        <cxx-effects para_num="4" id="func.searchers.boyer_moore_horspool.4">
+    
+    <dt>Effects:</dt><dd>Constructs a <code>boyer_moore_horspool_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>,
+        <code>pat_last_</code> with <code>pat_last</code>, <code>hash_</code> with <code>hf</code>, and <code>pred_</code> with <code>pred</code>.</dd>
+  </cxx-effects>
+        <cxx-throws para_num="5" id="func.searchers.boyer_moore_horspool.5">
+    
+    <dt>Throws:</dt><dd>
+          Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+          or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>
+          or the copy constructor or <code>operator()</code> of <code>Hash</code>.
+          May throw <code>bad_alloc</code> if the system cannot allocate additional memory for internal data structures needed.
+        </dd>
+  </cxx-throws>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="6" id="func.searchers.boyer_moore_horspool.6">
+    
+    <pre><code><cxx-signature>template&lt;class RandomAccessIterator2&gt;
+RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="7" id="func.searchers.boyer_moore_horspool.7">
+    
+    <dt>Requires:</dt><dd><code>RandomAccessIterator1</code> and <code>RandomAccessIterator2</code> shall have the same value type.</dd>
+  </cxx-requires>
+        <cxx-effects para_num="8" id="func.searchers.boyer_moore_horspool.8">
+    
+    <dt>Effects:</dt><dd>Finds a subsequence of equal values in a sequence.</dd>
+  </cxx-effects>
+        <cxx-returns para_num="9" id="func.searchers.boyer_moore_horspool.9">
+    
+    <dt>Returns:</dt><dd>
+          The first iterator <code>i</code> in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)">[<code>first</code>, <code>last - (pat_last_ - pat_first_)</code>)</cxx-range>
+          such that for every non-negative integer <code>n</code> less than <code>pat_last_ - pat_first_</code> the following condition holds:
+          <code>pred(*(i + n), *(pat_first_ + n)) != false</code>.
+          Returns <code>first</code> if <cxx-range begin="pat_first_" end="pat_last_">[<code>pat_first_</code>, <code>pat_last_</code>)</cxx-range> is empty,
+          otherwise returns <code>last</code> if no such iterator is found.
+        </dd>
+  </cxx-returns>
+        <cxx-complexity para_num="10" id="func.searchers.boyer_moore_horspool.10">
+    
+    <dt>Complexity:</dt><dd>At most <code>(last - first) * (pat_last_ - pat_first_)</code> applications of the predicate.</dd>
+  </cxx-complexity>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-section id="func.searchers.boyer_moore_horspool.creation">
+    
+
+    <section>
+      <header><span class="section-number">4.2.3.1</span> <h1 data-bookmark-label="4.2.3.1 boyer_moore_horspool_searcher creation functions"><code>boyer_moore_horspool_searcher</code> creation functions</h1> <span style="float:right"><a href="#func.searchers.boyer_moore_horspool.creation">[func.searchers.boyer_moore_horspool.creation]</a></span></header>
+      
+        
+
+        <cxx-function para_num="1" id="func.searchers.boyer_moore_horspool.creation.1">
+    
+    <pre><code><cxx-signature>template&lt;class RandomAccessIterator,
+         class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+         class BinaryPredicate = equal_to&lt;&gt;&gt;
+boyer_moore_searcher_horspool&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                                   Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+
+    <dl>
+      
+          
+
+          <cxx-effects para_num="2" id="func.searchers.boyer_moore_horspool.creation.2">
+    
+    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(pat_first, pat_last, hf, pred)</code>.</dd>
+  </cxx-effects>
+        
+    </dl>
+  </cxx-function>
+      
+    </section>
+  </cxx-section>
+    
+    </section>
+  </cxx-section>
   
     </section>
   </cxx-section>
@@ -1509,7 +2038,7 @@ inline namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">4</span> <h1 data-bookmark-label="4 Optional objects">Optional objects</h1> <span style="float:right"><a href="#optional">[optional]</a></span></header>
+      <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Optional objects">Optional objects</h1> <span style="float:right"><a href="#optional">[optional]</a></span></header>
       
   
 
@@ -1517,7 +2046,7 @@ inline namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 In general">In general</h1> <span style="float:right"><a href="#optional.general">[optional.general]</a></span></header>
+      <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 In general">In general</h1> <span style="float:right"><a href="#optional.general">[optional.general]</a></span></header>
       
     
 
@@ -1530,53 +2059,53 @@ inline namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">4.2</span> <h1 data-bookmark-label="4.2 Header <experimental/optional> synopsis">Header <code>&lt;experimental/optional&gt;</code> synopsis</h1> <span style="float:right"><a href="#optional.synop">[optional.synop]</a></span></header>
+      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Header <experimental/optional> synopsis">Header <code>&lt;experimental/optional&gt;</code> synopsis</h1> <span style="float:right"><a href="#optional.synop">[optional.synop]</a></span></header>
       
     
 
 <pre>namespace std {
 namespace experimental {
 inline namespace fundamentals_v1 {
-  <cxx-ref in="" insynopsis="" to="optional.object"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object" href="#optional.object">4.4</a>, optional for object types</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.object"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object" href="#optional.object">5.4</a>, optional for object types</i></cxx-ref>
   template &lt;class T&gt; class optional;
 
-  <cxx-ref in="" insynopsis="" to="optional.inplace"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.inplace" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.inplace" href="#optional.inplace">4.5</a>, In-place construction</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.inplace"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.inplace" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.inplace" href="#optional.inplace">5.5</a>, In-place construction</i></cxx-ref>
   struct in_place_t{};
   constexpr in_place_t in_place{};
 
-  <cxx-ref in="" insynopsis="" to="optional.nullopt"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.nullopt" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.nullopt" href="#optional.nullopt">4.6</a>, Disengaged state indicator</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.nullopt"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.nullopt" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.nullopt" href="#optional.nullopt">5.6</a>, Disengaged state indicator</i></cxx-ref>
   struct nullopt_t{<em>see below</em>};
   constexpr nullopt_t nullopt(<em>unspecified</em>);
 
-  <cxx-ref in="" insynopsis="" to="optional.bad_optional_access"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.bad_optional_access" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.bad_optional_access" href="#optional.bad_optional_access">4.7</a>, Class bad_optional_access</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.bad_optional_access"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.bad_optional_access" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.bad_optional_access" href="#optional.bad_optional_access">5.7</a>, Class bad_optional_access</i></cxx-ref>
   class bad_optional_access;
 
-  <cxx-ref in="" insynopsis="" to="optional.relops"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.relops" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.relops" href="#optional.relops">4.8</a>, Relational operators</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.relops"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.relops" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.relops" href="#optional.relops">5.8</a>, Relational operators</i></cxx-ref>
   template &lt;class T&gt;
     constexpr bool operator==(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
   template &lt;class T&gt;
     constexpr bool operator&lt;(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
 
-  <cxx-ref in="" insynopsis="" to="optional.nullops"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.nullops" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.nullops" href="#optional.nullops">4.9</a>, Comparison with nullopt</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.nullops"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.nullops" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.nullops" href="#optional.nullops">5.9</a>, Comparison with nullopt</i></cxx-ref>
   template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
   template &lt;class T&gt; constexpr bool operator==(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
   template &lt;class T&gt; constexpr bool operator&lt;(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
   template &lt;class T&gt; constexpr bool operator&lt;(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
 
-  <cxx-ref in="" insynopsis="" to="optional.comp_with_t"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.comp_with_t" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.comp_with_t" href="#optional.comp_with_t">4.10</a>, Comparison with T</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.comp_with_t"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.comp_with_t" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.comp_with_t" href="#optional.comp_with_t">5.10</a>, Comparison with T</i></cxx-ref>
   template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp;, const T&amp;);
   template &lt;class T&gt; constexpr bool operator==(const T&amp;, const optional&lt;T&gt;&amp;);
   template &lt;class T&gt; constexpr bool operator&lt;(const optional&lt;T&gt;&amp;, const T&amp;);
   template &lt;class T&gt; constexpr bool operator&lt;(const T&amp;, const optional&lt;T&gt;&amp;);
 
-  <cxx-ref in="" insynopsis="" to="optional.specalg"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.specalg" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.specalg" href="#optional.specalg">4.11</a>, Specialized algorithms</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.specalg"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.specalg" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.specalg" href="#optional.specalg">5.11</a>, Specialized algorithms</i></cxx-ref>
   template &lt;class T&gt; void swap(optional&lt;T&gt;&amp;, optional&lt;T&gt;&amp;) noexcept(<em>see below</em>);
   template &lt;class T&gt; constexpr optional&lt;<em>see below</em>&gt; make_optional(T&amp;&amp;);
 
 } // <i>namespace fundamentals_v1</i>
 } // <i>namespace experimental</i>
 
-  <cxx-ref in="" insynopsis="" to="optional.hash"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.hash" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.hash" href="#optional.hash">4.12</a>, Hash support</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.hash"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.hash" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.hash" href="#optional.hash">5.12</a>, Hash support</i></cxx-ref>
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;
 } // <i>namespace std</i>
@@ -1591,7 +2120,7 @@ inline namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">4.3</span> <h1 data-bookmark-label="4.3 Definitions">Definitions</h1> <span style="float:right"><a href="#optional.defs">[optional.defs]</a></span></header>
+      <header><span class="section-number">5.3</span> <h1 data-bookmark-label="5.3 Definitions">Definitions</h1> <span style="float:right"><a href="#optional.defs">[optional.defs]</a></span></header>
       
     
 
@@ -1608,7 +2137,7 @@ inline namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">4.4</span> <h1 data-bookmark-label="4.4 optional for object types"><code>optional</code> for object types</h1> <span style="float:right"><a href="#optional.object">[optional.object]</a></span></header>
+      <header><span class="section-number">5.4</span> <h1 data-bookmark-label="5.4 optional for object types"><code>optional</code> for object types</h1> <span style="float:right"><a href="#optional.object">[optional.object]</a></span></header>
       
     
 
@@ -1618,7 +2147,7 @@ class optional
 public:
   typedef T value_type;
 
-  <cxx-ref in="" insynopsis="" to="optional.object.ctor"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.ctor" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.ctor" href="#optional.object.ctor">4.4.1</a>, Constructors</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.object.ctor"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.ctor" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.ctor" href="#optional.object.ctor">5.4.1</a>, Constructors</i></cxx-ref>
   constexpr optional() noexcept;
   constexpr optional(nullopt_t) noexcept;
   optional(const optional&amp;);
@@ -1629,10 +2158,10 @@ public:
   template &lt;class U, class... Args&gt;
     constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
 
-  <cxx-ref in="" insynopsis="" to="optional.object.dtor"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.dtor" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.dtor" href="#optional.object.dtor">4.4.2</a>, Destructor</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.object.dtor"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.dtor" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.dtor" href="#optional.object.dtor">5.4.2</a>, Destructor</i></cxx-ref>
   ~optional();
 
-  <cxx-ref in="" insynopsis="" to="optional.object.assign"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.assign" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.assign" href="#optional.object.assign">4.4.3</a>, Assignment</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.object.assign"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.assign" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.assign" href="#optional.object.assign">5.4.3</a>, Assignment</i></cxx-ref>
   optional&amp; operator=(nullopt_t) noexcept;
   optional&amp; operator=(const optional&amp;);
   optional&amp; operator=(optional&amp;&amp;) noexcept(<em>see below</em>);
@@ -1641,10 +2170,10 @@ public:
   template &lt;class U, class... Args&gt;
     void emplace(initializer_list&lt;U&gt;, Args&amp;&amp;...);
 
-  <cxx-ref in="" insynopsis="" to="optional.object.swap"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.swap" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.swap" href="#optional.object.swap">4.4.4</a>, Swap</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.object.swap"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.swap" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.swap" href="#optional.object.swap">5.4.4</a>, Swap</i></cxx-ref>
   void swap(optional&amp;) noexcept(<em>see below</em>);
 
-  <cxx-ref in="" insynopsis="" to="optional.object.observe"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.observe" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.observe" href="#optional.object.observe">4.4.5</a>, Observers</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="optional.object.observe"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="optional.object.observe" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="optional.object.observe" href="#optional.object.observe">5.4.5</a>, Observers</i></cxx-ref>
   constexpr T const* operator -&gt;() const;
   T* operator -&gt;();
   constexpr T const&amp; operator *() const;
@@ -1671,7 +2200,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.4.1</span> <h1 data-bookmark-label="4.4.1 Constructors">Constructors</h1> <span style="float:right"><a href="#optional.object.ctor">[optional.object.ctor]</a></span></header>
+      <header><span class="section-number">5.4.1</span> <h1 data-bookmark-label="5.4.1 Constructors">Constructors</h1> <span style="float:right"><a href="#optional.object.ctor">[optional.object.ctor]</a></span></header>
       
       
 
@@ -1690,7 +2219,7 @@ private:
   </cxx-postconditions>
         <cxx-remarks para_num="3" id="optional.object.ctor.3">
     
-    <dt>Remarks:</dt><dd>No <code>T</code> object referenced is initialized. For every object type <code>T</code> these constructors shall be <code>constexpr</code> constructors (<cxx-ref in="cxx" to="dcl.constexpr"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="dcl.constexpr">§7.1.5</span></cxx-ref>).</dd>
+    <dt>Remarks:</dt><dd>No <code>T</code> object referenced is initialized. For every object type <code>T</code> these constructors shall be <code>constexpr</code> constructors (<cxx-ref in="cxx" to="dcl.constexpr"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="dcl.constexpr">§7.1.5</span></cxx-ref>).</dd>
   </cxx-remarks>
       
     </dl>
@@ -1895,7 +2424,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.4.2</span> <h1 data-bookmark-label="4.4.2 Destructor">Destructor</h1> <span style="float:right"><a href="#optional.object.dtor">[optional.object.dtor]</a></span></header>
+      <header><span class="section-number">5.4.2</span> <h1 data-bookmark-label="5.4.2 Destructor">Destructor</h1> <span style="float:right"><a href="#optional.object.dtor">[optional.object.dtor]</a></span></header>
       
       
 
@@ -1926,7 +2455,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.4.3</span> <h1 data-bookmark-label="4.4.3 Assignment">Assignment</h1> <span style="float:right"><a href="#optional.object.assign">[optional.object.assign]</a></span></header>
+      <header><span class="section-number">5.4.3</span> <h1 data-bookmark-label="5.4.3 Assignment">Assignment</h1> <span style="float:right"><a href="#optional.object.assign">[optional.object.assign]</a></span></header>
       
       
 
@@ -2151,7 +2680,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.4.4</span> <h1 data-bookmark-label="4.4.4 Swap">Swap</h1> <span style="float:right"><a href="#optional.object.swap">[optional.object.swap]</a></span></header>
+      <header><span class="section-number">5.4.4</span> <h1 data-bookmark-label="5.4.4 Swap">Swap</h1> <span style="float:right"><a href="#optional.object.swap">[optional.object.swap]</a></span></header>
       
       
 
@@ -2201,7 +2730,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.4.5</span> <h1 data-bookmark-label="4.4.5 Observers">Observers</h1> <span style="float:right"><a href="#optional.object.observe">[optional.object.observe]</a></span></header>
+      <header><span class="section-number">5.4.5</span> <h1 data-bookmark-label="5.4.5 Observers">Observers</h1> <span style="float:right"><a href="#optional.object.observe">[optional.object.observe]</a></span></header>
       
       
 
@@ -2378,7 +2907,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.5</span> <h1 data-bookmark-label="4.5 In-place construction">In-place construction</h1> <span style="float:right"><a href="#optional.inplace">[optional.inplace]</a></span></header>
+      <header><span class="section-number">5.5</span> <h1 data-bookmark-label="5.5 In-place construction">In-place construction</h1> <span style="float:right"><a href="#optional.inplace">[optional.inplace]</a></span></header>
       
     
 
@@ -2404,7 +2933,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.6</span> <h1 data-bookmark-label="4.6 Disengaged state indicator">Disengaged state indicator</h1> <span style="float:right"><a href="#optional.nullopt">[optional.nullopt]</a></span></header>
+      <header><span class="section-number">5.6</span> <h1 data-bookmark-label="5.6 Disengaged state indicator">Disengaged state indicator</h1> <span style="float:right"><a href="#optional.nullopt">[optional.nullopt]</a></span></header>
       
     
 
@@ -2432,7 +2961,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">4.7</span> <h1 data-bookmark-label="4.7 Class bad_optional_access">Class <code>bad_optional_access</code></h1> <span style="float:right"><a href="#optional.bad_optional_access">[optional.bad_optional_access]</a></span></header>
+      <header><span class="section-number">5.7</span> <h1 data-bookmark-label="5.7 Class bad_optional_access">Class <code>bad_optional_access</code></h1> <span style="float:right"><a href="#optional.bad_optional_access">[optional.bad_optional_access]</a></span></header>
       
     
 
@@ -2485,7 +3014,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">4.8</span> <h1 data-bookmark-label="4.8 Relational operators">Relational operators</h1> <span style="float:right"><a href="#optional.relops">[optional.relops]</a></span></header>
+      <header><span class="section-number">5.8</span> <h1 data-bookmark-label="5.8 Relational operators">Relational operators</h1> <span style="float:right"><a href="#optional.relops">[optional.relops]</a></span></header>
       
     
 
@@ -2544,7 +3073,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">4.9</span> <h1 data-bookmark-label="4.9 Comparison with nullopt">Comparison with <code>nullopt</code></h1> <span style="float:right"><a href="#optional.nullops">[optional.nullops]</a></span></header>
+      <header><span class="section-number">5.9</span> <h1 data-bookmark-label="5.9 Comparison with nullopt">Comparison with <code>nullopt</code></h1> <span style="float:right"><a href="#optional.nullops">[optional.nullops]</a></span></header>
       
     
 
@@ -2604,7 +3133,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">4.10</span> <h1 data-bookmark-label="4.10 Comparison with T">Comparison with <code>T</code></h1> <span style="float:right"><a href="#optional.comp_with_t">[optional.comp_with_t]</a></span></header>
+      <header><span class="section-number">5.10</span> <h1 data-bookmark-label="5.10 Comparison with T">Comparison with <code>T</code></h1> <span style="float:right"><a href="#optional.comp_with_t">[optional.comp_with_t]</a></span></header>
       
     
 
@@ -2663,7 +3192,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">4.11</span> <h1 data-bookmark-label="4.11 Specialized algorithms">Specialized algorithms</h1> <span style="float:right"><a href="#optional.specalg">[optional.specalg]</a></span></header>
+      <header><span class="section-number">5.11</span> <h1 data-bookmark-label="5.11 Specialized algorithms">Specialized algorithms</h1> <span style="float:right"><a href="#optional.specalg">[optional.specalg]</a></span></header>
       
     
 
@@ -2706,7 +3235,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">4.12</span> <h1 data-bookmark-label="4.12 Hash support">Hash support</h1> <span style="float:right"><a href="#optional.hash">[optional.hash]</a></span></header>
+      <header><span class="section-number">5.12</span> <h1 data-bookmark-label="5.12 Hash support">Hash support</h1> <span style="float:right"><a href="#optional.hash">[optional.hash]</a></span></header>
       
     
 
@@ -2720,7 +3249,7 @@ public:
 
       <cxx-requires para_num="2" id="optional.hash.2">
     
-    <dt>Requires:</dt><dd>the template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="unord.hash">§20.8.12</span></cxx-ref>).
+    <dt>Requires:</dt><dd>the template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="unord.hash">§20.9.12</span></cxx-ref>).
       The template specialization <code>hash&lt;optional&lt;T&gt;&gt;</code> shall meet the requirements of class template <code>hash</code>.
       For an object <code><var>o</var></code> of type <code>optional&lt;T&gt;</code>, if <code>bool(<var>o</var>) == true</code>,
       <code>hash&lt;optional&lt;T&gt;&gt;()(<var>o</var>)</code> shall evaluate to the same value as <code>hash&lt;T&gt;()(*<var>o</var>)</code>.</dd>
@@ -2739,7 +3268,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Class any">Class <code>any</code></h1> <span style="float:right"><a href="#any">[any]</a></span></header>
+      <header><span class="section-number">6</span> <h1 data-bookmark-label="6 Class any">Class <code>any</code></h1> <span style="float:right"><a href="#any">[any]</a></span></header>
       
   
 
@@ -2760,7 +3289,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 Header <experimental/any> synopsis">Header &lt;experimental/any&gt; synopsis</h1> <span style="float:right"><a href="#any.synop">[any.synop]</a></span></header>
+      <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Header <experimental/any> synopsis">Header &lt;experimental/any&gt; synopsis</h1> <span style="float:right"><a href="#any.synop">[any.synop]</a></span></header>
       
     
 
@@ -2776,7 +3305,7 @@ public:
 class any
 {
 public:
-  <cxx-ref in="" insynopsis="" to="any.cons"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.cons" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.cons" href="#any.cons">5.3.1</a>, any construct/destruct</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="any.cons"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.cons" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.cons" href="#any.cons">6.3.1</a>, any construct/destruct</i></cxx-ref>
   any() noexcept;
 
   any(const any&amp; other);
@@ -2796,23 +3325,23 @@ public:
 
   ~any();
 
-  <cxx-ref in="" insynopsis="" to="any.assign"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.assign" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.assign" href="#any.assign">5.3.2</a>, any assignments</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="any.assign"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.assign" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.assign" href="#any.assign">6.3.2</a>, any assignments</i></cxx-ref>
   any&amp; operator=(const any&amp; rhs);
   any&amp; operator=(any&amp;&amp; rhs) noexcept;
 
   template &lt;typename ValueType&gt;
     any&amp; operator=(ValueType&amp;&amp; rhs);
 
-  <cxx-ref in="" insynopsis="" to="any.modifiers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.modifiers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.modifiers" href="#any.modifiers">5.3.3</a>, any modifiers</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="any.modifiers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.modifiers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.modifiers" href="#any.modifiers">6.3.3</a>, any modifiers</i></cxx-ref>
   void clear() noexcept;
   void swap(any&amp; rhs) noexcept;
 
-  <cxx-ref in="" insynopsis="" to="any.observers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.observers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.observers" href="#any.observers">5.3.4</a>, any observers</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="any.observers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.observers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.observers" href="#any.observers">6.3.4</a>, any observers</i></cxx-ref>
   bool empty() const noexcept;
   const type_info&amp; type() const noexcept;
 };
 
-<cxx-ref in="" insynopsis="" to="any.nonmembers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.nonmembers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.nonmembers" href="#any.nonmembers">5.4</a>, Non-member functions</i></cxx-ref>
+<cxx-ref in="" insynopsis="" to="any.nonmembers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.nonmembers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.nonmembers" href="#any.nonmembers">6.4</a>, Non-member functions</i></cxx-ref>
 void swap(any&amp; x, any&amp; y) noexcept;
 
 template&lt;typename ValueType&gt;
@@ -2837,7 +3366,7 @@ template&lt;typename ValueType&gt;
     
 
     <section>
-      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Class bad_any_cast">Class <code>bad_any_cast</code></h1> <span style="float:right"><a href="#any.bad_any_cast">[any.bad_any_cast]</a></span></header>
+      <header><span class="section-number">6.2</span> <h1 data-bookmark-label="6.2 Class bad_any_cast">Class <code>bad_any_cast</code></h1> <span style="float:right"><a href="#any.bad_any_cast">[any.bad_any_cast]</a></span></header>
       
     
     <p para_num="1" id="any.bad_any_cast.1">
@@ -2851,7 +3380,7 @@ template&lt;typename ValueType&gt;
     
 
     <section>
-      <header><span class="section-number">5.3</span> <h1 data-bookmark-label="5.3 Class any">Class <code>any</code></h1> <span style="float:right"><a href="#any.class">[any.class]</a></span></header>
+      <header><span class="section-number">6.3</span> <h1 data-bookmark-label="6.3 Class any">Class <code>any</code></h1> <span style="float:right"><a href="#any.class">[any.class]</a></span></header>
       
     
 
@@ -2881,7 +3410,7 @@ template&lt;typename ValueType&gt;
     
 
     <section>
-      <header><span class="section-number">5.3.1</span> <h1 data-bookmark-label="5.3.1 any construct/destruct"><code>any</code> construct/destruct</h1> <span style="float:right"><a href="#any.cons">[any.cons]</a></span></header>
+      <header><span class="section-number">6.3.1</span> <h1 data-bookmark-label="6.3.1 any construct/destruct"><code>any</code> construct/destruct</h1> <span style="float:right"><a href="#any.cons">[any.cons]</a></span></header>
       
       
 
@@ -2989,11 +3518,11 @@ any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx
 
         <cxx-requires para_num="16" id="any.cons.16">
     
-    <dt>Requires:</dt><dd><code>Allocator</code> shall meet the requirements for an Allocator (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>).</dd>
+    <dt>Requires:</dt><dd><code>Allocator</code> shall meet the requirements for an Allocator (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>).</dd>
   </cxx-requires>
         <cxx-effects para_num="17" id="any.cons.17">
     
-    <dt>Effects:</dt><dd>Equivalent to the preceding constructors except that the contained object is constructed with uses-allocator construction (<cxx-ref in="cxx" to="allocator.uses.construction"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="allocator.uses.construction">§20.6.7.2</span></cxx-ref>) if memory allocation is performed.</dd>
+    <dt>Effects:</dt><dd>Equivalent to the preceding constructors except that the contained object is constructed with uses-allocator construction (<cxx-ref in="cxx" to="allocator.uses.construction"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.uses.construction">§20.7.7.2</span></cxx-ref>) if memory allocation is performed.</dd>
   </cxx-effects>
       
     </dl>
@@ -3022,7 +3551,7 @@ any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx
     
 
     <section>
-      <header><span class="section-number">5.3.2</span> <h1 data-bookmark-label="5.3.2 any assignments"><code>any</code> assignments</h1> <span style="float:right"><a href="#any.assign">[any.assign]</a></span></header>
+      <header><span class="section-number">6.3.2</span> <h1 data-bookmark-label="6.3.2 any assignments"><code>any</code> assignments</h1> <span style="float:right"><a href="#any.assign">[any.assign]</a></span></header>
       
       
 
@@ -3119,7 +3648,7 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">5.3.3</span> <h1 data-bookmark-label="5.3.3 any modifiers"><code>any</code> modifiers</h1> <span style="float:right"><a href="#any.modifiers">[any.modifiers]</a></span></header>
+      <header><span class="section-number">6.3.3</span> <h1 data-bookmark-label="6.3.3 any modifiers"><code>any</code> modifiers</h1> <span style="float:right"><a href="#any.modifiers">[any.modifiers]</a></span></header>
       
       
 
@@ -3166,7 +3695,7 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">5.3.4</span> <h1 data-bookmark-label="5.3.4 any observers"><code>any</code> observers</h1> <span style="float:right"><a href="#any.observers">[any.observers]</a></span></header>
+      <header><span class="section-number">6.3.4</span> <h1 data-bookmark-label="6.3.4 any observers"><code>any</code> observers</h1> <span style="float:right"><a href="#any.observers">[any.observers]</a></span></header>
       
       
 
@@ -3217,7 +3746,7 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">5.4</span> <h1 data-bookmark-label="5.4 Non-member functions"><a name="Non-member">Non-member</a> functions</h1> <span style="float:right"><a href="#any.nonmembers">[any.nonmembers]</a></span></header>
+      <header><span class="section-number">6.4</span> <h1 data-bookmark-label="6.4 Non-member functions"><a name="Non-member">Non-member</a> functions</h1> <span style="float:right"><a href="#any.nonmembers">[any.nonmembers]</a></span></header>
       
     
 
@@ -3339,12 +3868,12 @@ ValueType* any_cast(any* operand) noexcept;</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">6</span> <h1 data-bookmark-label="6 string_view"><code>string_view</code></h1> <span style="float:right"><a href="#string.view">[string.view]</a></span></header>
+      <header><span class="section-number">7</span> <h1 data-bookmark-label="7 string_view"><code>string_view</code></h1> <span style="float:right"><a href="#string.view">[string.view]</a></span></header>
       
   
 
   <p para_num="1" id="string.view.1">
-    The class template <code>basic_string_view</code> describes an object that can refer to a constant contiguous sequence of char-like (<cxx-ref in="cxx" to="strings.general"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="strings.general">§21.1</span></cxx-ref>) objects with the first element of the sequence at position zero.
+    The class template <code>basic_string_view</code> describes an object that can refer to a constant contiguous sequence of char-like (<cxx-ref in="cxx" to="strings.general"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="strings.general">§21.1</span></cxx-ref>) objects with the first element of the sequence at position zero.
     In the rest of this section, the type of the char-like objects held in a <code>basic_string_view</code> object is designated by <code>charT</code>.
   </p>
 
@@ -3364,18 +3893,18 @@ ValueType* any_cast(any* operand) noexcept;</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Header <experimental/string_view> synopsis">Header <code>&lt;experimental/string_view&gt;</code> synopsis</h1> <span style="float:right"><a href="#string.view.synop">[string.view.synop]</a></span></header>
+      <header><span class="section-number">7.1</span> <h1 data-bookmark-label="7.1 Header <experimental/string_view> synopsis">Header <code>&lt;experimental/string_view&gt;</code> synopsis</h1> <span style="float:right"><a href="#string.view.synop">[string.view.synop]</a></span></header>
       
     
 
     <pre><code>namespace std {
 namespace experimental {
 inline namespace fundamentals_v1 {
-  <cxx-ref in="" insynopsis="" to="string.view.template"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.template" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.template" href="#string.view.template">6.2</a>, Class template basic_string_view</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="string.view.template"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.template" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.template" href="#string.view.template">7.2</a>, Class template basic_string_view</i></cxx-ref>
   template&lt;class charT, class traits = char_traits&lt;charT&gt;&gt;
       class basic_string_view;
 
-  <cxx-ref in="" insynopsis="" to="string.view.comparison"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.comparison" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.comparison" href="#string.view.comparison">6.9</a>, basic_string_view non-member comparison functions</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="string.view.comparison"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.comparison" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.comparison" href="#string.view.comparison">7.9</a>, basic_string_view non-member comparison functions</i></cxx-ref>
   template&lt;class charT, class traits&gt;
   constexpr bool operator==(basic_string_view&lt;charT, traits&gt; x,
                             basic_string_view&lt;charT, traits&gt; y) noexcept;
@@ -3396,7 +3925,7 @@ inline namespace fundamentals_v1 {
                             basic_string_view&lt;charT, traits&gt; y) noexcept;
   // <i>see below</i>, sufficient additional overloads of comparison functions
 
-  <cxx-ref in="" insynopsis="" to="string.view.io"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.io" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.io" href="#string.view.io">6.10</a>, Inserters and extractors</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="string.view.io"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.io" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.io" href="#string.view.io">7.10</a>, Inserters and extractors</i></cxx-ref>
   template&lt;class charT, class traits&gt;
     basic_ostream&lt;charT, traits&gt;&amp;
       operator&lt;&lt;(basic_ostream&lt;charT, traits&gt;&amp; os,
@@ -3411,7 +3940,7 @@ inline namespace fundamentals_v1 {
 }  // namespace fundamentals_v1
 }  // namespace experimental
 
-  <cxx-ref in="" insynopsis="" to="string.view.hash"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.hash" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.hash" href="#string.view.hash">6.11</a>, Hash support</i></cxx-ref>
+  <cxx-ref in="" insynopsis="" to="string.view.hash"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.hash" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.hash" href="#string.view.hash">7.11</a>, Hash support</i></cxx-ref>
   template &lt;class T&gt; struct hash;
   template &lt;&gt; struct hash&lt;experimental::string_view&gt;;
   template &lt;&gt; struct hash&lt;experimental::u16string_view&gt;;
@@ -3420,7 +3949,7 @@ inline namespace fundamentals_v1 {
 }  // namespace std</code></pre>
 
     <p para_num="1" id="string.view.synop.1">
-      The function templates defined in <cxx-ref in="cxx" to="utility.swap"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="utility.swap">§20.2.2</span></cxx-ref> and <cxx-ref in="cxx" to="iterator.range"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="iterator.range">§24.6.5</span></cxx-ref> are available when <code>&lt;experimental/string_view&gt;</code> is included.
+      The function templates defined in <cxx-ref in="cxx" to="utility.swap"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="utility.swap">§20.2.2</span></cxx-ref> and <cxx-ref in="cxx" to="iterator.range"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="iterator.range">§24.7</span></cxx-ref> are available when <code>&lt;experimental/string_view&gt;</code> is included.
     </p>
   
     </section>
@@ -3430,7 +3959,7 @@ inline namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">6.2</span> <h1 data-bookmark-label="6.2 Class template basic_string_view">Class template <code>basic_string_view</code></h1> <span style="float:right"><a href="#string.view.template">[string.view.template]</a></span></header>
+      <header><span class="section-number">7.2</span> <h1 data-bookmark-label="7.2 Class template basic_string_view">Class template <code>basic_string_view</code></h1> <span style="float:right"><a href="#string.view.template">[string.view.template]</a></span></header>
       
     
 
@@ -3447,17 +3976,17 @@ namespace fundamentals_v1 {
     typedef const charT* const_pointer;
     typedef charT&amp; reference;
     typedef const charT&amp; const_reference;
-    typedef <var>implementation-defined</var> const_iterator; // See <cxx-ref in="" to="string.view.iterators"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.iterators" elem="{{toElem}}"></cxx-get-element-by-id><a title="string.view.iterators" href="#string.view.iterators">6.4</a></cxx-ref>
+    typedef <var>implementation-defined</var> const_iterator; // See <cxx-ref in="" to="string.view.iterators"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.iterators" elem="{{toElem}}"></cxx-get-element-by-id><a title="string.view.iterators" href="#string.view.iterators">7.4</a></cxx-ref>
     typedef const_iterator iterator;<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</aside></cxx-footnote>
+  --><sup id="footnote-call-2"><a href="#footnote-body-2">2</a></sup><aside class="footnote" id="footnote-body-2"><span class="marker"><a href="#footnote-call-2">2</a>) </span>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</aside></cxx-footnote>
     typedef reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
     typedef const_reverse_iterator reverse_iterator;
     typedef size_t size_type;
     typedef ptrdiff_t difference_type;
     static constexpr size_type npos = size_type(-1);
 
-    <cxx-ref in="" insynopsis="" to="string.view.cons"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.cons" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.cons" href="#string.view.cons">6.3</a>, basic_string_view constructors and assignment operators</i></cxx-ref>
+    <cxx-ref in="" insynopsis="" to="string.view.cons"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.cons" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.cons" href="#string.view.cons">7.3</a>, basic_string_view constructors and assignment operators</i></cxx-ref>
     constexpr basic_string_view() noexcept;
     constexpr basic_string_view(const basic_string_view&amp;) noexcept = default;
     basic_string_view&amp; operator=(const basic_string_view&amp;) noexcept = default;
@@ -3466,7 +3995,7 @@ namespace fundamentals_v1 {
     constexpr basic_string_view(const charT* str);
     constexpr basic_string_view(const charT* str, size_type len);
 
-    <cxx-ref in="" insynopsis="" to="string.view.iterators"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.iterators" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.iterators" href="#string.view.iterators">6.4</a>, basic_string_view iterator support</i></cxx-ref>
+    <cxx-ref in="" insynopsis="" to="string.view.iterators"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.iterators" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.iterators" href="#string.view.iterators">7.4</a>, basic_string_view iterator support</i></cxx-ref>
     constexpr const_iterator begin() const noexcept;
     constexpr const_iterator end() const noexcept;
     constexpr const_iterator cbegin() const noexcept;
@@ -3476,26 +4005,26 @@ namespace fundamentals_v1 {
     const_reverse_iterator crbegin() const noexcept;
     const_reverse_iterator crend() const noexcept;
 
-    <cxx-ref in="" insynopsis="" to="string.view.capacity"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.capacity" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.capacity" href="#string.view.capacity">6.5</a>, basic_string_view capacity</i></cxx-ref>
+    <cxx-ref in="" insynopsis="" to="string.view.capacity"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.capacity" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.capacity" href="#string.view.capacity">7.5</a>, basic_string_view capacity</i></cxx-ref>
     constexpr size_type size() const noexcept;
     constexpr size_type length() const noexcept;
     constexpr size_type max_size() const noexcept;
     constexpr bool empty() const noexcept;
 
-    <cxx-ref in="" insynopsis="" to="string.view.access"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.access" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.access" href="#string.view.access">6.6</a>, basic_string_view element access</i></cxx-ref>
+    <cxx-ref in="" insynopsis="" to="string.view.access"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.access" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.access" href="#string.view.access">7.6</a>, basic_string_view element access</i></cxx-ref>
     constexpr const_reference operator[](size_type pos) const;
     constexpr const_reference at(size_type pos) const;
     constexpr const_reference front() const;
     constexpr const_reference back() const;
     constexpr const_pointer data() const noexcept;
 
-    <cxx-ref in="" insynopsis="" to="string.view.modifiers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.modifiers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.modifiers" href="#string.view.modifiers">6.7</a>, basic_string_view modifiers</i></cxx-ref>
+    <cxx-ref in="" insynopsis="" to="string.view.modifiers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.modifiers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.modifiers" href="#string.view.modifiers">7.7</a>, basic_string_view modifiers</i></cxx-ref>
     constexpr void clear() noexcept;
     constexpr void remove_prefix(size_type n);
     constexpr void remove_suffix(size_type n);
     constexpr void swap(basic_string_view&amp; s) noexcept;
 
-    <cxx-ref in="" insynopsis="" to="string.view.ops"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.ops" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.ops" href="#string.view.ops">6.8</a>, basic_string_view string operations</i></cxx-ref>
+    <cxx-ref in="" insynopsis="" to="string.view.ops"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="string.view.ops" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="string.view.ops" href="#string.view.ops">7.8</a>, basic_string_view string operations</i></cxx-ref>
     template&lt;class Allocator&gt;
     explicit operator basic_string&lt;charT, traits, Allocator&gt;() const;
     template&lt;class Allocator = allocator&lt;charT&gt; &gt;
@@ -3547,7 +4076,7 @@ namespace fundamentals_v1 {
 }  // namespace std</code></pre>
 
     <p para_num="1" id="string.view.template.1">
-      In every specialization <code>basic_string_view&lt;charT, traits&gt;</code>, the type <code>traits</code> shall satisfy the character traits requirements (<cxx-ref in="cxx" to="char.traits"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="char.traits">§21.2</span></cxx-ref>),
+      In every specialization <code>basic_string_view&lt;charT, traits&gt;</code>, the type <code>traits</code> shall satisfy the character traits requirements (<cxx-ref in="cxx" to="char.traits"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="char.traits">§21.2</span></cxx-ref>),
       and the type <code>traits::char_type</code> shall name the same type as <code>charT</code>.
     </p>
   
@@ -3558,7 +4087,7 @@ namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">6.3</span> <h1 data-bookmark-label="6.3 basic_string_view constructors and assignment operators"><code>basic_string_view</code> constructors and assignment operators</h1> <span style="float:right"><a href="#string.view.cons">[string.view.cons]</a></span></header>
+      <header><span class="section-number">7.3</span> <h1 data-bookmark-label="7.3 basic_string_view constructors and assignment operators"><code>basic_string_view</code> constructors and assignment operators</h1> <span style="float:right"><a href="#string.view.cons">[string.view.cons]</a></span></header>
       
     
 
@@ -3683,7 +4212,7 @@ namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">6.4</span> <h1 data-bookmark-label="6.4 basic_string_view iterator support"><code>basic_string_view</code> iterator support</h1> <span style="float:right"><a href="#string.view.iterators">[string.view.iterators]</a></span></header>
+      <header><span class="section-number">7.4</span> <h1 data-bookmark-label="7.4 basic_string_view iterator support"><code>basic_string_view</code> iterator support</h1> <span style="float:right"><a href="#string.view.iterators">[string.view.iterators]</a></span></header>
       
     
 
@@ -3702,7 +4231,7 @@ namespace fundamentals_v1 {
         For a <code>basic_string_view str</code>, any operation that invalidates a pointer in the range <cxx-range begin="str.data()" end="str.data()+str.size()">[<code>str.data()</code>, <code>str.data()+str.size()</code>)</cxx-range> invalidates pointers, iterators, and references returned from <code>str</code>'s methods.
       </p>
       <p para_num="4" id="string.view.iterators.4">
-        All requirements on container iterators (<cxx-ref in="cxx" to="container.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="container.requirements">§23.2</span></cxx-ref>) apply to <code>basic_string_view::const_iterator</code> as well.
+        All requirements on container iterators (<cxx-ref in="cxx" to="container.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="container.requirements">§23.2</span></cxx-ref>) apply to <code>basic_string_view::const_iterator</code> as well.
       </p>
     
     </dl>
@@ -3783,7 +4312,7 @@ namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">6.5</span> <h1 data-bookmark-label="6.5 basic_string_view capacity"><code>basic_string_view</code> capacity</h1> <span style="float:right"><a href="#string.view.capacity">[string.view.capacity]</a></span></header>
+      <header><span class="section-number">7.5</span> <h1 data-bookmark-label="7.5 basic_string_view capacity"><code>basic_string_view</code> capacity</h1> <span style="float:right"><a href="#string.view.capacity">[string.view.capacity]</a></span></header>
       
     
 
@@ -3854,7 +4383,7 @@ namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">6.6</span> <h1 data-bookmark-label="6.6 basic_string_view element access"><code>basic_string_view</code> element access</h1> <span style="float:right"><a href="#string.view.access">[string.view.access]</a></span></header>
+      <header><span class="section-number">7.6</span> <h1 data-bookmark-label="7.6 basic_string_view element access"><code>basic_string_view</code> element access</h1> <span style="float:right"><a href="#string.view.access">[string.view.access]</a></span></header>
       
     
 
@@ -3984,7 +4513,7 @@ namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">6.7</span> <h1 data-bookmark-label="6.7 basic_string_view modifiers"><code>basic_string_view</code> modifiers</h1> <span style="float:right"><a href="#string.view.modifiers">[string.view.modifiers]</a></span></header>
+      <header><span class="section-number">7.7</span> <h1 data-bookmark-label="7.7 basic_string_view modifiers"><code>basic_string_view</code> modifiers</h1> <span style="float:right"><a href="#string.view.modifiers">[string.view.modifiers]</a></span></header>
       
     
 
@@ -4066,7 +4595,7 @@ namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">6.8</span> <h1 data-bookmark-label="6.8 basic_string_view string operations"><code>basic_string_view</code> string operations</h1> <span style="float:right"><a href="#string.view.ops">[string.view.ops]</a></span></header>
+      <header><span class="section-number">7.8</span> <h1 data-bookmark-label="7.8 basic_string_view string operations"><code>basic_string_view</code> string operations</h1> <span style="float:right"><a href="#string.view.ops">[string.view.ops]</a></span></header>
       
     
 
@@ -4075,7 +4604,7 @@ namespace fundamentals_v1 {
     <pre><code><cxx-signature>template&lt;class Allocator&gt;
 explicit<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-2"><a href="#footnote-body-2">2</a></sup><aside class="footnote" id="footnote-body-2"><span class="marker"><a href="#footnote-call-2">2</a>) </span>This conversion is explicit to avoid accidental O(N) operations on type mismatches.</aside></cxx-footnote> operator basic_string&lt;
+  --><sup id="footnote-call-3"><a href="#footnote-body-3">3</a></sup><aside class="footnote" id="footnote-body-3"><span class="marker"><a href="#footnote-call-3">3</a>) </span>This conversion is explicit to avoid accidental O(N) operations on type mismatches.</aside></cxx-footnote> operator basic_string&lt;
     charT, traits, Allocator&gt;() const;</cxx-signature></code></pre>
 
     <dl>
@@ -4296,7 +4825,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     
 
     <section>
-      <header><span class="section-number">6.8.1</span> <h1 data-bookmark-label="6.8.1 Searching basic_string_view">Searching <code>basic_string_view</code></h1> <span style="float:right"><a href="#string.view.find">[string.view.find]</a></span></header>
+      <header><span class="section-number">7.8.1</span> <h1 data-bookmark-label="7.8.1 Searching basic_string_view">Searching <code>basic_string_view</code></h1> <span style="float:right"><a href="#string.view.find">[string.view.find]</a></span></header>
       
       
 
@@ -4515,7 +5044,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     
 
     <section>
-      <header><span class="section-number">6.9</span> <h1 data-bookmark-label="6.9 basic_string_view non-member comparison functions"><code>basic_string_view</code> non-member comparison functions</h1> <span style="float:right"><a href="#string.view.comparison">[string.view.comparison]</a></span></header>
+      <header><span class="section-number">7.9</span> <h1 data-bookmark-label="7.9 basic_string_view non-member comparison functions"><code>basic_string_view</code> non-member comparison functions</h1> <span style="float:right"><a href="#string.view.comparison">[string.view.comparison]</a></span></header>
       
     
 
@@ -4682,7 +5211,7 @@ constexpr bool operator==(
     
 
     <section>
-      <header><span class="section-number">6.10</span> <h1 data-bookmark-label="6.10 Inserters and extractors">Inserters and extractors</h1> <span style="float:right"><a href="#string.view.io">[string.view.io]</a></span></header>
+      <header><span class="section-number">7.10</span> <h1 data-bookmark-label="7.10 Inserters and extractors">Inserters and extractors</h1> <span style="float:right"><a href="#string.view.io">[string.view.io]</a></span></header>
       
     
 
@@ -4712,7 +5241,7 @@ constexpr bool operator==(
     
 
     <section>
-      <header><span class="section-number">6.11</span> <h1 data-bookmark-label="6.11 Hash support">Hash support</h1> <span style="float:right"><a href="#string.view.hash">[string.view.hash]</a></span></header>
+      <header><span class="section-number">7.11</span> <h1 data-bookmark-label="7.11 Hash support">Hash support</h1> <span style="float:right"><a href="#string.view.hash">[string.view.hash]</a></span></header>
       
     
 
@@ -4726,7 +5255,7 @@ constexpr bool operator==(
       
       
       
-      <p para_num="2" id="string.view.hash.2">The template specializations shall meet the requirements of class template hash (<cxx-ref in="cxx" to="unord.hash"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="unord.hash">§20.8.12</span></cxx-ref>).</p>
+      <p para_num="2" id="string.view.hash.2">The template specializations shall meet the requirements of class template hash (<cxx-ref in="cxx" to="unord.hash"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="unord.hash">§20.9.12</span></cxx-ref>).</p>
     
     </dl>
   </cxx-function>
@@ -4741,7 +5270,7 @@ constexpr bool operator==(
     
 
     <section>
-      <header><span class="section-number">7</span> <h1 data-bookmark-label="7 Polymorphic Memory Resources">Polymorphic Memory Resources</h1> <span style="float:right"><a href="#memresource">[memresource]</a></span></header>
+      <header><span class="section-number">8</span> <h1 data-bookmark-label="8 Polymorphic Memory Resources">Polymorphic Memory Resources</h1> <span style="float:right"><a href="#memresource">[memresource]</a></span></header>
       
   
 
@@ -4749,7 +5278,7 @@ constexpr bool operator==(
     
 
     <section>
-      <header><span class="section-number">7.1</span> <h1 data-bookmark-label="7.1 Type-erased allocator">Type-erased allocator</h1> <span style="float:right"><a href="#memresource.type.erased.allocator">[memresource.type.erased.allocator]</a></span></header>
+      <header><span class="section-number">8.1</span> <h1 data-bookmark-label="8.1 Type-erased allocator">Type-erased allocator</h1> <span style="float:right"><a href="#memresource.type.erased.allocator">[memresource.type.erased.allocator]</a></span></header>
       
     
 
@@ -4758,7 +5287,7 @@ constexpr bool operator==(
       used to allocate internal data structures for an object <code>X</code> of type <code>C</code>,
       but where <code>C</code> is not dependent on the type of <code>alloc</code>.
       Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
-      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref in="" to="memresource.class"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.class" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.class" href="#memresource.class">7.3</a></cxx-ref>).
+      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref in="" to="memresource.class"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.class" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.class" href="#memresource.class">8.3</a></cxx-ref>).
       The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref in="" to="tab:memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:memresource.type.erased.allocator" href="#tab:memresource.type.erased.allocator">Table 7</a></cxx-ref>:
     </p>
 
@@ -4791,7 +5320,7 @@ constexpr bool operator==(
         <td><code>alloc.resource()</code></td>
       </tr>
       <tr>
-        <td>any other type meeting the Allocator requirements (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>)</td>
+        <td>any other type meeting the Allocator requirements (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>)</td>
         <td>a pointer to a value of type <code>experimental::pmr::resource_adaptor&lt;A&gt;</code> where <code>A</code> is the type of <code>alloc</code>.
         <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
       </tr>
@@ -4815,7 +5344,7 @@ constexpr bool operator==(
     
 
     <section>
-      <header><span class="section-number">7.2</span> <h1 data-bookmark-label="7.2 Header <experimental/memory_resource> synopsis">Header <code>&lt;experimental/memory_resource&gt;</code> synopsis</h1> <span style="float:right"><a href="#memresource.synop">[memresource.synop]</a></span></header>
+      <header><span class="section-number">8.2</span> <h1 data-bookmark-label="8.2 Header <experimental/memory_resource> synopsis">Header <code>&lt;experimental/memory_resource&gt;</code> synopsis</h1> <span style="float:right"><a href="#memresource.synop">[memresource.synop]</a></span></header>
       
     
 
@@ -4873,7 +5402,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.3</span> <h1 data-bookmark-label="7.3 Class memory_resource">Class <code>memory_resource</code></h1> <span style="float:right"><a href="#memresource.class">[memresource.class]</a></span></header>
+      <header><span class="section-number">8.3</span> <h1 data-bookmark-label="8.3 Class memory_resource">Class <code>memory_resource</code></h1> <span style="float:right"><a href="#memresource.class">[memresource.class]</a></span></header>
       
     
 
@@ -4881,7 +5410,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.3.1</span> <h1 data-bookmark-label="7.3.1 Class memory_resource overview">Class <code>memory_resource</code> overview</h1> <span style="float:right"><a href="#memresource.class.overview">[memresource.class.overview]</a></span></header>
+      <header><span class="section-number">8.3.1</span> <h1 data-bookmark-label="8.3.1 Class memory_resource overview">Class <code>memory_resource</code> overview</h1> <span style="float:right"><a href="#memresource.class.overview">[memresource.class.overview]</a></span></header>
       
       
       <p para_num="1" id="memresource.class.overview.1">
@@ -4917,7 +5446,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.3.2</span> <h1 data-bookmark-label="7.3.2 memory_resource public member functions"><code>memory_resource</code> public member functions</h1> <span style="float:right"><a href="#memresource.class.public">[memresource.class.public]</a></span></header>
+      <header><span class="section-number">8.3.2</span> <h1 data-bookmark-label="8.3.2 memory_resource public member functions"><code>memory_resource</code> public member functions</h1> <span style="float:right"><a href="#memresource.class.public">[memresource.class.public]</a></span></header>
       
       
 
@@ -4991,7 +5520,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.3.3</span> <h1 data-bookmark-label="7.3.3 memory_resource protected virtual member functions"><code>memory_resource</code> protected virtual member functions</h1> <span style="float:right"><a href="#memresource.class.priv">[memresource.class.priv]</a></span></header>
+      <header><span class="section-number">8.3.3</span> <h1 data-bookmark-label="8.3.3 memory_resource protected virtual member functions"><code>memory_resource</code> protected virtual member functions</h1> <span style="float:right"><a href="#memresource.class.priv">[memresource.class.priv]</a></span></header>
       
       
 
@@ -5009,7 +5538,7 @@ protected:
   </cxx-preconditions>
         <cxx-returns para_num="3" id="memresource.class.priv.3">
     
-    <dt>Returns:</dt><dd>A derived class shall implement this function to return a pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="basic.stc.dynamic.deallocation">§3.7.4.2</span></cxx-ref>) with a size of at least <code>bytes</code>.
+    <dt>Returns:</dt><dd>A derived class shall implement this function to return a pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="basic.stc.dynamic.deallocation">§3.7.4.2</span></cxx-ref>) with a size of at least <code>bytes</code>.
         The returned storage is aligned to the specified alignment, if such alignment is supported;
         otherwise it is aligned to <code>max_align</code>.</dd>
   </cxx-returns>
@@ -5074,7 +5603,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.3.4</span> <h1 data-bookmark-label="7.3.4 memory_resource equality"><code>memory_resource</code> equality</h1> <span style="float:right"><a href="#memresource.class.eq">[memresource.class.eq]</a></span></header>
+      <header><span class="section-number">8.3.4</span> <h1 data-bookmark-label="8.3.4 memory_resource equality"><code>memory_resource</code> equality</h1> <span style="float:right"><a href="#memresource.class.eq">[memresource.class.eq]</a></span></header>
       
       
 
@@ -5119,7 +5648,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.4</span> <h1 data-bookmark-label="7.4 Class template polymorphic_allocator">Class template <code>polymorphic_allocator</code></h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.class">[memresource.polymorphic.allocator.class]</a></span></header>
+      <header><span class="section-number">8.4</span> <h1 data-bookmark-label="8.4 Class template polymorphic_allocator">Class template <code>polymorphic_allocator</code></h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.class">[memresource.polymorphic.allocator.class]</a></span></header>
       
     
 
@@ -5127,12 +5656,12 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.4.1</span> <h1 data-bookmark-label="7.4.1 Class template polymorphic_allocator overview">Class template <code>polymorphic_allocator</code> overview</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.overview">[memresource.polymorphic.allocator.overview]</a></span></header>
+      <header><span class="section-number">8.4.1</span> <h1 data-bookmark-label="8.4.1 Class template polymorphic_allocator overview">Class template <code>polymorphic_allocator</code> overview</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.overview">[memresource.polymorphic.allocator.overview]</a></span></header>
       
       
 
       <p para_num="1" id="memresource.polymorphic.allocator.overview.1">
-        A specialization of class template <code>pmr::polymorphic_allocator</code> conforms to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>).
+        A specialization of class template <code>pmr::polymorphic_allocator</code> conforms to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>).
         Constructed with different memory resources, different instances of the same specialization of <code>pmr::polymorphic_allocator</code> can exhibit entirely different allocation behavior.
         This runtime polymorphism allows objects that use <code>polymorphic_allocator</code> to behave as if they used different allocator types at run time even though they use the same static allocator type.
       </p>
@@ -5199,7 +5728,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">7.4.2</span> <h1 data-bookmark-label="7.4.2 polymorphic_allocator constructors"><code>polymorphic_allocator</code> constructors</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.ctor">[memresource.polymorphic.allocator.ctor]</a></span></header>
+      <header><span class="section-number">8.4.2</span> <h1 data-bookmark-label="8.4.2 polymorphic_allocator constructors"><code>polymorphic_allocator</code> constructors</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.ctor">[memresource.polymorphic.allocator.ctor]</a></span></header>
       
       
 
@@ -5270,7 +5799,7 @@ polymorphic_allocator(const polymorphic_allocator&lt;U&gt;&amp; other) noexcept;
     
 
     <section>
-      <header><span class="section-number">7.4.3</span> <h1 data-bookmark-label="7.4.3 polymorphic_allocator member functions"><code>polymorphic_allocator</code> member functions</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.mem">[memresource.polymorphic.allocator.mem]</a></span></header>
+      <header><span class="section-number">8.4.3</span> <h1 data-bookmark-label="8.4.3 polymorphic_allocator member functions"><code>polymorphic_allocator</code> member functions</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.mem">[memresource.polymorphic.allocator.mem]</a></span></header>
       
       
 
@@ -5480,7 +6009,7 @@ void destroy(T* p);</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">7.4.4</span> <h1 data-bookmark-label="7.4.4 polymorphic_allocator equality">polymorphic_allocator equality</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.eq">[memresource.polymorphic.allocator.eq]</a></span></header>
+      <header><span class="section-number">8.4.4</span> <h1 data-bookmark-label="8.4.4 polymorphic_allocator equality">polymorphic_allocator equality</h1> <span style="float:right"><a href="#memresource.polymorphic.allocator.eq">[memresource.polymorphic.allocator.eq]</a></span></header>
       
       
 
@@ -5528,7 +6057,7 @@ bool operator!=(const polymorphic_allocator&lt;T1&gt;&amp; a,
     
 
     <section>
-      <header><span class="section-number">7.5</span> <h1 data-bookmark-label="7.5 template alias resource_adaptor">template alias <code>resource_adaptor</code></h1> <span style="float:right"><a href="#memresource.resource.adaptor">[memresource.resource.adaptor]</a></span></header>
+      <header><span class="section-number">8.5</span> <h1 data-bookmark-label="8.5 template alias resource_adaptor">template alias <code>resource_adaptor</code></h1> <span style="float:right"><a href="#memresource.resource.adaptor">[memresource.resource.adaptor]</a></span></header>
       
     
 
@@ -5536,7 +6065,7 @@ bool operator!=(const polymorphic_allocator&lt;T1&gt;&amp; a,
     
 
     <section>
-      <header><span class="section-number">7.5.1</span> <h1 data-bookmark-label="7.5.1 resource_adaptor"><code>resource_adaptor</code></h1> <span style="float:right"><a href="#memresource.resource.adaptor.overview">[memresource.resource.adaptor.overview]</a></span></header>
+      <header><span class="section-number">8.5.1</span> <h1 data-bookmark-label="8.5.1 resource_adaptor"><code>resource_adaptor</code></h1> <span style="float:right"><a href="#memresource.resource.adaptor.overview">[memresource.resource.adaptor.overview]</a></span></header>
       
       
 
@@ -5547,7 +6076,7 @@ bool operator!=(const polymorphic_allocator&lt;T1&gt;&amp; a,
         The requirements on this class template are defined below.
         The name <code>resource_adaptor_imp</code> is for exposition only and is not normative,
         but the definitions of the members of that class, whatever its name, are normative.
-        In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
+        In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
       </p>
       <ul>
         <li><code>typename allocator_traits&lt;Allocator&gt;::pointer</code> shall be identical to typename <code>allocator_traits&lt;Allocator&gt;::value_type*</code>.</li>
@@ -5595,7 +6124,7 @@ template &lt;class Allocator&gt;
     
 
     <section>
-      <header><span class="section-number">7.5.2</span> <h1 data-bookmark-label="7.5.2 resource_adaptor_imp constructors"><code>resource_adaptor_imp</code> constructors</h1> <span style="float:right"><a href="#memresource.resource.adaptor.ctor">[memresource.resource.adaptor.ctor]</a></span></header>
+      <header><span class="section-number">8.5.2</span> <h1 data-bookmark-label="8.5.2 resource_adaptor_imp constructors"><code>resource_adaptor_imp</code> constructors</h1> <span style="float:right"><a href="#memresource.resource.adaptor.ctor">[memresource.resource.adaptor.ctor]</a></span></header>
       
       
 
@@ -5636,7 +6165,7 @@ template &lt;class Allocator&gt;
     
 
     <section>
-      <header><span class="section-number">7.5.3</span> <h1 data-bookmark-label="7.5.3 resource_adaptor_imp member functions"><code>resource_adaptor_imp</code> member functions</h1> <span style="float:right"><a href="#memresource.resource.adaptor.mem">[memresource.resource.adaptor.mem]</a></span></header>
+      <header><span class="section-number">8.5.3</span> <h1 data-bookmark-label="8.5.3 resource_adaptor_imp member functions"><code>resource_adaptor_imp</code> member functions</h1> <span style="float:right"><a href="#memresource.resource.adaptor.mem">[memresource.resource.adaptor.mem]</a></span></header>
       
       
 
@@ -5649,7 +6178,7 @@ template &lt;class Allocator&gt;
         
         <cxx-returns para_num="2" id="memresource.resource.adaptor.mem.2">
     
-    <dt>Returns:</dt><dd>Allocated memory obtained by calling <code>m_alloc.allocate</code>. The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref in="" to="memresource"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource" href="#memresource">7</a></cxx-ref>).</dd>
+    <dt>Returns:</dt><dd>Allocated memory obtained by calling <code>m_alloc.allocate</code>. The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref in="" to="memresource"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource" href="#memresource">8</a></cxx-ref>).</dd>
   </cxx-returns>
       
     </dl>
@@ -5700,7 +6229,7 @@ template &lt;class Allocator&gt;
     
 
     <section>
-      <header><span class="section-number">7.6</span> <h1 data-bookmark-label="7.6 Access to program-wide memory_resource objects">Access to program-wide <code>memory_resource</code> objects</h1> <span style="float:right"><a href="#memresource.global">[memresource.global]</a></span></header>
+      <header><span class="section-number">8.6</span> <h1 data-bookmark-label="8.6 Access to program-wide memory_resource objects">Access to program-wide <code>memory_resource</code> objects</h1> <span style="float:right"><a href="#memresource.global">[memresource.global]</a></span></header>
       
     
 
@@ -5804,7 +6333,7 @@ template &lt;class Allocator&gt;
     
 
     <section>
-      <header><span class="section-number">7.7</span> <h1 data-bookmark-label="7.7 Pool resource classes">Pool resource classes</h1> <span style="float:right"><a href="#memresource.pool">[memresource.pool]</a></span></header>
+      <header><span class="section-number">8.7</span> <h1 data-bookmark-label="8.7 Pool resource classes">Pool resource classes</h1> <span style="float:right"><a href="#memresource.pool">[memresource.pool]</a></span></header>
       
     
 
@@ -5812,7 +6341,7 @@ template &lt;class Allocator&gt;
     
 
     <section>
-      <header><span class="section-number">7.7.1</span> <h1 data-bookmark-label="7.7.1 Classes synchronized_pool_resource and unsynchronized_pool_resource">Classes <code>synchronized_pool_resource</code> and <code>unsynchronized_pool_resource</code></h1> <span style="float:right"><a href="#memresource.pool.overview">[memresource.pool.overview]</a></span></header>
+      <header><span class="section-number">8.7.1</span> <h1 data-bookmark-label="8.7.1 Classes synchronized_pool_resource and unsynchronized_pool_resource">Classes <code>synchronized_pool_resource</code> and <code>unsynchronized_pool_resource</code></h1> <span style="float:right"><a href="#memresource.pool.overview">[memresource.pool.overview]</a></span></header>
       
       
 
@@ -5930,7 +6459,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.7.2</span> <h1 data-bookmark-label="7.7.2 pool_options data members"><code>pool_options</code> data members</h1> <span style="float:right"><a href="#memresource.pool.options">[memresource.pool.options]</a></span></header>
+      <header><span class="section-number">8.7.2</span> <h1 data-bookmark-label="8.7.2 pool_options data members"><code>pool_options</code> data members</h1> <span style="float:right"><a href="#memresource.pool.options">[memresource.pool.options]</a></span></header>
       
       
 
@@ -5981,7 +6510,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.7.3</span> <h1 data-bookmark-label="7.7.3 pool resource constructors and destructors">pool resource constructors and destructors</h1> <span style="float:right"><a href="#memresource.pool.ctor">[memresource.pool.ctor]</a></span></header>
+      <header><span class="section-number">8.7.3</span> <h1 data-bookmark-label="8.7.3 pool resource constructors and destructors">pool resource constructors and destructors</h1> <span style="float:right"><a href="#memresource.pool.ctor">[memresource.pool.ctor]</a></span></header>
       
       
 
@@ -6042,7 +6571,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.7.4</span> <h1 data-bookmark-label="7.7.4 pool resource members">pool resource members</h1> <span style="float:right"><a href="#memresource.pool.mem">[memresource.pool.mem]</a></span></header>
+      <header><span class="section-number">8.7.4</span> <h1 data-bookmark-label="8.7.4 pool resource members">pool resource members</h1> <span style="float:right"><a href="#memresource.pool.mem">[memresource.pool.mem]</a></span></header>
       
       
 
@@ -6112,8 +6641,8 @@ protected:
 
         <cxx-returns para_num="8" id="memresource.pool.mem.8">
     
-    <dt>Returns:</dt><dd>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="basic.stc.dynamic.deallocation">§3.7.4.2</span></cxx-ref>3.7.4.2 ) with a size of at least <code>bytes</code>.
-        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref in="" to="memresource"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource" href="#memresource">7</a></cxx-ref>).</dd>
+    <dt>Returns:</dt><dd>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="basic.stc.dynamic.deallocation">§3.7.4.2</span></cxx-ref>) with a size of at least <code>bytes</code>.
+        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref in="" to="memresource"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource" href="#memresource">8</a></cxx-ref>).</dd>
   </cxx-returns>
         <cxx-effects para_num="9" id="memresource.pool.mem.9">
     
@@ -6194,7 +6723,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.8</span> <h1 data-bookmark-label="7.8 Class monotonic_buffer_resource">Class <code>monotonic_buffer_resource</code></h1> <span style="float:right"><a href="#memresource.monotonic.buffer">[memresource.monotonic.buffer]</a></span></header>
+      <header><span class="section-number">8.8</span> <h1 data-bookmark-label="8.8 Class monotonic_buffer_resource">Class <code>monotonic_buffer_resource</code></h1> <span style="float:right"><a href="#memresource.monotonic.buffer">[memresource.monotonic.buffer]</a></span></header>
       
     
 
@@ -6202,7 +6731,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.8.1</span> <h1 data-bookmark-label="7.8.1 Class monotonic_buffer_resource overview">Class <code>monotonic_buffer_resource</code> overview</h1> <span style="float:right"><a href="#memresource.monotonic.buffer.overview">[memresource.monotonic.buffer.overview]</a></span></header>
+      <header><span class="section-number">8.8.1</span> <h1 data-bookmark-label="8.8.1 Class monotonic_buffer_resource overview">Class <code>monotonic_buffer_resource</code> overview</h1> <span style="float:right"><a href="#memresource.monotonic.buffer.overview">[memresource.monotonic.buffer.overview]</a></span></header>
       
       
 
@@ -6270,7 +6799,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.8.2</span> <h1 data-bookmark-label="7.8.2 monotonic_buffer_resource constructor and destructor"><code>monotonic_buffer_resource</code> constructor and destructor</h1> <span style="float:right"><a href="#memresource.monotonic.buffer.ctor">[memresource.monotonic.buffer.ctor]</a></span></header>
+      <header><span class="section-number">8.8.2</span> <h1 data-bookmark-label="8.8.2 monotonic_buffer_resource constructor and destructor"><code>monotonic_buffer_resource</code> constructor and destructor</h1> <span style="float:right"><a href="#memresource.monotonic.buffer.ctor">[memresource.monotonic.buffer.ctor]</a></span></header>
       
       
 
@@ -6342,7 +6871,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.8.3</span> <h1 data-bookmark-label="7.8.3 monotonic_buffer_resource members">monotonic_buffer_resource members</h1> <span style="float:right"><a href="#memresource.monotonic.buffer.mem">[memresource.monotonic.buffer.mem]</a></span></header>
+      <header><span class="section-number">8.8.3</span> <h1 data-bookmark-label="8.8.3 monotonic_buffer_resource members">monotonic_buffer_resource members</h1> <span style="float:right"><a href="#memresource.monotonic.buffer.mem">[memresource.monotonic.buffer.mem]</a></span></header>
       
       
 
@@ -6390,8 +6919,8 @@ protected:
 
         <cxx-returns para_num="7" id="memresource.monotonic.buffer.mem.7">
     
-    <dt>Returns:</dt><dd>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++11 <span title="basic.stc.dynamic.deallocation">§3.7.4.2</span></cxx-ref>) with a size of at least <code>bytes</code>.
-        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref in="" to="memresource"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource" href="#memresource">7</a></cxx-ref>).</dd>
+    <dt>Returns:</dt><dd>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="basic.stc.dynamic.deallocation">§3.7.4.2</span></cxx-ref>) with a size of at least <code>bytes</code>.
+        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref in="" to="memresource"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource" href="#memresource">8</a></cxx-ref>).</dd>
   </cxx-returns>
         <cxx-effects para_num="8" id="memresource.monotonic.buffer.mem.8">
     
@@ -6460,7 +6989,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.9</span> <h1 data-bookmark-label="7.9 Alias templates using polymorphic memory resources">Alias templates using polymorphic memory resources</h1> <span style="float:right"><a href="#memresource.aliases">[memresource.aliases]</a></span></header>
+      <header><span class="section-number">8.9</span> <h1 data-bookmark-label="8.9 Alias templates using polymorphic memory resources">Alias templates using polymorphic memory resources</h1> <span style="float:right"><a href="#memresource.aliases">[memresource.aliases]</a></span></header>
       
     
 
@@ -6468,7 +6997,7 @@ protected:
     
 
     <section>
-      <header><span class="section-number">7.9.1</span> <h1 data-bookmark-label="7.9.1 Header <experimental/string> synopsis">Header &lt;experimental/string&gt; synopsis</h1> <span style="float:right"><a href="#header.string.synop">[header.string.synop]</a></span></header>
+      <header><span class="section-number">8.9.1</span> <h1 data-bookmark-label="8.9.1 Header <experimental/string> synopsis">Header &lt;experimental/string&gt; synopsis</h1> <span style="float:right"><a href="#header.string.synop">[header.string.synop]</a></span></header>
       
       
 <pre><code>#include &lt;string&gt;
@@ -6502,7 +7031,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.2</span> <h1 data-bookmark-label="7.9.2 Header <experimental/deque> synopsis">Header &lt;experimental/deque&gt; synopsis</h1> <span style="float:right"><a href="#header.deque.synop">[header.deque.synop]</a></span></header>
+      <header><span class="section-number">8.9.2</span> <h1 data-bookmark-label="8.9.2 Header <experimental/deque> synopsis">Header &lt;experimental/deque&gt; synopsis</h1> <span style="float:right"><a href="#header.deque.synop">[header.deque.synop]</a></span></header>
       
       
 <pre><code>#include &lt;deque&gt;
@@ -6527,7 +7056,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.3</span> <h1 data-bookmark-label="7.9.3 Header <experimental/forward_list> synopsis">Header &lt;experimental/forward_list&gt; synopsis</h1> <span style="float:right"><a href="#header.forward_list.synop">[header.forward_list.synop]</a></span></header>
+      <header><span class="section-number">8.9.3</span> <h1 data-bookmark-label="8.9.3 Header <experimental/forward_list> synopsis">Header &lt;experimental/forward_list&gt; synopsis</h1> <span style="float:right"><a href="#header.forward_list.synop">[header.forward_list.synop]</a></span></header>
       
       
 <pre><code>#include &lt;forward_list&gt;
@@ -6553,7 +7082,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.4</span> <h1 data-bookmark-label="7.9.4 Header <experimental/list> synopsis">Header &lt;experimental/list&gt; synopsis</h1> <span style="float:right"><a href="#header.list.synop">[header.list.synop]</a></span></header>
+      <header><span class="section-number">8.9.4</span> <h1 data-bookmark-label="8.9.4 Header <experimental/list> synopsis">Header &lt;experimental/list&gt; synopsis</h1> <span style="float:right"><a href="#header.list.synop">[header.list.synop]</a></span></header>
       
       
 <pre><code>#include &lt;list&gt;
@@ -6578,7 +7107,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.5</span> <h1 data-bookmark-label="7.9.5 Header <experimental/vector> synopsis">Header &lt;experimental/vector&gt; synopsis</h1> <span style="float:right"><a href="#header.vector.synop">[header.vector.synop]</a></span></header>
+      <header><span class="section-number">8.9.5</span> <h1 data-bookmark-label="8.9.5 Header <experimental/vector> synopsis">Header &lt;experimental/vector&gt; synopsis</h1> <span style="float:right"><a href="#header.vector.synop">[header.vector.synop]</a></span></header>
       
       
 <pre><code>#include &lt;vector&gt;
@@ -6603,7 +7132,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.6</span> <h1 data-bookmark-label="7.9.6 Header <experimental/map> synopsis">Header &lt;experimental/map&gt; synopsis</h1> <span style="float:right"><a href="#header.map.synop">[header.map.synop]</a></span></header>
+      <header><span class="section-number">8.9.6</span> <h1 data-bookmark-label="8.9.6 Header <experimental/map> synopsis">Header &lt;experimental/map&gt; synopsis</h1> <span style="float:right"><a href="#header.map.synop">[header.map.synop]</a></span></header>
       
       
 <pre><code>#include &lt;map&gt;
@@ -6633,7 +7162,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.7</span> <h1 data-bookmark-label="7.9.7 Header <experimental/set> synopsis">Header &lt;experimental/set&gt; synopsis</h1> <span style="float:right"><a href="#header.set.synop">[header.set.synop]</a></span></header>
+      <header><span class="section-number">8.9.7</span> <h1 data-bookmark-label="8.9.7 Header <experimental/set> synopsis">Header &lt;experimental/set&gt; synopsis</h1> <span style="float:right"><a href="#header.set.synop">[header.set.synop]</a></span></header>
       
       
 <pre><code>#include &lt;set&gt;
@@ -6663,7 +7192,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.8</span> <h1 data-bookmark-label="7.9.8 Header <experimental/unordered_map> synopsis">Header &lt;experimental/unordered_map&gt; synopsis</h1> <span style="float:right"><a href="#header.unordered_map.synop">[header.unordered_map.synop]</a></span></header>
+      <header><span class="section-number">8.9.8</span> <h1 data-bookmark-label="8.9.8 Header <experimental/unordered_map> synopsis">Header &lt;experimental/unordered_map&gt; synopsis</h1> <span style="float:right"><a href="#header.unordered_map.synop">[header.unordered_map.synop]</a></span></header>
       
       
 <pre><code>#include &lt;unordered_map&gt;
@@ -6699,7 +7228,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.9</span> <h1 data-bookmark-label="7.9.9 Header <experimental/unordered_set> synopsis">Header &lt;experimental/unordered_set&gt; synopsis</h1> <span style="float:right"><a href="#header.unordered_set.synop">[header.unordered_set.synop]</a></span></header>
+      <header><span class="section-number">8.9.9</span> <h1 data-bookmark-label="8.9.9 Header <experimental/unordered_set> synopsis">Header &lt;experimental/unordered_set&gt; synopsis</h1> <span style="float:right"><a href="#header.unordered_set.synop">[header.unordered_set.synop]</a></span></header>
       
       
 <pre><code>#include &lt;unordered_set&gt;
@@ -6733,7 +7262,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">7.9.10</span> <h1 data-bookmark-label="7.9.10 Header <experimental/regex> synopsis">Header &lt;experimental/regex&gt; synopsis</h1> <span style="float:right"><a href="#header.regex.synop">[header.regex.synop]</a></span></header>
+      <header><span class="section-number">8.9.10</span> <h1 data-bookmark-label="8.9.10 Header <experimental/regex> synopsis">Header &lt;experimental/regex&gt; synopsis</h1> <span style="float:right"><a href="#header.regex.synop">[header.regex.synop]</a></span></header>
       
       
 <pre><code>#include &lt;regex&gt;
@@ -6761,6 +7290,76 @@ namespace pmr {
     
     </section>
   </cxx-section>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="algorithms">
+    
+
+    <section>
+      <header><span class="section-number">9</span> <h1 data-bookmark-label="9 Algorithms library">Algorithms library</h1> <span style="float:right"><a href="#algorithms">[algorithms]</a></span></header>
+      
+  
+
+  <cxx-section id="header.algorithm.synop">
+    
+
+    <section>
+      <header><span class="section-number">9.1</span> <h1 data-bookmark-label="9.1 Header <experimental/algorithm> synopsis">Header <code>&lt;experimental/algorithm&gt;</code> synopsis</h1> <span style="float:right"><a href="#header.algorithm.synop">[header.algorithm.synop]</a></span></header>
+      
+    
+
+<pre><code>#include &lt;algorithm&gt;
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  template&lt;class ForwardIterator, class Searcher&gt;
+  ForwardIterator search(ForwardIterator first, ForwardIterator last,
+                         const Searcher&amp; searcher);
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="alg.search">
+    
+
+    <section>
+      <header><span class="section-number">9.2</span> <h1 data-bookmark-label="9.2 Search">Search</h1> <span style="float:right"><a href="#alg.search">[alg.search]</a></span></header>
+      
+    
+
+    <cxx-function para_num="1" id="alg.search.1">
+    
+    <pre><code><cxx-signature>template&lt;class ForwardIterator, class Searcher&gt;
+ForwardIterator search(ForwardIterator first, ForwardIterator last,
+                       const Searcher&amp; searcher);</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+      <cxx-effects para_num="2" id="alg.search.2">
+    
+    <dt>Effects:</dt><dd>Equivalent to <code>searcher(first, last)</code>.</dd>
+  </cxx-effects>
+      <cxx-remarks para_num="3" id="alg.search.3">
+    
+    <dt>Remarks:</dt><dd><code>Searcher</code> need not meet the <code>CopyConstructible</code> requirements.</dd>
+  </cxx-remarks>
+    
+    </dl>
+  </cxx-function>
   
     </section>
   </cxx-section>

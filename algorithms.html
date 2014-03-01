@@ -1,0 +1,35 @@
+<cxx-clause id="algorithms">
+  <h1>Algorithms library</h1>
+
+  <cxx-section id="header.algorithm.synop">
+    <h1>Header <code>&lt;experimental/algorithm></code> synopsis</h1>
+
+<pre><code>#include &lt;algorithm>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  template&lt;class ForwardIterator, class Searcher&gt;
+  ForwardIterator search(ForwardIterator first, ForwardIterator last,
+                         const Searcher&amp; searcher);
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+  </cxx-section>
+
+  <cxx-section id="alg.search">
+    <h1>Search</h1>
+
+    <cxx-function>
+      <cxx-signature>template&lt;class ForwardIterator, class Searcher&gt;
+ForwardIterator search(ForwardIterator first, ForwardIterator last,
+                       const Searcher&amp; searcher);</cxx-signature>
+
+      <cxx-effects>Equivalent to <code>searcher(first, last)</code>.</cxx-effects>
+      <cxx-remarks><code>Searcher</code> need not meet the <code>CopyConstructible</code> requirements.</cxx-remarks>
+    </cxx-function>
+  </cxx-section>
+</cxx-clause>

@@ -1,0 +1,261 @@
+<cxx-clause id="func">
+  <h1>Function objects</h1>
+
+  <cxx-section id="header.functional.synop">
+    <h1>Header <code>&lt;experimental/functional></code> synopsis</h1>
+
+<pre><code>#include &lt;functional>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  <cxx-ref insynopsis="" to="func.searchers"></cxx-ref>
+  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+    class default_searcher;
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+    class boyer_moore_searcher;
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+    class boyer_moore_horspool_searcher;
+
+
+  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+  default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
+  make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+                        BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+  boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+  make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                            Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator,
+           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+           class BinaryPredicate = equal_to&lt;&gt;&gt;
+  boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+  make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                                     Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+  </cxx-section>
+
+  <cxx-section id="func.searchers">
+    <h1>Searchers</h1>
+
+    <p>
+      This sub-clause provides function object types (<cxx-ref in="cxx" to="function.objects"></cxx-ref>) for operations
+      that search for a sequence <cxx-range begin="pat_first" end="pat_last"></cxx-range> in another sequence <cxx-range begin="first" end="last"></cxx-range>
+      that is provided to the object's function call operator.
+      The first sequence (the pattern to be searched for) is provided to the object's constructor,
+      and the second (the sequence to be searched) is provided to the function call operator.
+    </p>
+
+    <p>
+      Each specialization of a class template specified in this sub-clause <cxx-ref to="func.searchers"></cxx-ref> shall meet the <code>CopyConstructible</code> and <code>CopyAssignable</code> requirements.
+      Template parameters named <code>ForwardIterator</code>, <code>ForwardIterator1</code>, <code>ForwardIterator2</code>, <code>RandomAccessIterator</code>, <code>RandomAccessIterator1</code>, <code>RandomAccessIterator2</code>, and <code>BinaryPredicate</code> of templates specified in this sub-clause <cxx-ref to="func.searchers"></cxx-ref> shall meet the same requirements and semantics as specified in <cxx-ref in="cxx" to="algorithms.general"></cxx-ref>.
+      Template parameters named <code>Hash</code> shall meet the requirements as specified in <cxx-ref in="cxx" to="hash.requirements"></cxx-ref>.
+    </p>
+
+    <cxx-section id="func.searchers.default">
+      <h1>Class template <code>default_searcher</code></h1>
+
+      <pre><code>template&lt;class ForwardIterator1, class BinaryPredicate = equal_to&lt;&gt;&gt;
+class default_searcher {
+public:
+  default_searcher(ForwardIterator1 pat_first, ForwardIterator1 pat_last,
+                   BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class ForwardIterator2&gt;
+  ForwardIterator2
+  operator()(ForwardIterator2 first, ForwardIterator2 last) const;
+
+private:
+  ForwardIterator1 pat_first_; <i>// exposition only</i>
+  ForwardIterator1 pat_last_;  <i>// exposition only</i>
+  BinaryPredicate  pred_;      <i>// exposition only</i>
+};
+</code></pre>
+
+      <cxx-function>
+        <cxx-signature>default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+
+        <cxx-effects>Constructs a <code>default_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>, <code>pat_last_</code> with <code>pat_last</code>, and <code>pred_</code> with <code>pred</code>.</cxx-effects>
+        <cxx-throws>Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>ForwardIterator1</code>.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class ForwardIterator2&gt;
+ForwardIterator2 operator()(ForwardIterator2 first, ForwardIterator2 last) const;</cxx-signature>
+
+        <cxx-effects>Equivalent to <code>std::search(first, last, pat_first_, pat_last_, pred_)</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-section id="func.searchers.default.creation">
+        <h1><code>default_searcher</code> creation functions</h1>
+
+        <cxx-function>
+          <cxx-signature>template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
+make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+                      BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+
+          <cxx-effects>Equivalent to <code>default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(pat_first, pat_last, pred)</code>.</cxx-effects>
+        </cxx-function>
+      </cxx-section>
+    </cxx-section>
+
+    <cxx-section id="func.searchers.boyer_moore">
+      <h1>Class template <code>boyer_moore_searcher</code></h1>
+
+<pre><code>template&lt;class RandomAccessIterator1,
+         class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator1&gt;::value_type&gt;,
+         class BinaryPredicate = equal_to&lt;&gt;&gt;
+class boyer_moore_searcher {
+public:
+  boyer_moore_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+                       Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator2&gt;
+  RandomAccessIterator2
+  operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
+
+private:
+  RandomAccessIterator1 pat_first_; <i>// exposition only</i>
+  RandomAccessIterator1 pat_last_;  <i>// exposition only</i>
+  Hash                  hash_;      <i>// exposition only</i>
+  BinaryPredicate       pred_;      <i>// exposition only</i>
+};
+</code></pre>
+
+      <cxx-function>
+        <cxx-signature>boyer_moore_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+Hash hf = Hash(),
+BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+
+        <cxx-requires>The value type of <code>RandomAccessIterator1</code> shall meet the <code>DefaultConstructible</code>, <code>CopyConstructible</code>, and <code>CopyAssignable</code> requirements.</cxx-requires>
+        <cxx-requires>For any two values <code>A</code> and <code>B</code> of the type <code>iterator_traits&lt;RandomAccessIterator1&gt;::value_type</code>, if <code>pred(A,B)==true</code>, then <code>hf(A)==hf(B)</code> shall be true.</cxx-requires>
+        <cxx-effects>Constructs a <code>boyer_moore_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>, <code>pat_last_</code> with <code>pat_last</code>, <code>hash_</code> with <code>hf</code>, and <code>pred_</code> with <code>pred</code>.</cxx-effects>
+        <cxx-throws>Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+        or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>,
+        or the copy constructor or <code>operator()</code> of <code>Hash</code>.
+        May throw <code>bad_alloc</code> if cannot allocate additional memory for internal data structures needed.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class RandomAccessIterator2&gt;
+RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature>
+
+        <cxx-requires><code>RandomAccessIterator1</code> and <code>RandomAccessIterator2</code> shall have the same value type.</cxx-requires>
+        <cxx-effects>Finds a subsequence of equal values in a sequence.</cxx-effects>
+        <cxx-returns>
+          The first iterator <code>i</code> in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)"></cxx-range>
+          such that for every non-negative integer <code>n</code> less than <code>pat_last_ - pat_first_</code> the following condition holds:
+          <code>pred(*(i + n), *(pat_first_ + n)) != false</code>.
+          Returns <code>first</code> if <cxx-range begin="pat_first_" end="pat_last_"></cxx-range> is empty,
+          otherwise returns <code>last</code> if no such iterator is found.
+        </cxx-returns>
+        <cxx-complexity>At most <code>(last - first) * (pat_last_ - pat_first_)</code> applications of the predicate.</cxx-complexity>
+      </cxx-function>
+
+      <cxx-section id="func.searchers.boyer_moore.creation">
+        <h1><code>boyer_moore_searcher</code> creation functions</h1>
+
+        <cxx-function>
+          <cxx-signature>template&lt;class RandomAccessIterator,
+class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+class BinaryPredicate = equal_to&lt;&gt;&gt;
+  boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+  make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                            Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+
+          <cxx-effects>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(pat_first, pat_last, hf, pred)</code>.</cxx-effects>
+        </cxx-function>
+      </cxx-section>
+    </cxx-section>
+
+    <cxx-section id="func.searchers.boyer_moore_horspool">
+      <h1>Class template <code>boyer_moore_horspool_searcher</code></h1>
+
+<pre><code>
+template&lt;class RandomAccessIterator1,
+         class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator1&gt;::value_type&gt;,
+         class BinaryPredicate = equal_to&lt;&gt;&gt;
+class boyer_moore_horspool_searcher {
+public:
+  boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+                                BinaryPredicate pred = BinaryPredicate());
+
+  template&lt;class RandomAccessIterator2&gt;
+  RandomAccessIterator2
+  operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
+
+private:
+  RandomAccessIterator1 pat_first_; <i>// exposition only</i>
+  RandomAccessIterator1 pat_last_;  <i>// exposition only</i>
+  Hash                  hash_;      <i>// exposition only</i>
+  BinaryPredicate       pred_;      <i>// exposition only</i>
+};
+</code></pre>
+
+      <cxx-function>
+        <cxx-signature>boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+
+        <cxx-requires>The value type of <code>RandomAccessIterator1</code> shall meet the <code>DefaultConstructible</code>, <code>CopyConstructible</code>, and <code>CopyAssignable</code> requirements.</cxx-requires>
+        <cxx-requires>For any two values <code>A</code> and <code>B</code> of the type <code>iterator_traits&lt;RandomAccessIterator1&gt;::value_type</code>,
+        if <code>pred(A,B)==true</code>, then <code>hf(A)==hf(B)</code> shall be true.</cxx-requires>
+        <cxx-effects>Constructs a <code>boyer_moore_horspool_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>,
+        <code>pat_last_</code> with <code>pat_last</code>, <code>hash_</code> with <code>hf</code>, and <code>pred_</code> with <code>pred</code>.</cxx-effects>
+        <cxx-throws>
+          Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+          or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>
+          or the copy constructor or <code>operator()</code> of <code>Hash</code>.
+          May throw <code>bad_alloc</code> if the system cannot allocate additional memory for internal data structures needed.
+        </cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class RandomAccessIterator2&gt;
+RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature>
+
+        <cxx-requires><code>RandomAccessIterator1</code> and <code>RandomAccessIterator2</code> shall have the same value type.</cxx-requires>
+        <cxx-effects>Finds a subsequence of equal values in a sequence.</cxx-effects>
+        <cxx-returns>
+          The first iterator <code>i</code> in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)"></cxx-range>
+          such that for every non-negative integer <code>n</code> less than <code>pat_last_ - pat_first_</code> the following condition holds:
+          <code>pred(*(i + n), *(pat_first_ + n)) != false</code>.
+          Returns <code>first</code> if <cxx-range begin="pat_first_" end="pat_last_"></cxx-range> is empty,
+          otherwise returns <code>last</code> if no such iterator is found.
+        </cxx-returns>
+        <cxx-complexity>At most <code>(last - first) * (pat_last_ - pat_first_)</code> applications of the predicate.</cxx-complexity>
+      </cxx-function>
+
+      <cxx-section id="func.searchers.boyer_moore_horspool.creation">
+        <h1><code>boyer_moore_horspool_searcher</code> creation functions</h1>
+
+        <cxx-function>
+          <cxx-signature>template&lt;class RandomAccessIterator,
+         class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+         class BinaryPredicate = equal_to&lt;&gt;&gt;
+boyer_moore_searcher_horspool&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                                   Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+
+          <cxx-effects>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(pat_first, pat_last, hf, pred)</code>.</cxx-effects>
+        </cxx-function>
+      </cxx-section>
+    </cxx-section>
+  </cxx-section>
+</cxx-clause>
