@@ -1,5 +1,6 @@
 {
     "basic.stc.dynamic.deallocation": "3.7.4.2",
+    "expr.cond": "5.16",
     "dcl.constexpr": "7.1.5",
     "temp.deduct": "14.8.2",
     "library": "17",
@@ -20,6 +21,7 @@
     "meta.unary.prop": "20.10.4.3",
     "meta.unary.prop.query": "20.10.5",
     "meta.rel": "20.10.6",
+    "meta.trans.other": "20.10.7.6",
     "ratio.comparison": "20.11.5",
     "time.traits": "20.12.4",
     "strings.general": "21.1",
