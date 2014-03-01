@@ -29,7 +29,10 @@ limitations under the License.
       ::content caption { display: inline; }
 
       th, td { border-style: solid none; border-color: black;
-               border-width: thin; }
+               border-width: thin;
+               padding: 0 0.25em; }
+      :host(.column-rules) th, :host(.column-rules) td {
+          border-left-style: solid; border-right-style: solid; }
       th { border-bottom: double medium; }
       :host(.center) td { text-align: center; }
       :host(.list) td { border: none; }

@@ -19,6 +19,10 @@ cxx-function > pre {
 	margin: 0px;
 }cxx-signature {
 	padding-left: 2em; display: block; text-indent: -2em;
+}
+
+cxx-signature.formatted {
+	text-indent: 0px;
 }cxx-attribute {
 	display: block; margin-top: 0.5em; margin-bottom: 0.5em;
 }
@@ -258,7 +262,11 @@ cxx-clause header:after {
 }
 
 [is=cxx-table] th, [is=cxx-table] td {
-	border-style: solid none; border-color: black; border-width: thin;
+	border-style: solid none; border-color: black; border-width: thin; padding: 0px 0.25em;
+}
+
+[is=cxx-table].column-rules th, [is=cxx-table].column-rules td {
+	border-left-style: solid; border-right-style: solid;
 }
 
 [is=cxx-table] th {
@@ -543,6 +551,10 @@ pre > code { display: inline-block; }
       </li>
             
               <li><span class="marker">1.5</span><a href="#general.plans">Future plans (Informative)</a>
+        
+      </li>
+            
+              <li><span class="marker">1.6</span><a href="#general.feature.test">Feature-testing recommendations (Informative)</a>
         
       </li>
             
@@ -1022,6 +1034,10 @@ pre > code { display: inline-block; }
         
       </li>
             
+              <li><span class="marker">9.3</span><a href="#alg.random.sample">Shufﬂing and sampling</a>
+        
+      </li>
+            
           </ol>
         
       </li>
@@ -1228,6 +1244,69 @@ pre > code { display: inline-block; }
     removing the <code>experimental::fundamentals_v<var>N</var></code>
     segment of its namespace and by removing the
     <code>experimental/</code> prefix from its header's path.</p>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="general.feature.test">
+    
+
+    <section>
+      <header><span class="section-number">1.6</span> <h1 data-bookmark-label="1.6 Feature-testing recommendations (Informative)">Feature-testing recommendations (Informative)</h1> <span style="float:right"><a href="#general.feature.test">[general.feature.test]</a></span></header>
+      
+    
+
+    <p para_num="1" id="general.feature.test.1">
+      For the sake of improved portability between partial implementations of various C++ standards,
+      WG21 (the ISO technical committee for the C++ programming language) recommends
+      that implementers and programmers follow the guidelines in this section concerning feature-test macros.
+      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    <a href="http://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">WG21's SD-6</a> makes similar recommendations for the C++ Standard itself.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+    </p>
+
+    <p para_num="2" id="general.feature.test.2">
+      Implementers who provide a new standard feature should define a macro with the recommended name and value,
+      in the same circumstances under which the feature is available (for example, taking into account relevant command-line options),
+      to indicate the presence of support for that feature.
+    </p>
+
+    <p para_num="3" id="general.feature.test.3">
+      Programmers who wish to determine whether a feature is available in an implementation should base that determination on the state of the macro with the recommended name.
+      (The absence of a tested feature may result in a program with decreased functionality, or the relevant functionality may be provided in a different way.
+      A program that strictly depends on support for a feature can just try to use the feature unconditionally;
+      presumably, on an implementation lacking necessary support, translation will fail.)
+    </p>
+
+    <table is="cxx-table" class="column-rules">
+    
+
+    <caption>Table 2 — <wbr><caption>Significant features in this technical specification</caption></caption>
+    
+      
+
+      <thead>
+        <tr>
+          <th>Doc. No.</th>
+          <th>Title</th>
+          <th>Primary Section</th>
+          <th>Macro Name</th>
+          <th>Value</th>
+          <th>Header</th>
+        </tr>
+      </thead>
+
+      <tbody><tr>
+        <td>N3925</td>
+        <td>A <code>sample</code> Proposal</td>
+        <td><cxx-ref in="" to="alg.random.sample"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="alg.random.sample" elem="{{toElem}}"></cxx-get-element-by-id><a title="alg.random.sample" href="#alg.random.sample">9.3</a></cxx-ref></td>
+        <td><code>__cpp_lib_experimental_sample</code></td>
+        <td>201402</td>
+        <td><code>&lt;algorithm&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
   
     </section>
   </cxx-section>
@@ -4121,12 +4200,12 @@ namespace fundamentals_v1 {
 
       <cxx-effects para_num="5" id="string.view.cons.5">
     
-    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref in="" to="tab:string.view.ctr.1"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.ctr.1" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.ctr.1" href="#tab:string.view.ctr.1">Table 2</a></cxx-ref>.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref in="" to="tab:string.view.ctr.1"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.ctr.1" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.ctr.1" href="#tab:string.view.ctr.1">Table 3</a></cxx-ref>.</dd>
   </cxx-effects>
       <table is="cxx-table" id="tab:string.view.ctr.1">
     
 
-    <caption>Table 2 — <wbr><caption><code>basic_string_view(const basic_string&amp;)</code> effects</caption></caption>
+    <caption>Table 3 — <wbr><caption><code>basic_string_view(const basic_string&amp;)</code> effects</caption></caption>
     
         
         <tbody><tr><th>Element</th><th>Value</th></tr>
@@ -4153,13 +4232,13 @@ namespace fundamentals_v1 {
       <cxx-effects para_num="8" id="string.view.cons.8">
     
     <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code> referring to the same string as <code>str</code>, with the postconditions
-      in <cxx-ref in="" to="tab:string.view.ctr.2"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.ctr.2" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.ctr.2" href="#tab:string.view.ctr.2">Table 3</a></cxx-ref>.</dd>
+      in <cxx-ref in="" to="tab:string.view.ctr.2"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.ctr.2" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.ctr.2" href="#tab:string.view.ctr.2">Table 4</a></cxx-ref>.</dd>
   </cxx-effects>
 
       <table is="cxx-table" id="tab:string.view.ctr.2">
     
 
-    <caption>Table 3 — <wbr><caption>basic_string_view(const charT*) effects</caption></caption>
+    <caption>Table 4 — <wbr><caption>basic_string_view(const charT*) effects</caption></caption>
     
       <tbody><tr><th>Element</th><th>Value</th></tr>
       <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -4189,12 +4268,12 @@ namespace fundamentals_v1 {
   </cxx-requires>
       <cxx-effects para_num="12" id="string.view.cons.12">
     
-    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref in="" to="tab:string.view.ctr.3"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.ctr.3" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.ctr.3" href="#tab:string.view.ctr.3">Table 4</a></cxx-ref>.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref in="" to="tab:string.view.ctr.3"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.ctr.3" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.ctr.3" href="#tab:string.view.ctr.3">Table 5</a></cxx-ref>.</dd>
   </cxx-effects>
       <table is="cxx-table" id="tab:string.view.ctr.3">
     
 
-    <caption>Table 4 — <wbr><caption><code>basic_string_view(const charT*, size_type)</code> effects</caption></caption>
+    <caption>Table 5 — <wbr><caption><code>basic_string_view(const charT*, size_type)</code> effects</caption></caption>
     
         <tbody><tr><th>Element</th><th>Value</th></tr>
         <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -4726,12 +4805,12 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       <cxx-returns para_num="22" id="string.view.ops.22">
     
     <dt>Returns:</dt><dd>The nonzero result if the result of the comparison is nonzero.
-        Otherwise, returns a value as indicated in <cxx-ref in="" to="tab:string.view.compare"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.compare" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.compare" href="#tab:string.view.compare">Table 5</a></cxx-ref>.</dd>
+        Otherwise, returns a value as indicated in <cxx-ref in="" to="tab:string.view.compare"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.compare" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.compare" href="#tab:string.view.compare">Table 6</a></cxx-ref>.</dd>
   </cxx-returns>
       <table is="cxx-table" id="tab:string.view.compare" class="center">
     
 
-    <caption>Table 5 — <wbr><caption><code>compare()</code> results</caption></caption>
+    <caption>Table 6 — <wbr><caption><code>compare()</code> results</caption></caption>
     
         
         <tbody><tr><th>Condition</th><th>Return Value</th></tr>
@@ -5051,13 +5130,13 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     <p para_num="1" id="string.view.comparison.1">
       Let <code>S</code> be <code>basic_string_view&lt;charT, traits&gt;</code>, and <code>sv</code> be an instance of <code>S</code>.
       Implementations shall provide sufficient additional overloads marked <code>constexpr</code> and <code>noexcept</code>
-      so that an object <code><var>t</var></code> with an implicit conversion to <code>S</code> can be compared according to <cxx-ref in="" to="tab:string.view.comparison.overloads"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.comparison.overloads" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.comparison.overloads" href="#tab:string.view.comparison.overloads">Table 6</a></cxx-ref>.
+      so that an object <code><var>t</var></code> with an implicit conversion to <code>S</code> can be compared according to <cxx-ref in="" to="tab:string.view.comparison.overloads"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:string.view.comparison.overloads" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:string.view.comparison.overloads" href="#tab:string.view.comparison.overloads">Table 7</a></cxx-ref>.
     </p>
 
     <table is="cxx-table" id="tab:string.view.comparison.overloads" class="center">
     
 
-    <caption>Table 6 — <wbr><caption>Additional <code>basic_string_view</code> comparison overloads</caption></caption>
+    <caption>Table 7 — <wbr><caption>Additional <code>basic_string_view</code> comparison overloads</caption></caption>
     
       <tbody><tr><th>Expression</th><th>Equivalent to</th></tr>
       <tr><td><code>t == sv</code></td><td><code>S(t) == sv</code></td></tr>
@@ -5288,13 +5367,13 @@ constexpr bool operator==(
       but where <code>C</code> is not dependent on the type of <code>alloc</code>.
       Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
       <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref in="" to="memresource.class"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="memresource.class" elem="{{toElem}}"></cxx-get-element-by-id><a title="memresource.class" href="#memresource.class">8.3</a></cxx-ref>).
-      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref in="" to="tab:memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:memresource.type.erased.allocator" href="#tab:memresource.type.erased.allocator">Table 7</a></cxx-ref>:
+      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref in="" to="tab:memresource.type.erased.allocator"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tab:memresource.type.erased.allocator" elem="{{toElem}}"></cxx-get-element-by-id><a title="tab:memresource.type.erased.allocator" href="#tab:memresource.type.erased.allocator">Table 8</a></cxx-ref>:
     </p>
 
     <table is="cxx-table" id="tab:memresource.type.erased.allocator">
     
 
-    <caption>Table 7 — <wbr><caption>Computed <code>memory_resource</code> for type-erased allocator</caption></caption>
+    <caption>Table 8 — <wbr><caption>Computed <code>memory_resource</code> for type-erased allocator</caption></caption>
     
       
       <thead>
@@ -7323,6 +7402,13 @@ inline namespace fundamentals_v1 {
   ForwardIterator search(ForwardIterator first, ForwardIterator last,
                          const Searcher&amp; searcher);
 
+  template&lt;class PopulationIterator, class SampleIterator,
+           class Distance, class UniformRandomNumberGenerator&gt;
+  SampleIterator sample(PopulationIterator first, PopulationIterator last,
+                        SampleIterator out, Distance n,
+                        UniformRandomNumberGenerator&amp;&amp; g);
+
+
 } // namespace fundamentals_v1
 } // namespace experimental
 } // namespace std</code></pre>
@@ -7356,6 +7442,76 @@ ForwardIterator search(ForwardIterator first, ForwardIterator last,
       <cxx-remarks para_num="3" id="alg.search.3">
     
     <dt>Remarks:</dt><dd><code>Searcher</code> need not meet the <code>CopyConstructible</code> requirements.</dd>
+  </cxx-remarks>
+    
+    </dl>
+  </cxx-function>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="alg.random.sample">
+    
+
+    <section>
+      <header><span class="section-number">9.3</span> <h1 data-bookmark-label="9.3 Shufﬂing and sampling">Shufﬂing and sampling</h1> <span style="float:right"><a href="#alg.random.sample">[alg.random.sample]</a></span></header>
+      
+    
+
+    <cxx-function para_num="1" id="alg.random.sample.1">
+    
+    <pre><code><cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator,
+         class Distance, class UniformRandomNumberGenerator&gt;
+SampleIterator sample(PopulationIterator first, PopulationIterator last,
+                      SampleIterator out, Distance n,
+                      UniformRandomNumberGenerator&amp;&amp; g);</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+
+      <cxx-requires para_num="2" id="alg.random.sample.2">
+    
+    <dt>Requires:</dt><dd>
+        <ul>
+          <li><code>PopulationIterator</code> shall meet the requirements of an <code>InputIterator</code> type.</li>
+          <li><code>SampleIterator</code> shall meet the requirements of an <code>OutputIterator</code> type.</li>
+          <li><code>SampleIterator</code> shall meet the additional requirements of a <code>RandomAccessIterator</code> type
+          unless <code>PopulationIterator</code> meets the additional requirements of a <code>ForwardIterator</code> type.</li>
+          <li><code>PopulationIterator</code>'s value type shall be writable to <code>out</code>.</li>
+          <li><code>Distance</code> shall be an integer type.</li>
+          <li><code>UniformRandomNumberGenerator</code> shall meet the requirements of a uniform random number generator type (<cxx-ref in="cxx" to="rand.req.urng"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="rand.req.urng">§26.5.1.3</span></cxx-ref>)
+          whose return type is convertible to <code>Distance</code>.</li>
+          <li><code>out</code> shall not be in the range <cxx-range begin="first" end="last">[<code>first</code>, <code>last</code>)</cxx-range>.</li>
+        </ul>
+      </dd>
+  </cxx-requires>
+      <cxx-effects para_num="3" id="alg.random.sample.3">
+    
+    <dt>Effects:</dt><dd>Copies <code>min(last−first, n)</code> elements (the sample) from <cxx-range begin="first" end="last">[<code>first</code>, <code>last</code>)</cxx-range> (the population) to <code>out</code>
+      such that each possible sample has equal probability of appearance.
+      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    Algorithms that obtain such effects include selection sampling and reservoir sampling.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note></dd>
+  </cxx-effects>
+      <cxx-returns para_num="4" id="alg.random.sample.4">
+    
+    <dt>Returns:</dt><dd>The end of the resulting sample range.</dd>
+  </cxx-returns>
+      <cxx-complexity para_num="5" id="alg.random.sample.5">
+    
+    <dt>Complexity:</dt><dd>O(<code>n</code>).</dd>
+  </cxx-complexity>
+      <cxx-remarks para_num="6" id="alg.random.sample.6">
+    
+    <dt>Remarks:</dt><dd>
+        <ul>
+          <li>Stable if and only if <code>PopulationIterator</code> meets the requirements of a <code>ForwardIterator</code> type.</li>
+          <li>To the extent that the implementation of this function makes use of random numbers, the object <code>g</code> shall serve as the implementation’s source of randomness.</li>
+        </ul>
+      </dd>
   </cxx-remarks>
     
     </dl>

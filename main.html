@@ -158,6 +158,54 @@
     segment of its namespace and by removing the
     <code>experimental/</code> prefix from its header's path.</p>
   </cxx-section>
+
+  <cxx-section id="general.feature.test">
+    <h1>Feature-testing recommendations (Informative)</h1>
+
+    <p>
+      For the sake of improved portability between partial implementations of various C++ standards,
+      WG21 (the ISO technical committee for the C++ programming language) recommends
+      that implementers and programmers follow the guidelines in this section concerning feature-test macros.
+      <cxx-note><a href="http://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">WG21's SD-6</a> makes similar recommendations for the C++ Standard itself.</cxx-note>
+    </p>
+
+    <p>
+      Implementers who provide a new standard feature should define a macro with the recommended name and value,
+      in the same circumstances under which the feature is available (for example, taking into account relevant command-line options),
+      to indicate the presence of support for that feature.
+    </p>
+
+    <p>
+      Programmers who wish to determine whether a feature is available in an implementation should base that determination on the state of the macro with the recommended name.
+      (The absence of a tested feature may result in a program with decreased functionality, or the relevant functionality may be provided in a different way.
+      A program that strictly depends on support for a feature can just try to use the feature unconditionally;
+      presumably, on an implementation lacking necessary support, translation will fail.)
+    </p>
+
+    <table is="cxx-table" class="column-rules">
+      <caption>Significant features in this technical specification</caption>
+
+      <thead>
+        <tr>
+          <th>Doc. No.</th>
+          <th>Title</th>
+          <th>Primary Section</th>
+          <th>Macro Name</th>
+          <th>Value</th>
+          <th>Header</th>
+        </tr>
+      </thead>
+
+      <tr>
+        <td>N3925</td>
+        <td>A <code>sample</code> Proposal</td>
+        <td><cxx-ref to="alg.random.sample"></cxx-ref></td>
+        <td><code>__cpp_lib_experimental_sample</code></td>
+        <td>201402</td>
+        <td><code>&lt;algorithm></code></td>
+      </tr>
+    </table>
+  </cxx-section>
 </cxx-clause>
 
 <cxx-include href="mods.html"></cxx-include>
