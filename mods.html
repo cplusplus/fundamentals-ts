@@ -43,7 +43,7 @@
         using constructor arguments <code>v1, v2, ..., vN</code> of types <code>V1, V2, ..., VN</code>, respectively,
         and an allocator <code>alloc</code> of type <code>Alloc</code>,
         <ins>where <code>Alloc</code> either (1) meets the requirements of an allocator (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>),
-        or (2) is a pointer type convertible to <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memresource.class"></cxx-ref>),</ins>
+        or (2) is a pointer type convertible to <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memory.resource"></cxx-ref>),</ins>
         according to the following rules:
       </p>
     </blockquote>
@@ -64,7 +64,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
 
     <blockquote>
       When a <code>function</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
-      the second argument <ins>is treated as a <i>type-erased allocator</i> (<cxx-ref to="memresource.type.erased.allocator"></cxx-ref>).</ins>
+      the second argument <ins>is treated as a <i>type-erased allocator</i> (<cxx-ref to="memory.type.erased.allocator"></cxx-ref>).</ins>
       <del>shall have a type that conforms to the requirements for Allocator (Table 17.6.3.5).
       A copy of the allocator argument is used to allocate memory, if necessary, for the internal data structures of the constructed function object.</del>
       <ins>If the constructor moves or makes a copy of a function object (including an instance of the <code>function</code> class template),
@@ -130,7 +130,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
 
     <blockquote>
       <ins>When a promise constructor that takes a first argument of type allocator_arg_t is invoked,
-      the second argument is treated as a type-erased allocator (<cxx-ref to="memresource.type.erased.allocator"></cxx-ref>).</ins>
+      the second argument is treated as a type-erased allocator (<cxx-ref to="memory.type.erased.allocator"></cxx-ref>).</ins>
     </blockquote>
   </cxx-section>
 
@@ -146,6 +146,6 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
     <p>and the following paragraph is inserted before the first (introductory) paragraph of the section.</p>
 
     <blockquote><ins>When a packaged_task constructor that takes a first argument of type allocator_arg_t is invoked,
-    the second argument is treated as a type-erased allocator (<cxx-ref to="memresource.type.erased.allocator"></cxx-ref>).</ins></blockquote>
+    the second argument is treated as a type-erased allocator (<cxx-ref to="memory.type.erased.allocator"></cxx-ref>).</ins></blockquote>
   </cxx-section>
 </cxx-clause>

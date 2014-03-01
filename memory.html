@@ -1,7 +1,7 @@
-<cxx-clause id="memresource">
-  <h1>Polymorphic Memory Resources</h1>
+<cxx-clause id="memory">
+  <h1>Memory</h1>
 
-  <cxx-section id="memresource.type.erased.allocator">
+  <cxx-section id="memory.type.erased.allocator">
     <h1>Type-erased allocator</h1>
 
     <p>
@@ -9,11 +9,11 @@
       used to allocate internal data structures for an object <code>X</code> of type <code>C</code>,
       but where <code>C</code> is not dependent on the type of <code>alloc</code>.
       Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
-      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memresource.class"></cxx-ref>).
-      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memresource.type.erased.allocator"></cxx-ref>:
+      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memory.resource"></cxx-ref>).
+      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"></cxx-ref>:
     </p>
 
-    <table is="cxx-table" id="tab:memresource.type.erased.allocator">
+    <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
       <caption>Computed <code>memory_resource</code> for type-erased allocator</caption>
       <thead>
         <tr>
@@ -55,7 +55,7 @@
     </ul>
   </cxx-section>
 
-  <cxx-section id="memresource.synop">
+  <cxx-section id="memory.resource.synop">
     <h1>Header <code>&lt;experimental/memory_resource></code> synopsis</h1>
 
     <pre><code>namespace std {
@@ -106,10 +106,10 @@ namespace pmr {
 } // namespace std</code></pre>
   </cxx-section>
 
-  <cxx-section id="memresource.class">
+  <cxx-section id="memory.resource">
     <h1>Class <code>memory_resource</code></h1>
 
-    <cxx-section id="memresource.class.overview">
+    <cxx-section id="memory.resource.overview">
       <h1>Class <code>memory_resource</code> overview</h1>
       <p>
         The <code>memory_resource</code> class is an abstract interface to an unbounded set of classes encapsulating memory resources.
@@ -138,7 +138,7 @@ protected:
 
     </cxx-section>
 
-    <cxx-section id="memresource.class.public">
+    <cxx-section id="memory.resource.public">
       <h1><code>memory_resource</code> public member functions</h1>
 
       <cxx-function>
@@ -165,7 +165,7 @@ protected:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.class.priv">
+    <cxx-section id="memory.resource.priv">
       <h1><code>memory_resource</code> protected virtual member functions</h1>
 
       <cxx-function>
@@ -196,7 +196,7 @@ protected:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.class.eq">
+    <cxx-section id="memory.resource.eq">
       <h1><code>memory_resource</code> equality</h1>
 
       <cxx-function>
@@ -212,10 +212,10 @@ protected:
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="memresource.polymorphic.allocator.class">
+  <cxx-section id="memory.polymorphic.allocator.class">
     <h1>Class template <code>polymorphic_allocator</code></h1>
 
-    <cxx-section id="memresource.polymorphic.allocator.overview">
+    <cxx-section id="memory.polymorphic.allocator.overview">
       <h1>Class template <code>polymorphic_allocator</code> overview</h1>
 
       <p>
@@ -280,7 +280,7 @@ public:
 } // namespace std</code></pre>
     </cxx-section>
 
-    <cxx-section id="memresource.polymorphic.allocator.ctor">
+    <cxx-section id="memory.polymorphic.allocator.ctor">
       <h1><code>polymorphic_allocator</code> constructors</h1>
 
       <cxx-function>
@@ -305,7 +305,7 @@ polymorphic_allocator(const polymorphic_allocator&lt;U>& other) noexcept;</cxx-s
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.polymorphic.allocator.mem">
+    <cxx-section id="memory.polymorphic.allocator.mem">
       <h1><code>polymorphic_allocator</code> member functions</h1>
 
       <cxx-function>
@@ -399,7 +399,7 @@ void destroy(T* p);</cxx-signature>
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.polymorphic.allocator.eq">
+    <cxx-section id="memory.polymorphic.allocator.eq">
       <h1>polymorphic_allocator equality</h1>
 
       <cxx-function>
@@ -418,10 +418,10 @@ bool operator!=(const polymorphic_allocator&lt;T1>& a,
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="memresource.resource.adaptor">
+  <cxx-section id="memory.resource.adaptor">
     <h1>template alias <code>resource_adaptor</code></h1>
 
-    <cxx-section id="memresource.resource.adaptor.overview">
+    <cxx-section id="memory.resource.adaptor.overview">
       <h1><code>resource_adaptor</code></h1>
 
       <p>
@@ -473,7 +473,7 @@ template &lt;class Allocator>
     allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;</code></pre>
     </cxx-section>
 
-    <cxx-section id="memresource.resource.adaptor.ctor">
+    <cxx-section id="memory.resource.adaptor.ctor">
       <h1><code>resource_adaptor_imp</code> constructors</h1>
 
       <cxx-function>
@@ -487,12 +487,12 @@ template &lt;class Allocator>
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.resource.adaptor.mem">
+    <cxx-section id="memory.resource.adaptor.mem">
       <h1><code>resource_adaptor_imp</code> member functions</h1>
 
       <cxx-function>
         <cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
-        <cxx-returns>Allocated memory obtained by calling <code>m_alloc.allocate</code>. The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memresource"></cxx-ref>).</cxx-returns>
+        <cxx-returns>Allocated memory obtained by calling <code>m_alloc.allocate</code>. The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memory.resource"></cxx-ref>).</cxx-returns>
       </cxx-function>
 
       <cxx-function>
@@ -509,7 +509,7 @@ template &lt;class Allocator>
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="memresource.global">
+  <cxx-section id="memory.resource.global">
     <h1>Access to program-wide <code>memory_resource</code> objects</h1>
 
     <cxx-function>
@@ -557,10 +557,10 @@ template &lt;class Allocator>
     </cxx-function>
   </cxx-section>
 
-  <cxx-section id="memresource.pool">
+  <cxx-section id="memory.resource.pool">
     <h1>Pool resource classes</h1>
 
-    <cxx-section id="memresource.pool.overview">
+    <cxx-section id="memory.resource.pool.overview">
       <h1>Classes <code>synchronized_pool_resource</code> and <code>unsynchronized_pool_resource</code></h1>
 
       <p>
@@ -570,7 +570,7 @@ template &lt;class Allocator>
       <ul>
         <li>Each resource owns the allocated memory, and frees it on destruction –
         even if deallocate has not been called for some of the allocated blocks.</li>
-        <li>A pool resource (see <cxx-ref to="fig:memresource.pool.resources"></cxx-ref>) consists of a collection of pools, serving requests for different block sizes.
+        <li>A pool resource (see <cxx-ref to="fig:memory.resource.pool.resources"></cxx-ref>) consists of a collection of pools, serving requests for different block sizes.
         Each individual pool manages a collection of chunks that are in turn divided into blocks of uniform size, returned via calls to <code>do_allocate</code>.
         Each call to <code>do_allocate(size, alignment)</code> is dispatched to the pool serving the smallest blocks accommodating at least <code>size</code> bytes.</li>
         <li>When a particular pool is exhausted, allocating a block from that pool results in the allocation of an additional chunk of memory from the upstream allocator (supplied at construction), thus replenishing the pool.
@@ -579,8 +579,8 @@ template &lt;class Allocator>
         <li>Allocation requests that exceed the largest block size of any pool are fulfilled directly from the upstream allocator.</li>
         <li>A <code>pool_options</code> struct may be passed to the pool resource constructors to tune the largest block size and the maximum chunk size.</li>
       </ul>
-      <cxx-example><cxx-ref to="fig:memresource.pool.resources"></cxx-ref> shows a possible data structure that implements a pool resource.
-      <cxx-figure id="fig:memresource.pool.resources">
+      <cxx-example><cxx-ref to="fig:memory.resource.pool.resources"></cxx-ref> shows a possible data structure that implements a pool resource.
+      <cxx-figure id="fig:memory.resource.pool.resources">
         <img src="PooledResourcesImage.png" width="100%"/>
         <figcaption>pool resource</figcaption>
       </cxx-figure>
@@ -657,7 +657,7 @@ protected:
 };</code></pre>
     </cxx-section>
 
-    <cxx-section id="memresource.pool.options">
+    <cxx-section id="memory.resource.pool.options">
       <h1><code>pool_options</code> data members</h1>
 
       <p>
@@ -687,7 +687,7 @@ protected:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.pool.ctor">
+    <cxx-section id="memory.resource.pool.ctor">
       <h1>pool resource constructors and destructors</h1>
 
       <cxx-function>
@@ -712,7 +712,7 @@ protected:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.pool.mem">
+    <cxx-section id="memory.resource.pool.mem">
       <h1>pool resource members</h1>
 
       <cxx-function>
@@ -742,7 +742,7 @@ protected:
         <cxx-signature>virtual void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
 
         <cxx-returns>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>) with a size of at least <code>bytes</code>.
-        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memresource"></cxx-ref>).</cxx-returns>
+        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memory.resource"></cxx-ref>).</cxx-returns>
         <cxx-effects>
           If the pool selected for a block of <code>size</code> bytes is unable to satisfy the memory request from its own internal data structures,
           it will call <code>upstream_resource()->allocate()</code> to obtain more memory.
@@ -773,10 +773,10 @@ protected:
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="memresource.monotonic.buffer">
+  <cxx-section id="memory.resource.monotonic.buffer">
     <h1>Class <code>monotonic_buffer_resource</code></h1>
 
-    <cxx-section id="memresource.monotonic.buffer.overview">
+    <cxx-section id="memory.resource.monotonic.buffer.overview">
       <h1>Class <code>monotonic_buffer_resource</code> overview</h1>
 
       <p>
@@ -837,7 +837,7 @@ protected:
 };</code></pre>
     </cxx-section>
 
-    <cxx-section id="memresource.monotonic.buffer.ctor">
+    <cxx-section id="memory.resource.monotonic.buffer.ctor">
       <h1><code>monotonic_buffer_resource</code> constructor and destructor</h1>
 
       <cxx-function>
@@ -866,7 +866,7 @@ protected:
       </cxx-function>
     </cxx-section>
 
-    <cxx-section id="memresource.monotonic.buffer.mem">
+    <cxx-section id="memory.resource.monotonic.buffer.mem">
       <h1>monotonic_buffer_resource members</h1>
 
       <cxx-function>
@@ -884,7 +884,7 @@ protected:
         <cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
 
         <cxx-returns>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>) with a size of at least <code>bytes</code>.
-        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memresource"></cxx-ref>).</cxx-returns>
+        The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memory.resource"></cxx-ref>).</cxx-returns>
         <cxx-effects>
           If the unused space in <code>current_buffer</code> can fit a block with the specified bytes and alignment,
           then allocate the return block from <code>current_buffer</code>;
@@ -910,7 +910,7 @@ protected:
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="memresource.aliases">
+  <cxx-section id="memory.resource.aliases">
     <h1>Alias templates using polymorphic memory resources</h1>
 
     <cxx-section id="header.string.synop">
