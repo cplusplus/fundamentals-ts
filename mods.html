@@ -401,7 +401,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
     <p>In <cxx-ref in="cxx" to="func.wrap.func.mod"></cxx-ref> a precondition is added to the definition of swap:</p>
 
     <cxx-function>
-      <cxx-signature>void swap(function& other) noexcept;</cxx-signature>
+      <cxx-signature>void swap(function& other)<del> noexcept</del>;</cxx-signature>
       <ins><cxx-preconditions><code>this->get_memory_resource() == other->get_memory_resource()</code>.</cxx-preconditions></ins>
       <cxx-effects>Interchanges the targets of *this and other.</cxx-effects>
     </cxx-function>
