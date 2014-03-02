@@ -1116,14 +1116,14 @@ namespace pmr {
 
   template &lt;class Key, class T,
             class Hash = hash&lt;Key>,
-            class Pred = std::equal_to&lt;Key>>
+            class Pred = equal_to&lt;Key>>
   using unordered_map =
     std::unordered_map&lt;Key, T, Hash, Pred,
                        polymorphic_allocator&lt;pair&lt;const Key,T>>>;
 
   template &lt;class Key, class T,
             class Hash = hash&lt;Key>,
-            class Pred = std::equal_to&lt;Key>>
+            class Pred = equal_to&lt;Key>>
   using unordered_multimap =
     std::unordered_multimap&lt;Key, T, Hash, Pred,
                             polymorphic_allocator&lt;pair&lt;const Key,T>>>;
