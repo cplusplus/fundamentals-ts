@@ -1092,7 +1092,7 @@ template&lt;class ValueType&gt;
 any(ValueType&amp;&amp; value);</cxx-signature>
 
         <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
-        <cxx-requires><code>T</code> shall satisfy the CopyConstructible requirements.
+        <cxx-requires><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
         If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</cxx-requires>
         <cxx-effects>Constructs an object of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(value)</code>.</cxx-effects>
         <cxx-remarks>This constructor shall not participate in overload resolution if <code>decay&lt;ValueType&gt;::type</code> is the same type as <code>any</code>.</cxx-remarks>
@@ -1146,7 +1146,7 @@ any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx
 any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature>
 
         <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
-        <cxx-requires><code>T</code> shall satisfy the CopyConstructible requirements.
+        <cxx-requires><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
         If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</cxx-requires>
         <cxx-effects>Constructs an object <code>tmp</code> of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(rhs)</code>, and <code>tmp.swap(*this)</code>.
         No effects if an exception is thrown.</cxx-effects>
