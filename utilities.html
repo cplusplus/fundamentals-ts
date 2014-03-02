@@ -235,10 +235,152 @@ template &lt;class Base, class Derived> constexpr bool is_base_of_v
 template &lt;class From, class To> constexpr bool is_convertible_v
   = is_convertible&lt;From, To>::value;
 
+<cxx-ref insynopsis="" to="meta.trans.other"></cxx-ref>
+template &lt;class> class invocation_type; // <i>not defined</i>
+template &lt;class F, class... ArgTypes> class invocation_type&lt;F(ArgTypes...)>;
+template &lt;class> class raw_invocation_type; // <i>not defined</i>
+template &lt;class F, class... ArgTypes> class raw_invocation_type&lt;F(ArgTypes...)>;
+
 } // namespace fundamentals_v1
 } // namespace experimental
 } // namespace std</code></pre>
 
+    </cxx-section>
+
+    <cxx-section id="meta.trans.other">
+      <h1>Other type transformations</h1>
+
+      <p>
+        This sub-clause contains templates that may be used to transform one type to another following some predefined rule.
+      </p>
+
+      <p>
+        Each of the templates in this subclause shall be a <cxx-term>TransformationTrait</cxx-term> (<cxx-ref in="cxx" to="meta.rqmts"></cxx-ref>).
+      </p>
+
+      <p>
+        Within this section, define the <dfn>invocation parameters</dfn> of <code><em>INVOKE</em>(f, t1, t2, ..., tN)</code> as follows,
+        in which <code>T1</code> is the possibly <var>cv</var>-qualified type of <code>t1</code>
+        and <code>U1</code> denotes <code>T1&amp;</code> if <code>t1</code> is an lvalue
+        or <code>T1&amp;&amp;</code> if <code>t1</code> is an rvalue:
+      </p>
+      <ul>
+        <li>
+          When <code>f</code> is a pointer to a member function of a class <code>T</code>
+          and <code>t1</code> is an object of type <code>T</code>
+          or a reference to an object of type <code>T</code>
+          or a reference to an object of a type derived from <code>T</code>,
+          the <cxx-term>invocation parameters</cxx-term> are <code>U1</code> followed by
+          the parameters of <code>f</code> matched by <code>t2</code>, ..., <code>tN</code>.
+        </li>
+        <li>
+          When <code>f</code> is a pointer to a member function of a class <code>T</code>
+          and <code>T1</code> is not one of the types described in the previous item,
+          the <cxx-term>invocation parameters</cxx-term> are <code>U1</code> followed by
+          the parameters of <code>f</code> matched by <code>t2</code>, ..., <code>tN</code>.
+        </li>
+        <li>
+          When <code>N == 1</code> and <code>f</code> is a pointer to member data of a class <code>T</code>
+          and <code>t1</code> is an object of type <code>T</code>
+          or a reference to an object of type <code>T</code>
+          or a reference to an object of a type derived from <code>T</code>,
+          the <cxx-term>invocation parameter</cxx-term> is <code>U1</code>.
+        </li>
+        <li>
+          When <code>N == 1</code> and <code>f</code> is a pointer to member data of a class <code>T</code>
+          and <code>T1</code> is not one of the types described in the previous item,
+          the <cxx-term>invocation parameter</cxx-term> is <code>U1</code>.
+        </li>
+        <li>
+          If <code>f</code> is a class object,
+          the <cxx-term>invocation parameters</cxx-term> are the parameters matching <code>t1</code>, ..., <code>tN</code>
+          of the best viable function (<cxx-ref in="cxx" to="over.match.best"></cxx-ref>)
+          for the arguments <code>t1</code>, ..., <code>tN</code>
+          among the function call operators of <code>f</code>.
+        </li>
+        <li>
+          In all other cases,
+          the <cxx-term>invocation parameters</cxx-term> are the parameters of <code>f</code>
+          matching <code>t1</code>, ... <code>tN</code>.
+        </li>
+      </ul>
+      <p>
+        In all of the above cases,
+        if an argument <code>tI</code> matches the ellipsis in the function's <cxx-term>parameter-declaration-clause</cxx-term>,
+        the corresponding <cxx-term>invocation parameter</cxx-term> is defined to be
+        the result of applying the default argument promotions (<cxx-ref in="cxx" to="expr.call"></cxx-ref>) to <code>tI</code>.
+      </p>
+
+      <cxx-example>
+        Assume <code>S</code> is defined as
+        <pre><code>struct S {
+  int f(double const &amp;) const;
+  void operator()(int, int);
+  void operator()(char const *, int i = 2, int j = 3);
+  void operator()(...);
+};</code></pre>
+        <ul>
+          <li>The invocation parameters of <code><em>INVOKE</em>(&amp;S::f, S(), 3.5)</code> are <code>(S &amp;&amp;, double const &amp;)</code>.</li>
+          <li>The invocation parameters of <code><em>INVOKE</em>(S(), 1, 2)</code> are <code>(int, int)</code>.</li>
+          <li>The invocation parameters of <code><em>INVOKE</em>(S(), "abc", 5)</code> are <code>(const char *, int)</code>.
+          The defaulted parameter <code>j</code> does not correspond to an argument.</li>
+          <li>The invocation parameters of <code><em>INVOKE</em>(S(), locale(), 5)</code> are <code>(locale, int)</code>.
+          Arguments corresponding to ellipsis maintain their types</li>
+        </ul>
+      </cxx-example>
+
+      <table is="cxx-table" id="tab:meta.trans.other">
+        <caption>Other type transformations</caption>
+        <thead>
+          <tr><th>Template</th><th>Condition</th><th>Comments</th></tr>
+        </thead>
+        <tr>
+          <td>
+            <code>template &lt;class Fn, class... ArgTypes&gt;
+            struct raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)&gt;;</code>
+          </td>
+          <td>
+            <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
+            shall be complete types, (possibly cv-qualified) <code>void</code>, or arrays of unknown bound.
+          </td>
+
+          <td>
+            If the expression <code><em>INVOKE</em>(declval&lt;Fn&gt;(), declval&lt;ArgTypes&gt;()...)</code>
+            is well formed when treated as an unevaluated operand (<cxx-ref in="cxx" to="expr"></cxx-ref>),
+            the member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>
+            where <code>R</code> denotes <code>result_of&lt;Fn(ArgTypes...)&gt;::type</code> and
+            the types <code>Ti</code> are the <cxx-term>invocation parameters</cxx-term>
+            of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), declval&lt;ArgTypes&gt;()...)</code>;
+            otherwise, there shall be no member <code>type</code>.
+            Access checking is performed as if in a context unrelated to <code>Fn</code> and <code>ArgTypes</code>.
+            Only the validity of the immediate context of the expression is considered.
+            <cxx-note>The compilation of the expression can result in side effects
+            such as the instantiation of class template specializations and function template specializations,
+            the generation of implicitly-defined functions, and so on.
+            Such side effects are not in the "immediate context"
+            and can result in the program being ill-formed.</cxx-note>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>template &lt;class Fn, class... ArgTypes&gt;
+            struct invocation_type&lt;<wbr/>Fn(ArgTypes...)&gt;;</code>
+          </td>
+          <td>
+            <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
+            shall be complete types, (possibly cv-qualified) <code>void</code>,
+            or arrays of unknown bound.
+          </td>
+          <td>
+            If <code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>
+            is the function type <code>R(T1, T2, ...)</code>
+            and <code>Fn</code> is a pointer to member type
+            and <code>T1</code> is an rvalue reference,
+            then <code>R(decay&lt;T1&gt;::type, T2, ...)</code>.
+            Otherwise, <code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>.
+          </td>
+        </tr>
+      </table>
     </cxx-section>
   </cxx-section>
 
