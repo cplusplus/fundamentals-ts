@@ -381,10 +381,10 @@ void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
             <code>is_constructible&lt;T,Args1...>::value</code> is <code>true</code>, then <code>xprime</code> is <code>x</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>true</code> and
             <code>is_constructible&lt;T1,allocator_arg_t,memory_resource*,Args1...>::value</code> is <code>true</code>,
-            then <code>xprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), move(x))</code>.</li>
+            then <code>xprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), std::move(x))</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>true</code> and
             <code>is_constructible&lt;T1,Args1...,memory_resource*>::value</code> is <code>true</code>,
-            then <code>xprime</code> is <code>tuple_cat(move(x), make_tuple(this->resource()))</code>.</li>
+            then <code>xprime</code> is <code>tuple_cat(std::move(x), make_tuple(this->resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
           and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
@@ -392,10 +392,10 @@ void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
             <li>If <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>false</code> and
             <code>is_constructible&lt;T,Args2...>::value</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T2,allocator_arg_t,memory_resource*,Args2...>::value</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), move(y))</code>.</li>
+            <code>is_constructible&lt;T2,allocator_arg_t,memory_resource*,Args2...>::value</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), std::move(y))</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>true</code> and
             <code>is_constructible&lt;T2,Args2...,memory_resource*>::value</code> is <code>true</code>, then
-            <code>yprime</code> is <code>tuple_cat(move(y), make_tuple(this->resource()))</code>.</li>
+            <code>yprime</code> is <code>tuple_cat(std::move(y), make_tuple(this->resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
           then this function constructs a <code>std::pair&lt;T1,T2></code> object at <code>p</code> using constructor arguments <code>piecewise_construct, xprime, yprime</code>.
