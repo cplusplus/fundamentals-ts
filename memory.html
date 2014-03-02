@@ -467,7 +467,7 @@ bool operator!=(const polymorphic_allocator&lt;T1>& a,
         In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
       </p>
       <ul>
-        <li><code>typename allocator_traits&lt;Allocator>::pointer</code> shall be identical to typename <code>allocator_traits&lt;Allocator>::value_type*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator>::pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type*</code>.</li>
         <li><code>typename allocator_traits&lt;Allocator>::const_pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type const*</code>.</li>
         <li><code>typename allocator_traits&lt;Allocator>::void_pointer</code> shall be identical to <code>void*</code>.</li>
         <li><code>typename allocator_traits&lt;Allocator>::const_void_pointer</code> shall be identical to <code>void const*</code>.</li>
