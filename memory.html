@@ -790,7 +790,7 @@ protected:
         <cxx-returns>A pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>) with a size of at least <code>bytes</code>.
         The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memory.resource"></cxx-ref>).</cxx-returns>
         <cxx-effects>
-          If the pool selected for a block of <code>size</code> bytes is unable to satisfy the memory request from its own internal data structures,
+          If the pool selected for a block of size <code>bytes</code> is unable to satisfy the memory request from its own internal data structures,
           it will call <code>upstream_resource()->allocate()</code> to obtain more memory.
           If <code>bytes</code> is larger than that which the largest pool can handle,
           then memory will be allocated using <code>upstream_resource()->allocate()</code>.
