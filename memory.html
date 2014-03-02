@@ -841,7 +841,7 @@ protected:
         <li>It is intended for access from one thread of control at a time.
         Specifically, calls to <code>allocate</code> and <code>deallocate</code> do not synchronize with one another.</li>
         <li>It <cxx-term>owns</cxx-term> the allocated memory and frees it on destruction,
-        even if deallocate has not been called for some of the allocated blocks.</li>
+        even if <code>deallocate</code> has not been called for some of the allocated blocks.</li>
       </ul>
 <pre><code>class monotonic_buffer_resource : public memory_resource {
   memory_resource* upstream_rsrc; // exposition only
@@ -908,7 +908,7 @@ protected:
 
       <cxx-function>
         <cxx-signature>~monotonic_buffer_resource();</cxx-signature>
-        <cxx-effects>Calls this->release().</cxx-effects>
+        <cxx-effects>Calls <code>this->release()</code>.</cxx-effects>
       </cxx-function>
     </cxx-section>
 
