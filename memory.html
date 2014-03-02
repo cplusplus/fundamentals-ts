@@ -742,7 +742,7 @@ protected:
 
         <cxx-preconditions><code>upstream</code> is the address of a valid memory resource.</cxx-preconditions>
         <cxx-effects>
-          Constructs a pool resource object that will obtain memory from upstream whenever the pool resource is unable to satisfy a memory request from its own internal data structures.
+          Constructs a pool resource object that will obtain memory from <code>upstream</code> whenever the pool resource is unable to satisfy a memory request from its own internal data structures.
           The resulting object will hold a copy of <code>upstream</code>, but will not own the resource to which <code>upstream</code> points.
           <cxx-note>The intention is that calls to <code>upstream->allocate()</code> will be substantially fewer than calls to <code>this->allocate()</code> in most cases.</cxx-note>
           The behavior of the pooling mechanism is tuned according to the value of the opts argument.
@@ -836,7 +836,7 @@ protected:
         thus the amount of memory consumed increases monotonically until the resource is destroyed.</li>
         <li>The program can supply an initial buffer, which the allocator uses to satisfy memory requests.</li>
         <li>When the initial buffer (if any) is exhausted,
-        it obtains additional buffers from an upstream memory resource supplied at construction.
+        it obtains additional buffers from an <dfn>upstream</dfn> memory resource supplied at construction.
         Each additional buffer is larger than the previous one, following a geometric progression.</li>
         <li>It is intended for access from one thread of control at a time.
         Specifically, calls to <code>allocate</code> and <code>deallocate</code> do not synchronize with one another.</li>
