@@ -405,25 +405,25 @@ void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
       <cxx-function>
         <cxx-signature>template &lt;class T1, class T2>
 void construct(std::pair&lt;T1,T2>* p);</cxx-signature>
-        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct, tuple&lt;>(), tuple&lt;>());</code></cxx-effects>
+        <cxx-effects>Equivalent to <code>this->construct(p, piecewise_construct, tuple&lt;>(), tuple&lt;>());</code></cxx-effects>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T1, class T2, class U, class V>
 void construct(std::pair&lt;T1,T2>* p, U&& x, V&& y);</cxx-signature>
-        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct, forward_as_tuple(std::forward&lt;U>(x)), forward_as_tuple(std::forward&lt;V>(y)));</code></cxx-effects>
+        <cxx-effects>Equivalent to <code>this->construct(p, piecewise_construct, forward_as_tuple(std::forward&lt;U>(x)), forward_as_tuple(std::forward&lt;V>(y)));</code></cxx-effects>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T1, class T2, class U, class V>
 void construct(std::pair&lt;T1,T2>* p, const std::pair&lt;U, V>& pr);</cxx-signature>
-        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct, forward_as_tuple(pr.first), forward_as_tuple(pr.second));</code></cxx-effects>
+        <cxx-effects>Equivalent to <code>this->construct(p, piecewise_construct, forward_as_tuple(pr.first), forward_as_tuple(pr.second));</code></cxx-effects>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T1, class T2, class U, class V>
 void construct(std::pair&lt;T1,T2>* p, std::pair&lt;U, V>&& pr);</cxx-signature>
-        <cxx-effects>equivalent to <code>this->construct(p, piecewise_construct,
+        <cxx-effects>Equivalent to <code>this->construct(p, piecewise_construct,
         forward_as_tuple(std::forward&lt;U>(pr.first)),
         forward_as_tuple(std::forward&lt;V>(pr.second)));</code></cxx-effects>
       </cxx-function>
