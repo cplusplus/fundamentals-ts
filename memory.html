@@ -225,7 +225,7 @@ protected:
         <cxx-returns>A derived class shall implement this function to return <code>true</code> if memory allocated from this can be deallocated from other and vice-versa;
         otherwise it shall return false.
         <cxx-note>The most-derived type of other might not match the type of this.
-        For a derived class, D, a typical implementation of this function will compute <code>dynamic_cast&lt;D*>(&other)</code> and go no further (i.e., return <code>false</code>) if it returns <code>nullptr</code>.</cxx-note></cxx-returns>
+        For a derived class, D, a typical implementation of this function will compute <code>dynamic_cast&lt;const D*>(&other)</code> and go no further (i.e., return <code>false</code>) if it returns <code>nullptr</code>.</cxx-note></cxx-returns>
       </cxx-function>
     </cxx-section>
 
@@ -808,13 +808,13 @@ protected:
 
       <cxx-function>
         <cxx-signature>virtual bool unsynchronized_pool_resource::do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
-        <cxx-returns><code>this == dynamic_cast&lt;unsynchronized_pool_resource*>(&other)</code>.</cxx-returns>
+        <cxx-returns><code>this == dynamic_cast&lt;const unsynchronized_pool_resource*>(&other)</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>virtual bool synchronized_pool_resource::do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
 
-        <cxx-returns><code>this == dynamic_cast&lt;synchronized_pool_resource*>(&other)</code>.</cxx-returns>
+        <cxx-returns><code>this == dynamic_cast&lt;const synchronized_pool_resource*>(&other)</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
   </cxx-section>
@@ -951,7 +951,7 @@ protected:
 
       <cxx-function>
         <cxx-signature>bool do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
-        <cxx-returns><code>this == dynamic_cast&lt;monotonic_buffer_resource*>(&other)</code>.</cxx-returns>
+        <cxx-returns><code>this == dynamic_cast&lt;const monotonic_buffer_resource*>(&other)</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
   </cxx-section>
