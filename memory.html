@@ -616,10 +616,10 @@ template &lt;class Allocator>
       <ul>
         <li>Each resource <cxx-term>owns</cxx-term> the allocated memory, and frees it on destruction –
         even if <code>deallocate</code> has not been called for some of the allocated blocks.</li>
-        <li>A pool resource (see <cxx-ref to="fig:memory.resource.pool.resources"></cxx-ref>) consists of a collection of pools, serving requests for different block sizes.
-        Each individual pool manages a collection of chunks that are in turn divided into blocks of uniform size, returned via calls to <code>do_allocate</code>.
+        <li>A pool resource (see <cxx-ref to="fig:memory.resource.pool.resources"></cxx-ref>) consists of a collection of <dfn>pools</dfn>, serving requests for different block sizes.
+        Each individual pool manages a collection of <dfn>chunks</dfn> that are in turn divided into blocks of uniform size, returned via calls to <code>do_allocate</code>.
         Each call to <code>do_allocate(size, alignment)</code> is dispatched to the pool serving the smallest blocks accommodating at least <code>size</code> bytes.</li>
-        <li>When a particular pool is exhausted, allocating a block from that pool results in the allocation of an additional chunk of memory from the upstream allocator (supplied at construction), thus replenishing the pool.
+        <li>When a particular pool is exhausted, allocating a block from that pool results in the allocation of an additional chunk of memory from the <dfn>upstream allocator</dfn> (supplied at construction), thus replenishing the pool.
         With each successive replenishment, the chunk size obtained increases geometrically.
         <cxx-note>By allocating memory in chunks, the pooling strategy increases the chance that consecutive allocations will be close together in memory.</cxx-note></li>
         <li>Allocation requests that exceed the largest block size of any pool are fulfilled directly from the upstream allocator.</li>
