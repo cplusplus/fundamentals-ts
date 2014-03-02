@@ -64,9 +64,10 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
           <li><code>out</code> shall not be in the range <cxx-range begin="first" end="last"></cxx-range>.</li>
         </ul>
       </cxx-requires>
-      <cxx-effects>Copies <code>min(last−first, n)</code> elements (the sample) from <cxx-range begin="first" end="last"></cxx-range> (the population) to <code>out</code>
+      <cxx-effects>Copies <code>min(last−first, n)</code> elements (the <dfn>sample</dfn>)
+      from <cxx-range begin="first" end="last"></cxx-range> (the <dfn>population</dfn>) to <code>out</code>
       such that each possible sample has equal probability of appearance.
-      <cxx-note>Algorithms that obtain such effects include selection sampling and reservoir sampling.</cxx-note></cxx-effects>
+      <cxx-note>Algorithms that obtain such effects include <cxx-term>selection sampling</cxx-term> and <cxx-term>reservoir sampling</cxx-term>.</cxx-note></cxx-effects>
       <cxx-returns>The end of the resulting sample range.</cxx-returns>
       <cxx-complexity>O(<code>n</code>).</cxx-complexity>
       <cxx-remarks>
