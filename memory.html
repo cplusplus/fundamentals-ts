@@ -548,7 +548,7 @@ template &lt;class Allocator>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>bool do_is_equal(const memory_resource& other) const;</cxx-signature>
+        <cxx-signature>bool do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
         <p>Let <code>p</code> be <code>dynamic_cast&lt;const <var>resource_adaptor_imp</var>*>(&other)</code>.</p>
         <cxx-returns><code>false</code> if <code>p</code> is null, otherwise the value of <code>m_alloc == p->m_alloc</code>.</cxx-returns>
       </cxx-function>
