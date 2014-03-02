@@ -614,7 +614,7 @@ template &lt;class Allocator>
         are general-purpose memory resources having the following qualities:
       </p>
       <ul>
-        <li>Each resource owns the allocated memory, and frees it on destruction –
+        <li>Each resource <cxx-term>owns</cxx-term> the allocated memory, and frees it on destruction –
         even if <code>deallocate</code> has not been called for some of the allocated blocks.</li>
         <li>A pool resource (see <cxx-ref to="fig:memory.resource.pool.resources"></cxx-ref>) consists of a collection of pools, serving requests for different block sizes.
         Each individual pool manages a collection of chunks that are in turn divided into blocks of uniform size, returned via calls to <code>do_allocate</code>.
@@ -840,7 +840,7 @@ protected:
         Each additional buffer is larger than the previous one, following a geometric progression.</li>
         <li>It is intended for access from one thread of control at a time.
         Specifically, calls to <code>allocate</code> and <code>deallocate</code> do not synchronize with one another.</li>
-        <li>It owns the allocated memory and frees it on destruction,
+        <li>It <cxx-term>owns</cxx-term> the allocated memory and frees it on destruction,
         even if deallocate has not been called for some of the allocated blocks.</li>
       </ul>
 <pre><code>class monotonic_buffer_resource : public memory_resource {
