@@ -14,9 +14,24 @@ inline namespace fundamentals_v1 {
 template &lt;class T, class Alloc> constexpr bool uses_allocator_v
   = uses_allocator&lt;T, Alloc>::value;
 
+<cxx-ref insynopsis="" to="memory.smartptr.shared.cast"></cxx-ref>
+template&lt;class T, class U>
+shared_ptr&lt;T> reinterpret_pointer_cast(shared_ptr&lt;U> const& r) noexcept;
+
 } // namespace fundamentals_v1
 } // namespace experimental
 } // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="memory.smartptr.shared.cast">
+    <h1><code>shared_ptr</code> casts</h1>
+
+    <cxx-function>
+      <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> reinterpret_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+      <cxx-requires>The expression <code>reinterpret_cast&lt;T*>((U*)0)</code> shall be well formed.</cxx-requires>
+      <cxx-returns><code>shared_ptr&lt;T>(r, reinterpret_cast&lt;typename shared_ptr&lt;T>::element_type*>(r.get()))</code>.</cxx-returns>
+    </cxx-function>
   </cxx-section>
 
   <cxx-section id="memory.type.erased.allocator">

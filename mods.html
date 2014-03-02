@@ -49,6 +49,295 @@
     </blockquote>
   </cxx-section>
 
+  <cxx-section id="mods.util.smartptr.shared">
+    <h1>Changes to <code>std::shared_ptr</code> and <code>std::weak_ptr</code></h1>
+
+    <p>
+      Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared"></cxx-ref>:
+    </p>
+
+<pre><code>
+namespace std {
+  template&lt;class T> class shared_ptr {
+  public:
+    typedef <del>T</del><ins>typename remove_extent&lt;T>::type</ins> element_type;
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.const"></cxx-ref>, constructors:
+    ...
+    template&lt;class Y> shared_ptr(const shared_ptr&lt;Y>& r, <del>T</del><ins>element_type</ins>* p) noexcept;
+    ...
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.obs"></cxx-ref>, observers:
+    <del>T</del><ins>element_type</ins>* get() const noexcept;
+    T& operator*() const noexcept;
+    T* operator->() const noexcept;<ins>
+    element_type& operator[](ptrdiff_t i) const noexcept;</ins>
+    ...
+
+}</code></pre>
+
+      <p>
+        Specializations of <code>shared_ptr</code> shall be <code>CopyConstructible</code>, <code>CopyAssignable</code>, and <code>LessThanComparable</code>, allowing their use in standard containers. Specializations of <code>shared_ptr</code> shall be <ins>contextually </ins>convertible to <code>bool</code>, allowing their use in boolean expressions and declarations in conditions. The template parameter <code>T</code> of <code>shared_ptr</code> may be an incomplete type.
+      </p>
+
+      <p>...</p>
+
+      <p>
+        For purposes of determining the presence of a data race, member functions shall access and modify only the <code>shared_ptr</code> and <code>weak_ptr</code> objects themselves and not objects they refer to. Changes in <code>use_count()</code> do not reflect modifications that can introduce data races.
+      </p>
+
+      <p>
+        <ins>For the purposes of subclause <cxx-ref in="cxx" to="util.smartptr"></cxx-ref>, a pointer type <code>Y*</code> is said to be <dfn>compatible with</dfn> a pointer type <code>T*</code> when either <code>Y*</code> is convertible to <code>T*</code> or <code>Y</code> is <code>U[N]</code> and <code>T</code> is <code>U <var>cv</var> []</code>.</ins>
+      </p>
+
+    <cxx-section id="mods.util.smartptr.shared.const">
+      <h1>Changes to <code>std::shared_ptr</code> constructors</h1>
+
+      <p>
+        Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared.const"></cxx-ref>:
+      </p>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y> explicit shared_ptr(Y* p);</cxx-signature>
+
+        <cxx-requires><del><code>p</code> shall be convertible to <code>T*</code>. <code>Y</code> shall be a complete type. The expression <code>delete p</code> shall be well formed, shall have well defined behavior, and shall not throw exceptions.</del>
+        <ins><code>Y</code> shall be a complete type.
+        The expression <code>delete[] p</code>, when <code>T</code> is an array type,
+        or <code>delete p</code>, when <code>T</code> is not an array type,
+        shall be well-formed, shall have well defined behavior, and shall not throw exceptions.
+        When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
+        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
+        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</ins></cxx-requires>
+
+        <cxx-effects><ins>When <code>T</code> is not an array type, c</ins><del>C</del>onstructs a <code>shared_ptr</code> object that <i>owns</i> the pointer <code>p</code>.
+        <ins>Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.</ins></cxx-effects>
+
+        <cxx-postconditions><code>use_count() == 1 &amp;&amp; get() == p</code>.</cxx-postconditions>
+
+        <cxx-throws><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</cxx-throws>
+
+        <cxx-exception-safety>If an exception is thrown, <code>delete p</code> is called<ins> when <code>T</code> is not an array type, <code>delete[] p</code> otherwise</ins>.</cxx-exception-safety>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y, class D> shared_ptr(Y* p, D d);</cxx-signature>
+        <cxx-signature>template&lt;class Y, class D, class A> shared_ptr(Y* p, D d, A a);</cxx-signature>
+        <cxx-signature>template &lt;class D> shared_ptr(nullptr_t p, D d);</cxx-signature>
+        <cxx-signature>template &lt;class D, class A> shared_ptr(nullptr_t p, D d, A a);</cxx-signature>
+
+        <cxx-requires><del><code>p</code> shall be convertible to <code>T*</code>. </del><code>D</code> shall be <code>CopyConstructible</code>. The copy constructor and destructor of <code> D</code> shall not throw exceptions. The expression <code>d(p)</code> shall be well formed, shall have well defined behavior, and shall not throw exceptions. <code>A</code> shall be an allocator (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>). The copy constructor and destructor of <code>A</code> shall not throw exceptions.
+        <ins> When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
+        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
+        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</ins></cxx-requires>
+
+        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use.</cxx-effects>
+
+        <cxx-postconditions><code>use_count() == 1 &amp;&amp; get() == p</code>.</cxx-postconditions>
+
+        <cxx-throws><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</cxx-throws>
+
+        <cxx-exception-safety>If an exception is thrown, <code>d(p)</code> is called.</cxx-exception-safety>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y> shared_ptr(const shared_ptr&lt;Y>& r, <del>T</del><ins>element_type</ins>* p) noexcept;</cxx-signature>
+
+        <cxx-effects>Constructs a <code>shared_ptr</code> instance that stores <code>p</code> and <i>shares ownership</i> with <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>get() == p &amp;&amp; use_count() == r.use_count()</code></cxx-postconditions>
+
+        <p>
+          <cxx-note>To avoid the possibility of a dangling pointer, the user of this constructor must ensure that <code>p</code> remains valid at least until the ownership group of <code>r</code> is destroyed.</cxx-note>
+        </p>
+
+        <p>
+          <cxx-note>This constructor allows creation of an <i>empty</i> <code>shared_ptr</code> instance with a non-null stored pointer.</cxx-note>
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>shared_ptr(const shared_ptr& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> shared_ptr(const shared_ptr&lt;Y>& r) noexcept;</cxx-signature>
+
+        <cxx-requires> The second constructor shall not participate in the overload resolution unless <code>Y*</code> is <del>implicitly convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>shared_ptr</code> object; otherwise, constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>get() == r.get() &amp;&amp; use_count() == r.use_count()</code>.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>shared_ptr(shared_ptr&& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> shared_ptr(shared_ptr&lt;Y>&& r) noexcept;</cxx-signature>
+
+        <cxx-ednote>N3920 specifies that "implicitly convertible" is removed, but the C++14 draft only has "convertible". Does this make a difference?</cxx-ednote>
+        <cxx-remarks>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <del>convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</cxx-remarks>
+
+        <cxx-effects>Move-constructs a <code>shared_ptr</code> instance from <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>*this</code> shall contain the old value of <code>r</code>. <code>r</code> shall be <i>empty</i>. <code>r.get() == 0.</code></cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y> explicit shared_ptr(const weak_ptr&lt;Y>& r);</cxx-signature>
+
+        <cxx-requires><code>Y*</code> shall be <del>convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>use_count() == r.use_count()</code>.</cxx-postconditions>
+
+        <cxx-throws><code>bad_weak_ptr</code> when <code>r.expired()</code>.</cxx-throws>
+
+        <cxx-exception-safety>If an exception is thrown, the constructor has no effect.</cxx-exception-safety>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class Y, class D> shared_ptr(unique_ptr&lt;Y, D>&& r);</cxx-signature>
+
+        <cxx-requires><ins><code>Y*</code> shall be <em>compatible with</em> <code>T*</code>.</ins></cxx-requires>
+
+        <cxx-effects>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>.</cxx-effects>
+
+        <cxx-exception-safety>If an exception is thrown, the constructor has no effect.</cxx-exception-safety>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="mods.util.smartptr.shared.obs">
+      <h1>Changes to <code>std::shared_ptr</code> observers</h1>
+
+      <p>
+        Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared.obs"></cxx-ref>:
+      </p>
+
+      <cxx-function>
+        <cxx-signature><del>T</del><ins>element_type</ins>* get() const noexcept;</cxx-signature>
+
+        <cxx-returns>the stored pointer.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>T& operator*() const noexcept;</cxx-signature>
+
+        <cxx-requires><code>get() != 0</code>.</cxx-requires>
+
+        <cxx-returns><code>*get()</code>.</cxx-returns>
+
+        <cxx-notes>When <code>T</code> is <ins>an array type or cv-qualified </ins><code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</cxx-notes>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>T* operator->() const noexcept;</cxx-signature>
+
+        <cxx-requires><code>get() != 0</code>.</cxx-requires>
+
+        <cxx-returns><code>get()</code>.</cxx-returns>
+        <cxx-remarks><ins>When <code>T</code> is an array type, it is unspecified whether this member function is declared.
+        If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</ins></cxx-remarks>
+      </cxx-function>
+
+      <ins>
+        <cxx-function>
+          <cxx-signature>element_type&amp; operator[](ptrdiff_t i) const noexcept;</cxx-signature>
+
+          <cxx-requires><code>get() != 0 &amp;&amp; i &gt;= 0</code>. If <code>T</code> is <code>U[N]</code>, <code>i &lt; N</code>.</cxx-requires>
+          <cxx-returns><code>get()[i]</code>.</cxx-returns>
+          <cxx-remarks>When <code>T</code> is not an array type, it is unspecified whether this member function is declared.
+          If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</cxx-remarks>
+        </cxx-function>
+      </ins>
+    </cxx-section>
+
+    <cxx-section id="mods.util.smartptr.shared.cast">
+      <h1>Changes to <code>std::shared_ptr</code> casts</h1>
+
+      <p>
+        Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared.cast"></cxx-ref>:
+      </p>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> static_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The expression <del><code>static_cast&lt;T*>(r.get())</code></del><ins><code>static_cast&lt;T*&gt;((U*)0)</code></ins> shall be well formed.</cxx-requires>
+
+        <cxx-returns><del>If <code>r</code> is <i>empty</i>, an <i>empty</i> <code>shared_ptr&lt;T></code>; otherwise, a <code>shared_ptr&lt;T></code> object that stores <code>static_cast&lt;T*>(r.get())</code> and <i>shares ownership</i> with <code>r</code>.</del>
+        <ins><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code></ins></cxx-returns>
+
+        <cxx-postconditions><del><code>w.get() == static_cast&lt;T*>(r.get())</code> and <code>w.use_count() == r.use_count()</code>, where <code>w</code> is the return value.</del></cxx-postconditions>
+
+        <p>
+          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(static_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> dynamic_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The expression <del><code>dynamic_cast&lt;T*>(r.get())</code></del><ins><code>dynamic_cast&lt;T*&gt;((U*)0)</code></ins> shall be well formed<del> and shall have well defined behavior.</del></cxx-requires>
+
+        <cxx-returns>
+          <ul>
+            <li>When <code>dynamic_cast&lt;<del>T</del><ins>typename shared_ptr&lt;T&gt;::element_type</ins>*>(r.get())</code> returns a nonzero value<ins> <code>p</code></ins>, <del>a <code>shared_ptr&lt;T></code> object that stores a copy of it and <i>shares ownership</i> with <code>r</code></del><ins><code>shared_ptr&lt;T&gt;(r, p)</code></ins>;</li>
+
+            <li>Otherwise, <del>an <i>empty</i> <code>shared_ptr&lt;T></code> object</del><ins><code>shared_ptr&lt;T&gt;()</code></ins>.</li>
+          </ul>
+        </cxx-returns>
+
+        <cxx-postconditions><del><code>w.get() == dynamic_cast&lt;T*>(r.get())</code>, where <code>w</code> is the return value.</del></cxx-postconditions>
+
+        <p>
+          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(dynamic_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> const_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The expression <del><code>const_cast&lt;T*>(r.get())</code></del><ins><code>const_cast&lt;T*&gt;((U*)0)</code></ins> shall be well formed.</cxx-requires>
+
+        <cxx-returns><del>If <code>r</code> is empty, an empty <code>shared_ptr&lt;T></code>; otherwise, a <code>shared_ptr&lt;T></code> object that stores <code>const_cast&lt;T*>(r.get())</code> and shares ownership with <code>r</code>.</del>
+        <ins><code>shared_ptr&lt;T&gt;(r, const_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</ins></cxx-returns>
+
+        <cxx-postconditions><del><code>w.get() == const_cast&lt;T*>(r.get())</code> and <code>w.use_count() == r.use_count()</code>, where <code>w</code> is the return value.</del></cxx-postconditions>
+
+        <p>
+          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(const_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+        </p>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="mods.util.smartptr.weak">
+      <h1>Changes to <code>std::weak_ptr</code></h1>
+
+      <p>
+        Make the following change in <cxx-ref in="cxx" to="util.smartptr.weak"></cxx-ref>:
+      </p>
+
+<pre><code>namespace std {
+  template&lt;class T> class weak_ptr {
+  public:
+    typedef <del>T</del><ins>typename remove_extent&lt;T&gt;::type</ins> element_type;
+
+    ...</code></pre>
+
+      <p>
+        Make the following change in <cxx-ref in="cxx" to="util.smartptr.weak.const"></cxx-ref>:
+      </p>
+
+      <cxx-function>
+        <cxx-signature>weak_ptr(const weak_ptr& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> weak_ptr(const weak_ptr&lt;Y>& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> weak_ptr(const shared_ptr&lt;Y>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The second and third constructors shall not participate in the overload resolution unless <code>Y*</code> is <del>implicitly convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>weak_ptr</code> object; otherwise, constructs a <code>weak_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>use_count() == r.use_count()</code>.</cxx-postconditions>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
   <cxx-section id="mods.func.wrap">
     <h1>Additions to <code>std::function</code></h1>
 
