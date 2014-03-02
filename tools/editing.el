@@ -17,3 +17,4 @@
     (surround-with-elem tagname begin end)))
 (global-set-key (kbd "C-, C-c") (bind-surround-with-elem "code"))
 (global-set-key (kbd "C-, C-i") (bind-surround-with-elem "i"))
+(global-set-key (kbd "C-, C-v") (bind-surround-with-elem "var"))

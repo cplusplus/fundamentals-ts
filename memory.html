@@ -112,11 +112,11 @@ namespace pmr {
   bool operator!=(const polymorphic_allocator&lt;T1>& a,
                   const polymorphic_allocator&lt;T2>& b) noexcept;
 
-  // The name resource_adaptor_imp is for exposition only.
-  template &lt;class Allocator> class resource_adaptor_imp;
+  // The name <var>resource_adaptor_imp</var> is for exposition only.
+  template &lt;class Allocator> class <var>resource_adaptor_imp</var>;
 
   template &lt;class Allocator>
-    using resource_adaptor = resource_adaptor_imp&lt;
+    using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
       allocator_traits&lt;Allocator>::rebind_alloc&lt;char>>;
 
   // Global memory resources
@@ -475,7 +475,7 @@ bool operator!=(const polymorphic_allocator&lt;T1>& a,
         In order that <code>resource_adaptor&lt;X&lt;T>></code> and <code>resource_adaptor&lt;X&lt;U>></code> are the same type for any allocator template <code>X</code> and types <code>T</code> and <code>U</code>,
         <code>resource_adaptor&lt;Allocator></code> is rendered as an alias to a class template such that <code>Allocator</code> is rebound to a <code>char</code> value type in every specialization of the class template.
         The requirements on this class template are defined below.
-        The name <code>resource_adaptor_imp</code> is for exposition only and is not normative,
+        The name <code><var>resource_adaptor_imp</var></code> is for exposition only and is not normative,
         but the definitions of the members of that class, whatever its name, are normative.
         In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
       </p>
@@ -487,23 +487,23 @@ bool operator!=(const polymorphic_allocator&lt;T1>& a,
       </ul>
 
       <pre><code>
-// The name resource_adaptor_imp is for exposition only.
+// The name <var>resource_adaptor_imp</var> is for exposition only.
 template &lt;class Allocator>
-class resource_adaptor_imp : public memory_resource {
+class <var>resource_adaptor_imp</var> : public memory_resource {
   // for exposition only
   Allocator m_alloc;
 
 public:
   typedef Allocator allocator_type;
 
-  resource_adaptor_imp() = default;
-  resource_adaptor_imp(const resource_adaptor_imp&) = default;
-  resource_adaptor_imp(resource_adaptor_imp&&) = default;
+  <var>resource_adaptor_imp</var>() = default;
+  <var>resource_adaptor_imp</var>(const <var>resource_adaptor_imp</var>&) = default;
+  <var>resource_adaptor_imp</var>(<var>resource_adaptor_imp</var>&&) = default;
 
-  explicit resource_adaptor_imp(const Allocator& a2);
-  explicit resource_adaptor_imp(Allocator&& a2);
+  explicit <var>resource_adaptor_imp</var>(const Allocator& a2);
+  explicit <var>resource_adaptor_imp</var>(Allocator&& a2);
 
-  resource_adaptor_imp& operator=(const resource_adaptor_imp&) = default;
+  <var>resource_adaptor_imp</var>& operator=(const <var>resource_adaptor_imp</var>&) = default;
 
   allocator_type get_allocator() const { return m_alloc; }
 
@@ -515,26 +515,26 @@ protected:
 };
 
 template &lt;class Allocator>
-  using resource_adaptor = typename resource_adaptor_imp&lt;
+  using resource_adaptor = typename <var>resource_adaptor_imp</var>&lt;
     allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;</code></pre>
     </cxx-section>
 
     <cxx-section id="memory.resource.adaptor.ctor">
-      <h1><code>resource_adaptor_imp</code> constructors</h1>
+      <h1><code><var>resource_adaptor_imp</var></code> constructors</h1>
 
       <cxx-function>
-        <cxx-signature>explicit resource_adaptor_imp(const Allocator& a2);</cxx-signature>
+        <cxx-signature>explicit <var>resource_adaptor_imp</var>(const Allocator& a2);</cxx-signature>
         <cxx-effects>Initializes <code>m_alloc</code> with <code>a2</code>.</cxx-effects>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>explicit resource_adaptor_imp(Allocator&& a2);</cxx-signature>
+        <cxx-signature>explicit <var>resource_adaptor_imp</var>(Allocator&& a2);</cxx-signature>
         <cxx-effects>Initializes <code>m_alloc</code> with <code>std::move(a2)</code>.</cxx-effects>
       </cxx-function>
     </cxx-section>
 
     <cxx-section id="memory.resource.adaptor.mem">
-      <h1><code>resource_adaptor_imp</code> member functions</h1>
+      <h1><code><var>resource_adaptor_imp</var></code> member functions</h1>
 
       <cxx-function>
         <cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
@@ -549,7 +549,7 @@ template &lt;class Allocator>
 
       <cxx-function>
         <cxx-signature>bool do_is_equal(const memory_resource& other) const;</cxx-signature>
-        <p>Let <code>p</code> be <code>dynamic_cast&lt;const resource_adaptor_imp*>(&other)</code>.</p>
+        <p>Let <code>p</code> be <code>dynamic_cast&lt;const <var>resource_adaptor_imp</var>*>(&other)</code>.</p>
         <cxx-returns><code>false</code> if <code>p</code> is null, otherwise the value of <code>m_alloc == p->m_alloc</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
