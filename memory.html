@@ -354,6 +354,19 @@ polymorphic_allocator(const polymorphic_allocator&lt;U>& other) noexcept;</cxx-s
       </cxx-function>
 
       <cxx-function>
+        <cxx-signature>template &lt;class T, class... Args>
+void construct(T* p, Args&&... args);</cxx-signature>
+        <cxx-requires><cxx-term>Uses-allocator construction</cxx-term> of <code>T</code>
+        with allocator <code>this->resource()</code> (see <cxx-ref to="mods.allocator.uses"></cxx-ref>)
+        and constructor arguments <code>std::forward&lt;Args>(args)...</code> is well-formed.
+        <cxx-note><cxx-term>uses-allocator construction</cxx-term> is always well formed for types that do not use allocators.</cxx-note></cxx-requires>
+        <cxx-effects>Construct a <code>T</code> object at <code>p</code> by <cxx-term>uses-allocator construction</cxx-term>
+        with allocator <code>this->resource()</code> (<cxx-ref to="mods.allocator.uses"></cxx-ref>)
+        and constructor arguments <code>std::forward&lt;Args>(args)...</code>.</cxx-effects>
+        <cxx-throws>: Nothing unless the constructor for <code>T</code> throws.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
         <cxx-signature>template &lt;class T1, class T2, class... Args1, class... Args2>
 void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
                tuple&lt;Args1...> x, tuple&lt;Args2...> y);</cxx-signature>
