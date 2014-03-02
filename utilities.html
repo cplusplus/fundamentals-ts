@@ -53,7 +53,7 @@ template &lt;class T> constexpr size_t tuple_size_v
   = tuple_size&lt;T>::value;
 
 <cxx-ref insynopsis="" to="tuple.apply"></cxx-ref>
-template &lt;typename F, typename Tuple>
+template &lt;class F, class Tuple>
 constexpr decltype(auto) apply(F&& f, Tuple&& t);
 
 } // namespace fundamentals_v1
@@ -65,12 +65,12 @@ constexpr decltype(auto) apply(F&& f, Tuple&& t);
       <h1>Calling a function with a <code>tuple</code> of arguments</h1>
 
       <cxx-function>
-        <cxx-signature>template &lt;typename F, typename Tuple>
+        <cxx-signature>template &lt;class F, class Tuple>
 constexpr decltype(auto) apply(F&& f, Tuple&& t);</cxx-signature>
 
         <cxx-effects>
           <p>Given the exposition only function</p>
-          <pre><code>template &lt;typename F, typename Tuple, size_t... I>
+          <pre><code>template &lt;class F, class Tuple, size_t... I>
 constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
     F&& f, Tuple&& t, index_sequence&lt;I...>) {
   return std::forward&lt;F>(f)(std::get&lt;I>(std::forward&lt;Tuple>(t))...);

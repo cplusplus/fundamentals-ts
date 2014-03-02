@@ -988,12 +988,12 @@ public:
   any(const any&amp; other);
   any(any&amp;&amp; x) noexcept;
 
-  template &lt;typename ValueType&gt;
+  template &lt;class ValueType&gt;
     any(ValueType&amp;&amp; value);
 
   template &lt;class Allocator&gt;
     any(allocator_arg_t, const Allocator&amp; a) noexcept;
-  template &lt;class Allocator, typename ValueType&gt;
+  template &lt;class Allocator, class ValueType&gt;
     any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);
   template &lt;class Allocator&gt;
       any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);
@@ -1006,7 +1006,7 @@ public:
   any&amp; operator=(const any&amp; rhs);
   any&amp; operator=(any&amp;&amp; rhs) noexcept;
 
-  template &lt;typename ValueType&gt;
+  template &lt;class ValueType&gt;
     any&amp; operator=(ValueType&amp;&amp; rhs);
 
   <cxx-ref insynopsis="" to="any.modifiers"></cxx-ref>
@@ -1021,16 +1021,16 @@ public:
 <cxx-ref insynopsis="" to="any.nonmembers"></cxx-ref>
 void swap(any&amp; x, any&amp; y) noexcept;
 
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType any_cast(const any&amp; operand);
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType any_cast(any&amp; operand);
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType any_cast(any&amp;&amp; operand);
 
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   const ValueType* any_cast(const any* operand) noexcept;
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType* any_cast(any* operand) noexcept;
 }
 }
@@ -1088,7 +1088,7 @@ template&lt;typename ValueType&gt;
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template&lt;typename ValueType&gt;
+        <cxx-signature>template&lt;class ValueType&gt;
 any(ValueType&amp;&amp; value);</cxx-signature>
 
         <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
@@ -1102,7 +1102,7 @@ any(ValueType&amp;&amp; value);</cxx-signature>
       <cxx-function>
         <cxx-signature>template &lt;class Allocator&gt;
 any(allocator_arg_t, const Allocator&amp; a) noexcept;</cxx-signature>
-        <cxx-signature>template &lt;class Allocator, typename ValueType&gt;
+        <cxx-signature>template &lt;class Allocator, class ValueType&gt;
 any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);</cxx-signature>
         <cxx-signature>template &lt;class Allocator&gt;
 any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);</cxx-signature>
@@ -1142,7 +1142,7 @@ any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template&lt;typename ValueType&gt;
+        <cxx-signature>template&lt;class ValueType&gt;
 any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature>
 
         <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
@@ -1202,11 +1202,11 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature>
     </cxx-function>
 
     <cxx-function>
-      <cxx-signature>template&lt;typename ValueType&gt;
+      <cxx-signature>template&lt;class ValueType&gt;
 ValueType any_cast(const any&amp; operand);</cxx-signature>
-      <cxx-signature>template&lt;typename ValueType&gt;
+      <cxx-signature>template&lt;class ValueType&gt;
 ValueType any_cast(any&amp; operand);</cxx-signature>
-      <cxx-signature>template&lt;typename ValueType&gt;
+      <cxx-signature>template&lt;class ValueType&gt;
 ValueType any_cast(any&amp;&amp; operand);</cxx-signature>
 
       <cxx-requires><code>is_reference&lt;ValueType&gt;::value</code> is true or <code>is_copy_constructible&lt;ValueType&gt;::value</code> is true.
@@ -1242,9 +1242,9 @@ any_cast&lt;string&amp;&gt;(y);                       // error; cannot
     </cxx-function>
 
     <cxx-function>
-      <cxx-signature>template&lt;typename ValueType&gt;
+      <cxx-signature>template&lt;class ValueType&gt;
 const ValueType* any_cast(const any* operand) noexcept;</cxx-signature>
-      <cxx-signature>template&lt;typename ValueType&gt;
+      <cxx-signature>template&lt;class ValueType&gt;
 ValueType* any_cast(any* operand) noexcept;</cxx-signature>
 
       <cxx-returns>If <code>operand != nullptr &amp;&amp; operand-&gt;type() == typeid(ValueType)</code>,

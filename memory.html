@@ -283,7 +283,7 @@ public:
   Tp* allocate(size_t n);
   void deallocate(Tp* p, size_t n);
 
-  template &lt;typename T, typename... Args>
+  template &lt;class T, class... Args>
     void construct(T* p, Args&&... args);
 
   // Specializations for pair using piecewise construction
@@ -299,7 +299,7 @@ public:
   template &lt;class T1, class T2, class U, class V>
     void construct(pair&lt;T1,T2>* p, pair&lt;U, V>&& pr);
 
-  template &lt;typename T>
+  template &lt;class T>
     void destroy(T* p);
 
   // Return a default-constructed allocator (no allocator propagation)
@@ -416,7 +416,7 @@ void construct(std::pair&lt;T1,T2>* p, std::pair&lt;U, V>&& pr);</cxx-signature>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;typename T>
+        <cxx-signature>template &lt;class T>
 void destroy(T* p);</cxx-signature>
         <cxx-effects><code>p->~T()</code>.</cxx-effects>
       </cxx-function>
