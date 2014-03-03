@@ -36,7 +36,7 @@ limitations under the License.
                 console.error('Unexpected stage: ' + this.stage);
             }
             if (this.title) {
-                document.title = this.title_prefix + ', ' + this.title;
+                document.title = this.title + ', ' + this.title_prefix;
             }
         },
     })
