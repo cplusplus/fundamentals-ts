@@ -1311,7 +1311,7 @@ pre > code { display: inline-block; }
     <table is="cxx-table" id="tab.cxx.headers" class="list">
     
 
-    <caption>Table 1 — <wbr><caption>C++ library headers</caption></caption>
+    <caption>Table 1 — <wbr><span>C++ library headers</span></caption>
     
       
       <tbody><tr>
@@ -1453,7 +1453,7 @@ pre > code { display: inline-block; }
     <table is="cxx-table" class="column-rules">
     
 
-    <caption>Table 2 — <wbr><caption>Significant features in this technical specification</caption></caption>
+    <caption>Table 2 — <wbr><span>Significant features in this technical specification</span></caption>
     
       
 
@@ -1526,7 +1526,7 @@ pre > code { display: inline-block; }
       The following changes to the <code>uses_allocator</code> trait and to the description of uses-allocator construction
       allow a <code>memory_resource</code> pointer act as an allocator in many circumstances.
       <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    Existing programs that uses standard allocators would be unaffected by this change.
+    Existing programs that use standard allocators would be unaffected by this change.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
     </p>
@@ -1549,7 +1549,7 @@ pre > code { display: inline-block; }
           Meets the BinaryTypeTrait requirements (20.10.1).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
           and <ins>either</ins> <code>is_convertible&lt;Alloc, T::allocator_type&gt;::value != false</code>
-          <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> ([utility.erased_type])</ins>,
+          <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref in="" to="utility.erased.type"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="utility.erased.type" elem="{{toElem}}"></cxx-get-element-by-id><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a></cxx-ref>)</ins>,
           otherwise it shall be derived from <code>false_type</code>.
           A program may specialize this template to derive from <code>true_type</code> for a user-defined type <code>T</code> that does not have a nested <code>allocator_type</code> but nonetheless can be constructed with an allocator where either:
           <ul>
@@ -1565,7 +1565,7 @@ pre > code { display: inline-block; }
       <p><b>20.7.7.2 uses-allocator construction [allocator.uses.construction]</b></p>
 
       <p>
-        <def>Uses-allocator construction</def> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,
+        <dfn>Uses-allocator construction</dfn> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,
         using constructor arguments <code>v1, v2, ..., vN</code> of types <code>V1, V2, ..., VN</code>, respectively,
         and an allocator <code>alloc</code> of type <code>Alloc</code>,
         <ins>where <code>Alloc</code> either (1) meets the requirements of an allocator (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>),
@@ -2305,7 +2305,7 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
 
     <cxx-function para_num="21" id="mods.func.wrap.21">
     
-    <pre><code><cxx-signature>void swap(function&amp; other) noexcept;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>void swap(function&amp; other)<del> noexcept</del>;</cxx-signature></code></pre>
 
     <dl>
       
@@ -2536,7 +2536,7 @@ template &lt;class T&gt; constexpr size_t tuple_size_v
   = tuple_size&lt;T&gt;::value;
 
 <cxx-ref in="" insynopsis="" to="tuple.apply"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="tuple.apply" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="tuple.apply" href="#tuple.apply">3.2.2</a>, Calling a function with a tuple of arguments</i></cxx-ref>
-template &lt;typename F, typename Tuple&gt;
+template &lt;class F, class Tuple&gt;
 constexpr decltype(auto) apply(F&amp;&amp; f, Tuple&amp;&amp; t);
 
 } // namespace fundamentals_v1
@@ -2556,7 +2556,7 @@ constexpr decltype(auto) apply(F&amp;&amp; f, Tuple&amp;&amp; t);
 
       <cxx-function para_num="1" id="tuple.apply.1">
     
-    <pre><code><cxx-signature>template &lt;typename F, typename Tuple&gt;
+    <pre><code><cxx-signature>template &lt;class F, class Tuple&gt;
 constexpr decltype(auto) apply(F&amp;&amp; f, Tuple&amp;&amp; t);</cxx-signature></code></pre>
 
     <dl>
@@ -2567,7 +2567,7 @@ constexpr decltype(auto) apply(F&amp;&amp; f, Tuple&amp;&amp; t);</cxx-signature
     
     <dt>Effects:</dt><dd>
           <p>Given the exposition only function</p>
-          <pre><code>template &lt;typename F, typename Tuple, size_t... I&gt;
+          <pre><code>template &lt;class F, class Tuple, size_t... I&gt;
 constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
     F&amp;&amp; f, Tuple&amp;&amp; t, index_sequence&lt;I...&gt;) {
   return std::forward&lt;F&gt;(f)(std::get&lt;I&gt;(std::forward&lt;Tuple&gt;(t))...);
@@ -2858,7 +2858,7 @@ template &lt;class F, class... ArgTypes&gt; class raw_invocation_type&lt;F(ArgTy
       <table is="cxx-table" id="tab:meta.trans.other">
     
 
-    <caption>Table 3 — <wbr><caption>Other type transformations</caption></caption>
+    <caption>Table 3 — <wbr><span>Other type transformations</span></caption>
     
         
         <thead>
@@ -4390,7 +4390,8 @@ private:
   </cxx-exception-safety>
         <cxx-remarks para_num="23" id="optional.object.observe.23">
     
-    <dt>Remarks:</dt><dd>If the selected constructor of <code>T</code> is a <code>constexpr</code> constructor, this function shall be a <code>constexpr</code> function.</dd>
+    <dt>Remarks:</dt><dd>If both constructors of <code>T</code> which could be selected are <code>constexpr</code> constructors,
+        this function shall be a <code>constexpr</code> function.</dd>
   </cxx-remarks>
       
     </dl>
@@ -5146,12 +5147,12 @@ public:
   any(const any&amp; other);
   any(any&amp;&amp; x) noexcept;
 
-  template &lt;typename ValueType&gt;
+  template &lt;class ValueType&gt;
     any(ValueType&amp;&amp; value);
 
   template &lt;class Allocator&gt;
     any(allocator_arg_t, const Allocator&amp; a) noexcept;
-  template &lt;class Allocator, typename ValueType&gt;
+  template &lt;class Allocator, class ValueType&gt;
     any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);
   template &lt;class Allocator&gt;
       any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);
@@ -5164,7 +5165,7 @@ public:
   any&amp; operator=(const any&amp; rhs);
   any&amp; operator=(any&amp;&amp; rhs) noexcept;
 
-  template &lt;typename ValueType&gt;
+  template &lt;class ValueType&gt;
     any&amp; operator=(ValueType&amp;&amp; rhs);
 
   <cxx-ref in="" insynopsis="" to="any.modifiers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.modifiers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.modifiers" href="#any.modifiers">6.3.3</a>, any modifiers</i></cxx-ref>
@@ -5179,16 +5180,16 @@ public:
 <cxx-ref in="" insynopsis="" to="any.nonmembers"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="any.nonmembers" elem="{{toElem}}"></cxx-get-element-by-id>// <i><a title="any.nonmembers" href="#any.nonmembers">6.4</a>, Non-member functions</i></cxx-ref>
 void swap(any&amp; x, any&amp; y) noexcept;
 
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType any_cast(const any&amp; operand);
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType any_cast(any&amp; operand);
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType any_cast(any&amp;&amp; operand);
 
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   const ValueType* any_cast(const any* operand) noexcept;
-template&lt;typename ValueType&gt;
+template&lt;class ValueType&gt;
   ValueType* any_cast(any* operand) noexcept;
 }
 }
@@ -5307,7 +5308,7 @@ template&lt;typename ValueType&gt;
 
       <cxx-function para_num="9" id="any.cons.9">
     
-    <pre><code><cxx-signature>template&lt;typename ValueType&gt;
+    <pre><code><cxx-signature>template&lt;class ValueType&gt;
 any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
 
     <dl>
@@ -5317,7 +5318,7 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
         <p para_num="10" id="any.cons.10">Let <code>T</code> be equal to <code>decay&lt;<wbr>ValueType&gt;::type</code>.</p>
         <cxx-requires para_num="11" id="any.cons.11">
     
-    <dt>Requires:</dt><dd><code>T</code> shall satisfy the CopyConstructible requirements.
+    <dt>Requires:</dt><dd><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
         If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</dd>
   </cxx-requires>
         <cxx-effects para_num="12" id="any.cons.12">
@@ -5339,7 +5340,7 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
       <cxx-function para_num="15" id="any.cons.15">
     
     <pre><code><cxx-signature>template &lt;class Allocator&gt;
-any(allocator_arg_t, const Allocator&amp; a) noexcept;</cxx-signature><cxx-signature>template &lt;class Allocator, typename ValueType&gt;
+any(allocator_arg_t, const Allocator&amp; a) noexcept;</cxx-signature><cxx-signature>template &lt;class Allocator, class ValueType&gt;
 any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);</cxx-signature><cxx-signature>template &lt;class Allocator&gt;
 any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);</cxx-signature><cxx-signature>template &lt;class Allocator&gt;
 any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx-signature></code></pre>
@@ -5442,7 +5443,7 @@ any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx
 
       <cxx-function para_num="9" id="any.assign.9">
     
-    <pre><code><cxx-signature>template&lt;typename ValueType&gt;
+    <pre><code><cxx-signature>template&lt;class ValueType&gt;
 any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
 
     <dl>
@@ -5452,7 +5453,7 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
         <p para_num="10" id="any.assign.10">Let <code>T</code> be equal to <code>decay&lt;<wbr>ValueType&gt;::type</code>.</p>
         <cxx-requires para_num="11" id="any.assign.11">
     
-    <dt>Requires:</dt><dd><code>T</code> shall satisfy the CopyConstructible requirements.
+    <dt>Requires:</dt><dd><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
         If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</dd>
   </cxx-requires>
         <cxx-effects para_num="12" id="any.assign.12">
@@ -5603,9 +5604,9 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
 
     <cxx-function para_num="3" id="any.nonmembers.3">
     
-    <pre><code><cxx-signature>template&lt;typename ValueType&gt;
-ValueType any_cast(const any&amp; operand);</cxx-signature><cxx-signature>template&lt;typename ValueType&gt;
-ValueType any_cast(any&amp; operand);</cxx-signature><cxx-signature>template&lt;typename ValueType&gt;
+    <pre><code><cxx-signature>template&lt;class ValueType&gt;
+ValueType any_cast(const any&amp; operand);</cxx-signature><cxx-signature>template&lt;class ValueType&gt;
+ValueType any_cast(any&amp; operand);</cxx-signature><cxx-signature>template&lt;class ValueType&gt;
 ValueType any_cast(any&amp;&amp; operand);</cxx-signature></code></pre>
 
     <dl>
@@ -5664,8 +5665,8 @@ any_cast&lt;string&amp;&gt;(y);                       // error; cannot
 
     <cxx-function para_num="7" id="any.nonmembers.7">
     
-    <pre><code><cxx-signature>template&lt;typename ValueType&gt;
-const ValueType* any_cast(const any* operand) noexcept;</cxx-signature><cxx-signature>template&lt;typename ValueType&gt;
+    <pre><code><cxx-signature>template&lt;class ValueType&gt;
+const ValueType* any_cast(const any* operand) noexcept;</cxx-signature><cxx-signature>template&lt;class ValueType&gt;
 ValueType* any_cast(any* operand) noexcept;</cxx-signature></code></pre>
 
     <dl>
@@ -5961,7 +5962,7 @@ namespace fundamentals_v1 {
       <table is="cxx-table" id="tab:string.view.ctr.1">
     
 
-    <caption>Table 4 — <wbr><caption><code>basic_string_view(const basic_string&amp;)</code> effects</caption></caption>
+    <caption>Table 4 — <wbr><span><code>basic_string_view(const basic_string&amp;)</code> effects</span></caption>
     
         
         <tbody><tr><th>Element</th><th>Value</th></tr>
@@ -5994,7 +5995,7 @@ namespace fundamentals_v1 {
       <table is="cxx-table" id="tab:string.view.ctr.2">
     
 
-    <caption>Table 5 — <wbr><caption>basic_string_view(const charT*) effects</caption></caption>
+    <caption>Table 5 — <wbr><span>basic_string_view(const charT*) effects</span></caption>
     
       <tbody><tr><th>Element</th><th>Value</th></tr>
       <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -6029,7 +6030,7 @@ namespace fundamentals_v1 {
       <table is="cxx-table" id="tab:string.view.ctr.3">
     
 
-    <caption>Table 6 — <wbr><caption><code>basic_string_view(const charT*, size_type)</code> effects</caption></caption>
+    <caption>Table 6 — <wbr><span><code>basic_string_view(const charT*, size_type)</code> effects</span></caption>
     
         <tbody><tr><th>Element</th><th>Value</th></tr>
         <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -6566,7 +6567,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       <table is="cxx-table" id="tab:string.view.compare" class="center">
     
 
-    <caption>Table 7 — <wbr><caption><code>compare()</code> results</caption></caption>
+    <caption>Table 7 — <wbr><span><code>compare()</code> results</span></caption>
     
         
         <tbody><tr><th>Condition</th><th>Return Value</th></tr>
@@ -6892,7 +6893,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     <table is="cxx-table" id="tab:string.view.comparison.overloads" class="center">
     
 
-    <caption>Table 8 — <wbr><caption>Additional <code>basic_string_view</code> comparison overloads</caption></caption>
+    <caption>Table 8 — <wbr><span>Additional <code>basic_string_view</code> comparison overloads</span></caption>
     
       <tbody><tr><th>Expression</th><th>Equivalent to</th></tr>
       <tr><td><code>t == sv</code></td><td><code>S(t) == sv</code></td></tr>
@@ -7189,7 +7190,7 @@ shared_ptr&lt;T&gt; reinterpret_pointer_cast(shared_ptr&lt;U&gt; const&amp; r) n
     <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
     
 
-    <caption>Table 9 — <wbr><caption>Computed <code>memory_resource</code> for type-erased allocator</caption></caption>
+    <caption>Table 9 — <wbr><span>Computed <code>memory_resource</code> for type-erased allocator</span></caption>
     
       
       <thead>
@@ -7264,11 +7265,11 @@ namespace pmr {
   bool operator!=(const polymorphic_allocator&lt;T1&gt;&amp; a,
                   const polymorphic_allocator&lt;T2&gt;&amp; b) noexcept;
 
-  // The name resource_adaptor_imp is for exposition only.
-  template &lt;class Allocator&gt; class resource_adaptor_imp;
+  // The name <var>resource_adaptor_imp</var> is for exposition only.
+  template &lt;class Allocator&gt; class <var>resource_adaptor_imp</var>;
 
   template &lt;class Allocator&gt;
-    using resource_adaptor = resource_adaptor_imp&lt;
+    using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
       allocator_traits&lt;Allocator&gt;::rebind_alloc&lt;char&gt;&gt;;
 
   // Global memory resources
@@ -7483,7 +7484,7 @@ protected:
         otherwise it shall return false.
         <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     The most-derived type of other might not match the type of this.
-        For a derived class, D, a typical implementation of this function will compute <code>dynamic_cast&lt;D*&gt;(&amp;other)</code> and go no further (i.e., return <code>false</code>) if it returns <code>nullptr</code>.
+        For a derived class, D, a typical implementation of this function will compute <code>dynamic_cast&lt;const D*&gt;(&amp;other)</code> and go no further (i.e., return <code>false</code>) if it returns <code>nullptr</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note></dd>
   </cxx-returns>
@@ -7587,7 +7588,7 @@ public:
   Tp* allocate(size_t n);
   void deallocate(Tp* p, size_t n);
 
-  template &lt;typename T, typename... Args&gt;
+  template &lt;class T, class... Args&gt;
     void construct(T* p, Args&amp;&amp;... args);
 
   // Specializations for pair using piecewise construction
@@ -7603,7 +7604,7 @@ public:
   template &lt;class T1, class T2, class U, class V&gt;
     void construct(pair&lt;T1,T2&gt;* p, pair&lt;U, V&gt;&amp;&amp; pr);
 
-  template &lt;typename T&gt;
+  template &lt;class T&gt;
     void destroy(T* p);
 
   // Return a default-constructed allocator (no allocator propagation)
@@ -7738,6 +7739,38 @@ polymorphic_allocator(const polymorphic_allocator&lt;U&gt;&amp; other) noexcept;
 
       <cxx-function para_num="7" id="memory.polymorphic.allocator.mem.7">
     
+    <pre><code><cxx-signature>template &lt;class T, class... Args&gt;
+void construct(T* p, Args&amp;&amp;... args);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        <cxx-requires para_num="8" id="memory.polymorphic.allocator.mem.8">
+    
+    <dt>Requires:</dt><dd><cxx-term><i>Uses-allocator construction</i></cxx-term> of <code>T</code>
+        with allocator <code>this-&gt;resource()</code> (see <cxx-ref in="" to="mods.allocator.uses"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="mods.allocator.uses" elem="{{toElem}}"></cxx-get-element-by-id><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
+        and constructor arguments <code>std::forward&lt;Args&gt;(args)...</code> is well-formed.
+        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    <cxx-term><i>uses-allocator construction</i></cxx-term> is always well formed for types that do not use allocators.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note></dd>
+  </cxx-requires>
+        <cxx-effects para_num="9" id="memory.polymorphic.allocator.mem.9">
+    
+    <dt>Effects:</dt><dd>Construct a <code>T</code> object at <code>p</code> by <cxx-term><i>uses-allocator construction</i></cxx-term>
+        with allocator <code>this-&gt;resource()</code> (<cxx-ref in="" to="mods.allocator.uses"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="mods.allocator.uses" elem="{{toElem}}"></cxx-get-element-by-id><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
+        and constructor arguments <code>std::forward&lt;Args&gt;(args)...</code>.</dd>
+  </cxx-effects>
+        <cxx-throws para_num="10" id="memory.polymorphic.allocator.mem.10">
+    
+    <dt>Throws:</dt><dd>: Nothing unless the constructor for <code>T</code> throws.</dd>
+  </cxx-throws>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="11" id="memory.polymorphic.allocator.mem.11">
+    
     <pre><code><cxx-signature>template &lt;class T1, class T2, class... Args1, class... Args2&gt;
 void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
                tuple&lt;Args1...&gt; x, tuple&lt;Args2...&gt; y);</cxx-signature></code></pre>
@@ -7745,7 +7778,7 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
     <dl>
       
         
-        <cxx-effects para_num="8" id="memory.polymorphic.allocator.mem.8">
+        <cxx-effects para_num="12" id="memory.polymorphic.allocator.mem.12">
     
     <dt>Effects:</dt><dd>
           Let <code>xprime</code> be a <code>tuple</code> constructed from <code>x</code> according to the appropriate rule from the following list.
@@ -7761,10 +7794,10 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
             <code>is_constructible&lt;T,Args1...&gt;::value</code> is <code>true</code>, then <code>xprime</code> is <code>x</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*&gt;::value</code> is <code>true</code> and
             <code>is_constructible&lt;T1,allocator_arg_t,memory_resource*,Args1...&gt;::value</code> is <code>true</code>,
-            then <code>xprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this-&gt;resource()), move(x))</code>.</li>
+            then <code>xprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this-&gt;resource()), std::move(x))</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*&gt;::value</code> is <code>true</code> and
             <code>is_constructible&lt;T1,Args1...,memory_resource*&gt;::value</code> is <code>true</code>,
-            then <code>xprime</code> is <code>tuple_cat(move(x), make_tuple(this-&gt;resource()))</code>.</li>
+            then <code>xprime</code> is <code>tuple_cat(std::move(x), make_tuple(this-&gt;resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
           and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
@@ -7772,10 +7805,10 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
             <li>If <code>uses_allocator&lt;T2,memory_resource*&gt;::value</code> is <code>false</code> and
             <code>is_constructible&lt;T,Args2...&gt;::value</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*&gt;::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T2,allocator_arg_t,memory_resource*,Args2...&gt;::value</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this-&gt;resource()), move(y))</code>.</li>
+            <code>is_constructible&lt;T2,allocator_arg_t,memory_resource*,Args2...&gt;::value</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this-&gt;resource()), std::move(y))</code>.</li>
             <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*&gt;::value</code> is <code>true</code> and
             <code>is_constructible&lt;T2,Args2...,memory_resource*&gt;::value</code> is <code>true</code>, then
-            <code>yprime</code> is <code>tuple_cat(move(y), make_tuple(this-&gt;resource()))</code>.</li>
+            <code>yprime</code> is <code>tuple_cat(std::move(y), make_tuple(this-&gt;resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
           then this function constructs a <code>std::pair&lt;T1,T2&gt;</code> object at <code>p</code> using constructor arguments <code>piecewise_construct, xprime, yprime</code>.
@@ -7785,7 +7818,7 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="9" id="memory.polymorphic.allocator.mem.9">
+      <cxx-function para_num="13" id="memory.polymorphic.allocator.mem.13">
     
     <pre><code><cxx-signature>template &lt;class T1, class T2&gt;
 void construct(std::pair&lt;T1,T2&gt;* p);</cxx-signature></code></pre>
@@ -7793,41 +7826,9 @@ void construct(std::pair&lt;T1,T2&gt;* p);</cxx-signature></code></pre>
     <dl>
       
         
-        <cxx-effects para_num="10" id="memory.polymorphic.allocator.mem.10">
-    
-    <dt>Effects:</dt><dd>equivalent to <code>this-&gt;construct(p, piecewise_construct, tuple&lt;&gt;(), tuple&lt;&gt;());</code></dd>
-  </cxx-effects>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="11" id="memory.polymorphic.allocator.mem.11">
-    
-    <pre><code><cxx-signature>template &lt;class T1, class T2, class U, class V&gt;
-void construct(std::pair&lt;T1,T2&gt;* p, U&amp;&amp; x, V&amp;&amp; y);</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-        <cxx-effects para_num="12" id="memory.polymorphic.allocator.mem.12">
-    
-    <dt>Effects:</dt><dd>equivalent to <code>this-&gt;construct(p, piecewise_construct, forward_as_tuple(std::forward&lt;U&gt;(x)), forward_as_tuple(std::forward&lt;V&gt;(y)));</code></dd>
-  </cxx-effects>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="13" id="memory.polymorphic.allocator.mem.13">
-    
-    <pre><code><cxx-signature>template &lt;class T1, class T2, class U, class V&gt;
-void construct(std::pair&lt;T1,T2&gt;* p, const std::pair&lt;U, V&gt;&amp; pr);</cxx-signature></code></pre>
-
-    <dl>
-      
-        
         <cxx-effects para_num="14" id="memory.polymorphic.allocator.mem.14">
     
-    <dt>Effects:</dt><dd>equivalent to <code>this-&gt;construct(p, piecewise_construct, forward_as_tuple(pr.first), forward_as_tuple(pr.second));</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct, tuple&lt;&gt;(), tuple&lt;&gt;());</code></dd>
   </cxx-effects>
       
     </dl>
@@ -7836,16 +7837,14 @@ void construct(std::pair&lt;T1,T2&gt;* p, const std::pair&lt;U, V&gt;&amp; pr);<
       <cxx-function para_num="15" id="memory.polymorphic.allocator.mem.15">
     
     <pre><code><cxx-signature>template &lt;class T1, class T2, class U, class V&gt;
-void construct(std::pair&lt;T1,T2&gt;* p, std::pair&lt;U, V&gt;&amp;&amp; pr);</cxx-signature></code></pre>
+void construct(std::pair&lt;T1,T2&gt;* p, U&amp;&amp; x, V&amp;&amp; y);</cxx-signature></code></pre>
 
     <dl>
       
         
         <cxx-effects para_num="16" id="memory.polymorphic.allocator.mem.16">
     
-    <dt>Effects:</dt><dd>equivalent to <code>this-&gt;construct(p, piecewise_construct,
-        forward_as_tuple(std::forward&lt;U&gt;(pr.first)),
-        forward_as_tuple(std::forward&lt;V&gt;(pr.second)));</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct, forward_as_tuple(std::forward&lt;U&gt;(x)), forward_as_tuple(std::forward&lt;V&gt;(y)));</code></dd>
   </cxx-effects>
       
     </dl>
@@ -7853,15 +7852,15 @@ void construct(std::pair&lt;T1,T2&gt;* p, std::pair&lt;U, V&gt;&amp;&amp; pr);</
 
       <cxx-function para_num="17" id="memory.polymorphic.allocator.mem.17">
     
-    <pre><code><cxx-signature>template &lt;typename T&gt;
-void destroy(T* p);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>template &lt;class T1, class T2, class U, class V&gt;
+void construct(std::pair&lt;T1,T2&gt;* p, const std::pair&lt;U, V&gt;&amp; pr);</cxx-signature></code></pre>
 
     <dl>
       
         
         <cxx-effects para_num="18" id="memory.polymorphic.allocator.mem.18">
     
-    <dt>Effects:</dt><dd><code>p-&gt;~T()</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct, forward_as_tuple(pr.first), forward_as_tuple(pr.second));</code></dd>
   </cxx-effects>
       
     </dl>
@@ -7869,12 +7868,46 @@ void destroy(T* p);</cxx-signature></code></pre>
 
       <cxx-function para_num="19" id="memory.polymorphic.allocator.mem.19">
     
+    <pre><code><cxx-signature>template &lt;class T1, class T2, class U, class V&gt;
+void construct(std::pair&lt;T1,T2&gt;* p, std::pair&lt;U, V&gt;&amp;&amp; pr);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        <cxx-effects para_num="20" id="memory.polymorphic.allocator.mem.20">
+    
+    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct,
+        forward_as_tuple(std::forward&lt;U&gt;(pr.first)),
+        forward_as_tuple(std::forward&lt;V&gt;(pr.second)));</code></dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="21" id="memory.polymorphic.allocator.mem.21">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+void destroy(T* p);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        <cxx-effects para_num="22" id="memory.polymorphic.allocator.mem.22">
+    
+    <dt>Effects:</dt><dd><code>p-&gt;~T()</code>.</dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="23" id="memory.polymorphic.allocator.mem.23">
+    
     <pre><code><cxx-signature>polymorphic_allocator select_on_container_copy_construction() const;</cxx-signature></code></pre>
 
     <dl>
       
         
-        <cxx-returns para_num="20" id="memory.polymorphic.allocator.mem.20">
+        <cxx-returns para_num="24" id="memory.polymorphic.allocator.mem.24">
     
     <dt>Returns:</dt><dd><code>polymorphic_allocator()</code>.</dd>
   </cxx-returns>
@@ -7882,14 +7915,14 @@ void destroy(T* p);</cxx-signature></code></pre>
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="21" id="memory.polymorphic.allocator.mem.21">
+      <cxx-function para_num="25" id="memory.polymorphic.allocator.mem.25">
     
     <pre><code><cxx-signature>memory_resource* resource() const;</cxx-signature></code></pre>
 
     <dl>
       
         
-        <cxx-returns para_num="22" id="memory.polymorphic.allocator.mem.22">
+        <cxx-returns para_num="26" id="memory.polymorphic.allocator.mem.26">
     
     <dt>Returns:</dt><dd>m_resource.</dd>
   </cxx-returns>
@@ -7969,35 +8002,35 @@ bool operator!=(const polymorphic_allocator&lt;T1&gt;&amp; a,
         In order that <code>resource_adaptor&lt;X&lt;T&gt;&gt;</code> and <code>resource_adaptor&lt;X&lt;U&gt;&gt;</code> are the same type for any allocator template <code>X</code> and types <code>T</code> and <code>U</code>,
         <code>resource_adaptor&lt;Allocator&gt;</code> is rendered as an alias to a class template such that <code>Allocator</code> is rebound to a <code>char</code> value type in every specialization of the class template.
         The requirements on this class template are defined below.
-        The name <code>resource_adaptor_imp</code> is for exposition only and is not normative,
+        The name <code><var>resource_adaptor_imp</var></code> is for exposition only and is not normative,
         but the definitions of the members of that class, whatever its name, are normative.
         In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"><cxx-get-element-by-id elemid="cxx" elem="{{inElem}}"></cxx-get-element-by-id>C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
       </p>
       <ul>
-        <li><code>typename allocator_traits&lt;Allocator&gt;::pointer</code> shall be identical to typename <code>allocator_traits&lt;Allocator&gt;::value_type*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator&gt;::pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator&gt;::value_type*</code>.</li>
         <li><code>typename allocator_traits&lt;Allocator&gt;::const_pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator&gt;::value_type const*</code>.</li>
         <li><code>typename allocator_traits&lt;Allocator&gt;::void_pointer</code> shall be identical to <code>void*</code>.</li>
         <li><code>typename allocator_traits&lt;Allocator&gt;::const_void_pointer</code> shall be identical to <code>void const*</code>.</li>
       </ul>
 
       <pre><code>
-// The name resource_adaptor_imp is for exposition only.
+// The name <var>resource_adaptor_imp</var> is for exposition only.
 template &lt;class Allocator&gt;
-class resource_adaptor_imp : public memory_resource {
+class <var>resource_adaptor_imp</var> : public memory_resource {
   // for exposition only
   Allocator m_alloc;
 
 public:
   typedef Allocator allocator_type;
 
-  resource_adaptor_imp() = default;
-  resource_adaptor_imp(const resource_adaptor_imp&amp;) = default;
-  resource_adaptor_imp(resource_adaptor_imp&amp;&amp;) = default;
+  <var>resource_adaptor_imp</var>() = default;
+  <var>resource_adaptor_imp</var>(const <var>resource_adaptor_imp</var>&amp;) = default;
+  <var>resource_adaptor_imp</var>(<var>resource_adaptor_imp</var>&amp;&amp;) = default;
 
-  explicit resource_adaptor_imp(const Allocator&amp; a2);
-  explicit resource_adaptor_imp(Allocator&amp;&amp; a2);
+  explicit <var>resource_adaptor_imp</var>(const Allocator&amp; a2);
+  explicit <var>resource_adaptor_imp</var>(Allocator&amp;&amp; a2);
 
-  resource_adaptor_imp&amp; operator=(const resource_adaptor_imp&amp;) = default;
+  <var>resource_adaptor_imp</var>&amp; operator=(const <var>resource_adaptor_imp</var>&amp;) = default;
 
   allocator_type get_allocator() const { return m_alloc; }
 
@@ -8009,7 +8042,7 @@ protected:
 };
 
 template &lt;class Allocator&gt;
-  using resource_adaptor = typename resource_adaptor_imp&lt;
+  using resource_adaptor = typename <var>resource_adaptor_imp</var>&lt;
     allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;</code></pre>
     
     </section>
@@ -8019,13 +8052,13 @@ template &lt;class Allocator&gt;
     
 
     <section>
-      <header><span class="section-number">8.7.2</span> <h1 data-bookmark-label="8.7.2 resource_adaptor_imp constructors"><code>resource_adaptor_imp</code> constructors</h1> <span style="float:right"><a href="#memory.resource.adaptor.ctor">[memory.resource.adaptor.ctor]</a></span></header>
+      <header><span class="section-number">8.7.2</span> <h1 data-bookmark-label="8.7.2 resource_adaptor_imp constructors"><code><var>resource_adaptor_imp</var></code> constructors</h1> <span style="float:right"><a href="#memory.resource.adaptor.ctor">[memory.resource.adaptor.ctor]</a></span></header>
       
       
 
       <cxx-function para_num="1" id="memory.resource.adaptor.ctor.1">
     
-    <pre><code><cxx-signature>explicit resource_adaptor_imp(const Allocator&amp; a2);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>explicit <var>resource_adaptor_imp</var>(const Allocator&amp; a2);</cxx-signature></code></pre>
 
     <dl>
       
@@ -8040,7 +8073,7 @@ template &lt;class Allocator&gt;
 
       <cxx-function para_num="3" id="memory.resource.adaptor.ctor.3">
     
-    <pre><code><cxx-signature>explicit resource_adaptor_imp(Allocator&amp;&amp; a2);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>explicit <var>resource_adaptor_imp</var>(Allocator&amp;&amp; a2);</cxx-signature></code></pre>
 
     <dl>
       
@@ -8060,7 +8093,7 @@ template &lt;class Allocator&gt;
     
 
     <section>
-      <header><span class="section-number">8.7.3</span> <h1 data-bookmark-label="8.7.3 resource_adaptor_imp member functions"><code>resource_adaptor_imp</code> member functions</h1> <span style="float:right"><a href="#memory.resource.adaptor.mem">[memory.resource.adaptor.mem]</a></span></header>
+      <header><span class="section-number">8.7.3</span> <h1 data-bookmark-label="8.7.3 resource_adaptor_imp member functions"><code><var>resource_adaptor_imp</var></code> member functions</h1> <span style="float:right"><a href="#memory.resource.adaptor.mem">[memory.resource.adaptor.mem]</a></span></header>
       
       
 
@@ -8100,12 +8133,12 @@ template &lt;class Allocator&gt;
 
       <cxx-function para_num="6" id="memory.resource.adaptor.mem.6">
     
-    <pre><code><cxx-signature>bool do_is_equal(const memory_resource&amp; other) const;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>bool do_is_equal(const memory_resource&amp; other) const noexcept;</cxx-signature></code></pre>
 
     <dl>
       
         
-        <p para_num="7" id="memory.resource.adaptor.mem.7">Let <code>p</code> be <code>dynamic_cast&lt;const resource_adaptor_imp*&gt;(&amp;other)</code>.</p>
+        <p para_num="7" id="memory.resource.adaptor.mem.7">Let <code>p</code> be <code>dynamic_cast&lt;const <var>resource_adaptor_imp</var>*&gt;(&amp;other)</code>.</p>
         <cxx-returns para_num="8" id="memory.resource.adaptor.mem.8">
     
     <dt>Returns:</dt><dd><code>false</code> if <code>p</code> is null, otherwise the value of <code>m_alloc == p-&gt;m_alloc</code>.</dd>
@@ -8167,7 +8200,7 @@ template &lt;class Allocator&gt;
   </cxx-function>
 
     <p para_num="5" id="memory.resource.global.5">
-      The default memory resource pointer is a pointer to a memory resource
+      The <dfn>default memory resource pointer</dfn> is a pointer to a memory resource
       that is used by certain facilities when an explicit memory resource is not supplied through the interface.
       Its initial value is the return value of <code>new_delete_resource()</code>.
     </p>
@@ -8245,12 +8278,12 @@ template &lt;class Allocator&gt;
         are general-purpose memory resources having the following qualities:
       </p>
       <ul>
-        <li>Each resource owns the allocated memory, and frees it on destruction –
-        even if deallocate has not been called for some of the allocated blocks.</li>
-        <li>A pool resource (see <cxx-ref in="" to="fig:memory.resource.pool.resources"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="fig:memory.resource.pool.resources" elem="{{toElem}}"></cxx-get-element-by-id><a title="fig:memory.resource.pool.resources" href="#fig:memory.resource.pool.resources">Figure 1</a></cxx-ref>) consists of a collection of pools, serving requests for different block sizes.
-        Each individual pool manages a collection of chunks that are in turn divided into blocks of uniform size, returned via calls to <code>do_allocate</code>.
+        <li>Each resource <cxx-term><i>owns</i></cxx-term> the allocated memory, and frees it on destruction –
+        even if <code>deallocate</code> has not been called for some of the allocated blocks.</li>
+        <li>A pool resource (see <cxx-ref in="" to="fig:memory.resource.pool.resources"><cxx-get-element-by-id elemid="" elem="{{inElem}}"></cxx-get-element-by-id><cxx-get-element-by-id elemid="fig:memory.resource.pool.resources" elem="{{toElem}}"></cxx-get-element-by-id><a title="fig:memory.resource.pool.resources" href="#fig:memory.resource.pool.resources">Figure 1</a></cxx-ref>) consists of a collection of <dfn>pools</dfn>, serving requests for different block sizes.
+        Each individual pool manages a collection of <dfn>chunks</dfn> that are in turn divided into blocks of uniform size, returned via calls to <code>do_allocate</code>.
         Each call to <code>do_allocate(size, alignment)</code> is dispatched to the pool serving the smallest blocks accommodating at least <code>size</code> bytes.</li>
-        <li>When a particular pool is exhausted, allocating a block from that pool results in the allocation of an additional chunk of memory from the upstream allocator (supplied at construction), thus replenishing the pool.
+        <li>When a particular pool is exhausted, allocating a block from that pool results in the allocation of an additional chunk of memory from the <dfn>upstream allocator</dfn> (supplied at construction), thus replenishing the pool.
         With each successive replenishment, the chunk size obtained increases geometrically.
         <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     By allocating memory in chunks, the pooling strategy increases the chance that consecutive allocations will be close together in memory.
@@ -8297,7 +8330,7 @@ public:
       : synchronized_pool_resource(pool_options(), get_default_resource()) { }
   explicit synchronized_pool_resource(memory_resource* upstream)
       : synchronized_pool_resource(pool_options(), upstream) { }
-  explicit synchronized_pool_resource(pool_options&amp; opts)
+  explicit synchronized_pool_resource(const pool_options&amp; opts)
       : synchronized_pool_resource(opts, get_default_resource()) { }
 
   synchronized_pool_resource(
@@ -8425,7 +8458,7 @@ protected:
         <cxx-effects para_num="3" id="memory.resource.pool.ctor.3">
     
     <dt>Effects:</dt><dd>
-          Constructs a pool resource object that will obtain memory from upstream whenever the pool resource is unable to satisfy a memory request from its own internal data structures.
+          Constructs a pool resource object that will obtain memory from <code>upstream</code> whenever the pool resource is unable to satisfy a memory request from its own internal data structures.
           The resulting object will hold a copy of <code>upstream</code>, but will not own the resource to which <code>upstream</code> points.
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     The intention is that calls to <code>upstream-&gt;allocate()</code> will be substantially fewer than calls to <code>this-&gt;allocate()</code> in most cases.
@@ -8542,7 +8575,7 @@ protected:
         <cxx-effects para_num="9" id="memory.resource.pool.mem.9">
     
     <dt>Effects:</dt><dd>
-          If the pool selected for a block of <code>size</code> bytes is unable to satisfy the memory request from its own internal data structures,
+          If the pool selected for a block of size <code>bytes</code> is unable to satisfy the memory request from its own internal data structures,
           it will call <code>upstream_resource()-&gt;allocate()</code> to obtain more memory.
           If <code>bytes</code> is larger than that which the largest pool can handle,
           then memory will be allocated using <code>upstream_resource()-&gt;allocate()</code>.
@@ -8586,7 +8619,7 @@ protected:
         
         <cxx-returns para_num="15" id="memory.resource.pool.mem.15">
     
-    <dt>Returns:</dt><dd><code>this == dynamic_cast&lt;unsynchronized_pool_resource*&gt;(&amp;other)</code>.</dd>
+    <dt>Returns:</dt><dd><code>this == dynamic_cast&lt;const unsynchronized_pool_resource*&gt;(&amp;other)</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -8602,7 +8635,7 @@ protected:
 
         <cxx-returns para_num="17" id="memory.resource.pool.mem.17">
     
-    <dt>Returns:</dt><dd><code>this == dynamic_cast&lt;synchronized_pool_resource*&gt;(&amp;other)</code>.</dd>
+    <dt>Returns:</dt><dd><code>this == dynamic_cast&lt;const synchronized_pool_resource*&gt;(&amp;other)</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -8641,12 +8674,12 @@ protected:
         thus the amount of memory consumed increases monotonically until the resource is destroyed.</li>
         <li>The program can supply an initial buffer, which the allocator uses to satisfy memory requests.</li>
         <li>When the initial buffer (if any) is exhausted,
-        it obtains additional buffers from an upstream memory resource supplied at construction.
+        it obtains additional buffers from an <dfn>upstream</dfn> memory resource supplied at construction.
         Each additional buffer is larger than the previous one, following a geometric progression.</li>
         <li>It is intended for access from one thread of control at a time.
         Specifically, calls to <code>allocate</code> and <code>deallocate</code> do not synchronize with one another.</li>
-        <li>It owns the allocated memory and frees it on destruction,
-        even if deallocate has not been called for some of the allocated blocks.</li>
+        <li>It <cxx-term><i>owns</i></cxx-term> the allocated memory and frees it on destruction,
+        even if <code>deallocate</code> has not been called for some of the allocated blocks.</li>
       </ul>
 <pre><code>class monotonic_buffer_resource : public memory_resource {
   memory_resource* upstream_rsrc; // exposition only
@@ -8753,7 +8786,7 @@ protected:
         
         <cxx-effects para_num="8" id="memory.resource.monotonic.buffer.ctor.8">
     
-    <dt>Effects:</dt><dd>Calls this-&gt;release().</dd>
+    <dt>Effects:</dt><dd>Calls <code>this-&gt;release()</code>.</dd>
   </cxx-effects>
       
     </dl>
@@ -8820,7 +8853,7 @@ protected:
         <cxx-effects para_num="8" id="memory.resource.monotonic.buffer.mem.8">
     
     <dt>Effects:</dt><dd>
-          If the unused space in <code>current_buffer</code> can fit a block with the specified bytes and alignment,
+          If the unused space in <code>current_buffer</code> can fit a block with the specified <code>bytes</code> and <code>alignment</code>,
           then allocate the return block from <code>current_buffer</code>;
           otherwise set <code>current_buffer</code> to <code>upstream_rsrc-&gt;allocate(n, m)</code>,
           where <code>n</code> is not less than <code>max(bytes, next_buffer_size)</code> and <code>m</code> is not less than <code>alignment</code>,
@@ -8868,7 +8901,7 @@ protected:
         
         <cxx-returns para_num="15" id="memory.resource.monotonic.buffer.mem.15">
     
-    <dt>Returns:</dt><dd><code>this == dynamic_cast&lt;monotonic_buffer_resource*&gt;(&amp;other)</code>.</dd>
+    <dt>Returns:</dt><dd><code>this == dynamic_cast&lt;const monotonic_buffer_resource*&gt;(&amp;other)</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -9098,15 +9131,15 @@ inline namespace fundamentals_v1 {
 namespace pmr {
 
   template &lt;class Key, class T,
-  class Hash = hash&lt;Key&gt;,
-  class Pred = std::equal_to&lt;Key&gt;&gt;
+            class Hash = hash&lt;Key&gt;,
+            class Pred = equal_to&lt;Key&gt;&gt;
   using unordered_map =
     std::unordered_map&lt;Key, T, Hash, Pred,
                        polymorphic_allocator&lt;pair&lt;const Key,T&gt;&gt;&gt;;
 
   template &lt;class Key, class T,
-  class Hash = hash&lt;Key&gt;,
-  class Pred = std::equal_to&lt;Key&gt;&gt;
+            class Hash = hash&lt;Key&gt;,
+            class Pred = equal_to&lt;Key&gt;&gt;
   using unordered_multimap =
     std::unordered_multimap&lt;Key, T, Hash, Pred,
                             polymorphic_allocator&lt;pair&lt;const Key,T&gt;&gt;&gt;;
@@ -9134,14 +9167,14 @@ inline namespace fundamentals_v1 {
 namespace pmr {
 
   template &lt;class Key,
-  class Hash = hash&lt;Key&gt;,
-  class Pred = equal_to&lt;Key&gt;&gt;
+            class Hash = hash&lt;Key&gt;,
+            class Pred = equal_to&lt;Key&gt;&gt;
   using unordered_set = std::unordered_set&lt;Key, Hash, Pred,
                                            polymorphic_allocator&lt;Key&gt;&gt;;
 
   template &lt;class Key,
-  class Hash = hash&lt;Key&gt;,
-  class Pred = equal_to&lt;Key&gt;&gt;
+            class Hash = hash&lt;Key&gt;,
+            class Pred = equal_to&lt;Key&gt;&gt;
   using unordered_multiset =
     std::unordered_multiset&lt;Key, Hash, Pred,
                             polymorphic_allocator&lt;Key&gt;&gt;;
@@ -9305,10 +9338,11 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
   </cxx-requires>
       <cxx-effects para_num="3" id="alg.random.sample.3">
     
-    <dt>Effects:</dt><dd>Copies <code>min(last−first, n)</code> elements (the sample) from <cxx-range begin="first" end="last">[<code>first</code>, <code>last</code>)</cxx-range> (the population) to <code>out</code>
+    <dt>Effects:</dt><dd>Copies <code>min(last−first, n)</code> elements (the <dfn>sample</dfn>)
+      from <cxx-range begin="first" end="last">[<code>first</code>, <code>last</code>)</cxx-range> (the <dfn>population</dfn>) to <code>out</code>
       such that each possible sample has equal probability of appearance.
       <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    Algorithms that obtain such effects include selection sampling and reservoir sampling.
+    Algorithms that obtain such effects include <cxx-term><i>selection sampling</i></cxx-term> and <cxx-term><i>reservoir sampling</i></cxx-term>.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note></dd>
   </cxx-effects>

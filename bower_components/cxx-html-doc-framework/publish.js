@@ -73,6 +73,17 @@ limitations under the License.
             });
     }
 
+    // Replaces <caption>s inside <caption>s with <spans>, so that Firefox doesn't
+    // omit them from the rendering.
+    function fixNestedCaptions(doc) {
+        doc.querySelectorAll('caption caption').array().forEach(function(caption) {
+            var span = doc.createElement('span');
+            span.innerHTML = caption.innerHTML;
+            caption.parentNode.insertBefore(span, caption);
+            caption.remove();
+        });
+    }
+
     function cloneStaticAndInline(doc) {
         // Inline the images on the source document instead of the copy
         // because the copy doesn't have time to load the images.
@@ -87,6 +98,8 @@ limitations under the License.
         removeAll(copy.querySelectorAll('script'));
         removeAll(copy.querySelectorAll('template'));
         removeAll(copy.querySelectorAll('cxx-publish-button'));
+
+        fixNestedCaptions(copy);
 
         // Inline all style sheets.
         var sheetUpdates = Array.prototype.map.call(
