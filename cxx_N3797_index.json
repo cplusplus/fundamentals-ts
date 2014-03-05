@@ -9,6 +9,7 @@
     "library": "17",
     "hash.requirements": "17.6.3.4",
     "allocator.requirements": "17.6.3.5",
+    "syserr": "19.5",
     "utility.swap": "20.2.2",
     "tuple.helper": "20.4.2.5",
     "allocator.uses": "20.7.7",

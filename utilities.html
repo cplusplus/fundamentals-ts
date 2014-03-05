@@ -450,6 +450,7 @@ namespace std {
 namespace experimental {
 inline namespace fundamentals_v1 {
 
+// See <cxx-ref in="cxx" to="syserr"></cxx-ref>, System error support
 template &lt;class T> constexpr bool is_error_code_enum_v
   = is_error_code_enum&lt;T>::value;
 template &lt;class T> constexpr bool is_error_condition_enum_v
