@@ -82,9 +82,29 @@
     are experimental and not part of the C++ standard library, they
     should not be declared directly within namespace
     <code>std</code>.
-    Unless otherwise specified, all components described in this technical specification that are not modifications of existing interfaces in the C++ Standard Library
-    are declared in namespace <code>std::experimental::fundamentals_v1</code> or a subnamespace thereof.
-    Each header described in this technical
+    Unless otherwise specified, all components described in this technical specification either:
+    </p>
+    <ul>
+      <li>modify an existing interface in the C++ Standard Library in-place,</li>
+      <li>
+        are declared in a namespace whose name appends <code>::experimental::fundamentals_v1</code>
+        to a namespace defined in the C++ Standard Library,
+        such as <code>std</code> or <code>std::chrono</code>, or
+      </li>
+      <li>
+        are declared in a subnamespace of a namespace described in the previous bullet,
+        whose name is not the same as an existing subnamespace of namespace <code>std</code>.
+      </li>
+    </ul>
+
+    <cxx-example>
+      This TS does not define <code>std::experimental::fundamentals_v1::chrono</code>
+      because the C++ Standard Library defines <code>std::chrono</code>.
+      This TS does not define <code>std::pmr::experimental::fundamentals_v1</code>
+      because the C++ Standard Library does not define <code>std::pmr</code>.
+    </cxx-example>
+
+    <p>Each header described in this technical
     specification shall import the contents of
     <code>std::experimental::fundamentals_v1</code> into
     <code>std::experimental</code> as if by</p>
