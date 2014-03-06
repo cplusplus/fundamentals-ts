@@ -10,13 +10,13 @@ namespace std {
 namespace experimental {
 inline namespace fundamentals_v1 {
 
-// See <cxx-ref in="cxx" to="allocator.uses"></cxx-ref>, uses_allocator
-template &lt;class T, class Alloc> constexpr bool uses_allocator_v
-  = uses_allocator&lt;T, Alloc>::value;
+  // See <cxx-ref in="cxx" to="allocator.uses"></cxx-ref>, uses_allocator
+  template &lt;class T, class Alloc> constexpr bool uses_allocator_v
+    = uses_allocator&lt;T, Alloc>::value;
 
-<cxx-ref insynopsis="" to="memory.smartptr.shared.cast"></cxx-ref>
-template&lt;class T, class U>
-shared_ptr&lt;T> reinterpret_pointer_cast(shared_ptr&lt;U> const& r) noexcept;
+  <cxx-ref insynopsis="" to="memory.smartptr.shared.cast"></cxx-ref>
+  template&lt;class T, class U>
+  shared_ptr&lt;T> reinterpret_pointer_cast(shared_ptr&lt;U> const& r) noexcept;
 
 } // namespace fundamentals_v1
 } // namespace experimental
@@ -257,12 +257,7 @@ protected:
         This runtime polymorphism allows objects that use <code>polymorphic_allocator</code> to behave as if they used different allocator types at run time even though they use the same static allocator type.
       </p>
 
-      <pre><code>namespace std {
-namespace experimental {
-inline namespace fundamentals_v1 {
-namespace pmr {
-
-template &lt;class Tp>
+      <pre><code>template &lt;class Tp>
 class polymorphic_allocator {
   memory_resource* m_resource; // For exposition only
 
@@ -306,11 +301,7 @@ public:
   polymorphic_allocator select_on_container_copy_construction() const;
 
   memory_resource* resource() const;
-};
-
-} // namespace pmr
-} // namespace experimental
-} // namespace std</code></pre>
+};</code></pre>
     </cxx-section>
 
     <cxx-section id="memory.polymorphic.allocator.ctor">
@@ -1155,6 +1146,7 @@ namespace pmr {
   using unordered_multiset =
     std::unordered_multiset&lt;Key, Hash, Pred,
                             polymorphic_allocator&lt;Key>>;
+
 } // namespace pmr
 } // namespace fundamentals_v1
 } // namespace experimental

@@ -44,3 +44,24 @@ Very little text is bold, either with `<strong>` or `<b>`.
 
 Any repeated markup structure should be abstracted out into a custom
 element in the https://github.com/cplusplus/html-doc-framework project.
+
+
+Namespace formatting
+--------------------
+
+Namespace contents are indented by 2 spaces, with one blank line
+between the namespace open and the first line of the contents.
+Multiple namespaces can be opened at the same indentation level, like:
+
+```c++
+namespace std {
+namespace experimental {
+
+  class contents{};
+
+} // namespace experimental
+} // namespace std
+```
+
+Namespaces are only shown in header synopses, not around class or
+function definitions.

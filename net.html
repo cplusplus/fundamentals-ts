@@ -9,21 +9,20 @@ namespace experimental {
 inline namespace fundamentals_v1 {
 namespace net {
 
-<cxx-ref insynopsis="" to="net.byte.order"></cxx-ref>
-constexpr uint32_t htonl(uint32_t host) noexcept;
-constexpr uint16_t htons(uint16_t host) noexcept;
-template &lt;class T>
-  constexpr T hton(T host) noexcept = delete;
-template &lt;>
-  constexpr <var>unsigned-integral</var> hton(<var>unsigned-integral</var> host) noexcept;
+  <cxx-ref insynopsis="" to="net.byte.order"></cxx-ref>
+  constexpr uint32_t htonl(uint32_t host) noexcept;
+  constexpr uint16_t htons(uint16_t host) noexcept;
+  template &lt;class T>
+    constexpr T hton(T host) noexcept = delete;
+  template &lt;>
+    constexpr <var>unsigned-integral</var> hton(<var>unsigned-integral</var> host) noexcept;
 
-constexpr uint32_t ntohl(uint32_t network) noexcept;
-constexpr uint16_t ntohs(uint16_t network) noexcept;
-template &lt;class T>
-  constexpr T ntoh(T network) noexcept = delete;
-template &lt;>
-  constexpr <var>unsigned-integral</var> ntoh(<var>unsigned-integral</var> network) noexcept;
-
+  constexpr uint32_t ntohl(uint32_t network) noexcept;
+  constexpr uint16_t ntohs(uint16_t network) noexcept;
+  template &lt;class T>
+    constexpr T ntoh(T network) noexcept = delete;
+  template &lt;>
+    constexpr <var>unsigned-integral</var> ntoh(<var>unsigned-integral</var> network) noexcept;
 
 } // namespace net
 } // namespace fundamentals_v1
