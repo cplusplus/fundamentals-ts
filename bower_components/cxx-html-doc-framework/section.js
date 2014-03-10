@@ -45,14 +45,12 @@ limitations under the License.
             }
         },
 
-        attached: function() {
+        domReady: function() {
             var title_element = this.querySelector('h1');
             if (title_element && title_element.parentElement == this)
                 this.title_element = title_element;
 
-            // async() lets the descendant elements upgrade; after which we
-            // need to traverse them to assign paragraph numbers.
-            this.async(this.numberParagraphChildren);
+            this.numberParagraphChildren();
         },
 
         numberParagraphChildren: function(rootElement, para_num_start) {

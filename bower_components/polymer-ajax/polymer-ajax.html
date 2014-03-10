@@ -7,11 +7,17 @@ license that can be found in the LICENSE file.
 /**
  * @module Polymer Elements
  */
+ 
 /**
- * polymer-ajax can be used to perform XMLHttpRequests.
- *
- * Note: The params attribute must be double quoted JSON
+ * The `polymer-ajax` element performs `XMLHttpRequest`s.
  * 
+ * You can trigger a request explicitly by calling `go` on the
+ * element. 
+ * 
+ * With `auto` set to `true`, the element performs a request whenever
+ * its `url` or `params` properties are changed.
+ * 
+ *
  * Example:
  *
  *     <polymer-ajax auto url="http://gdata.youtube.com/feeds/api/videos/" 
@@ -19,24 +25,33 @@ license that can be found in the LICENSE file.
  *         handleAs="json"
  *         on-polymer-response="{{handleResponse}}">
  *     </polymer-ajax>
+ * 
+ * Note: The `params` attribute must be double quoted JSON.
  *
  * @class polymer-ajax
+ * @status beta
+ * @homepage github.io
+ *
  */
+ 
 /**
  * Fired when a response is received.
  * 
  * @event polymer-response
  */
+ 
 /**
  * Fired when an error is received.
  * 
  * @event polymer-error
  */
+ 
 /**
  * Fired whenever a response or an error is received.
  *
  * @event polymer-complete
  */
+ 
 -->
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="polymer-xhr.html">
@@ -53,16 +68,16 @@ license that can be found in the LICENSE file.
        */
       url: '',
       /**
-       * Specifies what data to store in the 'response' property, and
-       * to deliver as 'event.response' in 'response' events.
+       * Specifies what data to store in the `response` property, and
+       * to deliver as `event.response` in `response` events.
        * 
        * One of:
        * 
-       *    `text`: uses XHR.responseText
+       *    `text`: uses `XHR.responseText`.
        *    
-       *    `xml`: uses XHR.responseXML
+       *    `xml`: uses `XHR.responseXML`.
        *    
-       *    `json`: uses XHR.responseText parsed as JSON
+       *    `json`: uses `XHR.responseText` parsed as JSON.
        *  
        * @attribute handleAs
        * @type string
@@ -70,7 +85,7 @@ license that can be found in the LICENSE file.
        */
       handleAs: '',
       /**
-       * If true, automatically performs an Ajax request when either url or params has changed.
+       * If true, automatically performs an Ajax request when either `url` or `params` changes.
        *
        * @attribute auto
        * @type boolean
@@ -94,7 +109,7 @@ license that can be found in the LICENSE file.
        */
       response: null,
       /**
-       * The HTTP method to use such as 'GET', 'POST', 'PUT', 'DELETE'.
+       * The HTTP method to use such as 'GET', 'POST', 'PUT', or 'DELETE'.
        * Default is 'GET'.
        *
        * @attribute method
@@ -119,7 +134,7 @@ license that can be found in the LICENSE file.
        */
       headers: null,
       /**
-       * Optional raw body content to send when method === "POST"
+       * Optional raw body content to send when method === "POST".
        *
        * Example:
        *
@@ -210,7 +225,7 @@ license that can be found in the LICENSE file.
         }
       },
       /**
-       * Performs an Ajax request to the url specified.
+       * Performs an Ajax request to the specified URL.
        *
        * @method go
        */

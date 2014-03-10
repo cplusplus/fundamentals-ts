@@ -42,7 +42,7 @@ limitations under the License.
             }, this);
         },
 
-        attached: function() {
+        domReady: function() {
             this.clauses = document.querySelectorAll('cxx-clause');
         }
     })

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-REQUIRES");document.createElement("CXX-EFFECTS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-THROWS");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-RETURNS");document.createElement("CXX-NOTES");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-TERM");document.createElement("CXX-RANGE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>element {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-REQUIRES");document.createElement("CXX-EFFECTS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-THROWS");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-RETURNS");document.createElement("CXX-NOTES");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-TERM");document.createElement("CXX-RANGE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -347,7 +347,7 @@ cxx-toc li li li li .marker {
 	display: block; min-height: 100%;
 }
 
-cxx-titlepage {
+cxx-titlepage  {
 	position: relative;
 }
 
@@ -411,7 +411,7 @@ cxx-example .nowrap {
 	display: block;
 }</style>
   <meta charset="utf-8">
-  <preloader style="display: none;"></preloader><style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; touch-action-delay: none; }
+  <style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; touch-action-delay: none; }
 body ^^ [touch-action="none"]{ -ms-touch-action: none; touch-action: none; touch-action-delay: none; }
 [touch-action="auto"]{ -ms-touch-action: auto; touch-action: auto; touch-action-delay: none; }
 body ^^ [touch-action="auto"]{ -ms-touch-action: auto; touch-action: auto; touch-action-delay: none; }
@@ -423,7 +423,22 @@ body ^^ [touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; to
 body ^^ [touch-action="pan-x pan-y"],body ^^ [touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; touch-action-delay: none; }
 </style>
   <link rel="import" href="bower_components/cxx-html-doc-framework/framework.html">
-<style shim-shadowdom-css="">@page {
+<style shim-shadowdom-css="">/* Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+@page {
     margin: 10%;
     @top-left { content: "© ISO/IEC"; font-size: 10pt; }
     @top-right { content: string(docnum); font-weight: bold; font-size: 10pt; }
@@ -440,18 +455,18 @@ cxx-titlepage { page: title; page-break-after: always; }
 
 @media screen {
     body { max-width: 7in;
-           
+           /* Make room for paragraph numbers. */
            margin-left: 2em }
 }
 
 @media print {
     html { font-size: 10pt; }
     pre,code { font-size: 8pt; }
-    
+    /* Note that only Prince generates clickable links. */
     a[href] { text-decoration:none; }
 }
 
-
+/* Needed to make the <cxx-titlepage>'s vertical spacing work. */
 html, body {height: 100%}
 
 cxx-docnum { string-set: docnum content(); }
@@ -487,9 +502,11 @@ ins {text-decoration: underline; color: #005100;}
 pre { margin-left: 1em; }
 pre > code { display: inline-block; }
 
-
+/* This is here rather than inside elements/toc.html because browsers
+   don't understand leader() or target-counter(), so they drop them
+   inside the CSSOM. */
 @media print {
-    
+    /* Generate page numbers in the table of contents. */
     cxx-toc   a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
 
     cxx-footnote   aside { float: footnote; footnote-policy: line; }

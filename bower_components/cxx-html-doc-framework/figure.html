@@ -39,7 +39,7 @@ limitations under the License.
         });
       }
       Polymer('cxx-figure', {
-        attached: renumberFigures,
+        domReady: renumberFigures,
         detached: renumberFigures,
       });
     })();

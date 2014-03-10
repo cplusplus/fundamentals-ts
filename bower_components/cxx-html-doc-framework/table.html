@@ -49,7 +49,7 @@ limitations under the License.
         });
       }
       Polymer('cxx-table', {
-        attached: renumberTables,
+        domReady: renumberTables,
         detached: renumberTables,
       });
     })();
