@@ -1,0 +1,46 @@
+<!-- Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!-- Code Block
+  Code block elements are used to wrap program fragments in C++.
+
+  For improved source clarity, this element removes leading and trailing
+  whitespace from its contents.
+
+  This element also prevents the HTML parser from ending a surrounding <p> tag
+  when it sees the opening <pre>.
+
+  TODO: This could call into a syntax highlighter that styles
+  comments correctly.
+-->
+<polymer-element name="cxx-codeblock">
+  <template>
+    <style>
+      :host { display: block; }
+    </style>
+    <pre><code><content></content></code></pre>
+  </template>
+  <script>
+    Polymer('cxx-codeblock', {
+      attached: function() {
+        if (this.firstChild.nodeType == Node.TEXT_NODE)
+          this.firstChild.nodeValue = this.firstChild.nodeValue.replace(/^\s+/, '');
+        if (this.lastChild.nodeType == Node.TEXT_NODE)
+          this.lastChild.nodeValue = this.lastChild.nodeValue.replace(/\s+$/, '');
+      }
+    });
+  </script>
+</polymer-element>
+

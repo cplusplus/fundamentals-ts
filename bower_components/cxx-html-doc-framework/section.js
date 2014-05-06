@@ -18,8 +18,6 @@ limitations under the License.
         // String section number, like "17.2.3". 1-based.
         sec_num: "?",
 
-        applyAuthorStyles: true,
-
         checkInvariants: function() {
             if (!this.id) {
                 console.error(this, 'is missing an id.');

@@ -22,7 +22,6 @@ limitations under the License.
         revises: null,
         title: null,
 
-        applyAuthorStyles: true,
         created: function() {
             this.docnum = this.querySelector('cxx-docnum');
             this.pubdate = this.querySelector('time[pubdate]');

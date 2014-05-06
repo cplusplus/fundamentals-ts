@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<polymer-element name="cxx-ednote">
+<polymer-element name="cxx-ednote" noscript>
   <template>
     <style>
       :host { display: block; }
@@ -25,9 +25,4 @@ limitations under the License.
     </style>
     <aside><strong>Editor's note:</strong> <content></content></aside>
   </template>
-  <script>
-    Polymer('cxx-ednote', {
-      applyAuthorStyles: true,
-    });
-  </script>
 </polymer-element>

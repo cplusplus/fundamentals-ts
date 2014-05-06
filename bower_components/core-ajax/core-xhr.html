@@ -1,36 +1,43 @@
 <!--
-Copyright 2013 The Polymer Authors. All rights reserved.
-Use of this source code is governed by a BSD-style
-license that can be found in the LICENSE file.
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <!--
 /**
- * @module Polymer Elements
- */
-/**
- * polymer-xhr can be used to perform XMLHttpRequests.
- 
- * Example:
+ * @group Polymer Core Elements
  *
- *     <polymer-xhr id="xhr"></polymer-xhr>
+ * core-xhr can be used to perform XMLHttpRequests.
+ *
+ *     <core-xhr id="xhr"></core-xhr>
  *     ...
  *     this.$.xhr.request({url: url, params: params, callback: callback});
  *
- * @class polymer-xhr
+ * @element core-xhr
  */
 -->
+
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="polymer-xhr">
+<polymer-element name="core-xhr">
+
   <template>
+
     <style>
       :host {
         display: none;
       }
     </style>
+
   </template>
+
   <script>
-    Polymer('polymer-xhr', {
+
+    Polymer('core-xhr', {
+
       makeReadyStateHandler: function(xhr, callback) {
         xhr.onreadystatechange = function() {
           if (xhr.readyState == 4) {
@@ -38,6 +45,7 @@ license that can be found in the LICENSE file.
           }
         };
       },
+
       setRequestHeaders: function(xhr, headers) {
         if (headers) {
           for (var name in headers) {
@@ -45,6 +53,7 @@ license that can be found in the LICENSE file.
           }
         }
       },
+
       toQueryString: function(params) {
         var r = [];
         for (var n in params) {
@@ -54,6 +63,7 @@ license that can be found in the LICENSE file.
         }
         return r.join('&');
       },
+
       /**
        * Sends a HTTP request to the server and returns the XHR object.
        *
@@ -61,12 +71,12 @@ license that can be found in the LICENSE file.
        * @param {Object} inOptions
        *    @param {String} inOptions.url The url to which the request is sent.
        *    @param {String} inOptions.method The HTTP method to use, default is GET.
-       *    @param {boolean} inOptions.sync By default, all requests are sent asynchronously.
-       *        To send synchronous requests, set to true.
+       *    @param {boolean} inOptions.sync By default, all requests are sent asynchronously. To send synchronous requests, set to true.
        *    @param {Object} inOptions.params Data to be sent to the server.
        *    @param {Object} inOptions.body The content for the request body for POST method.
        *    @param {Object} inOptions.headers HTTP request headers.
        *    @param {String} inOptions.responseType The response type. Default is 'text'.
+       *    @param {boolean} inOptions.withCredentials Whether or not to send credentials on the request. Default is false.
        *    @param {Object} inOptions.callback Called when request is completed.
        * @returns {Object} XHR object.
        */
@@ -83,6 +93,9 @@ license that can be found in the LICENSE file.
         if (options.responseType) {
           xhr.responseType = options.responseType;
         }
+        if (options.withCredentials) {
+          xhr.withCredentials = true;
+        }
         this.makeReadyStateHandler(xhr, options.callback);
         this.setRequestHeaders(xhr, options.headers);
         xhr.send(method == 'POST' ? (options.body || params) : null);
@@ -91,6 +104,9 @@ license that can be found in the LICENSE file.
         }
         return xhr;
       }
+
     });
+
   </script>
+  
 </polymer-element>

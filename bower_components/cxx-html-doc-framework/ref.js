@@ -21,7 +21,6 @@ limitations under the License.
         observe: {
             'inElem.index': 'indexChanged'
         },
-        applyAuthorStyles: true,
 
         checkInvariants: function() {
             if (this.in) {

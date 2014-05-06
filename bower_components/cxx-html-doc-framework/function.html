@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<polymer-element name="cxx-function" constructor="CxxFunctionElement">
+<polymer-element name="cxx-function" constructor="CxxFunctionElement" noscript>
   <template>
     <style>
       :host { display: block; }
@@ -27,11 +27,6 @@ limitations under the License.
       <content></content>
     </dl>
   </template>
-  <script>
-    Polymer('cxx-function', {
-      applyAuthorStyles: true,
-    });
-  </script>
 </polymer-element>
 <polymer-element name="cxx-signature" noscript>
   <template><style>
@@ -52,7 +47,17 @@ limitations under the License.
   </template>
   <script>
     Polymer('cxx-attribute', {
-      applyAuthorStyles: true,
+      attached: function() {
+        var parent = this.parentNode;
+        while (parent instanceof HTMLModElement)
+          parent = parent.parentNode;
+        if (!(parent instanceof CxxFunctionElement)) {
+          console.warn('<' + this.localName +
+                       '> element must be a child of <cxx-function> ' +
+                       '(ignoring <ins> and <del>):',
+                       this)
+        }
+      },
     });
   </script>
 </polymer-element>

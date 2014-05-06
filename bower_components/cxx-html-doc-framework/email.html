@@ -13,16 +13,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<polymer-element name="cxx-email">
-  <template><a href="mailto:{{value}}"><content></content></a></template>
-  <script>
-(function() {
-    Polymer('cxx-email', {
-        applyAuthorStyles: true,
-        'created': function() {
-            this.value = this.textContent;
-        },
-    })
-})();
-</script>
+<polymer-element name="cxx-email" noscript>
+  <template><a href="mailto:{{textContent}}"><content></content></a></template>
 </polymer-element>

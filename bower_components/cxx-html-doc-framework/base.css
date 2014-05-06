@@ -36,9 +36,9 @@ cxx-titlepage { page: title; page-break-after: always; }
 
 @media print {
     html { font-size: 10pt; }
-    pre,code { font-size: 8pt; }
+    * /deep/ pre, * /deep/ code { font-size: 8pt; }
     /* Note that only Prince generates clickable links. */
-    a[href] { text-decoration:none; }
+    * /deep/ a[href] { text-decoration:none; }
 }
 
 /* Needed to make the <cxx-titlepage>'s vertical spacing work. */
@@ -51,19 +51,19 @@ cxx-clause { page-break-before: always; }
     cxx-clause, cxx-toc { margin-top: 3em; }
 }
 
-cxx-clause /shadow/ header { font-size: 150%; }
-cxx-toc /shadow/ h1 { font-size: 150%; }
-cxx-clause cxx-section /shadow/ header { font-size: 117%; }
-cxx-clause cxx-section cxx-section /shadow/ header { font-size: 100%; }
+cxx-clause::shadow header { font-size: 150%; }
+cxx-toc::shadow h1 { font-size: 150%; }
+cxx-clause cxx-section::shadow header { font-size: 117%; }
+cxx-clause cxx-section cxx-section::shadow header { font-size: 100%; }
 
 [data-bookmark-label] { bookmark-label: attr(data-bookmark-label); }
 h1 { bookmark-level: 1; }
-cxx-toc /shadow/ h1 { bookmark-level: 2; }
+cxx-toc::shadow h1 { bookmark-level: 2; }
 cxx-clause h1 { bookmark-level: 2; }
 cxx-clause cxx-section h1 { bookmark-level: 3; }
 cxx-clause cxx-section cxx-section h1 { bookmark-level: 4; }
 
-* /shadow/ .section-number { string-set: current-section "§ " content(); }
+*::shadow .section-number { string-set: current-section "§ " content(); }
 
 p {margin-top: .5em; margin-bottom: .5em}
 p:first-child, ul, ol {margin-top: 0}
@@ -74,15 +74,32 @@ p:first-child, ul, ol {margin-top: 0}
 del {text-decoration: line-through; color: #8B0040;}
 ins {text-decoration: underline; color: #005100;}
 
-pre { margin-left: 1em; }
+pre {
+    margin-left: 1em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
 pre > code { display: inline-block; }
+
+
+/* Use an em-dash for the list bullet. */
+ul {
+    list-style: none;
+    /* Relative positioning on the 'ul' lets the absolutely-positioned
+       marker align relative to it.*/
+    position: relative;
+}
+ul li:before {
+    content: "\2014";
+    position: absolute; left: 10px;
+}
 
 /* This is here rather than inside elements/toc.html because browsers
    don't understand leader() or target-counter(), so they drop them
    inside the CSSOM. */
 @media print {
     /* Generate page numbers in the table of contents. */
-    cxx-toc /shadow/ a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
+    cxx-toc::shadow a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
 
-    cxx-footnote /shadow/ aside { float: footnote; footnote-policy: line; }
+    cxx-footnote::shadow aside { float: footnote; footnote-policy: line; }
 }

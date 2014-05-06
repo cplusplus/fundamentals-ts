@@ -20,14 +20,15 @@ limitations under the License.
 -->
 
 <link rel="import"
-      href="../polymer-ajax/polymer-ajax.html">
+      href="../core-ajax/core-ajax.html">
 <polymer-element name="cxx-foreign-index" attributes="src name">
   <template>
-    <polymer-ajax auto=""
+    <style> :host {display: none} </style>
+    <core-ajax auto=""
                   url="{{src}}"
                   handleAs="json"
-                  on-polymer-response="{{attachIndex}}">
-    </polymer-ajax>
+                  on-core-response="{{attachIndex}}">
+    </core-ajax>
   </template>
   <script src="foreign-index.js"></script>
 </polymer-element>

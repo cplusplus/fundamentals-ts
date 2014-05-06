@@ -1,64 +1,62 @@
 <!--
-Copyright 2013 The Polymer Authors. All rights reserved.
-Use of this source code is governed by a BSD-style
-license that can be found in the LICENSE file.
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<!--
-/**
- * @module Polymer Elements
- */
- 
-/**
- * The `polymer-ajax` element performs `XMLHttpRequest`s.
- * 
- * You can trigger a request explicitly by calling `go` on the
- * element. 
- * 
- * With `auto` set to `true`, the element performs a request whenever
- * its `url` or `params` properties are changed.
- * 
- *
- * Example:
- *
- *     <polymer-ajax auto url="http://gdata.youtube.com/feeds/api/videos/" 
- *         params='{"alt":"json", "q":"chrome"}'
- *         handleAs="json"
- *         on-polymer-response="{{handleResponse}}">
- *     </polymer-ajax>
- * 
- * Note: The `params` attribute must be double quoted JSON.
- *
- * @class polymer-ajax
- * @status beta
- * @homepage github.io
- *
- */
- 
-/**
- * Fired when a response is received.
- * 
- * @event polymer-response
- */
- 
-/**
- * Fired when an error is received.
- * 
- * @event polymer-error
- */
- 
-/**
- * Fired whenever a response or an error is received.
- *
- * @event polymer-complete
- */
- 
--->
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="polymer-xhr.html">
 
-<polymer-element name="polymer-ajax" attributes="url handleAs auto params response method headers body contentType">
+<!--
+@group Polymer Core Elements
+
+The `core-ajax` element exposes `XMLHttpRequest` functionality.
+
+    <core-ajax
+        auto
+        url="http://gdata.youtube.com/feeds/api/videos/"
+        params='{"alt":"json", "q":"chrome"}'
+        handleAs="json"
+        on-core-response="{{handleResponse}}"></core-ajax>
+ 
+With `auto` set to `true`, the element performs a request whenever
+its `url` or `params` properties are changed.
+
+Note: The `params` attribute must be double quoted JSON.
+
+You can trigger a request explicitly by calling `go` on the
+element.
+
+@element core-ajax
+@status beta
+@homepage github.io
+-->
+
+<link rel="import" href="core-xhr.html">
+
+<polymer-element name="core-ajax" attributes="url handleAs auto params response method headers body contentType withCredentials">
+
   <script>
-    Polymer('polymer-ajax', {
+
+    Polymer('core-ajax', {
+      /**
+       * Fired when a response is received.
+       * 
+       * @event core-response
+       */
+ 
+      /**
+       * Fired when an error is received.
+       * 
+       * @event core-error
+       */
+ 
+      /**
+       * Fired whenever a response or an error is received.
+       *
+       * @event core-complete
+       */
+
       /**
        * The URL target of the request.
        * 
@@ -67,6 +65,7 @@ license that can be found in the LICENSE file.
        * @default ''
        */
       url: '',
+
       /**
        * Specifies what data to store in the `response` property, and
        * to deliver as `event.response` in `response` events.
@@ -84,6 +83,7 @@ license that can be found in the LICENSE file.
        * @default 'text'
        */
       handleAs: '',
+
       /**
        * If true, automatically performs an Ajax request when either `url` or `params` changes.
        *
@@ -92,6 +92,7 @@ license that can be found in the LICENSE file.
        * @default false
        */
       auto: false,
+
       /**
        * Parameters to send to the specified URL, as JSON.
        *  
@@ -100,6 +101,7 @@ license that can be found in the LICENSE file.
        * @default ''
        */
       params: '',
+
       /**
        * Returns the response object.
        *
@@ -108,6 +110,7 @@ license that can be found in the LICENSE file.
        * @default null
        */
       response: null,
+
       /**
        * The HTTP method to use such as 'GET', 'POST', 'PUT', or 'DELETE'.
        * Default is 'GET'.
@@ -117,36 +120,40 @@ license that can be found in the LICENSE file.
        * @default ''
        */
       method: '',
+
       /**
        * HTTP request headers to send.
        *
        * Example:
        *
-       *     <polymer-ajax auto url="http://somesite.com"
+       *     <core-ajax 
+       *         auto
+       *         url="http://somesite.com"
        *         headers='{"X-Requested-With": "XMLHttpRequest"}'
        *         handleAs="json"
-       *         on-polymer-response="{{handleResponse}}">
-       *     </polymer-ajax>
+       *         on-core-response="{{handleResponse}}"></core-ajax>
        *  
        * @attribute headers
        * @type Object
        * @default null
        */
       headers: null,
+
       /**
        * Optional raw body content to send when method === "POST".
        *
        * Example:
        *
-       *     <polymer-ajax method="POST" auto url="http://somesite.com"
+       *     <core-ajax method="POST" auto url="http://somesite.com"
        *         body='{"foo":1, "bar":2}'>
-       *     </polymer-ajax>
+       *     </core-ajax>
        *  
        * @attribute body
        * @type Object
        * @default null
        */
       body: null,
+
       /**
        * Content type to use when sending data.
        *
@@ -155,9 +162,20 @@ license that can be found in the LICENSE file.
        * @default 'application/x-www-form-urlencoded'
        */
       contentType: 'application/x-www-form-urlencoded',
+
+      /**
+       * Set the withCredentials flag on the request.
+       * 
+       * @attribute withCredentials
+       * @type boolean
+       * @default false
+       */
+      withCredentials: false,
+      
       ready: function() {
-        this.xhr = document.createElement('polymer-xhr');
+        this.xhr = document.createElement('core-xhr');
       },
+
       receive: function(response, xhr) {
         if (this.isSuccess(xhr)) {
           this.processResponse(xhr);
@@ -166,31 +184,39 @@ license that can be found in the LICENSE file.
         }
         this.complete(xhr);
       },
+
       isSuccess: function(xhr) {
         var status = xhr.status || 0;
         return !status || (status >= 200 && status < 300);
       },
+
       processResponse: function(xhr) {
         var response = this.evalResponse(xhr);
         this.response = response;
-        this.fire('polymer-response', {response: response, xhr: xhr});
+        this.fire('core-response', {response: response, xhr: xhr});
       },
+
       error: function(xhr) {
         var response = xhr.status + ': ' + xhr.responseText;
-        this.fire('polymer-error', {response: response, xhr: xhr});
+        this.fire('core-error', {response: response, xhr: xhr});
       },
+
       complete: function(xhr) {
-        this.fire('polymer-complete', {response: xhr.status, xhr: xhr});
+        this.fire('core-complete', {response: xhr.status, xhr: xhr});
       },
+
       evalResponse: function(xhr) {
         return this[(this.handleAs || 'text') + 'Handler'](xhr);
       },
+
       xmlHandler: function(xhr) {
         return xhr.responseXML;
       },
+
       textHandler: function(xhr) {
         return xhr.responseText;
       },
+
       jsonHandler: function(xhr) {
         var r = xhr.responseText;
         try {
@@ -199,6 +225,7 @@ license that can be found in the LICENSE file.
           return r;
         }
       },
+
       urlChanged: function() {
         if (!this.handleAs) {
           var ext = String(this.url).split('.').pop();
@@ -210,12 +237,15 @@ license that can be found in the LICENSE file.
         }
         this.autoGo();
       },
+
       paramsChanged: function() {
         this.autoGo();
       },
+
       autoChanged: function() {
         this.autoGo();
       },
+
       // TODO(sorvell): multiple side-effects could call autoGo 
       // during one micro-task, use a job to have only one action 
       // occur
@@ -224,6 +254,7 @@ license that can be found in the LICENSE file.
           this.goJob = this.job(this.goJob, this.go, 0);
         }
       },
+
       /**
        * Performs an Ajax request to the specified URL.
        *
@@ -246,11 +277,16 @@ license that can be found in the LICENSE file.
         if (this.contentType) {
           args.headers['content-type'] = this.contentType;
         }
+        
+        args.withCredentials = this.withCredentials;
         args.callback = this.receive.bind(this);
         args.url = this.url;
         args.method = this.method;
         return args.url && this.xhr.request(args);
       }
+
     });
+
   </script>
+
 </polymer-element>

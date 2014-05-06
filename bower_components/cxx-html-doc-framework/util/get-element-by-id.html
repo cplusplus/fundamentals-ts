@@ -22,6 +22,7 @@ Then the containing element can define a method `variableToFillInChanged` that
 will be called when an element with the right ID is added to the document.
 -->
 <polymer-element name="cxx-get-element-by-id" attributes="elemId elem">
+  <template><style>:host {display: none}</style></template>
   <script>
     (function() {
       'use strict';
