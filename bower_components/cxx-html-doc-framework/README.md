@@ -8,10 +8,14 @@ writing ISO C++ documents and papers.  To use it for your document, you should
 2. Install this package by running `bower install cplusplus/html-doc-framework` in the root directory of your document.
 3. Import this package into your main HTML file by adding two lines inside the `<head>` element:
 
-```HTML
-<script src="bower_components/platform/platform.js"></script>
-<link rel="import" href="bower_components/cxx-html-doc-framework/framework.html"/>
-```
+   ```HTML
+   <script src="bower_components/platform/platform.js"></script>
+   <link rel="import" href="bower_components/cxx-html-doc-framework/framework.html"/>
+   ```
+
+4. Run an HTTP server (e.g. [`python3 -m http.server`](https://docs.python.org/3/library/http.server.html#http-server-cli) or [`http-server`](https://www.npmjs.org/package/http-server)) in the directory of your main HTML file, and preview through that instead of a `file:///` URL.
+
+I recommend the [Prince rendering engine](http://www.princexml.com/) for converting your HTML file to PDF. It has significantly better support for page-related features than any browser as of 2014.
 
 Before I can accept a contribution to this project, you'll need to sign the
 Contributor License Agreement at https://developers.google.com/open-source/cla/individual.

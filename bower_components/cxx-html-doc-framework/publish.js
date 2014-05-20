@@ -90,11 +90,14 @@ limitations under the License.
         inlineImages(doc.getElementsByTagName('img'));
 
         var copy = doc.cloneNode(true);
-        forEach(copy.querySelectorAll('cxx-publish-button'), function(node) {
-            node.remove();
-        });
-        forEach(copy.querySelectorAll('script'), function(node) {
-            node.remove();
+
+        // Remove elements that run code or don't contribute to the appearance
+        // of the page.
+        forEach(['cxx-publish-button', 'script', 'link[rel=import]'],
+                function(selector) {
+            forEach(copy.querySelectorAll(selector), function(node) {
+                node.remove();
+            });
         });
         forEach(copy.body.querySelectorAll('*'), function(node) {
             if (getComputedStyle(node).display === 'none') {

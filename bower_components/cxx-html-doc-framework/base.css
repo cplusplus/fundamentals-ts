@@ -36,13 +36,16 @@ cxx-titlepage { page: title; page-break-after: always; }
 
 @media print {
     html { font-size: 10pt; }
-    * /deep/ pre, * /deep/ code { font-size: 8pt; }
+    * /deep/ code { font-size: 80%; }
     /* Note that only Prince generates clickable links. */
     * /deep/ a[href] { text-decoration:none; }
 }
 
-/* Needed to make the <cxx-titlepage>'s vertical spacing work. */
-html, body {height: 100%}
+@media screen {
+    /* Needed to make the <cxx-titlepage>'s vertical spacing work.
+       For print see the <cxx-titlepage> definition. */
+    html, body {height: 100%}
+}
 
 cxx-docnum { string-set: docnum content(); }
 
@@ -79,19 +82,25 @@ pre {
     margin-top: .5em;
     margin-bottom: .5em;
 }
-pre > code { display: inline-block; }
 
-
-/* Use an em-dash for the list bullet. */
-ul {
-    list-style: none;
-    /* Relative positioning on the 'ul' lets the absolutely-positioned
-       marker align relative to it.*/
-    position: relative;
+/* Use an em-dash for the list bullet.
+   'print' is a proxy for supporting ::marker. */
+@media screen {
+    ul {
+        list-style: none;
+        /* Relative positioning on the 'ul' lets the absolutely-positioned
+           marker align relative to it.*/
+        position: relative;
+    }
+    ul li:before {
+        content: "\2014";
+        position: absolute; left: 10px;
+    }
 }
-ul li:before {
-    content: "\2014";
-    position: absolute; left: 10px;
+@media print {
+    ul li::marker {
+        content: "\2014";
+    }
 }
 
 /* This is here rather than inside elements/toc.html because browsers

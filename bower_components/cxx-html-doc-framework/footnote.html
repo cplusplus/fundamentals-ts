@@ -30,13 +30,16 @@ limitations under the License.
   --><sup id="footnote-call-{{foot_num}}"><a href="#footnote-body-{{foot_num}}">{{foot_num}}</a></sup><aside class="footnote" id="footnote-body-{{foot_num}}"><span class="marker"><a href="#footnote-call-{{foot_num}}">{{foot_num}}</a>) </span><content/></aside></template>
 
   <script>
-(function() {
-    var footnote_count = 0;
-    Polymer('cxx-footnote', {
-        'created': function() {
-            this.foot_num = ++footnote_count;
-        },
-    })
-})();
+    (function() {
+      function renumberFootnotes() {
+        document.querySelectorAll('cxx-footnote').array().forEach(function(footnote, index) {
+          footnote.foot_num = index + 1;
+        });
+      }
+      Polymer('cxx-footnote', {
+        domReady: renumberFootnotes,
+        detached: renumberFootnotes,
+      });
+    })();
   </script>
 </polymer-element>

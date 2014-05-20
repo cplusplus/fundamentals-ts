@@ -30,12 +30,14 @@ limitations under the License.
             this.title = this.querySelector('h1').textContent;
             this.stage = this.getAttribute('stage');
             if (this.stage == 'draft') {
-                this.title_prefix = "Working Draft";
+                this.stage_title = "Working Draft";
+            //} else if (this.stage == 'pdts') {
+            //    this.iso_title_prefix = "Information technology – Programming languages, their environments and system software interfaces – "
             } else {
                 console.error('Unexpected stage: ' + this.stage);
             }
             if (this.title) {
-                document.title = this.title + ', ' + this.title_prefix;
+                document.title = this.title + ', ' + this.stage_title;
             }
         },
     })

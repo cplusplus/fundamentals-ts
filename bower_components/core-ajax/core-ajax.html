@@ -31,11 +31,8 @@ element.
 @status beta
 @homepage github.io
 -->
-
 <link rel="import" href="core-xhr.html">
-
 <polymer-element name="core-ajax" attributes="url handleAs auto params response method headers body contentType withCredentials">
-
   <script>
 
     Polymer('core-ajax', {
@@ -77,6 +74,12 @@ element.
        *    `xml`: uses `XHR.responseXML`.
        *    
        *    `json`: uses `XHR.responseText` parsed as JSON.
+       *
+       *    `arraybuffer`: uses `XHR.response`.
+       *
+       *    `blob`: uses `XHR.response`.
+       *
+       *    `document`: uses `XHR.response`.
        *  
        * @attribute handleAs
        * @type string
@@ -226,6 +229,18 @@ element.
         }
       },
 
+      documentHandler: function(xhr) {
+        return xhr.response;
+      },
+
+      blobHandler: function(xhr) {
+        return xhr.response;
+      },
+
+      arraybufferHandler: function(xhr) {
+        return xhr.response;
+      },
+
       urlChanged: function() {
         if (!this.handleAs) {
           var ext = String(this.url).split('.').pop();
@@ -262,10 +277,8 @@ element.
        */
       go: function() {
         var args = this.xhrArgs || {};
-        // TODO(sjmiles): alternatively, we could force POST if body is set
-        if (this.method === 'POST') {
-          args.body = this.body || args.body;
-        }
+        // TODO(sjmiles): we may want XHR to default to POST if body is set
+        args.body = this.body || args.body;
         args.params = this.params || args.params;
         if (args.params && typeof(args.params) == 'string') {
           args.params = JSON.parse(args.params);
@@ -277,7 +290,10 @@ element.
         if (this.contentType) {
           args.headers['content-type'] = this.contentType;
         }
-        
+        if (this.handleAs === 'arraybuffer' || this.handleAs === 'blob' ||
+            this.handleAs === 'document') {
+          args.responseType = this.handleAs;
+        }
         args.withCredentials = this.withCredentials;
         args.callback = this.receive.bind(this);
         args.url = this.url;
@@ -288,5 +304,4 @@ element.
     });
 
   </script>
-
 </polymer-element>

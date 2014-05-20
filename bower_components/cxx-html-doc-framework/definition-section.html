@@ -14,15 +14,17 @@ limitations under the License.
 -->
 
 <!--
-    Uses the HTML <table> content model, but automatically adds a number to
-    the <caption>.  Use this as <table is="cxx-table">, unlike the other custom
-    elements.
+    Use this as <dl is="cxx-definition-section"> to build the unusual "terms
+    and definitions" section that gets numbered as if each term is a section,
+    but doesn't make them show up in the table of contents.
 -->
 <polymer-element name="cxx-definition-section" extends="dl">
   <template>
     <style>
-      dt { font-weight: bold; }
-      dd { margin-left: 0; }
+      polyfill-next-selector { content: 'dt'; }
+      ::content dt { font-weight: bold; }
+      polyfill-next-selector { content: 'dd'; }
+      ::content dd { margin-left: 0; }
     </style>
 
     <content></content>

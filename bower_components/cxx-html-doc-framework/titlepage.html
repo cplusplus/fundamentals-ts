@@ -26,6 +26,12 @@ cxx-titlepage sets the document title based on its <h1> child.
   <template>
     <style>
       :host { display: block; min-height: 100%; }
+      @media print {
+        /* Using an exact height for printed documents works around a bug in
+           Prince that breaks footnotes when the html/body height is set to
+           100%. */
+        :host { height: 8.8in; }
+      }
 
       /* position:relative on :host makes position:absolute on its children work
          relative to :host's bounds. */
@@ -52,7 +58,7 @@ cxx-titlepage sets the document title based on its <h1> child.
         <tr><th>Editor:</th><td><content select="cxx-editor"/></td></tr>
       </template>
     </table>
-    <h1>{{title_prefix}}, Information technology – Programming languages, their environments and system software interfaces – {{title}}</h1>
+    <h1>{{stage_title}}, {{iso_title_prefix}}{{title}}</h1>
     <template if="{{stage == 'draft'}}">
       <p class="warning"><strong>Note: this is an early draft. It’s known to be
       incomplet and incorrekt, and it has lots of b<span

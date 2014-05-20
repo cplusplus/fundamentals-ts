@@ -4,7 +4,7 @@
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
-	display: block;
+	display: block; page-break-inside: avoid;
 }
 
 cxx-function:not(:last-child) {
@@ -222,7 +222,7 @@ cxx-section header > h1 {
 }
 
 cxx-section header {
-	font-weight: bold; margin-top: 20px; margin-bottom: 20px;
+	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
 cxx-section header:after {
@@ -244,7 +244,7 @@ cxx-clause header > h1 {
 }
 
 cxx-clause header {
-	font-weight: bold; margin-top: 20px; margin-bottom: 20px;
+	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
 cxx-clause header:after {
@@ -351,6 +351,14 @@ cxx-toc li li li li .marker {
 	display: block; min-height: 100%;
 }
 
+@media print {
+cxx-titlepage {
+	height: 8.8in;
+}
+
+
+}
+
 cxx-titlepage  {
 	position: relative;
 }
@@ -426,7 +434,7 @@ cxx-example .nowrap {
 }</style>
   <meta charset="utf-8">
   
-  <link rel="import" href="bower_components/cxx-html-doc-framework/framework.html">
+  
 <style shim-shadowdom-css="">/* Copyright 2014 Google Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -465,13 +473,16 @@ cxx-titlepage { page: title; page-break-after: always; }
 
 @media print {
     html { font-size: 10pt; }
-    *   pre, *   code { font-size: 8pt; }
+    *   code { font-size: 80%; }
     /* Note that only Prince generates clickable links. */
     *   a[href] { text-decoration:none; }
 }
 
-/* Needed to make the <cxx-titlepage>'s vertical spacing work. */
-html, body {height: 100%}
+@media screen {
+    /* Needed to make the <cxx-titlepage>'s vertical spacing work.
+       For print see the <cxx-titlepage> definition. */
+    html, body {height: 100%}
+}
 
 cxx-docnum { string-set: docnum content(); }
 
@@ -508,19 +519,25 @@ pre {
     margin-top: .5em;
     margin-bottom: .5em;
 }
-pre > code { display: inline-block; }
 
-
-/* Use an em-dash for the list bullet. */
-ul {
-    list-style: none;
-    /* Relative positioning on the 'ul' lets the absolutely-positioned
-       marker align relative to it.*/
-    position: relative;
+/* Use an em-dash for the list bullet.
+   'print' is a proxy for supporting ::marker. */
+@media screen {
+    ul {
+        list-style: none;
+        /* Relative positioning on the 'ul' lets the absolutely-positioned
+           marker align relative to it.*/
+        position: relative;
+    }
+    ul li:before {
+        content: "\2014";
+        position: absolute; left: 10px;
+    }
 }
-ul li:before {
-    content: "\2014";
-    position: absolute; left: 10px;
+@media print {
+    ul li::marker {
+        content: "\2014";
+    }
 }
 
 /* This is here rather than inside elements/toc.html because browsers
@@ -553,7 +570,7 @@ ul li:before {
   </cxx-editor></td></tr>
       
     </table>
-    <h1>Working Draft, Information technology – Programming languages, their environments and system software interfaces – C++ Extensions for Library Fundamentals</h1>
+    <h1>Working Draft, C++ Extensions for Library Fundamentals</h1>
     
       <p class="warning"><strong>Note: this is an early draft. It’s known to be
       incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>

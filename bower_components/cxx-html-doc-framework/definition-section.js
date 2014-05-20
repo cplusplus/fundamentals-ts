@@ -43,7 +43,7 @@ limitations under the License.
                 dt.term_number = next_term_number++;
 
                 var template = importDocument.getElementById(
-                    'cxx-definition-section-term');
+                    'cxx-definition-section-term').cloneNode(true);
                 template.removeAttribute('id');
                 template.model = dt;
 
