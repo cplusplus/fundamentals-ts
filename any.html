@@ -1,0 +1,306 @@
+<cxx-clause id="any">
+  <h1>Class <code>any</code></h1>
+
+  <p>
+    This section describes components that C++ programs may use to perform operations on objects of a discriminated type.
+  </p>
+
+  <p>
+    <cxx-note>The discriminated type may contain values of different types but does not attempt conversion between them,
+    i.e. <code>5</code> is held strictly as an <code>int</code> and is not implicitly convertible either to <code>&quot;5&quot;</code> or to <code>5.0</code>.
+    This indifference to interpretation but awareness of type effectively allows safe, generic containers of single values, with no scope for surprises from ambiguous conversions.</cxx-note>
+  </p>
+
+  <cxx-section id="any.synop">
+    <h1>Header &lt;experimental/any&gt; synopsis</h1>
+
+    <pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  class bad_any_cast : public bad_cast
+  {
+  public:
+    virtual const char* what() const noexcept;
+  };
+
+  class any
+  {
+  public:
+    <cxx-ref insynopsis="" to="any.cons"></cxx-ref>
+    any() noexcept;
+
+    any(const any&amp; other);
+    any(any&amp;&amp; x) noexcept;
+
+    template &lt;class ValueType&gt;
+      any(ValueType&amp;&amp; value);
+
+    template &lt;class Allocator&gt;
+      any(allocator_arg_t, const Allocator&amp; a) noexcept;
+    template &lt;class Allocator, class ValueType&gt;
+      any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);
+    template &lt;class Allocator&gt;
+        any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);
+    template &lt;class Allocator&gt;
+        any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;
+
+    ~any();
+
+    <cxx-ref insynopsis="" to="any.assign"></cxx-ref>
+    any&amp; operator=(const any&amp; rhs);
+    any&amp; operator=(any&amp;&amp; rhs) noexcept;
+
+    template &lt;class ValueType&gt;
+      any&amp; operator=(ValueType&amp;&amp; rhs);
+
+    <cxx-ref insynopsis="" to="any.modifiers"></cxx-ref>
+    void clear() noexcept;
+    void swap(any&amp; rhs) noexcept;
+
+    <cxx-ref insynopsis="" to="any.observers"></cxx-ref>
+    bool empty() const noexcept;
+    const type_info&amp; type() const noexcept;
+  };
+
+  <cxx-ref insynopsis="" to="any.nonmembers"></cxx-ref>
+  void swap(any&amp; x, any&amp; y) noexcept;
+
+  template&lt;class ValueType&gt;
+    ValueType any_cast(const any&amp; operand);
+  template&lt;class ValueType&gt;
+    ValueType any_cast(any&amp; operand);
+  template&lt;class ValueType&gt;
+    ValueType any_cast(any&amp;&amp; operand);
+
+  template&lt;class ValueType&gt;
+    const ValueType* any_cast(const any* operand) noexcept;
+  template&lt;class ValueType&gt;
+    ValueType* any_cast(any* operand) noexcept;
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="any.bad_any_cast">
+    <h1>Class <code>bad_any_cast</code></h1>
+    <p>
+      Objects of type <code>bad_any_cast</code> are thrown by a failed <code> any_cast</code>.
+    </p>
+  </cxx-section>
+
+  <cxx-section id="any.class">
+    <h1>Class <code>any</code></h1>
+
+    <p>
+      An object of class <code>any</code> stores an instance of any type that satisfies the constructor requirements or is empty,
+      and this is referred to as the <dfn>state</dfn> of the class <code>any</code> object.
+      The stored instance is called the <dfn>contained object</dfn>.
+      Two states are equivalent if they are either both empty or if both are not empty and if the contained objects are equivalent.
+    </p>
+
+    <p>
+      The non-member <code>any_cast</code> functions provide type-safe access to the contained object.
+    </p>
+
+    <p>
+      Implementations should avoid the use of dynamically allocated memory for a small contained object.
+      <cxx-example class="inline">where the object constructed is holding only an int.</cxx-example>
+      Such small-object optimization shall only be applied to nothrow copyable types.
+    </p>
+
+    <cxx-section id="any.cons">
+      <h1><code>any</code> construct/destruct</h1>
+
+      <cxx-function>
+        <cxx-signature>any() noexcept;</cxx-signature>
+
+        <cxx-postconditions><code>this-&gt;empty()</code></cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>any(const any&amp; other);</cxx-signature>
+
+        <cxx-effects>Constructs an object of type <code>any</code> with an equivalent state as <code>other</code>.</cxx-effects>
+        <cxx-throws>Any exceptions arising from the copy constructor of the contained object.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>any(any&amp;&amp; other) noexcept;</cxx-signature>
+
+        <cxx-effects>Constructs an object of type <code>any</code> with a state equivalent to the original state of <code>other</code>.</cxx-effects>
+        <cxx-postconditions><code>other</code> is left in a valid but otherwise unspecified state.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class ValueType&gt;
+any(ValueType&amp;&amp; value);</cxx-signature>
+
+        <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
+        <cxx-requires><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
+        If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</cxx-requires>
+        <cxx-effects>Constructs an object of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(value)</code>.</cxx-effects>
+        <cxx-remarks>This constructor shall not participate in overload resolution if <code>decay&lt;ValueType&gt;::type</code> is the same type as <code>any</code>.</cxx-remarks>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class Allocator&gt;
+any(allocator_arg_t, const Allocator&amp; a) noexcept;</cxx-signature>
+        <cxx-signature>template &lt;class Allocator, class ValueType&gt;
+any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);</cxx-signature>
+        <cxx-signature>template &lt;class Allocator&gt;
+any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);</cxx-signature>
+        <cxx-signature>template &lt;class Allocator&gt;
+any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx-signature>
+
+        <cxx-requires><code>Allocator</code> shall meet the requirements for an Allocator (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>).</cxx-requires>
+        <cxx-effects>Equivalent to the preceding constructors except that the contained object is constructed with uses-allocator construction (<cxx-ref in="cxx" to="allocator.uses.construction"></cxx-ref>) if memory allocation is performed.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>~any();</cxx-signature>
+
+        <cxx-effects><code>clear()</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="any.assign">
+      <h1><code>any</code> assignments</h1>
+
+      <cxx-function>
+        <cxx-signature>any&amp; operator=(const any&amp; rhs);</cxx-signature>
+
+        <cxx-effects><code>any(rhs).swap(*this)</code>.
+        No effects if an exception is thrown.</cxx-effects>
+        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-throws>Any exceptions arising from the copy constructor of the contained object.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>any&amp; operator=(any&amp;&amp; rhs) noexcept;</cxx-signature>
+
+        <cxx-effects><code>any(std::move(rhs)).swap(*this)</code>.</cxx-effects>
+        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-postconditions>The state of <code>*this</code> is equivalent to the original state of <code>rhs</code>
+        and <code>rhs</code> is left in a valid but otherwise unspecified state.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class ValueType&gt;
+any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature>
+
+        <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
+        <cxx-requires><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
+        If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</cxx-requires>
+        <cxx-effects>Constructs an object <code>tmp</code> of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(rhs)</code>, and <code>tmp.swap(*this)</code>.
+        No effects if an exception is thrown.</cxx-effects>
+        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-remarks> This operator shall not participate in overload resolution if <code>decay&lt;ValueType&gt;::type</code> is the same type as <code>any</code>.</cxx-remarks>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="any.modifiers">
+      <h1><code>any</code> modifiers</h1>
+
+      <cxx-function>
+        <cxx-signature>void clear() noexcept;</cxx-signature>
+
+        <cxx-effects>If not empty, destroys the contained object.</cxx-effects>
+        <cxx-postconditions><code>empty() == true</code>.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void swap(any&amp; rhs) noexcept;</cxx-signature>
+
+        <cxx-effects>Exchange the states of <code>*this</code> and <code> rhs</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="any.observers">
+      <h1><code>any</code> observers</h1>
+
+      <cxx-function>
+        <cxx-signature>bool empty() const noexcept;</cxx-signature>
+
+        <cxx-returns><code>true</code> if <code>*this</code> has no contained object, otherwise <code> false</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>const type_info&amp; type() const noexcept;</cxx-signature>
+
+        <cxx-returns>If <code>*this</code> has a contained object of type T, <code>typeid(T)</code>;
+        otherwise <code>typeid(void)</code>.</cxx-returns>
+        <p><cxx-note>Useful for querying against types known either at compile time or only at runtime.</cxx-note></p>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="any.nonmembers">
+    <h1><a name="Non-member">Non-member</a> functions</h1>
+
+    <cxx-function>
+      <cxx-signature>void swap(any&amp; x, any&amp; y) noexcept;</cxx-signature>
+
+      <cxx-effects><code>x.swap(y)</code>.</cxx-effects>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template&lt;class ValueType&gt;
+ValueType any_cast(const any&amp; operand);</cxx-signature>
+      <cxx-signature>template&lt;class ValueType&gt;
+ValueType any_cast(any&amp; operand);</cxx-signature>
+      <cxx-signature>template&lt;class ValueType&gt;
+ValueType any_cast(any&amp;&amp; operand);</cxx-signature>
+
+      <cxx-requires><code>is_reference&lt;ValueType&gt;::value</code> is true or <code>is_copy_constructible&lt;ValueType&gt;::value</code> is true.
+      Otherwise the program is ill-formed.</cxx-requires>
+      <cxx-returns>For the first form, <code>*any_cast&lt;typename add_const&lt;typename remove_reference&lt;ValueType&gt;::type&gt;::type &gt;(&amp;operand)</code>.
+      For the second and third forms, <code>*any_cast&lt;typename remove_reference&lt;ValueType&gt;::type&gt;(&amp;operand)</code>.</cxx-returns>
+      <cxx-throws><code>bad_any_cast</code> if <code>operand.type() != typeid(remove_reference&lt;ValueType&gt;::type)</code>.</cxx-throws>
+      <cxx-example>
+        <pre>any x(5);                                   // x holds int
+assert(any_cast&lt;int&gt;(x) == 5);              // cast to value
+any_cast&lt;int&amp;&gt;(x) = 10;                     // cast to reference
+assert(any_cast&lt;int&gt;(x) == 10);
+
+x = &quot;Meow&quot;;                                 // x holds const char*
+assert(strcmp(any_cast&lt;const char*&gt;(x), &quot;Meow&quot;) == 0);
+any_cast&lt;const char*&amp;&gt;(x) = &quot;Harry&quot;;
+assert(strcmp(any_cast&lt;const char*&gt;(x), &quot;Harry&quot;) == 0);
+
+x = string(&quot;Meow&quot;);                         // x holds string
+string s, s2(&quot;Jane&quot;);
+s = move(any_cast&lt;string&amp;&gt;(x));             // move from any
+assert(s == &quot;Meow&quot;);
+any_cast&lt;string&amp;&gt;(x) = move(s2);            // move to any
+assert(any_cast&lt;const string&amp;&gt;(x) == &quot;Jane&quot;);
+
+string cat(&quot;Meow&quot;);
+const any y(cat);                           // const y holds string
+assert(any_cast&lt;const string&amp;&gt;(y) == cat);
+
+any_cast&lt;string&amp;&gt;(y);                       // error; cannot
+                                            //  any_cast away const</pre>
+      </cxx-example>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template&lt;class ValueType&gt;
+const ValueType* any_cast(const any* operand) noexcept;</cxx-signature>
+      <cxx-signature>template&lt;class ValueType&gt;
+ValueType* any_cast(any* operand) noexcept;</cxx-signature>
+
+      <cxx-returns>If <code>operand != nullptr &amp;&amp; operand-&gt;type() == typeid(ValueType)</code>,
+      a pointer to the object contained by <code>operand</code>,
+      otherwise <code>nullptr</code>.</cxx-returns>
+      <cxx-example>
+        <pre>bool is_string(const any&amp; operand) {
+  return any_cast&lt;string&gt;(&amp;operand) != nullptr;
+}</pre>
+      </cxx-example>
+    </cxx-function>
+  </cxx-section>
+</cxx-clause>
