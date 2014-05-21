@@ -237,8 +237,8 @@ private:
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> is engaged.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
-        <cxx-remarks>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</cxx-remarks>
-        <cxx-remarks>If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
+        <cxx-remarks>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.
+        If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
       </cxx-function>
     </cxx-section>
 

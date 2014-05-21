@@ -3584,7 +3584,6 @@ make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessI
     </section>
   </cxx-clause>
 
-
 <cxx-clause id="optional">
     
 
@@ -3998,11 +3997,8 @@ private:
   </cxx-throws>
         <cxx-remarks para_num="38" id="optional.object.ctor.38">
     
-    <dt>Remarks:</dt><dd>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</dd>
-  </cxx-remarks>
-        <cxx-remarks para_num="39" id="optional.object.ctor.39">
-    
-    <dt>Remarks:</dt><dd>If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</dd>
+    <dt>Remarks:</dt><dd>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.
+        If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</dd>
   </cxx-remarks>
       
     </dl>
@@ -6195,7 +6191,7 @@ class basic_string_view {
       
       
       
-    
+
       <cxx-returns para_num="10" id="string.view.iterators.10">
     
     <dt>Returns:</dt><dd> <code>const_reverse_iterator(end())</code>.</dd>
@@ -6212,7 +6208,7 @@ class basic_string_view {
       
       
       
-    
+
       <cxx-returns para_num="12" id="string.view.iterators.12">
     
     <dt>Returns:</dt><dd><code>const_reverse_iterator(begin())</code>.</dd>
@@ -6705,7 +6701,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     
     </dl>
   </cxx-function>
-    
+
     <cxx-function para_num="29" id="string.view.ops.29">
     
     <pre><code><cxx-signature>constexpr int compare(size_type pos1, size_type n1, const charT* s) const;</cxx-signature></code></pre>
@@ -6720,7 +6716,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     
     </dl>
   </cxx-function>
-    
+
     <cxx-function para_num="31" id="string.view.ops.31">
     
     <pre><code><cxx-signature>constexpr int compare(size_type pos1, size_type n1,
