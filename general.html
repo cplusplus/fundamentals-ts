@@ -214,14 +214,18 @@
     </p>
 
     <p>
-      Implementers who provide a new standard feature should define a macro with the recommended name and value,
+      Implementers who provide a new standard feature should define a macro with the recommended name,
       in the same circumstances under which the feature is available (for example, taking into account relevant command-line options),
       to indicate the presence of support for that feature.
+      Implementers should define that macro with the value specified in
+      the most recent version of this technical specification that they have implemented.
       The recommended macro name is "<code>__cpp_lib_experimental_</code>" followed by the string in the "Macro Name Suffix" column.
     </p>
 
     <p>
-      Programmers who wish to determine whether a feature is available in an implementation should base that determination on the state of the macro with the recommended name.
+      Programmers who wish to determine whether a feature is available in an implementation should base that determination on
+      the presence of the header (determined with <code>__has_include(&lt;header/name>)</code>) and
+      the state of the macro with the recommended name.
       (The absence of a tested feature may result in a program with decreased functionality, or the relevant functionality may be provided in a different way.
       A program that strictly depends on support for a feature can just try to use the feature unconditionally;
       presumably, on an implementation lacking necessary support, translation will fail.)
@@ -241,30 +245,22 @@
         </tr>
       </thead>
 
-      <!-- These rows are in order by the document that added the feature. -->
+      <!-- These rows are in the same order as their feature appears in this document. -->
       <tr>
-        <td>N3672, N3793</td>
-        <td>A utility class to represent optional objects</td>
-        <td><cxx-ref to="optional"></cxx-ref></td>
-        <td><code>optional</code></td>
+        <td>N3920</td>
+        <td>Extending shared_ptr to Support Arrays</td>
+        <td><cxx-ref to="mods.util.smartptr.shared"></cxx-ref></td>
+        <td><code>shared_ptr_arrays</code></td>
         <td>201402</td>
-        <td><code>&lt;experimental/optional></code></td>
+        <td><code>&lt;memory></code></td>
       </tr>
       <tr>
-        <td>N3783</td>
-        <td>Network Byte Order Conversion</td>
-        <td><cxx-ref to="net.byte.order"></cxx-ref></td>
-        <td><code>network_byte_order</code></td>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::function</td>
+        <td><cxx-ref to="mods.func.wrap"></cxx-ref></td>
+        <td><code>function_erased_allocator</code></td>
         <td>201402</td>
-        <td><code>&lt;experimental/net></code></td>
-      </tr>
-      <tr>
-        <td>N3804</td>
-        <td>Any Library Proposal</td>
-        <td><cxx-ref to="any"></cxx-ref></td>
-        <td><code>any</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/any></code></td>
+        <td><code>&lt;functional></code></td>
       </tr>
       <tr>
         <td>N3843</td>
@@ -275,44 +271,12 @@
         <td><code>&lt;type_traits></code></td>
       </tr>
       <tr>
-        <td>N3866</td>
-        <td>Invocation type traits</td>
-        <td><cxx-ref to="meta.trans.other"></cxx-ref></td>
-        <td><code>invocation_type</code></td>
+        <td>N3923</td>
+        <td>A SFINAE-Friendly <code>iterator_traits</code></td>
+        <td><cxx-ref to="mods.iterator.traits"></cxx-ref></td>
+        <td><code>iterator_traits_sfinae</code></td>
         <td>201402</td>
-        <td><code>&lt;experimental/type_traits></code></td>
-      </tr>
-      <tr>
-        <td>N3905</td>
-        <td>Extending <code>std::search</code> to use Additional Searching Algorithms</td>
-        <td><cxx-ref to="func.searchers"></cxx-ref></td>
-        <td><code>boyer_moore_searching</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/functional></code></td>
-      </tr>
-      <tr>
-        <td>N3915</td>
-        <td>apply() call a function with arguments from a tuple</td>
-        <td><cxx-ref to="tuple.apply"></cxx-ref></td>
-        <td><code>apply</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/tuple></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Polymorphic Memory Resources</td>
-        <td><cxx-ref to="memory.resource.synop"></cxx-ref></td>
-        <td><code>memory_resources</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/memory_resource></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Type-erased allocator for std::function</td>
-        <td><cxx-ref to="mods.func.wrap"></cxx-ref></td>
-        <td><code>function_erased_allocator</code></td>
-        <td>201402</td>
-        <td><code>&lt;functional></code></td>
+        <td><code>&lt;iterator></code></td>
       </tr>
       <tr>
         <td>N3916</td>
@@ -331,12 +295,52 @@
         <td><code>&lt;future></code></td>
       </tr>
       <tr>
-        <td>N3920</td>
-        <td>Extending shared_ptr to Support Arrays</td>
-        <td><cxx-ref to="mods.util.smartptr.shared"></cxx-ref></td>
-        <td><code>shared_ptr_arrays</code></td>
+        <td>N3915</td>
+        <td>apply() call a function with arguments from a tuple</td>
+        <td><cxx-ref to="tuple.apply"></cxx-ref></td>
+        <td><code>apply</code></td>
         <td>201402</td>
-        <td><code>&lt;memory></code></td>
+        <td><code>&lt;experimental/tuple></code></td>
+      </tr>
+      <tr>
+        <td>N3932</td>
+        <td>Variable Templates For Type Traits</td>
+        <td><cxx-ref to="meta.type.synop"></cxx-ref></td>
+        <td><code>type_trait_variable_templates</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/type_traits></code></td>
+      </tr>
+      <tr>
+        <td>N3866</td>
+        <td>Invocation type traits</td>
+        <td><cxx-ref to="meta.trans.other"></cxx-ref></td>
+        <td><code>invocation_type</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/type_traits></code></td>
+      </tr>
+      <tr>
+        <td>N3905</td>
+        <td>Extending <code>std::search</code> to use Additional Searching Algorithms</td>
+        <td><cxx-ref to="func.searchers"></cxx-ref></td>
+        <td><code>boyer_moore_searching</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/functional></code></td>
+      </tr>
+      <tr>
+        <td>N3672, N3793</td>
+        <td>A utility class to represent optional objects</td>
+        <td><cxx-ref to="optional"></cxx-ref></td>
+        <td><code>optional</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/optional></code></td>
+      </tr>
+      <tr>
+        <td>N3804</td>
+        <td>Any Library Proposal</td>
+        <td><cxx-ref to="any"></cxx-ref></td>
+        <td><code>any</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/any></code></td>
       </tr>
       <tr>
         <td>N3921</td>
@@ -347,12 +351,12 @@
         <td><code>&lt;experimental/string_view></code></td>
       </tr>
       <tr>
-        <td>N3923</td>
-        <td>A SFINAE-Friendly <code>iterator_traits</code></td>
-        <td><cxx-ref to="mods.iterator.traits"></cxx-ref></td>
-        <td><code>iterator_traits_sfinae</code></td>
+        <td>N3916</td>
+        <td>Polymorphic Memory Resources</td>
+        <td><cxx-ref to="memory.resource.synop"></cxx-ref></td>
+        <td><code>memory_resources</code></td>
         <td>201402</td>
-        <td><code>&lt;iterator></code></td>
+        <td><code>&lt;experimental/memory_resource></code></td>
       </tr>
       <tr>
         <td>N3925</td>
@@ -363,12 +367,12 @@
         <td><code>&lt;experimental/algorithm></code></td>
       </tr>
       <tr>
-        <td>N3932</td>
-        <td>Variable Templates For Type Traits</td>
-        <td><cxx-ref to="meta.type.synop"></cxx-ref></td>
-        <td><code>type_trait_variable_templates</code></td>
+        <td>N3783</td>
+        <td>Network Byte Order Conversion</td>
+        <td><cxx-ref to="net.byte.order"></cxx-ref></td>
+        <td><code>network_byte_order</code></td>
         <td>201402</td>
-        <td><code>&lt;experimental/type_traits></code></td>
+        <td><code>&lt;experimental/net></code></td>
       </tr>
     </table>
   </cxx-section>
