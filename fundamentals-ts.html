@@ -1504,6 +1504,16 @@ pre {
       
     
 
+    <cxx-ednote>
+    
+    <aside><strong>Editor's note:</strong> 
+      These feature-testing macros are my invention, with very little input from anyone else.
+      I've tried to be consistent with the SD-6 recommendations and
+      divide features where I suspect they may be implemented at different times despite being added by the same paper.
+      I'll be happy to accept changes to this section as editorial fixes until the PDTS is published.
+    </aside>
+  </cxx-ednote>
+
     <p para_num="1" id="general.feature.test.1">
       For the sake of improved portability between partial implementations of various C++ standards,
       WG21 (the ISO technical committee for the C++ programming language) recommends
@@ -1518,6 +1528,7 @@ pre {
       Implementers who provide a new standard feature should define a macro with the recommended name and value,
       in the same circumstances under which the feature is available (for example, taking into account relevant command-line options),
       to indicate the presence of support for that feature.
+      The recommended macro name is "<code>__cpp_lib_experimental_</code>" followed by the string in the "Macro Name Suffix" column.
     </p>
 
     <p para_num="3" id="general.feature.test.3">
@@ -1539,35 +1550,140 @@ pre {
           <th>Doc. No.</th>
           <th>Title</th>
           <th>Primary Section</th>
-          <th>Macro Name</th>
+          <th>Macro Name Suffix</th>
           <th>Value</th>
           <th>Header</th>
         </tr>
       </thead>
 
+      <!-- These rows are in order by the document that added the feature. -->
       <tbody><tr>
-        <td>N3925</td>
-        <td>A <code>sample</code> Proposal</td>
-        <td><cxx-ref to="alg.random.sample"><a title="alg.random.sample" href="#alg.random.sample">9.3</a></cxx-ref></td>
-        <td><code>__cpp_lib_experimental_sample</code></td>
+        <td>N3672, N3793</td>
+        <td>A utility class to represent optional objects</td>
+        <td><cxx-ref to="optional"><a title="optional" href="#optional">5</a></cxx-ref></td>
+        <td><code>optional</code></td>
         <td>201402</td>
-        <td><code>&lt;experimental/algorithm&gt;</code></td>
+        <td><code>&lt;experimental/optional&gt;</code></td>
       </tr>
       <tr>
-        <td>N3923</td>
-        <td>A SFINAE-Friendly <code>iterator_traits</code></td>
-        <td><cxx-ref to="mods.iterator.traits"><a title="mods.iterator.traits" href="#mods.iterator.traits">2.5</a></cxx-ref></td>
-        <td><code>__cpp_lib_experimental_iterator_traits_sfinae</code></td>
+        <td>N3783</td>
+        <td>Network Byte Order Conversion</td>
+        <td><cxx-ref to="net.byte.order"><a title="net.byte.order" href="#net.byte.order">10.2</a></cxx-ref></td>
+        <td><code>network_byte_order</code></td>
         <td>201402</td>
-        <td><code>&lt;iterator&gt;</code></td>
+        <td><code>&lt;experimental/net&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3804</td>
+        <td>Any Library Proposal</td>
+        <td><cxx-ref to="any"><a title="any" href="#any">6</a></cxx-ref></td>
+        <td><code>any</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/any&gt;</code></td>
       </tr>
       <tr>
         <td>N3843</td>
         <td>A SFINAE-Friendly <code>common_type</code></td>
         <td><cxx-ref to="mods.meta.trans.other"><a title="mods.meta.trans.other" href="#mods.meta.trans.other">2.4</a></cxx-ref></td>
-        <td><code>__cpp_lib_experimental_common_type_sfinae</code></td>
+        <td><code>common_type_sfinae</code></td>
         <td>201402</td>
         <td><code>&lt;type_traits&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3866</td>
+        <td>Invocation type traits</td>
+        <td><cxx-ref to="meta.trans.other"><a title="meta.trans.other" href="#meta.trans.other">3.3.2</a></cxx-ref></td>
+        <td><code>invocation_type</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/type_traits&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3905</td>
+        <td>Extending <code>std::search</code> to use Additional Searching Algorithms</td>
+        <td><cxx-ref to="func.searchers"><a title="func.searchers" href="#func.searchers">4.2</a></cxx-ref></td>
+        <td><code>boyer_moore_searching</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/functional&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3915</td>
+        <td>apply() call a function with arguments from a tuple</td>
+        <td><cxx-ref to="tuple.apply"><a title="tuple.apply" href="#tuple.apply">3.2.2</a></cxx-ref></td>
+        <td><code>apply</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/tuple&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Polymorphic Memory Resources</td>
+        <td><cxx-ref to="memory.resource.synop"><a title="memory.resource.synop" href="#memory.resource.synop">8.4</a></cxx-ref></td>
+        <td><code>memory_resources</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/memory_resource&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::function</td>
+        <td><cxx-ref to="mods.func.wrap"><a title="mods.func.wrap" href="#mods.func.wrap">2.3</a></cxx-ref></td>
+        <td><code>function_erased_allocator</code></td>
+        <td>201402</td>
+        <td><code>&lt;functional&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::promise</td>
+        <td><cxx-ref to="mods.futures.promise"><a title="mods.futures.promise" href="#mods.futures.promise">2.6</a></cxx-ref></td>
+        <td><code>promise_erased_allocator</code></td>
+        <td>201402</td>
+        <td><code>&lt;future&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::packaged_task</td>
+        <td><cxx-ref to="mods.futures.task"><a title="mods.futures.task" href="#mods.futures.task">2.7</a></cxx-ref></td>
+        <td><code>packaged_task_erased_allocator</code></td>
+        <td>201402</td>
+        <td><code>&lt;future&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3920</td>
+        <td>Extending shared_ptr to Support Arrays</td>
+        <td><cxx-ref to="mods.util.smartptr.shared"><a title="mods.util.smartptr.shared" href="#mods.util.smartptr.shared">2.2</a></cxx-ref></td>
+        <td><code>shared_ptr_arrays</code></td>
+        <td>201402</td>
+        <td><code>&lt;memory&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3921</td>
+        <td><code>string_view</code>: a non-owning reference to a string</td>
+        <td><cxx-ref to="string.view"><a title="string.view" href="#string.view">7</a></cxx-ref></td>
+        <td><code>string_view</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/string_view&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3923</td>
+        <td>A SFINAE-Friendly <code>iterator_traits</code></td>
+        <td><cxx-ref to="mods.iterator.traits"><a title="mods.iterator.traits" href="#mods.iterator.traits">2.5</a></cxx-ref></td>
+        <td><code>iterator_traits_sfinae</code></td>
+        <td>201402</td>
+        <td><code>&lt;iterator&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3925</td>
+        <td>A <code>sample</code> Proposal</td>
+        <td><cxx-ref to="alg.random.sample"><a title="alg.random.sample" href="#alg.random.sample">9.3</a></cxx-ref></td>
+        <td><code>sample</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/algorithm&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3932</td>
+        <td>Variable Templates For Type Traits</td>
+        <td><cxx-ref to="meta.type.synop"><a title="meta.type.synop" href="#meta.type.synop">3.3.1</a></cxx-ref></td>
+        <td><code>type_trait_variable_templates</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/type_traits&gt;</code></td>
       </tr>
     </tbody>
   </table>
