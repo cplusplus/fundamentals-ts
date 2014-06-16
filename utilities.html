@@ -336,7 +336,7 @@ inline namespace fundamentals_v1 {
         </thead>
         <tr>
           <td>
-            <code>template &lt;class Fn, class... ArgTypes&gt;
+            <code><nobr>template &lt;class Fn, class... ArgTypes&gt;</nobr>
             struct raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)&gt;;</code>
           </td>
           <td>
@@ -345,25 +345,12 @@ inline namespace fundamentals_v1 {
           </td>
 
           <td>
-            If the expression <code><em>INVOKE</em>(declval&lt;Fn&gt;(), declval&lt;ArgTypes&gt;()...)</code>
-            is well formed when treated as an unevaluated operand (<cxx-ref in="cxx" to="expr"></cxx-ref>),
-            the member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>
-            where <code>R</code> denotes <code>result_of&lt;Fn(ArgTypes...)&gt;::type</code> and
-            the types <code>Ti</code> are the <cxx-term>invocation parameters</cxx-term>
-            of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), declval&lt;ArgTypes&gt;()...)</code>;
-            otherwise, there shall be no member <code>type</code>.
-            Access checking is performed as if in a context unrelated to <code>Fn</code> and <code>ArgTypes</code>.
-            Only the validity of the immediate context of the expression is considered.
-            <cxx-note>The compilation of the expression can result in side effects
-            such as the instantiation of class template specializations and function template specializations,
-            the generation of implicitly-defined functions, and so on.
-            Such side effects are not in the "immediate context"
-            and can result in the program being ill-formed.</cxx-note>
+            <em>see below</em>
           </td>
         </tr>
         <tr>
           <td>
-            <code>template &lt;class Fn, class... ArgTypes&gt;
+            <code><nobr>template &lt;class Fn, class... ArgTypes&gt;</nobr>
             struct invocation_type&lt;<wbr/>Fn(ArgTypes...)&gt;;</code>
           </td>
           <td>
@@ -372,15 +359,48 @@ inline namespace fundamentals_v1 {
             or arrays of unknown bound.
           </td>
           <td>
-            If <code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>
-            is the function type <code>R(T1, T2, ...)</code>
-            and <code>Fn</code> is a pointer to member type
-            and <code>T1</code> is an rvalue reference,
-            then <code>R(decay&lt;T1&gt;::type, T2, ...)</code>.
-            Otherwise, <code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>.
+            <em>see below</em>
           </td>
         </tr>
       </table>
+
+      <p>
+        Access checking is performed as if in a context unrelated to <code>Fn</code> and <code>ArgTypes</code>.
+        Only the validity of the immediate context of the expression is considered.
+        <cxx-note>The compilation of the expression can result in side effects
+        such as the instantiation of class template specializations and function template specializations,
+        the generation of implicitly-defined functions, and so on.
+        Such side effects are not in the "immediate context"
+        and can result in the program being ill-formed.</cxx-note>
+      </p>
+
+      <p>
+        The nested typedef <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
+        If the expression <code><em>INVOKE</em>(declval&lt;Fn&gt;(), declval&lt;ArgTypes&gt;()...)</code>
+        is ill-formed when treated as an unevaluated operand (<cxx-ref in="cxx" to="expr"></cxx-ref>),
+        there shall be no member <code>type</code>. Otherwise:
+      </p>
+      <ul>
+        <li>Let <code>R</code> denote <code>result_of&lt;Fn(ArgTypes...)&gt;::type</code>.</li>
+        <li>Let the types <code>Ti</code> be the <cxx-term>invocation parameters</cxx-term>
+        of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), <nobr>declval&lt;ArgTypes&gt;()...)</code></nobr>.</li>
+        <li>The member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>
+      </ul>
+
+      <p>
+        The nested typedef <code>invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
+      </p>
+      <ul>
+        <li>If
+          <ul>
+            <li><code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>
+            is the function type <code>R(T1, T2, ...)</code>,</li>
+            <li><code>Fn</code> is a pointer to member type, and</li>
+            <li><code>T1</code> is an rvalue reference,</li>
+          </ul>
+          then the member typedef <code>type</code> shall name the function type <code>R(decay&lt;T1&gt;::type, T2, ...)</code>.</li>
+        <li>Otherwise, the member typedef <code>type</code> shall name <code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>.</li>
+      </ul>
     </cxx-section>
   </cxx-section>
 
