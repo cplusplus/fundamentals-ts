@@ -241,6 +241,11 @@ inline namespace fundamentals_v1 {
   template &lt;class> class raw_invocation_type; // <i>not defined</i>
   template &lt;class F, class... ArgTypes> class raw_invocation_type&lt;F(ArgTypes...)>;
 
+  template &lt;class T>
+    using invocation_type_t = typename invocation_type&lt;T>::type;
+  template &lt;class T>
+    using raw_invocation_type_t = typename raw_invocation_type&lt;T>::type;
+
 } // namespace fundamentals_v1
 } // namespace experimental
 } // namespace std</code></pre>
