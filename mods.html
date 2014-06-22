@@ -407,54 +407,6 @@ experimental::pmr::memory_resource* get_memory_resource();</ins></code></pre>
     </cxx-function>
   </cxx-section>
 
-  <cxx-section id="mods.meta.trans.other">
-    <h1>Changes to <code>std::common_type</code></h1>
-
-    <p>In <cxx-ref in="cxx" to="meta.trans.other"></cxx-ref>, the definition of <code>common_type::type</code> in paragraph 3 is removed and replaced with:</p>
-    <blockquote>
-      <p>
-        <ins>For the <code>common_type</code> trait applied to a parameter pack <code>T</code> of types,
-        the member <code>type</code> shall be either deﬁned or not present as follows:</ins>
-      </p>
-      <ins><ul>
-        <li>If <code>sizeof...(T)</code> is zero, there shall be no member <code>type</code>.</li>
-        <li>If <code>sizeof...(T)</code> is one, let <code>T0</code> denote the sole type comprising <code>T</code>. The member typedef <code>type</code> shall denote the same type as <code>decay_t&lt;T0></code>.</li>
-        <li>
-          If <code>sizeof...(T)</code> is greater than one,
-          let <code>T1</code>, <code>T2</code>, and <code>R</code> respectively denote the ﬁrst, second, and (pack of) remaining types comprising <code>T</code>.
-          <cxx-note><code>sizeof...(R)</code> may be zero.</cxx-note>
-          Finally, let <code>C</code> denote the type, if any, of an unevaluated conditional expression (<cxx-ref in="cxx" to="expr.cond"></cxx-ref>)
-          whose ﬁrst operand is an arbitrary value of type <code>bool</code>,
-          whose second operand is an xvalue of type <code>T1</code>,
-          and whose third operand is an xvalue of type <code>T2</code>.
-          If there is such a type <code>C</code>, the member typedef <code>type</code> shall denote the same type, if any, as <code>common_type_t&lt;C,R...></code>.
-          Otherwise, there shall be no member <code>type</code>.
-        </li>
-      </ul></ins>
-    </blockquote>
-  </cxx-section>
-
-  <cxx-section id="mods.iterator.traits">
-    <h1>Changes to <code>std::iterator_traits</code></h1>
-
-    <p>In <cxx-ref in="cxx" to="iterator.traits"></cxx-ref>, the definition of <code>iterator_traits</code> is changed as follows:</p>
-    <blockquote>
-      <p>
-        The template <code>iterator_traits&lt;Iterator></code><del> is defined as</del>
-        <ins> shall have the following as publicly accessible members, and have no other members, if and only if <code>Iterator</code> has valid (<cxx-ref in="cxx" to="temp.deduct"></cxx-ref>) member types <code>difference_type</code>, <code>value_type</code>, <code>pointer</code>, <code>reference</code>, and <code>iterator_category</code>; otherwise, the template shall have no members:</ins>
-      </p>
-<pre><code><del>namespace std {
-  template&lt;class Iterator> struct iterator_traits {</del>
-    typedef typename Iterator::difference_type difference_type;
-    typedef typename Iterator::value_type value_type;
-    typedef typename Iterator::pointer pointer;
-    typedef typename Iterator::reference reference;
-    typedef typename Iterator::iterator_category iterator_category;
-<del>  };
-}</del></code></pre>
-    </blockquote>
-  </cxx-section>
-
   <cxx-section id="mods.futures.promise">
     <h1>Additions to <code>std::promise</code></h1>
 
