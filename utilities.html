@@ -394,17 +394,17 @@ inline namespace fundamentals_v1 {
 
       <p>
         The nested typedef <code>invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
+        If <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> does not exist, there shall be no member typedef <code>type</code>.
+        Otherwise:
       </p>
       <ul>
-        <li>If
-          <ul>
-            <li><code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>
-            is the function type <code>R(T1, T2, ...)</code>,</li>
-            <li><code>Fn</code> is a pointer to member type, and</li>
-            <li><code>T1</code> is an rvalue reference,</li>
-          </ul>
-          then the member typedef <code>type</code> shall name the function type <code>R(decay&lt;T1&gt;::type, T2, ...)</code>.</li>
-        <li>Otherwise, the member typedef <code>type</code> shall name <code>raw_invocation_type&lt;<wbr/>Fn(ArgTypes...)<wbr/>&gt;::type</code>.</li>
+        <li>Let <code>A1, A2,</code> … denote <code>ArgTypes...</code></li>
+        <li>Let <code>R(T1, T2, …)</code> denote <code>raw_invocation_type_t&lt;Fn(ArgTypes...)&gt;</code></li>
+        <li>
+          Then the member typedef <code>type</code> shall name the function type <code>R(U1, U2, …)</code>
+          where <code>Ui</code> is <code>decay_t&lt;Ai&gt;</code> if <code>declval&lt;Ai&gt;()</code> is an rvalue
+          otherwise <code>Ti</code>.
+        </li>
       </ul>
     </cxx-section>
   </cxx-section>
