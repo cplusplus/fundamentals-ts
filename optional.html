@@ -418,7 +418,7 @@ private:
         <cxx-returns><code>bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-returns>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
         <cxx-exception-safety>If <code><var>init</var> == true</code> and exception is thrown during the call to <code>T</code>'s constructor, the value of <code><var>init</var></code> and <code><var>v</var></code> remains unchanged and the state of <code><var>*val</var></code> is determined by the exception safety guarantee of the selected constructor of <code>T</code>. Otherwise, when exception is thrown during the call to <code>T</code>'s constructor, the value of <code><var>*this</var></code> remains unchanged and the state of <code><var>v</var></code> is determined by the exception safety guarantee of the selected constructor of <code>T</code>.</cxx-exception-safety>
-        <cxx-remarks>If both constructors of <code>T</code> which could be selected are <code>constexpr</code> constructors,
+        <cxx-remarks>If the selected constructor of <code>T</code> is a <code>constexpr</code> constructor,
         this function shall be a <code>constexpr</code> function.</cxx-remarks>
       </cxx-function>
 
