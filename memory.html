@@ -204,7 +204,7 @@ protected:
       <cxx-function>
         <cxx-signature>virtual void* do_allocate(size_t bytes, size_t alignment) = 0;</cxx-signature>
 
-        <cxx-preconditions>alignment shall be a power of two.</cxx-preconditions>
+        <cxx-requires>alignment shall be a power of two.</cxx-requires>
         <cxx-returns>A derived class shall implement this function to return a pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>) with a size of at least <code>bytes</code>.
         The returned storage is aligned to the specified alignment, if such alignment is supported;
         otherwise it is aligned to <code>max_align</code>.</cxx-returns>
@@ -213,8 +213,8 @@ protected:
 
       <cxx-function>
         <cxx-signature>virtual void do_deallocate(void* p, size_t bytes, size_t alignment) = 0;</cxx-signature>
-        <cxx-preconditions><code>p</code> shall have been returned from a prior call to <code>allocate(bytes, alignment)</code> on a memory resource equal to <code>*this</code>,
-        and the storage at <code>p</code> shall not yet have been deallocated.</cxx-preconditions>
+        <cxx-requires><code>p</code> shall have been returned from a prior call to <code>allocate(bytes, alignment)</code> on a memory resource equal to <code>*this</code>,
+        and the storage at <code>p</code> shall not yet have been deallocated.</cxx-requires>
         <cxx-effects>A derived class shall implement this function to dispose of allocated storage.</cxx-effects>
         <cxx-throws>Nothing.</cxx-throws>
       </cxx-function>
@@ -316,7 +316,7 @@ public:
       <cxx-function>
         <cxx-signature>polymorphic_allocator(memory_resource* r);</cxx-signature>
 
-        <cxx-preconditions><code>r</code> is non-null.</cxx-preconditions>
+        <cxx-requires><code>r</code> is non-null.</cxx-requires>
         <cxx-effects>Sets <code>m_resource</code> to <code>r</code>.</cxx-effects>
         <cxx-throws>nothing</cxx-throws>
         <cxx-notes>This constructor provides an implicit conversion from <code>memory_resource*</code>.</cxx-notes>
@@ -339,7 +339,7 @@ polymorphic_allocator(const polymorphic_allocator&lt;U>& other) noexcept;</cxx-s
 
       <cxx-function>
         <cxx-signature>void deallocate(Tp* p, size_t n);</cxx-signature>
-        <cxx-preconditions><code>p</code> was allocated from a memory resource, <code>x</code>, equal to <code>*m_resource</code>, using <code>x.allocate(n * sizeof(Tp), alignof(Tp))</code>.</cxx-preconditions>
+        <cxx-requires><code>p</code> was allocated from a memory resource, <code>x</code>, equal to <code>*m_resource</code>, using <code>x.allocate(n * sizeof(Tp), alignof(Tp))</code>.</cxx-requires>
         <cxx-effects>Equivalent to <code>m_resource->deallocate(p, n * sizeof(Tp), alignof(Tp))</code>.</cxx-effects>
         <cxx-throws>Nothing.</cxx-throws>
       </cxx-function>
@@ -731,7 +731,7 @@ protected:
         <cxx-signature>synchronized_pool_resource(const pool_options& opts, memory_resource* upstream);</cxx-signature>
         <cxx-signature>unsynchronized_pool_resource(const pool_options& opts, memory_resource* upstream);</cxx-signature>
 
-        <cxx-preconditions><code>upstream</code> is the address of a valid memory resource.</cxx-preconditions>
+        <cxx-requires><code>upstream</code> is the address of a valid memory resource.</cxx-requires>
         <cxx-effects>
           Constructs a pool resource object that will obtain memory from <code>upstream</code> whenever the pool resource is unable to satisfy a memory request from its own internal data structures.
           The resulting object will hold a copy of <code>upstream</code>, but will not own the resource to which <code>upstream</code> points.
@@ -881,8 +881,8 @@ protected:
         <cxx-signature>explicit monotonic_buffer_resource(memory_resource* upstream);</cxx-signature>
         <cxx-signature>monotonic_buffer_resource(size_t initial_size, memory_resource* upstream);</cxx-signature>
 
-        <cxx-preconditions><code>upstream</code> shall be the address of a valid memory resource.
-        <code>initial_size</code>, if specified, shall be greater than zero.</cxx-preconditions>
+        <cxx-requires><code>upstream</code> shall be the address of a valid memory resource.
+        <code>initial_size</code>, if specified, shall be greater than zero.</cxx-requires>
         <cxx-effects>Sets <code>upstream_rsrc</code> to <code>upstream</code> and <code>current_buffer</code> to <code>nullptr</code>.
         If <code>initial_size</code> is specified, sets <code>next_buffer_size</code> to at least <code>initial_size</code>;
         otherwise sets <code>next_buffer_size</code> to an implementation-defined size.</cxx-effects>
@@ -891,8 +891,8 @@ protected:
       <cxx-function>
         <cxx-signature>monotonic_buffer_resource(void* buffer, size_t buffer_size, memory_resource* upstream);</cxx-signature>
 
-        <cxx-preconditions><code>upstream</code> shall be the address of a valid memory resource.
-        <code>buffer_size</code> shall be no larger than the number of bytes in <code>buffer</code>.</cxx-preconditions>
+        <cxx-requires><code>upstream</code> shall be the address of a valid memory resource.
+        <code>buffer_size</code> shall be no larger than the number of bytes in <code>buffer</code>.</cxx-requires>
         <cxx-effects>Sets <code>upstream_rsrc</code> to <code>upstream</code>, <code>current_buffer</code> to <code>buffer</code>, and <code>next_buffer_size</code> to <code>initial_size</code> (but not less than 1),
         then increases <code>next_buffer_size</code> by an implementation-defined growth factor (which need not be integral).</cxx-effects>
       </cxx-function>
