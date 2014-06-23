@@ -56,6 +56,167 @@ inline namespace fundamentals_v1 {
 
   </cxx-section>
 
+  <cxx-section id="func.wrap.func">
+    <h1>Class template <code>function</code></h1>
+
+    <cxx-ednote>
+      The following class template synopsis fixes the missing <code>noexcept</code> specification of the <code>nullptr_t</code> assignment operator
+      as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
+      We consider this change <em>editorial</em>, because the fundamentals-ts specification otherwise refers to a non-existing declaration in C++14.
+    </cxx-ednote>
+
+    <p>
+      The specification of all declarations within this sub-clause <cxx-ref to="func.wrap.func"></cxx-ref>
+      and its sub-clauses are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>,
+      unless explicitly specified otherwise. <cxx-note><code>std::experimental::function</code> uses
+      <code>std::bad_function_call</code>, there is no additional type <code>std::experimental::bad_function_call</code></cxx-note>.
+    </p>
+
+<pre><code>namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v1 {
+
+    template&lt;class&gt; class function; <i>// undefined</i>
+
+    template&lt;class R, class... ArgTypes&gt;
+    class function&lt;R(ArgTypes...)&gt; {
+    public:
+      typedef R result_type;
+      typedef T1 argument_type;
+      typedef T1 first_argument_type;
+      typedef T2 second_argument_type;
+
+      typedef erased_type allocator_type;
+
+      function() noexcept;
+      function(nullptr_t) noexcept;
+      function(const function&amp;);
+      function(function&amp;&amp;);
+      template&lt;class F&gt; function(F);
+      template&lt;class A&gt; function(allocator_arg_t, const A&amp;) noexcept;
+      template&lt;class A&gt; function(allocator_arg_t, const A&amp;,
+        nullptr_t) noexcept;
+      template&lt;class A&gt; function(allocator_arg_t, const A&amp;,
+        const function&amp;);
+      template&lt;class A&gt; function(allocator_arg_t, const A&amp;,
+        function&amp;&amp;);
+      template&lt;class F, class A&gt; function(allocator_arg_t, const A&amp;, F);
+
+      function&amp; operator=(const function&amp;);
+      function&amp; operator=(function&amp;&amp;);
+      function&amp; operator=(nullptr_t) noexcept;
+      template&lt;class F&gt; function&amp; operator=(F&amp;&amp;);
+      template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt;);
+
+      ~function();
+
+      void swap(function&amp;);
+      template&lt;class F, class A&gt; void assign(F&amp;&amp;, const A&amp;);
+
+      explicit operator bool() const noexcept;
+
+      R operator()(ArgTypes...) const;
+
+      const type_info&amp; target_type() const noexcept;
+      template&lt;class T&gt; T* target() noexcept;
+      template&lt;class T&gt; const T* target() const noexcept;
+
+      pmr::memory_resource* get_memory_resource();
+    };
+
+    template &lt;class R, class... ArgTypes&gt;
+    bool operator==(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
+    template &lt;class R, class... ArgTypes&gt;
+    bool operator==(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+
+    template &lt;class R, class... ArgTypes&gt;
+    bool operator!=(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
+    template &lt;class R, class... ArgTypes&gt;
+    bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+
+    template &lt;class R, class... ArgTypes&gt;
+    void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
+
+  } // namespace fundamentals_v1
+  } // namespace experimental
+
+  template &lt;class R, class... ArgTypes, class Alloc&gt;
+  struct uses_allocator&lt;experimental::function&lt;R(ArgTypes...)&gt;, Alloc&gt;
+    : true_type { };
+
+} // namespace std</code></pre>
+
+    <cxx-section id="func.wrap.func.con">
+      <h1><code>function</code> construct/copy/destroy</h1>
+
+      <cxx-ednote>
+        The following first paragraph has been slightly editorially improved to
+        (a) make the difference between <code>std::function</code> and <code>std::experimental::function</code> clearer
+        (which seems necessary due to the "including" wording that can be parsed in two different ways) and
+        (b) to make intended normative wording clearer, that had been put into parenthesis before, by simply removing these parenthesis.
+      </cxx-ednote>
+
+      <p>
+        When a <code>function</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
+        the second argument is treated as a <cxx-term>type-erased allocator</cxx-term> (<cxx-ref to="memory.type.erased.allocator"></cxx-ref>).
+        If the constructor moves or makes a copy
+        of a function object (<cxx-ref in="cxx" to="function.objects"></cxx-ref>),
+        including an instance of the <code>experimental::function</code> class template,
+        then that move or copy is performed by <cxx-term>using-allocator construction</cxx-term> with allocator <code>get_memory_resource()</code>.
+      </p>
+
+      <cxx-function>
+        <cxx-signature>function&amp; operator=(const function&amp; f);</cxx-signature>
+
+        <cxx-effects><code>function(allocator_arg, get_memory_resource(), f).swap(*this);</code></cxx-effects>
+        <cxx-returns><code>*this</code></cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>function&amp; operator=(function&amp;&amp; f);</cxx-signature>
+
+        <cxx-effects><code>function(allocator_arg, get_memory_resource(), std::move(f)).swap(*this);</code></cxx-effects>
+        <cxx-returns><code>*this</code></cxx-returns>
+      </cxx-function>
+
+      <cxx-ednote>The following <i>Effects</i> element has been fixed and syncs the wording "<code>*this != NULL</code>"
+      with the C++14 working draft replacing it with "<code>*this != nullptr</code>"</cxx-ednote>
+
+      <cxx-function>
+        <cxx-signature>function&amp; operator=(nullptr_t) noexcept;</cxx-signature>
+
+        <cxx-effects>If <code>*this != nullptr</code>, destroys the target of <code>this</code>.</cxx-effects>
+        <cxx-postconditions><code>!(*this)</code>.</cxx-postconditions>
+        <cxx-returns><code>*this</code></cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class F&gt; function&amp; operator=(F&amp;&amp; f);</cxx-signature>
+
+        <cxx-effects><code>function(allocator_arg, get_memory_resource(), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
+        <cxx-returns><code>*this</code></cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f);</cxx-signature>
+
+        <cxx-effects><code>function(allocator_arg, get_memory_resource(), f).swap(*this);</code></cxx-effects>
+        <cxx-returns><code>*this</code></cxx-returns>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="func.wrap.func.mod">
+      <h1><code>function</code> modifiers</h1>
+
+      <cxx-function>
+        <cxx-signature>void swap(function&amp; other);</cxx-signature>
+
+        <cxx-requires><code>this-&gt;get_memory_resource() == other-&gt;get_memory_resource()</code>.</cxx-requires>
+        <cxx-effects>Interchanges the targets of <code>*this</code> and <code>other</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
   <cxx-section id="func.searchers">
     <h1>Searchers</h1>
 

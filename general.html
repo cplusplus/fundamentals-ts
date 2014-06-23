@@ -117,46 +117,31 @@
 
     <table is="cxx-table" id="tab.cxx.headers" class="list">
       <caption>C++ library headers</caption>
-      <tr>
-        <td><code>&lt;experimental/algorithm></code></td>
-        <td><code>&lt;experimental/memory></code></td>
-        <td><code>&lt;experimental/string_view></code></td>
-      </tr>
-      <tr>
-        <td><code>&lt;experimental/any></code></td>
-        <td><code>&lt;experimental/memory_resource></code></td>
-        <td><code>&lt;experimental/system_error></code></td>
-      </tr>
-      <tr>
-        <td><code>&lt;experimental/chrono></code></td>
-        <td><code>&lt;experimental/net></code></td>
-        <td><code>&lt;experimental/tuple></code></td>
-      </tr>
-      <tr>
-        <td><code>&lt;experimental/deque></code></td>
-        <td><code>&lt;experimental/optional></code></td>
-        <td><code>&lt;experimental/type_traits></code></td>
-      </tr>
-      <tr>
-        <td><code>&lt;experimental/forward_list></code></td>
-        <td><code>&lt;experimental/ratio></code></td>
-        <td><code>&lt;experimental/unordered_map></code></td>
-      </tr>
-      <tr>
-        <td><code>&lt;experimental/functional></code></td>
-        <td><code>&lt;experimental/regex></code></td>
-        <td><code>&lt;experimental/unordered_set></code></td>
-      </tr>
-      <tr>
-        <td><code>&lt;experimental/list></code></td>
-        <td><code>&lt;experimental/set></code></td>
-        <td><code>&lt;experimental/utility></code></td>
-      </tr>
-      <tr>
-        <td><code>&lt;experimental/map></code></td>
-        <td><code>&lt;experimental/string></code></td>
-        <td><code>&lt;experimental/vector></code></td>
-      </tr>
+      <tr><td><code>&lt;experimental/algorithm></code></td></tr>
+      <tr><td><code>&lt;experimental/any></code></td></tr>
+      <tr><td><code>&lt;experimental/chrono></code></td></tr>
+      <tr><td><code>&lt;experimental/deque></code></td></tr>
+      <tr><td><code>&lt;experimental/forward_list></code></td></tr>
+      <tr><td><code>&lt;experimental/functional></code></td></tr>
+      <tr><td><code>&lt;experimental/future></code></td></tr>
+      <tr><td><code>&lt;experimental/list></code></td></tr>
+      <tr><td><code>&lt;experimental/map></code></td></tr>
+      <tr><td><code>&lt;experimental/memory></code></td></tr>
+      <tr><td><code>&lt;experimental/memory_resource></code></td></tr>
+      <tr><td><code>&lt;experimental/net></code></td></tr>
+      <tr><td><code>&lt;experimental/optional></code></td></tr>
+      <tr><td><code>&lt;experimental/ratio></code></td></tr>
+      <tr><td><code>&lt;experimental/regex></code></td></tr>
+      <tr><td><code>&lt;experimental/set></code></td></tr>
+      <tr><td><code>&lt;experimental/string></code></td></tr>
+      <tr><td><code>&lt;experimental/string_view></code></td></tr>
+      <tr><td><code>&lt;experimental/system_error></code></td></tr>
+      <tr><td><code>&lt;experimental/tuple></code></td></tr>
+      <tr><td><code>&lt;experimental/type_traits></code></td></tr>
+      <tr><td><code>&lt;experimental/unordered_map></code></td></tr>
+      <tr><td><code>&lt;experimental/unordered_set></code></td></tr>
+      <tr><td><code>&lt;experimental/utility></code></td></tr>
+      <tr><td><code>&lt;experimental/vector></code></td></tr>
     </table>
   </cxx-section>
 
@@ -255,30 +240,6 @@
         <td><code>&lt;memory></code></td>
       </tr>
       <tr>
-        <td>N3916</td>
-        <td>Type-erased allocator for std::function</td>
-        <td><cxx-ref to="mods.func.wrap"></cxx-ref></td>
-        <td><code>function_erased_allocator</code></td>
-        <td>201402</td>
-        <td><code>&lt;functional></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Type-erased allocator for std::promise</td>
-        <td><cxx-ref to="mods.futures.promise"></cxx-ref></td>
-        <td><code>promise_erased_allocator</code></td>
-        <td>201402</td>
-        <td><code>&lt;future></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Type-erased allocator for std::packaged_task</td>
-        <td><cxx-ref to="mods.futures.task"></cxx-ref></td>
-        <td><code>packaged_task_erased_allocator</code></td>
-        <td>201402</td>
-        <td><code>&lt;future></code></td>
-      </tr>
-      <tr>
         <td>N3915</td>
         <td>apply() call a function with arguments from a tuple</td>
         <td><cxx-ref to="tuple.apply"></cxx-ref></td>
@@ -301,6 +262,14 @@
         <td><code>invocation_type</code></td>
         <td>201402</td>
         <td><code>&lt;experimental/type_traits></code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::function</td>
+        <td><cxx-ref to="func.wrap.func"></cxx-ref></td>
+        <td><code>function_erased_allocator</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/functional></code></td>
       </tr>
       <tr>
         <td>N3905</td>
@@ -341,6 +310,22 @@
         <td><code>memory_resources</code></td>
         <td>201402</td>
         <td><code>&lt;experimental/memory_resource></code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::promise</td>
+        <td><cxx-ref to="futures.promise"></cxx-ref></td>
+        <td><code>promise_erased_allocator</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/future></code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::packaged_task</td>
+        <td><cxx-ref to="futures.task"></cxx-ref></td>
+        <td><code>packaged_task_erased_allocator</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/future></code></td>
       </tr>
       <tr>
         <td>N3925</td>
