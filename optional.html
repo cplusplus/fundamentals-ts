@@ -484,7 +484,7 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
 
-        <cxx-effects>equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-returns>
+        <cxx-effects>equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
         <cxx-remarks>If <code>is_copy_constructible&lt;T&gt;::value &amp;&amp; is_convertible&lt;U&amp;&amp;, T&gt;::value</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
