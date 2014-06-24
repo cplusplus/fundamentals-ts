@@ -165,17 +165,22 @@ inline namespace fundamentals_v1 {
         then that move or copy is performed by <cxx-term>using-allocator construction</cxx-term> with allocator <code>get_memory_resource()</code>.
       </p>
 
+      <p>
+        In the following descriptions, let <code><em>ALLOCATOR_OF</em>(f)</code> be the allocator specified in the construction of <code>function</code> <code>f</code>,
+        or <code>allocator&lt;char&gt;()</code> if no allocator was specified.
+      </p>
+
       <cxx-function>
         <cxx-signature>function&amp; operator=(const function&amp; f);</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, get_memory_resource(), f).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), f).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code></cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>function&amp; operator=(function&amp;&amp; f);</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, get_memory_resource(), std::move(f)).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::move(f)).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code></cxx-returns>
       </cxx-function>
 
@@ -186,21 +191,23 @@ inline namespace fundamentals_v1 {
         <cxx-signature>function&amp; operator=(nullptr_t) noexcept;</cxx-signature>
 
         <cxx-effects>If <code>*this != nullptr</code>, destroys the target of <code>this</code>.</cxx-effects>
-        <cxx-postconditions><code>!(*this)</code>.</cxx-postconditions>
+        <cxx-postconditions><code>!(*this)</code>.
+        The memory resource returned by <code>get_memory_resource()</code> after the assignment is equivalent to the memory resource before the assignment.
+        <cxx-note>the address returned by <code>get_memory_resource()</code> might change</cxx-note></cxx-postconditions>
         <cxx-returns><code>*this</code></cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template&lt;class F&gt; function&amp; operator=(F&amp;&amp; f);</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, get_memory_resource(), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code></cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f);</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, get_memory_resource(), f).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), f).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code></cxx-returns>
       </cxx-function>
     </cxx-section>
