@@ -40,7 +40,7 @@ limitations under the License.
       :host {display:block; margin-top: .5em; margin-bottom: .5em;}
       dt { float: left; font-style: italic; font-weight: normal; padding-right: 1ex;}
       dd { margin-left: 0em; }
-      /* @polyfill dd > ul, dd > ol */
+      polyfill-next-selector { content: 'dd > ul, dd > ol' }
       ::content > ul, ::content > ol { clear: left; }
     </style>
     <dt>{{heading}}:</dt><dd><content></content></dd>

@@ -83,6 +83,24 @@ pre {
     margin-bottom: .5em;
 }
 
+* /deep/ code {
+    /* Make inline code avoid line wraps unless we override it with <wbr>. */
+    white-space: nowrap;
+}
+* /deep/ pre code {
+    /* Keep block-code wrapping according to its context. */
+    white-space: inherit;
+}
+
+* /deep/ table {
+    border-collapse: collapse;
+}
+* /deep/ td, th {
+    padding-left: .2em;
+    padding-right: .2em;
+    border: thin solid black;
+}
+
 /* Use an em-dash for the list bullet.
    'print' is a proxy for supporting ::marker. */
 @media screen {
@@ -100,6 +118,9 @@ pre {
 @media print {
     ul li::marker {
         content: "\2014";
+    }
+    [is=cxx-table].list ul li::marker {
+        content: none;
     }
 }
 
