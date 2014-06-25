@@ -452,7 +452,8 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr T operator*() &amp;&amp;;constexpr T operator*() const&amp;&amp;;</cxx-signature>
+        <cxx-signature>constexpr T operator*() &amp;&amp;;</cxx-signature>
+        <cxx-signature>constexpr T operator*() const&amp;&amp;;</cxx-signature>
 
         <cxx-requires><code>*this</code> contains a value</cxx-requires>
         <cxx-effects>equivalent to <code>return std::move(*<var>val</var>);</code></cxx-effects>
