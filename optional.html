@@ -331,7 +331,7 @@ private:
         <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
         <cxx-remarks>
-          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;T&gt;</pre></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <wbr/>is_nothrow_move_constructible_v&lt;T&gt;</pre></p>
 
           <p>
             If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
@@ -485,7 +485,7 @@ private:
         <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
 
         <cxx-effects>equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
-        <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+        <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <wbr/>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
@@ -493,7 +493,7 @@ private:
         <cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
 
         <cxx-effects>equivalent to <code>return bool(*this) ? <wbr/>std::move(**this) : <wbr/>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
-        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <wbr/>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
     </cxx-section>
