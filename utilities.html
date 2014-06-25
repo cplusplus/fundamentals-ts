@@ -77,7 +77,7 @@ constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
 }</code></pre>
           <p>Equivalent to</p>
           <pre><code>return apply_impl(std::forward&lt;F>(f), std::forward&lt;Tuple>(t),
-    make_index_sequence&lt;tuple_size&lt;decay_t&lt;Tuple>>::value>{});</code></pre>
+    make_index_sequence&lt;tuple_size_v&lt;decay_t&lt;Tuple>>>{});</code></pre>
         </cxx-effects>
       </cxx-function>
     </cxx-section>
@@ -386,7 +386,7 @@ inline namespace fundamentals_v1 {
         there shall be no member <code>type</code>. Otherwise:
       </p>
       <ul>
-        <li>Let <code>R</code> denote <code>result_of&lt;Fn(ArgTypes...)&gt;::type</code>.</li>
+        <li>Let <code>R</code> denote <code>result_of_t&lt;Fn(ArgTypes...)&gt;</code>.</li>
         <li>Let the types <code>Ti</code> be the <cxx-term>invocation parameters</cxx-term>
         of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), <nobr>declval&lt;ArgTypes&gt;()...)</code></nobr>.</li>
         <li>The member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>

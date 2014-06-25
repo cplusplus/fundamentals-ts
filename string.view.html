@@ -610,7 +610,7 @@ basic_string&lt;charT, traits, Allocator> to_string(
     </table>
 
     <cxx-example>A sample conforming implementation for operator== would be:
-<pre><code>template&lt;class T> using __identity = typename std::decay&lt;T>::type;
+<pre><code>template&lt;class T> using __identity = decay_t&lt;T>;
 template&lt;class charT, class traits>
 constexpr bool operator==(
     basic_string_view&lt;charT, traits> lhs,

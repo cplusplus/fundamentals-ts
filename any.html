@@ -137,11 +137,11 @@ inline namespace fundamentals_v1 {
         <cxx-signature>template&lt;class ValueType&gt;
 any(ValueType&amp;&amp; value);</cxx-signature>
 
-        <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
+        <p>Let <code>T</code> be equal to <code>decay_t&lt;ValueType&gt;</code>.</p>
         <cxx-requires><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
-        If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</cxx-requires>
+        If <code>is_copy_constructible_v&lt;T&gt;</code> is false, the program is ill-formed.</cxx-requires>
         <cxx-effects>Constructs an object of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(value)</code>.</cxx-effects>
-        <cxx-remarks>This constructor shall not participate in overload resolution if <code>decay&lt;ValueType&gt;::type</code> is the same type as <code>any</code>.</cxx-remarks>
+        <cxx-remarks>This constructor shall not participate in overload resolution if <code>decay_t&lt;ValueType&gt;</code> is the same type as <code>any</code>.</cxx-remarks>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
       </cxx-function>
 
@@ -191,13 +191,13 @@ any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx
         <cxx-signature>template&lt;class ValueType&gt;
 any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature>
 
-        <p>Let <code>T</code> be equal to <code>decay&lt;<wbr />ValueType&gt;::type</code>.</p>
+        <p>Let <code>T</code> be equal to <code>decay_t&lt;ValueType&gt;</code>.</p>
         <cxx-requires><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
-        If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</cxx-requires>
+        If <code>is_copy_constructible_v&lt;T&gt;</code> is false, the program is ill-formed.</cxx-requires>
         <cxx-effects>Constructs an object <code>tmp</code> of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(rhs)</code>, and <code>tmp.swap(*this)</code>.
         No effects if an exception is thrown.</cxx-effects>
         <cxx-returns><code>*this</code></cxx-returns>
-        <cxx-remarks> This operator shall not participate in overload resolution if <code>decay&lt;ValueType&gt;::type</code> is the same type as <code>any</code>.</cxx-remarks>
+        <cxx-remarks> This operator shall not participate in overload resolution if <code>decay_t&lt;ValueType&gt;</code> is the same type as <code>any</code>.</cxx-remarks>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
       </cxx-function>
     </cxx-section>
@@ -255,11 +255,11 @@ ValueType any_cast(any&amp; operand);</cxx-signature>
       <cxx-signature>template&lt;class ValueType&gt;
 ValueType any_cast(any&amp;&amp; operand);</cxx-signature>
 
-      <cxx-requires><code>is_reference&lt;ValueType&gt;::value</code> is true or <code>is_copy_constructible&lt;ValueType&gt;::value</code> is true.
+      <cxx-requires><code>is_reference_v&lt;ValueType&gt;</code> is true or <code>is_copy_constructible_v&lt;ValueType&gt;</code> is true.
       Otherwise the program is ill-formed.</cxx-requires>
-      <cxx-returns>For the first form, <code>*any_cast&lt;typename add_const&lt;typename remove_reference&lt;ValueType&gt;::type&gt;::type &gt;(&amp;operand)</code>.
-      For the second and third forms, <code>*any_cast&lt;typename remove_reference&lt;ValueType&gt;::type&gt;(&amp;operand)</code>.</cxx-returns>
-      <cxx-throws><code>bad_any_cast</code> if <code>operand.type() != typeid(remove_reference&lt;ValueType&gt;::type)</code>.</cxx-throws>
+      <cxx-returns>For the first form, <code>*any_cast&lt;add_const_t&lt;remove_reference_t&lt;ValueType&gt;&gt;&gt;(&amp;operand)</code>.
+      For the second and third forms, <code>*any_cast&lt;remove_reference_t&lt;ValueType&gt;&gt;(&amp;operand)</code>.</cxx-returns>
+      <cxx-throws><code>bad_any_cast</code> if <code>operand.type() != typeid(remove_reference_t&lt;ValueType&gt;)</code>.</cxx-throws>
       <cxx-example>
         <pre>any x(5);                                   // x holds int
 assert(any_cast&lt;int&gt;(x) == 5);              // cast to value

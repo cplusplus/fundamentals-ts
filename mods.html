@@ -25,7 +25,7 @@
           automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
           Meets the BinaryTypeTrait requirements (20.10.1).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
-          and <ins>either</ins> <code>is_convertible&lt;Alloc, T::allocator_type>::value <wbr/>!= false</code>
+          and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type> <wbr/>!= false</code>
           <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref to="utility.erased.type"></cxx-ref>)</ins>,
           otherwise it shall be derived from <code>false_type</code>.
           A program may specialize this template to derive from <code>true_type</code> for a user-defined type <code>T</code> that does not have a nested <code>allocator_type</code> but nonetheless can be constructed with an allocator where either:

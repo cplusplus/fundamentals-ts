@@ -149,7 +149,7 @@ inline namespace fundamentals_v1 {
 
   template&lt;class T> class shared_ptr {
   public:
-    typedef typename remove_extent&lt;T>::type element_type;
+    typedef typename remove_extent_t&lt;T> element_type;
     <cxx-ref insynopsis="" to="memory.smartptr.shared.const"></cxx-ref>
     constexpr shared_ptr() noexcept;
     template&lt;class Y> explicit shared_ptr(Y* p);
@@ -530,7 +530,7 @@ inline namespace fundamentals_v1 {
 
   template&lt;class T> class weak_ptr {
   public:
-    typedef typename remove_extent&lt;T&gt;::type element_type;
+    typedef typename remove_extent_t&lt;T&gt; element_type;
 
     <cxx-ref insynopsis="" to="memory.smartptr.weak.const"></cxx-ref>
     constexpr weak_ptr() noexcept;
@@ -924,24 +924,24 @@ void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
           of <code>p->first</code> using the elements of <code>x</code>
           and <code>p->second</code> using the elements of <code>y</code>.</cxx-note>
           <ul>
-            <li>If <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>false</code> and
-            <code>is_constructible&lt;T,Args1...>::value</code> is <code>true</code>, then <code>xprime</code> is <code>x</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T1,allocator_arg_t,memory_resource*,Args1...>::value</code> is <code>true</code>,
+            <li>If <code>uses_allocator_v&lt;T1,memory_resource*></code> is <code>false</code> and
+            <code>is_constructible_v&lt;T,Args1...></code> is <code>true</code>, then <code>xprime</code> is <code>x</code>.</li>
+            <li>Otherwise, if <code>uses_allocator_v&lt;T1,memory_resource*></code> is <code>true</code> and
+            <code>is_constructible_v&lt;T1,allocator_arg_t,memory_resource*,Args1...></code> is <code>true</code>,
             then <code>xprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), std::move(x))</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*>::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T1,Args1...,memory_resource*>::value</code> is <code>true</code>,
+            <li>Otherwise, if <code>uses_allocator_v&lt;T1,memory_resource*></code> is <code>true</code> and
+            <code>is_constructible_v&lt;T1,Args1...,memory_resource*></code> is <code>true</code>,
             then <code>xprime</code> is <code>tuple_cat(std::move(x), make_tuple(this->resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
           and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
           <ul>
-            <li>If <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>false</code> and
-            <code>is_constructible&lt;T,Args2...>::value</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T2,allocator_arg_t,memory_resource*,Args2...>::value</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), std::move(y))</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*>::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T2,Args2...,memory_resource*>::value</code> is <code>true</code>, then
+            <li>If <code>uses_allocator_v&lt;T2,memory_resource*></code> is <code>false</code> and
+            <code>is_constructible_v&lt;T,Args2...></code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
+            <li>Otherwise, if <code>uses_allocator_v&lt;T2,memory_resource*></code> is <code>true</code> and
+            <code>is_constructible_v&lt;T2,allocator_arg_t,memory_resource*,Args2...></code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this->resource()), std::move(y))</code>.</li>
+            <li>Otherwise, if <code>uses_allocator_v&lt;T2,memory_resource*></code> is <code>true</code> and
+            <code>is_constructible_v&lt;T2,Args2...,memory_resource*></code> is <code>true</code>, then
             <code>yprime</code> is <code>tuple_cat(std::move(y), make_tuple(this->resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>

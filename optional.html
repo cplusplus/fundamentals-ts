@@ -188,7 +188,7 @@ private:
       <cxx-function>
         <cxx-signature>optional(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
 
-        <cxx-requires><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>If <code><var>rhs</var></code> contains a value, initializes the contained value as if
         direct-non-list-initializing an object of type <code>T</code> with the expression <code>*<var>rhs</var></code>.</cxx-effects>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
@@ -198,19 +198,19 @@ private:
       <cxx-function>
         <cxx-signature>optional(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
 
-        <cxx-requires><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>If <code><var>rhs</var></code> contains a value, initializes the contained value as if
         direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*<var>rhs</var>)</code>.
         <code>bool(<var>rhs</var>)</code> is unchanged.</cxx-effects>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
-        <cxx-remarks>The expression inside <code>noexcept</code> is equivalent to:<pre>is_nothrow_move_constructible&lt;T&gt;::value</pre></cxx-remarks>
+        <cxx-remarks>The expression inside <code>noexcept</code> is equivalent to:<pre>is_nothrow_move_constructible_v&lt;T&gt;</pre></cxx-remarks>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>constexpr optional(const T&amp; <var>v</var>);</cxx-signature>
 
-        <cxx-requires><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code><var>v</var></code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
@@ -220,7 +220,7 @@ private:
       <cxx-function>
         <cxx-signature>constexpr optional(T&amp;&amp; <var>v</var>);</cxx-signature>
 
-        <cxx-requires><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(<var>v</var>)</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
@@ -230,7 +230,7 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class... Args&gt; constexpr explicit optional(in_place_t, Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
-        <cxx-requires><code>is_constructible&lt;T, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_constructible_v&lt;T, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code>std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
@@ -240,11 +240,11 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class U, class... Args&gt; <wbr/>constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
-        <cxx-requires><code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
-        <cxx-remarks>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.
+        <cxx-remarks>The function shall not participate in overload resolution unless <code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.
         If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
       </cxx-function>
     </cxx-section>
@@ -255,8 +255,8 @@ private:
       <cxx-function>
         <cxx-signature>~optional();</cxx-signature>
 
-        <cxx-effects>If <code>is_trivially_destructible&lt;T&gt;::value != true</code> and <code>*this</code> contains a value, calls <code><var>val</var>-&gt;T::~T()</code>.</cxx-effects>
-        <cxx-remarks>If <code>is_trivially_destructible&lt;T&gt;::value == true</code> then this destructor shall be a trivial destructor.</cxx-remarks>
+        <cxx-effects>If <code>is_trivially_destructible_v&lt;T&gt; != true</code> and <code>*this</code> contains a value, calls <code><var>val</var>-&gt;T::~T()</code>.</cxx-effects>
+        <cxx-remarks>If <code>is_trivially_destructible_v&lt;T&gt; == true</code> then this destructor shall be a trivial destructor.</cxx-remarks>
       </cxx-function>
     </cxx-section>
 
@@ -274,7 +274,7 @@ private:
       <cxx-function>
         <cxx-signature>optional&lt;T&gt;&amp; operator=(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
 
-        <cxx-requires><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_copy_assignable&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_copy_assignable_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>
           <table>
             <tr>
@@ -307,7 +307,7 @@ private:
       <cxx-function>
         <cxx-signature>optional&lt;T&gt;&amp; operator=(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
 
-        <cxx-requires><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_move_assignable&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_move_assignable_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>The result of the expression <code>bool(rhs)</code> remains unchanged.
 
           <table>
@@ -331,7 +331,7 @@ private:
         <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
         <cxx-remarks>
-          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable&lt;T&gt;::value &amp;&amp; is_nothrow_move_constructible&lt;T&gt;::value</pre></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;T&gt;</pre></p>
 
           <p>
             If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
@@ -346,14 +346,14 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; operator=(U&amp;&amp; <var>v</var>);</cxx-signature>
 
-        <cxx-requires><code>is_constructible&lt;T, U&gt;::value</code> is <code>true</code> and <code>is_assignable&lt;T&amp;, U&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_constructible_v&lt;T, U&gt;</code> is <code>true</code> and <code>is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>If <code>*this</code> contains a value, assigns <code>std::forward&lt;U&gt;(<var>v</var>)</code> to the contained value; otherwise initializes the contained value as if direct-non-list-initializing object of type <code>T</code> with <code>std::forward&lt;U&gt;(<var>v</var>)</code>.</cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-remarks>
           <p>If any exception is thrown, the the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
           <p>The function shall not participate in overload resolution unless
-          <code>is_same&lt;decay_t&lt;U&gt;, T&gt;::value</code> is <code>true</code>.</p>
+          <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>true</code>.</p>
         </cxx-remarks>
         <cxx-notes>The reason for providing such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous.</cxx-notes>
       </cxx-function>
@@ -361,7 +361,7 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class... Args&gt; void emplace(Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
-        <cxx-requires><code>is_constructible&lt;T, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_constructible_v&lt;T, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code>std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
@@ -371,13 +371,13 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class U, class... Args&gt; <wbr/>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
-        <cxx-requires><code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
         <cxx-remarks>
           <p>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> does not contain a value, and the previous <code><var>*val</var></code> (if any) has been destroyed.</p>
-          <p>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</p>
+          <p>The function shall not participate in overload resolution unless <code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</p>
         </cxx-remarks>
       </cxx-function>
     </cxx-section>
@@ -388,7 +388,7 @@ private:
       <cxx-function>
         <cxx-signature>void swap(optional&lt;T&gt;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
 
-        <cxx-requires>Lvalues of type <code>T</code> shall be swappable and <code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</cxx-requires>
+        <cxx-requires>Lvalues of type <code>T</code> shall be swappable and <code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>
 
           <table>
@@ -416,7 +416,7 @@ private:
         </cxx-effects>
         <cxx-throws>Any exceptions that the expressions in the Effects element throw.</cxx-throws>
         <cxx-remarks>
-          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_constructible&lt;T&gt;::value &amp;&amp; <wbr/>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <wbr/>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre></p>
           <p>
             If any exception is thrown, the results of the expressions <code>bool(*this)</code> and <code>bool(<var>rhs</var>)</code> remain unchanged.
             If an exception is thrown during the call to function <code>swap</code>
@@ -456,7 +456,7 @@ private:
 
         <cxx-requires><code>*this</code> contains a value</cxx-requires>
         <cxx-effects>equivalent to <code>return std::move(*<var>val</var>);</code></cxx-effects>
-        <cxx-remarks>if <code>is_move_constructible&lt;T&gt;::value</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
+        <cxx-remarks>if <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -478,14 +478,14 @@ private:
         <cxx-signature>constexpr T value() const&amp;&amp;</cxx-signature>
 
         <cxx-effects>equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></cxx-effects>
-        <cxx-remarks>If <code>is_move_constructible&lt;T&gt;::value</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
+        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
 
         <cxx-effects>equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
-        <cxx-remarks>If <code>is_copy_constructible&lt;T&gt;::value &amp;&amp; is_convertible&lt;U&amp;&amp;, T&gt;::value</code> is <code>false</code>,
+        <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
@@ -493,7 +493,7 @@ private:
         <cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
 
         <cxx-effects>equivalent to <code>return bool(*this) ? <wbr/>std::move(**this) : <wbr/>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
-        <cxx-remarks>If <code>is_move_constructible&lt;T&gt;::value &amp;&amp; is_convertible&lt;U&amp;&amp;, T&gt;::value</code> is <code>false</code>,
+        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
     </cxx-section>
@@ -733,9 +733,9 @@ public:
     </cxx-function>
 
     <cxx-function>
-      <cxx-signature>template &lt;class T&gt; constexpr optional&lt;typename decay&lt;T&gt;::type&gt; make_optional(T&amp;&amp; <var>v</var>);</cxx-signature>
+      <cxx-signature>template &lt;class T&gt; constexpr optional&lt;decay_t&lt;T&gt;&gt; make_optional(T&amp;&amp; <var>v</var>);</cxx-signature>
 
-      <cxx-returns><code>optional&lt;typename decay&lt;T&gt;::type&gt;(std::forward&lt;T&gt;(<var>v</var>))</code>.</cxx-returns>
+      <cxx-returns><code>optional&lt;decay_t&lt;T&gt;&gt;(std::forward&lt;T&gt;(<var>v</var>))</code>.</cxx-returns>
     </cxx-function>
   </cxx-section>
 
