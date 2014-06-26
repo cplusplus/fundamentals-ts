@@ -14,24 +14,580 @@ inline namespace fundamentals_v1 {
   template &lt;class T, class Alloc> constexpr bool uses_allocator_v
     = uses_allocator&lt;T, Alloc>::value;
 
+  <cxx-ref insynopsis="" to="memory.smartptr.shared"></cxx-ref>
+  template&lt;class T> class shared_ptr;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.create"></cxx-ref>
+  template&lt;class T, class... Args> shared_ptr&lt;T> make_shared(Args&&... args);
+  template&lt;class T, class A, class... Args>
+    shared_ptr&lt;T> allocate_shared(const A& a, Args&&... args);
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.cmp"></cxx-ref>
+  template&lt;class T, class U>
+    bool operator==(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator!=(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator&lt;(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator>(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator&lt;=(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator>=(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template &lt;class T>
+    bool operator==(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator==(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator!=(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator!=(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator&lt;(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator&lt;(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator&lt;=(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator&lt;=(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator>(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator>(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator>=(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator>=(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.spec"></cxx-ref>
+  template&lt;class T> void swap(shared_ptr&lt;T>& a, shared_ptr&lt;T>& b) noexcept;
+
   <cxx-ref insynopsis="" to="memory.smartptr.shared.cast"></cxx-ref>
   template&lt;class T, class U>
-  shared_ptr&lt;T> reinterpret_pointer_cast(shared_ptr&lt;U> const& r) noexcept;
+    shared_ptr&lt;T> static_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+  template&lt;class T, class U>
+    shared_ptr&lt;T> dynamic_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+  template&lt;class T, class U>
+    shared_ptr&lt;T> const_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+  template&lt;class T, class U>
+    shared_ptr&lt;T> reinterpret_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.getdeleter"></cxx-ref>
+  template&lt;class D, class T> D* get_deleter(const shared_ptr&lt;T>& p) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.io"></cxx-ref>
+  template&lt;class E, class T, class Y>
+    basic_ostream&lt;E, T>& operator&lt;&lt; (basic_ostream&lt;E, T>& os, const shared_ptr&lt;Y>& p);
+
+  // <cxx-ref in="cxx" to="memory.smartptr.weak"></cxx-ref>
+  template&lt;class T> class weak_ptr;
+
+  // <cxx-ref in="cxx" to="util.smartptr.weak.spec"></cxx-ref>
+  template&lt;class T> void swap(weak_ptr&lt;T>& a, weak_ptr&lt;T>& b) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.ownerless"></cxx-ref>
+  template&lt;class T> class owner_less;
+
+  // <cxx-ref in="cxx" to="util.smartptr.enab"></cxx-ref>
+  template&lt;class T> class enable_shared_from_this;
+
+  // <cxx-ref in="cxx" to="util.smartptr.atomic"></cxx-ref>
+  template&lt;class T>
+    bool atomic_is_lock_free(const shared_ptr&lt;T>* p);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_load(const shared_ptr&lt;T>* p);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_load_explicit(const shared_ptr&lt;T>* p, memory_order mo);
+  template&lt;class T>
+    void atomic_store(shared_ptr&lt;T>* p, shared_ptr&lt;T> r);
+  template&lt;class T>
+    void atomic_store_explicit(shared_ptr&lt;T>* p, shared_ptr&lt;T> r, memory_order mo);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_exchange(shared_ptr&lt;T>* p, shared_ptr&lt;T> r);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_exchange_explicit(shared_ptr&lt;T>* p, shared_ptr&lt;T> r,
+                                           memory_order mo);
+  template&lt;class T>
+    bool atomic_compare_exchange_weak(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w);
+  template&lt;class T>
+    bool atomic_compare_exchange_strong(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w);
+  template&lt;class T>
+    bool atomic_compare_exchange_weak_explicit(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w,
+      memory_order success, memory_order failure);
+  template&lt;class T>
+    bool atomic_compare_exchange_strong_explicit(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w,
+      memory_order success, memory_order failure);
 
 } // namespace fundamentals_v1
 } // namespace experimental
+
+  // <cxx-ref in="cxx" to="util.smartptr.hash"></cxx-ref>
+  template&lt;class T> struct hash&lt;experimental::shared_ptr&lt;T>>;
+
 } // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="memory.smartptr">
+    <h1>Shared-ownership pointers</h1>
+
+      <p>
+        The specification of all declarations within this sub-clause <cxx-ref to="memory.smartptr"></cxx-ref> and its sub-clauses are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="util.smartptr"></cxx-ref>, unless explicitly specified otherwise.
+      </p>
+
+  <cxx-section id="memory.smartptr.shared">
+    <h1>Class template shared_ptr</h1>
+
+<pre><code>
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  template&lt;class T> class shared_ptr {
+  public:
+    typedef typename remove_extent&lt;T>::type element_type;
+    <cxx-ref insynopsis="" to="memory.smartptr.shared.const"></cxx-ref>
+    constexpr shared_ptr() noexcept;
+    template&lt;class Y> explicit shared_ptr(Y* p);
+    template&lt;class Y, class D> shared_ptr(Y* p, D d);
+    template&lt;class Y, class D, class A> shared_ptr(Y* p, D d, A a);
+    template &lt;class D> shared_ptr(nullptr_t p, D d)
+    template &lt;class D, class A> shared_ptr(nullptr_t p, D d, A a);
+    template&lt;class Y> shared_ptr(const shared_ptr&lt;Y>& r, element_type* p) noexcept;
+    shared_ptr(const shared_ptr& r) noexcept;
+    template&lt;class Y> shared_ptr(const shared_ptr&lt;Y>& r) noexcept;
+    shared_ptr(shared_ptr&& r) noexcept;
+    template&lt;class Y> shared_ptr(shared_ptr&lt;Y>&& r) noexcept;
+    template&lt;class Y> explicit shared_ptr(const weak_ptr&lt;Y>& r);
+    template&lt;class Y> shared_ptr(auto_ptr&lt;Y>&& r);
+    template &lt;class Y, class D> shared_ptr(unique_ptr&lt;Y, D>&& r);
+    constexpr shared_ptr(nullptr_t) : shared_ptr() { }
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.dest"></cxx-ref>
+    ~shared_ptr();
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.assign"></cxx-ref>
+    shared_ptr& operator=(const shared_ptr& r) noexcept;
+    template&lt;class Y> shared_ptr& operator=(const shared_ptr&lt;Y>& r) noexcept;
+    shared_ptr& operator=(shared_ptr&& r) noexcept;
+    template&lt;class Y> shared_ptr& operator=(shared_ptr&lt;Y>&& r) noexcept;
+    template&lt;class Y> shared_ptr& operator=(auto_ptr&lt;Y>&& r);
+    template &lt;class Y, class D> shared_ptr& operator=(unique_ptr&lt;Y, D>&& r);
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.mod"></cxx-ref>
+    void swap(shared_ptr& r) noexcept;
+    void reset() noexcept;
+    template&lt;class Y> void reset(Y* p);
+    template&lt;class Y, class D> void reset(Y* p, D d);
+    template&lt;class Y, class D, class A> void reset(Y* p, D d, A a);
+
+    <cxx-ref insynopsis="" to="memory.smartptr.shared.obs"></cxx-ref>
+    element_type* get() const noexcept;
+    T& operator*() const noexcept;
+    T* operator->() const noexcept;
+    element_type& operator[](ptrdiff_t i) const noexcept;
+    long use_count() const noexcept;
+    bool unique() const noexcept;
+    explicit operator bool() const noexcept;
+    template&lt;class U> bool owner_before(shared_ptr&lt;U> const& b) const;
+    template&lt;class U> bool owner_before(weak_ptr&lt;U> const& b) const;
+  };
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.create"></cxx-ref>
+  template&lt;class T, class... Args> shared_ptr&lt;T> make_shared(Args&&... args);
+  template&lt;class T, class A, class... Args>
+    shared_ptr&lt;T> allocate_shared(const A& a, Args&&... args);
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.cmp"></cxx-ref>
+  template&lt;class T, class U>
+    bool operator==(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator!=(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator&lt;(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator>(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator&lt;=(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template&lt;class T, class U>
+    bool operator>=(const shared_ptr&lt;T>& a, const shared_ptr&lt;U>& b) noexcept;
+  template &lt;class T>
+    bool operator==(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator==(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator!=(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator!=(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator&lt;(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator&lt;(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator&lt;=(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator&lt;=(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator>(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator>(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+  template &lt;class T>
+    bool operator>=(const shared_ptr&lt;T>& a, nullptr_t) noexcept;
+  template &lt;class T>
+    bool operator>=(nullptr_t, const shared_ptr&lt;T>& b) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.spec"></cxx-ref>
+  template&lt;class T> void swap(shared_ptr&lt;T>& a, shared_ptr&lt;T>& b) noexcept;
+
+  <cxx-ref insynopsis="" to="memory.smartptr.shared.cast"></cxx-ref>
+  template&lt;class T, class U>
+    shared_ptr&lt;T> static_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+  template&lt;class T, class U>
+    shared_ptr&lt;T> dynamic_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+  template&lt;class T, class U>
+    shared_ptr&lt;T> const_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+  template&lt;class T, class U>
+    shared_ptr&lt;T> reinterpret_pointer_cast(const shared_ptr&lt;U>& r) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.getdeleter"></cxx-ref>
+  template&lt;class D, class T> D* get_deleter(const shared_ptr&lt;T>& p) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.io"></cxx-ref>
+  template&lt;class E, class T, class Y>
+    basic_ostream&lt;E, T>& operator&lt;&lt; (basic_ostream&lt;E, T>& os, const shared_ptr&lt;Y>& p);
+
+  // <cxx-ref in="cxx" to="util.smartptr.ownerless"></cxx-ref>
+  template&lt;class T> class owner_less;
+
+  // <cxx-ref in="cxx" to="util.smartptr.enab"></cxx-ref>
+  template&lt;class T> class enable_shared_from_this;
+
+  // <cxx-ref in="cxx" to="util.smartptr.atomic"></cxx-ref>
+  template&lt;class T>
+    bool atomic_is_lock_free(const shared_ptr&lt;T>* p);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_load(const shared_ptr&lt;T>* p);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_load_explicit(const shared_ptr&lt;T>* p, memory_order mo);
+  template&lt;class T>
+    void atomic_store(shared_ptr&lt;T>* p, shared_ptr&lt;T> r);
+  template&lt;class T>
+    void atomic_store_explicit(shared_ptr&lt;T>* p, shared_ptr&lt;T> r, memory_order mo);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_exchange(shared_ptr&lt;T>* p, shared_ptr&lt;T> r);
+  template&lt;class T>
+    shared_ptr&lt;T> atomic_exchange_explicit(shared_ptr&lt;T>* p, shared_ptr&lt;T> r,
+                                           memory_order mo);
+  template&lt;class T>
+    bool atomic_compare_exchange_weak(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w);
+  template&lt;class T>
+    bool atomic_compare_exchange_strong(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w);
+  template&lt;class T>
+    bool atomic_compare_exchange_weak_explicit(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w,
+      memory_order success, memory_order failure);
+  template&lt;class T>
+    bool atomic_compare_exchange_strong_explicit(
+      shared_ptr&lt;T>* p, shared_ptr&lt;T>* v, shared_ptr&lt;T> w,
+      memory_order success, memory_order failure);
+
+
+} // namespace fundamentals_v1
+} // namespace experimental
+
+  // <cxx-ref in="cxx" to="util.smartptr.hash"></cxx-ref>
+  template&lt;class T> struct hash&lt;experimental::shared_ptr&lt;T>>;
+
+} // namespace std</code></pre>
+
+      <p>
+        For the purposes of subclause <cxx-ref to="memory.smartptr"></cxx-ref>, a pointer type <code>Y*</code> is said to be <dfn>compatible with</dfn> a pointer type <code>T*</code> when either <code>Y*</code> is convertible to <code>T*</code> or <code>Y</code> is <code>U[N]</code> and <code>T</code> is <code>U <var>cv</var> []</code>.
+      </p>
+
+  <cxx-section id="memory.smartptr.shared.const">
+    <h1><code>shared_ptr</code> constructors</h1>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y> explicit shared_ptr(Y* p);</cxx-signature>
+
+        <cxx-requires><code>Y</code> shall be a complete type.
+        The expression <code>delete[] p</code>, when <code>T</code> is an array type,
+        or <code>delete p</code>, when <code>T</code> is not an array type,
+        shall be well-formed, shall have well defined behavior, and shall not throw exceptions.
+        When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
+        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
+        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>When <code>T</code> is not an array type, constructs a <code>shared_ptr</code> object that <i>owns</i> the pointer <code>p</code>.
+        Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.</cxx-effects>
+
+        <cxx-postconditions><code>use_count() == 1 &amp;&amp; get() == p</code>.</cxx-postconditions>
+
+        <cxx-throws><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</cxx-throws>
+
+        <cxx-exception-safety>If an exception is thrown, <code>delete p</code> is called when <code>T</code> is not an array type, <code>delete[] p</code> otherwise.</cxx-exception-safety>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y, class D> shared_ptr(Y* p, D d);</cxx-signature>
+        <cxx-signature>template&lt;class Y, class D, class A> shared_ptr(Y* p, D d, A a);</cxx-signature>
+        <cxx-signature>template &lt;class D> shared_ptr(nullptr_t p, D d);</cxx-signature>
+        <cxx-signature>template &lt;class D, class A> shared_ptr(nullptr_t p, D d, A a);</cxx-signature>
+
+        <cxx-requires><code>D</code> shall be <code>CopyConstructible</code>. The copy constructor and destructor of <code> D</code> shall not throw exceptions. The expression <code>d(p)</code> shall be well formed, shall have well defined behavior, and shall not throw exceptions. <code>A</code> shall be an allocator (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>). The copy constructor and destructor of <code>A</code> shall not throw exceptions.
+        When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
+        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
+        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use.</cxx-effects>
+
+        <cxx-postconditions><code>use_count() == 1 &amp;&amp; get() == p</code>.</cxx-postconditions>
+
+        <cxx-throws><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</cxx-throws>
+
+        <cxx-exception-safety>If an exception is thrown, <code>d(p)</code> is called.</cxx-exception-safety>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y> shared_ptr(const shared_ptr&lt;Y>& r, element_type* p) noexcept;</cxx-signature>
+
+        <cxx-effects>Constructs a <code>shared_ptr</code> instance that stores <code>p</code> and <i>shares ownership</i> with <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>get() == p &amp;&amp; use_count() == r.use_count()</code></cxx-postconditions>
+
+        <p>
+          <cxx-note>To avoid the possibility of a dangling pointer, the user of this constructor must ensure that <code>p</code> remains valid at least until the ownership group of <code>r</code> is destroyed.</cxx-note>
+        </p>
+
+        <p>
+          <cxx-note>This constructor allows creation of an <i>empty</i> <code>shared_ptr</code> instance with a non-null stored pointer.</cxx-note>
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>shared_ptr(const shared_ptr& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> shared_ptr(const shared_ptr&lt;Y>& r) noexcept;</cxx-signature>
+
+        <cxx-requires> The second constructor shall not participate in the overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>shared_ptr</code> object; otherwise, constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>get() == r.get() &amp;&amp; use_count() == r.use_count()</code>.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>shared_ptr(shared_ptr&& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> shared_ptr(shared_ptr&lt;Y>&& r) noexcept;</cxx-signature>
+
+        <cxx-ednote>N3920 specifies that "implicitly convertible" is removed, but the C++14 draft only has "convertible". Does this make a difference?</cxx-ednote>
+        <cxx-remarks>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-remarks>
+
+        <cxx-effects>Move-constructs a <code>shared_ptr</code> instance from <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>*this</code> shall contain the old value of <code>r</code>. <code>r</code> shall be <i>empty</i>. <code>r.get() == 0.</code></cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class Y> explicit shared_ptr(const weak_ptr&lt;Y>& r);</cxx-signature>
+
+        <cxx-requires><code>Y*</code> shall be <i>compatible with</i> <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>use_count() == r.use_count()</code>.</cxx-postconditions>
+
+        <cxx-throws><code>bad_weak_ptr</code> when <code>r.expired()</code>.</cxx-throws>
+
+        <cxx-exception-safety>If an exception is thrown, the constructor has no effect.</cxx-exception-safety>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class Y, class D> shared_ptr(unique_ptr&lt;Y, D>&& r);</cxx-signature>
+
+        <cxx-requires><code>Y*</code> shall be <em>compatible with</em> <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>.</cxx-effects>
+
+        <cxx-exception-safety>If an exception is thrown, the constructor has no effect.</cxx-exception-safety>
+      </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="memory.smartptr.shared.obs">
+    <h1><code>shared_ptr</code> observers</h1>
+
+      <cxx-function>
+        <cxx-signature>element_type* get() const noexcept;</cxx-signature>
+
+        <cxx-returns>the stored pointer.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>T& operator*() const noexcept;</cxx-signature>
+
+        <cxx-requires><code>get() != 0</code>.</cxx-requires>
+
+        <cxx-returns><code>*get()</code>.</cxx-returns>
+
+        <cxx-ednote>Why is this a cxx-notes not a cxx-remarks? <cxx-ref in="cxx" to="util.smartptr.shared.obs"></cxx-ref> &para;4 it's a <i>Remarks</i> element</cxx-ednote>
+        <cxx-notes>When <code>T</code> is an array type or cv-qualified <code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</cxx-notes>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>T* operator->() const noexcept;</cxx-signature>
+
+        <cxx-requires><code>get() != 0</code>.</cxx-requires>
+
+        <cxx-returns><code>get()</code>.</cxx-returns>
+        <cxx-remarks>When <code>T</code> is an array type, it is unspecified whether this member function is declared.
+        If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</cxx-remarks>
+      </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>element_type&amp; operator[](ptrdiff_t i) const noexcept;</cxx-signature>
+
+          <cxx-requires><code>get() != 0 &amp;&amp; i &gt;= 0</code>. If <code>T</code> is <code>U[N]</code>, <code>i &lt; N</code>.</cxx-requires>
+          <cxx-returns><code>get()[i]</code>.</cxx-returns>
+          <cxx-remarks>When <code>T</code> is not an array type, it is unspecified whether this member function is declared.
+          If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</cxx-remarks>
+        </cxx-function>
+
   </cxx-section>
 
   <cxx-section id="memory.smartptr.shared.cast">
     <h1><code>shared_ptr</code> casts</h1>
 
-    <cxx-function>
-      <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> reinterpret_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> static_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
 
-      <cxx-requires>The expression <code>reinterpret_cast&lt;T*>((U*)0)</code> shall be well formed.</cxx-requires>
-      <cxx-returns><code>shared_ptr&lt;T>(r, reinterpret_cast&lt;typename shared_ptr&lt;T>::element_type*>(r.get()))</code>.</cxx-returns>
-    </cxx-function>
+        <cxx-requires>The expression <code>static_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</cxx-requires>
+
+        <cxx-returns><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code></cxx-returns>
+
+        <p>
+          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(static_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> dynamic_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The expression <code>dynamic_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</cxx-requires>
+
+        <cxx-returns>
+          <ul>
+            <li>When <code>dynamic_cast&lt;typename shared_ptr&lt;T&gt;::element_type*>(r.get())</code> returns a nonzero value <code>p</code>, <code>shared_ptr&lt;T&gt;(r, p)</code>;</li>
+
+            <li>Otherwise, <code>shared_ptr&lt;T&gt;()</code>.</li>
+          </ul>
+        </cxx-returns>
+
+        <p>
+          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(dynamic_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> const_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The expression <code>const_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</cxx-requires>
+
+        <cxx-returns><code>shared_ptr&lt;T&gt;(r, const_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</cxx-returns>
+
+        <p>
+          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(const_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+        </p>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> shared_ptr&lt;T> reinterpret_pointer_cast(const shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The expression <code>reinterpret_cast&lt;T*>((U*)0)</code> shall be well formed.</cxx-requires>
+        <cxx-returns><code>shared_ptr&lt;T>(r, reinterpret_cast&lt;typename shared_ptr&lt;T>::element_type*>(r.get()))</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class T, class U> std::shared_ptr&lt;T> reinterpret_pointer_cast(const std::shared_ptr&lt;U>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The expression <code>reinterpret_cast&lt;T*>((U*)0)</code> shall be well formed.</cxx-requires>
+        <cxx-returns><code>std::shared_ptr&lt;T>(r, reinterpret_cast&lt;typename std::shared_ptr&lt;T>::element_type*>(r.get()))</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="memory.smartptr.weak">
+    <h1>Class template weak_ptr</h1>
+
+<pre><code>
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  template&lt;class T> class weak_ptr {
+  public:
+    typedef typename remove_extent&lt;T&gt;::type element_type;
+
+    <cxx-ref insynopsis="" to="memory.smartptr.weak.const"></cxx-ref>
+    constexpr weak_ptr() noexcept;
+    template&lt;class Y> weak_ptr(shared_ptr&lt;Y> const& r) noexcept;
+    weak_ptr(weak_ptr const& r) noexcept;
+    template&lt;class Y> weak_ptr(weak_ptr&lt;Y> const& r) noexcept;
+    weak_ptr(weak_ptr&& r) noexcept;
+    template&lt;class Y> weak_ptr(weak_ptr&lt;Y>&& r) noexcept;
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.dest"></cxx-ref>
+    ~weak_ptr();
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.assign"></cxx-ref>
+    weak_ptr& operator=(weak_ptr const& r) noexcept;
+    template&lt;class Y> weak_ptr& operator=(weak_ptr&lt;Y> const& r) noexcept;
+    template&lt;class Y> weak_ptr& operator=(shared_ptr&lt;Y> const& r) noexcept;
+    weak_ptr& operator=(weak_ptr&& r) noexcept;
+    template&lt;class Y> weak_ptr& operator=(weak_ptr&lt;Y>&& r) noexcept;
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.mod"></cxx-ref>
+    void swap(weak_ptr& r) noexcept;
+    void reset() noexcept;
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.obs"></cxx-ref>
+    long use_count() const noexcept;
+    bool expired() const noexcept;
+    shared_ptr&lt;T> lock() const noexcept;
+    template&lt;class U> bool owner_before(shared_ptr&lt;U> const& b) const;
+    template&lt;class U> bool owner_before(weak_ptr&lt;U> const& b) const;
+  };
+
+  // <cxx-ref in="cxx" to="util.smartptr.weak.spec"></cxx-ref>
+  template&lt;class T> void swap(weak_ptr&lt;T>& a, weak_ptr&lt;T>& b) noexcept;
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+  <cxx-section id="memory.smartptr.weak.const">
+    <h1><code>weak_ptr</code> constructors</h1>
+
+      <cxx-function>
+        <cxx-signature>weak_ptr(const weak_ptr& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> weak_ptr(const weak_ptr&lt;Y>& r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y> weak_ptr(const shared_ptr&lt;Y>& r) noexcept;</cxx-signature>
+
+        <cxx-requires>The second and third constructors shall not participate in the overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-requires>
+
+        <cxx-effects>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>weak_ptr</code> object; otherwise, constructs a <code>weak_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</cxx-effects>
+
+        <cxx-postconditions><code>use_count() == r.use_count()</code>.</cxx-postconditions>
+      </cxx-function>
+
+    </cxx-section>
+
+    </cxx-section>
+
   </cxx-section>
 
   <cxx-section id="memory.type.erased.allocator">
