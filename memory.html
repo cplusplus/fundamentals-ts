@@ -80,7 +80,7 @@ inline namespace fundamentals_v1 {
   template&lt;class E, class T, class Y>
     basic_ostream&lt;E, T>& operator&lt;&lt; (basic_ostream&lt;E, T>& os, const shared_ptr&lt;Y>& p);
 
-  // <cxx-ref in="cxx" to="memory.smartptr.weak"></cxx-ref>
+  // <cxx-ref in="cxx" to="util.smartptr.weak"></cxx-ref>
   template&lt;class T> class weak_ptr;
 
   // <cxx-ref in="cxx" to="util.smartptr.weak.spec"></cxx-ref>
@@ -92,7 +92,7 @@ inline namespace fundamentals_v1 {
   // <cxx-ref in="cxx" to="util.smartptr.enab"></cxx-ref>
   template&lt;class T> class enable_shared_from_this;
 
-  // <cxx-ref in="cxx" to="util.smartptr.atomic"></cxx-ref>
+  // <cxx-ref in="cxx" to="util.smartptr.shared.atomic"></cxx-ref>
   template&lt;class T>
     bool atomic_is_lock_free(const shared_ptr&lt;T>* p);
   template&lt;class T>
@@ -266,7 +266,7 @@ inline namespace fundamentals_v1 {
   // <cxx-ref in="cxx" to="util.smartptr.enab"></cxx-ref>
   template&lt;class T> class enable_shared_from_this;
 
-  // <cxx-ref in="cxx" to="util.smartptr.atomic"></cxx-ref>
+  // <cxx-ref in="cxx" to="util.smartptr.shared.atomic"></cxx-ref>
   template&lt;class T>
     bool atomic_is_lock_free(const shared_ptr&lt;T>* p);
   template&lt;class T>
