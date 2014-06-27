@@ -272,28 +272,11 @@ inline namespace fundamentals_v1 {
       <ul>
         <li>
           When <code>f</code> is a pointer to a member function of a class <code>T</code>
-          and <code>t1</code> is an object of type <code>T</code>
-          or a reference to an object of type <code>T</code>
-          or a reference to an object of a type derived from <code>T</code>,
-          the <cxx-term>invocation parameters</cxx-term> are <code>U1</code> followed by
-          the parameters of <code>f</code> matched by <code>t2</code>, ..., <code>tN</code>.
-        </li>
-        <li>
-          When <code>f</code> is a pointer to a member function of a class <code>T</code>
-          and <code>T1</code> is not one of the types described in the previous item,
           the <cxx-term>invocation parameters</cxx-term> are <code>U1</code> followed by
           the parameters of <code>f</code> matched by <code>t2</code>, ..., <code>tN</code>.
         </li>
         <li>
           When <code>N == 1</code> and <code>f</code> is a pointer to member data of a class <code>T</code>
-          and <code>t1</code> is an object of type <code>T</code>
-          or a reference to an object of type <code>T</code>
-          or a reference to an object of a type derived from <code>T</code>,
-          the <cxx-term>invocation parameter</cxx-term> is <code>U1</code>.
-        </li>
-        <li>
-          When <code>N == 1</code> and <code>f</code> is a pointer to member data of a class <code>T</code>
-          and <code>T1</code> is not one of the types described in the previous item,
           the <cxx-term>invocation parameter</cxx-term> is <code>U1</code>.
         </li>
         <li>
