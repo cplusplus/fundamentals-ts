@@ -94,7 +94,8 @@ number, and formats and links the `id`.
 ### `<cxx-ednote>`
 
 An editor's note that won't appear in the final published document.
-This is formatted as a separate box on the side of the document.
+This is formatted as a separate box on the side of the document,
+unless it's marked with class="para", in which case it's formatted as a normal paragraph in a box.
 
 
 ### `<cxx-email>`

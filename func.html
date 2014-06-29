@@ -4,54 +4,80 @@
   <cxx-section id="header.functional.synop">
     <h1>Header <code>&lt;experimental/functional></code> synopsis</h1>
 
+    <cxx-ednote class="para">
+    The following header synopsis fixes the missing <tt>noexcept</tt> specifications of the comparison functions as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
+    We consider this change <em>editorial</em> at this point because the two different declarations were already in conflict,
+    and this change does not have impact on the actual prototype specifications, which will have the same specifiers as in C++14.
+    </cxx-ednote>
+
 <pre><code>#include &lt;functional>
 
 namespace std {
-namespace experimental {
-inline namespace fundamentals_v1 {
+  namespace experimental {
+  inline namespace fundamentals_v1 {
 
-  // See <cxx-ref in="cxx" to="bind"></cxx-ref>, Function object binders
-  template &lt;class T> constexpr bool is_bind_expression_v
-    = is_bind_expression&lt;T>::value;
-  template &lt;class T> constexpr int is_placeholder_v
-    = is_placeholder&lt;T>::value;
+    // See <cxx-ref in="cxx" to="bind"></cxx-ref>, Function object binders
+    template &lt;class T> constexpr bool is_bind_expression_v
+      = is_bind_expression&lt;T>::value;
+    template &lt;class T> constexpr int is_placeholder_v
+      = is_placeholder&lt;T>::value;
 
-  <cxx-ref insynopsis="" to="func.searchers"></cxx-ref>
-  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
-    class default_searcher;
+    <cxx-ref insynopsis="" to="func.wrap.func"></cxx-ref>
+    template&lt;class&gt; class function; <i>// undefined</i>
+    template&lt;class R, class... ArgTypes&gt; class function&lt;R(ArgTypes...)&gt;;
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-    class boyer_moore_searcher;
+    template&lt;class R, class... ArgTypes&gt;
+    void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-    class boyer_moore_horspool_searcher;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator==(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator==(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator!=(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+
+    <cxx-ref insynopsis="" to="func.searchers"></cxx-ref>
+    template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+      class default_searcher;
+
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+      class boyer_moore_searcher;
+
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+      class boyer_moore_horspool_searcher;
 
 
-  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
-  default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
-  make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
-                        BinaryPredicate pred = BinaryPredicate());
+    template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+    default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
+    make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+                          BinaryPredicate pred = BinaryPredicate());
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-  boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-  make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                            Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+    boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+    make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-  boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-  make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                                     Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+    boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+    make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                                       Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
-} // namespace fundamentals_v1
-} // namespace experimental
+  } // namespace fundamentals_v1
+  } // namespace experimental
+
+  template&lt;class R, class... ArgTypes, class Alloc&gt;
+  struct uses_allocator&lt;experimental::function&lt;R(ArgTypes...)&gt;, Alloc&gt;;
+
 } // namespace std</code></pre>
 
   </cxx-section>
