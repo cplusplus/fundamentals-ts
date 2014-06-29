@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-REQUIRES");document.createElement("CXX-EFFECTS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-THROWS");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-RETURNS");document.createElement("CXX-NOTES");document.createElement("CXX-TERM");document.createElement("CXX-RANGE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -399,6 +399,10 @@ cxx-titlepage th {
 
 cxx-ednote aside {
 	float: right; max-width: 40%; margin: 1ex; border: 1px dashed rgb(136, 136, 136); padding: 1ex; background-color: rgb(238, 238, 238);
+}
+
+cxx-ednote.para aside {
+	float: none; max-width: none;
 }cxx-note .nowrap {
 	white-space: nowrap;
 }cxx-footnote {
@@ -587,13 +591,13 @@ pre {
     
     <table>
       
-        <tr><th>Document Number:</th><td><cxx-docnum>D????</cxx-docnum></td></tr>
+        <tr><th>Document Number:</th><td><cxx-docnum>D4081</cxx-docnum></td></tr>
       
       
-        <tr><th>Date:</th><td><time pubdate="">2014-05-??</time></td></tr>
+        <tr><th>Date:</th><td><time pubdate="">2014-07-??</time></td></tr>
       
       
-        <tr><th>Revises:</th><td><cxx-revises><a href="http://isocpp.org/files/papers/N3908.html">N3908</a></cxx-revises></td></tr>
+        <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4023.html">N4023</a></cxx-revises></td></tr>
       
       
         <tr><th>Editor:</th><td><cxx-editor>
@@ -655,30 +659,6 @@ pre {
           <ol>
             
               <li><span class="marker">2.1</span><a href="#mods.allocator.uses">Uses-allocator construction</a>
-        
-      </li>
-            
-              <li><span class="marker">2.2</span><a href="#mods.util.smartptr.shared">Changes to std::shared_ptr and std::weak_ptr</a>
-        
-          <ol>
-            
-              <li><span class="marker">2.2.1</span><a href="#mods.util.smartptr.shared.const">Changes to std::shared_ptr constructors</a>
-        
-      </li>
-            
-              <li><span class="marker">2.2.2</span><a href="#mods.util.smartptr.shared.obs">Changes to std::shared_ptr observers</a>
-        
-      </li>
-            
-              <li><span class="marker">2.2.3</span><a href="#mods.util.smartptr.shared.cast">Changes to std::shared_ptr casts</a>
-        
-      </li>
-            
-              <li><span class="marker">2.2.4</span><a href="#mods.util.smartptr.weak">Changes to std::weak_ptr</a>
-        
-      </li>
-            
-          </ol>
         
       </li>
             
@@ -1042,7 +1022,43 @@ pre {
         
       </li>
             
-              <li><span class="marker">8.2</span><a href="#memory.smartptr.shared.cast">shared_ptr casts</a>
+              <li><span class="marker">8.2</span><a href="#memory.smartptr">Shared-ownership pointers</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.2.1</span><a href="#memory.smartptr.shared">Class template shared_ptr</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.2.1.1</span><a href="#memory.smartptr.shared.const">shared_ptr constructors</a>
+        
+      </li>
+            
+              <li><span class="marker">8.2.1.2</span><a href="#memory.smartptr.shared.obs">shared_ptr observers</a>
+        
+      </li>
+            
+              <li><span class="marker">8.2.1.3</span><a href="#memory.smartptr.shared.cast">shared_ptr casts</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">8.2.2</span><a href="#memory.smartptr.weak">Class template weak_ptr</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.2.2.1</span><a href="#memory.smartptr.weak.const">weak_ptr constructors</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
         
       </li>
             
@@ -1572,14 +1588,6 @@ pre {
 
       <!-- These rows are in the same order as their feature appears in this document. -->
       <tbody><tr>
-        <td>N3920</td>
-        <td>Extending shared_ptr to Support Arrays</td>
-        <td><cxx-ref to="mods.util.smartptr.shared"><a title="mods.util.smartptr.shared" href="#mods.util.smartptr.shared">2.2</a></cxx-ref></td>
-        <td><code>shared_ptr_arrays</code></td>
-        <td>201402</td>
-        <td><code>&lt;memory&gt;</code></td>
-      </tr>
-      <tr>
         <td>N3915</td>
         <td>apply() call a function with arguments from a tuple</td>
         <td><cxx-ref to="tuple.apply"><a title="tuple.apply" href="#tuple.apply">3.2.2</a></cxx-ref></td>
@@ -1600,7 +1608,7 @@ pre {
         <td>Invocation type traits</td>
         <td><cxx-ref to="meta.trans.other"><a title="meta.trans.other" href="#meta.trans.other">3.3.2</a></cxx-ref></td>
         <td><code>invocation_type</code></td>
-        <td>201402</td>
+        <td>201406</td>
         <td><code>&lt;experimental/type_traits&gt;</code></td>
       </tr>
       <tr>
@@ -1624,7 +1632,7 @@ pre {
         <td>A utility class to represent optional objects</td>
         <td><cxx-ref to="optional"><a title="optional" href="#optional">5</a></cxx-ref></td>
         <td><code>optional</code></td>
-        <td>201402</td>
+        <td>201406</td>
         <td><code>&lt;experimental/optional&gt;</code></td>
       </tr>
       <tr>
@@ -1642,6 +1650,14 @@ pre {
         <td><code>string_view</code></td>
         <td>201402</td>
         <td><code>&lt;experimental/string_view&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3920</td>
+        <td>Extending shared_ptr to Support Arrays</td>
+        <td><cxx-ref to="memory.smartptr"><a title="memory.smartptr" href="#memory.smartptr">8.2</a></cxx-ref></td>
+        <td><code>shared_ptr_arrays</code></td>
+        <td>201406</td>
+        <td><code>&lt;memory&gt;</code></td>
       </tr>
       <tr>
         <td>N3916</td>
@@ -1739,7 +1755,7 @@ pre {
           automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
           Meets the BinaryTypeTrait requirements (20.10.1).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
-          and <ins>either</ins> <code>is_convertible&lt;Alloc, T::allocator_type&gt;::value <wbr>!= false</code>
+          and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type&gt; <wbr>!= false</code>
           <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref to="utility.erased.type"><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a></cxx-ref>)</ins>,
           otherwise it shall be derived from <code>false_type</code>.
           A program may specialize this template to derive from <code>true_type</code> for a user-defined type <code>T</code> that does not have a nested <code>allocator_type</code> but nonetheless can be constructed with an allocator where either:
@@ -1764,597 +1780,6 @@ pre {
         according to the following rules:
       </p>
     </blockquote>
-  
-    </section>
-  </cxx-section>
-
-  <cxx-section id="mods.util.smartptr.shared">
-    
-
-    <section>
-      <header><span class="section-number">2.2</span> <h1 data-bookmark-label="2.2 Changes to std::shared_ptr and std::weak_ptr">Changes to <code>std::shared_ptr</code> and <code>std::weak_ptr</code></h1> <span style="float:right"><a href="#mods.util.smartptr.shared">[mods.util.smartptr.shared]</a></span></header>
-      
-    
-
-    <p para_num="1" id="mods.util.smartptr.shared.1">
-      Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared">C++14 <span title="util.smartptr.shared">§20.8.2.2</span></cxx-ref>:
-    </p>
-
-<pre><code>
-namespace std {
-  template&lt;class T&gt; class shared_ptr {
-  public:
-    typedef <del>T</del><ins>typename remove_extent&lt;T&gt;::type</ins> element_type;
-
-    // <cxx-ref in="cxx" to="util.smartptr.shared.const">C++14 <span title="util.smartptr.shared.const">§20.8.2.2.1</span></cxx-ref>, constructors:
-    ...
-    template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r, <del>T</del><ins>element_type</ins>* p) noexcept;
-    ...
-
-    // <cxx-ref in="cxx" to="util.smartptr.shared.obs">C++14 <span title="util.smartptr.shared.obs">§20.8.2.2.5</span></cxx-ref>, observers:
-    <del>T</del><ins>element_type</ins>* get() const noexcept;
-    T&amp; operator*() const noexcept;
-    T* operator-&gt;() const noexcept;<ins>
-    element_type&amp; operator[](ptrdiff_t i) const noexcept;</ins>
-    ...
-
-}</code></pre>
-
-      <p para_num="2" id="mods.util.smartptr.shared.2">
-        Specializations of <code>shared_ptr</code> shall be <code>CopyConstructible</code>, <code>CopyAssignable</code>, and <code>LessThanComparable</code>, allowing their use in standard containers. Specializations of <code>shared_ptr</code> shall be <ins>contextually </ins>convertible to <code>bool</code>, allowing their use in boolean expressions and declarations in conditions. The template parameter <code>T</code> of <code>shared_ptr</code> may be an incomplete type.
-      </p>
-
-      <p para_num="3" id="mods.util.smartptr.shared.3">...</p>
-
-      <p para_num="4" id="mods.util.smartptr.shared.4">
-        For purposes of determining the presence of a data race, member functions shall access and modify only the <code>shared_ptr</code> and <code>weak_ptr</code> objects themselves and not objects they refer to. Changes in <code>use_count()</code> do not reflect modifications that can introduce data races.
-      </p>
-
-      <p para_num="5" id="mods.util.smartptr.shared.5">
-        <ins>For the purposes of subclause <cxx-ref in="cxx" to="util.smartptr">C++14 <span title="util.smartptr">§20.8.2</span></cxx-ref>, a pointer type <code>Y*</code> is said to be <dfn>compatible with</dfn> a pointer type <code>T*</code> when either <code>Y*</code> is convertible to <code>T*</code> or <code>Y</code> is <code>U[N]</code> and <code>T</code> is <code>U <var>cv</var> []</code>.</ins>
-      </p>
-
-    <cxx-section id="mods.util.smartptr.shared.const">
-    
-
-    <section>
-      <header><span class="section-number">2.2.1</span> <h1 data-bookmark-label="2.2.1 Changes to std::shared_ptr constructors">Changes to <code>std::shared_ptr</code> constructors</h1> <span style="float:right"><a href="#mods.util.smartptr.shared.const">[mods.util.smartptr.shared.const]</a></span></header>
-      
-      
-
-      <p para_num="1" id="mods.util.smartptr.shared.const.1">
-        Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared.const">C++14 <span title="util.smartptr.shared.const">§20.8.2.2.1</span></cxx-ref>:
-      </p>
-
-      <cxx-function para_num="2" id="mods.util.smartptr.shared.const.2">
-    
-    <pre><code><cxx-signature>template&lt;class Y&gt; explicit shared_ptr(Y* p);</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="3" id="mods.util.smartptr.shared.const.3">
-    
-    <dt>Requires:</dt><dd><del><code>p</code> shall be convertible to <code>T*</code>. <code>Y</code> shall be a complete type. The expression <code>delete p</code> shall be well formed, shall have well defined behavior, and shall not throw exceptions.</del>
-        <ins><code>Y</code> shall be a complete type.
-        The expression <code>delete[] p</code>, when <code>T</code> is an array type,
-        or <code>delete p</code>, when <code>T</code> is not an array type,
-        shall be well-formed, shall have well defined behavior, and shall not throw exceptions.
-        When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
-        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
-        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</ins></dd>
-  </cxx-requires>
-
-        <cxx-effects para_num="4" id="mods.util.smartptr.shared.const.4">
-    
-    <dt>Effects:</dt><dd><ins>When <code>T</code> is not an array type, c</ins><del>C</del>onstructs a <code>shared_ptr</code> object that <i>owns</i> the pointer <code>p</code>.
-        <ins>Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.</ins></dd>
-  </cxx-effects>
-
-        <cxx-postconditions para_num="5" id="mods.util.smartptr.shared.const.5">
-    
-    <dt>Postconditions:</dt><dd><code>use_count() == 1 &amp;&amp; get() == p</code>.</dd>
-  </cxx-postconditions>
-
-        <cxx-throws para_num="6" id="mods.util.smartptr.shared.const.6">
-    
-    <dt>Throws:</dt><dd><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</dd>
-  </cxx-throws>
-
-        <cxx-exception-safety para_num="7" id="mods.util.smartptr.shared.const.7">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, <code>delete p</code> is called<ins> when <code>T</code> is not an array type, <code>delete[] p</code> otherwise</ins>.</dd>
-  </cxx-exception-safety>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="8" id="mods.util.smartptr.shared.const.8">
-    
-    <pre><code><cxx-signature>template&lt;class Y, class D&gt; shared_ptr(Y* p, D d);</cxx-signature><cxx-signature>template&lt;class Y, class D, class A&gt; shared_ptr(Y* p, D d, A a);</cxx-signature><cxx-signature>template &lt;class D&gt; shared_ptr(nullptr_t p, D d);</cxx-signature><cxx-signature>template &lt;class D, class A&gt; shared_ptr(nullptr_t p, D d, A a);</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-        
-        
-        
-
-        <cxx-requires para_num="9" id="mods.util.smartptr.shared.const.9">
-    
-    <dt>Requires:</dt><dd><del><code>p</code> shall be convertible to <code>T*</code>. </del><code>D</code> shall be <code>CopyConstructible</code>. The copy constructor and destructor of <code> D</code> shall not throw exceptions. The expression <code>d(p)</code> shall be well formed, shall have well defined behavior, and shall not throw exceptions. <code>A</code> shall be an allocator (<cxx-ref in="cxx" to="allocator.requirements">C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>). The copy constructor and destructor of <code>A</code> shall not throw exceptions.
-        <ins> When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
-        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
-        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</ins></dd>
-  </cxx-requires>
-
-        <cxx-effects para_num="10" id="mods.util.smartptr.shared.const.10">
-    
-    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use.</dd>
-  </cxx-effects>
-
-        <cxx-postconditions para_num="11" id="mods.util.smartptr.shared.const.11">
-    
-    <dt>Postconditions:</dt><dd><code>use_count() == 1 &amp;&amp; get() == p</code>.</dd>
-  </cxx-postconditions>
-
-        <cxx-throws para_num="12" id="mods.util.smartptr.shared.const.12">
-    
-    <dt>Throws:</dt><dd><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</dd>
-  </cxx-throws>
-
-        <cxx-exception-safety para_num="13" id="mods.util.smartptr.shared.const.13">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, <code>d(p)</code> is called.</dd>
-  </cxx-exception-safety>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="14" id="mods.util.smartptr.shared.const.14">
-    
-    <pre><code><cxx-signature>template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r, <del>T</del><ins>element_type</ins>* p) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-effects para_num="15" id="mods.util.smartptr.shared.const.15">
-    
-    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> instance that stores <code>p</code> and <i>shares ownership</i> with <code>r</code>.</dd>
-  </cxx-effects>
-
-        <cxx-postconditions para_num="16" id="mods.util.smartptr.shared.const.16">
-    
-    <dt>Postconditions:</dt><dd><code>get() == p &amp;&amp; use_count() == r.use_count()</code></dd>
-  </cxx-postconditions>
-
-        <p para_num="17" id="mods.util.smartptr.shared.const.17">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    To avoid the possibility of a dangling pointer, the user of this constructor must ensure that <code>p</code> remains valid at least until the ownership group of <code>r</code> is destroyed.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-        </p>
-
-        <p para_num="18" id="mods.util.smartptr.shared.const.18">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    This constructor allows creation of an <i>empty</i> <code>shared_ptr</code> instance with a non-null stored pointer.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-        </p>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="19" id="mods.util.smartptr.shared.const.19">
-    
-    <pre><code><cxx-signature>shared_ptr(const shared_ptr&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-        
-
-        <cxx-requires para_num="20" id="mods.util.smartptr.shared.const.20">
-    
-    <dt>Requires:</dt><dd> The second constructor shall not participate in the overload resolution unless <code>Y*</code> is <del>implicitly convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</dd>
-  </cxx-requires>
-
-        <cxx-effects para_num="21" id="mods.util.smartptr.shared.const.21">
-    
-    <dt>Effects:</dt><dd>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>shared_ptr</code> object; otherwise, constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code>.</dd>
-  </cxx-effects>
-
-        <cxx-postconditions para_num="22" id="mods.util.smartptr.shared.const.22">
-    
-    <dt>Postconditions:</dt><dd><code>get() == r.get() &amp;&amp; use_count() == r.use_count()</code>.</dd>
-  </cxx-postconditions>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="23" id="mods.util.smartptr.shared.const.23">
-    
-    <pre><code><cxx-signature>shared_ptr(shared_ptr&amp;&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; shared_ptr(shared_ptr&lt;Y&gt;&amp;&amp; r) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-        
-
-        <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> N3920 specifies that "implicitly convertible" is removed, but the C++14 draft only has "convertible". Does this make a difference?</aside>
-  </cxx-ednote>
-        <cxx-remarks para_num="24" id="mods.util.smartptr.shared.const.24">
-    
-    <dt>Remarks:</dt><dd>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <del>convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</dd>
-  </cxx-remarks>
-
-        <cxx-effects para_num="25" id="mods.util.smartptr.shared.const.25">
-    
-    <dt>Effects:</dt><dd>Move-constructs a <code>shared_ptr</code> instance from <code>r</code>.</dd>
-  </cxx-effects>
-
-        <cxx-postconditions para_num="26" id="mods.util.smartptr.shared.const.26">
-    
-    <dt>Postconditions:</dt><dd><code>*this</code> shall contain the old value of <code>r</code>. <code>r</code> shall be <i>empty</i>. <code>r.get() == 0.</code></dd>
-  </cxx-postconditions>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="27" id="mods.util.smartptr.shared.const.27">
-    
-    <pre><code><cxx-signature>template&lt;class Y&gt; explicit shared_ptr(const weak_ptr&lt;Y&gt;&amp; r);</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="28" id="mods.util.smartptr.shared.const.28">
-    
-    <dt>Requires:</dt><dd><code>Y*</code> shall be <del>convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</dd>
-  </cxx-requires>
-
-        <cxx-effects para_num="29" id="mods.util.smartptr.shared.const.29">
-    
-    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</dd>
-  </cxx-effects>
-
-        <cxx-postconditions para_num="30" id="mods.util.smartptr.shared.const.30">
-    
-    <dt>Postconditions:</dt><dd><code>use_count() == r.use_count()</code>.</dd>
-  </cxx-postconditions>
-
-        <cxx-throws para_num="31" id="mods.util.smartptr.shared.const.31">
-    
-    <dt>Throws:</dt><dd><code>bad_weak_ptr</code> when <code>r.expired()</code>.</dd>
-  </cxx-throws>
-
-        <cxx-exception-safety para_num="32" id="mods.util.smartptr.shared.const.32">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, the constructor has no effect.</dd>
-  </cxx-exception-safety>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="33" id="mods.util.smartptr.shared.const.33">
-    
-    <pre><code><cxx-signature>template &lt;class Y, class D&gt; shared_ptr(unique_ptr&lt;Y, D&gt;&amp;&amp; r);</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="34" id="mods.util.smartptr.shared.const.34">
-    
-    <dt>Requires:</dt><dd><ins><code>Y*</code> shall be <em>compatible with</em> <code>T*</code>.</ins></dd>
-  </cxx-requires>
-
-        <cxx-effects para_num="35" id="mods.util.smartptr.shared.const.35">
-    
-    <dt>Effects:</dt><dd>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>.</dd>
-  </cxx-effects>
-
-        <cxx-exception-safety para_num="36" id="mods.util.smartptr.shared.const.36">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, the constructor has no effect.</dd>
-  </cxx-exception-safety>
-      
-    </dl>
-  </cxx-function>
-    
-    </section>
-  </cxx-section>
-
-    <cxx-section id="mods.util.smartptr.shared.obs">
-    
-
-    <section>
-      <header><span class="section-number">2.2.2</span> <h1 data-bookmark-label="2.2.2 Changes to std::shared_ptr observers">Changes to <code>std::shared_ptr</code> observers</h1> <span style="float:right"><a href="#mods.util.smartptr.shared.obs">[mods.util.smartptr.shared.obs]</a></span></header>
-      
-      
-
-      <p para_num="1" id="mods.util.smartptr.shared.obs.1">
-        Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared.obs">C++14 <span title="util.smartptr.shared.obs">§20.8.2.2.5</span></cxx-ref>:
-      </p>
-
-      <cxx-function para_num="2" id="mods.util.smartptr.shared.obs.2">
-    
-    <pre><code><cxx-signature><del>T</del><ins>element_type</ins>* get() const noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-returns para_num="3" id="mods.util.smartptr.shared.obs.3">
-    
-    <dt>Returns:</dt><dd>the stored pointer.</dd>
-  </cxx-returns>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="4" id="mods.util.smartptr.shared.obs.4">
-    
-    <pre><code><cxx-signature>T&amp; operator*() const noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="5" id="mods.util.smartptr.shared.obs.5">
-    
-    <dt>Requires:</dt><dd><code>get() != 0</code>.</dd>
-  </cxx-requires>
-
-        <cxx-returns para_num="6" id="mods.util.smartptr.shared.obs.6">
-    
-    <dt>Returns:</dt><dd><code>*get()</code>.</dd>
-  </cxx-returns>
-
-        <cxx-notes para_num="7" id="mods.util.smartptr.shared.obs.7">
-    
-    <dt>Notes:</dt><dd>When <code>T</code> is <ins>an array type or cv-qualified </ins><code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</dd>
-  </cxx-notes>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="8" id="mods.util.smartptr.shared.obs.8">
-    
-    <pre><code><cxx-signature>T* operator-&gt;() const noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="9" id="mods.util.smartptr.shared.obs.9">
-    
-    <dt>Requires:</dt><dd><code>get() != 0</code>.</dd>
-  </cxx-requires>
-
-        <cxx-returns para_num="10" id="mods.util.smartptr.shared.obs.10">
-    
-    <dt>Returns:</dt><dd><code>get()</code>.</dd>
-  </cxx-returns>
-        <cxx-remarks para_num="11" id="mods.util.smartptr.shared.obs.11">
-    
-    <dt>Remarks:</dt><dd><ins>When <code>T</code> is an array type, it is unspecified whether this member function is declared.
-        If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</ins></dd>
-  </cxx-remarks>
-      
-    </dl>
-  </cxx-function>
-
-      <ins>
-        <cxx-function>
-    
-    <pre><code><cxx-signature>element_type&amp; operator[](ptrdiff_t i) const noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-          
-
-          <cxx-requires>
-    
-    <dt>Requires:</dt><dd><code>get() != 0 &amp;&amp; i &gt;= 0</code>. If <code>T</code> is <code>U[N]</code>, <code>i &lt; N</code>.</dd>
-  </cxx-requires>
-          <cxx-returns>
-    
-    <dt>Returns:</dt><dd><code>get()[i]</code>.</dd>
-  </cxx-returns>
-          <cxx-remarks>
-    
-    <dt>Remarks:</dt><dd>When <code>T</code> is not an array type, it is unspecified whether this member function is declared.
-          If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</dd>
-  </cxx-remarks>
-        
-    </dl>
-  </cxx-function>
-      </ins>
-    
-    </section>
-  </cxx-section>
-
-    <cxx-section id="mods.util.smartptr.shared.cast">
-    
-
-    <section>
-      <header><span class="section-number">2.2.3</span> <h1 data-bookmark-label="2.2.3 Changes to std::shared_ptr casts">Changes to <code>std::shared_ptr</code> casts</h1> <span style="float:right"><a href="#mods.util.smartptr.shared.cast">[mods.util.smartptr.shared.cast]</a></span></header>
-      
-      
-
-      <p para_num="1" id="mods.util.smartptr.shared.cast.1">
-        Make the following changes in <cxx-ref in="cxx" to="util.smartptr.shared.cast">C++14 <span title="util.smartptr.shared.cast">§20.8.2.2.9</span></cxx-ref>:
-      </p>
-
-      <cxx-function para_num="2" id="mods.util.smartptr.shared.cast.2">
-    
-    <pre><code><cxx-signature>template&lt;class T, class U&gt; shared_ptr&lt;T&gt; static_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="3" id="mods.util.smartptr.shared.cast.3">
-    
-    <dt>Requires:</dt><dd>The expression <del><code>static_cast&lt;T*&gt;(r.get())</code></del><ins><code>static_cast&lt;T*&gt;((U*)0)</code></ins> shall be well formed.</dd>
-  </cxx-requires>
-
-        <cxx-returns para_num="4" id="mods.util.smartptr.shared.cast.4">
-    
-    <dt>Returns:</dt><dd><del>If <code>r</code> is <i>empty</i>, an <i>empty</i> <code>shared_ptr&lt;T&gt;</code>; otherwise, a <code>shared_ptr&lt;T&gt;</code> object that stores <code>static_cast&lt;T*&gt;(r.get())</code> and <i>shares ownership</i> with <code>r</code>.</del>
-        <ins><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code></ins></dd>
-  </cxx-returns>
-
-        <cxx-postconditions para_num="5" id="mods.util.smartptr.shared.cast.5">
-    
-    <dt>Postconditions:</dt><dd><del><code>w.get() == static_cast&lt;T*&gt;(r.get())</code> and <code>w.use_count() == r.use_count()</code>, where <code>w</code> is the return value.</del></dd>
-  </cxx-postconditions>
-
-        <p para_num="6" id="mods.util.smartptr.shared.cast.6">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    The seemingly equivalent expression <code>shared_ptr&lt;T&gt;(static_cast&lt;T*&gt;(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-        </p>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="7" id="mods.util.smartptr.shared.cast.7">
-    
-    <pre><code><cxx-signature>template&lt;class T, class U&gt; shared_ptr&lt;T&gt; dynamic_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="8" id="mods.util.smartptr.shared.cast.8">
-    
-    <dt>Requires:</dt><dd>The expression <del><code>dynamic_cast&lt;T*&gt;(r.get())</code></del><ins><code>dynamic_cast&lt;T*&gt;((U*)0)</code></ins> shall be well formed<del> and shall have well defined behavior.</del></dd>
-  </cxx-requires>
-
-        <cxx-returns para_num="9" id="mods.util.smartptr.shared.cast.9">
-    
-    <dt>Returns:</dt><dd>
-          <ul>
-            <li>When <code>dynamic_cast&lt;<del>T</del><ins>typename shared_ptr&lt;T&gt;::element_type</ins>*&gt;(r.get())</code> returns a nonzero value<ins> <code>p</code></ins>, <del>a <code>shared_ptr&lt;T&gt;</code> object that stores a copy of it and <i>shares ownership</i> with <code>r</code></del><ins><code>shared_ptr&lt;T&gt;(r, p)</code></ins>;</li>
-
-            <li>Otherwise, <del>an <i>empty</i> <code>shared_ptr&lt;T&gt;</code> object</del><ins><code>shared_ptr&lt;T&gt;()</code></ins>.</li>
-          </ul>
-        </dd>
-  </cxx-returns>
-
-        <cxx-postconditions para_num="10" id="mods.util.smartptr.shared.cast.10">
-    
-    <dt>Postconditions:</dt><dd><del><code>w.get() == dynamic_cast&lt;T*&gt;(r.get())</code>, where <code>w</code> is the return value.</del></dd>
-  </cxx-postconditions>
-
-        <p para_num="11" id="mods.util.smartptr.shared.cast.11">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    The seemingly equivalent expression <code>shared_ptr&lt;T&gt;(dynamic_cast&lt;T*&gt;(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-        </p>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="12" id="mods.util.smartptr.shared.cast.12">
-    
-    <pre><code><cxx-signature>template&lt;class T, class U&gt; shared_ptr&lt;T&gt; const_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="13" id="mods.util.smartptr.shared.cast.13">
-    
-    <dt>Requires:</dt><dd>The expression <del><code>const_cast&lt;T*&gt;(r.get())</code></del><ins><code>const_cast&lt;T*&gt;((U*)0)</code></ins> shall be well formed.</dd>
-  </cxx-requires>
-
-        <cxx-returns para_num="14" id="mods.util.smartptr.shared.cast.14">
-    
-    <dt>Returns:</dt><dd><del>If <code>r</code> is empty, an empty <code>shared_ptr&lt;T&gt;</code>; otherwise, a <code>shared_ptr&lt;T&gt;</code> object that stores <code>const_cast&lt;T*&gt;(r.get())</code> and shares ownership with <code>r</code>.</del>
-        <ins><code>shared_ptr&lt;T&gt;(r, const_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</ins></dd>
-  </cxx-returns>
-
-        <cxx-postconditions para_num="15" id="mods.util.smartptr.shared.cast.15">
-    
-    <dt>Postconditions:</dt><dd><del><code>w.get() == const_cast&lt;T*&gt;(r.get())</code> and <code>w.use_count() == r.use_count()</code>, where <code>w</code> is the return value.</del></dd>
-  </cxx-postconditions>
-
-        <p para_num="16" id="mods.util.smartptr.shared.cast.16">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    The seemingly equivalent expression <code>shared_ptr&lt;T&gt;(const_cast&lt;T*&gt;(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-        </p>
-      
-    </dl>
-  </cxx-function>
-    
-    </section>
-  </cxx-section>
-
-    <cxx-section id="mods.util.smartptr.weak">
-    
-
-    <section>
-      <header><span class="section-number">2.2.4</span> <h1 data-bookmark-label="2.2.4 Changes to std::weak_ptr">Changes to <code>std::weak_ptr</code></h1> <span style="float:right"><a href="#mods.util.smartptr.weak">[mods.util.smartptr.weak]</a></span></header>
-      
-      
-
-      <p para_num="1" id="mods.util.smartptr.weak.1">
-        Make the following change in <cxx-ref in="cxx" to="util.smartptr.weak">C++14 <span title="util.smartptr.weak">§20.8.2.3</span></cxx-ref>:
-      </p>
-
-<pre><code>namespace std {
-  template&lt;class T&gt; class weak_ptr {
-  public:
-    typedef <del>T</del><ins>typename remove_extent&lt;T&gt;::type</ins> element_type;
-
-    ...</code></pre>
-
-      <p para_num="2" id="mods.util.smartptr.weak.2">
-        Make the following change in <cxx-ref in="cxx" to="util.smartptr.weak.const">C++14 <span title="util.smartptr.weak.const">§20.8.2.3.1</span></cxx-ref>:
-      </p>
-
-      <cxx-function para_num="3" id="mods.util.smartptr.weak.3">
-    
-    <pre><code><cxx-signature>weak_ptr(const weak_ptr&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; weak_ptr(const weak_ptr&lt;Y&gt;&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; weak_ptr(const shared_ptr&lt;Y&gt;&amp; r) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-        
-        
-
-        <cxx-requires para_num="4" id="mods.util.smartptr.weak.4">
-    
-    <dt>Requires:</dt><dd>The second and third constructors shall not participate in the overload resolution unless <code>Y*</code> is <del>implicitly convertible to</del><ins><i>compatible with</i></ins> <code>T*</code>.</dd>
-  </cxx-requires>
-
-        <cxx-effects para_num="5" id="mods.util.smartptr.weak.5">
-    
-    <dt>Effects:</dt><dd>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>weak_ptr</code> object; otherwise, constructs a <code>weak_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</dd>
-  </cxx-effects>
-
-        <cxx-postconditions para_num="6" id="mods.util.smartptr.weak.6">
-    
-    <dt>Postconditions:</dt><dd><code>use_count() == r.use_count()</code>.</dd>
-  </cxx-postconditions>
-      
-    </dl>
-  </cxx-function>
-    
-    </section>
-  </cxx-section>
   
     </section>
   </cxx-section>
@@ -2498,7 +1923,7 @@ constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
 }</code></pre>
           <p>Equivalent to</p>
           <pre><code>return apply_impl(std::forward&lt;F&gt;(f), std::forward&lt;Tuple&gt;(t),
-    make_index_sequence&lt;tuple_size&lt;decay_t&lt;Tuple&gt;&gt;::value&gt;{});</code></pre>
+    make_index_sequence&lt;tuple_size_v&lt;decay_t&lt;Tuple&gt;&gt;&gt;{});</code></pre>
         </dd>
   </cxx-effects>
       
@@ -2717,28 +2142,11 @@ inline namespace fundamentals_v1 {
       <ul>
         <li>
           When <code>f</code> is a pointer to a member function of a class <code>T</code>
-          and <code>t1</code> is an object of type <code>T</code>
-          or a reference to an object of type <code>T</code>
-          or a reference to an object of a type derived from <code>T</code>,
-          the <cxx-term><i>invocation parameters</i></cxx-term> are <code>U1</code> followed by
-          the parameters of <code>f</code> matched by <code>t2</code>, ..., <code>tN</code>.
-        </li>
-        <li>
-          When <code>f</code> is a pointer to a member function of a class <code>T</code>
-          and <code>T1</code> is not one of the types described in the previous item,
           the <cxx-term><i>invocation parameters</i></cxx-term> are <code>U1</code> followed by
           the parameters of <code>f</code> matched by <code>t2</code>, ..., <code>tN</code>.
         </li>
         <li>
           When <code>N == 1</code> and <code>f</code> is a pointer to member data of a class <code>T</code>
-          and <code>t1</code> is an object of type <code>T</code>
-          or a reference to an object of type <code>T</code>
-          or a reference to an object of a type derived from <code>T</code>,
-          the <cxx-term><i>invocation parameter</i></cxx-term> is <code>U1</code>.
-        </li>
-        <li>
-          When <code>N == 1</code> and <code>f</code> is a pointer to member data of a class <code>T</code>
-          and <code>T1</code> is not one of the types described in the previous item,
           the <cxx-term><i>invocation parameter</i></cxx-term> is <code>U1</code>.
         </li>
         <li>
@@ -2844,7 +2252,7 @@ inline namespace fundamentals_v1 {
         there shall be no member <code>type</code>. Otherwise:
       </p>
       <ul>
-        <li>Let <code>R</code> denote <code>result_of&lt;Fn(ArgTypes...)&gt;::type</code>.</li>
+        <li>Let <code>R</code> denote <code>result_of_t&lt;Fn(ArgTypes...)&gt;</code>.</li>
         <li>Let the types <code>Ti</code> be the <cxx-term><i>invocation parameters</i></cxx-term>
         of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), <nobr>declval&lt;ArgTypes&gt;()...)</nobr></code>.</li>
         <li>The member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>
@@ -3012,54 +2420,83 @@ inline namespace fundamentals_v1 {
       
     
 
+    <cxx-ednote class="para">
+    
+    <aside><strong>Editor's note:</strong> 
+    The following header synopsis fixes the missing <tt>noexcept</tt> specifications of the comparison functions as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
+    We consider this change <em>editorial</em> at this point because the two different declarations were already in conflict,
+    and this change does not have impact on the actual prototype specifications, which will have the same specifiers as in C++14.
+    </aside>
+  </cxx-ednote>
+
 <pre><code>#include &lt;functional&gt;
 
 namespace std {
-namespace experimental {
-inline namespace fundamentals_v1 {
+  namespace experimental {
+  inline namespace fundamentals_v1 {
 
-  // See <cxx-ref in="cxx" to="bind">C++14 <span title="bind">§20.9.9</span></cxx-ref>, Function object binders
-  template &lt;class T&gt; constexpr bool is_bind_expression_v
-    = is_bind_expression&lt;T&gt;::value;
-  template &lt;class T&gt; constexpr int is_placeholder_v
-    = is_placeholder&lt;T&gt;::value;
+    // See <cxx-ref in="cxx" to="bind">C++14 <span title="bind">§20.9.9</span></cxx-ref>, Function object binders
+    template &lt;class T&gt; constexpr bool is_bind_expression_v
+      = is_bind_expression&lt;T&gt;::value;
+    template &lt;class T&gt; constexpr int is_placeholder_v
+      = is_placeholder&lt;T&gt;::value;
 
-  <cxx-ref insynopsis="" to="func.searchers">// <i><a title="func.searchers" href="#func.searchers">4.3</a>, Searchers</i></cxx-ref>
-  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
-    class default_searcher;
+    <cxx-ref insynopsis="" to="func.wrap.func">// <i><a title="func.wrap.func" href="#func.wrap.func">4.2</a>, Class template function</i></cxx-ref>
+    template&lt;class&gt; class function; <i>// undefined</i>
+    template&lt;class R, class... ArgTypes&gt; class function&lt;R(ArgTypes...)&gt;;
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-    class boyer_moore_searcher;
+    template&lt;class R, class... ArgTypes&gt;
+    void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-    class boyer_moore_horspool_searcher;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator==(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator==(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator!=(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
+    template&lt;class R, class... ArgTypes&gt;
+    bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+
+    <cxx-ref insynopsis="" to="func.searchers">// <i><a title="func.searchers" href="#func.searchers">4.3</a>, Searchers</i></cxx-ref>
+    template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+      class default_searcher;
+
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+      class boyer_moore_searcher;
+
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+      class boyer_moore_horspool_searcher;
 
 
-  template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
-  default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
-  make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
-                        BinaryPredicate pred = BinaryPredicate());
+    template&lt;class ForwardIterator, class BinaryPredicate = equal_to&lt;&gt;&gt;
+    default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
+    make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
+                          BinaryPredicate pred = BinaryPredicate());
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-  boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-  make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                            Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+    boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+    make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
-  template&lt;class RandomAccessIterator,
-           class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
-           class BinaryPredicate = equal_to&lt;&gt;&gt;
-  boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-  make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                                     Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    template&lt;class RandomAccessIterator,
+             class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
+             class BinaryPredicate = equal_to&lt;&gt;&gt;
+    boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+    make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+                                       Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
-} // namespace fundamentals_v1
-} // namespace experimental
+  } // namespace fundamentals_v1
+  } // namespace experimental
+
+  template&lt;class R, class... ArgTypes, class Alloc&gt;
+  struct uses_allocator&lt;experimental::function&lt;R(ArgTypes...)&gt;, Alloc&gt;;
+
 } // namespace std</code></pre>
 
   
@@ -3986,7 +3423,7 @@ private:
 
         <cxx-requires para_num="5" id="optional.object.ctor.5">
     
-    <dt>Requires:</dt><dd><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="6" id="optional.object.ctor.6">
     
@@ -4015,7 +3452,7 @@ private:
 
         <cxx-requires para_num="10" id="optional.object.ctor.10">
     
-    <dt>Requires:</dt><dd><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="11" id="optional.object.ctor.11">
     
@@ -4033,7 +3470,7 @@ private:
   </cxx-throws>
         <cxx-remarks para_num="14" id="optional.object.ctor.14">
     
-    <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to:<pre>is_nothrow_move_constructible&lt;T&gt;::value</pre></dd>
+    <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to:<pre>is_nothrow_move_constructible_v&lt;T&gt;</pre></dd>
   </cxx-remarks>
       
     </dl>
@@ -4049,7 +3486,7 @@ private:
 
         <cxx-requires para_num="16" id="optional.object.ctor.16">
     
-    <dt>Requires:</dt><dd><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="17" id="optional.object.ctor.17">
     
@@ -4081,7 +3518,7 @@ private:
 
         <cxx-requires para_num="22" id="optional.object.ctor.22">
     
-    <dt>Requires:</dt><dd><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="23" id="optional.object.ctor.23">
     
@@ -4113,7 +3550,7 @@ private:
 
         <cxx-requires para_num="28" id="optional.object.ctor.28">
     
-    <dt>Requires:</dt><dd><code>is_constructible&lt;T, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, Args&amp;&amp;...&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="29" id="optional.object.ctor.29">
     
@@ -4145,7 +3582,7 @@ private:
 
         <cxx-requires para_num="34" id="optional.object.ctor.34">
     
-    <dt>Requires:</dt><dd><code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="35" id="optional.object.ctor.35">
     
@@ -4161,7 +3598,7 @@ private:
   </cxx-throws>
         <cxx-remarks para_num="38" id="optional.object.ctor.38">
     
-    <dt>Remarks:</dt><dd>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.
+    <dt>Remarks:</dt><dd>The function shall not participate in overload resolution unless <code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.
         If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</dd>
   </cxx-remarks>
       
@@ -4189,11 +3626,11 @@ private:
 
         <cxx-effects para_num="2" id="optional.object.dtor.2">
     
-    <dt>Effects:</dt><dd>If <code>is_trivially_destructible&lt;T&gt;::value != true</code> and <code>*this</code> contains a value, calls <code><var>val</var>-&gt;T::~T()</code>.</dd>
+    <dt>Effects:</dt><dd>If <code>is_trivially_destructible_v&lt;T&gt; != true</code> and <code>*this</code> contains a value, calls <code><var>val</var>-&gt;T::~T()</code>.</dd>
   </cxx-effects>
         <cxx-remarks para_num="3" id="optional.object.dtor.3">
     
-    <dt>Remarks:</dt><dd>If <code>is_trivially_destructible&lt;T&gt;::value == true</code> then this destructor shall be a trivial destructor.</dd>
+    <dt>Remarks:</dt><dd>If <code>is_trivially_destructible_v&lt;T&gt; == true</code> then this destructor shall be a trivial destructor.</dd>
   </cxx-remarks>
       
     </dl>
@@ -4244,7 +3681,7 @@ private:
 
         <cxx-requires para_num="6" id="optional.object.assign.6">
     
-    <dt>Requires:</dt><dd><code>is_copy_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_copy_assignable&lt;T&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_copy_assignable_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="7" id="optional.object.assign.7">
     
@@ -4299,7 +3736,7 @@ private:
 
         <cxx-requires para_num="12" id="optional.object.assign.12">
     
-    <dt>Requires:</dt><dd><code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code> and <code>is_move_assignable&lt;T&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_move_assignable_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="13" id="optional.object.assign.13">
     
@@ -4335,7 +3772,7 @@ private:
         <cxx-remarks para_num="16" id="optional.object.assign.16">
     
     <dt>Remarks:</dt><dd>
-          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_assignable&lt;T&gt;::value &amp;&amp; is_nothrow_move_constructible&lt;T&gt;::value</pre><p></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <wbr>is_nothrow_move_constructible_v&lt;T&gt;</pre><p></p>
 
           <p>
             If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
@@ -4360,7 +3797,7 @@ private:
 
         <cxx-requires para_num="18" id="optional.object.assign.18">
     
-    <dt>Requires:</dt><dd><code>is_constructible&lt;T, U&gt;::value</code> is <code>true</code> and <code>is_assignable&lt;T&amp;, U&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, U&gt;</code> is <code>true</code> and <code>is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="19" id="optional.object.assign.19">
     
@@ -4379,7 +3816,7 @@ private:
     <dt>Remarks:</dt><dd>
           <p>If any exception is thrown, the the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
           <p>The function shall not participate in overload resolution unless
-          <code>is_same&lt;decay_t&lt;U&gt;, T&gt;::value</code> is <code>true</code>.</p>
+          <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>true</code>.</p>
         </dd>
   </cxx-remarks>
         <cxx-notes para_num="23" id="optional.object.assign.23">
@@ -4400,7 +3837,7 @@ private:
 
         <cxx-requires para_num="25" id="optional.object.assign.25">
     
-    <dt>Requires:</dt><dd><code>is_constructible&lt;T, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, Args&amp;&amp;...&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="26" id="optional.object.assign.26">
     
@@ -4432,7 +3869,7 @@ private:
 
         <cxx-requires para_num="31" id="optional.object.assign.31">
     
-    <dt>Requires:</dt><dd><code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="32" id="optional.object.assign.32">
     
@@ -4450,7 +3887,7 @@ private:
     
     <dt>Remarks:</dt><dd>
           <p>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> does not contain a value, and the previous <code><var>*val</var></code> (if any) has been destroyed.</p>
-          <p>The function shall not participate in overload resolution unless <code>is_constructible&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;::value</code> is <code>true</code>.</p>
+          <p>The function shall not participate in overload resolution unless <code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</p>
         </dd>
   </cxx-remarks>
       
@@ -4478,7 +3915,7 @@ private:
 
         <cxx-requires para_num="2" id="optional.object.swap.2">
     
-    <dt>Requires:</dt><dd>Lvalues of type <code>T</code> shall be swappable and <code>is_move_constructible&lt;T&gt;::value</code> is <code>true</code>.</dd>
+    <dt>Requires:</dt><dd>Lvalues of type <code>T</code> shall be swappable and <code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
         <cxx-effects para_num="3" id="optional.object.swap.3">
     
@@ -4515,7 +3952,7 @@ private:
         <cxx-remarks para_num="5" id="optional.object.swap.5">
     
     <dt>Remarks:</dt><dd>
-          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_constructible&lt;T&gt;::value &amp;&amp; <wbr>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre><p></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <wbr>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre><p></p>
           <p>
             If any exception is thrown, the results of the expressions <code>bool(*this)</code> and <code>bool(<var>rhs</var>)</code> remain unchanged.
             If an exception is thrown during the call to function <code>swap</code>
@@ -4600,10 +4037,11 @@ private:
 
       <cxx-function para_num="11" id="optional.object.observe.11">
     
-    <pre><code><cxx-signature>constexpr T operator*() &amp;&amp;;constexpr T operator*() const&amp;&amp;;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr T operator*() &amp;&amp;;</cxx-signature><cxx-signature>constexpr T operator*() const&amp;&amp;;</cxx-signature></code></pre>
 
     <dl>
       
+        
         
 
         <cxx-requires para_num="12" id="optional.object.observe.12">
@@ -4616,7 +4054,7 @@ private:
   </cxx-effects>
         <cxx-remarks para_num="14" id="optional.object.observe.14">
     
-    <dt>Remarks:</dt><dd>if <code>is_move_constructible&lt;T&gt;::value</code> is <code>false</code>, the program is ill-formed.</dd>
+    <dt>Remarks:</dt><dd>if <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</dd>
   </cxx-remarks>
       
     </dl>
@@ -4674,7 +4112,7 @@ private:
   </cxx-effects>
         <cxx-remarks para_num="22" id="optional.object.observe.22">
     
-    <dt>Remarks:</dt><dd>If <code>is_move_constructible&lt;T&gt;::value</code> is <code>false</code>, the program is ill-formed.</dd>
+    <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</dd>
   </cxx-remarks>
       
     </dl>
@@ -4694,7 +4132,7 @@ private:
   </cxx-effects>
         <cxx-remarks para_num="25" id="optional.object.observe.25">
     
-    <dt>Remarks:</dt><dd>If <code>is_copy_constructible&lt;T&gt;::value &amp;&amp; is_convertible&lt;U&amp;&amp;, T&gt;::value</code> is <code>false</code>,
+    <dt>Remarks:</dt><dd>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <wbr>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</dd>
   </cxx-remarks>
       
@@ -4715,7 +4153,7 @@ private:
   </cxx-effects>
         <cxx-remarks para_num="28" id="optional.object.observe.28">
     
-    <dt>Remarks:</dt><dd>If <code>is_move_constructible&lt;T&gt;::value &amp;&amp; is_convertible&lt;U&amp;&amp;, T&gt;::value</code> is <code>false</code>,
+    <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <wbr>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</dd>
   </cxx-remarks>
       
@@ -5336,7 +4774,7 @@ public:
 
     <cxx-function para_num="3" id="optional.specalg.3">
     
-    <pre><code><cxx-signature>template &lt;class T&gt; constexpr optional&lt;typename decay&lt;T&gt;::type&gt; make_optional(T&amp;&amp; <var>v</var>);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>template &lt;class T&gt; constexpr optional&lt;decay_t&lt;T&gt;&gt; make_optional(T&amp;&amp; <var>v</var>);</cxx-signature></code></pre>
 
     <dl>
       
@@ -5344,7 +4782,7 @@ public:
 
       <cxx-returns para_num="4" id="optional.specalg.4">
     
-    <dt>Returns:</dt><dd><code>optional&lt;typename decay&lt;T&gt;::type&gt;(std::forward&lt;T&gt;(<var>v</var>))</code>.</dd>
+    <dt>Returns:</dt><dd><code>optional&lt;decay_t&lt;T&gt;&gt;(std::forward&lt;T&gt;(<var>v</var>))</code>.</dd>
   </cxx-returns>
     
     </dl>
@@ -5604,11 +5042,11 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
       
         
 
-        <p para_num="10" id="any.cons.10">Let <code>T</code> be equal to <code>decay&lt;<wbr>ValueType&gt;::type</code>.</p>
+        <p para_num="10" id="any.cons.10">Let <code>T</code> be equal to <code>decay_t&lt;ValueType&gt;</code>.</p>
         <cxx-requires para_num="11" id="any.cons.11">
     
     <dt>Requires:</dt><dd><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
-        If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</dd>
+        If <code>is_copy_constructible_v&lt;T&gt;</code> is false, the program is ill-formed.</dd>
   </cxx-requires>
         <cxx-effects para_num="12" id="any.cons.12">
     
@@ -5616,7 +5054,7 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
   </cxx-effects>
         <cxx-remarks para_num="13" id="any.cons.13">
     
-    <dt>Remarks:</dt><dd>This constructor shall not participate in overload resolution if <code>decay&lt;ValueType&gt;::type</code> is the same type as <code>any</code>.</dd>
+    <dt>Remarks:</dt><dd>This constructor shall not participate in overload resolution if <code>decay_t&lt;ValueType&gt;</code> is the same type as <code>any</code>.</dd>
   </cxx-remarks>
         <cxx-throws para_num="14" id="any.cons.14">
     
@@ -5739,11 +5177,11 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
       
         
 
-        <p para_num="10" id="any.assign.10">Let <code>T</code> be equal to <code>decay&lt;<wbr>ValueType&gt;::type</code>.</p>
+        <p para_num="10" id="any.assign.10">Let <code>T</code> be equal to <code>decay_t&lt;ValueType&gt;</code>.</p>
         <cxx-requires para_num="11" id="any.assign.11">
     
     <dt>Requires:</dt><dd><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
-        If <code>is_copy_constructible&lt;T&gt;::value</code> is false, the program is ill-formed.</dd>
+        If <code>is_copy_constructible_v&lt;T&gt;</code> is false, the program is ill-formed.</dd>
   </cxx-requires>
         <cxx-effects para_num="12" id="any.assign.12">
     
@@ -5756,7 +5194,7 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
   </cxx-returns>
         <cxx-remarks para_num="14" id="any.assign.14">
     
-    <dt>Remarks:</dt><dd> This operator shall not participate in overload resolution if <code>decay&lt;ValueType&gt;::type</code> is the same type as <code>any</code>.</dd>
+    <dt>Remarks:</dt><dd> This operator shall not participate in overload resolution if <code>decay_t&lt;ValueType&gt;</code> is the same type as <code>any</code>.</dd>
   </cxx-remarks>
         <cxx-throws para_num="15" id="any.assign.15">
     
@@ -5906,17 +5344,17 @@ ValueType any_cast(any&amp;&amp; operand);</cxx-signature></code></pre>
 
       <cxx-requires para_num="4" id="any.nonmembers.4">
     
-    <dt>Requires:</dt><dd><code>is_reference&lt;ValueType&gt;::value</code> is true or <code>is_copy_constructible&lt;ValueType&gt;::value</code> is true.
+    <dt>Requires:</dt><dd><code>is_reference_v&lt;ValueType&gt;</code> is true or <code>is_copy_constructible_v&lt;ValueType&gt;</code> is true.
       Otherwise the program is ill-formed.</dd>
   </cxx-requires>
       <cxx-returns para_num="5" id="any.nonmembers.5">
     
-    <dt>Returns:</dt><dd>For the first form, <code>*any_cast&lt;typename add_const&lt;typename remove_reference&lt;ValueType&gt;::type&gt;::type &gt;(&amp;operand)</code>.
-      For the second and third forms, <code>*any_cast&lt;typename remove_reference&lt;ValueType&gt;::type&gt;(&amp;operand)</code>.</dd>
+    <dt>Returns:</dt><dd>For the first form, <code>*any_cast&lt;add_const_t&lt;remove_reference_t&lt;ValueType&gt;&gt;&gt;(&amp;operand)</code>.
+      For the second and third forms, <code>*any_cast&lt;remove_reference_t&lt;ValueType&gt;&gt;(&amp;operand)</code>.</dd>
   </cxx-returns>
       <cxx-throws para_num="6" id="any.nonmembers.6">
     
-    <dt>Throws:</dt><dd><code>bad_any_cast</code> if <code>operand.type() != typeid(remove_reference&lt;ValueType&gt;::type)</code>.</dd>
+    <dt>Throws:</dt><dd><code>bad_any_cast</code> if <code>operand.type() != typeid(remove_reference_t&lt;ValueType&gt;)</code>.</dd>
   </cxx-throws>
       <cxx-example>
     
@@ -5965,7 +5403,7 @@ ValueType* any_cast(any* operand) noexcept;</cxx-signature></code></pre>
 
       <cxx-returns para_num="8" id="any.nonmembers.8">
     
-    <dt>Returns:</dt><dd>If <code>operand != nullptr &amp;&amp; operand-&gt;type() == typeid(ValueType)</code>,
+    <dt>Returns:</dt><dd>If <code>operand != nullptr &amp;&amp; <wbr>operand-&gt;type() == typeid(ValueType)</code>,
       a pointer to the object contained by <code>operand</code>,
       otherwise <code>nullptr</code>.</dd>
   </cxx-returns>
@@ -7200,7 +6638,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     
     <span class="nowrap">[ <em>Example:</em></span>
     A sample conforming implementation for operator== would be:
-<pre><code>template&lt;class T&gt; using __identity = typename std::decay&lt;T&gt;::type;
+<pre><code>template&lt;class T&gt; using __identity = decay_t&lt;T&gt;;
 template&lt;class charT, class traits&gt;
 constexpr bool operator==(
     basic_string_view&lt;charT, traits&gt; lhs,
@@ -7413,13 +6851,670 @@ inline namespace fundamentals_v1 {
   template &lt;class T, class Alloc&gt; constexpr bool uses_allocator_v
     = uses_allocator&lt;T, Alloc&gt;::value;
 
-  <cxx-ref insynopsis="" to="memory.smartptr.shared.cast">// <i><a title="memory.smartptr.shared.cast" href="#memory.smartptr.shared.cast">8.2</a>, shared_ptr casts</i></cxx-ref>
+  <cxx-ref insynopsis="" to="memory.smartptr.shared">// <i><a title="memory.smartptr.shared" href="#memory.smartptr.shared">8.2.1</a>, Class template shared_ptr</i></cxx-ref>
+  template&lt;class T&gt; class shared_ptr;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.create">C++14 <span title="util.smartptr.shared.create">§20.8.2.2.6</span></cxx-ref>
+  template&lt;class T, class... Args&gt; shared_ptr&lt;T&gt; make_shared(Args&amp;&amp;... args);
+  template&lt;class T, class A, class... Args&gt;
+    shared_ptr&lt;T&gt; allocate_shared(const A&amp; a, Args&amp;&amp;... args);
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.cmp">C++14 <span title="util.smartptr.shared.cmp">§20.8.2.2.7</span></cxx-ref>
   template&lt;class T, class U&gt;
-  shared_ptr&lt;T&gt; reinterpret_pointer_cast(shared_ptr&lt;U&gt; const&amp; r) noexcept;
+    bool operator==(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator!=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&lt;=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator==(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator==(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator!=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator!=(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.spec">C++14 <span title="util.smartptr.shared.spec">§20.8.2.2.8</span></cxx-ref>
+  template&lt;class T&gt; void swap(shared_ptr&lt;T&gt;&amp; a, shared_ptr&lt;T&gt;&amp; b) noexcept;
+
+  <cxx-ref insynopsis="" to="memory.smartptr.shared.cast">// <i><a title="memory.smartptr.shared.cast" href="#memory.smartptr.shared.cast">8.2.1.3</a>, shared_ptr casts</i></cxx-ref>
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; static_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; dynamic_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; const_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; reinterpret_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.getdeleter">C++14 <span title="util.smartptr.getdeleter">§20.8.2.2.10</span></cxx-ref>
+  template&lt;class D, class T&gt; D* get_deleter(const shared_ptr&lt;T&gt;&amp; p) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.io">C++14 <span title="util.smartptr.shared.io">§20.8.2.2.11</span></cxx-ref>
+  template&lt;class E, class T, class Y&gt;
+    basic_ostream&lt;E, T&gt;&amp; operator&lt;&lt; (basic_ostream&lt;E, T&gt;&amp; os, const shared_ptr&lt;Y&gt;&amp; p);
+
+  // <cxx-ref in="cxx" to="util.smartptr.weak">C++14 <span title="util.smartptr.weak">§20.8.2.3</span></cxx-ref>
+  template&lt;class T&gt; class weak_ptr;
+
+  // <cxx-ref in="cxx" to="util.smartptr.weak.spec">C++14 <span title="util.smartptr.weak.spec">§20.8.2.3.6</span></cxx-ref>
+  template&lt;class T&gt; void swap(weak_ptr&lt;T&gt;&amp; a, weak_ptr&lt;T&gt;&amp; b) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.ownerless">C++14 <span title="util.smartptr.ownerless">§20.8.2.4</span></cxx-ref>
+  template&lt;class T&gt; class owner_less;
+
+  // <cxx-ref in="cxx" to="util.smartptr.enab">C++14 <span title="util.smartptr.enab">§20.8.2.5</span></cxx-ref>
+  template&lt;class T&gt; class enable_shared_from_this;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.atomic">C++14 <span title="util.smartptr.shared.atomic">§20.8.2.6</span></cxx-ref>
+  template&lt;class T&gt;
+    bool atomic_is_lock_free(const shared_ptr&lt;T&gt;* p);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_load(const shared_ptr&lt;T&gt;* p);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_load_explicit(const shared_ptr&lt;T&gt;* p, memory_order mo);
+  template&lt;class T&gt;
+    void atomic_store(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r);
+  template&lt;class T&gt;
+    void atomic_store_explicit(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r, memory_order mo);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_exchange(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_exchange_explicit(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r,
+                                           memory_order mo);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_weak(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_strong(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_weak_explicit(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w,
+      memory_order success, memory_order failure);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_strong_explicit(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w,
+      memory_order success, memory_order failure);
 
 } // namespace fundamentals_v1
 } // namespace experimental
+
+  // <cxx-ref in="cxx" to="util.smartptr.hash">C++14 <span title="util.smartptr.hash">§20.8.2.7</span></cxx-ref>
+  template&lt;class T&gt; struct hash&lt;experimental::shared_ptr&lt;T&gt;&gt;;
+
 } // namespace std</code></pre>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="memory.smartptr">
+    
+
+    <section>
+      <header><span class="section-number">8.2</span> <h1 data-bookmark-label="8.2 Shared-ownership pointers">Shared-ownership pointers</h1> <span style="float:right"><a href="#memory.smartptr">[memory.smartptr]</a></span></header>
+      
+    
+
+      <p para_num="1" id="memory.smartptr.1">
+        The specification of all declarations within this sub-clause <cxx-ref to="memory.smartptr"><a title="memory.smartptr" href="#memory.smartptr">8.2</a></cxx-ref> and its sub-clauses are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="util.smartptr">C++14 <span title="util.smartptr">§20.8.2</span></cxx-ref>, unless explicitly specified otherwise.
+      </p>
+
+  <cxx-section id="memory.smartptr.shared">
+    
+
+    <section>
+      <header><span class="section-number">8.2.1</span> <h1 data-bookmark-label="8.2.1 Class template shared_ptr">Class template shared_ptr</h1> <span style="float:right"><a href="#memory.smartptr.shared">[memory.smartptr.shared]</a></span></header>
+      
+    
+
+<pre><code>
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  template&lt;class T&gt; class shared_ptr {
+  public:
+    typedef typename remove_extent_t&lt;T&gt; element_type;
+    <cxx-ref insynopsis="" to="memory.smartptr.shared.const">// <i><a title="memory.smartptr.shared.const" href="#memory.smartptr.shared.const">8.2.1.1</a>, shared_ptr constructors</i></cxx-ref>
+    constexpr shared_ptr() noexcept;
+    template&lt;class Y&gt; explicit shared_ptr(Y* p);
+    template&lt;class Y, class D&gt; shared_ptr(Y* p, D d);
+    template&lt;class Y, class D, class A&gt; shared_ptr(Y* p, D d, A a);
+    template &lt;class D&gt; shared_ptr(nullptr_t p, D d)
+    template &lt;class D, class A&gt; shared_ptr(nullptr_t p, D d, A a);
+    template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r, element_type* p) noexcept;
+    shared_ptr(const shared_ptr&amp; r) noexcept;
+    template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r) noexcept;
+    shared_ptr(shared_ptr&amp;&amp; r) noexcept;
+    template&lt;class Y&gt; shared_ptr(shared_ptr&lt;Y&gt;&amp;&amp; r) noexcept;
+    template&lt;class Y&gt; explicit shared_ptr(const weak_ptr&lt;Y&gt;&amp; r);
+    template&lt;class Y&gt; shared_ptr(auto_ptr&lt;Y&gt;&amp;&amp; r);
+    template &lt;class Y, class D&gt; shared_ptr(unique_ptr&lt;Y, D&gt;&amp;&amp; r);
+    constexpr shared_ptr(nullptr_t) : shared_ptr() { }
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.dest">C++14 <span title="util.smartptr.shared.dest">§20.8.2.2.2</span></cxx-ref>
+    ~shared_ptr();
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.assign">C++14 <span title="util.smartptr.shared.assign">§20.8.2.2.3</span></cxx-ref>
+    shared_ptr&amp; operator=(const shared_ptr&amp; r) noexcept;
+    template&lt;class Y&gt; shared_ptr&amp; operator=(const shared_ptr&lt;Y&gt;&amp; r) noexcept;
+    shared_ptr&amp; operator=(shared_ptr&amp;&amp; r) noexcept;
+    template&lt;class Y&gt; shared_ptr&amp; operator=(shared_ptr&lt;Y&gt;&amp;&amp; r) noexcept;
+    template&lt;class Y&gt; shared_ptr&amp; operator=(auto_ptr&lt;Y&gt;&amp;&amp; r);
+    template &lt;class Y, class D&gt; shared_ptr&amp; operator=(unique_ptr&lt;Y, D&gt;&amp;&amp; r);
+
+    // <cxx-ref in="cxx" to="util.smartptr.shared.mod">C++14 <span title="util.smartptr.shared.mod">§20.8.2.2.4</span></cxx-ref>
+    void swap(shared_ptr&amp; r) noexcept;
+    void reset() noexcept;
+    template&lt;class Y&gt; void reset(Y* p);
+    template&lt;class Y, class D&gt; void reset(Y* p, D d);
+    template&lt;class Y, class D, class A&gt; void reset(Y* p, D d, A a);
+
+    <cxx-ref insynopsis="" to="memory.smartptr.shared.obs">// <i><a title="memory.smartptr.shared.obs" href="#memory.smartptr.shared.obs">8.2.1.2</a>, shared_ptr observers</i></cxx-ref>
+    element_type* get() const noexcept;
+    T&amp; operator*() const noexcept;
+    T* operator-&gt;() const noexcept;
+    element_type&amp; operator[](ptrdiff_t i) const noexcept;
+    long use_count() const noexcept;
+    bool unique() const noexcept;
+    explicit operator bool() const noexcept;
+    template&lt;class U&gt; bool owner_before(shared_ptr&lt;U&gt; const&amp; b) const;
+    template&lt;class U&gt; bool owner_before(weak_ptr&lt;U&gt; const&amp; b) const;
+  };
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.create">C++14 <span title="util.smartptr.shared.create">§20.8.2.2.6</span></cxx-ref>
+  template&lt;class T, class... Args&gt; shared_ptr&lt;T&gt; make_shared(Args&amp;&amp;... args);
+  template&lt;class T, class A, class... Args&gt;
+    shared_ptr&lt;T&gt; allocate_shared(const A&amp; a, Args&amp;&amp;... args);
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.cmp">C++14 <span title="util.smartptr.shared.cmp">§20.8.2.2.7</span></cxx-ref>
+  template&lt;class T, class U&gt;
+    bool operator==(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator!=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&lt;=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+    bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator==(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator==(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator!=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator!=(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&lt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;
+  template &lt;class T&gt;
+    bool operator&gt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; b) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.spec">C++14 <span title="util.smartptr.shared.spec">§20.8.2.2.8</span></cxx-ref>
+  template&lt;class T&gt; void swap(shared_ptr&lt;T&gt;&amp; a, shared_ptr&lt;T&gt;&amp; b) noexcept;
+
+  <cxx-ref insynopsis="" to="memory.smartptr.shared.cast">// <i><a title="memory.smartptr.shared.cast" href="#memory.smartptr.shared.cast">8.2.1.3</a>, shared_ptr casts</i></cxx-ref>
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; static_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; dynamic_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; const_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+  template&lt;class T, class U&gt;
+    shared_ptr&lt;T&gt; reinterpret_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.getdeleter">C++14 <span title="util.smartptr.getdeleter">§20.8.2.2.10</span></cxx-ref>
+  template&lt;class D, class T&gt; D* get_deleter(const shared_ptr&lt;T&gt;&amp; p) noexcept;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.io">C++14 <span title="util.smartptr.shared.io">§20.8.2.2.11</span></cxx-ref>
+  template&lt;class E, class T, class Y&gt;
+    basic_ostream&lt;E, T&gt;&amp; operator&lt;&lt; (basic_ostream&lt;E, T&gt;&amp; os, const shared_ptr&lt;Y&gt;&amp; p);
+
+  // <cxx-ref in="cxx" to="util.smartptr.ownerless">C++14 <span title="util.smartptr.ownerless">§20.8.2.4</span></cxx-ref>
+  template&lt;class T&gt; class owner_less;
+
+  // <cxx-ref in="cxx" to="util.smartptr.enab">C++14 <span title="util.smartptr.enab">§20.8.2.5</span></cxx-ref>
+  template&lt;class T&gt; class enable_shared_from_this;
+
+  // <cxx-ref in="cxx" to="util.smartptr.shared.atomic">C++14 <span title="util.smartptr.shared.atomic">§20.8.2.6</span></cxx-ref>
+  template&lt;class T&gt;
+    bool atomic_is_lock_free(const shared_ptr&lt;T&gt;* p);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_load(const shared_ptr&lt;T&gt;* p);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_load_explicit(const shared_ptr&lt;T&gt;* p, memory_order mo);
+  template&lt;class T&gt;
+    void atomic_store(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r);
+  template&lt;class T&gt;
+    void atomic_store_explicit(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r, memory_order mo);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_exchange(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r);
+  template&lt;class T&gt;
+    shared_ptr&lt;T&gt; atomic_exchange_explicit(shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt; r,
+                                           memory_order mo);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_weak(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_strong(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_weak_explicit(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w,
+      memory_order success, memory_order failure);
+  template&lt;class T&gt;
+    bool atomic_compare_exchange_strong_explicit(
+      shared_ptr&lt;T&gt;* p, shared_ptr&lt;T&gt;* v, shared_ptr&lt;T&gt; w,
+      memory_order success, memory_order failure);
+
+
+} // namespace fundamentals_v1
+} // namespace experimental
+
+  // <cxx-ref in="cxx" to="util.smartptr.hash">C++14 <span title="util.smartptr.hash">§20.8.2.7</span></cxx-ref>
+  template&lt;class T&gt; struct hash&lt;experimental::shared_ptr&lt;T&gt;&gt;;
+
+} // namespace std</code></pre>
+
+      <p para_num="1" id="memory.smartptr.shared.1">
+        For the purposes of subclause <cxx-ref to="memory.smartptr"><a title="memory.smartptr" href="#memory.smartptr">8.2</a></cxx-ref>, a pointer type <code>Y*</code> is said to be <dfn>compatible with</dfn> a pointer type <code>T*</code> when either <code>Y*</code> is convertible to <code>T*</code> or <code>Y</code> is <code>U[N]</code> and <code>T</code> is <code>U <var>cv</var> []</code>.
+      </p>
+
+  <cxx-section id="memory.smartptr.shared.const">
+    
+
+    <section>
+      <header><span class="section-number">8.2.1.1</span> <h1 data-bookmark-label="8.2.1.1 shared_ptr constructors"><code>shared_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.smartptr.shared.const">[memory.smartptr.shared.const]</a></span></header>
+      
+    
+
+      <cxx-function para_num="1" id="memory.smartptr.shared.const.1">
+    
+    <pre><code><cxx-signature>template&lt;class Y&gt; explicit shared_ptr(Y* p);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="2" id="memory.smartptr.shared.const.2">
+    
+    <dt>Requires:</dt><dd><code>Y</code> shall be a complete type.
+        The expression <code>delete[] p</code>, when <code>T</code> is an array type,
+        or <code>delete p</code>, when <code>T</code> is not an array type,
+        shall be well-formed, shall have well defined behavior, and shall not throw exceptions.
+        When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
+        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
+        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</dd>
+  </cxx-requires>
+
+        <cxx-effects para_num="3" id="memory.smartptr.shared.const.3">
+    
+    <dt>Effects:</dt><dd>When <code>T</code> is not an array type, constructs a <code>shared_ptr</code> object that <i>owns</i> the pointer <code>p</code>.
+        Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.</dd>
+  </cxx-effects>
+
+        <cxx-postconditions para_num="4" id="memory.smartptr.shared.const.4">
+    
+    <dt>Postconditions:</dt><dd><code>use_count() == 1 &amp;&amp; get() == p</code>.</dd>
+  </cxx-postconditions>
+
+        <cxx-throws para_num="5" id="memory.smartptr.shared.const.5">
+    
+    <dt>Throws:</dt><dd><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</dd>
+  </cxx-throws>
+
+        <cxx-exception-safety para_num="6" id="memory.smartptr.shared.const.6">
+    
+    <dt>Exception safety:</dt><dd>If an exception is thrown, <code>delete p</code> is called when <code>T</code> is not an array type, <code>delete[] p</code> otherwise.</dd>
+  </cxx-exception-safety>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="7" id="memory.smartptr.shared.const.7">
+    
+    <pre><code><cxx-signature>template&lt;class Y, class D&gt; shared_ptr(Y* p, D d);</cxx-signature><cxx-signature>template&lt;class Y, class D, class A&gt; shared_ptr(Y* p, D d, A a);</cxx-signature><cxx-signature>template &lt;class D&gt; shared_ptr(nullptr_t p, D d);</cxx-signature><cxx-signature>template &lt;class D, class A&gt; shared_ptr(nullptr_t p, D d, A a);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+        
+        
+
+        <cxx-requires para_num="8" id="memory.smartptr.shared.const.8">
+    
+    <dt>Requires:</dt><dd><code>D</code> shall be <code>CopyConstructible</code>. The copy constructor and destructor of <code> D</code> shall not throw exceptions. The expression <code>d(p)</code> shall be well formed, shall have well defined behavior, and shall not throw exceptions. <code>A</code> shall be an allocator (<cxx-ref in="cxx" to="allocator.requirements">C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>). The copy constructor and destructor of <code>A</code> shall not throw exceptions.
+        When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
+        when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
+        otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</dd>
+  </cxx-requires>
+
+        <cxx-effects para_num="9" id="memory.smartptr.shared.const.9">
+    
+    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use.</dd>
+  </cxx-effects>
+
+        <cxx-postconditions para_num="10" id="memory.smartptr.shared.const.10">
+    
+    <dt>Postconditions:</dt><dd><code>use_count() == 1 &amp;&amp; get() == p</code>.</dd>
+  </cxx-postconditions>
+
+        <cxx-throws para_num="11" id="memory.smartptr.shared.const.11">
+    
+    <dt>Throws:</dt><dd><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</dd>
+  </cxx-throws>
+
+        <cxx-exception-safety para_num="12" id="memory.smartptr.shared.const.12">
+    
+    <dt>Exception safety:</dt><dd>If an exception is thrown, <code>d(p)</code> is called.</dd>
+  </cxx-exception-safety>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="13" id="memory.smartptr.shared.const.13">
+    
+    <pre><code><cxx-signature>template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r, element_type* p) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="14" id="memory.smartptr.shared.const.14">
+    
+    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> instance that stores <code>p</code> and <i>shares ownership</i> with <code>r</code>.</dd>
+  </cxx-effects>
+
+        <cxx-postconditions para_num="15" id="memory.smartptr.shared.const.15">
+    
+    <dt>Postconditions:</dt><dd><code>get() == p &amp;&amp; use_count() == r.use_count()</code></dd>
+  </cxx-postconditions>
+
+        <p para_num="16" id="memory.smartptr.shared.const.16">
+          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    To avoid the possibility of a dangling pointer, the user of this constructor must ensure that <code>p</code> remains valid at least until the ownership group of <code>r</code> is destroyed.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+        </p>
+
+        <p para_num="17" id="memory.smartptr.shared.const.17">
+          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    This constructor allows creation of an <i>empty</i> <code>shared_ptr</code> instance with a non-null stored pointer.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+        </p>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="18" id="memory.smartptr.shared.const.18">
+    
+    <pre><code><cxx-signature>shared_ptr(const shared_ptr&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+
+        <cxx-requires para_num="19" id="memory.smartptr.shared.const.19">
+    
+    <dt>Requires:</dt><dd> The second constructor shall not participate in the overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</dd>
+  </cxx-requires>
+
+        <cxx-effects para_num="20" id="memory.smartptr.shared.const.20">
+    
+    <dt>Effects:</dt><dd>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>shared_ptr</code> object; otherwise, constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code>.</dd>
+  </cxx-effects>
+
+        <cxx-postconditions para_num="21" id="memory.smartptr.shared.const.21">
+    
+    <dt>Postconditions:</dt><dd><code>get() == r.get() &amp;&amp; use_count() == r.use_count()</code>.</dd>
+  </cxx-postconditions>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="22" id="memory.smartptr.shared.const.22">
+    
+    <pre><code><cxx-signature>shared_ptr(shared_ptr&amp;&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; shared_ptr(shared_ptr&lt;Y&gt;&amp;&amp; r) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+
+        <cxx-ednote>
+    
+    <aside><strong>Editor's note:</strong> N3920 specifies that "implicitly convertible" is removed, but the C++14 draft only has "convertible". Does this make a difference?</aside>
+  </cxx-ednote>
+        <cxx-remarks para_num="23" id="memory.smartptr.shared.const.23">
+    
+    <dt>Remarks:</dt><dd>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</dd>
+  </cxx-remarks>
+
+        <cxx-effects para_num="24" id="memory.smartptr.shared.const.24">
+    
+    <dt>Effects:</dt><dd>Move-constructs a <code>shared_ptr</code> instance from <code>r</code>.</dd>
+  </cxx-effects>
+
+        <cxx-postconditions para_num="25" id="memory.smartptr.shared.const.25">
+    
+    <dt>Postconditions:</dt><dd><code>*this</code> shall contain the old value of <code>r</code>. <code>r</code> shall be <i>empty</i>. <code>r.get() == 0.</code></dd>
+  </cxx-postconditions>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="26" id="memory.smartptr.shared.const.26">
+    
+    <pre><code><cxx-signature>template&lt;class Y&gt; explicit shared_ptr(const weak_ptr&lt;Y&gt;&amp; r);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="27" id="memory.smartptr.shared.const.27">
+    
+    <dt>Requires:</dt><dd><code>Y*</code> shall be <i>compatible with</i> <code>T*</code>.</dd>
+  </cxx-requires>
+
+        <cxx-effects para_num="28" id="memory.smartptr.shared.const.28">
+    
+    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</dd>
+  </cxx-effects>
+
+        <cxx-postconditions para_num="29" id="memory.smartptr.shared.const.29">
+    
+    <dt>Postconditions:</dt><dd><code>use_count() == r.use_count()</code>.</dd>
+  </cxx-postconditions>
+
+        <cxx-throws para_num="30" id="memory.smartptr.shared.const.30">
+    
+    <dt>Throws:</dt><dd><code>bad_weak_ptr</code> when <code>r.expired()</code>.</dd>
+  </cxx-throws>
+
+        <cxx-exception-safety para_num="31" id="memory.smartptr.shared.const.31">
+    
+    <dt>Exception safety:</dt><dd>If an exception is thrown, the constructor has no effect.</dd>
+  </cxx-exception-safety>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="32" id="memory.smartptr.shared.const.32">
+    
+    <pre><code><cxx-signature>template &lt;class Y, class D&gt; shared_ptr(unique_ptr&lt;Y, D&gt;&amp;&amp; r);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="33" id="memory.smartptr.shared.const.33">
+    
+    <dt>Requires:</dt><dd><code>Y*</code> shall be <em>compatible with</em> <code>T*</code>.</dd>
+  </cxx-requires>
+
+        <cxx-effects para_num="34" id="memory.smartptr.shared.const.34">
+    
+    <dt>Effects:</dt><dd>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>.</dd>
+  </cxx-effects>
+
+        <cxx-exception-safety para_num="35" id="memory.smartptr.shared.const.35">
+    
+    <dt>Exception safety:</dt><dd>If an exception is thrown, the constructor has no effect.</dd>
+  </cxx-exception-safety>
+      
+    </dl>
+  </cxx-function>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="memory.smartptr.shared.obs">
+    
+
+    <section>
+      <header><span class="section-number">8.2.1.2</span> <h1 data-bookmark-label="8.2.1.2 shared_ptr observers"><code>shared_ptr</code> observers</h1> <span style="float:right"><a href="#memory.smartptr.shared.obs">[memory.smartptr.shared.obs]</a></span></header>
+      
+    
+
+      <cxx-function para_num="1" id="memory.smartptr.shared.obs.1">
+    
+    <pre><code><cxx-signature>element_type* get() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="2" id="memory.smartptr.shared.obs.2">
+    
+    <dt>Returns:</dt><dd>the stored pointer.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="memory.smartptr.shared.obs.3">
+    
+    <pre><code><cxx-signature>T&amp; operator*() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="4" id="memory.smartptr.shared.obs.4">
+    
+    <dt>Requires:</dt><dd><code>get() != 0</code>.</dd>
+  </cxx-requires>
+
+        <cxx-returns para_num="5" id="memory.smartptr.shared.obs.5">
+    
+    <dt>Returns:</dt><dd><code>*get()</code>.</dd>
+  </cxx-returns>
+
+        <cxx-ednote>
+    
+    <aside><strong>Editor's note:</strong> Why is this a cxx-notes not a cxx-remarks? <cxx-ref in="cxx" to="util.smartptr.shared.obs">C++14 <span title="util.smartptr.shared.obs">§20.8.2.2.5</span></cxx-ref> ¶4 it's a <i>Remarks</i> element</aside>
+  </cxx-ednote>
+        <cxx-notes para_num="6" id="memory.smartptr.shared.obs.6">
+    
+    <dt>Notes:</dt><dd>When <code>T</code> is an array type or cv-qualified <code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</dd>
+  </cxx-notes>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="7" id="memory.smartptr.shared.obs.7">
+    
+    <pre><code><cxx-signature>T* operator-&gt;() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="8" id="memory.smartptr.shared.obs.8">
+    
+    <dt>Requires:</dt><dd><code>get() != 0</code>.</dd>
+  </cxx-requires>
+
+        <cxx-returns para_num="9" id="memory.smartptr.shared.obs.9">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
+        <cxx-remarks para_num="10" id="memory.smartptr.shared.obs.10">
+    
+    <dt>Remarks:</dt><dd>When <code>T</code> is an array type, it is unspecified whether this member function is declared.
+        If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+
+        <cxx-function para_num="11" id="memory.smartptr.shared.obs.11">
+    
+    <pre><code><cxx-signature>element_type&amp; operator[](ptrdiff_t i) const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+          
+
+          <cxx-requires para_num="12" id="memory.smartptr.shared.obs.12">
+    
+    <dt>Requires:</dt><dd><code>get() != 0 &amp;&amp; i &gt;= 0</code>. If <code>T</code> is <code>U[N]</code>, <code>i &lt; N</code>.</dd>
+  </cxx-requires>
+          <cxx-returns para_num="13" id="memory.smartptr.shared.obs.13">
+    
+    <dt>Returns:</dt><dd><code>get()[i]</code>.</dd>
+  </cxx-returns>
+          <cxx-remarks para_num="14" id="memory.smartptr.shared.obs.14">
+    
+    <dt>Remarks:</dt><dd>When <code>T</code> is not an array type, it is unspecified whether this member function is declared.
+          If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</dd>
+  </cxx-remarks>
+        
+    </dl>
+  </cxx-function>
+
   
     </section>
   </cxx-section>
@@ -7428,29 +7523,244 @@ inline namespace fundamentals_v1 {
     
 
     <section>
-      <header><span class="section-number">8.2</span> <h1 data-bookmark-label="8.2 shared_ptr casts"><code>shared_ptr</code> casts</h1> <span style="float:right"><a href="#memory.smartptr.shared.cast">[memory.smartptr.shared.cast]</a></span></header>
+      <header><span class="section-number">8.2.1.3</span> <h1 data-bookmark-label="8.2.1.3 shared_ptr casts"><code>shared_ptr</code> casts</h1> <span style="float:right"><a href="#memory.smartptr.shared.cast">[memory.smartptr.shared.cast]</a></span></header>
       
     
 
-    <cxx-function para_num="1" id="memory.smartptr.shared.cast.1">
+      <cxx-function para_num="1" id="memory.smartptr.shared.cast.1">
+    
+    <pre><code><cxx-signature>template&lt;class T, class U&gt; shared_ptr&lt;T&gt; static_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="2" id="memory.smartptr.shared.cast.2">
+    
+    <dt>Requires:</dt><dd>The expression <code>static_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</dd>
+  </cxx-requires>
+
+        <cxx-returns para_num="3" id="memory.smartptr.shared.cast.3">
+    
+    <dt>Returns:</dt><dd><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code></dd>
+  </cxx-returns>
+
+        <p para_num="4" id="memory.smartptr.shared.cast.4">
+          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The seemingly equivalent expression <code>shared_ptr&lt;T&gt;(static_cast&lt;T*&gt;(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+        </p>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="memory.smartptr.shared.cast.5">
+    
+    <pre><code><cxx-signature>template&lt;class T, class U&gt; shared_ptr&lt;T&gt; dynamic_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="6" id="memory.smartptr.shared.cast.6">
+    
+    <dt>Requires:</dt><dd>The expression <code>dynamic_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</dd>
+  </cxx-requires>
+
+        <cxx-returns para_num="7" id="memory.smartptr.shared.cast.7">
+    
+    <dt>Returns:</dt><dd>
+          <ul>
+            <li>When <code>dynamic_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get())</code> returns a nonzero value <code>p</code>, <code>shared_ptr&lt;T&gt;(r, p)</code>;</li>
+
+            <li>Otherwise, <code>shared_ptr&lt;T&gt;()</code>.</li>
+          </ul>
+        </dd>
+  </cxx-returns>
+
+        <p para_num="8" id="memory.smartptr.shared.cast.8">
+          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The seemingly equivalent expression <code>shared_ptr&lt;T&gt;(dynamic_cast&lt;T*&gt;(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+        </p>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="9" id="memory.smartptr.shared.cast.9">
+    
+    <pre><code><cxx-signature>template&lt;class T, class U&gt; shared_ptr&lt;T&gt; const_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="10" id="memory.smartptr.shared.cast.10">
+    
+    <dt>Requires:</dt><dd>The expression <code>const_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</dd>
+  </cxx-requires>
+
+        <cxx-returns para_num="11" id="memory.smartptr.shared.cast.11">
+    
+    <dt>Returns:</dt><dd><code>shared_ptr&lt;T&gt;(r, const_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</dd>
+  </cxx-returns>
+
+        <p para_num="12" id="memory.smartptr.shared.cast.12">
+          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The seemingly equivalent expression <code>shared_ptr&lt;T&gt;(const_cast&lt;T*&gt;(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+        </p>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="13" id="memory.smartptr.shared.cast.13">
     
     <pre><code><cxx-signature>template&lt;class T, class U&gt; shared_ptr&lt;T&gt; reinterpret_pointer_cast(const shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
 
     <dl>
       
-      
+        
 
-      <cxx-requires para_num="2" id="memory.smartptr.shared.cast.2">
+        <cxx-requires para_num="14" id="memory.smartptr.shared.cast.14">
     
     <dt>Requires:</dt><dd>The expression <code>reinterpret_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</dd>
   </cxx-requires>
-      <cxx-returns para_num="3" id="memory.smartptr.shared.cast.3">
+        <cxx-returns para_num="15" id="memory.smartptr.shared.cast.15">
     
     <dt>Returns:</dt><dd><code>shared_ptr&lt;T&gt;(r, reinterpret_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</dd>
   </cxx-returns>
-    
+      
     </dl>
   </cxx-function>
+
+      <cxx-function para_num="16" id="memory.smartptr.shared.cast.16">
+    
+    <pre><code><cxx-signature>template&lt;class T, class U&gt; std::shared_ptr&lt;T&gt; reinterpret_pointer_cast(const std::shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="17" id="memory.smartptr.shared.cast.17">
+    
+    <dt>Requires:</dt><dd>The expression <code>reinterpret_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</dd>
+  </cxx-requires>
+        <cxx-returns para_num="18" id="memory.smartptr.shared.cast.18">
+    
+    <dt>Returns:</dt><dd><code>std::shared_ptr&lt;T&gt;(r, reinterpret_cast&lt;typename std::shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="memory.smartptr.weak">
+    
+
+    <section>
+      <header><span class="section-number">8.2.2</span> <h1 data-bookmark-label="8.2.2 Class template weak_ptr">Class template weak_ptr</h1> <span style="float:right"><a href="#memory.smartptr.weak">[memory.smartptr.weak]</a></span></header>
+      
+    
+
+<pre><code>
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v1 {
+
+  template&lt;class T&gt; class weak_ptr {
+  public:
+    typedef typename remove_extent_t&lt;T&gt; element_type;
+
+    <cxx-ref insynopsis="" to="memory.smartptr.weak.const">// <i><a title="memory.smartptr.weak.const" href="#memory.smartptr.weak.const">8.2.2.1</a>, weak_ptr constructors</i></cxx-ref>
+    constexpr weak_ptr() noexcept;
+    template&lt;class Y&gt; weak_ptr(shared_ptr&lt;Y&gt; const&amp; r) noexcept;
+    weak_ptr(weak_ptr const&amp; r) noexcept;
+    template&lt;class Y&gt; weak_ptr(weak_ptr&lt;Y&gt; const&amp; r) noexcept;
+    weak_ptr(weak_ptr&amp;&amp; r) noexcept;
+    template&lt;class Y&gt; weak_ptr(weak_ptr&lt;Y&gt;&amp;&amp; r) noexcept;
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.dest">C++14 <span title="util.smartptr.weak.dest">§20.8.2.3.2</span></cxx-ref>
+    ~weak_ptr();
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.assign">C++14 <span title="util.smartptr.weak.assign">§20.8.2.3.3</span></cxx-ref>
+    weak_ptr&amp; operator=(weak_ptr const&amp; r) noexcept;
+    template&lt;class Y&gt; weak_ptr&amp; operator=(weak_ptr&lt;Y&gt; const&amp; r) noexcept;
+    template&lt;class Y&gt; weak_ptr&amp; operator=(shared_ptr&lt;Y&gt; const&amp; r) noexcept;
+    weak_ptr&amp; operator=(weak_ptr&amp;&amp; r) noexcept;
+    template&lt;class Y&gt; weak_ptr&amp; operator=(weak_ptr&lt;Y&gt;&amp;&amp; r) noexcept;
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.mod">C++14 <span title="util.smartptr.weak.mod">§20.8.2.3.4</span></cxx-ref>
+    void swap(weak_ptr&amp; r) noexcept;
+    void reset() noexcept;
+
+    // <cxx-ref in="cxx" to="util.smartptr.weak.obs">C++14 <span title="util.smartptr.weak.obs">§20.8.2.3.5</span></cxx-ref>
+    long use_count() const noexcept;
+    bool expired() const noexcept;
+    shared_ptr&lt;T&gt; lock() const noexcept;
+    template&lt;class U&gt; bool owner_before(shared_ptr&lt;U&gt; const&amp; b) const;
+    template&lt;class U&gt; bool owner_before(weak_ptr&lt;U&gt; const&amp; b) const;
+  };
+
+  // <cxx-ref in="cxx" to="util.smartptr.weak.spec">C++14 <span title="util.smartptr.weak.spec">§20.8.2.3.6</span></cxx-ref>
+  template&lt;class T&gt; void swap(weak_ptr&lt;T&gt;&amp; a, weak_ptr&lt;T&gt;&amp; b) noexcept;
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+  <cxx-section id="memory.smartptr.weak.const">
+    
+
+    <section>
+      <header><span class="section-number">8.2.2.1</span> <h1 data-bookmark-label="8.2.2.1 weak_ptr constructors"><code>weak_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.smartptr.weak.const">[memory.smartptr.weak.const]</a></span></header>
+      
+    
+
+      <cxx-function para_num="1" id="memory.smartptr.weak.const.1">
+    
+    <pre><code><cxx-signature>weak_ptr(const weak_ptr&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; weak_ptr(const weak_ptr&lt;Y&gt;&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; weak_ptr(const shared_ptr&lt;Y&gt;&amp; r) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+        
+
+        <cxx-requires para_num="2" id="memory.smartptr.weak.const.2">
+    
+    <dt>Requires:</dt><dd>The second and third constructors shall not participate in the overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</dd>
+  </cxx-requires>
+
+        <cxx-effects para_num="3" id="memory.smartptr.weak.const.3">
+    
+    <dt>Effects:</dt><dd>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>weak_ptr</code> object; otherwise, constructs a <code>weak_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</dd>
+  </cxx-effects>
+
+        <cxx-postconditions para_num="4" id="memory.smartptr.weak.const.4">
+    
+    <dt>Postconditions:</dt><dd><code>use_count() == r.use_count()</code>.</dd>
+  </cxx-postconditions>
+      
+    </dl>
+  </cxx-function>
+
+    
+    </section>
+  </cxx-section>
+
+    
+    </section>
+  </cxx-section>
+
   
     </section>
   </cxx-section>
@@ -8066,24 +8376,24 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
           <ul>
-            <li>If <code>uses_allocator&lt;T1,memory_resource*&gt;::value</code> is <code>false</code> and
-            <code>is_constructible&lt;T,Args1...&gt;::value</code> is <code>true</code>, then <code>xprime</code> is <code>x</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*&gt;::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T1,allocator_arg_t,memory_resource*,Args1...&gt;::value</code> is <code>true</code>,
+            <li>If <code>uses_allocator_v&lt;T1,memory_resource*&gt;</code> is <code>false</code> and
+            <code>is_constructible_v&lt;T,Args1...&gt;</code> is <code>true</code>, then <code>xprime</code> is <code>x</code>.</li>
+            <li>Otherwise, if <code>uses_allocator_v&lt;T1,memory_resource*&gt;</code> is <code>true</code> and
+            <code>is_constructible_v&lt;T1,allocator_arg_t,memory_resource*,Args1...&gt;</code> is <code>true</code>,
             then <code>xprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this-&gt;resource()), std::move(x))</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T1,memory_resource*&gt;::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T1,Args1...,memory_resource*&gt;::value</code> is <code>true</code>,
+            <li>Otherwise, if <code>uses_allocator_v&lt;T1,memory_resource*&gt;</code> is <code>true</code> and
+            <code>is_constructible_v&lt;T1,Args1...,memory_resource*&gt;</code> is <code>true</code>,
             then <code>xprime</code> is <code>tuple_cat(std::move(x), make_tuple(this-&gt;resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
           and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
           <ul>
-            <li>If <code>uses_allocator&lt;T2,memory_resource*&gt;::value</code> is <code>false</code> and
-            <code>is_constructible&lt;T,Args2...&gt;::value</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*&gt;::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T2,allocator_arg_t,memory_resource*,Args2...&gt;::value</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this-&gt;resource()), std::move(y))</code>.</li>
-            <li>Otherwise, if <code>uses_allocator&lt;T2,memory_resource*&gt;::value</code> is <code>true</code> and
-            <code>is_constructible&lt;T2,Args2...,memory_resource*&gt;::value</code> is <code>true</code>, then
+            <li>If <code>uses_allocator_v&lt;T2,memory_resource*&gt;</code> is <code>false</code> and
+            <code>is_constructible_v&lt;T,Args2...&gt;</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
+            <li>Otherwise, if <code>uses_allocator_v&lt;T2,memory_resource*&gt;</code> is <code>true</code> and
+            <code>is_constructible_v&lt;T2,allocator_arg_t,memory_resource*,Args2...&gt;</code> is <code>true</code>, then <code>yprime</code> is <code>tuple_cat(make_tuple(allocator_arg, this-&gt;resource()), std::move(y))</code>.</li>
+            <li>Otherwise, if <code>uses_allocator_v&lt;T2,memory_resource*&gt;</code> is <code>true</code> and
+            <code>is_constructible_v&lt;T2,Args2...,memory_resource*&gt;</code> is <code>true</code>, then
             <code>yprime</code> is <code>tuple_cat(std::move(y), make_tuple(this-&gt;resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
