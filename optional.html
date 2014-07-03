@@ -356,7 +356,6 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class U, class... Args&gt; <wbr/>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
-        <cxx-requires><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
