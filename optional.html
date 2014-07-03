@@ -440,8 +440,8 @@ private:
         <cxx-signature>constexpr T operator*() const&amp;&amp;;</cxx-signature>
 
         <cxx-requires><code>*this</code> contains a value</cxx-requires>
-        <cxx-effects>equivalent to <code>return std::move(*<var>val</var>);</code></cxx-effects>
-        <cxx-remarks>if <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
+        <cxx-effects>Equivalent to <code>return std::move(*<var>val</var>);</code></cxx-effects>
+        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -455,21 +455,21 @@ private:
         <cxx-signature>constexpr T const&amp; value() const&amp;;</cxx-signature>
         <cxx-signature>constexpr T&amp; value() &amp;;</cxx-signature>
 
-        <cxx-effects>equivalent to <code>return bool(*this) ? *val : throw bad_optional_access();</code></cxx-returns>
+        <cxx-effects>Equivalent to <code>return bool(*this) ? *val : throw bad_optional_access();</code></cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>constexpr T value() &amp;&amp;;</cxx-signature>
         <cxx-signature>constexpr T value() const&amp;&amp;</cxx-signature>
 
-        <cxx-effects>equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></cxx-effects>
+        <cxx-effects>Equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></cxx-effects>
         <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
 
-        <cxx-effects>equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
+        <cxx-effects>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
         <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <wbr/>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
@@ -477,7 +477,7 @@ private:
       <cxx-function>
         <cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
 
-        <cxx-effects>equivalent to <code>return bool(*this) ? <wbr/>std::move(**this) : <wbr/>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
+        <cxx-effects>Equivalent to <code>return bool(*this) ? <wbr/>std::move(**this) : <wbr/>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
         <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <wbr/>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
@@ -714,7 +714,7 @@ public:
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; void swap(optional&lt;T&gt;&amp; <var>x</var>, optional&lt;T&gt;&amp; <var>y</var>) noexcept(noexcept(<var>x</var>.swap(<var>y</var>)));</cxx-signature>
 
-      <cxx-effects>calls <code><var>x</var>.swap(<var>y</var>)</code>.</cxx-effects>
+      <cxx-effects>Calls <code><var>x</var>.swap(<var>y</var>)</code>.</cxx-effects>
     </cxx-function>
 
     <cxx-function>
@@ -730,7 +730,7 @@ public:
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;</cxx-signature>
 
-      <cxx-requires>the template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>).
+      <cxx-requires>The template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>).
       The template specialization <code>hash&lt;optional&lt;T&gt;&gt;</code> shall meet the requirements of class template <code>hash</code>.
       For an object <code><var>o</var></code> of type <code>optional&lt;T&gt;</code>, if <code>bool(<var>o</var>) == true</code>,
       <code>hash&lt;optional&lt;T&gt;&gt;()(<var>o</var>)</code> shall evaluate to the same value as <code>hash&lt;T&gt;()(*<var>o</var>)</code>;

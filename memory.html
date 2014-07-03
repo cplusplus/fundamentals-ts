@@ -424,7 +424,7 @@ inline namespace fundamentals_v1 {
       <cxx-function>
         <cxx-signature>element_type* get() const noexcept;</cxx-signature>
 
-        <cxx-returns>the stored pointer.</cxx-returns>
+        <cxx-returns>The stored pointer.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
@@ -760,11 +760,11 @@ protected:
       <cxx-function>
         <cxx-signature>virtual void* do_allocate(size_t bytes, size_t alignment) = 0;</cxx-signature>
 
-        <cxx-requires>alignment shall be a power of two.</cxx-requires>
+        <cxx-requires>Alignment shall be a power of two.</cxx-requires>
         <cxx-returns>A derived class shall implement this function to return a pointer to allocated storage (<cxx-ref in="cxx" to="basic.stc.dynamic.deallocation"></cxx-ref>) with a size of at least <code>bytes</code>.
         The returned storage is aligned to the specified alignment, if such alignment is supported;
         otherwise it is aligned to <code>max_align</code>.</cxx-returns>
-        <cxx-throws>a derived class implementation shall throw an appropriate exception if it is unable to allocate memory with the requested size and alignment.</cxx-throws>
+        <cxx-throws>A derived class implementation shall throw an appropriate exception if it is unable to allocate memory with the requested size and alignment.</cxx-throws>
       </cxx-function>
 
       <cxx-function>
@@ -874,14 +874,14 @@ public:
 
         <cxx-requires><code>r</code> is non-null.</cxx-requires>
         <cxx-effects>Sets <code>m_resource</code> to <code>r</code>.</cxx-effects>
-        <cxx-throws>nothing</cxx-throws>
+        <cxx-throws>Nothing</cxx-throws>
         <cxx-notes>This constructor provides an implicit conversion from <code>memory_resource*</code>.</cxx-notes>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class U>
 polymorphic_allocator(const polymorphic_allocator&lt;U>& other) noexcept;</cxx-signature>
-        <cxx-effects>sets <code>m_resource</code> to <code>other.resource()</code>.</cxx-effects>
+        <cxx-effects>Sets <code>m_resource</code> to <code>other.resource()</code>.</cxx-effects>
       </cxx-function>
     </cxx-section>
 
@@ -988,7 +988,7 @@ void destroy(T* p);</cxx-signature>
 
       <cxx-function>
         <cxx-signature>memory_resource* resource() const;</cxx-signature>
-        <cxx-returns>m_resource.</cxx-returns>
+        <cxx-returns><code>m_resource</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
 
@@ -1301,7 +1301,7 @@ protected:
       <cxx-function>
         <cxx-signature>virtual ~synchronized_pool_resource();</cxx-signature>
         <cxx-signature>virtual ~unsynchronized_pool_resource();</cxx-signature>
-        <cxx-effects>calls <code>this->release()</code>.</cxx-effects>
+        <cxx-effects>Calls <code>this->release()</code>.</cxx-effects>
       </cxx-function>
     </cxx-section>
 
@@ -1470,7 +1470,7 @@ protected:
 
       <cxx-function>
         <cxx-signature>memory_resource* upstream_resource() const;</cxx-signature>
-        <cxx-returns>the value of <code>upstream_rsrc</code>.</cxx-returns>
+        <cxx-returns>The value of <code>upstream_rsrc</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
