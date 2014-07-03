@@ -88,21 +88,6 @@ namespace std {
     <p>A program that necessitates the instantiation of template <code>optional</code> for a reference type, or for possibly cv-qualified types <code>in_place_t</code> or <code>nullopt_t</code> is ill-formed.</p>
   </cxx-section>
 
-  <cxx-section id="optional.defs">
-    <h1>Definitions</h1>
-
-    <p>An instance of <code>optional&lt;T&gt;</code> is said to be <dfn>disengaged</dfn> if:</p>
-    <ul>
-      <li>it default-initialized; or</li>
-      <li>it is initialized with a value of type <code>nullopt_t</code> or with a disengaged optional object of type <code>optional&lt;T&gt;</code>; or</li>
-      <li>a value of type <code>nullopt_t</code> or a disengaged optional object of type <code>optional&lt;T&gt;</code> is assigned to it.</li>
-    </ul>
-
-
-    <p>An instance of <code>optional&lt;T&gt;</code> is said to be <dfn>engaged</dfn> if it is not disengaged.
-    </p>
-  </cxx-section>
-
   <cxx-section id="optional.object">
     <h1><code>optional</code> for object types</h1>
 
