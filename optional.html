@@ -556,11 +556,11 @@ public:
 
       <cxx-requires><code>*<var>x</var> &lt; *<var>y</var></code> shall be well-formed
       and its result shall be convertible to <code>bool</code>.</cxx-requires>
-      <cxx-returns>If <code>(!<var>y</var>)</code>, <code>false</code>;
-      otherwise, if <code>(!<var>x</var>)</code>, <code>true</code>;
+      <cxx-returns>If <code>!<var>y</var></code>, <code>false</code>;
+      otherwise, if <code>!<var>x</var></code>, <code>true</code>;
       otherwise <code>*<var>x</var> &lt; *<var>y</var></code>.</cxx-returns>
       <cxx-remarks>Specializations of this function template,
-      for which the expression <code>*<var>x</var> &lt; *<var>y</var></code> is a core constant expression,
+      for which <code>*<var>x</var> &lt; *<var>y</var></code> is a core constant expression,
       shall be <code>constexpr</code> functions.</cxx-remarks>
     </cxx-function>
 
