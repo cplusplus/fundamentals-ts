@@ -14,11 +14,11 @@
     "polymer": "Polymer/polymer#0.2.4",
     "core-ajax": "Polymer/core-ajax#0.2.4"
   },
-  "_release": "8760101998",
+  "_release": "cae6695fcc",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "876010199861d8d3717af16fe380681a28ffd76b"
+    "commit": "cae6695fcce6831d83afecc937a5708420049ccd"
   },
   "_source": "git://github.com/cplusplus/html-doc-framework.git",
   "_target": "master",

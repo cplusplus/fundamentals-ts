@@ -536,6 +536,10 @@ pre {
     margin-bottom: .5em;
 }
 
+*   wbr::after {
+    white-space: normal;
+    content: '\200B';
+}
 *   code {
     /* Make inline code avoid line wraps unless we override it with <wbr>. */
     white-space: nowrap;
@@ -842,31 +846,27 @@ pre {
         
       </li>
             
-              <li><span class="marker">5.3</span><a href="#optional.defs">Definitions</a>
-        
-      </li>
-            
-              <li><span class="marker">5.4</span><a href="#optional.object">optional for object types</a>
+              <li><span class="marker">5.3</span><a href="#optional.object">optional for object types</a>
         
           <ol>
             
-              <li><span class="marker">5.4.1</span><a href="#optional.object.ctor">Constructors</a>
+              <li><span class="marker">5.3.1</span><a href="#optional.object.ctor">Constructors</a>
         
       </li>
             
-              <li><span class="marker">5.4.2</span><a href="#optional.object.dtor">Destructor</a>
+              <li><span class="marker">5.3.2</span><a href="#optional.object.dtor">Destructor</a>
         
       </li>
             
-              <li><span class="marker">5.4.3</span><a href="#optional.object.assign">Assignment</a>
+              <li><span class="marker">5.3.3</span><a href="#optional.object.assign">Assignment</a>
         
       </li>
             
-              <li><span class="marker">5.4.4</span><a href="#optional.object.swap">Swap</a>
+              <li><span class="marker">5.3.4</span><a href="#optional.object.swap">Swap</a>
         
       </li>
             
-              <li><span class="marker">5.4.5</span><a href="#optional.object.observe">Observers</a>
+              <li><span class="marker">5.3.5</span><a href="#optional.object.observe">Observers</a>
         
       </li>
             
@@ -874,35 +874,35 @@ pre {
         
       </li>
             
-              <li><span class="marker">5.5</span><a href="#optional.inplace">In-place construction</a>
+              <li><span class="marker">5.4</span><a href="#optional.inplace">In-place construction</a>
         
       </li>
             
-              <li><span class="marker">5.6</span><a href="#optional.nullopt">No-value state indicator</a>
+              <li><span class="marker">5.5</span><a href="#optional.nullopt">No-value state indicator</a>
         
       </li>
             
-              <li><span class="marker">5.7</span><a href="#optional.bad_optional_access">Class bad_optional_access</a>
+              <li><span class="marker">5.6</span><a href="#optional.bad_optional_access">Class bad_optional_access</a>
         
       </li>
             
-              <li><span class="marker">5.8</span><a href="#optional.relops">Relational operators</a>
+              <li><span class="marker">5.7</span><a href="#optional.relops">Relational operators</a>
         
       </li>
             
-              <li><span class="marker">5.9</span><a href="#optional.nullops">Comparison with nullopt</a>
+              <li><span class="marker">5.8</span><a href="#optional.nullops">Comparison with nullopt</a>
         
       </li>
             
-              <li><span class="marker">5.10</span><a href="#optional.comp_with_t">Comparison with T</a>
+              <li><span class="marker">5.9</span><a href="#optional.comp_with_t">Comparison with T</a>
         
       </li>
             
-              <li><span class="marker">5.11</span><a href="#optional.specalg">Specialized algorithms</a>
+              <li><span class="marker">5.10</span><a href="#optional.specalg">Specialized algorithms</a>
         
       </li>
             
-              <li><span class="marker">5.12</span><a href="#optional.hash">Hash support</a>
+              <li><span class="marker">5.11</span><a href="#optional.hash">Hash support</a>
         
       </li>
             
@@ -1657,7 +1657,7 @@ pre {
         <td><cxx-ref to="memory.smartptr"><a title="memory.smartptr" href="#memory.smartptr">8.2</a></cxx-ref></td>
         <td><code>shared_ptr_arrays</code></td>
         <td>201406</td>
-        <td><code>&lt;memory&gt;</code></td>
+        <td><code>&lt;experimental/memory&gt;</code></td>
       </tr>
       <tr>
         <td>N3916</td>
@@ -2203,8 +2203,8 @@ inline namespace fundamentals_v1 {
         </thead>
         <tbody><tr>
           <td>
-            <code>template &lt;class Fn, class... ArgTypes&gt;
-            <wbr>struct raw_invocation_type&lt;<wbr>Fn(ArgTypes...)&gt;;</code>
+            <code>template &lt;class Fn, class... ArgTypes&gt;<br>
+            struct raw_invocation_type&lt;<wbr>Fn(ArgTypes...)&gt;;</code>
           </td>
           <td>
             <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
@@ -2217,8 +2217,8 @@ inline namespace fundamentals_v1 {
         </tr>
         <tr>
           <td>
-            <code>template &lt;class Fn, class... ArgTypes&gt;
-            <wbr>struct invocation_type&lt;<wbr>Fn(ArgTypes...)&gt;;</code>
+            <code>template &lt;class Fn, class... ArgTypes&gt;<br>
+            struct invocation_type&lt;<wbr>Fn(ArgTypes...)&gt;;</code>
           </td>
           <td>
             <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
@@ -3211,21 +3211,21 @@ make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessI
   namespace experimental {
   inline namespace fundamentals_v1 {
 
-    <cxx-ref insynopsis="" to="optional.object">// <i><a title="optional.object" href="#optional.object">5.4</a>, optional for object types</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.object">// <i><a title="optional.object" href="#optional.object">5.3</a>, optional for object types</i></cxx-ref>
     template &lt;class T&gt; class optional;
 
-    <cxx-ref insynopsis="" to="optional.inplace">// <i><a title="optional.inplace" href="#optional.inplace">5.5</a>, In-place construction</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.inplace">// <i><a title="optional.inplace" href="#optional.inplace">5.4</a>, In-place construction</i></cxx-ref>
     struct in_place_t{};
     constexpr in_place_t in_place{};
 
-    <cxx-ref insynopsis="" to="optional.nullopt">// <i><a title="optional.nullopt" href="#optional.nullopt">5.6</a>, No-value state indicator</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.nullopt">// <i><a title="optional.nullopt" href="#optional.nullopt">5.5</a>, No-value state indicator</i></cxx-ref>
     struct nullopt_t{<em>see below</em>};
     constexpr nullopt_t nullopt(<em>unspecified</em>);
 
-    <cxx-ref insynopsis="" to="optional.bad_optional_access">// <i><a title="optional.bad_optional_access" href="#optional.bad_optional_access">5.7</a>, Class bad_optional_access</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.bad_optional_access">// <i><a title="optional.bad_optional_access" href="#optional.bad_optional_access">5.6</a>, Class bad_optional_access</i></cxx-ref>
     class bad_optional_access;
 
-    <cxx-ref insynopsis="" to="optional.relops">// <i><a title="optional.relops" href="#optional.relops">5.8</a>, Relational operators</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.relops">// <i><a title="optional.relops" href="#optional.relops">5.7</a>, Relational operators</i></cxx-ref>
     template &lt;class T&gt;
       constexpr bool operator==(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
     template &lt;class T&gt;
@@ -3239,7 +3239,7 @@ make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessI
     template &lt;class T&gt;
       constexpr bool operator&gt;=(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
 
-    <cxx-ref insynopsis="" to="optional.nullops">// <i><a title="optional.nullops" href="#optional.nullops">5.9</a>, Comparison with nullopt</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.nullops">// <i><a title="optional.nullops" href="#optional.nullops">5.8</a>, Comparison with nullopt</i></cxx-ref>
     template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
     template &lt;class T&gt; constexpr bool operator==(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
     template &lt;class T&gt; constexpr bool operator!=(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
@@ -3253,7 +3253,7 @@ make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessI
     template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
     template &lt;class T&gt; constexpr bool operator&gt;=(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
 
-    <cxx-ref insynopsis="" to="optional.comp_with_t">// <i><a title="optional.comp_with_t" href="#optional.comp_with_t">5.10</a>, Comparison with T</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.comp_with_t">// <i><a title="optional.comp_with_t" href="#optional.comp_with_t">5.9</a>, Comparison with T</i></cxx-ref>
     template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp;, const T&amp;);
     template &lt;class T&gt; constexpr bool operator==(const T&amp;, const optional&lt;T&gt;&amp;);
     template &lt;class T&gt; constexpr bool operator!=(const optional&lt;T&gt;&amp;, const T&amp;);
@@ -3267,14 +3267,14 @@ make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessI
     template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp;, const T&amp;);
     template &lt;class T&gt; constexpr bool operator&gt;=(const T&amp;, const optional&lt;T&gt;&amp;);
 
-    <cxx-ref insynopsis="" to="optional.specalg">// <i><a title="optional.specalg" href="#optional.specalg">5.11</a>, Specialized algorithms</i></cxx-ref>
+    <cxx-ref insynopsis="" to="optional.specalg">// <i><a title="optional.specalg" href="#optional.specalg">5.10</a>, Specialized algorithms</i></cxx-ref>
     template &lt;class T&gt; void swap(optional&lt;T&gt;&amp;, optional&lt;T&gt;&amp;) noexcept(<em>see below</em>);
     template &lt;class T&gt; constexpr optional&lt;<em>see below</em>&gt; make_optional(T&amp;&amp;);
 
   } // <i>namespace fundamentals_v1</i>
   } // <i>namespace experimental</i>
 
-  <cxx-ref insynopsis="" to="optional.hash">// <i><a title="optional.hash" href="#optional.hash">5.12</a>, Hash support</i></cxx-ref>
+  <cxx-ref insynopsis="" to="optional.hash">// <i><a title="optional.hash" href="#optional.hash">5.11</a>, Hash support</i></cxx-ref>
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;
 
@@ -3286,33 +3286,11 @@ make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessI
     </section>
   </cxx-section>
 
-  <cxx-section id="optional.defs">
-    
-
-    <section>
-      <header><span class="section-number">5.3</span> <h1 data-bookmark-label="5.3 Definitions">Definitions</h1> <span style="float:right"><a href="#optional.defs">[optional.defs]</a></span></header>
-      
-    
-
-    <p para_num="1" id="optional.defs.1">An instance of <code>optional&lt;T&gt;</code> is said to be <dfn>disengaged</dfn> if:</p>
-    <ul>
-      <li>it default-initialized; or</li>
-      <li>it is initialized with a value of type <code>nullopt_t</code> or with a disengaged optional object of type <code>optional&lt;T&gt;</code>; or</li>
-      <li>a value of type <code>nullopt_t</code> or a disengaged optional object of type <code>optional&lt;T&gt;</code> is assigned to it.</li>
-    </ul>
-
-
-    <p para_num="2" id="optional.defs.2">An instance of <code>optional&lt;T&gt;</code> is said to be <dfn>engaged</dfn> if it is not disengaged.
-    </p>
-  
-    </section>
-  </cxx-section>
-
   <cxx-section id="optional.object">
     
 
     <section>
-      <header><span class="section-number">5.4</span> <h1 data-bookmark-label="5.4 optional for object types"><code>optional</code> for object types</h1> <span style="float:right"><a href="#optional.object">[optional.object]</a></span></header>
+      <header><span class="section-number">5.3</span> <h1 data-bookmark-label="5.3 optional for object types"><code>optional</code> for object types</h1> <span style="float:right"><a href="#optional.object">[optional.object]</a></span></header>
       
     
 
@@ -3322,7 +3300,7 @@ class optional
 public:
   typedef T value_type;
 
-  <cxx-ref insynopsis="" to="optional.object.ctor">// <i><a title="optional.object.ctor" href="#optional.object.ctor">5.4.1</a>, Constructors</i></cxx-ref>
+  <cxx-ref insynopsis="" to="optional.object.ctor">// <i><a title="optional.object.ctor" href="#optional.object.ctor">5.3.1</a>, Constructors</i></cxx-ref>
   constexpr optional() noexcept;
   constexpr optional(nullopt_t) noexcept;
   optional(const optional&amp;);
@@ -3333,10 +3311,10 @@ public:
   template &lt;class U, class... Args&gt;
     constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
 
-  <cxx-ref insynopsis="" to="optional.object.dtor">// <i><a title="optional.object.dtor" href="#optional.object.dtor">5.4.2</a>, Destructor</i></cxx-ref>
+  <cxx-ref insynopsis="" to="optional.object.dtor">// <i><a title="optional.object.dtor" href="#optional.object.dtor">5.3.2</a>, Destructor</i></cxx-ref>
   ~optional();
 
-  <cxx-ref insynopsis="" to="optional.object.assign">// <i><a title="optional.object.assign" href="#optional.object.assign">5.4.3</a>, Assignment</i></cxx-ref>
+  <cxx-ref insynopsis="" to="optional.object.assign">// <i><a title="optional.object.assign" href="#optional.object.assign">5.3.3</a>, Assignment</i></cxx-ref>
   optional&amp; operator=(nullopt_t) noexcept;
   optional&amp; operator=(const optional&amp;);
   optional&amp; operator=(optional&amp;&amp;) noexcept(<em>see below</em>);
@@ -3345,10 +3323,10 @@ public:
   template &lt;class U, class... Args&gt;
     void emplace(initializer_list&lt;U&gt;, Args&amp;&amp;...);
 
-  <cxx-ref insynopsis="" to="optional.object.swap">// <i><a title="optional.object.swap" href="#optional.object.swap">5.4.4</a>, Swap</i></cxx-ref>
+  <cxx-ref insynopsis="" to="optional.object.swap">// <i><a title="optional.object.swap" href="#optional.object.swap">5.3.4</a>, Swap</i></cxx-ref>
   void swap(optional&amp;) noexcept(<em>see below</em>);
 
-  <cxx-ref insynopsis="" to="optional.object.observe">// <i><a title="optional.object.observe" href="#optional.object.observe">5.4.5</a>, Observers</i></cxx-ref>
+  <cxx-ref insynopsis="" to="optional.object.observe">// <i><a title="optional.object.observe" href="#optional.object.observe">5.3.5</a>, Observers</i></cxx-ref>
   constexpr T const* operator -&gt;() const;
   constexpr T* operator -&gt;();
   constexpr T const&amp; operator *() const&amp;;
@@ -3387,7 +3365,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.4.1</span> <h1 data-bookmark-label="5.4.1 Constructors">Constructors</h1> <span style="float:right"><a href="#optional.object.ctor">[optional.object.ctor]</a></span></header>
+      <header><span class="section-number">5.3.1</span> <h1 data-bookmark-label="5.3.1 Constructors">Constructors</h1> <span style="float:right"><a href="#optional.object.ctor">[optional.object.ctor]</a></span></header>
       
       
 
@@ -3612,7 +3590,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.4.2</span> <h1 data-bookmark-label="5.4.2 Destructor">Destructor</h1> <span style="float:right"><a href="#optional.object.dtor">[optional.object.dtor]</a></span></header>
+      <header><span class="section-number">5.3.2</span> <h1 data-bookmark-label="5.3.2 Destructor">Destructor</h1> <span style="float:right"><a href="#optional.object.dtor">[optional.object.dtor]</a></span></header>
       
       
 
@@ -3643,7 +3621,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.4.3</span> <h1 data-bookmark-label="5.4.3 Assignment">Assignment</h1> <span style="float:right"><a href="#optional.object.assign">[optional.object.assign]</a></span></header>
+      <header><span class="section-number">5.3.3</span> <h1 data-bookmark-label="5.3.3 Assignment">Assignment</h1> <span style="float:right"><a href="#optional.object.assign">[optional.object.assign]</a></span></header>
       
       
 
@@ -3814,7 +3792,7 @@ private:
         <cxx-remarks para_num="22" id="optional.object.assign.22">
     
     <dt>Remarks:</dt><dd>
-          <p>If any exception is thrown, the the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
+          <p>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
           <p>The function shall not participate in overload resolution unless
           <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>true</code>.</p>
         </dd>
@@ -3867,23 +3845,19 @@ private:
       
         
 
-        <cxx-requires para_num="31" id="optional.object.assign.31">
-    
-    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</dd>
-  </cxx-requires>
-        <cxx-effects para_num="32" id="optional.object.assign.32">
+        <cxx-effects para_num="31" id="optional.object.assign.31">
     
     <dt>Effects:</dt><dd>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</dd>
   </cxx-effects>
-        <cxx-postconditions para_num="33" id="optional.object.assign.33">
+        <cxx-postconditions para_num="32" id="optional.object.assign.32">
     
     <dt>Postconditions:</dt><dd><code>*this</code> contains a value.</dd>
   </cxx-postconditions>
-        <cxx-throws para_num="34" id="optional.object.assign.34">
+        <cxx-throws para_num="33" id="optional.object.assign.33">
     
     <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
   </cxx-throws>
-        <cxx-remarks para_num="35" id="optional.object.assign.35">
+        <cxx-remarks para_num="34" id="optional.object.assign.34">
     
     <dt>Remarks:</dt><dd>
           <p>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> does not contain a value, and the previous <code><var>*val</var></code> (if any) has been destroyed.</p>
@@ -3901,7 +3875,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.4.4</span> <h1 data-bookmark-label="5.4.4 Swap">Swap</h1> <span style="float:right"><a href="#optional.object.swap">[optional.object.swap]</a></span></header>
+      <header><span class="section-number">5.3.4</span> <h1 data-bookmark-label="5.3.4 Swap">Swap</h1> <span style="float:right"><a href="#optional.object.swap">[optional.object.swap]</a></span></header>
       
       
 
@@ -3973,7 +3947,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.4.5</span> <h1 data-bookmark-label="5.4.5 Observers">Observers</h1> <span style="float:right"><a href="#optional.object.observe">[optional.object.observe]</a></span></header>
+      <header><span class="section-number">5.3.5</span> <h1 data-bookmark-label="5.3.5 Observers">Observers</h1> <span style="float:right"><a href="#optional.object.observe">[optional.object.observe]</a></span></header>
       
       
 
@@ -4050,11 +4024,11 @@ private:
   </cxx-requires>
         <cxx-effects para_num="13" id="optional.object.observe.13">
     
-    <dt>Effects:</dt><dd>equivalent to <code>return std::move(*<var>val</var>);</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return std::move(*<var>val</var>);</code></dd>
   </cxx-effects>
         <cxx-remarks para_num="14" id="optional.object.observe.14">
     
-    <dt>Remarks:</dt><dd>if <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</dd>
+    <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</dd>
   </cxx-remarks>
       
     </dl>
@@ -4091,7 +4065,7 @@ private:
 
         <cxx-effects para_num="19" id="optional.object.observe.19">
     
-    <dt>Effects:</dt><dd>equivalent to <code>return bool(*this) ? *val : throw bad_optional_access();</code>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? *val : throw bad_optional_access();</code>
       </dd>
   </cxx-effects>
     </dl>
@@ -4108,7 +4082,7 @@ private:
 
         <cxx-effects para_num="21" id="optional.object.observe.21">
     
-    <dt>Effects:</dt><dd>equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></dd>
   </cxx-effects>
         <cxx-remarks para_num="22" id="optional.object.observe.22">
     
@@ -4128,7 +4102,7 @@ private:
 
         <cxx-effects para_num="24" id="optional.object.observe.24">
     
-    <dt>Effects:</dt><dd>equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
   </cxx-effects>
         <cxx-remarks para_num="25" id="optional.object.observe.25">
     
@@ -4149,7 +4123,7 @@ private:
 
         <cxx-effects para_num="27" id="optional.object.observe.27">
     
-    <dt>Effects:</dt><dd>equivalent to <code>return bool(*this) ? <wbr>std::move(**this) : <wbr>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <wbr>std::move(**this) : <wbr>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
   </cxx-effects>
         <cxx-remarks para_num="28" id="optional.object.observe.28">
     
@@ -4170,7 +4144,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.5</span> <h1 data-bookmark-label="5.5 In-place construction">In-place construction</h1> <span style="float:right"><a href="#optional.inplace">[optional.inplace]</a></span></header>
+      <header><span class="section-number">5.4</span> <h1 data-bookmark-label="5.4 In-place construction">In-place construction</h1> <span style="float:right"><a href="#optional.inplace">[optional.inplace]</a></span></header>
       
     
 
@@ -4199,7 +4173,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.6</span> <h1 data-bookmark-label="5.6 No-value state indicator">No-value state indicator</h1> <span style="float:right"><a href="#optional.nullopt">[optional.nullopt]</a></span></header>
+      <header><span class="section-number">5.5</span> <h1 data-bookmark-label="5.5 No-value state indicator">No-value state indicator</h1> <span style="float:right"><a href="#optional.nullopt">[optional.nullopt]</a></span></header>
       
     
 
@@ -4229,7 +4203,7 @@ private:
     
 
     <section>
-      <header><span class="section-number">5.7</span> <h1 data-bookmark-label="5.7 Class bad_optional_access">Class <code>bad_optional_access</code></h1> <span style="float:right"><a href="#optional.bad_optional_access">[optional.bad_optional_access]</a></span></header>
+      <header><span class="section-number">5.6</span> <h1 data-bookmark-label="5.6 Class bad_optional_access">Class <code>bad_optional_access</code></h1> <span style="float:right"><a href="#optional.bad_optional_access">[optional.bad_optional_access]</a></span></header>
       
     
 
@@ -4264,7 +4238,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">5.8</span> <h1 data-bookmark-label="5.8 Relational operators">Relational operators</h1> <span style="float:right"><a href="#optional.relops">[optional.relops]</a></span></header>
+      <header><span class="section-number">5.7</span> <h1 data-bookmark-label="5.7 Relational operators">Relational operators</h1> <span style="float:right"><a href="#optional.relops">[optional.relops]</a></span></header>
       
     
 
@@ -4324,14 +4298,14 @@ public:
   </cxx-requires>
       <cxx-returns para_num="9" id="optional.relops.9">
     
-    <dt>Returns:</dt><dd>If <code>(!<var>y</var>)</code>, <code>false</code>;
-      otherwise, if <code>(!<var>x</var>)</code>, <code>true</code>;
+    <dt>Returns:</dt><dd>If <code>!<var>y</var></code>, <code>false</code>;
+      otherwise, if <code>!<var>x</var></code>, <code>true</code>;
       otherwise <code>*<var>x</var> &lt; *<var>y</var></code>.</dd>
   </cxx-returns>
       <cxx-remarks para_num="10" id="optional.relops.10">
     
     <dt>Remarks:</dt><dd>Specializations of this function template,
-      for which the expression <code>*<var>x</var> &lt; *<var>y</var></code> is a core constant expression,
+      for which <code>*<var>x</var> &lt; *<var>y</var></code> is a core constant expression,
       shall be <code>constexpr</code> functions.</dd>
   </cxx-remarks>
     
@@ -4391,7 +4365,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">5.9</span> <h1 data-bookmark-label="5.9 Comparison with nullopt">Comparison with <code>nullopt</code></h1> <span style="float:right"><a href="#optional.nullops">[optional.nullops]</a></span></header>
+      <header><span class="section-number">5.8</span> <h1 data-bookmark-label="5.8 Comparison with nullopt">Comparison with <code>nullopt</code></h1> <span style="float:right"><a href="#optional.nullops">[optional.nullops]</a></span></header>
       
     
 
@@ -4558,7 +4532,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">5.10</span> <h1 data-bookmark-label="5.10 Comparison with T">Comparison with <code>T</code></h1> <span style="float:right"><a href="#optional.comp_with_t">[optional.comp_with_t]</a></span></header>
+      <header><span class="section-number">5.9</span> <h1 data-bookmark-label="5.9 Comparison with T">Comparison with <code>T</code></h1> <span style="float:right"><a href="#optional.comp_with_t">[optional.comp_with_t]</a></span></header>
       
     
 
@@ -4752,7 +4726,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">5.11</span> <h1 data-bookmark-label="5.11 Specialized algorithms">Specialized algorithms</h1> <span style="float:right"><a href="#optional.specalg">[optional.specalg]</a></span></header>
+      <header><span class="section-number">5.10</span> <h1 data-bookmark-label="5.10 Specialized algorithms">Specialized algorithms</h1> <span style="float:right"><a href="#optional.specalg">[optional.specalg]</a></span></header>
       
     
 
@@ -4766,7 +4740,7 @@ public:
 
       <cxx-effects para_num="2" id="optional.specalg.2">
     
-    <dt>Effects:</dt><dd>calls <code><var>x</var>.swap(<var>y</var>)</code>.</dd>
+    <dt>Effects:</dt><dd>Calls <code><var>x</var>.swap(<var>y</var>)</code>.</dd>
   </cxx-effects>
     
     </dl>
@@ -4795,7 +4769,7 @@ public:
     
 
     <section>
-      <header><span class="section-number">5.12</span> <h1 data-bookmark-label="5.12 Hash support">Hash support</h1> <span style="float:right"><a href="#optional.hash">[optional.hash]</a></span></header>
+      <header><span class="section-number">5.11</span> <h1 data-bookmark-label="5.11 Hash support">Hash support</h1> <span style="float:right"><a href="#optional.hash">[optional.hash]</a></span></header>
       
     
 
@@ -4809,7 +4783,7 @@ public:
 
       <cxx-requires para_num="2" id="optional.hash.2">
     
-    <dt>Requires:</dt><dd>the template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash">C++14 <span title="unord.hash">§20.9.12</span></cxx-ref>).
+    <dt>Requires:</dt><dd>The template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash">C++14 <span title="unord.hash">§20.9.12</span></cxx-ref>).
       The template specialization <code>hash&lt;optional&lt;T&gt;&gt;</code> shall meet the requirements of class template <code>hash</code>.
       For an object <code><var>o</var></code> of type <code>optional&lt;T&gt;</code>, if <code>bool(<var>o</var>) == true</code>,
       <code>hash&lt;optional&lt;T&gt;&gt;()(<var>o</var>)</code> shall evaluate to the same value as <code>hash&lt;T&gt;()(*<var>o</var>)</code>;
@@ -7428,7 +7402,7 @@ inline namespace fundamentals_v1 {
 
         <cxx-returns para_num="2" id="memory.smartptr.shared.obs.2">
     
-    <dt>Returns:</dt><dd>the stored pointer.</dd>
+    <dt>Returns:</dt><dd>The stored pointer.</dd>
   </cxx-returns>
       
     </dl>
@@ -7452,14 +7426,10 @@ inline namespace fundamentals_v1 {
     <dt>Returns:</dt><dd><code>*get()</code>.</dd>
   </cxx-returns>
 
-        <cxx-ednote>
+        <cxx-remarks para_num="6" id="memory.smartptr.shared.obs.6">
     
-    <aside><strong>Editor's note:</strong> Why is this a cxx-notes not a cxx-remarks? <cxx-ref in="cxx" to="util.smartptr.shared.obs">C++14 <span title="util.smartptr.shared.obs">§20.8.2.2.5</span></cxx-ref> ¶4 it's a <i>Remarks</i> element</aside>
-  </cxx-ednote>
-        <cxx-notes para_num="6" id="memory.smartptr.shared.obs.6">
-    
-    <dt>Notes:</dt><dd>When <code>T</code> is an array type or cv-qualified <code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</dd>
-  </cxx-notes>
+    <dt>Remarks:</dt><dd>When <code>T</code> is an array type or cv-qualified <code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</dd>
+  </cxx-remarks>
       
     </dl>
   </cxx-function>
@@ -8025,7 +7995,7 @@ protected:
 
         <cxx-requires para_num="2" id="memory.resource.priv.2">
     
-    <dt>Requires:</dt><dd>alignment shall be a power of two.</dd>
+    <dt>Requires:</dt><dd>Alignment shall be a power of two.</dd>
   </cxx-requires>
         <cxx-returns para_num="3" id="memory.resource.priv.3">
     
@@ -8035,7 +8005,7 @@ protected:
   </cxx-returns>
         <cxx-throws para_num="4" id="memory.resource.priv.4">
     
-    <dt>Throws:</dt><dd>a derived class implementation shall throw an appropriate exception if it is unable to allocate memory with the requested size and alignment.</dd>
+    <dt>Throws:</dt><dd>A derived class implementation shall throw an appropriate exception if it is unable to allocate memory with the requested size and alignment.</dd>
   </cxx-throws>
       
     </dl>
@@ -8248,7 +8218,7 @@ public:
   </cxx-effects>
         <cxx-throws para_num="6" id="memory.polymorphic.allocator.ctor.6">
     
-    <dt>Throws:</dt><dd>nothing</dd>
+    <dt>Throws:</dt><dd>Nothing</dd>
   </cxx-throws>
         <cxx-notes para_num="7" id="memory.polymorphic.allocator.ctor.7">
     
@@ -8268,7 +8238,7 @@ polymorphic_allocator(const polymorphic_allocator&lt;U&gt;&amp; other) noexcept;
         
         <cxx-effects para_num="9" id="memory.polymorphic.allocator.ctor.9">
     
-    <dt>Effects:</dt><dd>sets <code>m_resource</code> to <code>other.resource()</code>.</dd>
+    <dt>Effects:</dt><dd>Sets <code>m_resource</code> to <code>other.resource()</code>.</dd>
   </cxx-effects>
       
     </dl>
@@ -8510,7 +8480,7 @@ void destroy(T* p);</cxx-signature></code></pre>
         
         <cxx-returns para_num="26" id="memory.polymorphic.allocator.mem.26">
     
-    <dt>Returns:</dt><dd>m_resource.</dd>
+    <dt>Returns:</dt><dd><code>m_resource</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -9072,7 +9042,7 @@ protected:
         
         <cxx-effects para_num="6" id="memory.resource.pool.ctor.6">
     
-    <dt>Effects:</dt><dd>calls <code>this-&gt;release()</code>.</dd>
+    <dt>Effects:</dt><dd>Calls <code>this-&gt;release()</code>.</dd>
   </cxx-effects>
       
     </dl>
@@ -9417,7 +9387,7 @@ protected:
         
         <cxx-returns para_num="5" id="memory.resource.monotonic.buffer.mem.5">
     
-    <dt>Returns:</dt><dd>the value of <code>upstream_rsrc</code>.</dd>
+    <dt>Returns:</dt><dd>The value of <code>upstream_rsrc</code>.</dd>
   </cxx-returns>
       
     </dl>

@@ -83,6 +83,10 @@ pre {
     margin-bottom: .5em;
 }
 
+* /deep/ wbr::after {
+    white-space: normal;
+    content: '\200B';
+}
 * /deep/ code {
     /* Make inline code avoid line wraps unless we override it with <wbr>. */
     white-space: nowrap;
