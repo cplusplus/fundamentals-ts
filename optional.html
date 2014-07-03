@@ -336,7 +336,7 @@ private:
         <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-remarks>
-          <p>If any exception is thrown, the the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
+          <p>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
           <p>The function shall not participate in overload resolution unless
           <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>true</code>.</p>
         </cxx-remarks>
