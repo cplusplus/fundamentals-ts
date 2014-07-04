@@ -509,13 +509,6 @@ inline namespace fundamentals_v1 {
         <cxx-requires>The expression <code>reinterpret_cast&lt;T*>((U*)0)</code> shall be well formed.</cxx-requires>
         <cxx-returns><code>shared_ptr&lt;T>(r, reinterpret_cast&lt;typename shared_ptr&lt;T>::element_type*>(r.get()))</code>.</cxx-returns>
       </cxx-function>
-
-      <cxx-function>
-        <cxx-signature>template&lt;class T, class U> std::shared_ptr&lt;T> reinterpret_pointer_cast(const std::shared_ptr&lt;U>& r) noexcept;</cxx-signature>
-
-        <cxx-requires>The expression <code>reinterpret_cast&lt;T*>((U*)0)</code> shall be well formed.</cxx-requires>
-        <cxx-returns><code>std::shared_ptr&lt;T>(r, reinterpret_cast&lt;typename std::shared_ptr&lt;T>::element_type*>(r.get()))</code>.</cxx-returns>
-      </cxx-function>
     </cxx-section>
   </cxx-section>
 
