@@ -17,59 +17,135 @@ limitations under the License.
 Has children: cxx-docnum, time[pubdate], cxx-editor, cxx-revises,
 and <h1> for the title.
 
-The 'stage' attribute currently can only be "draft", but I'll extend this to
-support other TS and IS stages as we need them.
+The document stage can be set in two ways:
+  1. Add a 'cxx-draft' or 'cxx-pdts' class to the <body> element.
+  2. Set the <cxx-titlepage stage> attribute to 'draft' or 'pdts'.
+Each will be propagated to the other.
+We'll add more stages as our documents get to them.
 
 cxx-titlepage sets the document title based on its <h1> child.
 -->
 <polymer-element name="cxx-titlepage" attributes="stage">
   <template>
     <style>
-      :host { display: block; min-height: 100%; }
+      :host, .page { display: block; min-height: 100%; }
+      .page { page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em; }
       @media print {
         /* Using an exact height for printed documents works around a bug in
            Prince that breaks footnotes when the html/body height is set to
            100%. */
-        :host { height: 8.8in; }
+        .page { height: 8.8in; }
       }
 
       /* position:relative on :host makes position:absolute on its children work
          relative to :host's bounds. */
-      :host { position: relative; }
-      table { position: absolute; right: 0; top: 0; }
+      .page { position: relative; }
       table td, table th { border: none; }
-      h1 { position: absolute; top: 40%; }
-      p.warning { position: absolute; bottom: 5%; }
 
-      h1 {text-align: center;}
+      :host-context(body.cxx-draft) .header { position: absolute; right: 0; top: 0; }
+      :host-context(body.cxx-draft) h1 { position: absolute; top: 40%; text-align: center; }
+      :host-context(body.cxx-draft) p.warning { position: absolute; bottom: 5%; }
+
+      :host-context(body.cxx-pdts) .header { position: absolute; right: 0; top: 0; text-align: right; }
+      :host-context(body.cxx-pdts) .header ::content cxx-docnum { font-size: 150%; }
+      :host-context(body.cxx-pdts) .header cxx-docnum { font-size: 150%; }
+      :host-context(body.cxx-pdts) hgroup { position: absolute; top: 30%; }
+      :host-context(body.cxx-pdts) hgroup * { margin: 0; }
+      :host-context(body.cxx-pdts) hgroup h1 { font-size: 150%; font-weight: bold; }
+      :host-context(body.cxx-pdts) hgroup h2 { font-size: 100%; font-weight: normal; }
+      :host-context(body.cxx-pdts) .footer { position: absolute; left: 0; bottom: 5%; }
+      :host-context(body.cxx-pdts) figure { border: #111 solid 1px; padding: 10px; margin-left: auto; margin-right: auto; }
+      :host-context(body.cxx-pdts) figcaption { text-align: center; font-weight: bold; }
+      :host-context(body.cxx-pdts) .warning { position: absolute; bottom: 20%; }
+      :host-context(body.cxx-pdts) .copyright address { font-style: normal; margin-left: 2em; }
+      :host-context(body.cxx-pdts) .copyright address a { color: inherit; text-decoration: inherit; }
 
       th { text-align: left; vertical-align: top; }
     </style>
-    <table>
-      <template if="{{docnum}}">
-        <tr><th>Document Number:</th><td><content select="cxx-docnum"/></td></tr>
-      </template>
-      <template if="{{pubdate}}">
-        <tr><th>Date:</th><td><content select="time[pubdate]"/></td></tr>
-      </template>
-      <template if="{{revises}}">
-        <tr><th>Revises:</th><td><content select="cxx-revises"/></td></tr>
-      </template>
-      <template if="{{editor}}">
-        <tr><th>Editor:</th><td><content select="cxx-editor"/></td></tr>
-      </template>
-    </table>
-    <h1>{{stage_title}}, {{iso_title_prefix}}{{title}}</h1>
     <template if="{{stage == 'draft'}}">
-      <p class="warning"><strong>Note: this is an early draft. It’s known to be
-      incomplet and incorrekt, and it has lots of b<span
-      style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span
-      style="width:1.5em"> </span>for<span
-      style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span
-      style="position:relative; top:-0.15ex">n</span>g.</strong></p>
+      <div class="page">
+        <table class="header">
+          <template if="{{docnum}}">
+            <tr><th>Document Number:</th><td><content select="cxx-docnum"></content></td></tr>
+          </template>
+          <template if="{{pubdate}}">
+            <tr><th>Date:</th><td><content select="time[pubdate]"></content></td></tr>
+          </template>
+          <template if="{{revises}}">
+            <tr><th>Revises:</th><td><content select="cxx-revises"></content></td></tr>
+          </template>
+          <template if="{{editor}}">
+            <tr><th>Editor:</th><td><content select="cxx-editor"></content></td></tr>
+          </template>
+        </table>
+        <h1>Working Draft, {{title}}</h1>
+        <p class="warning"><strong>Note: this is an early draft. It’s known to be
+        incomplet and incorrekt, and it has lots of b<span
+        style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span
+        style="width:1.5em"> </span>for<span
+        style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span
+        style="position:relative; top:-0.15ex">n</span>g.</strong></p>
+      </div>
+    </template>
+
+    <template if="{{stage == 'pdts'}}">
+      <div class="page">
+        <div class="header">
+          <strong>ISO/IEC JTC1 SC22 WG21 <content select="cxx-docnum"/></content></strong><br/>
+          Date: <content select="time[pubdate]"></content><br/>
+          ISO/IEC PDTS <content select="cxx-project-number"></content><br/>
+          ISO/IEC JTC1 SC22<br/>
+          Secretariat: ANSI
+        </div>
+        <hgroup>
+          <h1>Programming Languages — {{title}}</h1>
+          <template if="{{title_fr}}">
+            <h2>Langages de programmation — {{title_fr}}</h2>
+          </template>
+        </hgroup>
+        <figure class="warning">
+          <figcaption>Warning</figcaption>
+          <p>This document is not an ISO International Standard. It is distributed for review and comment. It is
+          subject to change without notice and may not be referred to as an International Standard.
+          </p>
+          <p>Recipients of this draft are invited to submit, with their comments, notification of any relevant
+          patent rights of which they are aware and to provide supporting documentation.</p>
+        </figure>
+        <div class="footer">
+          Document type: Proposed Draft Technical Specification<br/>
+          Document stage: (30) Committee<br/>
+          Document language: E
+        </div>
+      </div>
+      <div class="page">
+        <figure class="copyright">
+          <figcaption>Copyright notice</figcaption>
+          <p>This ISO document is a working draft or committee draft and is copyright-protected by ISO. While
+          the reproduction of working drafts or committee drafts in any form for use by participants in the
+          ISO standards development process is permitted without prior permission from ISO, neither this
+          document nor any extract from it may be reproduced, stored or transmitted in any form for any
+          other purpose without prior written permission from ISO.</p>
+          <p>Requests for permission to reproduce this document for the purpose of selling it should be
+          addressed as shown below or to ISO’s member body in the country of the requester:</p>
+          <address>
+            ISO copyright officer<br>
+            Case postale 56, CH-1211 Geneva 20<br>
+            Tel. + 41 22 749 01 11<br>
+            Fax + 41 22 749 09 47<br>
+            E-mail <a href="mailto:copyright@iso.org">copyright@iso.org</a><br>
+            Web <a href="http://www.iso.org">www.iso.org</a>
+          </address>
+          <p>Reproduction may be subject to royalty payments or a licensing agreement.</p>
+          <p>Violators may be prosecuted.</p>
+        </figure>
+      </div>
     </template>
   </template>
   <script src="titlepage.js"></script>
+</polymer-element>
+<polymer-element name="cxx-project-number" noscript>
+  <!-- Find your project number at https://isocpp.org/std/status. -->
+  <template><content></content></template>
 </polymer-element>
 <polymer-element name="cxx-docnum" noscript>
   <template><content></content></template>

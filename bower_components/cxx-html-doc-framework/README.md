@@ -52,6 +52,10 @@ Wraps the title page of an ISO document. The title page takes a
 them) `CD`, `DTS`, `TS`, etc.  The title page recognizes several
 nested elements that describe the document.
 
+#### `<cxx-project-number>`
+
+The ISO project number for this TS or IS.  Find this on https://isocpp.org/std/status.
+
 #### `<cxx-docnum>`
 
 The D or N number for the document.

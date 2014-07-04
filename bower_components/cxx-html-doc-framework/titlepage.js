@@ -16,28 +16,63 @@ limitations under the License.
 (function() {
     Polymer('cxx-titlepage', {
         // Default properties
+        projectNumber: null,
         docnum: null,
         pubdate: null,
         editor: null,
         revises: null,
         title: null,
+        stage: null,
 
-        created: function() {
+        computeStage: function() {
+            var stages = ['draft', 'pdts'];
+            var presentStages = stages.filter(function(stage) {
+                return document.body.classList.contains('cxx-' + stage);
+            });
+            if (presentStages.length == 0) {
+                if (!this.stage) {
+                    console.error('Couldn\'t find a document stage in body.classList:', document.body.classList);
+                } else if (stages.indexOf(this.stage) == -1) {
+                    console.error('Unexpected stage: ' + this.stage);
+                } else {
+                    document.body.classList.add('cxx-' + this.stage);
+                }
+            } else if (presentStages.length > 1) {
+                console.error('Found multiple document stages in body.classList:', presentStages);
+            } else {
+                if (this.stage) {
+                    console.warn('Document stage set on both <body> ("' + presentStages[0] +
+                                 '") and <cxx-titlepage> ("' + this.stage + '")');
+                }
+                this.stage = presentStages[0];
+            }
+        },
+
+        domReady: function() {
+            this.projectNumber = this.querySelector('cxx-project-number');
             this.docnum = this.querySelector('cxx-docnum');
             this.pubdate = this.querySelector('time[pubdate]');
             this.editor = this.querySelector('cxx-editor');
             this.revises = this.querySelector('cxx-revises');
-            this.title = this.querySelector('h1').textContent;
-            this.stage = this.getAttribute('stage');
+
+            var title = this.querySelector('h1:lang(en)') || this.querySelector('h1');
+            if (title) {
+                this.title = title.textContent;
+            }
+            this.title_fr = this.querySelector('h2:lang(fr)');
+            if (this.title_fr) {
+                this.title_fr = this.title_fr.textContent;
+            }
+
+            this.computeStage();
+            var stage_suffix = '';
             if (this.stage == 'draft') {
-                this.stage_title = "Working Draft";
-            //} else if (this.stage == 'pdts') {
-            //    this.iso_title_prefix = "Information technology – Programming languages, their environments and system software interfaces – "
-            } else {
-                console.error('Unexpected stage: ' + this.stage);
+                stage_suffix = ", Working Draft";
+            } else if (this.stage == 'pdts') {
+                stage_suffix = ", PDTS"
             }
             if (this.title) {
-                document.title = this.title + ', ' + this.stage_title;
+                document.title = this.title + stage_suffix;
             }
         },
     })

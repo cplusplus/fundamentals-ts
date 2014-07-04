@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -355,46 +355,98 @@ cxx-toc li li li li .marker {
 	display: none;
 }cxx-foreign-index {
 	display: none;
-}cxx-titlepage {
+}cxx-titlepage, cxx-titlepage .page {
 	display: block; min-height: 100%;
 }
 
+cxx-titlepage .page {
+	page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em;
+}
+
 @media print {
-cxx-titlepage {
+cxx-titlepage .page {
 	height: 8.8in;
 }
 
 
 }
 
-cxx-titlepage  {
+cxx-titlepage .page {
 	position: relative;
-}
-
-cxx-titlepage table {
-	position: absolute; right: 0px; top: 0px;
 }
 
 cxx-titlepage table td, cxx-titlepage table th {
 	border: medium none;
 }
 
-cxx-titlepage h1 {
-	position: absolute; top: 40%;
+cxx-titlepagebody.cxx-draft .header, body.cxx-draft cxx-titlepage .header {
+	position: absolute; right: 0px; top: 0px;
 }
 
-cxx-titlepage p.warning {
+cxx-titlepagebody.cxx-draft h1, body.cxx-draft cxx-titlepage h1 {
+	position: absolute; top: 40%; text-align: center;
+}
+
+cxx-titlepagebody.cxx-draft p.warning, body.cxx-draft cxx-titlepage p.warning {
 	position: absolute; bottom: 5%;
 }
 
-cxx-titlepage h1 {
-	text-align: center;
+cxx-titlepagebody.cxx-pdts .header, body.cxx-pdts cxx-titlepage .header {
+	position: absolute; right: 0px; top: 0px; text-align: right;
+}
+
+cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum {
+	font-size: 150%;
+}
+
+cxx-titlepagebody.cxx-pdts hgroup, body.cxx-pdts cxx-titlepage hgroup {
+	position: absolute; top: 30%;
+}
+
+cxx-titlepagebody.cxx-pdts hgroup *, body.cxx-pdts cxx-titlepage hgroup * {
+	margin: 0px;
+}
+
+cxx-titlepagebody.cxx-pdts hgroup h1, body.cxx-pdts cxx-titlepage hgroup h1 {
+	font-size: 150%; font-weight: bold;
+}
+
+cxx-titlepagebody.cxx-pdts hgroup h2, body.cxx-pdts cxx-titlepage hgroup h2 {
+	font-size: 100%; font-weight: normal;
+}
+
+cxx-titlepagebody.cxx-pdts .footer, body.cxx-pdts cxx-titlepage .footer {
+	position: absolute; left: 0px; bottom: 5%;
+}
+
+cxx-titlepagebody.cxx-pdts figure, body.cxx-pdts cxx-titlepage figure {
+	border: 1px solid rgb(17, 17, 17); padding: 10px; margin-left: auto; margin-right: auto;
+}
+
+cxx-titlepagebody.cxx-pdts figcaption, body.cxx-pdts cxx-titlepage figcaption {
+	text-align: center; font-weight: bold;
+}
+
+cxx-titlepagebody.cxx-pdts .warning, body.cxx-pdts cxx-titlepage .warning {
+	position: absolute; bottom: 20%;
+}
+
+cxx-titlepagebody.cxx-pdts .copyright address, body.cxx-pdts cxx-titlepage .copyright address {
+	font-style: normal; margin-left: 2em;
+}
+
+cxx-titlepagebody.cxx-pdts .copyright address a, body.cxx-pdts cxx-titlepage .copyright address a {
+	color: inherit; text-decoration: inherit;
 }
 
 cxx-titlepage th {
 	text-align: left; vertical-align: top;
 }cxx-ednote {
 	display: block;
+}
+
+cxx-ednotebody.cxx-pdts, body.cxx-pdts cxx-ednote {
+	display: none;
 }
 
 cxx-ednote aside {
@@ -473,13 +525,14 @@ limitations under the License.
     @bottom-left { content: string(current-section, last); font-size: 10pt; }
     @bottom-right { content: counter(page); font-size: 10pt; }
 }
-cxx-titlepage { page: title; page-break-after: always; }
-@page title {
+@page :first {
     @top-left { content: "© ISO 2014 — All rights reserved"; }
     @top-right { content: normal; }
     @bottom-left { content: normal; }
     @bottom-right { content: normal; }
 }
+
+body { margin: 0; }
 
 @media screen {
     body { max-width: 7in;
@@ -590,31 +643,35 @@ pre {
 
     cxx-footnote  aside { float: footnote; footnote-policy: line; }
 }</style><title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
-<body>
-<cxx-titlepage stage="draft">
+<body class="cxx-draft">
+<cxx-titlepage>
     
-    <table>
-      
-        <tr><th>Document Number:</th><td><cxx-docnum>D4081</cxx-docnum></td></tr>
-      
-      
-        <tr><th>Date:</th><td><time pubdate="">2014-07-??</time></td></tr>
-      
-      
-        <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4023.html">N4023</a></cxx-revises></td></tr>
-      
-      
-        <tr><th>Editor:</th><td><cxx-editor>
+    
+      <div class="page">
+        <table class="header">
+          
+            <tr><th>Document Number:</th><td><cxx-docnum>D4081</cxx-docnum></td></tr>
+          
+          
+            <tr><th>Date:</th><td><time pubdate="">2014-07-??</time></td></tr>
+          
+          
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4023.html">N4023</a></cxx-revises></td></tr>
+          
+          
+            <tr><th>Editor:</th><td><cxx-editor>
     Jeffrey Yasskin<br>
     Google, Inc.<br>
     <cxx-email><a href="mailto:jyasskin@google.com">jyasskin@google.com</a></cxx-email>
   </cxx-editor></td></tr>
-      
-    </table>
-    <h1>Working Draft, C++ Extensions for Library Fundamentals</h1>
+          
+        </table>
+        <h1>Working Draft, C++ Extensions for Library Fundamentals</h1>
+        <p class="warning"><strong>Note: this is an early draft. It’s known to be
+        incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
+      </div>
     
-      <p class="warning"><strong>Note: this is an early draft. It’s known to be
-      incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
+
     
   </cxx-titlepage>
 
