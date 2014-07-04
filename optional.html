@@ -223,7 +223,8 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U, class... Args&gt; <wbr/>constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
+        <cxx-signature>template &lt;class U, class... Args&gt;
+constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
         <cxx-requires><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
@@ -316,7 +317,7 @@ private:
         <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
         <cxx-remarks>
-          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <wbr/>is_nothrow_move_constructible_v&lt;T&gt;</pre></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_nothrow_move_constructible_v&lt;T&gt;</pre></p>
 
           <p>
             If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
@@ -354,7 +355,7 @@ private:
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U, class... Args&gt; <wbr/>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
+        <cxx-signature>template &lt;class U, class... Args&gt; <w-br></w-br>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
 
         <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
@@ -400,7 +401,7 @@ private:
         </cxx-effects>
         <cxx-throws>Any exceptions that the expressions in the Effects element throw.</cxx-throws>
         <cxx-remarks>
-          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <wbr/>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre></p>
           <p>
             If any exception is thrown, the results of the expressions <code>bool(*this)</code> and <code>bool(<var>rhs</var>)</code> remain unchanged.
             If an exception is thrown during the call to function <code>swap</code>
@@ -470,15 +471,15 @@ private:
         <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
 
         <cxx-effects>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
-        <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <wbr/>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+        <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
 
-        <cxx-effects>Equivalent to <code>return bool(*this) ? <wbr/>std::move(**this) : <wbr/>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
-        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <wbr/>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+        <cxx-effects>Equivalent to <code>return bool(*this) ? <w-br></w-br>std::move(**this) : <w-br></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
+        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</cxx-remarks>
       </cxx-function>
     </cxx-section>

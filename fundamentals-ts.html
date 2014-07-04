@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -499,6 +499,12 @@ cxx-example .nowrap {
 	display: block; margin-left: 1.2in;
 }bnf-terminal {
 	font-style: normal;
+}w-br {
+	white-space: normal;
+}
+
+w-br:after {
+	content: "​";
 }</style>
   <meta charset="utf-8">
   
@@ -1812,7 +1818,7 @@ pre {
           automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
           Meets the BinaryTypeTrait requirements (20.10.1).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
-          and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type&gt; <wbr>!= false</code>
+          and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type&gt; != false</code>
           <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref to="utility.erased.type"><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a></cxx-ref>)</ins>,
           otherwise it shall be derived from <code>false_type</code>.
           A program may specialize this template to derive from <code>true_type</code> for a user-defined type <code>T</code> that does not have a nested <code>allocator_type</code> but nonetheless can be constructed with an allocator where either:
@@ -2261,7 +2267,7 @@ inline namespace fundamentals_v1 {
         <tbody><tr>
           <td>
             <code>template &lt;class Fn, class... ArgTypes&gt;<br>
-            struct raw_invocation_type&lt;<wbr>Fn(ArgTypes...)&gt;;</code>
+            struct raw_invocation_type&lt;<w-br><wbr></w-br>Fn(ArgTypes...)&gt;;</code>
           </td>
           <td>
             <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
@@ -2275,7 +2281,7 @@ inline namespace fundamentals_v1 {
         <tr>
           <td>
             <code>template &lt;class Fn, class... ArgTypes&gt;<br>
-            struct invocation_type&lt;<wbr>Fn(ArgTypes...)&gt;;</code>
+            struct invocation_type&lt;<w-br><wbr></w-br>Fn(ArgTypes...)&gt;;</code>
           </td>
           <td>
             <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
@@ -2538,15 +2544,17 @@ namespace std {
              class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
              class BinaryPredicate = equal_to&lt;&gt;&gt;
     boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-    make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    make_boyer_moore_searcher(
+        RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+        Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
     template&lt;class RandomAccessIterator,
              class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
              class BinaryPredicate = equal_to&lt;&gt;&gt;
     boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-    make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                                       Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    make_boyer_moore_horspool_searcher(
+        RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+        Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
   } // namespace fundamentals_v1
   } // namespace experimental
@@ -3082,7 +3090,7 @@ class BinaryPredicate = equal_to&lt;&gt;&gt;
 
           <cxx-effects para_num="2" id="func.searchers.boyer_moore.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<wbr>pat_first, pat_last, hf, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred)</code>.</dd>
   </cxx-effects>
         
     </dl>
@@ -3125,8 +3133,9 @@ private:
 
       <cxx-function para_num="1" id="func.searchers.boyer_moore_horspool.1">
     
-    <pre><code><cxx-signature>boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
-                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+    <pre><code><cxx-signature>boyer_moore_horspool_searcher(
+RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
 
     <dl>
       
@@ -3208,8 +3217,9 @@ RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterat
          class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
          class BinaryPredicate = equal_to&lt;&gt;&gt;
 boyer_moore_searcher_horspool&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                                   Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
+make_boyer_moore_horspool_searcher(
+    RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+    Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
 
     <dl>
       
@@ -3217,7 +3227,7 @@ make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessI
 
           <cxx-effects para_num="2" id="func.searchers.boyer_moore_horspool.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<wbr>pat_first, pat_last, hf, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred)</code>.</dd>
   </cxx-effects>
         
     </dl>
@@ -3609,7 +3619,8 @@ private:
 
       <cxx-function para_num="33" id="optional.object.ctor.33">
     
-    <pre><code><cxx-signature>template &lt;class U, class... Args&gt; <wbr>constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>template &lt;class U, class... Args&gt;
+constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature></code></pre>
 
     <dl>
       
@@ -3807,7 +3818,7 @@ private:
         <cxx-remarks para_num="16" id="optional.object.assign.16">
     
     <dt>Remarks:</dt><dd>
-          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <wbr>is_nothrow_move_constructible_v&lt;T&gt;</pre><p></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>is_nothrow_move_constructible_v&lt;T&gt;</pre><p></p>
 
           <p>
             If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
@@ -3896,7 +3907,7 @@ private:
 
       <cxx-function para_num="30" id="optional.object.assign.30">
     
-    <pre><code><cxx-signature>template &lt;class U, class... Args&gt; <wbr>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>template &lt;class U, class... Args&gt; <w-br><wbr></w-br>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature></code></pre>
 
     <dl>
       
@@ -3983,7 +3994,7 @@ private:
         <cxx-remarks para_num="5" id="optional.object.swap.5">
     
     <dt>Remarks:</dt><dd>
-          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <wbr>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre><p></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre><p></p>
           <p>
             If any exception is thrown, the results of the expressions <code>bool(*this)</code> and <code>bool(<var>rhs</var>)</code> remain unchanged.
             If an exception is thrown during the call to function <code>swap</code>
@@ -4163,7 +4174,7 @@ private:
   </cxx-effects>
         <cxx-remarks para_num="25" id="optional.object.observe.25">
     
-    <dt>Remarks:</dt><dd>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <wbr>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+    <dt>Remarks:</dt><dd>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</dd>
   </cxx-remarks>
       
@@ -4180,11 +4191,11 @@ private:
 
         <cxx-effects para_num="27" id="optional.object.observe.27">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <wbr>std::move(**this) : <wbr>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <w-br><wbr></w-br>std::move(**this) : <w-br><wbr></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
   </cxx-effects>
         <cxx-remarks para_num="28" id="optional.object.observe.28">
     
-    <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <wbr>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+    <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</dd>
   </cxx-remarks>
       
@@ -5434,7 +5445,7 @@ ValueType* any_cast(any* operand) noexcept;</cxx-signature></code></pre>
 
       <cxx-returns para_num="8" id="any.nonmembers.8">
     
-    <dt>Returns:</dt><dd>If <code>operand != nullptr &amp;&amp; <wbr>operand-&gt;type() == typeid(ValueType)</code>,
+    <dt>Returns:</dt><dd>If <code>operand != nullptr &amp;&amp; <w-br><wbr></w-br>operand-&gt;type() == typeid(ValueType)</code>,
       a pointer to the object contained by <code>operand</code>,
       otherwise <code>nullptr</code>.</dd>
   </cxx-returns>
@@ -5703,7 +5714,8 @@ class basic_string_view {
 
     <cxx-function para_num="4" id="string.view.cons.4">
     
-    <pre><code><cxx-signature>template&lt;class Allocator&gt; <wbr>basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) noexcept;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>template&lt;class Allocator&gt;
+basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) noexcept;</cxx-signature></code></pre>
 
     <dl>
       
@@ -7663,26 +7675,6 @@ inline namespace fundamentals_v1 {
       
     </dl>
   </cxx-function>
-
-      <cxx-function para_num="16" id="memory.smartptr.shared.cast.16">
-    
-    <pre><code><cxx-signature>template&lt;class T, class U&gt; std::shared_ptr&lt;T&gt; reinterpret_pointer_cast(const std::shared_ptr&lt;U&gt;&amp; r) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-
-        <cxx-requires para_num="17" id="memory.smartptr.shared.cast.17">
-    
-    <dt>Requires:</dt><dd>The expression <code>reinterpret_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</dd>
-  </cxx-requires>
-        <cxx-returns para_num="18" id="memory.smartptr.shared.cast.18">
-    
-    <dt>Returns:</dt><dd><code>std::shared_ptr&lt;T&gt;(r, reinterpret_cast&lt;typename std::shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</dd>
-  </cxx-returns>
-      
-    </dl>
-  </cxx-function>
     
     </section>
   </cxx-section>
@@ -8457,7 +8449,7 @@ void construct(std::pair&lt;T1,T2&gt;* p, U&amp;&amp; x, V&amp;&amp; y);</cxx-si
         
         <cxx-effects para_num="16" id="memory.polymorphic.allocator.mem.16">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct, forward_as_tuple(std::forward&lt;U&gt;(x)), forward_as_tuple(std::forward&lt;V&gt;(y)));</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct, <w-br><wbr></w-br>forward_as_tuple(std::forward&lt;U&gt;(x)), <w-br><wbr></w-br>forward_as_tuple(std::forward&lt;V&gt;(y)));</code></dd>
   </cxx-effects>
       
     </dl>
@@ -8473,7 +8465,7 @@ void construct(std::pair&lt;T1,T2&gt;* p, const std::pair&lt;U, V&gt;&amp; pr);<
         
         <cxx-effects para_num="18" id="memory.polymorphic.allocator.mem.18">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct, forward_as_tuple(pr.first), forward_as_tuple(pr.second));</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct, <w-br><wbr></w-br>forward_as_tuple(pr.first), <w-br><wbr></w-br>forward_as_tuple(pr.second));</code></dd>
   </cxx-effects>
       
     </dl>
@@ -8490,8 +8482,8 @@ void construct(std::pair&lt;T1,T2&gt;* p, std::pair&lt;U, V&gt;&amp;&amp; pr);</
         <cxx-effects para_num="20" id="memory.polymorphic.allocator.mem.20">
     
     <dt>Effects:</dt><dd>Equivalent to <code>this-&gt;construct(p, piecewise_construct,
-        forward_as_tuple(std::forward&lt;U&gt;(pr.first)),
-        forward_as_tuple(std::forward&lt;V&gt;(pr.second)));</code></dd>
+        <w-br><wbr></w-br>forward_as_tuple(std::forward&lt;U&gt;(pr.first)),
+        <w-br><wbr></w-br>forward_as_tuple(std::forward&lt;V&gt;(pr.second)));</code></dd>
   </cxx-effects>
       
     </dl>
@@ -9225,7 +9217,7 @@ protected:
 
       <cxx-function para_num="14" id="memory.resource.pool.mem.14">
     
-    <pre><code><cxx-signature>virtual bool unsynchronized_pool_resource::do_is_equal(const memory_resource&amp; other) const noexcept;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>virtual bool unsynchronized_pool_resource::do_is_equal(<w-br><wbr></w-br>const memory_resource&amp; other) const noexcept;</cxx-signature></code></pre>
 
     <dl>
       
@@ -9240,7 +9232,7 @@ protected:
 
       <cxx-function para_num="16" id="memory.resource.pool.mem.16">
     
-    <pre><code><cxx-signature>virtual bool synchronized_pool_resource::do_is_equal(const memory_resource&amp; other) const noexcept;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>virtual bool synchronized_pool_resource::do_is_equal(<w-br><wbr></w-br>const memory_resource&amp; other) const noexcept;</cxx-signature></code></pre>
 
     <dl>
       

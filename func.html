@@ -62,15 +62,17 @@ namespace std {
              class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
              class BinaryPredicate = equal_to&lt;&gt;&gt;
     boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-    make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    make_boyer_moore_searcher(
+        RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+        Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
     template&lt;class RandomAccessIterator,
              class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
              class BinaryPredicate = equal_to&lt;&gt;&gt;
     boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-    make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                                       Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
+    make_boyer_moore_horspool_searcher(
+        RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+        Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
   } // namespace fundamentals_v1
   } // namespace experimental
@@ -380,7 +382,7 @@ class BinaryPredicate = equal_to&lt;&gt;&gt;
   make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
                             Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
-          <cxx-effects>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<wbr/>pat_first, pat_last, hf, pred)</code>.</cxx-effects>
+          <cxx-effects>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br></w-br>pat_first, pat_last, hf, pred)</code>.</cxx-effects>
         </cxx-function>
       </cxx-section>
     </cxx-section>
@@ -410,8 +412,9 @@ private:
 </code></pre>
 
       <cxx-function>
-        <cxx-signature>boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
-                              Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+        <cxx-signature>boyer_moore_horspool_searcher(
+RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
+Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
         <cxx-requires>The value type of <code>RandomAccessIterator1</code> shall meet the <code>DefaultConstructible</code>, <code>CopyConstructible</code>, and <code>CopyAssignable</code> requirements.</cxx-requires>
         <cxx-requires>For any two values <code>A</code> and <code>B</code> of the type <code>iterator_traits&lt;RandomAccessIterator1&gt;::value_type</code>,
@@ -450,10 +453,11 @@ RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterat
          class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
          class BinaryPredicate = equal_to&lt;&gt;&gt;
 boyer_moore_searcher_horspool&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
-make_boyer_moore_horspool_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
-                                   Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
+make_boyer_moore_horspool_searcher(
+    RandomAccessIterator pat_first, RandomAccessIterator pat_last,
+    Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
-          <cxx-effects>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<wbr/>pat_first, pat_last, hf, pred)</code>.</cxx-effects>
+          <cxx-effects>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br></w-br>pat_first, pat_last, hf, pred)</code>.</cxx-effects>
         </cxx-function>
       </cxx-section>
     </cxx-section>

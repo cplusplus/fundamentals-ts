@@ -107,6 +107,11 @@ unless it's marked with class="para", in which case it's formatted as a normal p
 Must contain an email address as text, and wraps it into an
 appropriate `mailto:` link.
 
+### `<w-br>`
+
+Introduces a soft line-break inside an otherwise-nowrap context. This works in
+Firefox and Prince, where <wbr> fails, in addition to other browsers.
+
 ### `<cxx-function>`
 
 Describes a C++ library function.  Several nested elements help
