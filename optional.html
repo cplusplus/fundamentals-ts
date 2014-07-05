@@ -126,16 +126,16 @@ public:
   <cxx-ref insynopsis="" to="optional.object.observe"></cxx-ref>
   constexpr T const* operator -&gt;() const;
   constexpr T* operator -&gt;();
-  constexpr T const&amp; operator *() const&amp;;
+  constexpr T const&amp; operator *() const &amp;;
   constexpr T&amp; operator *() &amp;;
   constexpr T operator *() &amp;&amp;;
-  constexpr T operator *() const&amp;&amp;;
+  constexpr T operator *() const &amp;&amp;;
   constexpr explicit operator bool() const noexcept;
-  constexpr T const&amp; value() const&amp;;
+  constexpr T const&amp; value() const &amp;;
   constexpr T&amp; value() &amp;;
   constexpr T value() &amp;&amp;;
-  constexpr T value() const&amp;&amp;;
-  template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const&amp;;
+  constexpr T value() const &amp;&amp;;
+  template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const &amp;;
   template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) &amp;&amp;;
 
 private:
@@ -438,7 +438,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
       <cxx-function>
         <cxx-signature>constexpr T operator*() &amp;&amp;;</cxx-signature>
-        <cxx-signature>constexpr T operator*() const&amp;&amp;;</cxx-signature>
+        <cxx-signature>constexpr T operator*() const &amp;&amp;;</cxx-signature>
 
         <cxx-requires><code>*this</code> contains a value</cxx-requires>
         <cxx-effects>Equivalent to <code>return std::move(*<var>val</var>);</code></cxx-effects>
@@ -453,7 +453,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr T const&amp; value() const&amp;;</cxx-signature>
+        <cxx-signature>constexpr T const&amp; value() const &amp;;</cxx-signature>
         <cxx-signature>constexpr T&amp; value() &amp;;</cxx-signature>
 
         <cxx-effects>Equivalent to <code>return bool(*this) ? *val : throw bad_optional_access();</code></cxx-returns>
@@ -461,14 +461,14 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
       <cxx-function>
         <cxx-signature>constexpr T value() &amp;&amp;;</cxx-signature>
-        <cxx-signature>constexpr T value() const&amp;&amp;</cxx-signature>
+        <cxx-signature>constexpr T value() const &amp;&amp;;</cxx-signature>
 
         <cxx-effects>Equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></cxx-effects>
         <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature>
+        <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const &amp;;</cxx-signature>
 
         <cxx-effects>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
         <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,

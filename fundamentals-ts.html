@@ -3398,16 +3398,16 @@ public:
   <cxx-ref insynopsis="" to="optional.object.observe">// <i><a title="optional.object.observe" href="#optional.object.observe">5.3.5</a>, Observers</i></cxx-ref>
   constexpr T const* operator -&gt;() const;
   constexpr T* operator -&gt;();
-  constexpr T const&amp; operator *() const&amp;;
+  constexpr T const&amp; operator *() const &amp;;
   constexpr T&amp; operator *() &amp;;
   constexpr T operator *() &amp;&amp;;
-  constexpr T operator *() const&amp;&amp;;
+  constexpr T operator *() const &amp;&amp;;
   constexpr explicit operator bool() const noexcept;
-  constexpr T const&amp; value() const&amp;;
+  constexpr T const&amp; value() const &amp;;
   constexpr T&amp; value() &amp;;
   constexpr T value() &amp;&amp;;
-  constexpr T value() const&amp;&amp;;
-  template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const&amp;;
+  constexpr T value() const &amp;&amp;;
+  template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const &amp;;
   template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) &amp;&amp;;
 
 private:
@@ -4081,7 +4081,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
       <cxx-function para_num="11" id="optional.object.observe.11">
     
-    <pre><code><cxx-signature>constexpr T operator*() &amp;&amp;;</cxx-signature><cxx-signature>constexpr T operator*() const&amp;&amp;;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr T operator*() &amp;&amp;;</cxx-signature><cxx-signature>constexpr T operator*() const &amp;&amp;;</cxx-signature></code></pre>
 
     <dl>
       
@@ -4126,7 +4126,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
       <cxx-function para_num="18" id="optional.object.observe.18">
     
-    <pre><code><cxx-signature>constexpr T const&amp; value() const&amp;;</cxx-signature><cxx-signature>constexpr T&amp; value() &amp;;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr T const&amp; value() const &amp;;</cxx-signature><cxx-signature>constexpr T&amp; value() &amp;;</cxx-signature></code></pre>
 
     <dl>
       
@@ -4143,7 +4143,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
       <cxx-function para_num="20" id="optional.object.observe.20">
     
-    <pre><code><cxx-signature>constexpr T value() &amp;&amp;;</cxx-signature><cxx-signature>constexpr T value() const&amp;&amp;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr T value() &amp;&amp;;</cxx-signature><cxx-signature>constexpr T value() const &amp;&amp;;</cxx-signature></code></pre>
 
     <dl>
       
@@ -4164,7 +4164,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
       <cxx-function para_num="23" id="optional.object.observe.23">
     
-    <pre><code><cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const&amp;;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const &amp;;</cxx-signature></code></pre>
 
     <dl>
       
