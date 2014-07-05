@@ -654,36 +654,63 @@ pre {
     cxx-toc  a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
 
     cxx-footnote  aside { float: footnote; footnote-policy: line; }
-}</style><title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
-<body class="cxx-draft">
+}</style><title>C++ Extensions for Library Fundamentals, PDTS</title></head>
+<body class="cxx-pdts">
 <cxx-titlepage>
     
     
-      <div class="page">
-        <table class="header">
-          
-            <tr><th>Document Number:</th><td><cxx-docnum>D4081</cxx-docnum></td></tr>
-          
-          
-            <tr><th>Date:</th><td><time pubdate="">2014-07-??</time></td></tr>
-          
-          
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4023.html">N4023</a></cxx-revises></td></tr>
-          
-          
-            <tr><th>Editor:</th><td><cxx-editor>
-    Jeffrey Yasskin<br>
-    Google, Inc.<br>
-    <cxx-email><a href="mailto:jyasskin@google.com">jyasskin@google.com</a></cxx-email>
-  </cxx-editor></td></tr>
-          
-        </table>
-        <h1>Working Draft, C++ Extensions for Library Fundamentals</h1>
-        <p class="warning"><strong>Note: this is an early draft. It’s known to be
-        incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
-      </div>
-    
 
+    
+      <div class="page">
+        <div class="header">
+          <strong>ISO/IEC JTC1 SC22 WG21 <cxx-docnum>N4082</cxx-docnum></strong><br>
+          Date: <time pubdate="">2014-07-07</time><br>
+          ISO/IEC PDTS <cxx-project-number>19568</cxx-project-number><br>
+          ISO/IEC JTC1 SC22<br>
+          Secretariat: ANSI
+        </div>
+        <hgroup>
+          <h1>Programming Languages — C++ Extensions for Library Fundamentals</h1>
+          
+            <h2>Langages de programmation — Extensions C++ pour la bibliothèque fondamentaux</h2>
+          
+        </hgroup>
+        <figure class="warning">
+          <figcaption>Warning</figcaption>
+          <p>This document is not an ISO International Standard. It is distributed for review and comment. It is
+          subject to change without notice and may not be referred to as an International Standard.
+          </p>
+          <p>Recipients of this draft are invited to submit, with their comments, notification of any relevant
+          patent rights of which they are aware and to provide supporting documentation.</p>
+        </figure>
+        <div class="footer">
+          Document type: Proposed Draft Technical Specification<br>
+          Document stage: (30) Committee<br>
+          Document language: E
+        </div>
+      </div>
+      <div class="page">
+        <figure class="copyright">
+          <figcaption>Copyright notice</figcaption>
+          <p>This ISO document is a working draft or committee draft and is copyright-protected by ISO. While
+          the reproduction of working drafts or committee drafts in any form for use by participants in the
+          ISO standards development process is permitted without prior permission from ISO, neither this
+          document nor any extract from it may be reproduced, stored or transmitted in any form for any
+          other purpose without prior written permission from ISO.</p>
+          <p>Requests for permission to reproduce this document for the purpose of selling it should be
+          addressed as shown below or to ISO’s member body in the country of the requester:</p>
+          <address>
+            ISO copyright officer<br>
+            Case postale 56, CH-1211 Geneva 20<br>
+            Tel. + 41 22 749 01 11<br>
+            Fax + 41 22 749 09 47<br>
+            E-mail <a href="mailto:copyright@iso.org">copyright@iso.org</a><br>
+            Web <a href="http://www.iso.org/">www.iso.org</a>
+          </address>
+          <p>Reproduction may be subject to royalty payments or a licensing agreement.</p>
+          <p>Violators may be prosecuted.</p>
+        </figure>
+      </div>
     
   </cxx-titlepage>
 
@@ -1448,12 +1475,7 @@ pre {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> This section reflects the consensus between the LWG and LEWG at the
-    <a href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">Chicago 2013</a> and
-    <a href="http://wiki.edg.com/twiki/bin/view/Wg21issaquah/ChangesToExistingInTS">Issaquah 2014</a> meetings.</aside>
-  </cxx-ednote>
 
     <p para_num="1" id="general.namespaces.1">Since the extensions described in this technical specification
     are experimental and not part of the C++ standard library, they
@@ -1599,15 +1621,7 @@ pre {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> 
-      These feature-testing macros are my invention, with very little input from anyone else.
-      I've tried to be consistent with the SD-6 recommendations and
-      divide features where I suspect they may be implemented at different times despite being added by the same paper.
-      I'll be happy to accept changes to this section as editorial fixes until the PDTS is published.
-    </aside>
-  </cxx-ednote>
 
     <p para_num="1" id="general.feature.test.1">
       For the sake of improved portability between partial implementations of various C++ standards,
@@ -2489,14 +2503,7 @@ inline namespace fundamentals_v1 {
       
     
 
-    <cxx-ednote class="para">
     
-    <aside><strong>Editor's note:</strong> 
-    The following header synopsis fixes the missing <tt>noexcept</tt> specifications of the comparison functions as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
-    We consider this change <em>editorial</em> at this point because the two different declarations were already in conflict,
-    and this change does not have impact on the actual prototype specifications, which will have the same specifiers as in C++14.
-    </aside>
-  </cxx-ednote>
 
 <pre><code>#include &lt;functional&gt;
 
@@ -2582,14 +2589,7 @@ namespace std {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> 
-      The following class template synopsis fixes the missing <code>noexcept</code> specification of the <code>nullptr_t</code> assignment operator
-      as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
-      We consider this change <em>editorial</em>, because the fundamentals-ts specification otherwise refers to a non-existing declaration in C++14.
-    </aside>
-  </cxx-ednote>
 
     <p para_num="1" id="func.wrap.func.1">
       The specification of all declarations within this sub-clause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref>
@@ -2683,15 +2683,7 @@ namespace std {
       
       
 
-      <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> 
-        The following first paragraph has been slightly editorially improved to
-        (a) make the difference between <code>std::function</code> and <code>std::experimental::function</code> clearer
-        (which seems necessary due to the "including" wording that can be parsed in two different ways) and
-        (b) to make intended normative wording clearer, that had been put into parenthesis before, by simply removing these parenthesis.
-      </aside>
-  </cxx-ednote>
+      
 
       <p para_num="1" id="func.wrap.func.con.1">
         When a <code>function</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
@@ -2747,11 +2739,7 @@ namespace std {
     </dl>
   </cxx-function>
 
-      <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> The following <i>Effects</i> element has been fixed and syncs the wording "<code>*this != NULL</code>"
-      with the C++14 working draft replacing it with "<code>*this != nullptr</code>"</aside>
-  </cxx-ednote>
+      
 
       <cxx-function para_num="9" id="func.wrap.func.con.9">
     
@@ -7392,10 +7380,7 @@ inline namespace fundamentals_v1 {
         
         
 
-        <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> N3920 specifies that "implicitly convertible" is removed, but the C++14 draft only has "convertible". Does this make a difference?</aside>
-  </cxx-ednote>
+        
         <cxx-remarks para_num="23" id="memory.smartptr.shared.const.23">
     
     <dt>Remarks:</dt><dd>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</dd>
@@ -9873,12 +9858,7 @@ namespace pmr {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> 
-      An additional editorial fix is applied in the declaration of <code>swap</code> for <code>packaged_task</code>
-    </aside>
-  </cxx-ednote>
 
     <pre><code>#include &lt;future&gt;
 
