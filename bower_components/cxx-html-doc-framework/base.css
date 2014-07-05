@@ -66,6 +66,8 @@ cxx-toc::shadow h1 { bookmark-level: 2; }
 cxx-clause h1 { bookmark-level: 2; }
 cxx-clause cxx-section h1 { bookmark-level: 3; }
 cxx-clause cxx-section cxx-section h1 { bookmark-level: 4; }
+/* The <h2> is a subtitle, which shouldn't get a PDF bookmark. */
+cxx-titlepage::shadow h2 { bookmark-level: none; }
 
 *::shadow .section-number { string-set: current-section "§ " content(); }
 

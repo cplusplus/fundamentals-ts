@@ -13,10 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<!-- This element creates a button that creates a standalone HTML version of
-     the current page in a new window so you can save it.
-     This will only work with the ShadowDOM polyfill, since you can't create
-     ShadowDOM without script.
+<!-- This element creates a button that creates a link to a standalone HTML
+     version of the current page.
+
+     This will only work with the ShadowDOM polyfill, but we'll eventually
+     implement support for native ShadowDOM.
 
      If the 'source' attribute is present, a "Sources at ..." comment
      will appear at the top of the result document.
@@ -26,7 +27,16 @@ limitations under the License.
     <style>
       :host {display: block;}
     </style>
-    <button on-click="{{publish}}">Publish to new window</button>
+    <template if="{{ !flattenedBlob }}">
+      <button on-click="{{publish}}" disabled?="{{ publishing }}">Publish</button>
+    </template>
+    <template if="{{ flattenedBlob }}">
+      <p>Published:</p>
+      <ul>
+        <li><a href="{{ flattenedBlob }}">Flattened document</a></li>
+        <li><a href="{{ sectionIndex }}">Section index, in json suitable for &lt;cxx-foreign-index></a></li>
+      </ul>
+    </template>
   </template>
   <script src="publish.js"></script>
 </polymer-element>

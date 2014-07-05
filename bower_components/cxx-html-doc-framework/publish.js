@@ -139,20 +139,47 @@ limitations under the License.
         });
     }
 
+    function buildSectionIndex(doc) {
+        var result = {};
+        doc.querySelectorAll('cxx-clause,cxx-section').array().forEach(function(section) {
+            if (!section.id) {
+                console.warn(section, 'is missing its id.');
+                return;
+            }
+            if (!section.sec_num || section.sec_num == '?') {
+                console.warn(section, 'is missing its number');
+                return;
+            }
+            result[section.id] = section.sec_num;
+        });
+        return result;
+    }
+
     Polymer('cxx-publish-button', {
+        publishing: false,
+        flattenedBlob: null,
         publish: function() {
+            if (this.publishing) {
+                return;
+            }
+            this.publishing = true;
             var copyPromise = cloneStaticAndInline(document);
             var source = '';
             if (this.source) {
-                var source = '<!-- Sources at ' + this.source + ' -->\n';
+                source = '<!-- Sources at ' + this.source + ' -->\n';
             }
+            var sectionIndex = buildSectionIndex(document);
             copyPromise.then(function(copy) {
                 var published = new Blob(['<!DOCTYPE html>\n',
                                           source,
                                           copy.documentElement.outerHTML],
                                          {type: 'text/html'});
-                window.open(URL.createObjectURL(published), '_blank');
-            });
-        }
+                this.flattenedBlob = URL.createObjectURL(published);
+                this.sectionIndex = encodeURI('data:application/json,' + JSON.stringify(sectionIndex));
+            }.bind(this)).catch(function(e) {
+                console.error(e);
+                this.publishing = false;
+            }.bind(this));
+        },
     });
 })();
