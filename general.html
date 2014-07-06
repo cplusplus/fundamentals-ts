@@ -35,8 +35,6 @@
       <li>ISO/IEC 14882:—<cxx-footnote>To be published. Section references are relative to <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3797.pdf">N3797</a>.</cxx-footnote>,
       <cite>Programming Languages — C++</cite>
       <cxx-foreign-index id="cxx" src="cxx_N3797_index.json" name="C++14"></cxx-foreign-index></li>
-
-      <li><a href="http://www.ietf.org/rfc/rfc2781.txt">RFC 2781</a>, <cite>UTF-16, an encoding of ISO 10646</cite></li>
     </ul>
 
     <p>ISO/IEC 14882:— is herein called the <dfn>C++ Standard</dfn>.
@@ -52,10 +50,6 @@
   <cxx-section id="general.namespaces">
     <h1>Namespaces, headers, and modifications to standard classes</h1>
 
-    <cxx-ednote>This section reflects the consensus between the LWG and LEWG at the
-    <a href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">Chicago 2013</a> and
-    <a href="http://wiki.edg.com/twiki/bin/view/Wg21issaquah/ChangesToExistingInTS">Issaquah 2014</a> meetings.</cxx-ednote>
-
     <p>Since the extensions described in this technical specification
     are experimental and not part of the C++ standard library, they
     should not be declared directly within namespace
@@ -65,7 +59,7 @@
     <ul>
       <li>modify an existing interface in the C++ Standard Library in-place,</li>
       <li>
-        are declared in a namespace whose name appends <code>::experimental::fundamentals_v1</code>
+        are declared in a namespace whose name appends <code>::experimental::fundamentals_v2</code>
         to a namespace defined in the C++ Standard Library,
         such as <code>std</code> or <code>std::chrono</code>, or
       </li>
@@ -76,32 +70,26 @@
     </ul>
 
     <cxx-example>
-      This TS does not define <code>std::experimental::fundamentals_v1::chrono</code>
+      This TS does not define <code>std::experimental::fundamentals_v2::chrono</code>
       because the C++ Standard Library defines <code>std::chrono</code>.
-      This TS does not define <code>std::pmr::experimental::fundamentals_v1</code>
+      This TS does not define <code>std::pmr::experimental::fundamentals_v2</code>
       because the C++ Standard Library does not define <code>std::pmr</code>.
     </cxx-example>
 
     <p>Each header described in this technical
     specification shall import the contents of
-    <code>std::experimental::fundamentals_v1</code> into
+    <code>std::experimental::fundamentals_v2</code> into
     <code>std::experimental</code> as if by</p>
 
     <pre><code>namespace std {
   namespace experimental {
-    inline namespace fundamentals_v1 {}
+    inline namespace fundamentals_v2 {}
   }
 }</code></pre>
 
-    <p>
-      This technical specification also describes some experimental modifications to existing interfaces in the C++ Standard Library.
-      These modifications are described by quoting the affected parts of the standard
-      and using <ins>underlining</ins> to represent added text and <del>strike-through</del> to represent deleted text.
-    </p>
-
     <p>Unless otherwise specified, references to other entities
     described in this technical specification are assumed to be
-    qualified with <code>std::experimental::fundamentals_v1::</code>,
+    qualified with <code>std::experimental::fundamentals_v2::</code>,
     and references to entities described in the standard are assumed
     to be qualified with <code>std::</code>.</p>
 
@@ -119,47 +107,20 @@
       <caption>C++ library headers</caption>
       <tr><td>
         <ul>
-          <li><code>&lt;experimental/algorithm></code></li>
-          <li><code>&lt;experimental/any></code></li>
-          <li><code>&lt;experimental/chrono></code></li>
-          <li><code>&lt;experimental/deque></code></li>
-          <li><code>&lt;experimental/forward_list></code></li>
-          <li><code>&lt;experimental/functional></code></li>
-          <li><code>&lt;experimental/future></code></li>
-          <li><code>&lt;experimental/list></code></li>
-          <li><code>&lt;experimental/map></code></li>
-          <li><code>&lt;experimental/memory></code></li>
-          <li><code>&lt;experimental/memory_resource></code></li>
-          <li><code>&lt;experimental/net></code></li>
-          <li><code>&lt;experimental/optional></code></li>
-          <li><code>&lt;experimental/ratio></code></li>
-          <li><code>&lt;experimental/regex></code></li>
-          <li><code>&lt;experimental/set></code></li>
-          <li><code>&lt;experimental/string></code></li>
-          <li><code>&lt;experimental/string_view></code></li>
-          <li><code>&lt;experimental/system_error></code></li>
-          <li><code>&lt;experimental/tuple></code></li>
-          <li><code>&lt;experimental/type_traits></code></li>
-          <li><code>&lt;experimental/unordered_map></code></li>
-          <li><code>&lt;experimental/unordered_set></code></li>
-          <li><code>&lt;experimental/utility></code></li>
-          <li><code>&lt;experimental/vector></code></li>
         </ul>
       </td></tr>
     </table>
   </cxx-section>
 
-  <cxx-section id="general.defns">
+  <!--<cxx-section id="general.defns">
     <h1>Terms and definitions</h1>
 
     <p>For the purposes of this document, the terms and definitions
     given in the C++ Standard and the following apply.</p>
 
     <dl is="cxx-definition-section">
-      <dt id="general.defns.direct-non-list-init">direct-non-list-initialization</dt>
-      <dd>A direct-initialization that is not list-initialization.</dd>
     </dl>
-  </cxx-section>
+  </cxx-section>-->
 
   <cxx-section id="general.plans">
     <h1>Future plans (Informative)</h1>
@@ -172,8 +133,8 @@
     technical specification approximately every year, containing the
     library extensions we hope to add to a near-future version of the
     C++ Standard.  Future versions will define their contents in
-    <code>std::experimental::fundamentals_v2</code>,
-    <code>std::experimental::fundamentals_v3</code>, etc., with the
+    <code>std::experimental::fundamentals_v3</code>,
+    <code>std::experimental::fundamentals_v4</code>, etc., with the
     most recent implemented version inlined into
     <code>std::experimental</code>.</p>
 
@@ -187,13 +148,6 @@
 
   <cxx-section id="general.feature.test">
     <h1>Feature-testing recommendations (Informative)</h1>
-
-    <cxx-ednote>
-      These feature-testing macros are my invention, with very little input from anyone else.
-      I've tried to be consistent with the SD-6 recommendations and
-      divide features where I suspect they may be implemented at different times despite being added by the same paper.
-      I'll be happy to accept changes to this section as editorial fixes until the PDTS is published.
-    </cxx-ednote>
 
     <p>
       For the sake of improved portability between partial implementations of various C++ standards,
@@ -235,118 +189,6 @@
       </thead>
 
       <!-- These rows are in the same order as their feature appears in this document. -->
-      <tr>
-        <td>N3915</td>
-        <td>apply() call a function with arguments from a tuple</td>
-        <td><cxx-ref to="tuple.apply"></cxx-ref></td>
-        <td><code>apply</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/tuple></code></td>
-      </tr>
-      <tr>
-        <td>N3932</td>
-        <td>Variable Templates For Type Traits</td>
-        <td><cxx-ref to="meta.type.synop"></cxx-ref></td>
-        <td><code>type_trait_variable_templates</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/type_traits></code></td>
-      </tr>
-      <tr>
-        <td>N3866</td>
-        <td>Invocation type traits</td>
-        <td><cxx-ref to="meta.trans.other"></cxx-ref></td>
-        <td><code>invocation_type</code></td>
-        <td>201406</td>
-        <td><code>&lt;experimental/type_traits></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Type-erased allocator for std::function</td>
-        <td><cxx-ref to="func.wrap.func"></cxx-ref></td>
-        <td><code>function_erased_allocator</code></td>
-        <td>201406</td>
-        <td><code>&lt;experimental/functional></code></td>
-      </tr>
-      <tr>
-        <td>N3905</td>
-        <td>Extending <code>std::search</code> to use Additional Searching Algorithms</td>
-        <td><cxx-ref to="func.searchers"></cxx-ref></td>
-        <td><code>boyer_moore_searching</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/functional></code></td>
-      </tr>
-      <tr>
-        <td>N3672, N3793</td>
-        <td>A utility class to represent optional objects</td>
-        <td><cxx-ref to="optional"></cxx-ref></td>
-        <td><code>optional</code></td>
-        <td>201406</td>
-        <td><code>&lt;experimental/optional></code></td>
-      </tr>
-      <tr>
-        <td>N3804</td>
-        <td>Any Library Proposal</td>
-        <td><cxx-ref to="any"></cxx-ref></td>
-        <td><code>any</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/any></code></td>
-      </tr>
-      <tr>
-        <td>N3921</td>
-        <td><code>string_view</code>: a non-owning reference to a string</td>
-        <td><cxx-ref to="string.view"></cxx-ref></td>
-        <td><code>string_view</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/string_view></code></td>
-      </tr>
-      <tr>
-        <td>N3920</td>
-        <td>Extending shared_ptr to Support Arrays</td>
-        <td><cxx-ref to="memory.smartptr"></cxx-ref></td>
-        <td><code>shared_ptr_arrays</code></td>
-        <td>201406</td>
-        <td><code>&lt;experimental/memory></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Polymorphic Memory Resources</td>
-        <td><cxx-ref to="memory.resource.synop"></cxx-ref></td>
-        <td><code>memory_resources</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/memory_resource></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Type-erased allocator for std::promise</td>
-        <td><cxx-ref to="futures.promise"></cxx-ref></td>
-        <td><code>promise_erased_allocator</code></td>
-        <td>201406</td>
-        <td><code>&lt;experimental/future></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Type-erased allocator for std::packaged_task</td>
-        <td><cxx-ref to="futures.task"></cxx-ref></td>
-        <td><code>packaged_task_erased_allocator</code></td>
-        <td>201406</td>
-        <td><code>&lt;experimental/future></code></td>
-      </tr>
-      <tr>
-        <td>N3925</td>
-        <td>A <code>sample</code> Proposal</td>
-        <td><cxx-ref to="alg.random.sample"></cxx-ref></td>
-        <td><code>sample</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/algorithm></code></td>
-      </tr>
-      <tr>
-        <td>N3783</td>
-        <td>Network Byte Order Conversion</td>
-        <td><cxx-ref to="net.byte.order"></cxx-ref></td>
-        <td><code>network_byte_order</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/net></code></td>
-      </tr>
     </table>
   </cxx-section>
 </cxx-clause>
