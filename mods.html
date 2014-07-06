@@ -23,7 +23,7 @@
         <cxx-signature>template &lt;class T, class Alloc> struct uses_allocator;</cxx-signature>
         <cxx-remarks>
           automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
-          Meets the BinaryTypeTrait requirements (20.10.1).
+          Meets the BinaryTypeTrait requirements (<cxx-ref in="cxx" to="meta.rqmts"></cxx-ref>).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
           and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type> != false</code>
           <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref to="utility.erased.type"></cxx-ref>)</ins>,
