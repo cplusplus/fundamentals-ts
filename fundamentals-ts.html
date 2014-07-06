@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-POSTCONDITION");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -727,7 +727,7 @@ pre {
         
           <ol>
             
-              <li><span class="marker">2.1</span><a href="#mods.allocator.uses">Uses-allocator construction</a>
+              <li><span class="marker">2.1</span><a href="#allocator.uses.trait">Uses-allocator construction</a>
         
       </li>
             
@@ -1417,7 +1417,7 @@ pre {
     <ul>
       <li>ISO/IEC 14882:—<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3797.pdf">N3797</a>.</aside></cxx-footnote>,
+  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n3937.pdf">N3937</a>.</aside></cxx-footnote>,
       <cite>Programming Languages — C++</cite>
       </li>
 
@@ -1786,15 +1786,15 @@ pre {
     behave as if the modifications contained in this section are made to the C++ Standard.
   </p>
 
-  <cxx-section id="mods.allocator.uses">
+  <cxx-section id="allocator.uses.trait">
     
 
     <section>
-      <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Uses-allocator construction">Uses-allocator construction</h1> <span style="float:right"><a href="#mods.allocator.uses">[mods.allocator.uses]</a></span></header>
+      <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Uses-allocator construction">Uses-allocator construction</h1> <span style="float:right"><a href="#allocator.uses.trait">[allocator.uses.trait]</a></span></header>
       
     
 
-    <p para_num="1" id="mods.allocator.uses.1">
+    <p para_num="1" id="allocator.uses.trait.1">
       The following changes to the <code>uses_allocator</code> trait and to the description of uses-allocator construction
       allow a <code>memory_resource</code> pointer act as an allocator in many circumstances.
       <cxx-note><span class="nowrap">[ <em>Note:</em></span>
@@ -1818,7 +1818,7 @@ pre {
     
     <dt>Remarks:</dt><dd>
           automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
-          Meets the BinaryTypeTrait requirements (20.10.1).
+          Meets the BinaryTypeTrait requirements (<cxx-ref in="cxx" to="meta.rqmts">C++14 <span title="meta.rqmts">§20.10.1</span></cxx-ref>).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
           and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type&gt; != false</code>
           <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref to="utility.erased.type"><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a></cxx-ref>)</ins>,
@@ -2320,7 +2320,7 @@ inline namespace fundamentals_v1 {
         <li>Let <code>R</code> denote <code>result_of_t&lt;Fn(ArgTypes...)&gt;</code>.</li>
         <li>Let the types <code>Ti</code> be the <cxx-term><i>invocation parameters</i></cxx-term>
         of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), <nobr>declval&lt;ArgTypes&gt;()...)</nobr></code>.</li>
-        <li>The member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>
+        <li>Then the member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>
       </ul>
 
       <p para_num="7" id="meta.trans.other.7">
@@ -3734,7 +3734,12 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-effects para_num="7" id="optional.object.assign.7">
     
     <dt>Effects:</dt><dd>
-          <table>
+          <table is="cxx-table" class="single-border column-rules">
+    
+
+    <caption>Table 4 — <wbr><span><code>optional::operator=(const optional&amp;)</code> effects</span></caption>
+    
+            
             <tbody><tr>
               <th></th>
               <th><code>*this</code> contains a value</th>
@@ -3750,7 +3755,8 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
               <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
               <td>no effect</td>
             </tr>
-          </tbody></table>
+          </tbody>
+  </table>
         </dd>
   </cxx-effects>
         <cxx-returns para_num="8" id="optional.object.assign.8">
@@ -3790,7 +3796,12 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     
     <dt>Effects:</dt><dd>The result of the expression <code>bool(rhs)</code> remains unchanged.
 
-          <table>
+          <table is="cxx-table" class="single-border column-rules">
+    
+
+    <caption>Table 5 — <wbr><span><code>optional::operator=(optional&amp;&amp;)</code> effects</span></caption>
+    
+            
             <tbody><tr>
               <th></th>
               <th><code>*this</code> contains a value</th>
@@ -3798,15 +3809,16 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
             </tr>
             <tr>
               <th><code>rhs</code> contains a value</th>
-              <td>assigns <code>move(*rhs)</code> to the contained value</td>
-              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>move(*rhs)</code></td>
+              <td>assigns <code>std::move(*rhs)</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>std::move(*rhs)</code></td>
             </tr>
             <tr>
               <th><code>rhs</code> does not contain a value</th>
               <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
               <td>no effect</td>
             </tr>
-          </tbody></table>
+          </tbody>
+  </table>
         </dd>
   </cxx-effects>
         <cxx-returns para_num="14" id="optional.object.assign.14">
@@ -3965,7 +3977,12 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     
     <dt>Effects:</dt><dd>
 
-          <table>
+          <table is="cxx-table" class="single-border column-rules">
+    
+
+    <caption>Table 6 — <wbr><span><code>optional::swap(optional&amp;)</code> effects</span></caption>
+    
+            
             <tbody><tr>
               <th></th>
               <th><code>*this</code> contains a value</th>
@@ -3986,7 +4003,8 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
               postcondition is that <code>*this</code> does not contain a value and <code><var>rhs</var></code> contains a value</td>
               <td>no effect</td>
             </tr>
-          </tbody></table>
+          </tbody>
+  </table>
         </dd>
   </cxx-effects>
         <cxx-throws para_num="4" id="optional.object.swap.4">
@@ -4296,7 +4314,10 @@ public:
     
     <dt>Effects:</dt><dd>Constructs an object of class <code>bad_optional_access</code>.</dd>
   </cxx-effects>
-      <cxx-postcondition><code>what()</code> returns an implementation-defined NTBS.</cxx-postcondition>
+      <cxx-postconditions para_num="4" id="optional.bad_optional_access.4">
+    
+    <dt>Postconditions:</dt><dd><code>what()</code> returns an implementation-defined NTBS.</dd>
+  </cxx-postconditions>
     
     </dl>
   </cxx-function>
@@ -5725,12 +5746,12 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
 
       <cxx-effects para_num="5" id="string.view.cons.5">
     
-    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.1"><a title="tab:string.view.ctr.1" href="#tab:string.view.ctr.1">Table 4</a></cxx-ref>.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.1"><a title="tab:string.view.ctr.1" href="#tab:string.view.ctr.1">Table 7</a></cxx-ref>.</dd>
   </cxx-effects>
       <table is="cxx-table" id="tab:string.view.ctr.1">
     
 
-    <caption>Table 4 — <wbr><span><code>basic_string_view(const basic_string&amp;)</code> effects</span></caption>
+    <caption>Table 7 — <wbr><span><code>basic_string_view(const basic_string&amp;)</code> effects</span></caption>
     
         
         <tbody><tr><th>Element</th><th>Value</th></tr>
@@ -5757,13 +5778,13 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
       <cxx-effects para_num="8" id="string.view.cons.8">
     
     <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code> referring to the same string as <code>str</code>, with the postconditions
-      in <cxx-ref to="tab:string.view.ctr.2"><a title="tab:string.view.ctr.2" href="#tab:string.view.ctr.2">Table 5</a></cxx-ref>.</dd>
+      in <cxx-ref to="tab:string.view.ctr.2"><a title="tab:string.view.ctr.2" href="#tab:string.view.ctr.2">Table 8</a></cxx-ref>.</dd>
   </cxx-effects>
 
       <table is="cxx-table" id="tab:string.view.ctr.2">
     
 
-    <caption>Table 5 — <wbr><span>basic_string_view(const charT*) effects</span></caption>
+    <caption>Table 8 — <wbr><span><code>basic_string_view(const charT*)<code> effects</code></code></span></caption>
     
       <tbody><tr><th>Element</th><th>Value</th></tr>
       <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -5793,12 +5814,12 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
   </cxx-requires>
       <cxx-effects para_num="12" id="string.view.cons.12">
     
-    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.3"><a title="tab:string.view.ctr.3" href="#tab:string.view.ctr.3">Table 6</a></cxx-ref>.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.3"><a title="tab:string.view.ctr.3" href="#tab:string.view.ctr.3">Table 9</a></cxx-ref>.</dd>
   </cxx-effects>
       <table is="cxx-table" id="tab:string.view.ctr.3">
     
 
-    <caption>Table 6 — <wbr><span><code>basic_string_view(const charT*, size_type)</code> effects</span></caption>
+    <caption>Table 9 — <wbr><span><code>basic_string_view(const charT*, size_type)</code> effects</span></caption>
     
         <tbody><tr><th>Element</th><th>Value</th></tr>
         <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -6330,12 +6351,12 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       <cxx-returns para_num="22" id="string.view.ops.22">
     
     <dt>Returns:</dt><dd>The nonzero result if the result of the comparison is nonzero.
-        Otherwise, returns a value as indicated in <cxx-ref to="tab:string.view.compare"><a title="tab:string.view.compare" href="#tab:string.view.compare">Table 7</a></cxx-ref>.</dd>
+        Otherwise, returns a value as indicated in <cxx-ref to="tab:string.view.compare"><a title="tab:string.view.compare" href="#tab:string.view.compare">Table 10</a></cxx-ref>.</dd>
   </cxx-returns>
       <table is="cxx-table" id="tab:string.view.compare" class="center">
     
 
-    <caption>Table 7 — <wbr><span><code>compare()</code> results</span></caption>
+    <caption>Table 10 — <wbr><span><code>compare()</code> results</span></caption>
     
         
         <tbody><tr><th>Condition</th><th>Return Value</th></tr>
@@ -6655,13 +6676,13 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     <p para_num="1" id="string.view.comparison.1">
       Let <code>S</code> be <code>basic_string_view&lt;charT, traits&gt;</code>, and <code>sv</code> be an instance of <code>S</code>.
       Implementations shall provide sufficient additional overloads marked <code>constexpr</code> and <code>noexcept</code>
-      so that an object <code><var>t</var></code> with an implicit conversion to <code>S</code> can be compared according to <cxx-ref to="tab:string.view.comparison.overloads"><a title="tab:string.view.comparison.overloads" href="#tab:string.view.comparison.overloads">Table 8</a></cxx-ref>.
+      so that an object <code><var>t</var></code> with an implicit conversion to <code>S</code> can be compared according to <cxx-ref to="tab:string.view.comparison.overloads"><a title="tab:string.view.comparison.overloads" href="#tab:string.view.comparison.overloads">Table 11</a></cxx-ref>.
     </p>
 
     <table is="cxx-table" id="tab:string.view.comparison.overloads" class="center">
     
 
-    <caption>Table 8 — <wbr><span>Additional <code>basic_string_view</code> comparison overloads</span></caption>
+    <caption>Table 11 — <wbr><span>Additional <code>basic_string_view</code> comparison overloads</span></caption>
     
       <tbody><tr><th>Expression</th><th>Equivalent to</th></tr>
       <tr><td><code>t == sv</code></td><td><code>S(t) == sv</code></td></tr>
@@ -7800,13 +7821,13 @@ inline namespace fundamentals_v1 {
       but where <code>C</code> is not dependent on the type of <code>alloc</code>.
       Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
       <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memory.resource"><a title="memory.resource" href="#memory.resource">8.5</a></cxx-ref>).
-      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"><a title="tab:memory.resource.type.erased.allocator" href="#tab:memory.resource.type.erased.allocator">Table 9</a></cxx-ref>:
+      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"><a title="tab:memory.resource.type.erased.allocator" href="#tab:memory.resource.type.erased.allocator">Table 12</a></cxx-ref>:
     </p>
 
     <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
     
 
-    <caption>Table 9 — <wbr><span>Computed <code>memory_resource</code> for type-erased allocator</span></caption>
+    <caption>Table 12 — <wbr><span>Computed <code>memory_resource</code> for type-erased allocator</span></caption>
     
       
       <thead>
@@ -8355,7 +8376,7 @@ void construct(T* p, Args&amp;&amp;... args);</cxx-signature></code></pre>
         <cxx-requires para_num="8" id="memory.polymorphic.allocator.mem.8">
     
     <dt>Requires:</dt><dd><cxx-term><i>Uses-allocator construction</i></cxx-term> of <code>T</code>
-        with allocator <code>this-&gt;resource()</code> (see <cxx-ref to="mods.allocator.uses"><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
+        with allocator <code>this-&gt;resource()</code> (see <cxx-ref to="allocator.uses.trait"><a title="allocator.uses.trait" href="#allocator.uses.trait">2.1</a></cxx-ref>)
         and constructor arguments <code>std::forward&lt;Args&gt;(args)...</code> is well-formed.
         <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     <cxx-term><i>uses-allocator construction</i></cxx-term> is always well formed for types that do not use allocators.
@@ -8365,7 +8386,7 @@ void construct(T* p, Args&amp;&amp;... args);</cxx-signature></code></pre>
         <cxx-effects para_num="9" id="memory.polymorphic.allocator.mem.9">
     
     <dt>Effects:</dt><dd>Construct a <code>T</code> object at <code>p</code> by <cxx-term><i>uses-allocator construction</i></cxx-term>
-        with allocator <code>this-&gt;resource()</code> (<cxx-ref to="mods.allocator.uses"><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
+        with allocator <code>this-&gt;resource()</code> (<cxx-ref to="allocator.uses.trait"><a title="allocator.uses.trait" href="#allocator.uses.trait">2.1</a></cxx-ref>)
         and constructor arguments <code>std::forward&lt;Args&gt;(args)...</code>.</dd>
   </cxx-effects>
         <cxx-throws para_num="10" id="memory.polymorphic.allocator.mem.10">
@@ -8391,7 +8412,7 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
           Let <code>xprime</code> be a <code>tuple</code> constructed from <code>x</code> according to the appropriate rule from the following list.
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     The following description can be summarized as constructing a <code>std::pair&lt;T1,T2&gt;</code> object at <code>p</code>
-          as if by separate <i>uses-allocator construction</i> with allocator <code>this-&gt;resource()</code> (<cxx-ref to="mods.allocator.uses"><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
+          as if by separate <i>uses-allocator construction</i> with allocator <code>this-&gt;resource()</code> (<cxx-ref to="allocator.uses.trait"><a title="allocator.uses.trait" href="#allocator.uses.trait">2.1</a></cxx-ref>)
           of <code>p-&gt;first</code> using the elements of <code>x</code>
           and <code>p-&gt;second</code> using the elements of <code>y</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
@@ -10087,7 +10108,7 @@ ForwardIterator search(ForwardIterator first, ForwardIterator last,
 
       <cxx-effects para_num="2" id="alg.search.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>searcher(first, last)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return searcher(first, last)</code>.</dd>
   </cxx-effects>
       <cxx-remarks para_num="3" id="alg.search.3">
     

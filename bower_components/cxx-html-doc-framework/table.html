@@ -44,6 +44,7 @@ limitations under the License.
 
       polyfill-next-selector { content: 'th' }
       ::content th { border-bottom: double medium; }
+      :host(.single-border) ::content th { border-bottom: solid thin; }
 
       polyfill-next-selector { content: ':host(.center) td' }
       :host(.center) ::content td { text-align: center; }
