@@ -306,8 +306,8 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
             </tr>
             <tr>
               <th><code>rhs</code> contains a value</th>
-              <td>assigns <code>move(*rhs)</code> to the contained value</td>
-              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>move(*rhs)</code></td>
+              <td>assigns <code>std::move(*rhs)</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>std::move(*rhs)</code></td>
             </tr>
             <tr>
               <th><code>rhs</code> does not contain a value</th>
