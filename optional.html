@@ -262,7 +262,8 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
         <cxx-requires><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_copy_assignable_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>
-          <table>
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::operator=(const optional&)</code> effects</caption>
             <tr>
               <th></th>
               <th><code>*this</code> contains a value</th>
@@ -296,7 +297,8 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_move_assignable_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>The result of the expression <code>bool(rhs)</code> remains unchanged.
 
-          <table>
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::operator=(optional&&)</code> effects</caption>
             <tr>
               <th></th>
               <th><code>*this</code> contains a value</th>
@@ -376,7 +378,8 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-requires>Lvalues of type <code>T</code> shall be swappable and <code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>
 
-          <table>
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::swap(optional&)</code> effects</caption>
             <tr>
               <th></th>
               <th><code>*this</code> contains a value</th>
