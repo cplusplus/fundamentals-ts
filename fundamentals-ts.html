@@ -731,7 +731,7 @@ pre {
         
           <ol>
             
-              <li><span class="marker">2.1</span><a href="#allocator.uses.trait">Uses-allocator construction</a>
+              <li><span class="marker">2.1</span><a href="#mods.allocator.uses">Uses-allocator construction</a>
         
       </li>
             
@@ -1790,15 +1790,15 @@ pre {
     behave as if the modifications contained in this section are made to the C++ Standard.
   </p>
 
-  <cxx-section id="allocator.uses.trait">
+  <cxx-section id="mods.allocator.uses">
     
 
     <section>
-      <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Uses-allocator construction">Uses-allocator construction</h1> <span style="float:right"><a href="#allocator.uses.trait">[allocator.uses.trait]</a></span></header>
+      <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Uses-allocator construction">Uses-allocator construction</h1> <span style="float:right"><a href="#mods.allocator.uses">[mods.allocator.uses]</a></span></header>
       
     
 
-    <p para_num="1" id="allocator.uses.trait.1">
+    <p para_num="1" id="mods.allocator.uses.1">
       The following changes to the <code>uses_allocator</code> trait and to the description of uses-allocator construction
       allow a <code>memory_resource</code> pointer act as an allocator in many circumstances.
       <cxx-note><span class="nowrap">[ <em>Note:</em></span>
@@ -8380,7 +8380,7 @@ void construct(T* p, Args&amp;&amp;... args);</cxx-signature></code></pre>
         <cxx-requires para_num="8" id="memory.polymorphic.allocator.mem.8">
     
     <dt>Requires:</dt><dd><cxx-term><i>Uses-allocator construction</i></cxx-term> of <code>T</code>
-        with allocator <code>this-&gt;resource()</code> (see <cxx-ref to="allocator.uses.trait"><a title="allocator.uses.trait" href="#allocator.uses.trait">2.1</a></cxx-ref>)
+        with allocator <code>this-&gt;resource()</code> (see <cxx-ref to="mods.allocator.uses"><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
         and constructor arguments <code>std::forward&lt;Args&gt;(args)...</code> is well-formed.
         <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     <cxx-term><i>uses-allocator construction</i></cxx-term> is always well formed for types that do not use allocators.
@@ -8390,7 +8390,7 @@ void construct(T* p, Args&amp;&amp;... args);</cxx-signature></code></pre>
         <cxx-effects para_num="9" id="memory.polymorphic.allocator.mem.9">
     
     <dt>Effects:</dt><dd>Construct a <code>T</code> object at <code>p</code> by <cxx-term><i>uses-allocator construction</i></cxx-term>
-        with allocator <code>this-&gt;resource()</code> (<cxx-ref to="allocator.uses.trait"><a title="allocator.uses.trait" href="#allocator.uses.trait">2.1</a></cxx-ref>)
+        with allocator <code>this-&gt;resource()</code> (<cxx-ref to="mods.allocator.uses"><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
         and constructor arguments <code>std::forward&lt;Args&gt;(args)...</code>.</dd>
   </cxx-effects>
         <cxx-throws para_num="10" id="memory.polymorphic.allocator.mem.10">
@@ -8416,7 +8416,7 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
           Let <code>xprime</code> be a <code>tuple</code> constructed from <code>x</code> according to the appropriate rule from the following list.
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     The following description can be summarized as constructing a <code>std::pair&lt;T1,T2&gt;</code> object at <code>p</code>
-          as if by separate <i>uses-allocator construction</i> with allocator <code>this-&gt;resource()</code> (<cxx-ref to="allocator.uses.trait"><a title="allocator.uses.trait" href="#allocator.uses.trait">2.1</a></cxx-ref>)
+          as if by separate <i>uses-allocator construction</i> with allocator <code>this-&gt;resource()</code> (<cxx-ref to="mods.allocator.uses"><a title="mods.allocator.uses" href="#mods.allocator.uses">2.1</a></cxx-ref>)
           of <code>p-&gt;first</code> using the elements of <code>x</code>
           and <code>p-&gt;second</code> using the elements of <code>y</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
