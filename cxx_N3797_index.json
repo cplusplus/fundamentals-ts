@@ -39,6 +39,8 @@
     "util.smartptr.shared.atomic": "20.8.2.6",
     "util.smartptr.hash": "20.8.2.7",
     "function.objects": "20.9",
+    "func.def": "20.9.1",
+    "func.require": "20.9.2",
     "bind": "20.9.9",
     "func.wrap.func": "20.9.11.2",
     "func.wrap.func.con": "20.9.11.2.1",

@@ -1,0 +1,51 @@
+<cxx-clause id="func">
+  <h1>Function objects</h1>
+
+  <cxx-section id="header.functional.synop">
+    <h1>Header <code>&lt;experimental/functional></code> synopsis</h1>
+
+<pre><code>#include &lt;functional>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis="" to="func.not_fn"></cxx-ref>
+  template &lt;class F> unspecified not_fn(F&& f);
+
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="func.not_fn">
+    <h1>Function template <code>not_fn</code></h1>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class F&gt; <em>unspecified</em> not_fn(F&amp;&amp; f);</cxx-signature>
+
+      <p>In the text that follows:</p>
+      <ul>
+        <li><code>FD</code> is the type <code>decay_t&lt;F&gt;</code>,</li>
+        <li><code>fd</code> is an lvalue of type <code>FD</code> constructed from <code>std::forward&lt;F&gt;(f),</code></li>
+        <li><code>fn</code> is a forwarding call wrapper created as a result of <code>not_fn(f)</code>,</li>
+      </ul>
+      <cxx-requires>
+        <code>is_constructible&lt;FD, F&gt;::value</code> shall be <code>true</code>.
+        <code>fd</code> shall be a callable object (<cxx-ref in="cxx" to="func.def"></cxx-ref>).
+      </cxx-requires>
+      <cxx-returns>
+        A forwarding call wrapper <code>fn</code> such that the expression <code>fn(a1, a2, ..., aN)</code>
+        is equivalent to <code>!<em>INVOKE</em>(fd, a1, a2, ..., aN)</code> (<cxx-ref in="cxx" to="func.require"></cxx-ref>).
+      </cxx-returns>
+      <cxx-throws>Nothing unless the construction of <code>fd</code> throws an exception.</cxx-throws>
+      <cxx-remarks>
+        The return type shall satisfy the requirements of <code>MoveConstructible</code>.
+        If <code>FD</code> satisfies the requirements of <code>CopyConstructible</code>, then
+        the return type shall satisfy the requirements of <code>CopyConstructible</code>.
+        <cxx-note>This implies that <code>FD</code> is MoveConstructible.</cxx-note>
+      </cxx-remarks>
+      <p><cxx-note>Function template <code>not_fn</code> can usually provide a better solution than using the negators <code>not1</code> and <code>not2</code></cxx-note></p>
+    </cxx-function>
+  </cxx-section>
+</cxx-clause>
