@@ -4,9 +4,9 @@ fundamentals-ts
 The draft C++ Library Fundamentals Technical Specification
 
 Visit [the Polymer-based rendered
-version](http://cplusplus.github.io/fundamentals-ts/main.html)
+version](https://rawgit.com/cplusplus/fundamentals-ts/v1/main.html)
 or the [standalone
-version](http://cplusplus.github.io/fundamentals-ts/fundamentals-ts.html).
+version](https://rawgit.com/cplusplus/fundamentals-ts/v1/fundamentals-ts.html).
 
 This TS is written using a set of [custom HTML elements](https://github.com/cplusplus/html-doc-framework)
 based on the [Polymer framework](http://www.polymer-project.org/).
