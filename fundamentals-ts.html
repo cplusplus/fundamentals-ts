@@ -3280,7 +3280,7 @@ make_boyer_moore_horspool_searcher(
       
     
 
-<pre>namespace std {
+<pre><code>namespace std {
   namespace experimental {
   inline namespace fundamentals_v1 {
 
@@ -3351,8 +3351,7 @@ make_boyer_moore_horspool_searcher(
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;
 
-} // <i>namespace std</i>
-</pre>
+} // <i>namespace std</i></code></pre>
 
     <p para_num="1" id="optional.synop.1">A program that necessitates the instantiation of template <code>optional</code> for a reference type, or for possibly cv-qualified types <code>in_place_t</code> or <code>nullopt_t</code> is ill-formed.</p>
   
@@ -3367,7 +3366,7 @@ make_boyer_moore_horspool_searcher(
       
     
 
-<pre>template &lt;class T&gt;
+<pre><code>template &lt;class T&gt;
 class optional
 {
 public:
@@ -3416,7 +3415,7 @@ public:
 
 private:
   T*   val;  // <i>exposition only</i>
-};</pre>
+};</code></pre>
 
     <p para_num="1" id="optional.object.1">
       Any instance of <code>optional&lt;T&gt;</code> at any given time either contains a value or does not contain a value.
@@ -3521,7 +3520,7 @@ private:
   </cxx-throws>
         <cxx-remarks para_num="14" id="optional.object.ctor.14">
     
-    <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to:<pre>is_nothrow_move_constructible_v&lt;T&gt;</pre></dd>
+    <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to:<pre><code>is_nothrow_move_constructible_v&lt;T&gt;</code></pre></dd>
   </cxx-remarks>
       
     </dl>
@@ -3836,7 +3835,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-remarks para_num="16" id="optional.object.assign.16">
     
     <dt>Remarks:</dt><dd>
-          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>is_nothrow_move_constructible_v&lt;T&gt;</pre><p></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre><code>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>is_nothrow_move_constructible_v&lt;T&gt;</code></pre><p></p>
 
           <p>
             If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
@@ -4018,7 +4017,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-remarks para_num="5" id="optional.object.swap.5">
     
     <dt>Remarks:</dt><dd>
-          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre><p></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: </p><pre><code>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</code></pre><p></p>
           <p>
             If any exception is thrown, the results of the expressions <code>bool(*this)</code> and <code>bool(<var>rhs</var>)</code> remain unchanged.
             If an exception is thrown during the call to function <code>swap</code>
@@ -4299,10 +4298,10 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
       
     
 
-<pre>class bad_optional_access : public logic_error {
+<pre><code>class bad_optional_access : public logic_error {
 public:
   bad_optional_access();
-};</pre>
+};</code></pre>
 
     <p para_num="1" id="optional.bad_optional_access.1">The class <code>bad_optional_access</code> defines the type of objects thrown as exceptions to report the situation where an attempt is made to access the value of an optional object that does not contain a value.</p>
 
@@ -5429,7 +5428,7 @@ ValueType any_cast(any&amp;&amp; operand);</cxx-signature></code></pre>
     
     <span class="nowrap">[ <em>Example:</em></span>
     
-        <pre>any x(5);                                   // x holds int
+        <pre><code>any x(5);                                   // x holds int
 assert(any_cast&lt;int&gt;(x) == 5);              // cast to value
 any_cast&lt;int&amp;&gt;(x) = 10;                     // cast to reference
 assert(any_cast&lt;int&gt;(x) == 10);
@@ -5451,7 +5450,7 @@ const any y(cat);                           // const y holds string
 assert(any_cast&lt;const string&amp;&gt;(y) == cat);
 
 any_cast&lt;string&amp;&gt;(y);                       // error; cannot
-                                            //  any_cast away const</pre>
+                                            //  any_cast away const</code></pre>
       
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
@@ -5480,9 +5479,9 @@ ValueType* any_cast(any* operand) noexcept;</cxx-signature></code></pre>
     
     <span class="nowrap">[ <em>Example:</em></span>
     
-        <pre>bool is_string(const any&amp; operand) {
+        <pre><code>bool is_string(const any&amp; operand) {
   return any_cast&lt;string&gt;(&amp;operand) != nullptr;
-}</pre>
+}</code></pre>
       
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
