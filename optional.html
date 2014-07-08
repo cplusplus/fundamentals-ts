@@ -10,8 +10,7 @@
   <cxx-section id="optional.synop">
     <h1>Header <code>&lt;experimental/optional&gt;</code> synopsis</h1>
 
-<pre>
-namespace std {
+<pre><code>namespace std {
   namespace experimental {
   inline namespace fundamentals_v1 {
 
@@ -82,8 +81,7 @@ namespace std {
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;
 
-} // <i>namespace std</i>
-</pre>
+} // <i>namespace std</i></code></pre>
 
     <p>A program that necessitates the instantiation of template <code>optional</code> for a reference type, or for possibly cv-qualified types <code>in_place_t</code> or <code>nullopt_t</code> is ill-formed.</p>
   </cxx-section>
@@ -91,7 +89,7 @@ namespace std {
   <cxx-section id="optional.object">
     <h1><code>optional</code> for object types</h1>
 
-<pre>template &lt;class T&gt;
+<pre><code>template &lt;class T&gt;
 class optional
 {
 public:
@@ -189,7 +187,7 @@ private:
         <code>bool(<var>rhs</var>)</code> is unchanged.</cxx-effects>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
-        <cxx-remarks>The expression inside <code>noexcept</code> is equivalent to:<pre>is_nothrow_move_constructible_v&lt;T&gt;</pre></cxx-remarks>
+        <cxx-remarks>The expression inside <code>noexcept</code> is equivalent to:<pre><code>is_nothrow_move_constructible_v&lt;T&gt;</code></pre></cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -319,7 +317,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
         <cxx-remarks>
-          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_nothrow_move_constructible_v&lt;T&gt;</pre></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre><code>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_nothrow_move_constructible_v&lt;T&gt;</code></pre></p>
 
           <p>
             If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
@@ -404,7 +402,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         </cxx-effects>
         <cxx-throws>Any exceptions that the expressions in the Effects element throw.</cxx-throws>
         <cxx-remarks>
-          <p>The expression inside <code>noexcept</code> is equivalent to: <pre>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</pre></p>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre><code>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</code></pre></p>
           <p>
             If any exception is thrown, the results of the expressions <code>bool(*this)</code> and <code>bool(<var>rhs</var>)</code> remain unchanged.
             If an exception is thrown during the call to function <code>swap</code>
@@ -522,10 +520,10 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
   <cxx-section id="optional.bad_optional_access">
     <h1>Class <code>bad_optional_access</code></h1>
 
-<pre>class bad_optional_access : public logic_error {
+<pre><code>class bad_optional_access : public logic_error {
 public:
   bad_optional_access();
-};</pre>
+};</code></pre>
 
     <p>The class <code>bad_optional_access</code> defines the type of objects thrown as exceptions to report the situation where an attempt is made to access the value of an optional object that does not contain a value.</p>
 

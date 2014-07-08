@@ -261,7 +261,7 @@ ValueType any_cast(any&amp;&amp; operand);</cxx-signature>
       For the second and third forms, <code>*any_cast&lt;remove_reference_t&lt;ValueType&gt;&gt;(&amp;operand)</code>.</cxx-returns>
       <cxx-throws><code>bad_any_cast</code> if <code>operand.type() != typeid(remove_reference_t&lt;ValueType&gt;)</code>.</cxx-throws>
       <cxx-example>
-        <pre>any x(5);                                   // x holds int
+        <pre><code>any x(5);                                   // x holds int
 assert(any_cast&lt;int&gt;(x) == 5);              // cast to value
 any_cast&lt;int&amp;&gt;(x) = 10;                     // cast to reference
 assert(any_cast&lt;int&gt;(x) == 10);
@@ -283,7 +283,7 @@ const any y(cat);                           // const y holds string
 assert(any_cast&lt;const string&amp;&gt;(y) == cat);
 
 any_cast&lt;string&amp;&gt;(y);                       // error; cannot
-                                            //  any_cast away const</pre>
+                                            //  any_cast away const</code></pre>
       </cxx-example>
     </cxx-function>
 
@@ -297,9 +297,9 @@ ValueType* any_cast(any* operand) noexcept;</cxx-signature>
       a pointer to the object contained by <code>operand</code>,
       otherwise <code>nullptr</code>.</cxx-returns>
       <cxx-example>
-        <pre>bool is_string(const any&amp; operand) {
+        <pre><code>bool is_string(const any&amp; operand) {
   return any_cast&lt;string&gt;(&amp;operand) != nullptr;
-}</pre>
+}</code></pre>
       </cxx-example>
     </cxx-function>
   </cxx-section>
