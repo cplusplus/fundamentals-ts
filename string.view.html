@@ -130,7 +130,6 @@ class basic_string_view {
   constexpr const_pointer data() const noexcept;
 
   <cxx-ref insynopsis="" to="string.view.modifiers"></cxx-ref>
-  constexpr void clear() noexcept;
   constexpr void remove_prefix(size_type n);
   constexpr void remove_suffix(size_type n);
   constexpr void swap(basic_string_view&amp; s) noexcept;
@@ -359,11 +358,6 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
 
   <cxx-section id="string.view.modifiers">
     <h1><code>basic_string_view</code> modifiers</h1>
-
-    <cxx-function>
-      <cxx-signature>constexpr void clear() noexcept;</cxx-signature>
-      <cxx-effects>Equivalent to <code>*this = basic_string_view()</code></cxx-effects>
-    </cxx-function>
 
     <cxx-function>
       <cxx-signature>constexpr void remove_prefix(size_type n);</cxx-signature>
