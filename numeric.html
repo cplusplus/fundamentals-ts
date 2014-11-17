@@ -1,0 +1,67 @@
+<cxx-clause id="numeric">
+  <h1>Numerics library</h1>
+
+  <cxx-section id="numeric.ops">
+    <h1>Generalized numeric operations</h1>
+
+    <cxx-section id="numeric.ops.overview">
+      <h1>Header &lt;experimental/numeric> synopsis</h1>
+
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis="" to="numeric.ops.gcd"></cxx-ref>
+  template&lt;class M, class N>
+  constexpr common_type_t&lt;M,N> gcd(M m, N n);
+
+  <cxx-ref insynopsis="" to="numeric.ops.lcm"></cxx-ref>
+  template&lt;class M, class N>
+  constexpr common_type_t&lt;M,N> lcm(M m, N n);
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="numeric.ops.gcd">
+      <h1>Greatest common divisor</h1>
+
+      <cxx-function>
+        <cxx-signature>template&lt;class M, class N>
+constexpr common_type_t&lt;M,N> gcd(M m, N n);</cxx-signature>
+
+        <cxx-requires>
+          <code>|m|</code> shall be representable as a value of type <code>M</code> and
+          <code>|n|</code> shall be representable as a value of type <code>N</code>.
+          <cxx-note>These requirements ensure, for example, that <code>gcd(m, m) = |m|</code> is representable as a value of type <code>M</code>.</cxx-note>
+        </cxx-requires>
+        <cxx-remarks>If either <code>M</code> or <code>N</code> is not an integer type, the program is ill-formed.</cxx-remarks>
+        <cxx-returns>
+          zero when <code>m</code> and <code>n</code> are both zero.
+          Otherwise, returns the greatest common divisor of <code>|m|</code> and <code>|n|</code>.</cxx-returns>
+        <cxx-throws>Nothing.</cxx-throws>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="numeric.ops.lcm">
+      <h1>Least common multiple</h1>
+      <cxx-function>
+        <cxx-signature>template&lt;class M, class N>
+constexpr common_type_t&lt;M,N> lcm(M m, N n);</cxx-signature>
+        <cxx-requires>
+          <code>|m|</code> shall be representable as a value of type <code>M</code> and
+          <code>|n|</code> shall be representable as a value of type <code>N</code>.
+          The least common multiple of <code>|m|</code> and <code>|n|</code>
+          shall be representable as a value of type <code>common_type_t&lt;M,N></code>.
+        </cxx-requires>
+        <cxx-remarks>If either <code>M</code> or <code>N</code> is not an integer type, the program is ill-formed.</cxx-remarks>
+        <cxx-returns>
+          zero when either <code>m</code> or <code>n</code> is zero.
+          Otherwise, returns the least common multiple of <code>|m|</code> and <code>|n|</code>.
+        </cxx-returns>
+        <cxx-throws>Nothing.</cxx-throws>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+</cxx-clause>
