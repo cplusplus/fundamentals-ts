@@ -36,15 +36,6 @@ inline namespace fundamentals_v1 {
     template &lt;class ValueType&gt;
       any(ValueType&amp;&amp; value);
 
-    template &lt;class Allocator&gt;
-      any(allocator_arg_t, const Allocator&amp; a) noexcept;
-    template &lt;class Allocator, class ValueType&gt;
-      any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);
-    template &lt;class Allocator&gt;
-        any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);
-    template &lt;class Allocator&gt;
-        any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;
-
     ~any();
 
     <cxx-ref insynopsis="" to="any.assign"></cxx-ref>
@@ -107,7 +98,8 @@ inline namespace fundamentals_v1 {
     <p>
       Implementations should avoid the use of dynamically allocated memory for a small contained object.
       <cxx-example class="inline">where the object constructed is holding only an int.</cxx-example>
-      Such small-object optimization shall only be applied to nothrow copyable types.
+      Such small-object optimization shall only be applied to types <code>T</code> for which
+      <code>is_nothrow_move_constructible_v&lt;T&gt;</code> is true.
     </p>
 
     <cxx-section id="any.cons">
@@ -123,7 +115,7 @@ inline namespace fundamentals_v1 {
         <cxx-signature>any(const any&amp; other);</cxx-signature>
 
         <cxx-effects>Constructs an object of type <code>any</code> with an equivalent state as <code>other</code>.</cxx-effects>
-        <cxx-throws>Any exceptions arising from the copy constructor of the contained object.</cxx-throws>
+        <cxx-throws>Any exceptions arising from calling the selected constructor of the contained object.</cxx-throws>
       </cxx-function>
 
       <cxx-function>
@@ -143,20 +135,6 @@ any(ValueType&amp;&amp; value);</cxx-signature>
         <cxx-effects>Constructs an object of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(value)</code>.</cxx-effects>
         <cxx-remarks>This constructor shall not participate in overload resolution if <code>decay_t&lt;ValueType&gt;</code> is the same type as <code>any</code>.</cxx-remarks>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
-      </cxx-function>
-
-      <cxx-function>
-        <cxx-signature>template &lt;class Allocator&gt;
-any(allocator_arg_t, const Allocator&amp; a) noexcept;</cxx-signature>
-        <cxx-signature>template &lt;class Allocator, class ValueType&gt;
-any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);</cxx-signature>
-        <cxx-signature>template &lt;class Allocator&gt;
-any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);</cxx-signature>
-        <cxx-signature>template &lt;class Allocator&gt;
-any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx-signature>
-
-        <cxx-requires><code>Allocator</code> shall meet the requirements for an Allocator (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>).</cxx-requires>
-        <cxx-effects>Equivalent to the preceding constructors except that the contained object is constructed with uses-allocator construction (<cxx-ref in="cxx" to="allocator.uses.construction"></cxx-ref>) if memory allocation is performed.</cxx-effects>
       </cxx-function>
 
       <cxx-function>

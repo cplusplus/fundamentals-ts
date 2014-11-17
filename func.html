@@ -248,6 +248,7 @@ namespace std {
 
         <cxx-requires><code>this-&gt;get_memory_resource() == other-&gt;get_memory_resource()</code>.</cxx-requires>
         <cxx-effects>Interchanges the targets of <code>*this</code> and <code>other</code>.</cxx-effects>
+        <cxx-remarks>The allocators of <code>*this</code> and <code>other</code> are not interchanged.</cxx-remarks>
       </cxx-function>
     </cxx-section>
   </cxx-section>
@@ -267,6 +268,12 @@ namespace std {
       Each specialization of a class template specified in this sub-clause <cxx-ref to="func.searchers"></cxx-ref> shall meet the <code>CopyConstructible</code> and <code>CopyAssignable</code> requirements.
       Template parameters named <code>ForwardIterator</code>, <code>ForwardIterator1</code>, <code>ForwardIterator2</code>, <code>RandomAccessIterator</code>, <code>RandomAccessIterator1</code>, <code>RandomAccessIterator2</code>, and <code>BinaryPredicate</code> of templates specified in this sub-clause <cxx-ref to="func.searchers"></cxx-ref> shall meet the same requirements and semantics as specified in <cxx-ref in="cxx" to="algorithms.general"></cxx-ref>.
       Template parameters named <code>Hash</code> shall meet the requirements as specified in <cxx-ref in="cxx" to="hash.requirements"></cxx-ref>.
+    </p>
+
+    <p>
+      The Boyer-Moore searcher implements the Boyer-Moore search algorithm.
+      The Boyer-Moore-Horspool searcher implements the Boyer-Moore-Horspool search algorithm.
+      In general, the Boyer-Moore searcher will use more memory and give better run-time performance than Boyer-Moore-Horspool
     </p>
 
     <cxx-section id="func.searchers.default">
@@ -349,9 +356,9 @@ BinaryPredicate pred = BinaryPredicate());</cxx-signature>
         <cxx-requires>The value type of <code>RandomAccessIterator1</code> shall meet the <code>DefaultConstructible</code>, <code>CopyConstructible</code>, and <code>CopyAssignable</code> requirements.</cxx-requires>
         <cxx-requires>For any two values <code>A</code> and <code>B</code> of the type <code>iterator_traits&lt;RandomAccessIterator1&gt;::value_type</code>, if <code>pred(A,B)==true</code>, then <code>hf(A)==hf(B)</code> shall be true.</cxx-requires>
         <cxx-effects>Constructs a <code>boyer_moore_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>, <code>pat_last_</code> with <code>pat_last</code>, <code>hash_</code> with <code>hf</code>, and <code>pred_</code> with <code>pred</code>.</cxx-effects>
-        <cxx-throws>Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+        <cxx-throws>Any exception thrown by the copy constructor of <code>RandomAccessIterator1</code>,
         or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>,
-        or the copy constructor or <code>operator()</code> of <code>Hash</code>.
+        or the copy constructor or <code>operator()</code> of <code>BinaryPredicate</code> or <code>Hash</code>.
         May throw <code>bad_alloc</code> if cannot allocate additional memory for internal data structures needed.</cxx-throws>
       </cxx-function>
 
@@ -397,7 +404,7 @@ template&lt;class RandomAccessIterator1,
 class boyer_moore_horspool_searcher {
 public:
   boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
-                                BinaryPredicate pred = BinaryPredicate());
+                                Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
   template&lt;class RandomAccessIterator2&gt;
   RandomAccessIterator2
@@ -422,9 +429,9 @@ Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
         <cxx-effects>Constructs a <code>boyer_moore_horspool_searcher</code> object, initializing <code>pat_first_</code> with <code>pat_first</code>,
         <code>pat_last_</code> with <code>pat_last</code>, <code>hash_</code> with <code>hf</code>, and <code>pred_</code> with <code>pred</code>.</cxx-effects>
         <cxx-throws>
-          Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+          Any exception thrown by the copy constructor of <code>RandomAccessIterator1</code>,
           or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>
-          or the copy constructor or <code>operator()</code> of <code>Hash</code>.
+          or the copy constructor or <code>operator()</code> of <code>BinaryPredicate</code> or <code>Hash</code>.
           May throw <code>bad_alloc</code> if the system cannot allocate additional memory for internal data structures needed.
         </cxx-throws>
       </cxx-function>
