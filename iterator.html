@@ -1,0 +1,136 @@
+<cxx-clause id="iterator">
+  <h1>Iterators library</h1>
+
+  <cxx-section id="iterator.synopsis">
+    <h1>Header <code>&lt;experimental/iterator></code> synopsis</h1>
+
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis="" to="iterator.ostream.joiner"></cxx-ref>
+  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT> >
+      class ostream_joiner;
+  template &lt;class charT, class traits, class DelimT>
+    ostream_joiner&lt;decay_t&lt;DelimT>, charT, traits>
+    make_ostream_joiner(basic_ostream&lt;charT, traits>&amp; os, DelimT&amp;&amp; delimiter);
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="iterator.ostream.joiner">
+    <h1>Class template <code>ostream_joiner</code></h1>
+
+    <p>
+      <code>ostream_joiner</code> writes (using <code>operator&lt;&lt;</code>) successive elements onto the output stream from which it was constructed.
+      The delimiter that it was constructed with is written to the stream between every two <code>T</code>s that are written.
+      It is not possible to get a value out of the output iterator.
+      Its only use is as an output iterator in situations like
+    </p>
+    <pre><code>while (first != last)
+  *result++ = *first++;</code></pre>
+
+  <p>
+    <code>ostream_joiner</code> is defined as
+  </p>
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
+  class ostream_joiner {
+  public:
+    typedef charT char_type;
+    typedef traits traits_type;
+    typedef basic_ostream&lt;charT,traits&gt; ostream_type;
+    typedef output_iterator_tag iterator_category;
+    typedef void value_type;
+    typedef void difference_type;
+    typedef void pointer;
+    typedef void reference;
+
+    ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);
+    ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);
+    template&lt;typename T&gt;
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator=(const T&amp; value);
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator*();
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++();
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++(int);
+  private:
+    basic_ostream&lt;charT,traits&gt;* out_stream; <i>// exposition only</i>
+    DelimT delim;                            <i>// exposition only</i>
+    bool first_element;                      <i>// exposition only</i>
+  };
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+
+    <cxx-section id="iterator.ostream.joiner.cons">
+      <h1><code>ostream_joiner</code> constructor</h1>
+
+      <cxx-function>
+        <cxx-signature>ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);</cxx-signature>
+
+        <cxx-effects>
+          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          <code>delim</code> with <code>delimiter</code>,
+          and <code>first_element</code> with <code>true</code>.
+        </cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);</cxx-signature>
+
+        <cxx-effects>
+          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          <code>delim</code> with <code>move(delimiter)</code>,
+          and <code>first_element</code> with <code>true</code>.
+        </cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="iterator.ostream.joiner.ops">
+      <h1><code>ostream_joiner</code> operations</h1>
+
+      <cxx-function>
+        <cxx-signature>template&lt;typename T&gt;
+ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator=(const T&amp; value);</cxx-signature>
+
+        <cxx-effects>
+          <pre style="clear:left"><code>if (!first_element)
+  *out_stream &lt;&lt; delim;
+first_element = false;
+*out_stream &lt;&lt; value;
+return (*this);</code></pre>
+        </cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator*();</cxx-signature>
+
+        <cxx-returns><code>*this</code></cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++();</cxx-signature>
+        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++(int);</cxx-signature>
+
+        <cxx-returns><code>*this</code></cxx-returns>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="iterator.ostream.joiner.creation">
+      <h1><code>ostream_joiner</code> creation function</h1>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class charT, class traits, class DelimT&gt;
+ostream_joiner&lt;decay_t&lt;DelimT&gt;, charT, traits&gt;
+make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp; delimiter);</cxx-signature>
+
+        <cxx-returns><code>ostream_joiner&lt;decay_t&lt;DelimT&gt;, charT, traits&gt;(os, forward&lt;DelimT&gt;(delimiter));</code></cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+</cxx-clause>
