@@ -662,13 +662,13 @@ pre {
       <div class="page">
         <table class="header">
           
-            <tr><th>Document Number:</th><td><cxx-docnum>D4081</cxx-docnum></td></tr>
+            <tr><th>Document Number:</th><td><cxx-docnum>N4335</cxx-docnum></td></tr>
           
           
-            <tr><th>Date:</th><td><time pubdate="">2014-07-??</time></td></tr>
+            <tr><th>Date:</th><td><time pubdate="">2014-11-21</time></td></tr>
           
           
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4023.html">N4023</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4081.html">N4081</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
@@ -1347,22 +1347,6 @@ pre {
         
       </li>
             
-              <li><span class="marker">11</span><a href="#net">Networking</a>
-        
-          <ol>
-            
-              <li><span class="marker">11.1</span><a href="#header.net.synop">Header &lt;experimental/net&gt; synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">11.2</span><a href="#net.byte.order">Byte order conversion</a>
-        
-      </li>
-            
-          </ol>
-        
-      </li>
-            
           </ol>
         
       
@@ -1424,8 +1408,6 @@ pre {
   --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n3937.pdf">N3937</a>.</aside></cxx-footnote>,
       <cite>Programming Languages — C++</cite>
       </li>
-
-      <li><a href="http://www.ietf.org/rfc/rfc2781.txt">RFC 2781</a>, <cite>UTF-16, an encoding of ISO 10646</cite></li>
     </ul>
 
     <p para_num="2" id="general.references.2">ISO/IEC 14882:— is herein called the <dfn>C++ Standard</dfn>.
@@ -1693,7 +1675,7 @@ pre {
         <td>Extending <code>std::search</code> to use Additional Searching Algorithms</td>
         <td><cxx-ref to="func.searchers"><a title="func.searchers" href="#func.searchers">4.3</a></cxx-ref></td>
         <td><code>boyer_moore_searching</code></td>
-        <td>201402</td>
+        <td>201411</td>
         <td><code>&lt;experimental/functional&gt;</code></td>
       </tr>
       <tr>
@@ -1701,7 +1683,7 @@ pre {
         <td>A utility class to represent optional objects</td>
         <td><cxx-ref to="optional"><a title="optional" href="#optional">5</a></cxx-ref></td>
         <td><code>optional</code></td>
-        <td>201406</td>
+        <td>201411</td>
         <td><code>&lt;experimental/optional&gt;</code></td>
       </tr>
       <tr>
@@ -1709,7 +1691,7 @@ pre {
         <td>Any Library Proposal</td>
         <td><cxx-ref to="any"><a title="any" href="#any">6</a></cxx-ref></td>
         <td><code>any</code></td>
-        <td>201402</td>
+        <td>201411</td>
         <td><code>&lt;experimental/any&gt;</code></td>
       </tr>
       <tr>
@@ -1717,7 +1699,7 @@ pre {
         <td><code>string_view</code>: a non-owning reference to a string</td>
         <td><cxx-ref to="string.view"><a title="string.view" href="#string.view">7</a></cxx-ref></td>
         <td><code>string_view</code></td>
-        <td>201402</td>
+        <td>201411</td>
         <td><code>&lt;experimental/string_view&gt;</code></td>
       </tr>
       <tr>
@@ -1759,14 +1741,6 @@ pre {
         <td><code>sample</code></td>
         <td>201402</td>
         <td><code>&lt;experimental/algorithm&gt;</code></td>
-      </tr>
-      <tr>
-        <td>N3783</td>
-        <td>Network Byte Order Conversion</td>
-        <td><cxx-ref to="net.byte.order"><a title="net.byte.order" href="#net.byte.order">11.2</a></cxx-ref></td>
-        <td><code>network_byte_order</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/net&gt;</code></td>
       </tr>
     </tbody>
   </table>
@@ -2849,6 +2823,10 @@ namespace std {
     
     <dt>Effects:</dt><dd>Interchanges the targets of <code>*this</code> and <code>other</code>.</dd>
   </cxx-effects>
+        <cxx-remarks para_num="4" id="func.wrap.func.mod.4">
+    
+    <dt>Remarks:</dt><dd>The allocators of <code>*this</code> and <code>other</code> are not interchanged.</dd>
+  </cxx-remarks>
       
     </dl>
   </cxx-function>
@@ -2879,6 +2857,12 @@ namespace std {
       Each specialization of a class template specified in this sub-clause <cxx-ref to="func.searchers"><a title="func.searchers" href="#func.searchers">4.3</a></cxx-ref> shall meet the <code>CopyConstructible</code> and <code>CopyAssignable</code> requirements.
       Template parameters named <code>ForwardIterator</code>, <code>ForwardIterator1</code>, <code>ForwardIterator2</code>, <code>RandomAccessIterator</code>, <code>RandomAccessIterator1</code>, <code>RandomAccessIterator2</code>, and <code>BinaryPredicate</code> of templates specified in this sub-clause <cxx-ref to="func.searchers"><a title="func.searchers" href="#func.searchers">4.3</a></cxx-ref> shall meet the same requirements and semantics as specified in <cxx-ref in="cxx" to="algorithms.general">C++14 <span title="algorithms.general">§25.1</span></cxx-ref>.
       Template parameters named <code>Hash</code> shall meet the requirements as specified in <cxx-ref in="cxx" to="hash.requirements">C++14 <span title="hash.requirements">§17.6.3.4</span></cxx-ref>.
+    </p>
+
+    <p para_num="3" id="func.searchers.3">
+      The Boyer-Moore searcher implements the Boyer-Moore search algorithm.
+      The Boyer-Moore-Horspool searcher implements the Boyer-Moore-Horspool search algorithm.
+      In general, the Boyer-Moore searcher will use more memory and give better run-time performance than Boyer-Moore-Horspool
     </p>
 
     <cxx-section id="func.searchers.default">
@@ -3029,10 +3013,10 @@ BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
   </cxx-effects>
         <cxx-throws para_num="5" id="func.searchers.boyer_moore.5">
     
-    <dt>Throws:</dt><dd>Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+    <dt>Throws:</dt><dd>Any exception thrown by the copy constructor of <code>RandomAccessIterator1</code>,
         or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>,
-        or the copy constructor or <code>operator()</code> of <code>Hash</code>.
-        May throw <code>bad_alloc</code> if cannot allocate additional memory for internal data structures needed.</dd>
+        or the copy constructor or <code>operator()</code> of <code>BinaryPredicate</code> or <code>Hash</code>.
+        May throw <code>bad_alloc</code> if additional memory needed for internal data structures cannot be allocated.</dd>
   </cxx-throws>
       
     </dl>
@@ -3123,7 +3107,7 @@ template&lt;class RandomAccessIterator1,
 class boyer_moore_horspool_searcher {
 public:
   boyer_moore_horspool_searcher(RandomAccessIterator1 pat_first, RandomAccessIterator1 pat_last,
-                                BinaryPredicate pred = BinaryPredicate());
+                                Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
   template&lt;class RandomAccessIterator2&gt;
   RandomAccessIterator2
@@ -3164,9 +3148,9 @@ Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></co
         <cxx-throws para_num="5" id="func.searchers.boyer_moore_horspool.5">
     
     <dt>Throws:</dt><dd>
-          Any exception thrown by the copy constructor of <code>BinaryPredicate</code> or <code>RandomAccessIterator1</code>,
+          Any exception thrown by the copy constructor of <code>RandomAccessIterator1</code>,
           or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>
-          or the copy constructor or <code>operator()</code> of <code>Hash</code>.
+          or the copy constructor or <code>operator()</code> of <code>BinaryPredicate</code> or <code>Hash</code>.
           May throw <code>bad_alloc</code> if the system cannot allocate additional memory for internal data structures needed.
         </dd>
   </cxx-throws>
@@ -3403,13 +3387,13 @@ public:
   constexpr T* operator -&gt;();
   constexpr T const&amp; operator *() const &amp;;
   constexpr T&amp; operator *() &amp;;
-  constexpr T operator *() &amp;&amp;;
-  constexpr T operator *() const &amp;&amp;;
+  constexpr T&amp;&amp; operator *() &amp;&amp;;
+  constexpr const T&amp;&amp; operator *() const &amp;&amp;;
   constexpr explicit operator bool() const noexcept;
   constexpr T const&amp; value() const &amp;;
   constexpr T&amp; value() &amp;;
-  constexpr T value() &amp;&amp;;
-  constexpr T value() const &amp;&amp;;
+  constexpr T&amp;&amp; value() &amp;&amp;;
+  constexpr const T&amp;&amp; value() const &amp;&amp;;
   template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const &amp;;
   template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) &amp;&amp;;
 
@@ -4102,7 +4086,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
       <cxx-function para_num="11" id="optional.object.observe.11">
     
-    <pre><code><cxx-signature>constexpr T operator*() &amp;&amp;;</cxx-signature><cxx-signature>constexpr T operator*() const &amp;&amp;;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr T&amp;&amp; operator*() &amp;&amp;;</cxx-signature><cxx-signature>constexpr const T&amp;&amp; operator*() const &amp;&amp;;</cxx-signature></code></pre>
 
     <dl>
       
@@ -4117,27 +4101,23 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     
     <dt>Effects:</dt><dd>Equivalent to <code>return std::move(*<var>val</var>);</code></dd>
   </cxx-effects>
-        <cxx-remarks para_num="14" id="optional.object.observe.14">
-    
-    <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</dd>
-  </cxx-remarks>
       
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="15" id="optional.object.observe.15">
+      <cxx-function para_num="14" id="optional.object.observe.14">
     
-    <pre><code><cxx-signature>constexpr explicit operator bool() noexcept;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr explicit operator bool() const noexcept;</cxx-signature></code></pre>
 
     <dl>
       
         
 
-        <cxx-returns para_num="16" id="optional.object.observe.16">
+        <cxx-returns para_num="15" id="optional.object.observe.15">
     
     <dt>Returns:</dt><dd><code>true</code> if and only if <code>*this</code> contains a value.</dd>
   </cxx-returns>
-        <cxx-remarks para_num="17" id="optional.object.observe.17">
+        <cxx-remarks para_num="16" id="optional.object.observe.16">
     
     <dt>Remarks:</dt><dd>This function shall be a <code>constexpr</code> function.</dd>
   </cxx-remarks>
@@ -4145,7 +4125,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="18" id="optional.object.observe.18">
+      <cxx-function para_num="17" id="optional.object.observe.17">
     
     <pre><code><cxx-signature>constexpr T const&amp; value() const &amp;;</cxx-signature><cxx-signature>constexpr T&amp; value() &amp;;</cxx-signature></code></pre>
 
@@ -4154,7 +4134,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         
         
 
-        <cxx-effects para_num="19" id="optional.object.observe.19">
+        <cxx-effects para_num="18" id="optional.object.observe.18">
     
     <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? *val : throw bad_optional_access();</code>
       </dd>
@@ -4162,28 +4142,24 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="20" id="optional.object.observe.20">
+      <cxx-function para_num="19" id="optional.object.observe.19">
     
-    <pre><code><cxx-signature>constexpr T value() &amp;&amp;;</cxx-signature><cxx-signature>constexpr T value() const &amp;&amp;;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr T&amp;&amp; value() &amp;&amp;;</cxx-signature><cxx-signature>constexpr const T&amp;&amp; value() const &amp;&amp;;</cxx-signature></code></pre>
 
     <dl>
       
         
         
 
-        <cxx-effects para_num="21" id="optional.object.observe.21">
+        <cxx-effects para_num="20" id="optional.object.observe.20">
     
     <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></dd>
   </cxx-effects>
-        <cxx-remarks para_num="22" id="optional.object.observe.22">
-    
-    <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt;</code> is <code>false</code>, the program is ill-formed.</dd>
-  </cxx-remarks>
       
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="23" id="optional.object.observe.23">
+      <cxx-function para_num="21" id="optional.object.observe.21">
     
     <pre><code><cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const &amp;;</cxx-signature></code></pre>
 
@@ -4191,11 +4167,11 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
       
         
 
-        <cxx-effects para_num="24" id="optional.object.observe.24">
+        <cxx-effects para_num="22" id="optional.object.observe.22">
     
     <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
   </cxx-effects>
-        <cxx-remarks para_num="25" id="optional.object.observe.25">
+        <cxx-remarks para_num="23" id="optional.object.observe.23">
     
     <dt>Remarks:</dt><dd>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</dd>
@@ -4204,7 +4180,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="26" id="optional.object.observe.26">
+      <cxx-function para_num="24" id="optional.object.observe.24">
     
     <pre><code><cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature></code></pre>
 
@@ -4212,11 +4188,11 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
       
         
 
-        <cxx-effects para_num="27" id="optional.object.observe.27">
+        <cxx-effects para_num="25" id="optional.object.observe.25">
     
     <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <w-br><wbr></w-br>std::move(**this) : <w-br><wbr></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
   </cxx-effects>
-        <cxx-remarks para_num="28" id="optional.object.observe.28">
+        <cxx-remarks para_num="26" id="optional.object.observe.26">
     
     <dt>Remarks:</dt><dd>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <w-br><wbr></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
         the program is ill-formed.</dd>
@@ -4944,15 +4920,6 @@ inline namespace fundamentals_v1 {
     template &lt;class ValueType&gt;
       any(ValueType&amp;&amp; value);
 
-    template &lt;class Allocator&gt;
-      any(allocator_arg_t, const Allocator&amp; a) noexcept;
-    template &lt;class Allocator, class ValueType&gt;
-      any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);
-    template &lt;class Allocator&gt;
-        any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);
-    template &lt;class Allocator&gt;
-        any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;
-
     ~any();
 
     <cxx-ref insynopsis="" to="any.assign">// <i><a title="any.assign" href="#any.assign">6.3.2</a>, any assignments</i></cxx-ref>
@@ -5034,7 +5001,8 @@ inline namespace fundamentals_v1 {
     where the object constructed is holding only an int.
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
-      Such small-object optimization shall only be applied to nothrow copyable types.
+      Such small-object optimization shall only be applied to types <code>T</code> for which
+      <code>is_nothrow_move_constructible_v&lt;T&gt;</code> is true.
     </p>
 
     <cxx-section id="any.cons">
@@ -5075,7 +5043,7 @@ inline namespace fundamentals_v1 {
   </cxx-effects>
         <cxx-throws para_num="5" id="any.cons.5">
     
-    <dt>Throws:</dt><dd>Any exceptions arising from the copy constructor of the contained object.</dd>
+    <dt>Throws:</dt><dd>Any exceptions arising from calling the selected constructor of the contained object.</dd>
   </cxx-throws>
       
     </dl>
@@ -5134,40 +5102,13 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
 
       <cxx-function para_num="15" id="any.cons.15">
     
-    <pre><code><cxx-signature>template &lt;class Allocator&gt;
-any(allocator_arg_t, const Allocator&amp; a) noexcept;</cxx-signature><cxx-signature>template &lt;class Allocator, class ValueType&gt;
-any(allocator_arg_t, const Allocator&amp; a, ValueType&amp;&amp; value);</cxx-signature><cxx-signature>template &lt;class Allocator&gt;
-any(allocator_arg_t, const Allocator&amp; a, const any&amp; other);</cxx-signature><cxx-signature>template &lt;class Allocator&gt;
-any(allocator_arg_t, const Allocator&amp; a, any&amp;&amp; other) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-        
-        
-        
-        
-
-        <cxx-requires para_num="16" id="any.cons.16">
-    
-    <dt>Requires:</dt><dd><code>Allocator</code> shall meet the requirements for an Allocator (<cxx-ref in="cxx" to="allocator.requirements">C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>).</dd>
-  </cxx-requires>
-        <cxx-effects para_num="17" id="any.cons.17">
-    
-    <dt>Effects:</dt><dd>Equivalent to the preceding constructors except that the contained object is constructed with uses-allocator construction (<cxx-ref in="cxx" to="allocator.uses.construction">C++14 <span title="allocator.uses.construction">§20.7.7.2</span></cxx-ref>) if memory allocation is performed.</dd>
-  </cxx-effects>
-      
-    </dl>
-  </cxx-function>
-
-      <cxx-function para_num="18" id="any.cons.18">
-    
     <pre><code><cxx-signature>~any();</cxx-signature></code></pre>
 
     <dl>
       
         
 
-        <cxx-effects para_num="19" id="any.cons.19">
+        <cxx-effects para_num="16" id="any.cons.16">
     
     <dt>Effects:</dt><dd><code>clear()</code>.</dd>
   </cxx-effects>
@@ -5649,7 +5590,6 @@ class basic_string_view {
   constexpr const_pointer data() const noexcept;
 
   <cxx-ref insynopsis="" to="string.view.modifiers">// <i><a title="string.view.modifiers" href="#string.view.modifiers">7.7</a>, basic_string_view modifiers</i></cxx-ref>
-  constexpr void clear() noexcept;
   constexpr void remove_prefix(size_type n);
   constexpr void remove_suffix(size_type n);
   constexpr void swap(basic_string_view&amp; s) noexcept;
@@ -6147,32 +6087,17 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
 
     <cxx-function para_num="1" id="string.view.modifiers.1">
     
-    <pre><code><cxx-signature>constexpr void clear() noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-      
-      <cxx-effects para_num="2" id="string.view.modifiers.2">
-    
-    <dt>Effects:</dt><dd>Equivalent to <code>*this = basic_string_view()</code></dd>
-  </cxx-effects>
-    
-    </dl>
-  </cxx-function>
-
-    <cxx-function para_num="3" id="string.view.modifiers.3">
-    
     <pre><code><cxx-signature>constexpr void remove_prefix(size_type n);</cxx-signature></code></pre>
 
     <dl>
       
       
 
-      <cxx-requires para_num="4" id="string.view.modifiers.4">
+      <cxx-requires para_num="2" id="string.view.modifiers.2">
     
     <dt>Requires:</dt><dd><code>n &lt;= size()</code></dd>
   </cxx-requires>
-      <cxx-effects para_num="5" id="string.view.modifiers.5">
+      <cxx-effects para_num="3" id="string.view.modifiers.3">
     
     <dt>Effects:</dt><dd>Equivalent to <code>data_ += n; size_ -= n;</code></dd>
   </cxx-effects>
@@ -6180,7 +6105,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
     </dl>
   </cxx-function>
 
-    <cxx-function para_num="6" id="string.view.modifiers.6">
+    <cxx-function para_num="4" id="string.view.modifiers.4">
     
     <pre><code><cxx-signature>constexpr void remove_suffix(size_type n);</cxx-signature></code></pre>
 
@@ -6188,11 +6113,11 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
       
       
 
-      <cxx-requires para_num="7" id="string.view.modifiers.7">
+      <cxx-requires para_num="5" id="string.view.modifiers.5">
     
     <dt>Requires:</dt><dd><code>n &lt;= size()</code></dd>
   </cxx-requires>
-      <cxx-effects para_num="8" id="string.view.modifiers.8">
+      <cxx-effects para_num="6" id="string.view.modifiers.6">
     
     <dt>Effects:</dt><dd>Equivalent to <code>size_ -= n;</code></dd>
   </cxx-effects>
@@ -6200,7 +6125,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
     </dl>
   </cxx-function>
 
-    <cxx-function para_num="9" id="string.view.modifiers.9">
+    <cxx-function para_num="7" id="string.view.modifiers.7">
     
     <pre><code><cxx-signature>constexpr void swap(basic_string_view&amp; s) noexcept;</cxx-signature></code></pre>
 
@@ -6208,7 +6133,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
       
       
 
-      <cxx-effects para_num="10" id="string.view.modifiers.10">
+      <cxx-effects para_num="8" id="string.view.modifiers.8">
     
     <dt>Effects:</dt><dd>Exchanges the values of <code>*this</code> and <code>s</code>.</dd>
   </cxx-effects>
@@ -10188,113 +10113,6 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
         </ul>
       </dd>
   </cxx-remarks>
-    
-    </dl>
-  </cxx-function>
-  
-    </section>
-  </cxx-section>
-
-    </section>
-  </cxx-clause>
-
-<cxx-clause id="net">
-    
-
-    <section>
-      <header><span class="section-number">11</span> <h1 data-bookmark-label="11 Networking">Networking</h1> <span style="float:right"><a href="#net">[net]</a></span></header>
-      
-  
-
-  <cxx-section id="header.net.synop">
-    
-
-    <section>
-      <header><span class="section-number">11.1</span> <h1 data-bookmark-label="11.1 Header <experimental/net> synopsis">Header <code>&lt;experimental/net&gt;</code> synopsis</h1> <span style="float:right"><a href="#header.net.synop">[header.net.synop]</a></span></header>
-      
-    
-
-<pre><code>namespace std {
-namespace experimental {
-inline namespace fundamentals_v1 {
-namespace net {
-
-  <cxx-ref insynopsis="" to="net.byte.order">// <i><a title="net.byte.order" href="#net.byte.order">11.2</a>, Byte order conversion</i></cxx-ref>
-  constexpr uint32_t htonl(uint32_t host) noexcept;
-  constexpr uint16_t htons(uint16_t host) noexcept;
-  template &lt;class T&gt;
-    constexpr T hton(T host) noexcept = delete;
-  template &lt;&gt;
-    constexpr <var>unsigned-integral</var> hton(<var>unsigned-integral</var> host) noexcept;
-
-  constexpr uint32_t ntohl(uint32_t network) noexcept;
-  constexpr uint16_t ntohs(uint16_t network) noexcept;
-  template &lt;class T&gt;
-    constexpr T ntoh(T network) noexcept = delete;
-  template &lt;&gt;
-    constexpr <var>unsigned-integral</var> ntoh(<var>unsigned-integral</var> network) noexcept;
-
-} // namespace net
-} // namespace fundamentals_v1
-} // namespace experimental
-} // namespace std</code></pre>
-
-    <p para_num="1" id="header.net.synop.1">
-      The <code>&lt;experimental/net&gt;</code> header is available if <code>uint8_t</code>, <code>uint16_t</code>, <code>uint32_t</code>, and <code>uint64_t</code> are provided by <code>&lt;cstdint&gt;</code>.
-    </p>
-    <p para_num="2" id="header.net.synop.2">
-      For each unsigned integer type <var>unsigned-integral</var>, there shall be explicit specializations of the <code>hton()</code> and <code>ntoh()</code> templates.
-    </p>
-  
-    </section>
-  </cxx-section>
-
-  <cxx-section id="net.byte.order">
-    
-
-    <section>
-      <header><span class="section-number">11.2</span> <h1 data-bookmark-label="11.2 Byte order conversion">Byte order conversion</h1> <span style="float:right"><a href="#net.byte.order">[net.byte.order]</a></span></header>
-      
-    
-
-    <p para_num="1" id="net.byte.order.1">
-      <dfn>Network byte order</dfn> is <i>big-endian</i>, or most signiﬁcant byte ﬁrst (RFC 2781 section 3.1).
-      This byte order is used by certain network data formats as it passes through the network.
-      <dfn>Host byte order</dfn> is the endianness of the host machine.
-    </p>
-
-    <cxx-function para_num="2" id="net.byte.order.2">
-    
-    <pre><code><cxx-signature>constexpr uint32_t htonl(uint32_t host) noexcept;</cxx-signature><cxx-signature>constexpr uint16_t htons(uint16_t host) noexcept;</cxx-signature><cxx-signature>template &lt;&gt;
-constexpr <var>unsigned-integral</var> hton(<var>unsigned-integral</var> host) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-      
-      
-      
-
-      <cxx-returns para_num="3" id="net.byte.order.3">
-    
-    <dt>Returns:</dt><dd>The argument value converted from host to network byte order.</dd>
-  </cxx-returns>
-    
-    </dl>
-  </cxx-function>
-    <cxx-function para_num="4" id="net.byte.order.4">
-    
-    <pre><code><cxx-signature>constexpr uint32_t ntohl(uint32_t network) noexcept;</cxx-signature><cxx-signature>constexpr uint16_t ntohs(uint16_t network) noexcept;</cxx-signature><cxx-signature>template &lt;&gt;
-constexpr <var>unsigned-integral</var> ntoh(<var>unsigned-integral</var> network) noexcept;</cxx-signature></code></pre>
-
-    <dl>
-      
-      
-      
-      
-      <cxx-returns para_num="5" id="net.byte.order.5">
-    
-    <dt>Returns:</dt><dd>The argument value converted from network to host byte order.</dd>
-  </cxx-returns>
     
     </dl>
   </cxx-function>
