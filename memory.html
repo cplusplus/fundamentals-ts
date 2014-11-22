@@ -1,0 +1,303 @@
+<cxx-clause id="memory">
+  <h1>Memory</h1>
+
+  <cxx-section id="header.memory.synop">
+    <h1>Header &lt;experimental/memory> synopsis</h1>
+
+<pre><code>#include &lt;memory>
+
+namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v2 {
+
+    <cxx-ref insynopsis to="memory.observer.ptr"></cxx-ref>
+    template &lt;class W> class observer_ptr;
+
+    <cxx-ref insynopsis to="memory.observer.ptr.special"></cxx-ref>
+    template &lt;class W>
+    void swap(observer_ptr&lt;W>&amp;, observer_ptr&lt;W>&amp;) noexcept;
+    template &lt;class W>
+    observer_ptr&lt;W> make_observer(W*) noexcept;
+    // (in)equality operators
+    template &lt;class W1, class W2>
+    bool operator==(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
+
+    template &lt;class W1, class W2>
+    bool operator!=(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
+    template &lt;class W>
+    bool operator==(observer_ptr&lt;W>, nullptr_t) noexcept;
+    template &lt;class W>
+    bool operator!=(observer_ptr&lt;W>, nullptr_t) noexcept;
+    template &lt;class W>
+    bool operator==(nullptr_t, observer_ptr&lt;W>) noexcept;
+    template &lt;class W>
+    bool operator!=(nullptr_t, observer_ptr&lt;W>) noexcept;
+    // ordering operators
+    template &lt;class W1, class W2>
+    bool operator&lt;(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
+    template &lt;class W1, class W2>
+    bool operator>(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
+    template &lt;class W1, class W2>
+    bool operator&lt;=(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
+    template &lt;class W1, class W2>
+    bool operator>=(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
+
+  } // inline namespace fundamentals_v2
+  } // namespace experimental
+
+<cxx-ref insynopsis to="memory.observer.ptr.hash"></cxx-ref>
+template &lt;class T> struct hash;
+template &lt;class T> struct hash&lt;experimental::observer_ptr&lt;T>>;
+
+} // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="memory.observer.ptr">
+    <h1>Non-owning pointers</h1>
+
+    <p>
+      A non-owning pointer, known as an <dfn>observer</dfn>, is an object <code>o</code> that stores a pointer to a second object, <code>w</code>.
+      In this context, <code>w</code> is known as a <dfn>watched</dfn> object.
+      <cxx-note>There is no watched object when the stored pointer is <code>nullptr</code>.</cxx-note>
+      An observer takes no responsibility or ownership of any kind for its watched object, if any;
+      in particular, there is no inherent relationship between the lifetimes of <code>o</code> and <code>w</code>.
+    </p>
+
+    <p>
+      Specializations of <code>observer_ptr</code> shall meet the requirements of a <code>CopyConstructible</code> and <code>CopyAssignable</code> type.
+      The template parameter <code>W</code> of an <code>observer_ptr</code> shall not be a reference type, but may be an incomplete type.
+    </p>
+
+    <p>
+      <cxx-note>The uses of <code>observer_ptr</code> include clarity of interface specification in new code,
+      and interoperability with pointer-based legacy code.</cxx-note>
+    </p>
+
+    <cxx-section id="memory.observer.ptr.overview">
+      <h1>Class template <code>observer_ptr</code> overview</h1>
+
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  template &lt;class W> class observer_ptr {
+  public:
+    // publish our template parameter and variations thereof
+    using element_type = W;
+    using pointer = add_pointer_t&lt;W>;            <i>// exposition-only</i>
+    using reference = add_lvalue_reference_t&lt;W>; <i>// exposition-only</i>
+
+    <cxx-ref insynopsis to="memory.observer.ptr.ctor"></cxx-ref>
+    // default c’tor
+    constexpr observer_ptr() noexcept;
+
+    // pointer-accepting c’tors
+    constexpr observer_ptr(nullptr_t) noexcept;
+    constexpr explicit observer_ptr(pointer) noexcept;
+
+    // copying c’tors (in addition to compiler-generated copy c’tor)
+    template &lt;class W2> constexpr observer_ptr(observer_ptr&lt;W2>) noexcept;
+
+    <cxx-ref insynopsis to="memory.observer.ptr.obs"></cxx-ref>
+    constexpr pointer get() const noexcept;
+    constexpr reference operator*() const;
+    constexpr pointer operator->() const noexcept;
+    constexpr explicit operator bool() const noexcept;
+
+    <cxx-ref insynopsis to="memory.observer.ptr.conv"></cxx-ref>
+    constexpr explicit operator pointer() const noexcept;
+
+    <cxx-ref insynopsis to="memory.observer.ptr.mod"></cxx-ref>
+    constexpr pointer release() noexcept;
+    constexpr void reset(pointer = nullptr) noexcept;
+    constexpr void swap(observer_ptr&amp;) noexcept;
+  }; // observer_ptr&lt;>
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.ctor">
+      <h1><code>observer_ptr</code> constructors</h1>
+
+      <cxx-function>
+        <cxx-signature>constexpr observer_ptr() noexcept;</cxx-signature>
+        <cxx-signature>constexpr observer_ptr(nullptr_t) noexcept;</cxx-signature>
+
+        <cxx-effects>Constructs an observer_ptr object that has no corresponding watched object.</cxx-effects>
+        <cxx-postconditions><code>get() == nullptr</code>.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr explicit observer_ptr(pointer other) noexcept;</cxx-signature>
+
+        <cxx-postconditions><code>get() == other</code>.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W2> constexpr observer_ptr(observer_ptr&lt;W2> other) noexcept;</cxx-signature>
+
+        <cxx-postconditions><code>get() == other.get()</code>.</cxx-postconditions>
+        <cxx-remarks>This constructor shall not participate in overload resolution unless <code>W2*</code> is convertible to <code>W*</code>.</cxx-remarks>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.obs">
+      <h1><code>observer_ptr</code> observers</h1>
+
+      <cxx-function>
+        <cxx-signature>constexpr pointer get() const noexcept;</cxx-signature>
+
+        <cxx-returns>The stored pointer.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr reference operator*() const;</cxx-signature>
+
+        <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
+        <cxx-returns><code>*get()</code>.</cxx-returns>
+        <cxx-throws>Nothing.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr pointer operator->() const noexcept;</cxx-signature>
+
+        <cxx-returns><code>get()</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr explicit operator bool() const noexcept;</cxx-signature>
+
+        <cxx-returns><code>get() != nullptr</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.conv">
+      <h1><code>observer_ptr</code> conversions</h1>
+
+      <cxx-function>
+        <cxx-signature>constexpr explicit operator pointer() const noexcept;</cxx-signature>
+
+        <cxx-returns><code>get()</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.mod">
+      <h1><code>observer_ptr</code> modifiers</h1>
+
+      <cxx-function>
+        <cxx-signature>constexpr pointer release() noexcept;</cxx-signature>
+
+        <cxx-postconditions><code>get() == nullptr</code>.</cxx-postconditions>
+        <cxx-returns>The value <code>get()</code> had at the start of the call to <code>release</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr void reset(pointer p = nullptr) noexcept;</cxx-signature>
+
+        <cxx-postconditions><code>get() == p</code>.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr void swap(observer_ptr&amp; other) noexcept;</cxx-signature>
+
+        <cxx-effects>Invokes <code>swap</code> on the stored pointers of <code>*this</code> and <code>other</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.special">
+      <h1><code>observer_ptr</code> specialized algorithms</h1>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W>
+void swap(observer_ptr&lt;W>&amp; p1, observer_ptr&lt;W>&amp; p2) noexcept;</cxx-signature>
+
+        <cxx-effects><code>p1.swap(p2)</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W> observer_ptr&lt;W> make_observer(W* p) noexcept;</cxx-signature>
+
+        <cxx-returns><code>observer_ptr&lt;W>{p}</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W1, class W2>
+bool operator==(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
+
+        <cxx-returns><code>p1.get() == p2.get()</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W1, class W2>
+bool operator!=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
+
+        <cxx-returns><code>not (p1 == p2)</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W>
+bool operator==(observer_ptr&lt;W> p, nullptr_t) noexcept;</cxx-signature>
+        <cxx-signature>template &lt;class W>
+bool operator==(nullptr_t, observer_ptr&lt;W> p) noexcept;</cxx-signature>
+
+        <cxx-returns><code>not p</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W>
+bool operator!=(observer_ptr&lt;W> p, nullptr_t) noexcept;</cxx-signature>
+        <cxx-signature>template &lt;class W>
+bool operator!=(nullptr_t, observer_ptr&lt;W> p) noexcept;</cxx-signature>
+
+        <cxx-returns><code>(bool)p</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W1, class W2>
+bool operator&lt;(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
+
+        <cxx-returns>
+          <code>less&lt;W3>()(p1.get(), p2.get())</code>,
+          where <code>W3</code> is the composite pointer type (<cxx-ref in="cxx" to="expr"></cxx-ref>) of <code>W1*</code> and <code>W2*</code>.
+        </cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W>
+bool operator>(observer_ptr&lt;W> p1, observer_ptr&lt;W> p2);</cxx-signature>
+
+        <cxx-returns><code>p2 &lt; p1</code>.</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W>
+bool operator&lt;=(observer_ptr&lt;W> p1, observer_ptr&lt;W> p2);</cxx-signature>
+
+         <cxx-returns><code>not (p2 &lt; p1)</code>.</cxx-returns>
+        </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class W>
+bool operator>=(observer_ptr&lt;W> p1, observer_ptr&lt;W> p2);</cxx-signature>
+
+        <cxx-returns><code>not (p1 &lt; p2)</code>.</cxx-returns>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.hash">
+      <h1><code>observer_ptr</code> hash support</h1>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T> struct hash&lt;experimental::observer_ptr&lt;T>>;</cxx-signature>
+
+        <p>
+          The template specialization shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>).
+          For an object <code>p</code> of type <code>observer_ptr&lt;T></code>,
+          <code>hash&lt;observer_ptr&lt;T>>()(p)</code> shall evaluate to the same value as <code>hash&lt;T*>()(p.get())</code>.
+        </p>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+</cxx-clause>
