@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REQUIRES");document.createElement("CXX-RETURNS");document.createElement("CXX-THROWS");document.createElement("CXX-REMARKS");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REQUIRES");document.createElement("CXX-RETURNS");document.createElement("CXX-THROWS");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -658,11 +658,13 @@ pre {
       <div class="page">
         <table class="header">
           
-            <tr><th>Document Number:</th><td><cxx-docnum>D4084</cxx-docnum></td></tr>
+            <tr><th>Document Number:</th><td><cxx-docnum>D????</cxx-docnum></td></tr>
           
           
-            <tr><th>Date:</th><td><time pubdate="">2014-07-??</time></td></tr>
+            <tr><th>Date:</th><td><time pubdate="">2015-??-??</time></td></tr>
           
+          
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4336">N4336</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
@@ -733,6 +735,142 @@ pre {
         
       </li>
             
+              <li><span class="marker">3</span><a href="#memory">Memory</a>
+        
+          <ol>
+            
+              <li><span class="marker">3.1</span><a href="#header.memory.synop">Header &lt;experimental/memory&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">3.2</span><a href="#memory.observer.ptr">Non-owning pointers</a>
+        
+          <ol>
+            
+              <li><span class="marker">3.2.1</span><a href="#memory.observer.ptr.overview">Class template observer_ptr overview</a>
+        
+      </li>
+            
+              <li><span class="marker">3.2.2</span><a href="#memory.observer.ptr.ctor">observer_ptr constructors</a>
+        
+      </li>
+            
+              <li><span class="marker">3.2.3</span><a href="#memory.observer.ptr.obs">observer_ptr observers</a>
+        
+      </li>
+            
+              <li><span class="marker">3.2.4</span><a href="#memory.observer.ptr.conv">observer_ptr conversions</a>
+        
+      </li>
+            
+              <li><span class="marker">3.2.5</span><a href="#memory.observer.ptr.mod">observer_ptr modifiers</a>
+        
+      </li>
+            
+              <li><span class="marker">3.2.6</span><a href="#memory.observer.ptr.special">observer_ptr specialized algorithms</a>
+        
+      </li>
+            
+              <li><span class="marker">3.2.7</span><a href="#memory.observer.ptr.hash">observer_ptr hash support</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">4</span><a href="#container">Containers</a>
+        
+          <ol>
+            
+              <li><span class="marker">4.1</span><a href="#container.erasure">Uniform container erasure</a>
+        
+          <ol>
+            
+              <li><span class="marker">4.1.1</span><a href="#container.erasure.syn">Header synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">4.1.2</span><a href="#container.erasure.erase_if">Function template erase_if</a>
+        
+      </li>
+            
+              <li><span class="marker">4.1.3</span><a href="#container.erasure.erase">Function template erase</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">5</span><a href="#iterator">Iterators library</a>
+        
+          <ol>
+            
+              <li><span class="marker">5.1</span><a href="#iterator.synopsis">Header &lt;experimental/iterator&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">5.2</span><a href="#iterator.ostream.joiner">Class template ostream_joiner</a>
+        
+          <ol>
+            
+              <li><span class="marker">5.2.1</span><a href="#iterator.ostream.joiner.cons">ostream_joiner constructor</a>
+        
+      </li>
+            
+              <li><span class="marker">5.2.2</span><a href="#iterator.ostream.joiner.ops">ostream_joiner operations</a>
+        
+      </li>
+            
+              <li><span class="marker">5.2.3</span><a href="#iterator.ostream.joiner.creation">ostream_joiner creation function</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">6</span><a href="#numeric">Numerics library</a>
+        
+          <ol>
+            
+              <li><span class="marker">6.1</span><a href="#numeric.ops">Generalized numeric operations</a>
+        
+          <ol>
+            
+              <li><span class="marker">6.1.1</span><a href="#numeric.ops.overview">Header &lt;experimental/numeric&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">6.1.2</span><a href="#numeric.ops.gcd">Greatest common divisor</a>
+        
+      </li>
+            
+              <li><span class="marker">6.1.3</span><a href="#numeric.ops.lcm">Least common multiple</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
           </ol>
         
       
@@ -791,7 +929,7 @@ pre {
     <ul>
       <li>ISO/IEC 14882:—<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3797.pdf">N3797</a>.</aside></cxx-footnote>,
+  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n3937.pdf">N3937</a>.</aside></cxx-footnote>,
       <cite>Programming Languages — C++</cite>
       </li>
     </ul>
@@ -880,7 +1018,7 @@ pre {
     <caption>Table 1 — <wbr><span>C++ library headers</span></caption>
     
       
-      <tbody><tr><td><ul><li><code>&lt;experimental/functional&gt;</code></li></ul></td><td><ul></ul></td><td><ul></ul></td></tr>
+      <tbody><tr><td><ul><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/iterator&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/list&gt;</code></li><li><code>&lt;experimental/map&gt;</code></li><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/string&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
     </tbody>
   </table>
   
@@ -988,6 +1126,38 @@ pre {
           </td><td>201406
           </td><td><code>&lt;experimental/functional&gt;</code>
         </td></tr>
+        <tr>
+          <td>N4282</td>
+          <td>The World’s Dumbest Smart Pointer
+          </td><td><cxx-ref to="memory.observer.ptr"><a title="memory.observer.ptr" href="#memory.observer.ptr">3.2</a></cxx-ref>
+          </td><td><code>observer_ptr</code>
+          </td><td>201411
+          </td><td><code>&lt;experimental/memory&gt;</code>
+        </td></tr>
+        <tr>
+          <td>N4273</td>
+          <td>Uniform Container Erasure</td>
+          <td><cxx-ref to="container.erasure"><a title="container.erasure" href="#container.erasure">4.1</a></cxx-ref></td>
+          <td><code>erase_if</code></td>
+          <td>201411</td>
+          <td><code>&lt;experimental/vector&gt;</code></td>
+        </tr>
+        <tr>
+          <td>N4257</td>
+          <td>Delimited iterators</td>
+          <td><cxx-ref to="iterator.ostream.joiner"><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">5.2</a></cxx-ref></td>
+          <td><code>ostream_joiner</code></td>
+          <td>201411</td>
+          <td><code>&lt;experimental/iterator&gt;</code></td>
+        </tr>
+        <tr>
+          <td>N4061</td>
+          <td>Greatest Common Divisor and Least Common Multiple</td>
+          <td><cxx-ref to="numeric.ops.gcd"><a title="numeric.ops.gcd" href="#numeric.ops.gcd">6.1.2</a></cxx-ref>, <cxx-ref to="numeric.ops.lcm"><a title="numeric.ops.lcm" href="#numeric.ops.lcm">6.1.3</a></cxx-ref></td>
+          <td><code>gcd_lcm</code></td>
+          <td>201411</td>
+          <td><code>&lt;experimental/numeric&gt;</code></td>
+        </tr>
       </thead>
 
       <!-- These rows are in the same order as their feature appears in this document. -->
@@ -1091,6 +1261,1250 @@ inline namespace fundamentals_v2 {
     
     </dl>
   </cxx-function>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="memory">
+    
+
+    <section>
+      <header><span class="section-number">3</span> <h1 data-bookmark-label="3 Memory">Memory</h1> <span style="float:right"><a href="#memory">[memory]</a></span></header>
+      
+  
+
+  <cxx-section id="header.memory.synop">
+    
+
+    <section>
+      <header><span class="section-number">3.1</span> <h1 data-bookmark-label="3.1 Header <experimental/memory> synopsis">Header &lt;experimental/memory&gt; synopsis</h1> <span style="float:right"><a href="#header.memory.synop">[header.memory.synop]</a></span></header>
+      
+    
+
+<pre><code>#include &lt;memory&gt;
+
+namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v2 {
+
+    <cxx-ref insynopsis="" to="memory.observer.ptr">// <i><a title="memory.observer.ptr" href="#memory.observer.ptr">3.2</a>, Non-owning pointers</i></cxx-ref>
+    template &lt;class W&gt; class observer_ptr;
+
+    <cxx-ref insynopsis="" to="memory.observer.ptr.special">// <i><a title="memory.observer.ptr.special" href="#memory.observer.ptr.special">3.2.6</a>, observer_ptr specialized algorithms</i></cxx-ref>
+    template &lt;class W&gt;
+    void swap(observer_ptr&lt;W&gt;&amp;, observer_ptr&lt;W&gt;&amp;) noexcept;
+    template &lt;class W&gt;
+    observer_ptr&lt;W&gt; make_observer(W*) noexcept;
+    // (in)equality operators
+    template &lt;class W1, class W2&gt;
+    bool operator==(observer_ptr&lt;W1&gt;, observer_ptr&lt;W2&gt;);
+
+    template &lt;class W1, class W2&gt;
+    bool operator!=(observer_ptr&lt;W1&gt;, observer_ptr&lt;W2&gt;);
+    template &lt;class W&gt;
+    bool operator==(observer_ptr&lt;W&gt;, nullptr_t) noexcept;
+    template &lt;class W&gt;
+    bool operator!=(observer_ptr&lt;W&gt;, nullptr_t) noexcept;
+    template &lt;class W&gt;
+    bool operator==(nullptr_t, observer_ptr&lt;W&gt;) noexcept;
+    template &lt;class W&gt;
+    bool operator!=(nullptr_t, observer_ptr&lt;W&gt;) noexcept;
+    // ordering operators
+    template &lt;class W1, class W2&gt;
+    bool operator&lt;(observer_ptr&lt;W1&gt;, observer_ptr&lt;W2&gt;);
+    template &lt;class W1, class W2&gt;
+    bool operator&gt;(observer_ptr&lt;W1&gt;, observer_ptr&lt;W2&gt;);
+    template &lt;class W1, class W2&gt;
+    bool operator&lt;=(observer_ptr&lt;W1&gt;, observer_ptr&lt;W2&gt;);
+    template &lt;class W1, class W2&gt;
+    bool operator&gt;=(observer_ptr&lt;W1&gt;, observer_ptr&lt;W2&gt;);
+
+  } // inline namespace fundamentals_v2
+  } // namespace experimental
+
+<cxx-ref insynopsis="" to="memory.observer.ptr.hash">// <i><a title="memory.observer.ptr.hash" href="#memory.observer.ptr.hash">3.2.7</a>, observer_ptr hash support</i></cxx-ref>
+template &lt;class T&gt; struct hash;
+template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;
+
+} // namespace std</code></pre>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="memory.observer.ptr">
+    
+
+    <section>
+      <header><span class="section-number">3.2</span> <h1 data-bookmark-label="3.2 Non-owning pointers">Non-owning pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
+      
+    
+
+    <p para_num="1" id="memory.observer.ptr.1">
+      A non-owning pointer, known as an <dfn>observer</dfn>, is an object <code>o</code> that stores a pointer to a second object, <code>w</code>.
+      In this context, <code>w</code> is known as a <dfn>watched</dfn> object.
+      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    There is no watched object when the stored pointer is <code>nullptr</code>.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+      An observer takes no responsibility or ownership of any kind for its watched object, if any;
+      in particular, there is no inherent relationship between the lifetimes of <code>o</code> and <code>w</code>.
+    </p>
+
+    <p para_num="2" id="memory.observer.ptr.2">
+      Specializations of <code>observer_ptr</code> shall meet the requirements of a <code>CopyConstructible</code> and <code>CopyAssignable</code> type.
+      The template parameter <code>W</code> of an <code>observer_ptr</code> shall not be a reference type, but may be an incomplete type.
+    </p>
+
+    <p para_num="3" id="memory.observer.ptr.3">
+      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The uses of <code>observer_ptr</code> include clarity of interface specification in new code,
+      and interoperability with pointer-based legacy code.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+    </p>
+
+    <cxx-section id="memory.observer.ptr.overview">
+    
+
+    <section>
+      <header><span class="section-number">3.2.1</span> <h1 data-bookmark-label="3.2.1 Class template observer_ptr overview">Class template <code>observer_ptr</code> overview</h1> <span style="float:right"><a href="#memory.observer.ptr.overview">[memory.observer.ptr.overview]</a></span></header>
+      
+      
+
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  template &lt;class W&gt; class observer_ptr {
+  public:
+    // publish our template parameter and variations thereof
+    using element_type = W;
+    using pointer = add_pointer_t&lt;W&gt;;            <i>// exposition-only</i>
+    using reference = add_lvalue_reference_t&lt;W&gt;; <i>// exposition-only</i>
+
+    <cxx-ref insynopsis="" to="memory.observer.ptr.ctor">// <i><a title="memory.observer.ptr.ctor" href="#memory.observer.ptr.ctor">3.2.2</a>, observer_ptr constructors</i></cxx-ref>
+    // default c’tor
+    constexpr observer_ptr() noexcept;
+
+    // pointer-accepting c’tors
+    constexpr observer_ptr(nullptr_t) noexcept;
+    constexpr explicit observer_ptr(pointer) noexcept;
+
+    // copying c’tors (in addition to compiler-generated copy c’tor)
+    template &lt;class W2&gt; constexpr observer_ptr(observer_ptr&lt;W2&gt;) noexcept;
+
+    <cxx-ref insynopsis="" to="memory.observer.ptr.obs">// <i><a title="memory.observer.ptr.obs" href="#memory.observer.ptr.obs">3.2.3</a>, observer_ptr observers</i></cxx-ref>
+    constexpr pointer get() const noexcept;
+    constexpr reference operator*() const;
+    constexpr pointer operator-&gt;() const noexcept;
+    constexpr explicit operator bool() const noexcept;
+
+    <cxx-ref insynopsis="" to="memory.observer.ptr.conv">// <i><a title="memory.observer.ptr.conv" href="#memory.observer.ptr.conv">3.2.4</a>, observer_ptr conversions</i></cxx-ref>
+    constexpr explicit operator pointer() const noexcept;
+
+    <cxx-ref insynopsis="" to="memory.observer.ptr.mod">// <i><a title="memory.observer.ptr.mod" href="#memory.observer.ptr.mod">3.2.5</a>, observer_ptr modifiers</i></cxx-ref>
+    constexpr pointer release() noexcept;
+    constexpr void reset(pointer = nullptr) noexcept;
+    constexpr void swap(observer_ptr&amp;) noexcept;
+  }; // observer_ptr&lt;&gt;
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.ctor">
+    
+
+    <section>
+      <header><span class="section-number">3.2.2</span> <h1 data-bookmark-label="3.2.2 observer_ptr constructors"><code>observer_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.observer.ptr.ctor">[memory.observer.ptr.ctor]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="memory.observer.ptr.ctor.1">
+    
+    <pre><code><cxx-signature>constexpr observer_ptr() noexcept;</cxx-signature><cxx-signature>constexpr observer_ptr(nullptr_t) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+
+        <cxx-effects para_num="2" id="memory.observer.ptr.ctor.2">
+    
+    <dt>Effects:</dt><dd>Constructs an observer_ptr object that has no corresponding watched object.</dd>
+  </cxx-effects>
+        <cxx-postconditions para_num="3" id="memory.observer.ptr.ctor.3">
+    
+    <dt>Postconditions:</dt><dd><code>get() == nullptr</code>.</dd>
+  </cxx-postconditions>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="4" id="memory.observer.ptr.ctor.4">
+    
+    <pre><code><cxx-signature>constexpr explicit observer_ptr(pointer other) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-postconditions para_num="5" id="memory.observer.ptr.ctor.5">
+    
+    <dt>Postconditions:</dt><dd><code>get() == other</code>.</dd>
+  </cxx-postconditions>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="6" id="memory.observer.ptr.ctor.6">
+    
+    <pre><code><cxx-signature>template &lt;class W2&gt; constexpr observer_ptr(observer_ptr&lt;W2&gt; other) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-postconditions para_num="7" id="memory.observer.ptr.ctor.7">
+    
+    <dt>Postconditions:</dt><dd><code>get() == other.get()</code>.</dd>
+  </cxx-postconditions>
+        <cxx-remarks para_num="8" id="memory.observer.ptr.ctor.8">
+    
+    <dt>Remarks:</dt><dd>This constructor shall not participate in overload resolution unless <code>W2*</code> is convertible to <code>W*</code>.</dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.obs">
+    
+
+    <section>
+      <header><span class="section-number">3.2.3</span> <h1 data-bookmark-label="3.2.3 observer_ptr observers"><code>observer_ptr</code> observers</h1> <span style="float:right"><a href="#memory.observer.ptr.obs">[memory.observer.ptr.obs]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="memory.observer.ptr.obs.1">
+    
+    <pre><code><cxx-signature>constexpr pointer get() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="2" id="memory.observer.ptr.obs.2">
+    
+    <dt>Returns:</dt><dd>The stored pointer.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="memory.observer.ptr.obs.3">
+    
+    <pre><code><cxx-signature>constexpr reference operator*() const;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="4" id="memory.observer.ptr.obs.4">
+    
+    <dt>Requires:</dt><dd><code>get() != nullptr</code>.</dd>
+  </cxx-requires>
+        <cxx-returns para_num="5" id="memory.observer.ptr.obs.5">
+    
+    <dt>Returns:</dt><dd><code>*get()</code>.</dd>
+  </cxx-returns>
+        <cxx-throws para_num="6" id="memory.observer.ptr.obs.6">
+    
+    <dt>Throws:</dt><dd>Nothing.</dd>
+  </cxx-throws>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="7" id="memory.observer.ptr.obs.7">
+    
+    <pre><code><cxx-signature>constexpr pointer operator-&gt;() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="8" id="memory.observer.ptr.obs.8">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="9" id="memory.observer.ptr.obs.9">
+    
+    <pre><code><cxx-signature>constexpr explicit operator bool() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="10" id="memory.observer.ptr.obs.10">
+    
+    <dt>Returns:</dt><dd><code>get() != nullptr</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.conv">
+    
+
+    <section>
+      <header><span class="section-number">3.2.4</span> <h1 data-bookmark-label="3.2.4 observer_ptr conversions"><code>observer_ptr</code> conversions</h1> <span style="float:right"><a href="#memory.observer.ptr.conv">[memory.observer.ptr.conv]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="memory.observer.ptr.conv.1">
+    
+    <pre><code><cxx-signature>constexpr explicit operator pointer() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="2" id="memory.observer.ptr.conv.2">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.mod">
+    
+
+    <section>
+      <header><span class="section-number">3.2.5</span> <h1 data-bookmark-label="3.2.5 observer_ptr modifiers"><code>observer_ptr</code> modifiers</h1> <span style="float:right"><a href="#memory.observer.ptr.mod">[memory.observer.ptr.mod]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="memory.observer.ptr.mod.1">
+    
+    <pre><code><cxx-signature>constexpr pointer release() noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-postconditions para_num="2" id="memory.observer.ptr.mod.2">
+    
+    <dt>Postconditions:</dt><dd><code>get() == nullptr</code>.</dd>
+  </cxx-postconditions>
+        <cxx-returns para_num="3" id="memory.observer.ptr.mod.3">
+    
+    <dt>Returns:</dt><dd>The value <code>get()</code> had at the start of the call to <code>release</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="4" id="memory.observer.ptr.mod.4">
+    
+    <pre><code><cxx-signature>constexpr void reset(pointer p = nullptr) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-postconditions para_num="5" id="memory.observer.ptr.mod.5">
+    
+    <dt>Postconditions:</dt><dd><code>get() == p</code>.</dd>
+  </cxx-postconditions>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="6" id="memory.observer.ptr.mod.6">
+    
+    <pre><code><cxx-signature>constexpr void swap(observer_ptr&amp; other) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="7" id="memory.observer.ptr.mod.7">
+    
+    <dt>Effects:</dt><dd>Invokes <code>swap</code> on the stored pointers of <code>*this</code> and <code>other</code>.</dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.special">
+    
+
+    <section>
+      <header><span class="section-number">3.2.6</span> <h1 data-bookmark-label="3.2.6 observer_ptr specialized algorithms"><code>observer_ptr</code> specialized algorithms</h1> <span style="float:right"><a href="#memory.observer.ptr.special">[memory.observer.ptr.special]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="memory.observer.ptr.special.1">
+    
+    <pre><code><cxx-signature>template &lt;class W&gt;
+void swap(observer_ptr&lt;W&gt;&amp; p1, observer_ptr&lt;W&gt;&amp; p2) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="2" id="memory.observer.ptr.special.2">
+    
+    <dt>Effects:</dt><dd><code>p1.swap(p2)</code>.</dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="memory.observer.ptr.special.3">
+    
+    <pre><code><cxx-signature>template &lt;class W&gt; observer_ptr&lt;W&gt; make_observer(W* p) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="4" id="memory.observer.ptr.special.4">
+    
+    <dt>Returns:</dt><dd><code>observer_ptr&lt;W&gt;{p}</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="memory.observer.ptr.special.5">
+    
+    <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
+bool operator==(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="6" id="memory.observer.ptr.special.6">
+    
+    <dt>Returns:</dt><dd><code>p1.get() == p2.get()</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="7" id="memory.observer.ptr.special.7">
+    
+    <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
+bool operator!=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="8" id="memory.observer.ptr.special.8">
+    
+    <dt>Returns:</dt><dd><code>not (p1 == p2)</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="9" id="memory.observer.ptr.special.9">
+    
+    <pre><code><cxx-signature>template &lt;class W&gt;
+bool operator==(observer_ptr&lt;W&gt; p, nullptr_t) noexcept;</cxx-signature><cxx-signature>template &lt;class W&gt;
+bool operator==(nullptr_t, observer_ptr&lt;W&gt; p) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+
+        <cxx-returns para_num="10" id="memory.observer.ptr.special.10">
+    
+    <dt>Returns:</dt><dd><code>not p</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="11" id="memory.observer.ptr.special.11">
+    
+    <pre><code><cxx-signature>template &lt;class W&gt;
+bool operator!=(observer_ptr&lt;W&gt; p, nullptr_t) noexcept;</cxx-signature><cxx-signature>template &lt;class W&gt;
+bool operator!=(nullptr_t, observer_ptr&lt;W&gt; p) noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+
+        <cxx-returns para_num="12" id="memory.observer.ptr.special.12">
+    
+    <dt>Returns:</dt><dd><code>(bool)p</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="13" id="memory.observer.ptr.special.13">
+    
+    <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
+bool operator&lt;(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="14" id="memory.observer.ptr.special.14">
+    
+    <dt>Returns:</dt><dd>
+          <code>less&lt;W3&gt;()(p1.get(), p2.get())</code>,
+          where <code>W3</code> is the composite pointer type (<cxx-ref in="cxx" to="expr">C++14 <span title="expr">§5</span></cxx-ref>) of <code>W1*</code> and <code>W2*</code>.
+        </dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="15" id="memory.observer.ptr.special.15">
+    
+    <pre><code><cxx-signature>template &lt;class W&gt;
+bool operator&gt;(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="16" id="memory.observer.ptr.special.16">
+    
+    <dt>Returns:</dt><dd><code>p2 &lt; p1</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="17" id="memory.observer.ptr.special.17">
+    
+    <pre><code><cxx-signature>template &lt;class W&gt;
+bool operator&lt;=(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+         <cxx-returns para_num="18" id="memory.observer.ptr.special.18">
+    
+    <dt>Returns:</dt><dd><code>not (p2 &lt; p1)</code>.</dd>
+  </cxx-returns>
+        
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="19" id="memory.observer.ptr.special.19">
+    
+    <pre><code><cxx-signature>template &lt;class W&gt;
+bool operator&gt;=(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="20" id="memory.observer.ptr.special.20">
+    
+    <dt>Returns:</dt><dd><code>not (p1 &lt; p2)</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="memory.observer.ptr.hash">
+    
+
+    <section>
+      <header><span class="section-number">3.2.7</span> <h1 data-bookmark-label="3.2.7 observer_ptr hash support"><code>observer_ptr</code> hash support</h1> <span style="float:right"><a href="#memory.observer.ptr.hash">[memory.observer.ptr.hash]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="memory.observer.ptr.hash.1">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="2" id="memory.observer.ptr.hash.2">
+          The template specialization shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash">C++14 <span title="unord.hash">§20.9.12</span></cxx-ref>).
+          For an object <code>p</code> of type <code>observer_ptr&lt;T&gt;</code>,
+          <code>hash&lt;observer_ptr&lt;T&gt;&gt;()(p)</code> shall evaluate to the same value as <code>hash&lt;T*&gt;()(p.get())</code>.
+        </p>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="container">
+    
+
+    <section>
+      <header><span class="section-number">4</span> <h1 data-bookmark-label="4 Containers">Containers</h1> <span style="float:right"><a href="#container">[container]</a></span></header>
+      
+  
+
+  <cxx-section id="container.erasure">
+    
+
+    <section>
+      <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 Uniform container erasure">Uniform container erasure</h1> <span style="float:right"><a href="#container.erasure">[container.erasure]</a></span></header>
+      
+    
+
+    <cxx-section id="container.erasure.syn">
+    
+
+    <section>
+      <header><span class="section-number">4.1.1</span> <h1 data-bookmark-label="4.1.1 Header synopsis">Header synopsis</h1> <span style="float:right"><a href="#container.erasure.syn">[container.erasure.syn]</a></span></header>
+      
+      
+
+      <p para_num="1" id="container.erasure.syn.1">
+        For brevity, this section specifies the contents of 9 headers,
+        each of which behaves as described by <cxx-ref to="general.namespaces"><a title="general.namespaces" href="#general.namespaces">1.3</a></cxx-ref>.
+      </p>
+
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis="" to="container.erasure.erase_if">// <i><a title="container.erasure.erase_if" href="#container.erasure.erase_if">4.1.2</a>, Function template erase_if</i></cxx-ref>
+  <cxx-ref insynopsis="" to="container.erasure.erase">// <i><a title="container.erasure.erase" href="#container.erasure.erase">4.1.3</a>, Function template erase</i></cxx-ref>
+
+  // &lt;experimental/string&gt;
+  template &lt;class charT, class traits, class A, class Predicate&gt;
+    void erase_if(basic_string&lt;charT, traits, A&gt;&amp; c, Predicate pred);
+  template &lt;class charT, class traits, class A, class U&gt;
+    void erase(basic_string&lt;charT, traits, A&gt;&amp; c, const U&amp; value);
+
+  // &lt;experimental/deque&gt;
+  template &lt;class T, class A, class Predicate&gt;
+    void erase_if(deque&lt;T, A&gt;&amp; c, Predicate pred);
+  template &lt;class T, class A, class U&gt;
+    void erase(deque&lt;T, A&gt;&amp; c, const U&amp; value);
+
+  // &lt;experimental/vector&gt;
+  template &lt;class T, class A, class Predicate&gt;
+    void erase_if(vector&lt;T, A&gt;&amp; c, Predicate pred);
+  template &lt;class T, class A, class U&gt;
+    void erase(vector&lt;T, A&gt;&amp; c, const U&amp; value);
+
+  // &lt;experimental/forward_list&gt;
+  template &lt;class T, class A, class Predicate&gt;
+    void erase_if(forward_list&lt;T, A&gt;&amp; c, Predicate pred);
+  template &lt;class T, class A, class U&gt;
+    void erase(forward_list&lt;T, A&gt;&amp; c, const U&amp; value);
+
+  // &lt;experimental/list&gt;
+  template &lt;class T, class A, class Predicate&gt;
+    void erase_if(list&lt;T, A&gt;&amp; c, Predicate pred);
+  template &lt;class T, class A, class U&gt;
+    void erase(list&lt;T, A&gt;&amp; c, const U&amp; value);
+
+  // &lt;experimental/map&gt;
+  template &lt;class K, class T, class C, class A, class Predicate&gt;
+    void erase_if(map&lt;K, T, C, A&gt;&amp; c, Predicate pred);
+  template &lt;class K, class T, class C, class A, class Predicate&gt;
+    void erase_if(multimap&lt;K, T, C, A&gt;&amp; c, Predicate pred);
+
+  // &lt;experimental/set&gt;
+  template &lt;class K, class C, class A, class Predicate&gt;
+    void erase_if(set&lt;K, C, A&gt;&amp; c, Predicate pred);
+  template &lt;class K, class C, class A, class Predicate&gt;
+    void erase_if(multiset&lt;K, C, A&gt;&amp; c, Predicate pred);
+
+  // &lt;experimental/unordered_map&gt;
+  template &lt;class K, class T, class H, class P, class A, class Predicate&gt;
+    void erase_if(unordered_map&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+  template &lt;class K, class T, class H, class P, class A, class Predicate&gt;
+    void erase_if(unordered_multimap&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // &lt;experimental/unordered_set&gt;
+  template &lt;class K, class H, class P, class A, class Predicate&gt;
+    void erase_if(unordered_set&lt;K, H, P, A&gt;&amp; c, Predicate pred);
+  template &lt;class K, class H, class P, class A, class Predicate&gt;
+    void erase_if(unordered_multiset&lt;K, H, P, A&gt;&amp; c, Predicate pred);
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="container.erasure.erase_if">
+    
+
+    <section>
+      <header><span class="section-number">4.1.2</span> <h1 data-bookmark-label="4.1.2 Function template erase_if">Function template <code>erase_if</code></h1> <span style="float:right"><a href="#container.erasure.erase_if">[container.erasure.erase_if]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="container.erasure.erase_if.1">
+    
+    <pre><code><cxx-signature>template &lt;class charT, class traits, class A, class Predicate&gt;
+void erase_if(basic_string&lt;charT, traits, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class T, class A, class Predicate&gt;
+void erase_if(deque&lt;T, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class T, class A, class Predicate&gt;
+void erase_if(vector&lt;T, A&gt;&amp; c, Predicate pred);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+        
+        <cxx-effects para_num="2" id="container.erasure.erase_if.2">
+    
+    <dt>Effects:</dt><dd>Equivalent to: <code>c.erase(remove_if(c.begin(), c.end(), pred), c.end());</code></dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="container.erasure.erase_if.3">
+    
+    <pre><code><cxx-signature>template &lt;class T, class A, class Predicate&gt;
+void erase_if(forward_list&lt;T, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class T, class A, class Predicate&gt;
+void erase_if(list&lt;T, A&gt;&amp; c, Predicate pred);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+        <cxx-effects para_num="4" id="container.erasure.erase_if.4">
+    
+    <dt>Effects:</dt><dd>Equivalent to: <code>c.remove_if(pred);</code></dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="container.erasure.erase_if.5">
+    
+    <pre><code><cxx-signature>template &lt;class K, class T, class C, class A, class Predicate&gt;
+void erase_if(map&lt;K, T, C, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class K, class T, class C, class A, class Predicate&gt;
+void erase_if(multimap&lt;K, T, C, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class K, class C, class A, class Predicate&gt;
+void erase_if(set&lt;K, C, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class K, class C, class A, class Predicate&gt;
+void erase_if(multiset&lt;K, C, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class K, class T, class H, class P, class A, class Predicate&gt;
+void erase_if(unordered_map&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class K, class T, class H, class P, class A, class Predicate&gt;
+void erase_if(unordered_multimap&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class K, class H, class P, class A, class Predicate&gt;
+void erase_if(unordered_set&lt;K, H, P, A&gt;&amp; c, Predicate pred);</cxx-signature><cxx-signature>template &lt;class K, class H, class P, class A, class Predicate&gt;
+void erase_if(unordered_multiset&lt;K, H, P, A&gt;&amp; c, Predicate pred);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        <cxx-effects para_num="6" id="container.erasure.erase_if.6">
+    
+    <dt>Effects:</dt><dd>Equivalent to:
+<pre><code>for (auto i = c.begin(), last = c.end(); i != last; ) {
+  if (pred(*i)) {
+    i = c.erase(i);
+  } else {
+    ++i;
+  }
+}</code></pre></dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="container.erasure.erase">
+    
+
+    <section>
+      <header><span class="section-number">4.1.3</span> <h1 data-bookmark-label="4.1.3 Function template erase">Function template erase</h1> <span style="float:right"><a href="#container.erasure.erase">[container.erasure.erase]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="container.erasure.erase.1">
+    
+    <pre><code><cxx-signature>template &lt;class charT, class traits, class A, class U&gt;
+void erase(basic_string&lt;charT, traits, A&gt;&amp; c, const U&amp; value);</cxx-signature><cxx-signature>template &lt;class T, class A, class U&gt;
+void erase(deque&lt;T, A&gt;&amp; c, const U&amp; value);</cxx-signature><cxx-signature>template &lt;class T, class A, class U&gt;
+void erase(vector&lt;T, A&gt;&amp; c, const U&amp; value);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+        
+        <cxx-effects para_num="2" id="container.erasure.erase.2">
+    
+    <dt>Effects:</dt><dd>Equivalent to: <code>c.erase(remove(c.begin(), c.end(), value), c.end());</code></dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="container.erasure.erase.3">
+    
+    <pre><code><cxx-signature>template &lt;class T, class A, class U&gt;
+void erase(forward_list&lt;T, A&gt;&amp; c, const U&amp; value);</cxx-signature><cxx-signature>template &lt;class T, class A, class U&gt;
+void erase(list&lt;T, A&gt;&amp; c, const U&amp; value);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+        <cxx-effects para_num="4" id="container.erasure.erase.4">
+    
+    <dt>Effects:</dt><dd>Equivalent to: <code>erase_if(c, [&amp;](auto&amp; elem) { return elem == value; });</code></dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    
+        Overloads of <code>erase()</code> for associative containers and unordered associative containers are intentionally not provided.
+      
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+    
+    </section>
+  </cxx-section>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="iterator">
+    
+
+    <section>
+      <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Iterators library">Iterators library</h1> <span style="float:right"><a href="#iterator">[iterator]</a></span></header>
+      
+  
+
+  <cxx-section id="iterator.synopsis">
+    
+
+    <section>
+      <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 Header <experimental/iterator> synopsis">Header <code>&lt;experimental/iterator&gt;</code> synopsis</h1> <span style="float:right"><a href="#iterator.synopsis">[iterator.synopsis]</a></span></header>
+      
+    
+
+<pre><code>#include &lt;iterator&gt;
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis="" to="iterator.ostream.joiner">// <i><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">5.2</a>, Class template ostream_joiner</i></cxx-ref>
+  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
+      class ostream_joiner;
+  template &lt;class charT, class traits, class DelimT&gt;
+    ostream_joiner&lt;decay_t&lt;DelimT&gt;, charT, traits&gt;
+    make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp; delimiter);
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+  
+    </section>
+  </cxx-section>
+
+  <cxx-section id="iterator.ostream.joiner">
+    
+
+    <section>
+      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Class template ostream_joiner">Class template <code>ostream_joiner</code></h1> <span style="float:right"><a href="#iterator.ostream.joiner">[iterator.ostream.joiner]</a></span></header>
+      
+    
+
+    <p para_num="1" id="iterator.ostream.joiner.1">
+      <code>ostream_joiner</code> writes (using <code>operator&lt;&lt;</code>) successive elements onto the output stream from which it was constructed.
+      The delimiter that it was constructed with is written to the stream between every two <code>T</code>s that are written.
+      It is not possible to get a value out of the output iterator.
+      Its only use is as an output iterator in situations like
+    </p>
+    <pre><code>while (first != last)
+  *result++ = *first++;</code></pre>
+
+  <p para_num="2" id="iterator.ostream.joiner.2">
+    <code>ostream_joiner</code> is defined as
+  </p>
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
+  class ostream_joiner {
+  public:
+    typedef charT char_type;
+    typedef traits traits_type;
+    typedef basic_ostream&lt;charT,traits&gt; ostream_type;
+    typedef output_iterator_tag iterator_category;
+    typedef void value_type;
+    typedef void difference_type;
+    typedef void pointer;
+    typedef void reference;
+
+    ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);
+    ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);
+    template&lt;typename T&gt;
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator=(const T&amp; value);
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator*();
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++();
+    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++(int);
+  private:
+    basic_ostream&lt;charT,traits&gt;* out_stream; <i>// exposition only</i>
+    DelimT delim;                            <i>// exposition only</i>
+    bool first_element;                      <i>// exposition only</i>
+  };
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+
+    <cxx-section id="iterator.ostream.joiner.cons">
+    
+
+    <section>
+      <header><span class="section-number">5.2.1</span> <h1 data-bookmark-label="5.2.1 ostream_joiner constructor"><code>ostream_joiner</code> constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="iterator.ostream.joiner.cons.1">
+    
+    <pre><code><cxx-signature>ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="2" id="iterator.ostream.joiner.cons.2">
+    
+    <dt>Effects:</dt><dd>
+          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          <code>delim</code> with <code>delimiter</code>,
+          and <code>first_element</code> with <code>true</code>.
+        </dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="iterator.ostream.joiner.cons.3">
+    
+    <pre><code><cxx-signature>ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="4" id="iterator.ostream.joiner.cons.4">
+    
+    <dt>Effects:</dt><dd>
+          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          <code>delim</code> with <code>move(delimiter)</code>,
+          and <code>first_element</code> with <code>true</code>.
+        </dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="iterator.ostream.joiner.ops">
+    
+
+    <section>
+      <header><span class="section-number">5.2.2</span> <h1 data-bookmark-label="5.2.2 ostream_joiner operations"><code>ostream_joiner</code> operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="iterator.ostream.joiner.ops.1">
+    
+    <pre><code><cxx-signature>template&lt;typename T&gt;
+ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator=(const T&amp; value);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="2" id="iterator.ostream.joiner.ops.2">
+    
+    <dt>Effects:</dt><dd>
+          <pre style="clear:left"><code>if (!first_element)
+  *out_stream &lt;&lt; delim;
+first_element = false;
+*out_stream &lt;&lt; value;
+return (*this);</code></pre>
+        </dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="iterator.ostream.joiner.ops.3">
+    
+    <pre><code><cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator*();</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="4" id="iterator.ostream.joiner.ops.4">
+    
+    <dt>Returns:</dt><dd><code>*this</code></dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="iterator.ostream.joiner.ops.5">
+    
+    <pre><code><cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++();</cxx-signature><cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++(int);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        
+
+        <cxx-returns para_num="6" id="iterator.ostream.joiner.ops.6">
+    
+    <dt>Returns:</dt><dd><code>*this</code></dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="iterator.ostream.joiner.creation">
+    
+
+    <section>
+      <header><span class="section-number">5.2.3</span> <h1 data-bookmark-label="5.2.3 ostream_joiner creation function"><code>ostream_joiner</code> creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="iterator.ostream.joiner.creation.1">
+    
+    <pre><code><cxx-signature>template &lt;class charT, class traits, class DelimT&gt;
+ostream_joiner&lt;decay_t&lt;DelimT&gt;, charT, traits&gt;
+make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp; delimiter);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="2" id="iterator.ostream.joiner.creation.2">
+    
+    <dt>Returns:</dt><dd><code>ostream_joiner&lt;decay_t&lt;DelimT&gt;, charT, traits&gt;(os, forward&lt;DelimT&gt;(delimiter));</code></dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="numeric">
+    
+
+    <section>
+      <header><span class="section-number">6</span> <h1 data-bookmark-label="6 Numerics library">Numerics library</h1> <span style="float:right"><a href="#numeric">[numeric]</a></span></header>
+      
+  
+
+  <cxx-section id="numeric.ops">
+    
+
+    <section>
+      <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Generalized numeric operations">Generalized numeric operations</h1> <span style="float:right"><a href="#numeric.ops">[numeric.ops]</a></span></header>
+      
+    
+
+    <cxx-section id="numeric.ops.overview">
+    
+
+    <section>
+      <header><span class="section-number">6.1.1</span> <h1 data-bookmark-label="6.1.1 Header <experimental/numeric> synopsis">Header &lt;experimental/numeric&gt; synopsis</h1> <span style="float:right"><a href="#numeric.ops.overview">[numeric.ops.overview]</a></span></header>
+      
+      
+
+<pre><code>#include &lt;numeric&gt;
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis="" to="numeric.ops.gcd">// <i><a title="numeric.ops.gcd" href="#numeric.ops.gcd">6.1.2</a>, Greatest common divisor</i></cxx-ref>
+  template&lt;class M, class N&gt;
+  constexpr common_type_t&lt;M,N&gt; gcd(M m, N n);
+
+  <cxx-ref insynopsis="" to="numeric.ops.lcm">// <i><a title="numeric.ops.lcm" href="#numeric.ops.lcm">6.1.3</a>, Least common multiple</i></cxx-ref>
+  template&lt;class M, class N&gt;
+  constexpr common_type_t&lt;M,N&gt; lcm(M m, N n);
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="numeric.ops.gcd">
+    
+
+    <section>
+      <header><span class="section-number">6.1.2</span> <h1 data-bookmark-label="6.1.2 Greatest common divisor">Greatest common divisor</h1> <span style="float:right"><a href="#numeric.ops.gcd">[numeric.ops.gcd]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="numeric.ops.gcd.1">
+    
+    <pre><code><cxx-signature>template&lt;class M, class N&gt;
+constexpr common_type_t&lt;M,N&gt; gcd(M m, N n);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="2" id="numeric.ops.gcd.2">
+    
+    <dt>Requires:</dt><dd>
+          <code>|m|</code> shall be representable as a value of type <code>M</code> and
+          <code>|n|</code> shall be representable as a value of type <code>N</code>.
+          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    These requirements ensure, for example, that <code>gcd(m, m) = |m|</code> is representable as a value of type <code>M</code>.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+        </dd>
+  </cxx-requires>
+        <cxx-remarks para_num="3" id="numeric.ops.gcd.3">
+    
+    <dt>Remarks:</dt><dd>If either <code>M</code> or <code>N</code> is not an integer type, the program is ill-formed.</dd>
+  </cxx-remarks>
+        <cxx-returns para_num="4" id="numeric.ops.gcd.4">
+    
+    <dt>Returns:</dt><dd>
+          zero when <code>m</code> and <code>n</code> are both zero.
+          Otherwise, returns the greatest common divisor of <code>|m|</code> and <code>|n|</code>.</dd>
+  </cxx-returns>
+        <cxx-throws para_num="5" id="numeric.ops.gcd.5">
+    
+    <dt>Throws:</dt><dd>Nothing.</dd>
+  </cxx-throws>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="numeric.ops.lcm">
+    
+
+    <section>
+      <header><span class="section-number">6.1.3</span> <h1 data-bookmark-label="6.1.3 Least common multiple">Least common multiple</h1> <span style="float:right"><a href="#numeric.ops.lcm">[numeric.ops.lcm]</a></span></header>
+      
+      
+      <cxx-function para_num="1" id="numeric.ops.lcm.1">
+    
+    <pre><code><cxx-signature>template&lt;class M, class N&gt;
+constexpr common_type_t&lt;M,N&gt; lcm(M m, N n);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        <cxx-requires para_num="2" id="numeric.ops.lcm.2">
+    
+    <dt>Requires:</dt><dd>
+          <code>|m|</code> shall be representable as a value of type <code>M</code> and
+          <code>|n|</code> shall be representable as a value of type <code>N</code>.
+          The least common multiple of <code>|m|</code> and <code>|n|</code>
+          shall be representable as a value of type <code>common_type_t&lt;M,N&gt;</code>.
+        </dd>
+  </cxx-requires>
+        <cxx-remarks para_num="3" id="numeric.ops.lcm.3">
+    
+    <dt>Remarks:</dt><dd>If either <code>M</code> or <code>N</code> is not an integer type, the program is ill-formed.</dd>
+  </cxx-remarks>
+        <cxx-returns para_num="4" id="numeric.ops.lcm.4">
+    
+    <dt>Returns:</dt><dd>
+          zero when either <code>m</code> or <code>n</code> is zero.
+          Otherwise, returns the least common multiple of <code>|m|</code> and <code>|n|</code>.
+        </dd>
+  </cxx-returns>
+        <cxx-throws para_num="5" id="numeric.ops.lcm.5">
+    
+    <dt>Throws:</dt><dd>Nothing.</dd>
+  </cxx-throws>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
   
     </section>
   </cxx-section>
