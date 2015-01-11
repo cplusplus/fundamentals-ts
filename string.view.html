@@ -215,7 +215,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
       <cxx-signature>constexpr basic_string_view(const charT* str);</cxx-signature>
 
       <cxx-requires><cxx-range begin="str" end="str + traits::length(str)"></cxx-range> is a valid range.</cxx-requires>
-      <cxx-effects>Constructs a <code>basic_string_view</code> referring to the same string as <code>str</code>, with the postconditions
+      <cxx-effects>Constructs a <code>basic_string_view</code>, with the postconditions
       in <cxx-ref to="tab:string.view.ctr.2"></cxx-ref>.</cxx-effects>
 
       <table is="cxx-table" id="tab:string.view.ctr.2"><caption><code>basic_string_view(const charT*)<code> effects</caption>
