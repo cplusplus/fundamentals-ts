@@ -18,8 +18,8 @@ Has children: cxx-docnum, time[pubdate], cxx-editor, cxx-revises,
 and <h1> for the title.
 
 The document stage can be set in two ways:
-  1. Add a 'cxx-draft' or 'cxx-pdts' class to the <body> element.
-  2. Set the <cxx-titlepage stage> attribute to 'draft' or 'pdts'.
+  1. Add a 'cxx-draft', 'cxx-pdts', or `cxx-dts' class to the <body> element.
+  2. Set the <cxx-titlepage stage> attribute to 'draft', 'pdts', or `dts`.
 Each will be propagated to the other.
 We'll add more stages as our documents get to them.
 
@@ -46,19 +46,19 @@ cxx-titlepage sets the document title based on its <h1> child.
       :host-context(body.cxx-draft) h1 { position: absolute; top: 40%; text-align: center; }
       :host-context(body.cxx-draft) p.warning { position: absolute; bottom: 5%; }
 
-      :host-context(body.cxx-pdts) .header { position: absolute; right: 0; top: 0; text-align: right; }
-      :host-context(body.cxx-pdts) .header ::content cxx-docnum { font-size: 150%; }
-      :host-context(body.cxx-pdts) .header cxx-docnum { font-size: 150%; }
-      :host-context(body.cxx-pdts) hgroup { position: absolute; top: 30%; }
-      :host-context(body.cxx-pdts) hgroup * { margin: 0; }
-      :host-context(body.cxx-pdts) hgroup h1 { font-size: 150%; font-weight: bold; }
-      :host-context(body.cxx-pdts) hgroup h2 { font-size: 100%; font-weight: normal; }
-      :host-context(body.cxx-pdts) .footer { position: absolute; left: 0; bottom: 5%; }
-      :host-context(body.cxx-pdts) figure { border: #111 solid 1px; padding: 10px; margin-left: auto; margin-right: auto; }
-      :host-context(body.cxx-pdts) figcaption { text-align: center; font-weight: bold; }
-      :host-context(body.cxx-pdts) .warning { position: absolute; bottom: 20%; }
-      :host-context(body.cxx-pdts) .copyright address { font-style: normal; margin-left: 2em; }
-      :host-context(body.cxx-pdts) .copyright address a { color: inherit; text-decoration: inherit; }
+      :host-context(body.cxx-pdts, body.cxx-dts) .header { position: absolute; right: 0; top: 0; text-align: right; }
+      :host-context(body.cxx-pdts, body.cxx-dts) .header ::content cxx-docnum { font-size: 150%; }
+      :host-context(body.cxx-pdts, body.cxx-dts) .header cxx-docnum { font-size: 150%; }
+      :host-context(body.cxx-pdts, body.cxx-dts) hgroup { position: absolute; top: 30%; }
+      :host-context(body.cxx-pdts, body.cxx-dts) hgroup * { margin: 0; }
+      :host-context(body.cxx-pdts, body.cxx-dts) hgroup h1 { font-size: 150%; font-weight: bold; }
+      :host-context(body.cxx-pdts, body.cxx-dts) hgroup h2 { font-size: 100%; font-weight: normal; }
+      :host-context(body.cxx-pdts, body.cxx-dts) .footer { position: absolute; left: 0; bottom: 5%; }
+      :host-context(body.cxx-pdts, body.cxx-dts) figure { border: #111 solid 1px; padding: 10px; margin-left: auto; margin-right: auto; }
+      :host-context(body.cxx-pdts, body.cxx-dts) figcaption { text-align: center; font-weight: bold; }
+      :host-context(body.cxx-pdts, body.cxx-dts) .warning { position: absolute; bottom: 20%; }
+      :host-context(body.cxx-pdts, body.cxx-dts) .copyright address { font-style: normal; margin-left: 2em; }
+      :host-context(body.cxx-pdts, body.cxx-dts) .copyright address a { color: inherit; text-decoration: inherit; }
 
       th { text-align: left; vertical-align: top; }
     </style>
@@ -88,12 +88,17 @@ cxx-titlepage sets the document title based on its <h1> child.
       </div>
     </template>
 
-    <template if="{{stage == 'pdts'}}">
+    <template if="{{stage == 'pdts' || stage == 'dts'}}">
       <div class="page">
         <div class="header">
           <strong>ISO/IEC JTC1 SC22 WG21 <content select="cxx-docnum"/></content></strong><br/>
           Date: <content select="time[pubdate]"></content><br/>
-          ISO/IEC PDTS <content select="cxx-project-number"></content><br/>
+          <template if="{{stage == 'pdts'}}">
+            ISO/IEC PDTS <content select="cxx-project-number"></content><br/>
+          </template>
+          <template if="{{stage == 'dts'}}">
+            ISO/IEC DTS <content select="cxx-project-number"></content><br/>
+          </template>
           ISO/IEC JTC1 SC22<br/>
           Secretariat: ANSI
         </div>
@@ -112,8 +117,14 @@ cxx-titlepage sets the document title based on its <h1> child.
           patent rights of which they are aware and to provide supporting documentation.</p>
         </figure>
         <div class="footer">
-          Document type: Proposed Draft Technical Specification<br/>
-          Document stage: (30) Committee<br/>
+          <template if="{{stage == 'pdts'}}">
+            Document type: Proposed Draft Technical Specification<br/>
+            Document stage: (30) Committee<br/>
+          </template>
+          <template if="{{stage == 'dts'}}">
+            Document type: Draft Technical Specification<br/>
+            Document stage: (40) Enquiry<br/>
+          </template>
           Document language: E
         </div>
       </div>
@@ -139,6 +150,16 @@ cxx-titlepage sets the document title based on its <h1> child.
           <p>Violators may be prosecuted.</p>
         </figure>
       </div>
+    </template>
+
+    <template if="{{!completedDomReady}}">
+      <!--
+        Work around
+        https://github.com/webcomponents/webcomponentsjs/issues/112 by
+        making sure every child element is included in the shadow dom until
+        we've extracted its information.
+      -->
+      <content></content>
     </template>
   </template>
   <script src="titlepage.js"></script>

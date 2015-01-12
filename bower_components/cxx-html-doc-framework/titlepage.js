@@ -25,7 +25,7 @@ limitations under the License.
         stage: null,
 
         computeStage: function() {
-            var stages = ['draft', 'pdts'];
+            var stages = ['draft', 'pdts', 'dts'];
             var presentStages = stages.filter(function(stage) {
                 return document.body.classList.contains('cxx-' + stage);
             });
@@ -70,10 +70,13 @@ limitations under the License.
                 stage_suffix = ", Working Draft";
             } else if (this.stage == 'pdts') {
                 stage_suffix = ", PDTS"
+            } else if (this.stage == 'dts') {
+                stage_suffix = ", DTS"
             }
             if (this.title) {
                 document.title = this.title + stage_suffix;
             }
+            this.completedDomReady = true;
         },
     })
 })();

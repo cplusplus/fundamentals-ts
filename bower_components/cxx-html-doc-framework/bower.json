@@ -10,8 +10,7 @@
     "tests"
   ],
   "dependencies": {
-    "platform": "Polymer/platform#0.2.4",
-    "polymer": "Polymer/polymer#0.2.4",
-    "core-ajax": "Polymer/core-ajax#0.2.4"
+    "polymer": "Polymer/polymer#0.5.2",
+    "core-ajax": "Polymer/core-ajax#0.5.2"
   }
 }

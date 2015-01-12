@@ -9,7 +9,7 @@ writing ISO C++ documents and papers.  To use it for your document, you should
 3. Import this package into your main HTML file by adding two lines inside the `<head>` element:
 
    ```HTML
-   <script src="bower_components/platform/platform.js"></script>
+   <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
    <link rel="import" href="bower_components/cxx-html-doc-framework/framework.html"/>
    ```
 

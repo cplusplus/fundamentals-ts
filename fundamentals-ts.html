@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
-body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
 	display: block; page-break-inside: avoid;
@@ -355,8 +355,6 @@ cxx-toc li li li li .marker {
 	width: 4.5em;
 }cxx-get-element-by-id {
 	display: none;
-}core-xhr {
-	display: none;
 }cxx-foreign-index {
 	display: none;
 }cxx-titlepage, cxx-titlepage .page {
@@ -395,51 +393,55 @@ cxx-titlepagebody.cxx-draft p.warning, body.cxx-draft cxx-titlepage p.warning {
 	position: absolute; bottom: 5%;
 }
 
-cxx-titlepagebody.cxx-pdts .header, body.cxx-pdts cxx-titlepage .header {
+cxx-titlepagebody.cxx-pdts .header, body.cxx-pdts cxx-titlepage .header, cxx-titlepagebody.cxx-dts .header, body.cxx-dts cxx-titlepage .header {
 	position: absolute; right: 0px; top: 0px; text-align: right;
 }
 
-cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum {
+cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-dts .header cxx-docnum, body.cxx-dts cxx-titlepage .header cxx-docnum {
 	font-size: 150%;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup, body.cxx-pdts cxx-titlepage hgroup {
+cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-dts .header cxx-docnum, body.cxx-dts cxx-titlepage .header cxx-docnum {
+	font-size: 150%;
+}
+
+cxx-titlepagebody.cxx-pdts hgroup, body.cxx-pdts cxx-titlepage hgroup, cxx-titlepagebody.cxx-dts hgroup, body.cxx-dts cxx-titlepage hgroup {
 	position: absolute; top: 30%;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup *, body.cxx-pdts cxx-titlepage hgroup * {
+cxx-titlepagebody.cxx-pdts hgroup *, body.cxx-pdts cxx-titlepage hgroup *, cxx-titlepagebody.cxx-dts hgroup *, body.cxx-dts cxx-titlepage hgroup * {
 	margin: 0px;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup h1, body.cxx-pdts cxx-titlepage hgroup h1 {
+cxx-titlepagebody.cxx-pdts hgroup h1, body.cxx-pdts cxx-titlepage hgroup h1, cxx-titlepagebody.cxx-dts hgroup h1, body.cxx-dts cxx-titlepage hgroup h1 {
 	font-size: 150%; font-weight: bold;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup h2, body.cxx-pdts cxx-titlepage hgroup h2 {
+cxx-titlepagebody.cxx-pdts hgroup h2, body.cxx-pdts cxx-titlepage hgroup h2, cxx-titlepagebody.cxx-dts hgroup h2, body.cxx-dts cxx-titlepage hgroup h2 {
 	font-size: 100%; font-weight: normal;
 }
 
-cxx-titlepagebody.cxx-pdts .footer, body.cxx-pdts cxx-titlepage .footer {
+cxx-titlepagebody.cxx-pdts .footer, body.cxx-pdts cxx-titlepage .footer, cxx-titlepagebody.cxx-dts .footer, body.cxx-dts cxx-titlepage .footer {
 	position: absolute; left: 0px; bottom: 5%;
 }
 
-cxx-titlepagebody.cxx-pdts figure, body.cxx-pdts cxx-titlepage figure {
+cxx-titlepagebody.cxx-pdts figure, body.cxx-pdts cxx-titlepage figure, cxx-titlepagebody.cxx-dts figure, body.cxx-dts cxx-titlepage figure {
 	border: 1px solid rgb(17, 17, 17); padding: 10px; margin-left: auto; margin-right: auto;
 }
 
-cxx-titlepagebody.cxx-pdts figcaption, body.cxx-pdts cxx-titlepage figcaption {
+cxx-titlepagebody.cxx-pdts figcaption, body.cxx-pdts cxx-titlepage figcaption, cxx-titlepagebody.cxx-dts figcaption, body.cxx-dts cxx-titlepage figcaption {
 	text-align: center; font-weight: bold;
 }
 
-cxx-titlepagebody.cxx-pdts .warning, body.cxx-pdts cxx-titlepage .warning {
+cxx-titlepagebody.cxx-pdts .warning, body.cxx-pdts cxx-titlepage .warning, cxx-titlepagebody.cxx-dts .warning, body.cxx-dts cxx-titlepage .warning {
 	position: absolute; bottom: 20%;
 }
 
-cxx-titlepagebody.cxx-pdts .copyright address, body.cxx-pdts cxx-titlepage .copyright address {
+cxx-titlepagebody.cxx-pdts .copyright address, body.cxx-pdts cxx-titlepage .copyright address, cxx-titlepagebody.cxx-dts .copyright address, body.cxx-dts cxx-titlepage .copyright address {
 	font-style: normal; margin-left: 2em;
 }
 
-cxx-titlepagebody.cxx-pdts .copyright address a, body.cxx-pdts cxx-titlepage .copyright address a {
+cxx-titlepagebody.cxx-pdts .copyright address a, body.cxx-pdts cxx-titlepage .copyright address a, cxx-titlepagebody.cxx-dts .copyright address a, body.cxx-dts cxx-titlepage .copyright address a {
 	color: inherit; text-decoration: inherit;
 }
 
@@ -478,7 +480,9 @@ cxx-footnote sup, cxx-footnote .marker {
 	display: none;
 }
 
-aside {  }
+cxx-footnote aside {
+	
+}
 
 
 }cxx-example {
@@ -512,8 +516,7 @@ w-br:after {
 }</style>
   <meta charset="utf-8">
   
-  
-<style shim-shadowdom-css="">/* Copyright 2014 Google Inc. All rights reserved.
+  <style shim-shadowdom-css="">/* Copyright 2014 Google Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -654,7 +657,282 @@ pre {
     cxx-toc  a[href]::after { content: leader(" . ") target-counter(attr(href), page); }
 
     cxx-footnote  aside { float: footnote; footnote-policy: line; }
-}</style><title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
+}</style><style shim-shadowdom-css="">/*******************************
+          Flex Layout
+*******************************/
+
+html   [layout][horizontal], html   [layout][vertical] {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+html   [layout][horizontal][inline], html   [layout][vertical][inline] {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+html   [layout][horizontal] {
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+html   [layout][horizontal][reverse] {
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+html   [layout][vertical] {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+html   [layout][vertical][reverse] {
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+html   [layout][wrap] {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+html   [layout][wrap-reverse] {
+  -ms-flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+html   [flex] {
+  -ms-flex: 1 1 0.000000001px;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-basis: 0.000000001px;
+  flex-basis: 0.000000001px;
+}
+
+html   [vertical][layout] > [flex][auto-vertical], html   [vertical][layout]  [flex][auto-vertical] {
+  -ms-flex: 1 1 auto;
+  -webkit-flex-basis: auto;
+  flex-basis: auto;
+}
+
+html   [flex][auto] {
+  -ms-flex: 1 1 auto;
+  -webkit-flex-basis: auto;
+  flex-basis: auto;
+}
+
+html   [flex][none] {
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+}
+
+html   [flex][one] {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+html   [flex][two] {
+  -ms-flex: 2;
+  -webkit-flex: 2;
+  flex: 2;
+}
+
+html   [flex][three] {
+  -ms-flex: 3;
+  -webkit-flex: 3;
+  flex: 3;
+}
+
+html   [flex][four] {
+  -ms-flex: 4;
+  -webkit-flex: 4;
+  flex: 4;
+}
+
+html   [flex][five] {
+  -ms-flex: 5;
+  -webkit-flex: 5;
+  flex: 5;
+}
+
+html   [flex][six] {
+  -ms-flex: 6;
+  -webkit-flex: 6;
+  flex: 6;
+}
+
+html   [flex][seven] {
+  -ms-flex: 7;
+  -webkit-flex: 7;
+  flex: 7;
+}
+
+html   [flex][eight] {
+  -ms-flex: 8;
+  -webkit-flex: 8;
+  flex: 8;
+}
+
+html   [flex][nine] {
+  -ms-flex: 9;
+  -webkit-flex: 9;
+  flex: 9;
+}
+
+html   [flex][ten] {
+  -ms-flex: 10;
+  -webkit-flex: 10;
+  flex: 10;
+}
+
+html   [flex][eleven] {
+  -ms-flex: 11;
+  -webkit-flex: 11;
+  flex: 11;
+}
+
+html   [flex][twelve] {
+  -ms-flex: 12;
+  -webkit-flex: 12;
+  flex: 12;
+}
+
+/* alignment in cross axis */
+
+html   [layout][start] {
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+html   [layout][center], html   [layout][center-center] {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+html   [layout][end] {
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+
+/* alignment in main axis */
+
+html   [layout][start-justified] {
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+html   [layout][center-justified], html   [layout][center-center] {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+html   [layout][end-justified] {
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+html   [layout][around-justified] {
+  -ms-flex-pack: distribute;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+html   [layout][justified] {
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+/* self alignment */
+
+html   [self-start] {
+  -ms-align-self: flex-start;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+}
+
+html   [self-center] {
+  -ms-align-self: center;
+  -webkit-align-self: center;
+  align-self: center;
+}
+
+html   [self-end] {
+  -ms-align-self: flex-end;
+  -webkit-align-self: flex-end;
+  align-self: flex-end;
+}
+
+html   [self-stretch] {
+  -ms-align-self: stretch;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+}
+
+/*******************************
+          Other Layout
+*******************************/
+
+html   [block] {
+  display: block;
+}
+
+/* ie support for hidden */
+html   [hidden] {
+  display: none !important;
+}
+
+html   [relative] {
+  position: relative;
+}
+
+html   [fit] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body[fullbleed] {
+  margin: 0;
+  height: 100vh;
+}
+
+/*******************************
+            Other
+*******************************/
+
+html   [segment], html   segment {
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1em 0.5em;
+  padding: 1em;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 5px 5px 5px 5px;
+}</style>
+<title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
 <body class="cxx-draft">
 <cxx-titlepage>
     
@@ -682,6 +960,8 @@ pre {
         <p class="warning"><strong>Note: this is an early draft. It’s known to be
         incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
       </div>
+    
+
     
 
     
@@ -3151,7 +3431,7 @@ Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></co
           Any exception thrown by the copy constructor of <code>RandomAccessIterator1</code>,
           or by the default constructor, copy constructor, or the copy assignment operator of the value type of <code>RandomAccessIterator1</code>
           or the copy constructor or <code>operator()</code> of <code>BinaryPredicate</code> or <code>Hash</code>.
-          May throw <code>bad_alloc</code> if the system cannot allocate additional memory for internal data structures needed.
+          May throw <code>bad_alloc</code> if additional memory needed for internal data structures cannot be allocated..
         </dd>
   </cxx-throws>
       
@@ -4701,72 +4981,12 @@ public:
 
     <cxx-function para_num="13" id="optional.comp_with_t.13">
     
-    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature></code></pre>
-
-    <dl>
-      
-      
-      <cxx-returns para_num="14" id="optional.comp_with_t.14">
-    
-    <dt>Returns:</dt><dd><code>bool(<var>x</var>) ? *<var>x</var> &lt; <var>v</var> : true</code>.</dd>
-  </cxx-returns>
-    
-    </dl>
-  </cxx-function>
-
-    <cxx-function para_num="15" id="optional.comp_with_t.15">
-    
-    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature></code></pre>
-
-    <dl>
-      
-      
-      <cxx-returns para_num="16" id="optional.comp_with_t.16">
-    
-    <dt>Returns:</dt><dd><code>bool(<var>x</var>) ? <var>v</var> &lt; *<var>x</var> : false</code>.</dd>
-  </cxx-returns>
-    
-    </dl>
-  </cxx-function>
-
-    <cxx-function para_num="17" id="optional.comp_with_t.17">
-    
-    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature></code></pre>
-
-    <dl>
-      
-      
-      <cxx-returns para_num="18" id="optional.comp_with_t.18">
-    
-    <dt>Returns:</dt><dd><code>!(<var>x</var> &lt; <var>v</var>)</code>.</dd>
-  </cxx-returns>
-    
-    </dl>
-  </cxx-function>
-
-    <cxx-function para_num="19" id="optional.comp_with_t.19">
-    
-    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature></code></pre>
-
-    <dl>
-      
-      
-      <cxx-returns para_num="20" id="optional.comp_with_t.20">
-    
-    <dt>Returns:</dt><dd><code>!(<var>v</var> &lt; <var>x</var>)</code>.</dd>
-  </cxx-returns>
-    
-    </dl>
-  </cxx-function>
-
-    <cxx-function para_num="21" id="optional.comp_with_t.21">
-    
     <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature></code></pre>
 
     <dl>
       
       
-      <cxx-returns para_num="22" id="optional.comp_with_t.22">
+      <cxx-returns para_num="14" id="optional.comp_with_t.14">
     
     <dt>Returns:</dt><dd><code>!(<var>x</var> &gt; <var>v</var>)</code>.</dd>
   </cxx-returns>
@@ -4774,16 +4994,76 @@ public:
     </dl>
   </cxx-function>
 
-    <cxx-function para_num="23" id="optional.comp_with_t.23">
+    <cxx-function para_num="15" id="optional.comp_with_t.15">
     
     <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature></code></pre>
 
     <dl>
       
       
-      <cxx-returns para_num="24" id="optional.comp_with_t.24">
+      <cxx-returns para_num="16" id="optional.comp_with_t.16">
     
     <dt>Returns:</dt><dd><code>!(<var>v</var> &gt; <var>x</var>)</code>.</dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="17" id="optional.comp_with_t.17">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+      <cxx-returns para_num="18" id="optional.comp_with_t.18">
+    
+    <dt>Returns:</dt><dd><code>bool(<var>x</var>) ? <var>v</var> &lt; *<var>x</var> : false</code>.</dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="19" id="optional.comp_with_t.19">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+      <cxx-returns para_num="20" id="optional.comp_with_t.20">
+    
+    <dt>Returns:</dt><dd><code>bool(<var>x</var>) ? *<var>x</var> &lt; <var>v</var> : true</code>.</dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="21" id="optional.comp_with_t.21">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+      <cxx-returns para_num="22" id="optional.comp_with_t.22">
+    
+    <dt>Returns:</dt><dd><code>!(<var>x</var> &lt; <var>v</var>)</code>.</dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="23" id="optional.comp_with_t.23">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+      <cxx-returns para_num="24" id="optional.comp_with_t.24">
+    
+    <dt>Returns:</dt><dd><code>!(<var>v</var> &lt; <var>x</var>)</code>.</dd>
   </cxx-returns>
     
     </dl>
@@ -5720,7 +6000,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
   </cxx-requires>
       <cxx-effects para_num="8" id="string.view.cons.8">
     
-    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code> referring to the same string as <code>str</code>, with the postconditions
+    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions
       in <cxx-ref to="tab:string.view.ctr.2"><a title="tab:string.view.ctr.2" href="#tab:string.view.ctr.2">Table 8</a></cxx-ref>.</dd>
   </cxx-effects>
 
