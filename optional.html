@@ -678,13 +678,23 @@ public:
     </cxx-function>
 
     <cxx-function>
-      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
-      <cxx-returns><code>bool(<var>x</var>) ? *<var>x</var> &lt; <var>v</var> : true</code>.</cxx-returns>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
+      <cxx-returns><code>!(<var>x</var> &gt; <var>v</var>)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
+      <cxx-returns><code>!(<var>v</var> &gt; <var>x</var>)</code>.</cxx-returns>
     </cxx-function>
 
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
       <cxx-returns><code>bool(<var>x</var>) ? <var>v</var> &lt; *<var>x</var> : false</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
+      <cxx-returns><code>bool(<var>x</var>) ? *<var>x</var> &lt; <var>v</var> : true</code>.</cxx-returns>
     </cxx-function>
 
     <cxx-function>
@@ -695,16 +705,6 @@ public:
     <cxx-function>
       <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
       <cxx-returns><code>!(<var>v</var> &lt; <var>x</var>)</code>.</cxx-returns>
-    </cxx-function>
-
-    <cxx-function>
-      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
-      <cxx-returns><code>!(<var>x</var> &gt; <var>v</var>)</code>.</cxx-returns>
-    </cxx-function>
-
-    <cxx-function>
-      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
-      <cxx-returns><code>!(<var>v</var> &gt; <var>x</var>)</code>.</cxx-returns>
     </cxx-function>
   </cxx-section>
 
