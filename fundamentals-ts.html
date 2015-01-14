@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -225,7 +225,7 @@ cxx-section header {
 	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
-cxx-section header:after {
+cxx-section header::after {
 	clear: both; display: block; content: " "; height: 0px;
 }cxx-clause {
 	display: block;
@@ -247,7 +247,7 @@ cxx-clause header {
 	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
-cxx-clause header:after {
+cxx-clause header::after {
 	clear: both; display: block; content: " "; height: 0px;
 }[is=cxx-table] {
 	margin-left: auto; margin-right: auto; border-collapse: collapse; border: thin solid black;
@@ -289,7 +289,7 @@ cxx-clause header:after {
 	padding-left: 0px; margin: 0px;
 }
 
-[is=cxx-table].list ul li:before {
+[is=cxx-table].list ul li::before {
 	content: "";
 }cxx-figure {
 	margin-left: auto; margin-right: auto;
@@ -464,7 +464,7 @@ cxx-ednote.para aside {
 }cxx-note .nowrap {
 	white-space: nowrap;
 }cxx-footnote {
-	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; 
+	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial; 
 }
 
 @media screen {
@@ -511,7 +511,7 @@ cxx-example .nowrap {
 	white-space: normal;
 }
 
-w-br:after {
+w-br::after {
 	content: "​";
 }</style>
   <meta charset="utf-8">
@@ -539,7 +539,7 @@ limitations under the License.
     @bottom-right { content: counter(page); font-size: 10pt; }
 }
 @page :first {
-    @top-left { content: "© ISO 2014 — All rights reserved"; }
+    /* @top-left is defined by base.js. */
     @top-right { content: normal; }
     @bottom-left { content: normal; }
     @bottom-right { content: normal; }
@@ -932,36 +932,69 @@ html   [segment], html   segment {
   box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px 5px 5px 5px;
 }</style>
-<title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
-<body class="cxx-draft">
+<style>@page :first { @top-left { content: "© ISO 2015 — All rights reserved"; } }</style><title>C++ Extensions for Library Fundamentals, DTS</title></head>
+<body class="cxx-dts">
 <cxx-titlepage>
     
     
-      <div class="page">
-        <table class="header">
-          
-            <tr><th>Document Number:</th><td><cxx-docnum>D????</cxx-docnum></td></tr>
-          
-          
-            <tr><th>Date:</th><td><time pubdate="">2014-??-??</time></td></tr>
-          
-          
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4335">N4335</a></cxx-revises></td></tr>
-          
-          
-            <tr><th>Editor:</th><td><cxx-editor>
-    Jeffrey Yasskin<br>
-    Google, Inc.<br>
-    <cxx-email><a href="mailto:jyasskin@google.com">jyasskin@google.com</a></cxx-email>
-  </cxx-editor></td></tr>
-          
-        </table>
-        <h1>Working Draft, C++ Extensions for Library Fundamentals</h1>
-        <p class="warning"><strong>Note: this is an early draft. It’s known to be
-        incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
-      </div>
-    
 
+    
+      <div class="page">
+        <div class="header">
+          <strong>ISO/IEC JTC1 SC22 WG21 <cxx-docnum>N4480</cxx-docnum></strong><br>
+          Date: <time pubdate="">2015-04-07</time><br>
+          
+          
+            ISO/IEC DTS <cxx-project-number>19568</cxx-project-number><br>
+          
+          ISO/IEC JTC1 SC22<br>
+          Secretariat: ANSI
+        </div>
+        <hgroup>
+          <h1>Programming Languages — C++ Extensions for Library Fundamentals</h1>
+          
+            <h2>Langages de programmation — Extensions C++ pour la bibliothèque fondamentaux</h2>
+          
+        </hgroup>
+        <figure class="warning">
+          <figcaption>Warning</figcaption>
+          <p>This document is not an ISO International Standard. It is distributed for review and comment. It is
+          subject to change without notice and may not be referred to as an International Standard.
+          </p>
+          <p>Recipients of this draft are invited to submit, with their comments, notification of any relevant
+          patent rights of which they are aware and to provide supporting documentation.</p>
+        </figure>
+        <div class="footer">
+          
+          
+            Document type: Draft Technical Specification<br>
+            Document stage: (40) Enquiry<br>
+          
+          Document language: E
+        </div>
+      </div>
+      <div class="page">
+        <figure class="copyright">
+          <figcaption>Copyright notice</figcaption>
+          <p>This ISO document is a working draft or committee draft and is copyright-protected by ISO. While
+          the reproduction of working drafts or committee drafts in any form for use by participants in the
+          ISO standards development process is permitted without prior permission from ISO, neither this
+          document nor any extract from it may be reproduced, stored or transmitted in any form for any
+          other purpose without prior written permission from ISO.</p>
+          <p>Requests for permission to reproduce this document for the purpose of selling it should be
+          addressed as shown below or to ISO’s member body in the country of the requester:</p>
+          <address>
+            ISO copyright officer<br>
+            Case postale 56, CH-1211 Geneva 20<br>
+            Tel. + 41 22 749 01 11<br>
+            Fax + 41 22 749 09 47<br>
+            E-mail <a href="mailto:copyright@iso.org">copyright@iso.org</a><br>
+            Web <a href="http://www.iso.org/">www.iso.org</a>
+          </address>
+          <p>Reproduction may be subject to royalty payments or a licensing agreement.</p>
+          <p>Violators may be prosecuted.</p>
+        </figure>
+      </div>
     
 
     
@@ -1683,10 +1716,7 @@ html   [segment], html   segment {
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:—<cxx-footnote><!--
-    Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n3937.pdf">N3937</a>.</aside></cxx-footnote>,
-      <cite>Programming Languages — C++</cite>
+      <li>ISO/IEC 14882:2014, <cite>Programming Languages — C++</cite>
       </li>
     </ul>
 
@@ -1787,7 +1817,7 @@ html   [segment], html   segment {
     <caption>Table 1 — <wbr><span>C++ library headers</span></caption>
     
       
-      <tbody><tr><td><ul><li><code>&lt;experimental/algorithm&gt;</code></li><li><code>&lt;experimental/any&gt;</code></li><li><code>&lt;experimental/chrono&gt;</code></li><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/future&gt;</code></li><li><code>&lt;experimental/list&gt;</code></li><li><code>&lt;experimental/map&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/memory_resource&gt;</code></li><li><code>&lt;experimental/net&gt;</code></li><li><code>&lt;experimental/optional&gt;</code></li><li><code>&lt;experimental/ratio&gt;</code></li><li><code>&lt;experimental/regex&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li><li><code>&lt;experimental/string&gt;</code></li><li><code>&lt;experimental/string_view&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/system_error&gt;</code></li><li><code>&lt;experimental/tuple&gt;</code></li><li><code>&lt;experimental/type_traits&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/utility&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
+      <tbody><tr><td><ul><li><code>&lt;experimental/algorithm&gt;</code></li><li><code>&lt;experimental/any&gt;</code></li><li><code>&lt;experimental/chrono&gt;</code></li><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/future&gt;</code></li><li><code>&lt;experimental/list&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/map&gt;</code></li><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/memory_resource&gt;</code></li><li><code>&lt;experimental/optional&gt;</code></li><li><code>&lt;experimental/ratio&gt;</code></li><li><code>&lt;experimental/regex&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li><li><code>&lt;experimental/string&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/string_view&gt;</code></li><li><code>&lt;experimental/system_error&gt;</code></li><li><code>&lt;experimental/tuple&gt;</code></li><li><code>&lt;experimental/type_traits&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/utility&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
     </tbody>
   </table>
   
@@ -5830,7 +5860,7 @@ class basic_string_view {
   typedef <var>implementation-defined</var> const_iterator; // See <cxx-ref to="string.view.iterators"><a title="string.view.iterators" href="#string.view.iterators">7.4</a></cxx-ref>
   typedef const_iterator iterator;<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-2"><a href="#footnote-body-2">2</a></sup><aside class="footnote" id="footnote-body-2"><span class="marker"><a href="#footnote-call-2">2</a>) </span>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</aside></cxx-footnote>
+  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</aside></cxx-footnote>
   typedef reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
   typedef const_reverse_iterator reverse_iterator;
   typedef size_t size_type;
@@ -6437,7 +6467,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
     <pre><code><cxx-signature>template&lt;class Allocator&gt;
 explicit<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-3"><a href="#footnote-body-3">3</a></sup><aside class="footnote" id="footnote-body-3"><span class="marker"><a href="#footnote-call-3">3</a>) </span>This conversion is explicit to avoid accidental O(N) operations on type mismatches.</aside></cxx-footnote> operator basic_string&lt;
+  --><sup id="footnote-call-2"><a href="#footnote-body-2">2</a></sup><aside class="footnote" id="footnote-body-2"><span class="marker"><a href="#footnote-call-2">2</a>) </span>This conversion is explicit to avoid accidental O(N) operations on type mismatches.</aside></cxx-footnote> operator basic_string&lt;
     charT, traits, Allocator&gt;() const;</cxx-signature></code></pre>
 
     <dl>
@@ -10031,7 +10061,7 @@ namespace pmr {
       
       
 <pre><code>#include &lt;regex&gt;
-#include &lt;exerimental/string&gt;
+#include &lt;experimental/string&gt;
 
 namespace std {
 namespace experimental {
