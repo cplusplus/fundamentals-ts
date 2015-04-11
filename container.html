@@ -153,4 +153,65 @@ void erase(list&lt;T, A>&amp; c, const U&amp; value);</cxx-signature>
       </cxx-note>
     </cxx-section>
   </cxx-section>
+
+  <cxx-section id="container.array">
+    <h1>Class template <code>array</code></h1>
+
+    <cxx-section id="header.array.synop">
+      <h1>Header &lt;experimental/array> synopsis</h1>
+
+      <pre><code>#include &lt;array>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis to="container.array.creation"></cxx-ref>
+  template &lt;class D = void, class... Types&gt;
+    constexpr array&lt;<i>VT</i>, sizeof...(Types)&gt; make_array(Types&amp;&amp;... t);
+  template &lt;class T, size_t N&gt;
+    constexpr array&lt;remove_cv_t&lt;T&gt;, N&gt; to_array(T (&amp;a)[N]);
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="container.array.creation">
+      <h1>Array creation functions</h1>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class D = void, class... Types&gt;
+&nbsp;&nbsp;constexpr array&lt;<i>VT</i>, sizeof...(Types)&gt; make_array(Types&amp;&amp;... t);</cxx-signature>
+
+        <p>
+          Let <em>Ui</em> be <code>decay_t&lt;</code><em>Ti</em><code>&gt;</code> for each <em>Ti</em> in <code>Types</code>.
+        </p>
+        <cxx-remarks>
+          The program is ill-formed if <code>D</code> is <code>void</code> and at least one <em>Ui</em> is a specialization of <code>reference_wrapper</code>.
+        </cxx-remarks>
+        <cxx-returns>
+          <code>array&lt;<var>VT</var>, sizeof...(Types)&gt;{ std::forward&lt;Types&gt;(t)... }</code>, where <code><var>VT</var></code> is <code>common_type_t&lt;Types...&gt;</code> if <code>D</code> is <code>void</code>, otherwise <code><var>VT</var></code> is <code>D</code>.
+        </cxx-returns>
+
+        <cxx-example>
+<pre><code>int i = 1; int&amp; ri = i;
+auto a1 = make_array(i, ri);         // a1<i> is of type </i>array&lt;int, 2&gt;
+auto a2 = make_array(i, ri, 42L);    // a2<i> is of type </i>array&lt;long, 3&gt;
+auto a3 = make_array&lt;long&gt;(i, ri);   // a3<i> is of type </i>array&lt;long, 2&gt;
+auto a4 = make_array&lt;long&gt;();        // a4<i> is of type </i>array&lt;long, 0&gt;
+auto a5 = make_array();              // <i>ill-formed</i></code></pre>
+        </cxx-example>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T, size_t N&gt;
+constexpr array&lt;remove_cv_t&lt;T&gt;, N&gt; to_array(T (&amp;a)[N]);</cxx-signature>
+
+        <cxx-returns>
+          An <code>array&lt;remove_cv_t&lt;T&gt;, N&gt;</code> such that each element is copy-initialized with the corresponding element of <code>a</code>.
+        </cxx-returns>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
 </cxx-clause>
