@@ -46,24 +46,24 @@ inline namespace fundamentals_v2 {
   public:
     typedef charT char_type;
     typedef traits traits_type;
-    typedef basic_ostream&lt;charT,traits&gt; ostream_type;
+    typedef basic_ostream&lt;charT, traits&gt; ostream_type;
     typedef output_iterator_tag iterator_category;
     typedef void value_type;
     typedef void difference_type;
     typedef void pointer;
     typedef void reference;
 
-    ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);
     ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);
+    ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);
     template&lt;typename T&gt;
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator=(const T&amp; value);
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator*();
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++();
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++(int);
+    ostream_joiner&amp; operator=(const T&amp; value);
+    ostream_joiner&amp; operator*();
+    ostream_joiner&amp; operator++();
+    ostream_joiner&amp; operator++(int);
   private:
-    basic_ostream&lt;charT,traits&gt;* out_stream; <i>// exposition only</i>
-    DelimT delim;                            <i>// exposition only</i>
-    bool first_element;                      <i>// exposition only</i>
+    ostream_type* out_stream; <i>// exposition only</i>
+    DelimT delim;             <i>// exposition only</i>
+    bool first_element;       <i>// exposition only</i>
   };
 } // inline namespace fundamentals_v2
 } // namespace experimental
