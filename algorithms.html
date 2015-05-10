@@ -68,7 +68,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
       such that each possible sample has equal probability of appearance.
       <cxx-note>Algorithms that obtain such effects include <cxx-term>selection sampling</cxx-term> and <cxx-term>reservoir sampling</cxx-term>.</cxx-note></cxx-effects>
       <cxx-returns>The end of the resulting sample range.</cxx-returns>
-      <cxx-complexity>O(<code>n</code>).</cxx-complexity>
+      <cxx-complexity>O(<code>last - first</code>).</cxx-complexity>
       <cxx-remarks>
         <ul>
           <li>Stable if and only if <code>PopulationIterator</code> meets the requirements of a <code>ForwardIterator</code> type.</li>
