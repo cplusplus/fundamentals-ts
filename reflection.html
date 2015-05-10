@@ -1,0 +1,121 @@
+<cxx-clause id="reflection">
+  <h1>Reflection library</h1>
+
+  <cxx-section id="reflection.src_loc">
+    <h1>Class source_location</h1>
+
+    <cxx-section id="reflection.src_loc.intro">
+    <h1>Header <code>&lt;experimental/source_location></code> synopsis</h1>
+
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  struct source_location {
+    constexpr source_location() noexcept;
+
+    constexpr uint_least32_t line() const noexcept;
+    constexpr uint_least32_t column() const noexcept;
+    constexpr const char* file_name() const noexcept;
+    constexpr const char* function_name() const noexcept;
+
+    static constexpr source_location current() noexcept;
+  };
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+    <p>
+      <cxx-note>The intent of <code>source_location</code> is to have a small size and efficient copying.</cxx-note>
+    </p>
+
+    <cxx-function>
+      <cxx-signature>constexpr source_location() noexcept;</cxx-signature>
+
+      <cxx-effects>Constructs an object of class <code>source_location</code>.</cxx-effects>
+      <cxx-remarks>The values are implementation-defined.</cxx-remarks>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>constexpr uint_least32_t line() const noexcept;</cxx-signature>
+
+      <cxx-returns>The presumed line number (<cxx-ref in="cxx" to="cpp.predefined"></cxx-ref>) represented by this object.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>constexpr uint_least32_t column() const noexcept;</cxx-signature>
+
+      <cxx-returns>
+        An implementation-defined value representing
+        some offset from the start of the line represented by this object.
+      </cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>constexpr const char* file_name() const noexcept;</cxx-signature>
+
+      <cxx-returns>
+        The presumed name of the current source file (<cxx-ref in="cxx" to="cpp.predefined"></cxx-ref>)
+        represented by this object as an NTBS.
+      </cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>constexpr const char* function_name() const noexcept;</cxx-signature>
+
+      <cxx-returns>
+        If this object represents a position in the body of a function,
+        returns an implementation-defined NTBS that should correspond to the function name.
+        Otherwise, returns an empty string.
+      </cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>static constexpr source_location current() noexcept;</cxx-signature>
+
+      <cxx-returns>
+        When invoked by a function call (<cxx-ref in="cxx" to="expr.call"></cxx-ref>)
+        whose <cxx-grammarterm>postfix-expression</cxx-grammarterm> is
+        a (possibly parenthesized) <cxx-grammarterm>id-expression</cxx-grammarterm> naming <code>current</code>,
+        returns a <code>source_location</code> with an implementation-defined value.
+        The value should be affected by <code>#line</code>
+        (<cxx-ref in="cxx" to="cpp.line"></cxx-ref>) in the same manner as for <code>__LINE__</code> and <code>__FILE__</code>.
+        If invoked in some other way, the value returned is unspecified.
+      </cxx-returns>
+      <cxx-remarks>
+        When a <cxx-grammarterm>brace-or-equal-initializer</cxx-grammarterm> is used to initialize a non-static data member,
+        any calls to <code>current</code> should correspond to the location of
+        the constructor or aggregate initialization that initializes the member.
+      </cxx-remarks>
+      <p>
+        <cxx-note>When used as a default argument (<cxx-ref in="cxx" to="dcl.fct.default"></cxx-ref>),
+          the value of the <code>source_location</code> will be the location of the call to <code>current</code> at the call site.</cxx-note>
+      </p>
+      <cxx-example>
+        <pre><code>struct s {
+  source_location member = source_location::current();
+  int other_member;
+  s(source_location loc = source_location::current())
+    : member(loc) // <i>values of</i> member <i>will be from call-site</i>
+  {}
+  s(int blather) : // <i>values of</i> member <i>should be hereabouts</i>
+    other_member(blather) {}
+  s(double) // <i>values of</i> member <i>should be hereabouts</i>
+  {}
+};
+
+void f(source_location a = source_location::current()) {
+  source_location b = source_location::current(); // <i>values in</i> b <i>represent this line</i>
+}
+
+void g() {
+  f(); // f<i>’s first argument corresponds to this line of code</i>
+
+  source_location c = source_location::current();
+  f(c); // f<i>’s first argument gets the same values as </i>c<i>, above</i>
+}</code></pre>
+      </cxx-example>
+    </cxx-function>
+  </cxx-section>
+</cxx-clause>
