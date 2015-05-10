@@ -410,7 +410,7 @@ inline namespace fundamentals_v1 {
       <cxx-function>
         <cxx-signature>template &lt;class Y, class D> shared_ptr(unique_ptr&lt;Y, D>&& r);</cxx-signature>
 
-        <cxx-requires><code>Y*</code> shall be <em>compatible with</em> <code>T*</code>.</cxx-requires>
+        <cxx-remarks>This constructor shall not participate in overload resolution unless <code>Y*</code> is <em>compatible with</em> <code>T*</code>.</cxx-remarks>
 
         <cxx-effects>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>.</cxx-effects>
 
