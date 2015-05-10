@@ -22,17 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="core-xhr">
-
-  <template>
-
-    <style>
-      :host {
-        display: none;
-      }
-    </style>
-
-  </template>
+<polymer-element name="core-xhr" hidden>
 
   <script>
 
@@ -99,6 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       bodyMethods: {
         POST: 1,
         PUT: 1,
+        PATCH: 1,
         DELETE: 1
       },
 

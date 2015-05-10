@@ -21,7 +21,7 @@ limitations under the License.
     @bottom-right { content: counter(page); font-size: 10pt; }
 }
 @page :first {
-    @top-left { content: "© ISO 2014 — All rights reserved"; }
+    /* @top-left is defined by base.js. */
     @top-right { content: normal; }
     @bottom-left { content: normal; }
     @bottom-right { content: normal; }
