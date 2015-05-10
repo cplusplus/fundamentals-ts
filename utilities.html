@@ -73,7 +73,7 @@ constexpr decltype(auto) apply(F&& f, Tuple&& t);</cxx-signature>
           <pre><code>template &lt;class F, class Tuple, size_t... I>
 constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
     F&& f, Tuple&& t, index_sequence&lt;I...>) {
-  return std::forward&lt;F>(f)(std::get&lt;I>(std::forward&lt;Tuple>(t))...);
+  return <em>INVOKE</em>(std::forward&lt;F>(f), std::get&lt;I>(std::forward&lt;Tuple>(t))...);
 }</code></pre>
           <p>Equivalent to</p>
           <pre><code>return apply_impl(std::forward&lt;F>(f), std::forward&lt;Tuple>(t),
