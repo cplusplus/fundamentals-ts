@@ -76,7 +76,7 @@ inline namespace fundamentals_v2 {
         <cxx-signature>ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);</cxx-signature>
 
         <cxx-effects>
-          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          Initializes <code>out_stream</code> with <code>std::addressof(s)</code>,
           <code>delim</code> with <code>delimiter</code>,
           and <code>first_element</code> with <code>true</code>.
         </cxx-effects>
@@ -86,7 +86,7 @@ inline namespace fundamentals_v2 {
         <cxx-signature>ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);</cxx-signature>
 
         <cxx-effects>
-          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          Initializes <code>out_stream</code> with <code>std::addressof(s)</code>,
           <code>delim</code> with <code>move(delimiter)</code>,
           and <code>first_element</code> with <code>true</code>.
         </cxx-effects>
