@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REQUIRES");document.createElement("CXX-RETURNS");document.createElement("CXX-THROWS");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-REQUIRES");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-GRAMMARTERM");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -225,7 +225,7 @@ cxx-section header {
 	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
-cxx-section header:after {
+cxx-section header::after {
 	clear: both; display: block; content: " "; height: 0px;
 }cxx-clause {
 	display: block;
@@ -247,7 +247,7 @@ cxx-clause header {
 	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
-cxx-clause header:after {
+cxx-clause header::after {
 	clear: both; display: block; content: " "; height: 0px;
 }[is=cxx-table] {
 	margin-left: auto; margin-right: auto; border-collapse: collapse; border: thin solid black;
@@ -285,7 +285,7 @@ cxx-clause header:after {
 	padding-left: 0px; margin: 0px;
 }
 
-[is=cxx-table].list ul li:before {
+[is=cxx-table].list ul li::before {
 	content: "";
 }cxx-figure {
 	margin-left: auto; margin-right: auto;
@@ -458,7 +458,7 @@ cxx-ednote.para aside {
 }cxx-note .nowrap {
 	white-space: nowrap;
 }cxx-footnote {
-	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; 
+	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial; 
 }
 
 @media screen {
@@ -503,7 +503,7 @@ cxx-example .nowrap {
 	white-space: normal;
 }
 
-w-br:after {
+w-br::after {
 	content: "​";
 }</style>
   <meta charset="utf-8">
@@ -719,15 +719,27 @@ pre {
         
       </li>
             
-              <li><span class="marker">2</span><a href="#func">Function objects</a>
+              <li><span class="marker">2</span><a href="#utilities">General utilities library</a>
         
           <ol>
             
-              <li><span class="marker">2.1</span><a href="#header.functional.synop">Header &lt;experimental/functional&gt; synopsis</a>
+              <li><span class="marker">2.1</span><a href="#propagate_const">Class template propagate_const</a>
+        
+          <ol>
+            
+              <li><span class="marker">2.1.1</span><a href="#propagate_const.general">Class template propagate_const general</a>
         
       </li>
             
-              <li><span class="marker">2.2</span><a href="#func.not_fn">Function template not_fn</a>
+              <li><span class="marker">2.1.2</span><a href="#propagate_const.synopsis">Header &lt;experimental/propagate_const&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">2.1.3</span><a href="#propagate_const.requirements">propagate_const requirements on T</a>
+        
+          <ol>
+            
+              <li><span class="marker">2.1.3.1</span><a href="#propagate_const.class_type_requirements">propagate_const requirements on class type T</a>
         
       </li>
             
@@ -735,71 +747,43 @@ pre {
         
       </li>
             
-              <li><span class="marker">3</span><a href="#memory">Memory</a>
-        
-          <ol>
-            
-              <li><span class="marker">3.1</span><a href="#header.memory.synop">Header &lt;experimental/memory&gt; synopsis</a>
+              <li><span class="marker">2.1.4</span><a href="#propagate_const.ctor">propagate_const constructors</a>
         
       </li>
             
-              <li><span class="marker">3.2</span><a href="#memory.observer.ptr">Non-owning pointers</a>
-        
-          <ol>
-            
-              <li><span class="marker">3.2.1</span><a href="#memory.observer.ptr.overview">Class template observer_ptr overview</a>
+              <li><span class="marker">2.1.5</span><a href="#propagate_const.assignment">propagate_const assignment</a>
         
       </li>
             
-              <li><span class="marker">3.2.2</span><a href="#memory.observer.ptr.ctor">observer_ptr constructors</a>
+              <li><span class="marker">2.1.6</span><a href="#propagate_const.const_observers">propagate_const const observers</a>
         
       </li>
             
-              <li><span class="marker">3.2.3</span><a href="#memory.observer.ptr.obs">observer_ptr observers</a>
+              <li><span class="marker">2.1.7</span><a href="#propagate_const.non_const_observers">propagate_const non-const observers</a>
         
       </li>
             
-              <li><span class="marker">3.2.4</span><a href="#memory.observer.ptr.conv">observer_ptr conversions</a>
+              <li><span class="marker">2.1.8</span><a href="#propagate_const.modifiers">propagate_const modifiers</a>
         
       </li>
             
-              <li><span class="marker">3.2.5</span><a href="#memory.observer.ptr.mod">observer_ptr modifiers</a>
+              <li><span class="marker">2.1.9</span><a href="#propagate_const.relational">propagate_const relational operators</a>
         
       </li>
             
-              <li><span class="marker">3.2.6</span><a href="#memory.observer.ptr.special">observer_ptr specialized algorithms</a>
+              <li><span class="marker">2.1.10</span><a href="#propagate_const.algorithms">propagate_const specialized algorithms</a>
         
       </li>
             
-              <li><span class="marker">3.2.7</span><a href="#memory.observer.ptr.hash">observer_ptr hash support</a>
+              <li><span class="marker">2.1.11</span><a href="#propagate_const.underlying">propagate_const underlying pointer access</a>
         
       </li>
             
-          </ol>
+              <li><span class="marker">2.1.12</span><a href="#propagate_const.hash">propagate_const hash support</a>
         
       </li>
             
-          </ol>
-        
-      </li>
-            
-              <li><span class="marker">4</span><a href="#container">Containers</a>
-        
-          <ol>
-            
-              <li><span class="marker">4.1</span><a href="#container.erasure">Uniform container erasure</a>
-        
-          <ol>
-            
-              <li><span class="marker">4.1.1</span><a href="#container.erasure.syn">Header synopsis</a>
-        
-      </li>
-            
-              <li><span class="marker">4.1.2</span><a href="#container.erasure.erase_if">Function template erase_if</a>
-        
-      </li>
-            
-              <li><span class="marker">4.1.3</span><a href="#container.erasure.erase">Function template erase</a>
+              <li><span class="marker">2.1.13</span><a href="#propagate_const.comparison_function_objects">propagate_const comparison function objects</a>
         
       </li>
             
@@ -811,27 +795,59 @@ pre {
         
       </li>
             
-              <li><span class="marker">5</span><a href="#iterator">Iterators library</a>
+              <li><span class="marker">3</span><a href="#func">Function objects</a>
         
           <ol>
             
-              <li><span class="marker">5.1</span><a href="#iterator.synopsis">Header &lt;experimental/iterator&gt; synopsis</a>
+              <li><span class="marker">3.1</span><a href="#header.functional.synop">Header &lt;experimental/functional&gt; synopsis</a>
         
       </li>
             
-              <li><span class="marker">5.2</span><a href="#iterator.ostream.joiner">Class template ostream_joiner</a>
+              <li><span class="marker">3.2</span><a href="#func.not_fn">Function template not_fn</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">4</span><a href="#memory">Memory</a>
         
           <ol>
             
-              <li><span class="marker">5.2.1</span><a href="#iterator.ostream.joiner.cons">ostream_joiner constructor</a>
+              <li><span class="marker">4.1</span><a href="#header.memory.synop">Header &lt;experimental/memory&gt; synopsis</a>
         
       </li>
             
-              <li><span class="marker">5.2.2</span><a href="#iterator.ostream.joiner.ops">ostream_joiner operations</a>
+              <li><span class="marker">4.2</span><a href="#memory.observer.ptr">Non-owning pointers</a>
+        
+          <ol>
+            
+              <li><span class="marker">4.2.1</span><a href="#memory.observer.ptr.overview">Class template observer_ptr overview</a>
         
       </li>
             
-              <li><span class="marker">5.2.3</span><a href="#iterator.ostream.joiner.creation">ostream_joiner creation function</a>
+              <li><span class="marker">4.2.2</span><a href="#memory.observer.ptr.ctor">observer_ptr constructors</a>
+        
+      </li>
+            
+              <li><span class="marker">4.2.3</span><a href="#memory.observer.ptr.obs">observer_ptr observers</a>
+        
+      </li>
+            
+              <li><span class="marker">4.2.4</span><a href="#memory.observer.ptr.conv">observer_ptr conversions</a>
+        
+      </li>
+            
+              <li><span class="marker">4.2.5</span><a href="#memory.observer.ptr.mod">observer_ptr modifiers</a>
+        
+      </li>
+            
+              <li><span class="marker">4.2.6</span><a href="#memory.observer.ptr.special">observer_ptr specialized algorithms</a>
+        
+      </li>
+            
+              <li><span class="marker">4.2.7</span><a href="#memory.observer.ptr.hash">observer_ptr hash support</a>
         
       </li>
             
@@ -843,23 +859,119 @@ pre {
         
       </li>
             
-              <li><span class="marker">6</span><a href="#numeric">Numerics library</a>
+              <li><span class="marker">5</span><a href="#container">Containers</a>
         
           <ol>
             
-              <li><span class="marker">6.1</span><a href="#numeric.ops">Generalized numeric operations</a>
+              <li><span class="marker">5.1</span><a href="#container.erasure">Uniform container erasure</a>
         
           <ol>
             
-              <li><span class="marker">6.1.1</span><a href="#numeric.ops.overview">Header &lt;experimental/numeric&gt; synopsis</a>
+              <li><span class="marker">5.1.1</span><a href="#container.erasure.syn">Header synopsis</a>
         
       </li>
             
-              <li><span class="marker">6.1.2</span><a href="#numeric.ops.gcd">Greatest common divisor</a>
+              <li><span class="marker">5.1.2</span><a href="#container.erasure.erase_if">Function template erase_if</a>
         
       </li>
             
-              <li><span class="marker">6.1.3</span><a href="#numeric.ops.lcm">Least common multiple</a>
+              <li><span class="marker">5.1.3</span><a href="#container.erasure.erase">Function template erase</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">5.2</span><a href="#container.array">Class template array</a>
+        
+          <ol>
+            
+              <li><span class="marker">5.2.1</span><a href="#header.array.synop">Header &lt;experimental/array&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">5.2.2</span><a href="#container.array.creation">Array creation functions</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">6</span><a href="#iterator">Iterators library</a>
+        
+          <ol>
+            
+              <li><span class="marker">6.1</span><a href="#iterator.synopsis">Header &lt;experimental/iterator&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">6.2</span><a href="#iterator.ostream.joiner">Class template ostream_joiner</a>
+        
+          <ol>
+            
+              <li><span class="marker">6.2.1</span><a href="#iterator.ostream.joiner.cons">ostream_joiner constructor</a>
+        
+      </li>
+            
+              <li><span class="marker">6.2.2</span><a href="#iterator.ostream.joiner.ops">ostream_joiner operations</a>
+        
+      </li>
+            
+              <li><span class="marker">6.2.3</span><a href="#iterator.ostream.joiner.creation">ostream_joiner creation function</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">7</span><a href="#numeric">Numerics library</a>
+        
+          <ol>
+            
+              <li><span class="marker">7.1</span><a href="#numeric.ops">Generalized numeric operations</a>
+        
+          <ol>
+            
+              <li><span class="marker">7.1.1</span><a href="#numeric.ops.overview">Header &lt;experimental/numeric&gt; synopsis</a>
+        
+      </li>
+            
+              <li><span class="marker">7.1.2</span><a href="#numeric.ops.gcd">Greatest common divisor</a>
+        
+      </li>
+            
+              <li><span class="marker">7.1.3</span><a href="#numeric.ops.lcm">Least common multiple</a>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+          </ol>
+        
+      </li>
+            
+              <li><span class="marker">8</span><a href="#reflection">Reflection library</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.1</span><a href="#reflection.src_loc">Class source_location</a>
+        
+          <ol>
+            
+              <li><span class="marker">8.1.1</span><a href="#reflection.src_loc.intro">Header &lt;experimental/source_location&gt; synopsis</a>
         
       </li>
             
@@ -927,10 +1039,7 @@ pre {
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:—<cxx-footnote><!--
-    Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n3937.pdf">N3937</a>.</aside></cxx-footnote>,
-      <cite>Programming Languages — C++</cite>
+      <li>ISO/IEC 14882:2014, <cite>Programming Languages — C++</cite>
       </li>
     </ul>
 
@@ -1018,7 +1127,7 @@ pre {
     <caption>Table 1 — <wbr><span>C++ library headers</span></caption>
     
       
-      <tbody><tr><td><ul><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/iterator&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/list&gt;</code></li><li><code>&lt;experimental/map&gt;</code></li><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/string&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
+      <tbody><tr><td><ul><li><code>&lt;experimental/array&gt;</code></li><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/iterator&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/list&gt;</code></li><li><code>&lt;experimental/map&gt;</code></li><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/propagate_const&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/source_location&gt;</code></li><li><code>&lt;experimental/string&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
     </tbody>
   </table>
   
@@ -1119,9 +1228,17 @@ pre {
           <th>Header</th>
         </tr>
         <tr>
+          <td>N4388</td>
+          <td>A Proposal to Add a Const-Propagating Wrapper to the Standard Library
+          </td><td><cxx-ref to="propagate_const"><a title="propagate_const" href="#propagate_const">2.1</a></cxx-ref>
+          </td><td><code>propagate_const</code>
+          </td><td>201504
+          </td><td><code>&lt;experimental/propagate_const&gt;</code>
+        </td></tr>
+        <tr>
           <td>N4076</td>
           <td>A proposal to add a generalized callable negator
-          </td><td><cxx-ref to="func.not_fn"><a title="func.not_fn" href="#func.not_fn">2.2</a></cxx-ref>
+          </td><td><cxx-ref to="func.not_fn"><a title="func.not_fn" href="#func.not_fn">3.2</a></cxx-ref>
           </td><td><code>not_fn</code>
           </td><td>201406
           </td><td><code>&lt;experimental/functional&gt;</code>
@@ -1129,7 +1246,7 @@ pre {
         <tr>
           <td>N4282</td>
           <td>The World’s Dumbest Smart Pointer
-          </td><td><cxx-ref to="memory.observer.ptr"><a title="memory.observer.ptr" href="#memory.observer.ptr">3.2</a></cxx-ref>
+          </td><td><cxx-ref to="memory.observer.ptr"><a title="memory.observer.ptr" href="#memory.observer.ptr">4.2</a></cxx-ref>
           </td><td><code>observer_ptr</code>
           </td><td>201411
           </td><td><code>&lt;experimental/memory&gt;</code>
@@ -1137,15 +1254,23 @@ pre {
         <tr>
           <td>N4273</td>
           <td>Uniform Container Erasure</td>
-          <td><cxx-ref to="container.erasure"><a title="container.erasure" href="#container.erasure">4.1</a></cxx-ref></td>
+          <td><cxx-ref to="container.erasure"><a title="container.erasure" href="#container.erasure">5.1</a></cxx-ref></td>
           <td><code>erase_if</code></td>
           <td>201411</td>
           <td><code>&lt;experimental/vector&gt;</code></td>
         </tr>
         <tr>
+          <td>N4315</td>
+          <td>make_array</td>
+          <td><cxx-ref to="container.array.creation"><a title="container.array.creation" href="#container.array.creation">5.2.2</a></cxx-ref></td>
+          <td><code>make_array</code></td>
+          <td>201504</td>
+          <td><code>&lt;experimental/array&gt;</code></td>
+        </tr>
+        <tr>
           <td>N4257</td>
           <td>Delimited iterators</td>
-          <td><cxx-ref to="iterator.ostream.joiner"><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">5.2</a></cxx-ref></td>
+          <td><cxx-ref to="iterator.ostream.joiner"><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">6.2</a></cxx-ref></td>
           <td><code>ostream_joiner</code></td>
           <td>201411</td>
           <td><code>&lt;experimental/iterator&gt;</code></td>
@@ -1153,10 +1278,18 @@ pre {
         <tr>
           <td>N4061</td>
           <td>Greatest Common Divisor and Least Common Multiple</td>
-          <td><cxx-ref to="numeric.ops.gcd"><a title="numeric.ops.gcd" href="#numeric.ops.gcd">6.1.2</a></cxx-ref>, <cxx-ref to="numeric.ops.lcm"><a title="numeric.ops.lcm" href="#numeric.ops.lcm">6.1.3</a></cxx-ref></td>
+          <td><cxx-ref to="numeric.ops.gcd"><a title="numeric.ops.gcd" href="#numeric.ops.gcd">7.1.2</a></cxx-ref>, <cxx-ref to="numeric.ops.lcm"><a title="numeric.ops.lcm" href="#numeric.ops.lcm">7.1.3</a></cxx-ref></td>
           <td><code>gcd_lcm</code></td>
           <td>201411</td>
           <td><code>&lt;experimental/numeric&gt;</code></td>
+        </tr>
+        <tr>
+          <td>N4519</td>
+          <td>Source-Code Information Capture</td>
+          <td><cxx-ref to="reflection.src_loc"><a title="reflection.src_loc" href="#reflection.src_loc">8.1</a></cxx-ref></td>
+          <td><code>source_location</code></td>
+          <td>201505</td>
+          <td><code>&lt;experimental/source_location&gt;</code></td>
         </tr>
       </thead>
 
@@ -1170,11 +1303,1373 @@ pre {
     </section>
   </cxx-clause>
 
+<cxx-clause id="utilities">
+    
+
+    <section>
+      <header><span class="section-number">2</span> <h1 data-bookmark-label="2 General utilities library">General utilities library</h1> <span style="float:right"><a href="#utilities">[utilities]</a></span></header>
+      
+  
+
+  <cxx-section id="propagate_const">
+    
+
+    <section>
+      <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Class template propagate_const">Class template <code>propagate_const</code></h1> <span style="float:right"><a href="#propagate_const">[propagate_const]</a></span></header>
+      
+    
+
+    <cxx-section id="propagate_const.general">
+    
+
+    <section>
+      <header><span class="section-number">2.1.1</span> <h1 data-bookmark-label="2.1.1 Class template propagate_const general">Class template <code>propagate_const general</code></h1> <span style="float:right"><a href="#propagate_const.general">[propagate_const.general]</a></span></header>
+      
+      
+
+      <p para_num="1" id="propagate_const.general.1">
+        <code>propagate_const</code> is a wrapper around a pointer-like object type <code>T</code>
+        which treats the wrapped pointer as a pointer to <code>const</code> when
+        the wrapper is accessed through a <code>const</code> access path.
+      </p>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.synopsis">
+    
+
+    <section>
+      <header><span class="section-number">2.1.2</span> <h1 data-bookmark-label="2.1.2 Header <experimental/propagate_const> synopsis">Header <code>&lt;experimental/propagate_const&gt;</code> synopsis</h1> <span style="float:right"><a href="#propagate_const.synopsis">[propagate_const.synopsis]</a></span></header>
+      
+      
+
+<pre><code>namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v2 {
+    template &lt;class T&gt; class propagate_const {
+    public:
+      typedef remove_reference_t&lt;decltype(*declval&lt;T&amp;&gt;())&gt; element_type;
+
+      <cxx-ref insynopsis="" to="propagate_const.ctor">// <i><a title="propagate_const.ctor" href="#propagate_const.ctor">2.1.4</a>, propagate_const constructors</i></cxx-ref>
+      constexpr propagate_const() = default;
+      propagate_const(const propagate_const&amp; p) = delete;
+      constexpr propagate_const(propagate_const&amp;&amp; p) = default;
+      template &lt;class U&gt;
+        <i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);
+      template &lt;class U&gt;
+        <i>see below</i> constexpr propagate_const(U&amp;&amp; u);
+
+      <cxx-ref insynopsis="" to="propagate_const.assignment">// <i><a title="propagate_const.assignment" href="#propagate_const.assignment">2.1.5</a>, propagate_const assignment</i></cxx-ref>
+      propagate_const&amp; operator=(const propagate_const&amp; p) = delete;
+      constexpr propagate_const&amp; operator=(propagate_const&amp;&amp; p) = default;
+      template &lt;class U&gt;
+        constexpr propagate_const&amp; operator=(propagate_const&lt;U&gt;&amp;&amp; pu);
+      template &lt;class U&gt;
+        constexpr propagate_const&amp; operator=(U&amp;&amp; u);
+
+      <cxx-ref insynopsis="" to="propagate_const.const_observers">// <i><a title="propagate_const.const_observers" href="#propagate_const.const_observers">2.1.6</a>, propagate_const const observers</i></cxx-ref>
+      explicit constexpr operator bool() const;
+      constexpr const element_type* operator-&gt;() const;
+      constexpr operator const element_type*() const; // <i>Not always defined</i>
+      constexpr const element_type&amp; operator*() const;
+      constexpr const element_type* get() const;
+
+      <cxx-ref insynopsis="" to="propagate_const.non_const_observers">// <i><a title="propagate_const.non_const_observers" href="#propagate_const.non_const_observers">2.1.7</a>, propagate_const non-const observers</i></cxx-ref>
+      constexpr element_type* operator-&gt;();
+      constexpr operator element_type*(); // <i>Not always defined</i>
+      constexpr element_type&amp; operator*();
+      constexpr element_type* get();
+
+      <cxx-ref insynopsis="" to="propagate_const.modifiers">// <i><a title="propagate_const.modifiers" href="#propagate_const.modifiers">2.1.8</a>, propagate_const modifiers</i></cxx-ref>
+      constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);
+
+    private:
+      T t_; //<i>exposition only</i>
+    };
+
+    <cxx-ref insynopsis="" to="propagate_const.relational">// <i><a title="propagate_const.relational" href="#propagate_const.relational">2.1.9</a>, propagate_const relational operators</i></cxx-ref>
+    template &lt;class T&gt;
+      constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);
+    template &lt;class T&gt;
+      constexpr bool operator==(nullptr_t, const propagate_const&lt;T&gt;&amp; pu);
+
+    template &lt;class T&gt;
+      constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);
+    template &lt;class T&gt;
+      constexpr bool operator!=(nullptr_t, const propagate_const&lt;T&gt;&amp; pu);
+
+    template &lt;class T, class U&gt;
+      constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+
+    template &lt;class T, class U&gt;
+      constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);
+    template &lt;class T, class U&gt;
+      constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);
+
+    template &lt;class T, class U&gt;
+      constexpr bool operator==(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator!=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&lt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&gt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&lt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
+    template &lt;class T, class U&gt;
+      constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
+
+    <cxx-ref insynopsis="" to="propagate_const.algorithms">// <i><a title="propagate_const.algorithms" href="#propagate_const.algorithms">2.1.10</a>, propagate_const specialized algorithms</i></cxx-ref>
+    template &lt;class T&gt;
+      constexpr void swap(propagate_const&lt;T&gt;&amp; pt, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);
+
+    <cxx-ref insynopsis="" to="propagate_const.underlying">// <i><a title="propagate_const.underlying" href="#propagate_const.underlying">2.1.11</a>, propagate_const underlying pointer access</i></cxx-ref>
+    template &lt;class T&gt;
+      constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept;
+    template &lt;class T&gt;
+      constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;
+  } // inline namespace fundamentals_v2
+  } // namespace experimental
+
+  <cxx-ref insynopsis="" to="propagate_const.hash">// <i><a title="propagate_const.hash" href="#propagate_const.hash">2.1.12</a>, propagate_const hash support</i></cxx-ref>
+  template &lt;class T&gt; struct hash;
+  template &lt;class T&gt;
+    struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+
+  <cxx-ref insynopsis="" to="propagate_const.comparison_function_objects">// <i><a title="propagate_const.comparison_function_objects" href="#propagate_const.comparison_function_objects">2.1.13</a>, propagate_const comparison function objects</i></cxx-ref>
+  template &lt;class T&gt; struct equal_to;
+  template &lt;class T&gt;
+    struct equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+  template &lt;class T&gt; struct not_equal_to;
+  template &lt;class T&gt;
+    struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+  template &lt;class T&gt; struct less;
+  template &lt;class T&gt;
+    struct less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+  template &lt;class T&gt; struct greater;
+  template &lt;class T&gt;
+    struct greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+  template &lt;class T&gt; struct less_equal;
+  template &lt;class T&gt;
+    struct less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+  template &lt;class T&gt; struct greater_equal;
+  template &lt;class T&gt;
+    struct greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+} // namespace std</code></pre>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.requirements">
+    
+
+    <section>
+      <header><span class="section-number">2.1.3</span> <h1 data-bookmark-label="2.1.3 propagate_const requirements on T"><code>propagate_const</code> requirements on <code>T</code></h1> <span style="float:right"><a href="#propagate_const.requirements">[propagate_const.requirements]</a></span></header>
+      
+      
+
+      <p para_num="1" id="propagate_const.requirements.1">
+        <code>T</code> shall be an object pointer type or a class type for which
+        <code>decltype(*declval&lt;T&amp;&gt;())</code> is an lvalue reference; otherwise
+        the program is ill-formed.
+      </p>
+      <p para_num="2" id="propagate_const.requirements.2">
+        If <code>T</code> is an array type, reference type, pointer to function type or
+        pointer to (possibly cv-qualified) <code>void</code>, then the program is
+        ill-formed.
+      </p>
+      <p para_num="3" id="propagate_const.requirements.3">
+        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    <code>propagate_const&lt;const int*&gt;</code> is well-formed
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+      </p>
+
+      <cxx-section id="propagate_const.class_type_requirements">
+    
+
+    <section>
+      <header><span class="section-number">2.1.3.1</span> <h1 data-bookmark-label="2.1.3.1 propagate_const requirements on class type T"><code>propagate_const</code> requirements on class type <code>T</code></h1> <span style="float:right"><a href="#propagate_const.class_type_requirements">[propagate_const.class_type_requirements]</a></span></header>
+      
+        
+
+        <p para_num="1" id="propagate_const.class_type_requirements.1">
+          If <code>T</code> is class
+          type then it shall satisfy the following requirements. In this sub-clause
+          <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
+          is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
+          an object type.
+        </p>
+
+        <p para_num="2" id="propagate_const.class_type_requirements.2">
+          <code>T</code> and <code>const T</code> shall be contextually convertible to <code>bool</code>.
+        </p>
+        <p para_num="3" id="propagate_const.class_type_requirements.3">If <code>T</code> is implicitly convertible to <code>element_type*</code>,
+          <code>(element_type*)t == t.get()</code> shall be <code>true</code>.
+        </p>
+        <p para_num="4" id="propagate_const.class_type_requirements.4">
+          If <code>const T</code> is implicitly convertible to <code>const element_type*</code>,
+          <code>(const element_type*)ct == ct.get()</code> shall be <code>true</code>.
+        </p>
+
+        <table is="cxx-table">
+    
+
+    <caption>Table 3 — <wbr><span>Requirements on class types <code>T</code></span></caption>
+    
+          
+          <tbody><tr>
+            <th>Expression</th>
+            <th>Return type</th>
+            <th>Pre-conditions</th>
+            <th>Operational semantics</th>
+          </tr>
+          <tr>
+            <td><code>t.get()</code></td>
+            <td><code>element_type*</code></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>ct.get()</code></td>
+            <td><code>const element_type*</code> or <code>element_type*</code></td>
+            <td><code></code></td>
+            <td><code>t.get() == ct.get()</code>.</td>
+          </tr>
+          <tr>
+            <td><code>*t</code></td>
+            <td><code>element_type&amp;</code></td>
+            <td><code>t.get() != nullptr</code></td>
+            <td><code>*t</code> refers to the same object as <code>*(t.get())</code></td>
+          </tr>
+          <tr>
+            <td><code>*ct</code></td>
+            <td><code>const element_type&amp;</code> or <code>element_type&amp;</code>
+            </td>
+            <td><code>ct.get() != nullptr</code></td>
+            <td><code>*ct</code> refers to the same object as <code>*(ct.get())</code>
+            </td></tr>
+          <tr>
+            <td><code>t.operator-&gt;()</code></td>
+            <td><code>element_type*</code></td>
+            <td><code>t.get() != nullptr</code></td>
+            <td><code>t.operator-&gt;() == t.get()</code></td></tr>
+          <tr>
+            <td><code>ct.operator-&gt;()</code></td>
+            <td><code>const element_type*</code> or <code>element_type*</code></td>
+            <td><code>ct.get() != nullptr</code></td>
+            <td><code>ct.operator-&gt;() == ct.get()</code></td></tr>
+          <tr>
+            <td><code>(bool)t</code></td>
+            <td><code>bool</code></td>
+            <td><code></code></td>
+            <td><code>(bool)t</code> is equivalent to <code>t.get() != nullptr</code></td>
+          </tr>
+          <tr>
+            <td><code>(bool)ct</code></td>
+            <td><code>bool</code></td>
+            <td><code></code></td>
+            <td><code>(bool)ct</code> is equivalent to <code>ct.get() != nullptr</code></td>
+          </tr>
+        </tbody>
+  </table>
+      
+    </section>
+  </cxx-section>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.ctor">
+    
+
+    <section>
+      <header><span class="section-number">2.1.4</span> <h1 data-bookmark-label="2.1.4 propagate_const constructors"><code>propagate_const</code> constructors</h1> <span style="float:right"><a href="#propagate_const.ctor">[propagate_const.ctor]</a></span></header>
+      
+      
+
+      <p para_num="1" id="propagate_const.ctor.1">
+        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The following constructors are conditionally specified as
+          <code>explicit</code>.  This is typically implemented by declaring two such
+          constructors, of which at most one  participates in overload resolution.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+      </p>
+      <cxx-function para_num="2" id="propagate_const.ctor.2">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt;
+<i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-remarks para_num="3" id="propagate_const.ctor.3">
+    
+    <dt>Remarks:</dt><dd>
+          This constructor shall not participate in overload resolution unless
+          <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code>.
+          The constructor is specified as <code>explicit</code> if and only if
+          <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
+        </dd>
+  </cxx-remarks>
+        <cxx-effects para_num="4" id="propagate_const.ctor.4">
+    
+    <dt>Effects:</dt><dd>
+          Initializes <code>t_</code> as if
+          direct-non-list-initializing an object of type <code>T</code> with the
+          expression <code>std::move(pu.t_)</code>.
+        </dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="propagate_const.ctor.5">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt;
+<i>see below</i> constexpr propagate_const(U&amp;&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-remarks para_num="6" id="propagate_const.ctor.6">
+    
+    <dt>Remarks:</dt><dd>
+          This constructor shall not participate in overload resolution unless
+          <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code>
+          and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
+          The constructor is specified as <code>explicit</code> if and only if
+          <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
+        </dd>
+  </cxx-remarks>
+        <cxx-effects para_num="7" id="propagate_const.ctor.7">
+    
+    <dt>Effects:</dt><dd>
+          Initializes <code>t_</code> as if
+          direct-non-list-initializing an object of type <code>T</code> with
+          the expression <code>std::forward&lt;U&gt;(u)</code>.
+        </dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.assignment">
+    
+
+    <section>
+      <header><span class="section-number">2.1.5</span> <h1 data-bookmark-label="2.1.5 propagate_const assignment"><code>propagate_const</code> assignment</h1> <span style="float:right"><a href="#propagate_const.assignment">[propagate_const.assignment]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.assignment.1">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt;
+constexpr propagate_const operator=(propagate_const&lt;U&gt;&amp;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-remarks para_num="2" id="propagate_const.assignment.2">
+    
+    <dt>Remarks:</dt><dd>
+          This function shall not participate in overload resolution unless
+          <code>U</code> is implicitly convertible to <code>T</code>.
+        </dd>
+  </cxx-remarks>
+        <cxx-effects para_num="3" id="propagate_const.assignment.3">
+    
+    <dt>Effects:</dt><dd><code>t_ = std::move(pu.t_)</code>.</dd>
+  </cxx-effects>
+        <cxx-returns para_num="4" id="propagate_const.assignment.4">
+    
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="propagate_const.assignment.5">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt;
+constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-remarks para_num="6" id="propagate_const.assignment.6">
+    
+    <dt>Remarks:</dt><dd>
+          This function shall not participate in overload resolution unless
+          <code>U</code> is implicitly convertible to <code>T</code> and
+          <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
+        </dd>
+  </cxx-remarks>
+        <cxx-effects para_num="7" id="propagate_const.assignment.7">
+    
+    <dt>Effects:</dt><dd><code>t_ = std::forward&lt;U&gt;(u)</code>.</dd>
+  </cxx-effects>
+        <cxx-returns para_num="8" id="propagate_const.assignment.8">
+    
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.const_observers">
+    
+
+    <section>
+      <header><span class="section-number">2.1.6</span> <h1 data-bookmark-label="2.1.6 propagate_const const observers"><code>propagate_const</code> const observers</h1> <span style="float:right"><a href="#propagate_const.const_observers">[propagate_const.const_observers]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.const_observers.1">
+    
+    <pre><code><cxx-signature>explicit constexpr operator bool() const</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="2" id="propagate_const.const_observers.2">
+    
+    <dt>Returns:</dt><dd><code>(bool)t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="propagate_const.const_observers.3">
+    
+    <pre><code><cxx-signature>constexpr const element_type* operator-&gt;() const</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="4" id="propagate_const.const_observers.4">
+    
+    <dt>Requires:</dt><dd><code>get() != nullptr</code>.</dd>
+  </cxx-requires>
+        <cxx-returns para_num="5" id="propagate_const.const_observers.5">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="6" id="propagate_const.const_observers.6">
+    
+    <pre><code><cxx-signature>constexpr operator const element_type*() const</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="7" id="propagate_const.const_observers.7">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
+        <cxx-remarks para_num="8" id="propagate_const.const_observers.8">
+    
+    <dt>Remarks:</dt><dd>
+          This function shall not participate in overload resolution unless
+          <code>T</code> is an object pointer type or
+          has an implicit conversion to <code>const element_type*</code>.
+        </dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="9" id="propagate_const.const_observers.9">
+    
+    <pre><code><cxx-signature>constexpr const element_type&amp; operator*() const</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="10" id="propagate_const.const_observers.10">
+    
+    <dt>Requires:</dt><dd><code>get() != nullptr</code>.</dd>
+  </cxx-requires>
+        <cxx-returns para_num="11" id="propagate_const.const_observers.11">
+    
+    <dt>Returns:</dt><dd><code>*get()</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="12" id="propagate_const.const_observers.12">
+    
+    <pre><code><cxx-signature>constexpr const element_type* get() const</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="13" id="propagate_const.const_observers.13">
+    
+    <dt>Returns:</dt><dd>
+          <code>t_</code> if <code>T</code> is an object pointer type,
+          otherwise <code>t_.get()</code>.
+        </dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.non_const_observers">
+    
+
+    <section>
+      <header><span class="section-number">2.1.7</span> <h1 data-bookmark-label="2.1.7 propagate_const non-const observers"><code>propagate_const</code> non-const observers</h1> <span style="float:right"><a href="#propagate_const.non_const_observers">[propagate_const.non_const_observers]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.non_const_observers.1">
+    
+    <pre><code><cxx-signature>constexpr element_type* operator-&gt;()</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="2" id="propagate_const.non_const_observers.2">
+    
+    <dt>Requires:</dt><dd><code>get() != nullptr</code>.</dd>
+  </cxx-requires>
+        <cxx-returns para_num="3" id="propagate_const.non_const_observers.3">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="4" id="propagate_const.non_const_observers.4">
+    
+    <pre><code><cxx-signature>constexpr operator element_type*()</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="5" id="propagate_const.non_const_observers.5">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
+        <cxx-remarks para_num="6" id="propagate_const.non_const_observers.6">
+    
+    <dt>Remarks:</dt><dd>
+          This function shall not participate in overload resolution unless
+          <code>T</code> is an object pointer type or
+          has an implicit conversion to <code>element_type*</code>.
+        </dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="7" id="propagate_const.non_const_observers.7">
+    
+    <pre><code><cxx-signature>constexpr element_type&amp; operator*()</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="8" id="propagate_const.non_const_observers.8">
+    
+    <dt>Requires:</dt><dd><code>get() != nullptr</code>.</dd>
+  </cxx-requires>
+        <cxx-returns para_num="9" id="propagate_const.non_const_observers.9">
+    
+    <dt>Returns:</dt><dd><code>*get()</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="10" id="propagate_const.non_const_observers.10">
+    
+    <pre><code><cxx-signature>constexpr element_type* get()</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="11" id="propagate_const.non_const_observers.11">
+    
+    <dt>Returns:</dt><dd>
+          <code>t_</code> if <code>T</code> is an object pointer type,
+          otherwise <code>t_.get()</code>.
+        </dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.modifiers">
+    
+
+    <section>
+      <header><span class="section-number">2.1.8</span> <h1 data-bookmark-label="2.1.8 propagate_const modifiers"><code>propagate_const</code> modifiers</h1> <span style="float:right"><a href="#propagate_const.modifiers">[propagate_const.modifiers]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.modifiers.1">
+    
+    <pre><code><cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="2" id="propagate_const.modifiers.2">
+          The constant-expression in the exception-specification is <code>noexcept(swap(t_, pt.t_))</code>.
+        </p>
+
+        <cxx-effects para_num="3" id="propagate_const.modifiers.3">
+    
+    <dt>Effects:</dt><dd><code>swap(t_, pt.t_)</code>.</dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.relational">
+    
+
+    <section>
+      <header><span class="section-number">2.1.9</span> <h1 data-bookmark-label="2.1.9 propagate_const relational operators"><code>propagate_const</code> relational operators</h1> <span style="float:right"><a href="#propagate_const.relational">[propagate_const.relational]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.relational.1">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, nullptr_t)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="2" id="propagate_const.relational.2">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ == nullptr</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="3" id="propagate_const.relational.3">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+constexpr bool operator==(nullptr_t, const propagate_const&lt;U&gt;&amp; pt)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="4" id="propagate_const.relational.4">
+    
+    <dt>Returns:</dt><dd><code>nullptr == pt.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="propagate_const.relational.5">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, nullptr_t)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="6" id="propagate_const.relational.6">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ != nullptr</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="7" id="propagate_const.relational.7">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+constexpr bool operator!=(nullptr_t, const propagate_const&lt;T&gt;&amp; pt)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="8" id="propagate_const.relational.8">
+    
+    <dt>Returns:</dt><dd><code>nullptr != pt.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="9" id="propagate_const.relational.9">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="10" id="propagate_const.relational.10">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ == pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="11" id="propagate_const.relational.11">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="12" id="propagate_const.relational.12">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ != pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="13" id="propagate_const.relational.13">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="14" id="propagate_const.relational.14">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &lt; pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="15" id="propagate_const.relational.15">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="16" id="propagate_const.relational.16">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &gt; pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="17" id="propagate_const.relational.17">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="18" id="propagate_const.relational.18">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &lt;= pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="19" id="propagate_const.relational.19">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="20" id="propagate_const.relational.20">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &gt;= pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="21" id="propagate_const.relational.21">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="22" id="propagate_const.relational.22">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ == u</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="23" id="propagate_const.relational.23">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+        <cxx-returns para_num="24" id="propagate_const.relational.24">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ != u</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="25" id="propagate_const.relational.25">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="26" id="propagate_const.relational.26">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &lt; u</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="27" id="propagate_const.relational.27">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="28" id="propagate_const.relational.28">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &gt; u</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="29" id="propagate_const.relational.29">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="30" id="propagate_const.relational.30">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &lt;= u</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="31" id="propagate_const.relational.31">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="32" id="propagate_const.relational.32">
+    
+    <dt>Returns:</dt><dd><code>pt.t_ &gt;= u</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="33" id="propagate_const.relational.33">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator==(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="34" id="propagate_const.relational.34">
+    
+    <dt>Returns:</dt><dd><code>t == pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="35" id="propagate_const.relational.35">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator!=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="36" id="propagate_const.relational.36">
+    
+    <dt>Returns:</dt><dd><code>t != pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="37" id="propagate_const.relational.37">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&lt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="38" id="propagate_const.relational.38">
+    
+    <dt>Returns:</dt><dd><code>t &lt; pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="39" id="propagate_const.relational.39">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&gt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="40" id="propagate_const.relational.40">
+    
+    <dt>Returns:</dt><dd><code>t &gt; pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="41" id="propagate_const.relational.41">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&lt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="42" id="propagate_const.relational.42">
+    
+    <dt>Returns:</dt><dd><code>t &lt;= pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="43" id="propagate_const.relational.43">
+    
+    <pre><code><cxx-signature>template &lt;class T, class U&gt;
+constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="44" id="propagate_const.relational.44">
+    
+    <dt>Returns:</dt><dd><code>t &gt;= pu.t_</code>.</dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+    <cxx-section id="propagate_const.algorithms">
+    
+
+    <section>
+      <header><span class="section-number">2.1.10</span> <h1 data-bookmark-label="2.1.10 propagate_const specialized algorithms"><code>propagate_const</code> specialized algorithms</h1> <span style="float:right"><a href="#propagate_const.algorithms">[propagate_const.algorithms]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.algorithms.1">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>)</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="2" id="propagate_const.algorithms.2">
+          The constant-expression in the exception-specification is <code>noexcept(swap(pt1.t_, pt2.t_))</code>.
+        </p>
+
+        <cxx-effects para_num="3" id="propagate_const.algorithms.3">
+    
+    <dt>Effects:</dt><dd><code>swap(pt1.t_, pt2.t_)</code>.</dd>
+  </cxx-effects>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.underlying">
+    
+
+    <section>
+      <header><span class="section-number">2.1.11</span> <h1 data-bookmark-label="2.1.11 propagate_const underlying pointer access"><code>propagate_const</code> underlying pointer access</h1> <span style="float:right"><a href="#propagate_const.underlying">[propagate_const.underlying]</a></span></header>
+      
+      
+
+      <p para_num="1" id="propagate_const.underlying.1">
+        Access to the underlying object pointer type is
+        through free functions rather than member functions.
+        These functions are intended to resemble cast operations to encourage caution when using them.
+      </p>
+
+      <cxx-function para_num="2" id="propagate_const.underlying.2">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="3" id="propagate_const.underlying.3">
+    
+    <dt>Returns:</dt><dd>
+          a reference to the underlying object pointer type.
+        </dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="4" id="propagate_const.underlying.4">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="5" id="propagate_const.underlying.5">
+    
+    <dt>Returns:</dt><dd>
+          a reference to the underlying object pointer type.
+        </dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.hash">
+    
+
+    <section>
+      <header><span class="section-number">2.1.12</span> <h1 data-bookmark-label="2.1.12 propagate_const hash support"><code>propagate_const</code> hash support</h1> <span style="float:right"><a href="#propagate_const.hash">[propagate_const.hash]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.hash.1">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="2" id="propagate_const.hash.2">
+          For an object <code>p</code> of type <code>propagate_const&lt;T&gt;</code>,
+          <code>hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p)</code>
+          shall evaluate to the same value as <code>hash&lt;T&gt;()(p.t_)</code>.
+        </p>
+
+        <cxx-requires para_num="3" id="propagate_const.hash.3">
+    
+    <dt>Requires:</dt><dd>
+          The specialization <code>hash&lt;T&gt;</code> shall be well-formed and well-defined,
+          and shall meet the requirements of class template hash.
+        </dd>
+  </cxx-requires>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="propagate_const.comparison_function_objects">
+    
+
+    <section>
+      <header><span class="section-number">2.1.13</span> <h1 data-bookmark-label="2.1.13 propagate_const comparison function objects"><code>propagate_const</code> comparison function objects</h1> <span style="float:right"><a href="#propagate_const.comparison_function_objects">[propagate_const.comparison_function_objects]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="propagate_const.comparison_function_objects.1">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+struct equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="2" id="propagate_const.comparison_function_objects.2">
+          For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
+          <code>equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+q)</code>
+          shall evaluate to the same value as <code>equal_to&lt;T&gt;()(p.t_,
+q.t_)</code>.
+        </p>
+
+        <cxx-requires para_num="3" id="propagate_const.comparison_function_objects.3">
+    
+    <dt>Requires:</dt><dd>
+          The specialization <code>equal_to&lt;T&gt;</code> shall be well-formed and well-defined.
+        </dd>
+  </cxx-requires>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="4" id="propagate_const.comparison_function_objects.4">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="5" id="propagate_const.comparison_function_objects.5">
+          For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
+          <code>not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p, q)</code>
+          shall evaluate to the same value as <code>not_equal_to&lt;T&gt;()(p.t_, q.t_)</code>.
+        </p>
+
+        <cxx-requires para_num="6" id="propagate_const.comparison_function_objects.6">
+    
+    <dt>Requires:</dt><dd>
+          The specialization <code>not_equal_to&lt;T&gt;</code> shall be well-formed and well-defined.
+        </dd>
+  </cxx-requires>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="7" id="propagate_const.comparison_function_objects.7">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+struct less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="8" id="propagate_const.comparison_function_objects.8">
+          For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
+          <code>less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+q)</code>
+          shall evaluate to the same value as <code>less&lt;T&gt;()(p.t_,
+q.t_)</code>.
+        </p>
+
+        <cxx-requires para_num="9" id="propagate_const.comparison_function_objects.9">
+    
+    <dt>Requires:</dt><dd>
+          The specialization <code>less&lt;T&gt;</code> shall be well-formed and well-defined.
+        </dd>
+  </cxx-requires>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="10" id="propagate_const.comparison_function_objects.10">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+struct greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="11" id="propagate_const.comparison_function_objects.11">
+          For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
+          <code>greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+q)</code>
+          shall evaluate to the same value as <code>greater&lt;T&gt;()(p.t_,
+q.t_)</code>.
+        </p>
+
+        <cxx-requires para_num="12" id="propagate_const.comparison_function_objects.12">
+    
+    <dt>Requires:</dt><dd>
+          The specialization <code>greater&lt;T&gt;</code> shall be well-formed and well-defined.
+        </dd>
+  </cxx-requires>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="13" id="propagate_const.comparison_function_objects.13">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+struct less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="14" id="propagate_const.comparison_function_objects.14">
+          For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
+          <code>less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+q)</code>
+          shall evaluate to the same value as <code>less_equal&lt;T&gt;()(p.t_,
+q.t_)</code>.
+        </p>
+
+        <cxx-requires para_num="15" id="propagate_const.comparison_function_objects.15">
+    
+    <dt>Requires:</dt><dd>
+          The specialization <code>less_equal&lt;T&gt;</code> shall be well-formed and well-defined.
+        </dd>
+  </cxx-requires>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="16" id="propagate_const.comparison_function_objects.16">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt;
+struct greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="17" id="propagate_const.comparison_function_objects.17">
+          For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
+          <code>greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+q)</code>
+          shall evaluate to the same value as <code>greater_equal&lt;T&gt;()(p.t_, q.t_)</code>.
+        </p>
+
+        <cxx-requires para_num="18" id="propagate_const.comparison_function_objects.18">
+    
+    <dt>Requires:</dt><dd>
+          The specialization <code>greater_equal&lt;T&gt;</code> shall be well-formed and well-defined.
+        </dd>
+  </cxx-requires>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-clause>
+
 <cxx-clause id="func">
     
 
     <section>
-      <header><span class="section-number">2</span> <h1 data-bookmark-label="2 Function objects">Function objects</h1> <span style="float:right"><a href="#func">[func]</a></span></header>
+      <header><span class="section-number">3</span> <h1 data-bookmark-label="3 Function objects">Function objects</h1> <span style="float:right"><a href="#func">[func]</a></span></header>
       
   
 
@@ -1182,7 +2677,7 @@ pre {
     
 
     <section>
-      <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Header <experimental/functional> synopsis">Header <code>&lt;experimental/functional&gt;</code> synopsis</h1> <span style="float:right"><a href="#header.functional.synop">[header.functional.synop]</a></span></header>
+      <header><span class="section-number">3.1</span> <h1 data-bookmark-label="3.1 Header <experimental/functional> synopsis">Header <code>&lt;experimental/functional&gt;</code> synopsis</h1> <span style="float:right"><a href="#header.functional.synop">[header.functional.synop]</a></span></header>
       
     
 
@@ -1192,7 +2687,7 @@ namespace std {
 namespace experimental {
 inline namespace fundamentals_v2 {
 
-  <cxx-ref insynopsis="" to="func.not_fn">// <i><a title="func.not_fn" href="#func.not_fn">2.2</a>, Function template not_fn</i></cxx-ref>
+  <cxx-ref insynopsis="" to="func.not_fn">// <i><a title="func.not_fn" href="#func.not_fn">3.2</a>, Function template not_fn</i></cxx-ref>
   template &lt;class F&gt; unspecified not_fn(F&amp;&amp; f);
 
 } // namespace fundamentals_v2
@@ -1206,7 +2701,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">2.2</span> <h1 data-bookmark-label="2.2 Function template not_fn">Function template <code>not_fn</code></h1> <span style="float:right"><a href="#func.not_fn">[func.not_fn]</a></span></header>
+      <header><span class="section-number">3.2</span> <h1 data-bookmark-label="3.2 Function template not_fn">Function template <code>not_fn</code></h1> <span style="float:right"><a href="#func.not_fn">[func.not_fn]</a></span></header>
       
     
 
@@ -1272,7 +2767,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">3</span> <h1 data-bookmark-label="3 Memory">Memory</h1> <span style="float:right"><a href="#memory">[memory]</a></span></header>
+      <header><span class="section-number">4</span> <h1 data-bookmark-label="4 Memory">Memory</h1> <span style="float:right"><a href="#memory">[memory]</a></span></header>
       
   
 
@@ -1280,7 +2775,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">3.1</span> <h1 data-bookmark-label="3.1 Header <experimental/memory> synopsis">Header &lt;experimental/memory&gt; synopsis</h1> <span style="float:right"><a href="#header.memory.synop">[header.memory.synop]</a></span></header>
+      <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 Header <experimental/memory> synopsis">Header &lt;experimental/memory&gt; synopsis</h1> <span style="float:right"><a href="#header.memory.synop">[header.memory.synop]</a></span></header>
       
     
 
@@ -1290,10 +2785,10 @@ namespace std {
   namespace experimental {
   inline namespace fundamentals_v2 {
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr">// <i><a title="memory.observer.ptr" href="#memory.observer.ptr">3.2</a>, Non-owning pointers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr">// <i><a title="memory.observer.ptr" href="#memory.observer.ptr">4.2</a>, Non-owning pointers</i></cxx-ref>
     template &lt;class W&gt; class observer_ptr;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.special">// <i><a title="memory.observer.ptr.special" href="#memory.observer.ptr.special">3.2.6</a>, observer_ptr specialized algorithms</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.special">// <i><a title="memory.observer.ptr.special" href="#memory.observer.ptr.special">4.2.6</a>, observer_ptr specialized algorithms</i></cxx-ref>
     template &lt;class W&gt;
     void swap(observer_ptr&lt;W&gt;&amp;, observer_ptr&lt;W&gt;&amp;) noexcept;
     template &lt;class W&gt;
@@ -1325,7 +2820,7 @@ namespace std {
   } // inline namespace fundamentals_v2
   } // namespace experimental
 
-<cxx-ref insynopsis="" to="memory.observer.ptr.hash">// <i><a title="memory.observer.ptr.hash" href="#memory.observer.ptr.hash">3.2.7</a>, observer_ptr hash support</i></cxx-ref>
+<cxx-ref insynopsis="" to="memory.observer.ptr.hash">// <i><a title="memory.observer.ptr.hash" href="#memory.observer.ptr.hash">4.2.7</a>, observer_ptr hash support</i></cxx-ref>
 template &lt;class T&gt; struct hash;
 template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;
 
@@ -1338,7 +2833,7 @@ template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;
     
 
     <section>
-      <header><span class="section-number">3.2</span> <h1 data-bookmark-label="3.2 Non-owning pointers">Non-owning pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
+      <header><span class="section-number">4.2</span> <h1 data-bookmark-label="4.2 Non-owning pointers">Non-owning pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
       
     
 
@@ -1370,7 +2865,7 @@ template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;
     
 
     <section>
-      <header><span class="section-number">3.2.1</span> <h1 data-bookmark-label="3.2.1 Class template observer_ptr overview">Class template <code>observer_ptr</code> overview</h1> <span style="float:right"><a href="#memory.observer.ptr.overview">[memory.observer.ptr.overview]</a></span></header>
+      <header><span class="section-number">4.2.1</span> <h1 data-bookmark-label="4.2.1 Class template observer_ptr overview">Class template <code>observer_ptr</code> overview</h1> <span style="float:right"><a href="#memory.observer.ptr.overview">[memory.observer.ptr.overview]</a></span></header>
       
       
 
@@ -1385,7 +2880,7 @@ inline namespace fundamentals_v2 {
     using pointer = add_pointer_t&lt;W&gt;;            <i>// exposition-only</i>
     using reference = add_lvalue_reference_t&lt;W&gt;; <i>// exposition-only</i>
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.ctor">// <i><a title="memory.observer.ptr.ctor" href="#memory.observer.ptr.ctor">3.2.2</a>, observer_ptr constructors</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.ctor">// <i><a title="memory.observer.ptr.ctor" href="#memory.observer.ptr.ctor">4.2.2</a>, observer_ptr constructors</i></cxx-ref>
     // default c’tor
     constexpr observer_ptr() noexcept;
 
@@ -1396,16 +2891,16 @@ inline namespace fundamentals_v2 {
     // copying c’tors (in addition to compiler-generated copy c’tor)
     template &lt;class W2&gt; constexpr observer_ptr(observer_ptr&lt;W2&gt;) noexcept;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.obs">// <i><a title="memory.observer.ptr.obs" href="#memory.observer.ptr.obs">3.2.3</a>, observer_ptr observers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.obs">// <i><a title="memory.observer.ptr.obs" href="#memory.observer.ptr.obs">4.2.3</a>, observer_ptr observers</i></cxx-ref>
     constexpr pointer get() const noexcept;
     constexpr reference operator*() const;
     constexpr pointer operator-&gt;() const noexcept;
     constexpr explicit operator bool() const noexcept;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.conv">// <i><a title="memory.observer.ptr.conv" href="#memory.observer.ptr.conv">3.2.4</a>, observer_ptr conversions</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.conv">// <i><a title="memory.observer.ptr.conv" href="#memory.observer.ptr.conv">4.2.4</a>, observer_ptr conversions</i></cxx-ref>
     constexpr explicit operator pointer() const noexcept;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.mod">// <i><a title="memory.observer.ptr.mod" href="#memory.observer.ptr.mod">3.2.5</a>, observer_ptr modifiers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.mod">// <i><a title="memory.observer.ptr.mod" href="#memory.observer.ptr.mod">4.2.5</a>, observer_ptr modifiers</i></cxx-ref>
     constexpr pointer release() noexcept;
     constexpr void reset(pointer = nullptr) noexcept;
     constexpr void swap(observer_ptr&amp;) noexcept;
@@ -1422,7 +2917,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">3.2.2</span> <h1 data-bookmark-label="3.2.2 observer_ptr constructors"><code>observer_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.observer.ptr.ctor">[memory.observer.ptr.ctor]</a></span></header>
+      <header><span class="section-number">4.2.2</span> <h1 data-bookmark-label="4.2.2 observer_ptr constructors"><code>observer_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.observer.ptr.ctor">[memory.observer.ptr.ctor]</a></span></header>
       
       
 
@@ -1490,7 +2985,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">3.2.3</span> <h1 data-bookmark-label="3.2.3 observer_ptr observers"><code>observer_ptr</code> observers</h1> <span style="float:right"><a href="#memory.observer.ptr.obs">[memory.observer.ptr.obs]</a></span></header>
+      <header><span class="section-number">4.2.3</span> <h1 data-bookmark-label="4.2.3 observer_ptr observers"><code>observer_ptr</code> observers</h1> <span style="float:right"><a href="#memory.observer.ptr.obs">[memory.observer.ptr.obs]</a></span></header>
       
       
 
@@ -1573,7 +3068,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">3.2.4</span> <h1 data-bookmark-label="3.2.4 observer_ptr conversions"><code>observer_ptr</code> conversions</h1> <span style="float:right"><a href="#memory.observer.ptr.conv">[memory.observer.ptr.conv]</a></span></header>
+      <header><span class="section-number">4.2.4</span> <h1 data-bookmark-label="4.2.4 observer_ptr conversions"><code>observer_ptr</code> conversions</h1> <span style="float:right"><a href="#memory.observer.ptr.conv">[memory.observer.ptr.conv]</a></span></header>
       
       
 
@@ -1600,7 +3095,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">3.2.5</span> <h1 data-bookmark-label="3.2.5 observer_ptr modifiers"><code>observer_ptr</code> modifiers</h1> <span style="float:right"><a href="#memory.observer.ptr.mod">[memory.observer.ptr.mod]</a></span></header>
+      <header><span class="section-number">4.2.5</span> <h1 data-bookmark-label="4.2.5 observer_ptr modifiers"><code>observer_ptr</code> modifiers</h1> <span style="float:right"><a href="#memory.observer.ptr.mod">[memory.observer.ptr.mod]</a></span></header>
       
       
 
@@ -1663,7 +3158,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">3.2.6</span> <h1 data-bookmark-label="3.2.6 observer_ptr specialized algorithms"><code>observer_ptr</code> specialized algorithms</h1> <span style="float:right"><a href="#memory.observer.ptr.special">[memory.observer.ptr.special]</a></span></header>
+      <header><span class="section-number">4.2.6</span> <h1 data-bookmark-label="4.2.6 observer_ptr specialized algorithms"><code>observer_ptr</code> specialized algorithms</h1> <span style="float:right"><a href="#memory.observer.ptr.special">[memory.observer.ptr.special]</a></span></header>
       
       
 
@@ -1850,7 +3345,7 @@ bool operator&gt;=(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-sig
     
 
     <section>
-      <header><span class="section-number">3.2.7</span> <h1 data-bookmark-label="3.2.7 observer_ptr hash support"><code>observer_ptr</code> hash support</h1> <span style="float:right"><a href="#memory.observer.ptr.hash">[memory.observer.ptr.hash]</a></span></header>
+      <header><span class="section-number">4.2.7</span> <h1 data-bookmark-label="4.2.7 observer_ptr hash support"><code>observer_ptr</code> hash support</h1> <span style="float:right"><a href="#memory.observer.ptr.hash">[memory.observer.ptr.hash]</a></span></header>
       
       
 
@@ -1884,7 +3379,7 @@ bool operator&gt;=(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-sig
     
 
     <section>
-      <header><span class="section-number">4</span> <h1 data-bookmark-label="4 Containers">Containers</h1> <span style="float:right"><a href="#container">[container]</a></span></header>
+      <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Containers">Containers</h1> <span style="float:right"><a href="#container">[container]</a></span></header>
       
   
 
@@ -1892,7 +3387,7 @@ bool operator&gt;=(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-sig
     
 
     <section>
-      <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 Uniform container erasure">Uniform container erasure</h1> <span style="float:right"><a href="#container.erasure">[container.erasure]</a></span></header>
+      <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 Uniform container erasure">Uniform container erasure</h1> <span style="float:right"><a href="#container.erasure">[container.erasure]</a></span></header>
       
     
 
@@ -1900,7 +3395,7 @@ bool operator&gt;=(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-sig
     
 
     <section>
-      <header><span class="section-number">4.1.1</span> <h1 data-bookmark-label="4.1.1 Header synopsis">Header synopsis</h1> <span style="float:right"><a href="#container.erasure.syn">[container.erasure.syn]</a></span></header>
+      <header><span class="section-number">5.1.1</span> <h1 data-bookmark-label="5.1.1 Header synopsis">Header synopsis</h1> <span style="float:right"><a href="#container.erasure.syn">[container.erasure.syn]</a></span></header>
       
       
 
@@ -1913,8 +3408,8 @@ bool operator&gt;=(observer_ptr&lt;W&gt; p1, observer_ptr&lt;W&gt; p2);</cxx-sig
 namespace experimental {
 inline namespace fundamentals_v2 {
 
-  <cxx-ref insynopsis="" to="container.erasure.erase_if">// <i><a title="container.erasure.erase_if" href="#container.erasure.erase_if">4.1.2</a>, Function template erase_if</i></cxx-ref>
-  <cxx-ref insynopsis="" to="container.erasure.erase">// <i><a title="container.erasure.erase" href="#container.erasure.erase">4.1.3</a>, Function template erase</i></cxx-ref>
+  <cxx-ref insynopsis="" to="container.erasure.erase_if">// <i><a title="container.erasure.erase_if" href="#container.erasure.erase_if">5.1.2</a>, Function template erase_if</i></cxx-ref>
+  <cxx-ref insynopsis="" to="container.erasure.erase">// <i><a title="container.erasure.erase" href="#container.erasure.erase">5.1.3</a>, Function template erase</i></cxx-ref>
 
   // &lt;experimental/string&gt;
   template &lt;class charT, class traits, class A, class Predicate&gt;
@@ -1981,7 +3476,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">4.1.2</span> <h1 data-bookmark-label="4.1.2 Function template erase_if">Function template <code>erase_if</code></h1> <span style="float:right"><a href="#container.erasure.erase_if">[container.erasure.erase_if]</a></span></header>
+      <header><span class="section-number">5.1.2</span> <h1 data-bookmark-label="5.1.2 Function template erase_if">Function template <code>erase_if</code></h1> <span style="float:right"><a href="#container.erasure.erase_if">[container.erasure.erase_if]</a></span></header>
       
       
 
@@ -2067,7 +3562,7 @@ void erase_if(unordered_multiset&lt;K, H, P, A&gt;&amp; c, Predicate pred);</cxx
     
 
     <section>
-      <header><span class="section-number">4.1.3</span> <h1 data-bookmark-label="4.1.3 Function template erase">Function template erase</h1> <span style="float:right"><a href="#container.erasure.erase">[container.erasure.erase]</a></span></header>
+      <header><span class="section-number">5.1.3</span> <h1 data-bookmark-label="5.1.3 Function template erase">Function template erase</h1> <span style="float:right"><a href="#container.erasure.erase">[container.erasure.erase]</a></span></header>
       
       
 
@@ -2122,6 +3617,116 @@ void erase(list&lt;T, A&gt;&amp; c, const U&amp; value);</cxx-signature></code><
     </section>
   </cxx-section>
 
+  <cxx-section id="container.array">
+    
+
+    <section>
+      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Class template array">Class template <code>array</code></h1> <span style="float:right"><a href="#container.array">[container.array]</a></span></header>
+      
+    
+
+    <cxx-section id="header.array.synop">
+    
+
+    <section>
+      <header><span class="section-number">5.2.1</span> <h1 data-bookmark-label="5.2.1 Header <experimental/array> synopsis">Header &lt;experimental/array&gt; synopsis</h1> <span style="float:right"><a href="#header.array.synop">[header.array.synop]</a></span></header>
+      
+      
+
+      <pre><code>#include &lt;array&gt;
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref insynopsis="" to="container.array.creation">// <i><a title="container.array.creation" href="#container.array.creation">5.2.2</a>, Array creation functions</i></cxx-ref>
+  template &lt;class D = void, class... Types&gt;
+    constexpr array&lt;<i>VT</i>, sizeof...(Types)&gt; make_array(Types&amp;&amp;... t);
+  template &lt;class T, size_t N&gt;
+    constexpr array&lt;remove_cv_t&lt;T&gt;, N&gt; to_array(T (&amp;a)[N]);
+
+} // inline namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    
+    </section>
+  </cxx-section>
+
+    <cxx-section id="container.array.creation">
+    
+
+    <section>
+      <header><span class="section-number">5.2.2</span> <h1 data-bookmark-label="5.2.2 Array creation functions">Array creation functions</h1> <span style="float:right"><a href="#container.array.creation">[container.array.creation]</a></span></header>
+      
+      
+
+      <cxx-function para_num="1" id="container.array.creation.1">
+    
+    <pre><code><cxx-signature>template &lt;class D = void, class... Types&gt;
+&nbsp;&nbsp;constexpr array&lt;<i>VT</i>, sizeof...(Types)&gt; make_array(Types&amp;&amp;... t);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <p para_num="2" id="container.array.creation.2">
+          Let <em>Ui</em> be <code>decay_t&lt;</code><em>Ti</em><code>&gt;</code> for each <em>Ti</em> in <code>Types</code>.
+        </p>
+        <cxx-remarks para_num="3" id="container.array.creation.3">
+    
+    <dt>Remarks:</dt><dd>
+          The program is ill-formed if <code>D</code> is <code>void</code> and at least one <em>Ui</em> is a specialization of <code>reference_wrapper</code>.
+        </dd>
+  </cxx-remarks>
+        <cxx-returns para_num="4" id="container.array.creation.4">
+    
+    <dt>Returns:</dt><dd>
+          <code>array&lt;<var>VT</var>, sizeof...(Types)&gt;{ std::forward&lt;Types&gt;(t)... }</code>, where <code><var>VT</var></code> is <code>common_type_t&lt;Types...&gt;</code> if <code>D</code> is <code>void</code>, otherwise <code><var>VT</var></code> is <code>D</code>.
+        </dd>
+  </cxx-returns>
+
+        <cxx-example>
+    
+    <span class="nowrap">[ <em>Example:</em></span>
+    
+<pre><code>int i = 1; int&amp; ri = i;
+auto a1 = make_array(i, ri);         // a1<i> is of type </i>array&lt;int, 2&gt;
+auto a2 = make_array(i, ri, 42L);    // a2<i> is of type </i>array&lt;long, 3&gt;
+auto a3 = make_array&lt;long&gt;(i, ri);   // a3<i> is of type </i>array&lt;long, 2&gt;
+auto a4 = make_array&lt;long&gt;();        // a4<i> is of type </i>array&lt;long, 0&gt;
+auto a5 = make_array();              // <i>ill-formed</i></code></pre>
+        
+    <span class="nowrap">— <em>end example</em> ]</span>
+  </cxx-example>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="5" id="container.array.creation.5">
+    
+    <pre><code><cxx-signature>template &lt;class T, size_t N&gt;
+constexpr array&lt;remove_cv_t&lt;T&gt;, N&gt; to_array(T (&amp;a)[N]);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-returns para_num="6" id="container.array.creation.6">
+    
+    <dt>Returns:</dt><dd>
+          An <code>array&lt;remove_cv_t&lt;T&gt;, N&gt;</code> such that each element is copy-initialized with the corresponding element of <code>a</code>.
+        </dd>
+  </cxx-returns>
+      
+    </dl>
+  </cxx-function>
+    
+    </section>
+  </cxx-section>
+  
+    </section>
+  </cxx-section>
+
     </section>
   </cxx-clause>
 
@@ -2129,7 +3734,7 @@ void erase(list&lt;T, A&gt;&amp; c, const U&amp; value);</cxx-signature></code><
     
 
     <section>
-      <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Iterators library">Iterators library</h1> <span style="float:right"><a href="#iterator">[iterator]</a></span></header>
+      <header><span class="section-number">6</span> <h1 data-bookmark-label="6 Iterators library">Iterators library</h1> <span style="float:right"><a href="#iterator">[iterator]</a></span></header>
       
   
 
@@ -2137,7 +3742,7 @@ void erase(list&lt;T, A&gt;&amp; c, const U&amp; value);</cxx-signature></code><
     
 
     <section>
-      <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 Header <experimental/iterator> synopsis">Header <code>&lt;experimental/iterator&gt;</code> synopsis</h1> <span style="float:right"><a href="#iterator.synopsis">[iterator.synopsis]</a></span></header>
+      <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Header <experimental/iterator> synopsis">Header <code>&lt;experimental/iterator&gt;</code> synopsis</h1> <span style="float:right"><a href="#iterator.synopsis">[iterator.synopsis]</a></span></header>
       
     
 
@@ -2147,7 +3752,7 @@ namespace std {
 namespace experimental {
 inline namespace fundamentals_v2 {
 
-  <cxx-ref insynopsis="" to="iterator.ostream.joiner">// <i><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">5.2</a>, Class template ostream_joiner</i></cxx-ref>
+  <cxx-ref insynopsis="" to="iterator.ostream.joiner">// <i><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">6.2</a>, Class template ostream_joiner</i></cxx-ref>
   template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
       class ostream_joiner;
   template &lt;class charT, class traits, class DelimT&gt;
@@ -2165,7 +3770,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Class template ostream_joiner">Class template <code>ostream_joiner</code></h1> <span style="float:right"><a href="#iterator.ostream.joiner">[iterator.ostream.joiner]</a></span></header>
+      <header><span class="section-number">6.2</span> <h1 data-bookmark-label="6.2 Class template ostream_joiner">Class template <code>ostream_joiner</code></h1> <span style="float:right"><a href="#iterator.ostream.joiner">[iterator.ostream.joiner]</a></span></header>
       
     
 
@@ -2190,24 +3795,24 @@ inline namespace fundamentals_v2 {
   public:
     typedef charT char_type;
     typedef traits traits_type;
-    typedef basic_ostream&lt;charT,traits&gt; ostream_type;
+    typedef basic_ostream&lt;charT, traits&gt; ostream_type;
     typedef output_iterator_tag iterator_category;
     typedef void value_type;
     typedef void difference_type;
     typedef void pointer;
     typedef void reference;
 
-    ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);
     ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);
+    ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);
     template&lt;typename T&gt;
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator=(const T&amp; value);
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator*();
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++();
-    ostream_joiner&lt;DelimT, charT,traits&gt;&amp; operator++(int);
+    ostream_joiner&amp; operator=(const T&amp; value);
+    ostream_joiner&amp; operator*();
+    ostream_joiner&amp; operator++();
+    ostream_joiner&amp; operator++(int);
   private:
-    basic_ostream&lt;charT,traits&gt;* out_stream; <i>// exposition only</i>
-    DelimT delim;                            <i>// exposition only</i>
-    bool first_element;                      <i>// exposition only</i>
+    ostream_type* out_stream; <i>// exposition only</i>
+    DelimT delim;             <i>// exposition only</i>
+    bool first_element;       <i>// exposition only</i>
   };
 } // inline namespace fundamentals_v2
 } // namespace experimental
@@ -2217,7 +3822,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">5.2.1</span> <h1 data-bookmark-label="5.2.1 ostream_joiner constructor"><code>ostream_joiner</code> constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
+      <header><span class="section-number">6.2.1</span> <h1 data-bookmark-label="6.2.1 ostream_joiner constructor"><code>ostream_joiner</code> constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
       
       
 
@@ -2232,7 +3837,7 @@ inline namespace fundamentals_v2 {
         <cxx-effects para_num="2" id="iterator.ostream.joiner.cons.2">
     
     <dt>Effects:</dt><dd>
-          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          Initializes <code>out_stream</code> with <code>std::addressof(s)</code>,
           <code>delim</code> with <code>delimiter</code>,
           and <code>first_element</code> with <code>true</code>.
         </dd>
@@ -2252,7 +3857,7 @@ inline namespace fundamentals_v2 {
         <cxx-effects para_num="4" id="iterator.ostream.joiner.cons.4">
     
     <dt>Effects:</dt><dd>
-          Initializes <code>out_stream</code> with <code>&amp;s</code>,
+          Initializes <code>out_stream</code> with <code>std::addressof(s)</code>,
           <code>delim</code> with <code>move(delimiter)</code>,
           and <code>first_element</code> with <code>true</code>.
         </dd>
@@ -2268,7 +3873,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">5.2.2</span> <h1 data-bookmark-label="5.2.2 ostream_joiner operations"><code>ostream_joiner</code> operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
+      <header><span class="section-number">6.2.2</span> <h1 data-bookmark-label="6.2.2 ostream_joiner operations"><code>ostream_joiner</code> operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
       
       
 
@@ -2288,7 +3893,7 @@ ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator=(const T&amp; value);<
   *out_stream &lt;&lt; delim;
 first_element = false;
 *out_stream &lt;&lt; value;
-return (*this);</code></pre>
+return *this;</code></pre>
         </dd>
   </cxx-effects>
       
@@ -2335,7 +3940,7 @@ return (*this);</code></pre>
     
 
     <section>
-      <header><span class="section-number">5.2.3</span> <h1 data-bookmark-label="5.2.3 ostream_joiner creation function"><code>ostream_joiner</code> creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
+      <header><span class="section-number">6.2.3</span> <h1 data-bookmark-label="6.2.3 ostream_joiner creation function"><code>ostream_joiner</code> creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
       
       
 
@@ -2370,7 +3975,7 @@ make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp;
     
 
     <section>
-      <header><span class="section-number">6</span> <h1 data-bookmark-label="6 Numerics library">Numerics library</h1> <span style="float:right"><a href="#numeric">[numeric]</a></span></header>
+      <header><span class="section-number">7</span> <h1 data-bookmark-label="7 Numerics library">Numerics library</h1> <span style="float:right"><a href="#numeric">[numeric]</a></span></header>
       
   
 
@@ -2378,7 +3983,7 @@ make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp;
     
 
     <section>
-      <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Generalized numeric operations">Generalized numeric operations</h1> <span style="float:right"><a href="#numeric.ops">[numeric.ops]</a></span></header>
+      <header><span class="section-number">7.1</span> <h1 data-bookmark-label="7.1 Generalized numeric operations">Generalized numeric operations</h1> <span style="float:right"><a href="#numeric.ops">[numeric.ops]</a></span></header>
       
     
 
@@ -2386,7 +3991,7 @@ make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp;
     
 
     <section>
-      <header><span class="section-number">6.1.1</span> <h1 data-bookmark-label="6.1.1 Header <experimental/numeric> synopsis">Header &lt;experimental/numeric&gt; synopsis</h1> <span style="float:right"><a href="#numeric.ops.overview">[numeric.ops.overview]</a></span></header>
+      <header><span class="section-number">7.1.1</span> <h1 data-bookmark-label="7.1.1 Header <experimental/numeric> synopsis">Header &lt;experimental/numeric&gt; synopsis</h1> <span style="float:right"><a href="#numeric.ops.overview">[numeric.ops.overview]</a></span></header>
       
       
 
@@ -2396,11 +4001,11 @@ namespace std {
 namespace experimental {
 inline namespace fundamentals_v2 {
 
-  <cxx-ref insynopsis="" to="numeric.ops.gcd">// <i><a title="numeric.ops.gcd" href="#numeric.ops.gcd">6.1.2</a>, Greatest common divisor</i></cxx-ref>
+  <cxx-ref insynopsis="" to="numeric.ops.gcd">// <i><a title="numeric.ops.gcd" href="#numeric.ops.gcd">7.1.2</a>, Greatest common divisor</i></cxx-ref>
   template&lt;class M, class N&gt;
   constexpr common_type_t&lt;M,N&gt; gcd(M m, N n);
 
-  <cxx-ref insynopsis="" to="numeric.ops.lcm">// <i><a title="numeric.ops.lcm" href="#numeric.ops.lcm">6.1.3</a>, Least common multiple</i></cxx-ref>
+  <cxx-ref insynopsis="" to="numeric.ops.lcm">// <i><a title="numeric.ops.lcm" href="#numeric.ops.lcm">7.1.3</a>, Least common multiple</i></cxx-ref>
   template&lt;class M, class N&gt;
   constexpr common_type_t&lt;M,N&gt; lcm(M m, N n);
 
@@ -2415,7 +4020,7 @@ inline namespace fundamentals_v2 {
     
 
     <section>
-      <header><span class="section-number">6.1.2</span> <h1 data-bookmark-label="6.1.2 Greatest common divisor">Greatest common divisor</h1> <span style="float:right"><a href="#numeric.ops.gcd">[numeric.ops.gcd]</a></span></header>
+      <header><span class="section-number">7.1.2</span> <h1 data-bookmark-label="7.1.2 Greatest common divisor">Greatest common divisor</h1> <span style="float:right"><a href="#numeric.ops.gcd">[numeric.ops.gcd]</a></span></header>
       
       
 
@@ -2464,7 +4069,7 @@ constexpr common_type_t&lt;M,N&gt; gcd(M m, N n);</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">6.1.3</span> <h1 data-bookmark-label="6.1.3 Least common multiple">Least common multiple</h1> <span style="float:right"><a href="#numeric.ops.lcm">[numeric.ops.lcm]</a></span></header>
+      <header><span class="section-number">7.1.3</span> <h1 data-bookmark-label="7.1.3 Least common multiple">Least common multiple</h1> <span style="float:right"><a href="#numeric.ops.lcm">[numeric.ops.lcm]</a></span></header>
       
       
       <cxx-function para_num="1" id="numeric.ops.lcm.1">
@@ -2509,6 +4114,226 @@ constexpr common_type_t&lt;M,N&gt; lcm(M m, N n);</cxx-signature></code></pre>
     </section>
   </cxx-section>
 
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="reflection">
+    
+
+    <section>
+      <header><span class="section-number">8</span> <h1 data-bookmark-label="8 Reflection library">Reflection library</h1> <span style="float:right"><a href="#reflection">[reflection]</a></span></header>
+      
+  
+
+  <cxx-section id="reflection.src_loc">
+    
+
+    <section>
+      <header><span class="section-number">8.1</span> <h1 data-bookmark-label="8.1 Class source_location">Class source_location</h1> <span style="float:right"><a href="#reflection.src_loc">[reflection.src_loc]</a></span></header>
+      
+    
+
+    <cxx-section id="reflection.src_loc.intro">
+    
+
+    <section>
+      <header><span class="section-number">8.1.1</span> <h1 data-bookmark-label="8.1.1 Header <experimental/source_location> synopsis">Header <code>&lt;experimental/source_location&gt;</code> synopsis</h1> <span style="float:right"><a href="#reflection.src_loc.intro">[reflection.src_loc.intro]</a></span></header>
+      
+    
+
+<pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  struct source_location {
+    constexpr source_location() noexcept;
+
+    constexpr uint_least32_t line() const noexcept;
+    constexpr uint_least32_t column() const noexcept;
+    constexpr const char* file_name() const noexcept;
+    constexpr const char* function_name() const noexcept;
+
+    static constexpr source_location current() noexcept;
+  };
+
+} // namespace fundamentals_v1
+} // namespace experimental
+} // namespace std</code></pre>
+
+    <p para_num="1" id="reflection.src_loc.intro.1">
+      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The intent of <code>source_location</code> is to have a small size and efficient copying.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+    </p>
+
+    <cxx-function para_num="2" id="reflection.src_loc.intro.2">
+    
+    <pre><code><cxx-signature>constexpr source_location() noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+      <cxx-effects para_num="3" id="reflection.src_loc.intro.3">
+    
+    <dt>Effects:</dt><dd>Constructs an object of class <code>source_location</code>.</dd>
+  </cxx-effects>
+      <cxx-remarks para_num="4" id="reflection.src_loc.intro.4">
+    
+    <dt>Remarks:</dt><dd>The values are implementation-defined.</dd>
+  </cxx-remarks>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="5" id="reflection.src_loc.intro.5">
+    
+    <pre><code><cxx-signature>constexpr uint_least32_t line() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+      <cxx-returns para_num="6" id="reflection.src_loc.intro.6">
+    
+    <dt>Returns:</dt><dd>The presumed line number (<cxx-ref in="cxx" to="cpp.predefined">C++14 <span title="cpp.predefined">§16.8</span></cxx-ref>) represented by this object.</dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="7" id="reflection.src_loc.intro.7">
+    
+    <pre><code><cxx-signature>constexpr uint_least32_t column() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+      <cxx-returns para_num="8" id="reflection.src_loc.intro.8">
+    
+    <dt>Returns:</dt><dd>
+        An implementation-defined value representing
+        some offset from the start of the line represented by this object.
+      </dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="9" id="reflection.src_loc.intro.9">
+    
+    <pre><code><cxx-signature>constexpr const char* file_name() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+      <cxx-returns para_num="10" id="reflection.src_loc.intro.10">
+    
+    <dt>Returns:</dt><dd>
+        The presumed name of the current source file (<cxx-ref in="cxx" to="cpp.predefined">C++14 <span title="cpp.predefined">§16.8</span></cxx-ref>)
+        represented by this object as an NTBS.
+      </dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="11" id="reflection.src_loc.intro.11">
+    
+    <pre><code><cxx-signature>constexpr const char* function_name() const noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+      <cxx-returns para_num="12" id="reflection.src_loc.intro.12">
+    
+    <dt>Returns:</dt><dd>
+        If this object represents a position in the body of a function,
+        returns an implementation-defined NTBS that should correspond to the function name.
+        Otherwise, returns an empty string.
+      </dd>
+  </cxx-returns>
+    
+    </dl>
+  </cxx-function>
+
+    <cxx-function para_num="13" id="reflection.src_loc.intro.13">
+    
+    <pre><code><cxx-signature>static constexpr source_location current() noexcept;</cxx-signature></code></pre>
+
+    <dl>
+      
+      
+
+      <cxx-returns para_num="14" id="reflection.src_loc.intro.14">
+    
+    <dt>Returns:</dt><dd>
+        When invoked by a function call (<cxx-ref in="cxx" to="expr.call">C++14 <span title="expr.call">§5.2.2</span></cxx-ref>)
+        whose <cxx-grammarterm><i>postfix-expression</i></cxx-grammarterm> is
+        a (possibly parenthesized) <cxx-grammarterm><i>id-expression</i></cxx-grammarterm> naming <code>current</code>,
+        returns a <code>source_location</code> with an implementation-defined value.
+        The value should be affected by <code>#line</code>
+        (<cxx-ref in="cxx" to="cpp.line">C++14 <span title="cpp.line">§16.4</span></cxx-ref>) in the same manner as for <code>__LINE__</code> and <code>__FILE__</code>.
+        If invoked in some other way, the value returned is unspecified.
+      </dd>
+  </cxx-returns>
+      <cxx-remarks para_num="15" id="reflection.src_loc.intro.15">
+    
+    <dt>Remarks:</dt><dd>
+        When a <cxx-grammarterm><i>brace-or-equal-initializer</i></cxx-grammarterm> is used to initialize a non-static data member,
+        any calls to <code>current</code> should correspond to the location of
+        the constructor or aggregate initialization that initializes the member.
+      </dd>
+  </cxx-remarks>
+      <p para_num="16" id="reflection.src_loc.intro.16">
+        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    When used as a default argument (<cxx-ref in="cxx" to="dcl.fct.default">C++14 <span title="dcl.fct.default">§8.3.6</span></cxx-ref>),
+          the value of the <code>source_location</code> will be the location of the call to <code>current</code> at the call site.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+      </p>
+      <cxx-example>
+    
+    <span class="nowrap">[ <em>Example:</em></span>
+    
+        <pre><code>struct s {
+  source_location member = source_location::current();
+  int other_member;
+  s(source_location loc = source_location::current())
+    : member(loc) // <i>values of</i> member <i>will be from call-site</i>
+  {}
+  s(int blather) : // <i>values of</i> member <i>should be hereabouts</i>
+    other_member(blather) {}
+  s(double) // <i>values of</i> member <i>should be hereabouts</i>
+  {}
+};
+
+void f(source_location a = source_location::current()) {
+  source_location b = source_location::current(); // <i>values in</i> b <i>represent this line</i>
+}
+
+void g() {
+  f(); // f<i>’s first argument corresponds to this line of code</i>
+
+  source_location c = source_location::current();
+  f(c); // f<i>’s first argument gets the same values as </i>c<i>, above</i>
+}</code></pre>
+      
+    <span class="nowrap">— <em>end example</em> ]</span>
+  </cxx-example>
+    
+    </dl>
+  </cxx-function>
+  
+    </section>
+  </cxx-section>
+
+    </section>
+  </cxx-section>
     </section>
   </cxx-clause>
 
