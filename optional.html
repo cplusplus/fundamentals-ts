@@ -1,0 +1,740 @@
+<cxx-clause id="optional">
+  <h1>Optional objects</h1>
+
+  <cxx-section id="optional.general">
+    <h1>In general</h1>
+
+    <p>This subclause describes class template <code>optional</code> that represents <em>optional objects</em>. An <dfn>optional object for object types</dfn> is an object that contains the storage for another object and manages the lifetime of this contained object, if any. The contained object may be initialized after the optional object has been initialized, and may be destroyed before the optional object has been destroyed. The initialization state of the contained object is tracked by the optional object.</p>
+  </cxx-section>
+
+  <cxx-section id="optional.synop">
+    <h1>Header <code>&lt;experimental/optional&gt;</code> synopsis</h1>
+
+<pre><code>namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v2 {
+
+    <cxx-ref insynopsis="" to="optional.object"></cxx-ref>
+    template &lt;class T&gt; class optional;
+
+    <cxx-ref insynopsis="" to="optional.inplace"></cxx-ref>
+    struct in_place_t{};
+    constexpr in_place_t in_place{};
+
+    <cxx-ref insynopsis="" to="optional.nullopt"></cxx-ref>
+    struct nullopt_t{<em>see below</em>};
+    constexpr nullopt_t nullopt(<em>unspecified</em>);
+
+    <cxx-ref insynopsis="" to="optional.bad_optional_access"></cxx-ref>
+    class bad_optional_access;
+
+    <cxx-ref insynopsis="" to="optional.relops"></cxx-ref>
+    template &lt;class T&gt;
+      constexpr bool operator==(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt;
+      constexpr bool operator!=(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt;
+      constexpr bool operator&lt;(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt;
+      constexpr bool operator&gt;(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt;
+      constexpr bool operator&lt;=(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt;
+      constexpr bool operator&gt;=(const optional&lt;T&gt;&amp;, const optional&lt;T&gt;&amp;);
+
+    <cxx-ref insynopsis="" to="optional.nullops"></cxx-ref>
+    template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
+    template &lt;class T&gt; constexpr bool operator==(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
+    template &lt;class T&gt; constexpr bool operator!=(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
+    template &lt;class T&gt; constexpr bool operator!=(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
+    template &lt;class T&gt; constexpr bool operator&lt;(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
+    template &lt;class T&gt; constexpr bool operator&lt;(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
+    template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
+    template &lt;class T&gt; constexpr bool operator&lt;=(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
+    template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
+    template &lt;class T&gt; constexpr bool operator&gt;(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
+    template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp;, nullopt_t) noexcept;
+    template &lt;class T&gt; constexpr bool operator&gt;=(nullopt_t, const optional&lt;T&gt;&amp;) noexcept;
+
+    <cxx-ref insynopsis="" to="optional.comp_with_t"></cxx-ref>
+    template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp;, const T&amp;);
+    template &lt;class T&gt; constexpr bool operator==(const T&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt; constexpr bool operator!=(const optional&lt;T&gt;&amp;, const T&amp;);
+    template &lt;class T&gt; constexpr bool operator!=(const T&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt; constexpr bool operator&lt;(const optional&lt;T&gt;&amp;, const T&amp;);
+    template &lt;class T&gt; constexpr bool operator&lt;(const T&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp;, const T&amp;);
+    template &lt;class T&gt; constexpr bool operator&lt;=(const T&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp;, const T&amp;);
+    template &lt;class T&gt; constexpr bool operator&gt;(const T&amp;, const optional&lt;T&gt;&amp;);
+    template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp;, const T&amp;);
+    template &lt;class T&gt; constexpr bool operator&gt;=(const T&amp;, const optional&lt;T&gt;&amp;);
+
+    <cxx-ref insynopsis="" to="optional.specalg"></cxx-ref>
+    template &lt;class T&gt; void swap(optional&lt;T&gt;&amp;, optional&lt;T&gt;&amp;) noexcept(<em>see below</em>);
+    template &lt;class T&gt; constexpr optional&lt;<em>see below</em>&gt; make_optional(T&amp;&amp;);
+
+  } // <i>namespace fundamentals_v2</i>
+  } // <i>namespace experimental</i>
+
+  <cxx-ref insynopsis="" to="optional.hash"></cxx-ref>
+  template &lt;class T&gt; struct hash;
+  template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;
+
+} // <i>namespace std</i></code></pre>
+
+    <p>A program that necessitates the instantiation of template <code>optional</code> for a reference type, or for possibly cv-qualified types <code>in_place_t</code> or <code>nullopt_t</code> is ill-formed.</p>
+  </cxx-section>
+
+  <cxx-section id="optional.object">
+    <h1><code>optional</code> for object types</h1>
+
+<pre><code>template &lt;class T&gt;
+class optional
+{
+public:
+  typedef T value_type;
+
+  <cxx-ref insynopsis="" to="optional.object.ctor"></cxx-ref>
+  constexpr optional() noexcept;
+  constexpr optional(nullopt_t) noexcept;
+  optional(const optional&amp;);
+  optional(optional&amp;&amp;) noexcept(<em>see below</em>);
+  constexpr optional(const T&amp;);
+  constexpr optional(T&amp;&amp;);
+  template &lt;class... Args&gt; constexpr explicit optional(in_place_t, Args&amp;&amp;...);
+  template &lt;class U, class... Args&gt;
+    constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
+
+  <cxx-ref insynopsis="" to="optional.object.dtor"></cxx-ref>
+  ~optional();
+
+  <cxx-ref insynopsis="" to="optional.object.assign"></cxx-ref>
+  optional&amp; operator=(nullopt_t) noexcept;
+  optional&amp; operator=(const optional&amp;);
+  optional&amp; operator=(optional&amp;&amp;) noexcept(<em>see below</em>);
+  template &lt;class U&gt; optional&amp; operator=(U&amp;&amp;);
+  template &lt;class... Args&gt; void emplace(Args&amp;&amp;...);
+  template &lt;class U, class... Args&gt;
+    void emplace(initializer_list&lt;U&gt;, Args&amp;&amp;...);
+
+  <cxx-ref insynopsis="" to="optional.object.swap"></cxx-ref>
+  void swap(optional&amp;) noexcept(<em>see below</em>);
+
+  <cxx-ref insynopsis="" to="optional.object.observe"></cxx-ref>
+  constexpr T const* operator -&gt;() const;
+  constexpr T* operator -&gt;();
+  constexpr T const&amp; operator *() const &amp;;
+  constexpr T&amp; operator *() &amp;;
+  constexpr T&amp;&amp; operator *() &amp;&amp;;
+  constexpr const T&amp;&amp; operator *() const &amp;&amp;;
+  constexpr explicit operator bool() const noexcept;
+  constexpr T const&amp; value() const &amp;;
+  constexpr T&amp; value() &amp;;
+  constexpr T&amp;&amp; value() &amp;&amp;;
+  constexpr const T&amp;&amp; value() const &amp;&amp;;
+  template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) const &amp;;
+  template &lt;class U&gt; constexpr T value_or(U&amp;&amp;) &amp;&amp;;
+
+private:
+  T*   val;  // <i>exposition only</i>
+};</code></pre>
+
+    <p>
+      Any instance of <code>optional&lt;T&gt;</code> at any given time either contains a value or does not contain a value.
+      When an instance of <code>optional&lt;T&gt;</code> <dfn>contains a value</dfn>,
+      it means that an object of type <code>T</code>, referred to as the optional object's <dfn>contained value</dfn>,
+      is allocated within the storage of the optional object.
+      Implementations are not permitted to use additional storage, such as dynamic memory, to allocate its contained value.
+      The contained value shall be allocated in a region of the <code>optional&lt;T&gt;</code> storage suitably aligned for the type <code>T</code>.
+      When an object of type <code>optional&lt;T&gt;</code> is contextually converted to <code>bool</code>,
+      the conversion returns <code>true</code> if the object contains a value;
+      otherwise the conversion returns <code>false</code>.
+    </p>
+
+    <p>Member <code>val</code> is provided for exposition only. When an <code>optional&lt;T&gt;</code> object contains a value, <code>val</code> points to the contained value.</p>
+
+    <p><code>T</code> shall be an object type and shall satisfy the requirements of <code>Destructible</code> (Table 24).</p>
+
+    <cxx-section id="optional.object.ctor">
+      <h1>Constructors</h1>
+
+      <cxx-function>
+        <cxx-signature>constexpr optional() noexcept;</cxx-signature>
+        <cxx-signature>constexpr optional(nullopt_t) noexcept;</cxx-signature>
+
+        <cxx-postconditions><code>*this</code> does not contain a value.</cxx-postconditions>
+        <cxx-remarks>No contained value is initialized.
+        For every object type <code>T</code> these constructors shall be <code>constexpr</code> constructors (<cxx-ref in="cxx" to="dcl.constexpr"></cxx-ref>).</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>optional(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
+
+        <cxx-requires><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>If <code><var>rhs</var></code> contains a value, initializes the contained value as if
+        direct-non-list-initializing an object of type <code>T</code> with the expression <code>*<var>rhs</var></code>.</cxx-effects>
+        <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>optional(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
+
+        <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>If <code><var>rhs</var></code> contains a value, initializes the contained value as if
+        direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*<var>rhs</var>)</code>.
+        <code>bool(<var>rhs</var>)</code> is unchanged.</cxx-effects>
+        <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>The expression inside <code>noexcept</code> is equivalent to:<pre><code>is_nothrow_move_constructible_v&lt;T&gt;</code></pre></cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr optional(const T&amp; <var>v</var>);</cxx-signature>
+
+        <cxx-requires><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code><var>v</var></code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr optional(T&amp;&amp; <var>v</var>);</cxx-signature>
+
+        <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(<var>v</var>)</code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class... Args&gt; constexpr explicit optional(in_place_t, Args&amp;&amp;... <var>args</var>);</cxx-signature>
+
+        <cxx-requires><code>is_constructible_v&lt;T, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code>std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U, class... Args&gt;
+constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
+
+        <cxx-requires><code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>The function shall not participate in overload resolution unless <code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.
+        If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="optional.object.dtor">
+      <h1>Destructor</h1>
+
+      <cxx-function>
+        <cxx-signature>~optional();</cxx-signature>
+
+        <cxx-effects>If <code>is_trivially_destructible_v&lt;T&gt; != true</code> and <code>*this</code> contains a value, calls <code><var>val</var>-&gt;T::~T()</code>.</cxx-effects>
+        <cxx-remarks>If <code>is_trivially_destructible_v&lt;T&gt; == true</code> then this destructor shall be a trivial destructor.</cxx-remarks>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="optional.object.assign">
+      <h1>Assignment</h1>
+
+      <cxx-function>
+        <cxx-signature>optional&lt;T&gt;&amp; operator=(nullopt_t) noexcept;</cxx-signature>
+
+        <cxx-effects>If <code>*this</code> contains a value, calls <code><var>val</var>-&gt;T::~T()</code> to destroy the contained value; otherwise no effect.</cxx-effects>
+        <cxx-returns><code>*this</code>.</cxx-returns>
+        <cxx-postconditions><code>*this</code> does not contain a value.</cxx-postconditions>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>optional&lt;T&gt;&amp; operator=(const optional&lt;T&gt;&amp; <var>rhs</var>);</cxx-signature>
+
+        <cxx-requires><code>is_copy_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_copy_assignable_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::operator=(const optional&)</code> effects</caption>
+            <tr>
+              <th></th>
+              <th><code>*this</code> contains a value</th>
+              <th><code>*this</code> does not contain a value</th>
+            </tr>
+            <tr>
+              <th><code>rhs</code> contains a value</th>
+              <td>assigns <code>*rhs</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>*rhs</code></td>
+            </tr>
+            <tr>
+              <th><code>rhs</code> does not contain a value</th>
+              <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
+              <td>no effect</td>
+            </tr>
+          </table>
+        </cxx-effects>
+        <cxx-returns><code>*this</code>.</cxx-returns>
+        <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-remarks>
+          If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
+          If an exception is thrown during the call to <code>T</code>'s copy constructor, no effect.
+          If an exception is thrown during the call to <code>T</code>'s copy assignment,
+          the state of its contained value is as defined by the exception safety guarantee of <code>T</code>'s copy assignment.
+        </cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>optional&lt;T&gt;&amp; operator=(optional&lt;T&gt;&amp;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
+
+        <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code> and <code>is_move_assignable_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>The result of the expression <code>bool(rhs)</code> remains unchanged.
+
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::operator=(optional&&)</code> effects</caption>
+            <tr>
+              <th></th>
+              <th><code>*this</code> contains a value</th>
+              <th><code>*this</code> does not contain a value</th>
+            </tr>
+            <tr>
+              <th><code>rhs</code> contains a value</th>
+              <td>assigns <code>std::move(*rhs)</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>std::move(*rhs)</code></td>
+            </tr>
+            <tr>
+              <th><code>rhs</code> does not contain a value</th>
+              <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
+              <td>no effect</td>
+            </tr>
+          </table>
+        </cxx-effects>
+        <cxx-returns><code>*this</code>.</cxx-returns>
+        <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-remarks>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre><code>is_nothrow_move_assignable_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_nothrow_move_constructible_v&lt;T&gt;</code></pre></p>
+
+          <p>
+            If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
+            If an exception is thrown during the call to <code>T</code>'s move constructor,
+            the state of <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s move constructor.
+            If an exception is thrown during the call to <code>T</code>'s move assignment,
+            the state of <code><var>*val</var></code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s move assignment.
+          </p>
+        </cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; operator=(U&amp;&amp; <var>v</var>);</cxx-signature>
+
+        <cxx-requires><code>is_constructible_v&lt;T, U&gt;</code> is <code>true</code> and <code>is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>If <code>*this</code> contains a value, assigns <code>std::forward&lt;U&gt;(<var>v</var>)</code> to the contained value; otherwise initializes the contained value as if direct-non-list-initializing object of type <code>T</code> with <code>std::forward&lt;U&gt;(<var>v</var>)</code>.</cxx-effects>
+        <cxx-returns><code>*this</code>.</cxx-returns>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-remarks>
+          <p>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
+          <p>The function shall not participate in overload resolution unless
+          <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>true</code>.</p>
+        </cxx-remarks>
+        <cxx-notes>The reason for providing such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous.</cxx-notes>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class... Args&gt; void emplace(Args&amp;&amp;... <var>args</var>);</cxx-signature>
+
+        <cxx-requires><code>is_constructible_v&lt;T, Args&amp;&amp;...&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code>std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> does not contain a value, and the previous <code><var>*val</var></code> (if any) has been destroyed.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U, class... Args&gt; <w-br></w-br>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature>
+
+        <cxx-effects>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>
+          <p>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> does not contain a value, and the previous <code><var>*val</var></code> (if any) has been destroyed.</p>
+          <p>The function shall not participate in overload resolution unless <code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.</p>
+        </cxx-remarks>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="optional.object.swap">
+      <h1>Swap</h1>
+
+      <cxx-function>
+        <cxx-signature>void swap(optional&lt;T&gt;&amp; <var>rhs</var>) noexcept(<em>see below</em>);</cxx-signature>
+
+        <cxx-requires>Lvalues of type <code>T</code> shall be swappable and <code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>
+
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::swap(optional&)</code> effects</caption>
+            <tr>
+              <th></th>
+              <th><code>*this</code> contains a value</th>
+              <th><code>*this</code> does not contain a value</th>
+            </tr>
+            <tr>
+              <th><code>rhs</code> contains a value</th>
+              <td>calls <code>swap(*(*this), *<var>rhs</var>)</code></td>
+              <td>initializes the contained value of <code>*this</code> as if
+              direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*<var>rhs</var>)</code>,
+              followed by <code>rhs.val-&gt;T::~T()</code>;
+              postcondition is that <code>*this</code> contains a value and <code><var>rhs</var></code> does not contain a value</td>
+            </tr>
+              <tr><th><code>rhs</code> does not contain a value</th>
+              <td>initializes the contained value of <code><var>rhs</var></code> as if
+              direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*(*this))</code>,
+              followed by <code>val-&gt;T::~T()</code>;
+              postcondition is that <code>*this</code> does not contain a value and <code><var>rhs</var></code> contains a value</td>
+              <td>no effect</td>
+            </tr>
+          </table>
+        </cxx-effects>
+        <cxx-throws>Any exceptions that the expressions in the Effects element throw.</cxx-throws>
+        <cxx-remarks>
+          <p>The expression inside <code>noexcept</code> is equivalent to: <pre><code>is_nothrow_move_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>noexcept(swap(declval&lt;T&amp;&gt;(), declval&lt;T&amp;&gt;()))</code></pre></p>
+          <p>
+            If any exception is thrown, the results of the expressions <code>bool(*this)</code> and <code>bool(<var>rhs</var>)</code> remain unchanged.
+            If an exception is thrown during the call to function <code>swap</code>
+            the state of <code><var>*val</var></code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>swap</code> for lvalues of <code>T</code>.
+            If an exception is thrown during the call to <code>T</code>'s move constructor,
+            the state of <code><var>*val</var></code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s move constructor.
+          </p>
+        </cxx-remarks>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="optional.object.observe">
+      <h1>Observers</h1>
+
+      <cxx-function>
+        <cxx-signature>constexpr T const* operator-&gt;() const;</cxx-signature>
+        <cxx-signature>constexpr T* operator-&gt;();</cxx-signature>
+
+        <cxx-requires><code>*this</code> contains a value.</cxx-requires>
+        <cxx-returns><code><var>val</var></code>.</cxx-returns>
+        <cxx-throws>Nothing.</cxx-throws>
+        <cxx-remarks>Unless <code>T</code> is a user-defined type with overloaded unary <code>operator&amp;</code>, these functions shall be <code>constexpr</code> functions.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr T const&amp; operator*() const &amp;;</cxx-signature>
+        <cxx-signature>constexpr T&amp; operator*() &amp;;</cxx-signature>
+
+        <cxx-requires><code>*this</code> contains a value.</cxx-requires>
+        <cxx-returns><code>*<var>val</var></code>.</cxx-returns>
+        <cxx-throws>Nothing.</cxx-throws>
+        <cxx-remarks>These functions shall be <code>constexpr</code> functions.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr T&amp;&amp; operator*() &amp;&amp;;</cxx-signature>
+        <cxx-signature>constexpr const T&amp;&amp; operator*() const &amp;&amp;;</cxx-signature>
+
+        <cxx-requires><code>*this</code> contains a value</cxx-requires>
+        <cxx-effects>Equivalent to <code>return std::move(*<var>val</var>);</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr explicit operator bool() const noexcept;</cxx-signature>
+
+        <cxx-returns><code>true</code> if and only if <code>*this</code> contains a value.</cxx-returns>
+        <cxx-remarks>This function shall be a <code>constexpr</code> function.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr T const&amp; value() const &amp;;</cxx-signature>
+        <cxx-signature>constexpr T&amp; value() &amp;;</cxx-signature>
+
+        <cxx-effects>Equivalent to <code>return bool(*this) ? *val : throw bad_optional_access();</code></cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>constexpr T&amp;&amp; value() &amp;&amp;;</cxx-signature>
+        <cxx-signature>constexpr const T&amp;&amp; value() const &amp;&amp;;</cxx-signature>
+
+        <cxx-effects>Equivalent to <code>return bool(*this) ? std::move(*val) : throw bad_optional_access();</code></cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) const &amp;;</cxx-signature>
+
+        <cxx-effects>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
+        <cxx-remarks>If <code>is_copy_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+        the program is ill-formed.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
+
+        <cxx-effects>Equivalent to <code>return bool(*this) ? <w-br></w-br>std::move(**this) : <w-br></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</cxx-effects>
+        <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
+        the program is ill-formed.</cxx-remarks>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="optional.inplace">
+    <h1>In-place construction</h1>
+
+    <cxx-function>
+      <cxx-signature>struct in_place_t{};</cxx-signature>
+      <cxx-signature>constexpr in_place_t in_place{};</cxx-signature>
+    </cxx-function>
+
+    <p>
+      The struct <code>in_place_t</code> is an empty structure type used as a unique type to disambiguate constructor and function overloading.
+      Specifically, <code>optional&lt;T&gt;</code> has a constructor with <code>in_place_t</code> as the first parameter followed by a parameter pack;
+      this indicates that <code>T</code> should be constructed in-place (as if by a call to a placement new expression) with the forwarded pack expansion as arguments for the initialization of <code>T</code>.
+    </p>
+  </cxx-section>
+
+  <cxx-section id="optional.nullopt">
+    <h1>No-value state indicator</h1>
+
+    <cxx-function>
+      <cxx-signature>struct nullopt_t{<em>see below</em>};</cxx-signature>
+      <cxx-signature>constexpr nullopt_t nullopt(<em>unspecified</em>);</cxx-signature>
+    </cxx-function>
+
+    <p>The struct <code>nullopt_t</code> is an empty structure type used as a unique type to indicate the state of not containing a value for <code>optional</code> objects.
+    In particular, <code>optional&lt;T&gt;</code> has a constructor with <code>nullopt_t</code> as a single argument;
+    this indicates that an optional object not containing a value shall be constructed.
+    </p>
+
+    <p>Type <code>nullopt_t</code> shall not have a default constructor. It shall be a literal type. Constant <code>nullopt</code> shall be initialized with an argument of literal type.</p>
+  </cxx-section>
+
+  <cxx-section id="optional.bad_optional_access">
+    <h1>Class <code>bad_optional_access</code></h1>
+
+<pre><code>class bad_optional_access : public logic_error {
+public:
+  bad_optional_access();
+};</code></pre>
+
+    <p>The class <code>bad_optional_access</code> defines the type of objects thrown as exceptions to report the situation where an attempt is made to access the value of an optional object that does not contain a value.</p>
+
+    <cxx-function>
+      <cxx-signature>bad_optional_access();</cxx-signature>
+
+      <cxx-effects>Constructs an object of class <code>bad_optional_access</code>.</cxx-effects>
+      <cxx-postconditions><code>what()</code> returns an implementation-defined NTBS.</cxx-postconditions>
+    </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="optional.relops">
+    <h1>Relational operators</h1>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp; <var>x</var>, const optional&lt;T&gt;&amp; <var>y</var>);</cxx-signature>
+
+      <cxx-requires><code>T</code> shall meet the requirements of <code>EqualityComparable</code>.</cxx-requires>
+      <cxx-returns>If <code>bool(<var>x</var>) != bool(<var>y</var>)</code>, <code>false</code>; otherwise if <code>bool(<var>x</var>) == false</code>, <code>true</code>; otherwise <code>*<var>x</var> == *<var>y</var></code>.</cxx-returns>
+      <cxx-remarks>Specializations of this function template,
+      for which <code>*<var>x</var> == *<var>y</var></code> is a core constant expression,
+      shall be <code>constexpr</code> functions.</cxx-remarks>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator!=(const optional&lt;T&gt;&amp; x, const optional&lt;T&gt;&amp; y);</cxx-signature>
+      <cxx-returns><code>!(x == y)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;(const optional&lt;T&gt;&amp; <var>x</var>, const optional&lt;T&gt;&amp; <var>y</var>);</cxx-signature>
+
+      <cxx-requires><code>*<var>x</var> &lt; *<var>y</var></code> shall be well-formed
+      and its result shall be convertible to <code>bool</code>.</cxx-requires>
+      <cxx-returns>If <code>!<var>y</var></code>, <code>false</code>;
+      otherwise, if <code>!<var>x</var></code>, <code>true</code>;
+      otherwise <code>*<var>x</var> &lt; *<var>y</var></code>.</cxx-returns>
+      <cxx-remarks>Specializations of this function template,
+      for which <code>*<var>x</var> &lt; *<var>y</var></code> is a core constant expression,
+      shall be <code>constexpr</code> functions.</cxx-remarks>
+    </cxx-function>
+
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp; x, const optional&lt;T&gt;&amp; y);</cxx-signature>
+      <cxx-returns><code>y &lt; x</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp; x, const optional&lt;T&gt;&amp; y);</cxx-signature>
+      <cxx-returns><code>!(y &lt; x)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp; x, const optional&lt;T&gt;&amp; y);</cxx-signature>
+      <cxx-returns><code>!(x &lt; y)</code>.</cxx-returns>
+    </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="optional.nullops">
+    <h1>Comparison with <code>nullopt</code></h1>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp; <var>x</var>, nullopt_t) noexcept;</cxx-signature>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator==(nullopt_t, const optional&lt;T&gt;&amp; <var>x</var>) noexcept;</cxx-signature>
+
+      <cxx-returns><code>!<var>x</var></code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator!=(const optional&lt;T&gt;&amp; <var>x</var>, nullopt_t) noexcept;</cxx-signature>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator!=(nullopt_t, const optional&lt;T&gt;&amp; x) noexcept;</cxx-signature>
+
+      <cxx-returns><code>bool(<var>x</var>)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;(const optional&lt;T&gt;&amp; <var>x</var>, nullopt_t) noexcept;</cxx-signature>
+
+      <cxx-returns><code>false</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;(nullopt_t, const optional&lt;T&gt;&amp; <var>x</var>) noexcept;</cxx-signature>
+
+      <cxx-returns><code>bool(<var>x</var>)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp; <var>x</var>, nullopt_t) noexcept;</cxx-signature>
+      <cxx-returns><code>!<var>x</var></code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(nullopt_t, const optional&lt;T&gt;&amp; <var>x</var>) noexcept;</cxx-signature>
+      <cxx-returns><code>true</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp; <var>x</var>, nullopt_t) noexcept;</cxx-signature>
+      <cxx-returns><code>bool(<var>x</var>)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(nullopt_t, const optional&lt;T&gt;&amp; <var>x</var>) noexcept;</cxx-signature>
+      <cxx-returns><code>false</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp; <var>x</var>, nullopt_t) noexcept;</cxx-signature>
+      <cxx-returns><code>true</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(nullopt_t, const optional&lt;T&gt;&amp; <var>x</var>) noexcept;</cxx-signature>
+      <cxx-returns><code>!<var>x</var></code>.</cxx-returns>
+    </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="optional.comp_with_t">
+    <h1>Comparison with <code>T</code></h1>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator==(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
+
+      <cxx-returns><code>bool(<var>x</var>) ? *<var>x</var> == <var>v</var> : false</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator==(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
+
+      <cxx-returns><code>bool(<var>x</var>) ? <var>v</var> == *<var>x</var> : false</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator!=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
+      <cxx-returns><code>bool(<var>x</var>) ? !(*<var>x</var> == <var>v</var>) : true</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator!=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
+      <cxx-returns><code>bool(<var>x</var>) ? !(<var>v</var> == *<var>x</var>) : true</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
+
+      <cxx-returns><code>bool(<var>x</var>) ? *<var>x</var> &lt; <var>v</var> : true</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; <var>x</var>);</cxx-signature>
+      <cxx-returns><code>bool(<var>x</var>) ? <var>v</var> &lt; *<var>x</var> : false</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
+      <cxx-returns><code>!(<var>x</var> &gt; <var>v</var>)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&lt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
+      <cxx-returns><code>!(<var>v</var> &gt; <var>x</var>)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
+      <cxx-returns><code>bool(<var>x</var>) ? <var>v</var> &lt; *<var>x</var> : false</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
+      <cxx-returns><code>bool(<var>x</var>) ? *<var>x</var> &lt; <var>v</var> : true</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const optional&lt;T&gt;&amp; <var>x</var>, const T&amp; <var>v</var>);</cxx-signature>
+      <cxx-returns><code>!(<var>x</var> &lt; <var>v</var>)</code>.</cxx-returns>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr bool operator&gt;=(const T&amp; <var>v</var>, const optional&lt;T&gt;&amp; x);</cxx-signature>
+      <cxx-returns><code>!(<var>v</var> &lt; <var>x</var>)</code>.</cxx-returns>
+    </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="optional.specalg">
+    <h1>Specialized algorithms</h1>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; void swap(optional&lt;T&gt;&amp; <var>x</var>, optional&lt;T&gt;&amp; <var>y</var>) noexcept(noexcept(<var>x</var>.swap(<var>y</var>)));</cxx-signature>
+
+      <cxx-effects>Calls <code><var>x</var>.swap(<var>y</var>)</code>.</cxx-effects>
+    </cxx-function>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; constexpr optional&lt;decay_t&lt;T&gt;&gt; make_optional(T&amp;&amp; <var>v</var>);</cxx-signature>
+
+      <cxx-returns><code>optional&lt;decay_t&lt;T&gt;&gt;(std::forward&lt;T&gt;(<var>v</var>))</code>.</cxx-returns>
+    </cxx-function>
+  </cxx-section>
+
+  <cxx-section id="optional.hash">
+    <h1>Hash support</h1>
+
+    <cxx-function>
+      <cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::optional&lt;T&gt;&gt;;</cxx-signature>
+
+      <cxx-requires>The template specialization <code>hash&lt;T&gt;</code> shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>).
+      The template specialization <code>hash&lt;optional&lt;T&gt;&gt;</code> shall meet the requirements of class template <code>hash</code>.
+      For an object <code><var>o</var></code> of type <code>optional&lt;T&gt;</code>, if <code>bool(<var>o</var>) == true</code>,
+      <code>hash&lt;optional&lt;T&gt;&gt;()(<var>o</var>)</code> shall evaluate to the same value as <code>hash&lt;T&gt;()(*<var>o</var>)</code>;
+      otherwise it evaluates to an unspecified value.</cxx-requires>
+    </cxx-function>
+  </cxx-section>
+</cxx-clause>

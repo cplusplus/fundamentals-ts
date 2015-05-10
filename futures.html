@@ -1,0 +1,162 @@
+<cxx-clause id="futures">
+  <h1>Futures</h1>
+
+  <cxx-section id="header.future.synop">
+    <h1>Header &lt;experimental/future> synopsis</h1>
+
+    <cxx-ednote>
+      An additional editorial fix is applied in the declaration of <code>swap</code> for <code>packaged_task</code>
+    </cxx-ednote>
+
+    <pre><code>#include &lt;future&gt;
+
+namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v2 {
+
+    template &lt;class R&gt; class promise;
+    template &lt;class R&gt; class promise&lt;R&amp;&gt;;
+    template &lt;&gt; class promise&lt;void&gt;;
+
+    template &lt;class R&gt;
+    void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y) noexcept;
+
+    template &lt;class&gt; class packaged_task; // undefined
+    template &lt;class R, class... ArgTypes&gt;
+    class packaged_task&lt;R(ArgTypes...)&gt;;
+
+    template &lt;class R, class... ArgTypes&gt;
+    void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+
+  } // namespace fundamentals_v2
+  } // namespace experimental
+
+  template &lt;class R, class Alloc&gt;
+  struct uses_allocator&lt;experimental::promise&lt;R&gt;, Alloc&gt;;
+
+  template &lt;class R, class Alloc&gt;
+  struct uses_allocator&lt;experimental::packaged_task&lt;R&gt;, Alloc&gt;;
+
+} // namespace std</code></pre>
+  </cxx-section>
+  <cxx-section id="futures.promise">
+    <h1>Class template <code>promise</code></h1>
+
+    <p>
+      The specification of all declarations within this sub-clause <cxx-ref to="futures.promise"></cxx-ref>
+      and its sub-clauses are the same as the corresponding declarations,
+      as specified in <cxx-ref in="cxx" to="futures.promise"></cxx-ref>,
+      unless explicitly specified otherwise.
+    </p>
+
+    <pre><code>namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v2 {
+
+    template &lt;class R&gt;
+    class promise {
+    public:
+      typedef erased_type allocator_type;
+
+      promise();
+      template &lt;class Allocator&gt;
+      promise(allocator_arg_t, const Allocator&amp; a);
+      promise(promise&amp;&amp; rhs) noexcept;
+      promise(const promise&amp; rhs) = delete;
+      ~promise();
+
+      promise&amp; operator=(promise&amp;&amp; rhs) noexcept;
+      promise&amp; operator=(const promise&amp; rhs) = delete;
+      void swap(promise&amp; other) noexcept;
+
+      future&lt;R&gt; get_future();
+
+      void set_value(<em>see below</em>);
+      void set_exception(exception_ptr p);
+
+      void set_value_at_thread_exit(const R&amp; r);
+      void set_value_at_thread_exit(<em>see below</em>);
+      void set_exception_at_thread_exit(exception_ptr p);
+
+      pmr::memory_resource* get_memory_resource();
+    };
+
+    template &lt;class R&gt;
+    void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y) noexcept;
+
+  } // namespace fundamentals_v2
+  } // namespace experimental
+
+  template &lt;class R, class Alloc&gt;
+  struct uses_allocator&lt;experimental::promise&lt;R&gt;, Alloc&gt;;
+
+} // namespace std</code></pre>
+
+    <p>
+      When a <code>promise</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
+      the second argument is treated as a type-erased allocator (<cxx-ref to="memory.type.erased.allocator"></cxx-ref>).
+    </p>
+  </cxx-section>
+
+  <cxx-section id="futures.task">
+    <h1>Class template <code>packaged_task</code></h1>
+
+    <p>
+      The specification of all declarations within this sub-clause <cxx-ref to="futures.task"></cxx-ref>
+      and its sub-clauses are the same as the corresponding declarations,
+      as specified in <cxx-ref in="cxx" to="futures.task"></cxx-ref>,
+      unless explicitly specified otherwise.
+    </p>
+
+    <pre><code>namespace std {
+  namespace experimental {
+  inline namespace fundamentals_v2 {
+
+    template &lt;class R, class... ArgTypes&gt;
+    class packaged_task&lt;R(ArgTypes...)&gt; {
+    public:
+      typedef erased_type allocator_type;
+
+      packaged_task() noexcept;
+      template &lt;class F&gt;
+      explicit packaged_task(F&amp;&amp; f);
+      template &lt;class F, class Allocator&gt;
+      explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F&amp;&amp; f);
+      ~packaged_task();
+
+      packaged_task(const packaged_task&amp;) = delete;
+      packaged_task&amp; operator=(const packaged_task&amp;) = delete;
+
+      packaged_task(packaged_task&amp;&amp; rhs) noexcept;
+      packaged_task&amp; operator=(packaged_task&amp;&amp; rhs) noexcept;
+      void swap(packaged_task&amp; other) noexcept;
+
+      bool valid() const noexcept;
+
+      future&lt;R&gt; get_future();
+
+      void operator()(ArgTypes... );
+      void make_ready_at_thread_exit(ArgTypes...);
+
+      void reset();
+
+      pmr::memory_resource* get_memory_resource();
+    };
+
+    template &lt;class R, class... ArgTypes&gt;
+    void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
+
+  } // namespace fundamentals_v2
+  } // namespace experimental
+
+  template &lt;class R, class Alloc&gt;
+  struct uses_allocator&lt;experimental::packaged_task&lt;R&gt;, Alloc&gt;;
+
+} // namespace std</code></pre>
+
+    <p>
+      When a <code>packaged_task</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
+      the second argument is treated as a type-erased allocator (<cxx-ref to="memory.type.erased.allocator"></cxx-ref>).
+    </p>
+  </cxx-section>
+</cxx-clause>

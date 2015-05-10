@@ -86,6 +86,12 @@
   }
 }</code></pre>
 
+    <p>
+      This technical specification also describes some experimental modifications to existing interfaces in the C++ Standard Library.
+      These modifications are described by quoting the affected parts of the standard
+      and using <ins>underlining</ins> to represent added text and <del>strike-through</del> to represent deleted text.
+    </p>
+
     <p>Unless otherwise specified, references to other entities
     described in this technical specification are assumed to be
     qualified with <code>std::experimental::fundamentals_v2::</code>,
@@ -106,35 +112,50 @@
       <caption>C++ library headers</caption>
       <tr><td>
         <ul>
+          <li><code>&lt;experimental/algorithm></code></li>
+          <li><code>&lt;experimental/any></code></li>
           <li><code>&lt;experimental/array></code></li>
+          <li><code>&lt;experimental/chrono></code></li>
           <li><code>&lt;experimental/deque></code></li>
           <li><code>&lt;experimental/forward_list></code></li>
           <li><code>&lt;experimental/functional></code></li>
+          <li><code>&lt;experimental/future></code></li>
           <li><code>&lt;experimental/iterator></code></li>
           <li><code>&lt;experimental/list></code></li>
           <li><code>&lt;experimental/map></code></li>
           <li><code>&lt;experimental/memory></code></li>
+          <li><code>&lt;experimental/memory_resource></code></li>
+          <li><code>&lt;experimental/optional></code></li>
           <li><code>&lt;experimental/propagate_const></code></li>
+          <li><code>&lt;experimental/ratio></code></li>
+          <li><code>&lt;experimental/regex></code></li>
           <li><code>&lt;experimental/set></code></li>
           <li><code>&lt;experimental/source_location></code></li>
           <li><code>&lt;experimental/string></code></li>
+          <li><code>&lt;experimental/string_view></code></li>
+          <li><code>&lt;experimental/system_error></code></li>
+          <li><code>&lt;experimental/tuple></code></li>
+          <li><code>&lt;experimental/type_traits></code></li>
           <li><code>&lt;experimental/unordered_map></code></li>
           <li><code>&lt;experimental/unordered_set></code></li>
+          <li><code>&lt;experimental/utility></code></li>
           <li><code>&lt;experimental/vector></code></li>
         </ul>
       </td></tr>
     </table>
   </cxx-section>
 
-  <!--<cxx-section id="general.defns">
+  <cxx-section id="general.defns">
     <h1>Terms and definitions</h1>
 
     <p>For the purposes of this document, the terms and definitions
     given in the C++ Standard and the following apply.</p>
 
     <dl is="cxx-definition-section">
+      <dt id="general.defns.direct-non-list-init">direct-non-list-initialization</dt>
+      <dd>A direct-initialization that is not list-initialization.</dd>
     </dl>
-  </cxx-section>-->
+  </cxx-section>
 
   <cxx-section id="general.plans">
     <h1>Future plans (Informative)</h1>
@@ -200,73 +221,177 @@
           <th>Value</th>
           <th>Header</th>
         </tr>
-        <tr>
-          <td>N4388</td>
-          <td>A Proposal to Add a Const-Propagating Wrapper to the Standard Library</th>
-          <td><cxx-ref to="propagate_const"></cxx-ref></th>
-          <td><code>propagate_const</code></th>
-          <td>201504</th>
-          <td><code>&lt;experimental/propagate_const></code></th>
-        </tr>
-        <tr>
-          <td>N4076</td>
-          <td>A proposal to add a generalized callable negator</th>
-          <td><cxx-ref to="func.not_fn"></cxx-ref></th>
-          <td><code>not_fn</code></th>
-          <td>201406</th>
-          <td><code>&lt;experimental/functional></code></th>
-        </tr>
-        <tr>
-          <td>N4282</td>
-          <td>The World’s Dumbest Smart Pointer</th>
-          <td><cxx-ref to="memory.observer.ptr"></cxx-ref></th>
-          <td><code>observer_ptr</code></th>
-          <td>201411</th>
-          <td><code>&lt;experimental/memory></code></th>
-        </tr>
-        <tr>
-          <td>N4273</td>
-          <td>Uniform Container Erasure</td>
-          <td><cxx-ref to="container.erasure"></cxx-ref></td>
-          <td><code>erase_if</code></td>
-          <td>201411</td>
-          <td><code>&lt;experimental/vector></code></td>
-        </tr>
-        <tr>
-          <td>N4315</td>
-          <td>make_array</td>
-          <td><cxx-ref to="container.array.creation"></cxx-ref></td>
-          <td><code>make_array</code></td>
-          <td>201504</td>
-          <td><code>&lt;experimental/array></code></td>
-        </tr>
-        <tr>
-          <td>N4257</td>
-          <td>Delimited iterators</td>
-          <td><cxx-ref to="iterator.ostream.joiner"></cxx-ref></td>
-          <td><code>ostream_joiner</code></td>
-          <td>201411</td>
-          <td><code>&lt;experimental/iterator></code></td>
-        </tr>
-        <tr>
-          <td>N4061</td>
-          <td>Greatest Common Divisor and Least Common Multiple</td>
-          <td><cxx-ref to="numeric.ops.gcd"></cxx-ref>, <cxx-ref to="numeric.ops.lcm"></cxx-ref></td>
-          <td><code>gcd_lcm</code></td>
-          <td>201411</td>
-          <td><code>&lt;experimental/numeric></code></td>
-        </tr>
-        <tr>
-          <td>N4519</td>
-          <td>Source-Code Information Capture</td>
-          <td><cxx-ref to="reflection.src_loc"></cxx-ref></td>
-          <td><code>source_location</code></td>
-          <td>201505</td>
-          <td><code>&lt;experimental/source_location></code></td>
-        </tr>
       </thead>
 
       <!-- These rows are in the same order as their feature appears in this document. -->
+      <tr>
+        <td>N3915</td>
+        <td>apply() call a function with arguments from a tuple</td>
+        <td><cxx-ref to="tuple.apply"></cxx-ref></td>
+        <td><code>apply</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/tuple></code></td>
+      </tr>
+      <tr>
+        <td>N3932</td>
+        <td>Variable Templates For Type Traits</td>
+        <td><cxx-ref to="meta.type.synop"></cxx-ref></td>
+        <td><code>type_trait_variable_templates</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/type_traits></code></td>
+      </tr>
+      <tr>
+        <td>N3866</td>
+        <td>Invocation type traits</td>
+        <td><cxx-ref to="meta.trans.other"></cxx-ref></td>
+        <td><code>invocation_type</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/type_traits></code></td>
+      </tr>
+      <tr>
+        <td>N4388</td>
+        <td>A Proposal to Add a Const-Propagating Wrapper to the Standard Library</th>
+        <td><cxx-ref to="propagate_const"></cxx-ref></th>
+        <td><code>propagate_const</code></th>
+        <td>201504</th>
+        <td><code>&lt;experimental/propagate_const></code></th>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::function</td>
+        <td><cxx-ref to="func.wrap.func"></cxx-ref></td>
+        <td><code>function_erased_allocator</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/functional></code></td>
+      </tr>
+      <tr>
+        <td>N3905</td>
+        <td>Extending <code>std::search</code> to use Additional Searching Algorithms</td>
+        <td><cxx-ref to="func.searchers"></cxx-ref></td>
+        <td><code>boyer_moore_searching</code></td>
+        <td>201411</td>
+        <td><code>&lt;experimental/functional></code></td>
+      </tr>
+      <tr>
+        <td>N4076</td>
+        <td>A proposal to add a generalized callable negator</th>
+        <td><cxx-ref to="func.not_fn"></cxx-ref></th>
+        <td><code>not_fn</code></th>
+        <td>201406</th>
+        <td><code>&lt;experimental/functional></code></th>
+      </tr>
+      <tr>
+        <td>N3672, N3793</td>
+        <td>A utility class to represent optional objects</td>
+        <td><cxx-ref to="optional"></cxx-ref></td>
+        <td><code>optional</code></td>
+        <td>201411</td>
+        <td><code>&lt;experimental/optional></code></td>
+      </tr>
+      <tr>
+        <td>N3804</td>
+        <td>Any Library Proposal</td>
+        <td><cxx-ref to="any"></cxx-ref></td>
+        <td><code>any</code></td>
+        <td>201411</td>
+        <td><code>&lt;experimental/any></code></td>
+      </tr>
+      <tr>
+        <td>N3921</td>
+        <td><code>string_view</code>: a non-owning reference to a string</td>
+        <td><cxx-ref to="string.view"></cxx-ref></td>
+        <td><code>string_view</code></td>
+        <td>201411</td>
+        <td><code>&lt;experimental/string_view></code></td>
+      </tr>
+      <tr>
+        <td>N3920</td>
+        <td>Extending shared_ptr to Support Arrays</td>
+        <td><cxx-ref to="memory.smartptr"></cxx-ref></td>
+        <td><code>shared_ptr_arrays</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/memory></code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Polymorphic Memory Resources</td>
+        <td><cxx-ref to="memory.resource.synop"></cxx-ref></td>
+        <td><code>memory_resources</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/memory_resource></code></td>
+      </tr>
+      <tr>
+        <td>N4282</td>
+        <td>The World’s Dumbest Smart Pointer</th>
+        <td><cxx-ref to="memory.observer.ptr"></cxx-ref></th>
+        <td><code>observer_ptr</code></th>
+        <td>201411</th>
+        <td><code>&lt;experimental/memory></code></th>
+      </tr>
+      <tr>
+        <td>N4273</td>
+        <td>Uniform Container Erasure</td>
+        <td><cxx-ref to="container.erasure"></cxx-ref></td>
+        <td><code>erase_if</code></td>
+        <td>201411</td>
+        <td><code>&lt;experimental/vector></code></td>
+      </tr>
+      <tr>
+        <td>N4315</td>
+        <td>make_array</td>
+        <td><cxx-ref to="container.array.creation"></cxx-ref></td>
+        <td><code>make_array</code></td>
+        <td>201504</td>
+        <td><code>&lt;experimental/array></code></td>
+      </tr>
+      <tr>
+        <td>N4257</td>
+        <td>Delimited iterators</td>
+        <td><cxx-ref to="iterator.ostream.joiner"></cxx-ref></td>
+        <td><code>ostream_joiner</code></td>
+        <td>201411</td>
+        <td><code>&lt;experimental/iterator></code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::promise</td>
+        <td><cxx-ref to="futures.promise"></cxx-ref></td>
+        <td><code>promise_erased_allocator</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/future></code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Type-erased allocator for std::packaged_task</td>
+        <td><cxx-ref to="futures.task"></cxx-ref></td>
+        <td><code>packaged_task_erased_allocator</code></td>
+        <td>201406</td>
+        <td><code>&lt;experimental/future></code></td>
+      </tr>
+      <tr>
+        <td>N3925</td>
+        <td>A <code>sample</code> Proposal</td>
+        <td><cxx-ref to="alg.random.sample"></cxx-ref></td>
+        <td><code>sample</code></td>
+        <td>201402</td>
+        <td><code>&lt;experimental/algorithm></code></td>
+      </tr>
+      <tr>
+        <td>N4061</td>
+        <td>Greatest Common Divisor and Least Common Multiple</td>
+        <td><cxx-ref to="numeric.ops.gcd"></cxx-ref>, <cxx-ref to="numeric.ops.lcm"></cxx-ref></td>
+        <td><code>gcd_lcm</code></td>
+        <td>201411</td>
+        <td><code>&lt;experimental/numeric></code></td>
+      </tr>
+      <tr>
+        <td>N4519</td>
+        <td>Source-Code Information Capture</td>
+        <td><cxx-ref to="reflection.src_loc"></cxx-ref></td>
+        <td><code>source_location</code></td>
+        <td>201505</td>
+        <td><code>&lt;experimental/source_location></code></td>
+      </tr>
     </table>
   </cxx-section>
 </cxx-clause>

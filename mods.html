@@ -1,0 +1,51 @@
+<cxx-clause id="mods">
+  <h1>Modifications to the C++ Standard Library</h1>
+
+  <p>
+    Implementations that conform to this technical specification shall
+    behave as if the modifications contained in this section are made to the C++ Standard.
+  </p>
+
+  <cxx-section id="mods.allocator.uses">
+    <h1>Uses-allocator construction</h1>
+
+    <p>
+      The following changes to the <code>uses_allocator</code> trait and to the description of uses-allocator construction
+      allow a <code>memory_resource</code> pointer act as an allocator in many circumstances.
+      <cxx-note>Existing programs that use standard allocators would be unaffected by this change.</cxx-note>
+    </p>
+
+    <blockquote>
+      <p><b>20.7.7 uses_allocator [allocator.uses]</b></p>
+      <p><b>20.7.7.1 uses_allocator trait [allocator.uses.trait]</b></p>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class T, class Alloc> struct uses_allocator;</cxx-signature>
+        <cxx-remarks>
+          automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
+          Meets the BinaryTypeTrait requirements (<cxx-ref in="cxx" to="meta.rqmts"></cxx-ref>).
+          The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
+          and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type> != false</code>
+          <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref to="utility.erased.type"></cxx-ref>)</ins>,
+          otherwise it shall be derived from <code>false_type</code>.
+          A program may specialize this template to derive from <code>true_type</code> for a user-defined type <code>T</code> that does not have a nested <code>allocator_type</code> but nonetheless can be constructed with an allocator where either:
+          <ul>
+            <li>the first argument of a constructor has type <code>allocator_arg_t</code> and the second argument has type <code>Alloc</code> or</li>
+            <li>the last argument of a constructor has type <code>Alloc</code>.</li>
+          </ul>
+        </cxx-remarks>
+      </cxx-function>
+
+      <p><b>20.7.7.2 uses-allocator construction [allocator.uses.construction]</b></p>
+
+      <p>
+        <dfn>Uses-allocator construction</dfn> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,
+        using constructor arguments <code>v1, v2, ..., vN</code> of types <code>V1, V2, ..., VN</code>, respectively,
+        and an allocator <code>alloc</code> of type <code>Alloc</code>,
+        <ins>where <code>Alloc</code> either (1) meets the requirements of an allocator (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>),
+        or (2) is a pointer type convertible to <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memory.resource"></cxx-ref>),</ins>
+        according to the following rules:
+      </p>
+    </blockquote>
+  </cxx-section>
+</cxx-clause>

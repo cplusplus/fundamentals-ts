@@ -1,6 +1,475 @@
 <cxx-clause id="utilities">
   <h1>General utilities library</h1>
 
+  <cxx-section id="utility">
+    <h1>Utility components</h1>
+
+    <cxx-section id="utility.synop">
+      <h1>Header <code>&lt;experimental/utility></code> synopsis</h1>
+
+<pre><code>#include &lt;utility>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  <cxx-ref to="utility.erased.type"></cxx-ref>, erased-type placeholder
+  struct erased_type { };
+
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+
+    </cxx-section>
+
+    <cxx-section id="utility.erased.type">
+      <h1>Class <code>erased_type</code></h1>
+
+      <cxx-function>
+        <cxx-signature>struct erased_type { };</cxx-signature>
+
+        <p>
+          The <code>erased_type</code> <code>struct</code> is an empty <code>struct</code> that serves as a placeholder for a type <code>T</code> in situations where the actual type <code>T</code> is determined at runtime.
+          For example, the nested type, <code>allocator_type</code>, is an alias for <code>erased_type</code> in classes that use <i>type-erased allocators</i> (see <cxx-ref to="memory.type.erased.allocator"></cxx-ref>).
+        </p>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="tuple">
+    <h1>Tuples</h1>
+
+    <cxx-section id="header.tuple.synop">
+      <h1>Header &lt;experimental/tuple> synopsis</h1>
+
+<pre><code>#include &lt;tuple>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  // See <cxx-ref in="cxx" to="tuple.helper"></cxx-ref>, tuple helper classes
+  template &lt;class T> constexpr size_t tuple_size_v
+    = tuple_size&lt;T>::value;
+
+  <cxx-ref insynopsis="" to="tuple.apply"></cxx-ref>
+  template &lt;class F, class Tuple>
+  constexpr decltype(auto) apply(F&& f, Tuple&& t);
+
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+
+    <cxx-section id="tuple.apply">
+      <h1>Calling a function with a <code>tuple</code> of arguments</h1>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class F, class Tuple>
+constexpr decltype(auto) apply(F&& f, Tuple&& t);</cxx-signature>
+
+        <cxx-effects>
+          <p>Given the exposition only function</p>
+          <pre><code>template &lt;class F, class Tuple, size_t... I>
+constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
+    F&& f, Tuple&& t, index_sequence&lt;I...>) {
+  return <em>INVOKE</em>(std::forward&lt;F>(f), std::get&lt;I>(std::forward&lt;Tuple>(t))...);
+}</code></pre>
+          <p>Equivalent to</p>
+          <pre><code>return apply_impl(std::forward&lt;F>(f), std::forward&lt;Tuple>(t),
+    make_index_sequence&lt;tuple_size_v&lt;decay_t&lt;Tuple>>>{});</code></pre>
+        </cxx-effects>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="meta">
+    <h1>Metaprogramming and type traits</h1>
+
+    <cxx-section id="meta.type.synop">
+      <h1>Header &lt;experimental/type_traits> synopsis</h1>
+
+<pre><code>#include &lt;type_traits>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  // See <cxx-ref in="cxx" to="meta.unary.cat"></cxx-ref>, primary type categories
+  template &lt;class T> constexpr bool is_void_v
+    = is_void&lt;T>::value;
+  template &lt;class T> constexpr bool is_null_pointer_v
+    = is_null_pointer&lt;T>::value;
+  template &lt;class T> constexpr bool is_integral_v
+    = is_integral&lt;T>::value;
+  template &lt;class T> constexpr bool is_floating_point_v
+    = is_floating_point&lt;T>::value;
+  template &lt;class T> constexpr bool is_array_v
+    = is_array&lt;T>::value;
+  template &lt;class T> constexpr bool is_pointer_v
+    = is_pointer&lt;T>::value;
+  template &lt;class T> constexpr bool is_lvalue_reference_v
+    = is_lvalue_reference&lt;T>::value;
+  template &lt;class T> constexpr bool is_rvalue_reference_v
+    = is_rvalue_reference&lt;T>::value;
+  template &lt;class T> constexpr bool is_member_object_pointer_v
+    = is_member_object_pointer&lt;T>::value;
+  template &lt;class T> constexpr bool is_member_function_pointer_v
+    = is_member_function_pointer&lt;T>::value;
+  template &lt;class T> constexpr bool is_enum_v
+    = is_enum&lt;T>::value;
+  template &lt;class T> constexpr bool is_union_v
+    = is_union&lt;T>::value;
+  template &lt;class T> constexpr bool is_class_v
+    = is_class&lt;T>::value;
+  template &lt;class T> constexpr bool is_function_v
+    = is_function&lt;T>::value;
+
+  // See <cxx-ref in="cxx" to="meta.unary.comp"></cxx-ref>, composite type categories
+  template &lt;class T> constexpr bool is_reference_v
+    = is_reference&lt;T>::value;
+  template &lt;class T> constexpr bool is_arithmetic_v
+    = is_arithmetic&lt;T>::value;
+  template &lt;class T> constexpr bool is_fundamental_v
+    = is_fundamental&lt;T>::value;
+  template &lt;class T> constexpr bool is_object_v
+    = is_object&lt;T>::value;
+  template &lt;class T> constexpr bool is_scalar_v
+    = is_scalar&lt;T>::value;
+  template &lt;class T> constexpr bool is_compound_v
+    = is_compound&lt;T>::value;
+  template &lt;class T> constexpr bool is_member_pointer_v
+    = is_member_pointer&lt;T>::value;
+
+  // See <cxx-ref in="cxx" to="meta.unary.prop"></cxx-ref>, type properties
+  template &lt;class T> constexpr bool is_const_v
+    = is_const&lt;T>::value;
+  template &lt;class T> constexpr bool is_volatile_v
+    = is_volatile&lt;T>::value;
+  template &lt;class T> constexpr bool is_trivial_v
+    = is_trivial&lt;T>::value;
+  template &lt;class T> constexpr bool is_trivially_copyable_v
+    = is_trivially_copyable&lt;T>::value;
+  template &lt;class T> constexpr bool is_standard_layout_v
+    = is_standard_layout&lt;T>::value;
+  template &lt;class T> constexpr bool is_pod_v
+    = is_pod&lt;T>::value;
+  template &lt;class T> constexpr bool is_literal_type_v
+    = is_literal_type&lt;T>::value;
+  template &lt;class T> constexpr bool is_empty_v
+    = is_empty&lt;T>::value;
+  template &lt;class T> constexpr bool is_polymorphic_v
+    = is_polymorphic&lt;T>::value;
+  template &lt;class T> constexpr bool is_abstract_v
+    = is_abstract&lt;T>::value;
+  template &lt;class T> constexpr bool is_final_v
+    = is_final&lt;T>::value;
+  template &lt;class T> constexpr bool is_signed_v
+    = is_signed&lt;T>::value;
+  template &lt;class T> constexpr bool is_unsigned_v
+    = is_unsigned&lt;T>::value;
+  template &lt;class T, class... Args> constexpr bool is_constructible_v
+    = is_constructible&lt;T, Args...>::value;
+  template &lt;class T> constexpr bool is_default_constructible_v
+    = is_default_constructible&lt;T>::value;
+  template &lt;class T> constexpr bool is_copy_constructible_v
+    = is_copy_constructible&lt;T>::value;
+  template &lt;class T> constexpr bool is_move_constructible_v
+    = is_move_constructible&lt;T>::value;
+  template &lt;class T, class U> constexpr bool is_assignable_v
+    = is_assignable&lt;T, U>::value;
+  template &lt;class T> constexpr bool is_copy_assignable_v
+    = is_copy_assignable&lt;T>::value;
+  template &lt;class T> constexpr bool is_move_assignable_v
+    = is_move_assignable&lt;T>::value;
+  template &lt;class T> constexpr bool is_destructible_v
+    = is_destructible&lt;T>::value;
+  template &lt;class T, class... Args> constexpr bool is_trivially_constructible_v
+    = is_trivially_constructible&lt;T, Args...>::value;
+  template &lt;class T> constexpr bool is_trivially_default_constructible_v
+    = is_trivially_default_constructible&lt;T>::value;
+  template &lt;class T> constexpr bool is_trivially_copy_constructible_v
+    = is_trivially_copy_constructible&lt;T>::value;
+  template &lt;class T> constexpr bool is_trivially_move_constructible_v
+    = is_trivially_move_constructible&lt;T>::value;
+  template &lt;class T, class U> constexpr bool is_trivially_assignable_v
+    = is_trivially_assignable&lt;T, U>::value;
+  template &lt;class T> constexpr bool is_trivially_copy_assignable_v
+    = is_trivially_copy_assignable&lt;T>::value;
+  template &lt;class T> constexpr bool is_trivially_move_assignable_v
+    = is_trivially_move_assignable&lt;T>::value;
+  template &lt;class T> constexpr bool is_trivially_destructible_v
+    = is_trivially_destructible&lt;T>::value;
+  template &lt;class T, class... Args> constexpr bool is_nothrow_constructible_v
+    = is_nothrow_constructible&lt;T, Args...>::value;
+  template &lt;class T> constexpr bool is_nothrow_default_constructible_v
+    = is_nothrow_default_constructible&lt;T>::value;
+  template &lt;class T> constexpr bool is_nothrow_copy_constructible_v
+    = is_nothrow_copy_constructible&lt;T>::value;
+  template &lt;class T> constexpr bool is_nothrow_move_constructible_v
+    = is_nothrow_move_constructible&lt;T>::value;
+  template &lt;class T, class U> constexpr bool is_nothrow_assignable_v
+    = is_nothrow_assignable&lt;T, U>::value;
+  template &lt;class T> constexpr bool is_nothrow_copy_assignable_v
+    = is_nothrow_copy_assignable&lt;T>::value;
+  template &lt;class T> constexpr bool is_nothrow_move_assignable_v
+    = is_nothrow_move_assignable&lt;T>::value;
+  template &lt;class T> constexpr bool is_nothrow_destructible_v
+    = is_nothrow_destructible&lt;T>::value;
+  template &lt;class T> constexpr bool has_virtual_destructor_v
+    = has_virtual_destructor&lt;T>::value;
+
+  // See <cxx-ref in="cxx" to="meta.unary.prop.query"></cxx-ref>, type property queries
+  template &lt;class T> constexpr size_t alignment_of_v
+    = alignment_of&lt;T>::value;
+  template &lt;class T> constexpr size_t rank_v
+    = rank&lt;T>::value;
+  template &lt;class T, unsigned I = 0> constexpr size_t extent_v
+    = extent&lt;T, I>::value;
+
+  // See <cxx-ref in="cxx" to="meta.rel"></cxx-ref>, type relations
+  template &lt;class T, class U> constexpr bool is_same_v
+    = is_same&lt;T, U>::value;
+  template &lt;class Base, class Derived> constexpr bool is_base_of_v
+    = is_base_of&lt;Base, Derived>::value;
+  template &lt;class From, class To> constexpr bool is_convertible_v
+    = is_convertible&lt;From, To>::value;
+
+  <cxx-ref insynopsis="" to="meta.trans.other"></cxx-ref>
+  template &lt;class> class invocation_type; // <i>not defined</i>
+  template &lt;class F, class... ArgTypes> class invocation_type&lt;F(ArgTypes...)>;
+  template &lt;class> class raw_invocation_type; // <i>not defined</i>
+  template &lt;class F, class... ArgTypes> class raw_invocation_type&lt;F(ArgTypes...)>;
+
+  template &lt;class T>
+    using invocation_type_t = typename invocation_type&lt;T>::type;
+  template &lt;class T>
+    using raw_invocation_type_t = typename raw_invocation_type&lt;T>::type;
+
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+
+    </cxx-section>
+
+    <cxx-section id="meta.trans.other">
+      <h1>Other type transformations</h1>
+
+      <p>
+        This sub-clause contains templates that may be used to transform one type to another following some predefined rule.
+      </p>
+
+      <p>
+        Each of the templates in this subclause shall be a <cxx-term>TransformationTrait</cxx-term> (<cxx-ref in="cxx" to="meta.rqmts"></cxx-ref>).
+      </p>
+
+      <p>
+        Within this section, define the <dfn>invocation parameters</dfn> of <code><em>INVOKE</em>(f, t1, t2, ..., tN)</code> as follows,
+        in which <code>T1</code> is the possibly <var>cv</var>-qualified type of <code>t1</code>
+        and <code>U1</code> denotes <code>T1&amp;</code> if <code>t1</code> is an lvalue
+        or <code>T1&amp;&amp;</code> if <code>t1</code> is an rvalue:
+      </p>
+      <ul>
+        <li>
+          When <code>f</code> is a pointer to a member function of a class <code>T</code>
+          the <cxx-term>invocation parameters</cxx-term> are <code>U1</code> followed by
+          the parameters of <code>f</code> matched by <code>t2</code>, ..., <code>tN</code>.
+        </li>
+        <li>
+          When <code>N == 1</code> and <code>f</code> is a pointer to member data of a class <code>T</code>
+          the <cxx-term>invocation parameter</cxx-term> is <code>U1</code>.
+        </li>
+        <li>
+          If <code>f</code> is a class object,
+          the <cxx-term>invocation parameters</cxx-term> are the parameters matching <code>t1</code>, ..., <code>tN</code>
+          of the best viable function (<cxx-ref in="cxx" to="over.match.best"></cxx-ref>)
+          for the arguments <code>t1</code>, ..., <code>tN</code>
+          among the function call operators of <code>f</code>.
+        </li>
+        <li>
+          In all other cases,
+          the <cxx-term>invocation parameters</cxx-term> are the parameters of <code>f</code>
+          matching <code>t1</code>, ... <code>tN</code>.
+        </li>
+      </ul>
+      <p>
+        In all of the above cases,
+        if an argument <code>tI</code> matches the ellipsis in the function's <cxx-term>parameter-declaration-clause</cxx-term>,
+        the corresponding <cxx-term>invocation parameter</cxx-term> is defined to be
+        the result of applying the default argument promotions (<cxx-ref in="cxx" to="expr.call"></cxx-ref>) to <code>tI</code>.
+      </p>
+
+      <cxx-example>
+        Assume <code>S</code> is defined as
+        <pre><code>struct S {
+  int f(double const &amp;) const;
+  void operator()(int, int);
+  void operator()(char const *, int i = 2, int j = 3);
+  void operator()(...);
+};</code></pre>
+        <ul>
+          <li>The invocation parameters of <code><em>INVOKE</em>(&amp;S::f, S(), 3.5)</code> are <code>(S &amp;&amp;, double const &amp;)</code>.</li>
+          <li>The invocation parameters of <code><em>INVOKE</em>(S(), 1, 2)</code> are <code>(int, int)</code>.</li>
+          <li>The invocation parameters of <code><em>INVOKE</em>(S(), "abc", 5)</code> are <code>(const char *, int)</code>.
+          The defaulted parameter <code>j</code> does not correspond to an argument.</li>
+          <li>The invocation parameters of <code><em>INVOKE</em>(S(), locale(), 5)</code> are <code>(locale, int)</code>.
+          Arguments corresponding to ellipsis maintain their types</li>
+        </ul>
+      </cxx-example>
+
+      <table is="cxx-table" id="tab:meta.trans.other">
+        <caption>Other type transformations</caption>
+        <thead>
+          <tr><th>Template</th><th>Condition</th><th>Comments</th></tr>
+        </thead>
+        <tr>
+          <td>
+            <code>template &lt;class Fn, class... ArgTypes&gt;<br/>
+            struct raw_invocation_type&lt;<w-br></w-br>Fn(ArgTypes...)&gt;;</code>
+          </td>
+          <td>
+            <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
+            shall be complete types, (possibly cv-qualified) <code>void</code>, or arrays of unknown bound.
+          </td>
+
+          <td>
+            <em>see below</em>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>template &lt;class Fn, class... ArgTypes&gt;<br/>
+            struct invocation_type&lt;<w-br></w-br>Fn(ArgTypes...)&gt;;</code>
+          </td>
+          <td>
+            <code>Fn</code> and all types in the parameter pack <code>ArgTypes</code>
+            shall be complete types, (possibly cv-qualified) <code>void</code>,
+            or arrays of unknown bound.
+          </td>
+          <td>
+            <em>see below</em>
+          </td>
+        </tr>
+      </table>
+
+      <p>
+        Access checking is performed as if in a context unrelated to <code>Fn</code> and <code>ArgTypes</code>.
+        Only the validity of the immediate context of the expression is considered.
+        <cxx-note>The compilation of the expression can result in side effects
+        such as the instantiation of class template specializations and function template specializations,
+        the generation of implicitly-defined functions, and so on.
+        Such side effects are not in the "immediate context"
+        and can result in the program being ill-formed.</cxx-note>
+      </p>
+
+      <p>
+        The nested typedef <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
+        If the expression <code><em>INVOKE</em>(declval&lt;Fn&gt;(), declval&lt;ArgTypes&gt;()...)</code>
+        is ill-formed when treated as an unevaluated operand (<cxx-ref in="cxx" to="expr"></cxx-ref>),
+        there shall be no member <code>type</code>. Otherwise:
+      </p>
+      <ul>
+        <li>Let <code>R</code> denote <code>result_of_t&lt;Fn(ArgTypes...)&gt;</code>.</li>
+        <li>Let the types <code>Ti</code> be the <cxx-term>invocation parameters</cxx-term>
+        of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), <nobr>declval&lt;ArgTypes&gt;()...)</code></nobr>.</li>
+        <li>Then the member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>
+      </ul>
+
+      <p>
+        The nested typedef <code>invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
+        If <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> does not exist, there shall be no member typedef <code>type</code>.
+        Otherwise:
+      </p>
+      <ul>
+        <li>Let <code>A1, A2,</code> … denote <code>ArgTypes...</code></li>
+        <li>Let <code>R(T1, T2, …)</code> denote <code>raw_invocation_type_t&lt;Fn(ArgTypes...)&gt;</code></li>
+        <li>
+          Then the member typedef <code>type</code> shall name the function type <code>R(U1, U2, …)</code>
+          where <code>Ui</code> is <code>decay_t&lt;Ai&gt;</code> if <code>declval&lt;Ai&gt;()</code> is an rvalue
+          otherwise <code>Ti</code>.
+        </li>
+      </ul>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="ratio">
+    <h1>Compile-time rational arithmetic</h1>
+
+    <cxx-section id="header.ratio.synop">
+      <h1>Header &lt;experimental/ratio> synopsis</h1>
+
+<pre><code>#include &lt;ratio>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  // See <cxx-ref in="cxx" to="ratio.comparison"></cxx-ref>, ratio comparison
+  template &lt;class R1, class R2> constexpr bool ratio_equal_v
+    = ratio_equal&lt;R1, R2>::value;
+  template &lt;class R1, class R2> constexpr bool ratio_not_equal_v
+    = ratio_not_equal&lt;R1, R2>::value;
+  template &lt;class R1, class R2> constexpr bool ratio_less_v
+    = ratio_less&lt;R1, R2>::value;
+  template &lt;class R1, class R2> constexpr bool ratio_less_equal_v
+    = ratio_less_equal&lt;R1, R2>::value;
+  template &lt;class R1, class R2> constexpr bool ratio_greater_v
+    = ratio_greater&lt;R1, R2>::value;
+  template &lt;class R1, class R2> constexpr bool ratio_greater_equal_v
+    = ratio_greater_equal&lt;R1, R2>::value;
+
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="time">
+    <h1>Time utilities</h1>
+
+    <cxx-section id="header.chrono.synop">
+      <h1>Header &lt;experimental/chrono> synopsis</h1>
+
+<pre><code>#include &lt;chrono>
+
+namespace std {
+namespace chrono {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  // See <cxx-ref in="cxx" to="time.traits"></cxx-ref>, customization traits
+  template &lt;class Rep> constexpr bool treat_as_floating_point_v
+    = treat_as_floating_point&lt;Rep>::value;
+
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace chrono
+} // namespace std</code></pre>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="syserror">
+    <h1>System error support</h1>
+
+    <cxx-section id="header.system_error.synop">
+      <h1>Header &lt;experimental/system_error> synopsis</h1>
+
+<pre><code>#include &lt;system_error>
+
+namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+
+  // See <cxx-ref in="cxx" to="syserr"></cxx-ref>, System error support
+  template &lt;class T> constexpr bool is_error_code_enum_v
+    = is_error_code_enum&lt;T>::value;
+  template &lt;class T> constexpr bool is_error_condition_enum_v
+    = is_error_condition_enum&lt;T>::value;
+
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+
   <cxx-section id="propagate_const">
     <h1>Class template <code>propagate_const</code></h1>
 
