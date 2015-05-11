@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -225,7 +225,7 @@ cxx-section header {
 	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
-cxx-section header:after {
+cxx-section header::after {
 	clear: both; display: block; content: " "; height: 0px;
 }cxx-clause {
 	display: block;
@@ -247,7 +247,7 @@ cxx-clause header {
 	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
 }
 
-cxx-clause header:after {
+cxx-clause header::after {
 	clear: both; display: block; content: " "; height: 0px;
 }[is=cxx-table] {
 	margin-left: auto; margin-right: auto; border-collapse: collapse; border: thin solid black;
@@ -289,7 +289,7 @@ cxx-clause header:after {
 	padding-left: 0px; margin: 0px;
 }
 
-[is=cxx-table].list ul li:before {
+[is=cxx-table].list ul li::before {
 	content: "";
 }cxx-figure {
 	margin-left: auto; margin-right: auto;
@@ -464,7 +464,7 @@ cxx-ednote.para aside {
 }cxx-note .nowrap {
 	white-space: nowrap;
 }cxx-footnote {
-	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; 
+	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial; 
 }
 
 @media screen {
@@ -511,7 +511,7 @@ cxx-example .nowrap {
 	white-space: normal;
 }
 
-w-br:after {
+w-br::after {
 	content: "​";
 }</style>
   <meta charset="utf-8">
@@ -539,7 +539,7 @@ limitations under the License.
     @bottom-right { content: counter(page); font-size: 10pt; }
 }
 @page :first {
-    @top-left { content: "© ISO 2014 — All rights reserved"; }
+    /* @top-left is defined by base.js. */
     @top-right { content: normal; }
     @bottom-left { content: normal; }
     @bottom-right { content: normal; }
@@ -932,7 +932,7 @@ html   [segment], html   segment {
   box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px 5px 5px 5px;
 }</style>
-<title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
+<style>@page :first { @top-left { content: "© ISO 2015 — All rights reserved"; } }</style><title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
 <body class="cxx-draft">
 <cxx-titlepage>
     
@@ -1683,10 +1683,7 @@ html   [segment], html   segment {
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:—<cxx-footnote><!--
-    Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>To be published. Section references are relative to <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n3937.pdf">N3937</a>.</aside></cxx-footnote>,
-      <cite>Programming Languages — C++</cite>
+      <li>ISO/IEC 14882:2014, <cite>Programming Languages — C++</cite>
       </li>
     </ul>
 
@@ -1787,7 +1784,7 @@ html   [segment], html   segment {
     <caption>Table 1 — <wbr><span>C++ library headers</span></caption>
     
       
-      <tbody><tr><td><ul><li><code>&lt;experimental/algorithm&gt;</code></li><li><code>&lt;experimental/any&gt;</code></li><li><code>&lt;experimental/chrono&gt;</code></li><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/future&gt;</code></li><li><code>&lt;experimental/list&gt;</code></li><li><code>&lt;experimental/map&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/memory_resource&gt;</code></li><li><code>&lt;experimental/net&gt;</code></li><li><code>&lt;experimental/optional&gt;</code></li><li><code>&lt;experimental/ratio&gt;</code></li><li><code>&lt;experimental/regex&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li><li><code>&lt;experimental/string&gt;</code></li><li><code>&lt;experimental/string_view&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/system_error&gt;</code></li><li><code>&lt;experimental/tuple&gt;</code></li><li><code>&lt;experimental/type_traits&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/utility&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
+      <tbody><tr><td><ul><li><code>&lt;experimental/algorithm&gt;</code></li><li><code>&lt;experimental/any&gt;</code></li><li><code>&lt;experimental/chrono&gt;</code></li><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/future&gt;</code></li><li><code>&lt;experimental/list&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/map&gt;</code></li><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/memory_resource&gt;</code></li><li><code>&lt;experimental/optional&gt;</code></li><li><code>&lt;experimental/ratio&gt;</code></li><li><code>&lt;experimental/regex&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li><li><code>&lt;experimental/string&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/string_view&gt;</code></li><li><code>&lt;experimental/system_error&gt;</code></li><li><code>&lt;experimental/tuple&gt;</code></li><li><code>&lt;experimental/type_traits&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/utility&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
     </tbody>
   </table>
   
@@ -2242,7 +2239,7 @@ constexpr decltype(auto) apply(F&amp;&amp; f, Tuple&amp;&amp; t);</cxx-signature
           <pre><code>template &lt;class F, class Tuple, size_t... I&gt;
 constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
     F&amp;&amp; f, Tuple&amp;&amp; t, index_sequence&lt;I...&gt;) {
-  return std::forward&lt;F&gt;(f)(std::get&lt;I&gt;(std::forward&lt;Tuple&gt;(t))...);
+  return <em>INVOKE</em>(std::forward&lt;F&gt;(f), std::get&lt;I&gt;(std::forward&lt;Tuple&gt;(t))...);
 }</code></pre>
           <p>Equivalent to</p>
           <pre><code>return apply_impl(std::forward&lt;F&gt;(f), std::forward&lt;Tuple&gt;(t),
@@ -5830,7 +5827,7 @@ class basic_string_view {
   typedef <var>implementation-defined</var> const_iterator; // See <cxx-ref to="string.view.iterators"><a title="string.view.iterators" href="#string.view.iterators">7.4</a></cxx-ref>
   typedef const_iterator iterator;<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-2"><a href="#footnote-body-2">2</a></sup><aside class="footnote" id="footnote-body-2"><span class="marker"><a href="#footnote-call-2">2</a>) </span>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</aside></cxx-footnote>
+  --><sup id="footnote-call-1"><a href="#footnote-body-1">1</a></sup><aside class="footnote" id="footnote-body-1"><span class="marker"><a href="#footnote-call-1">1</a>) </span>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</aside></cxx-footnote>
   typedef reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
   typedef const_reverse_iterator reverse_iterator;
   typedef size_t size_type;
@@ -6437,7 +6434,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
     <pre><code><cxx-signature>template&lt;class Allocator&gt;
 explicit<cxx-footnote><!--
     Be sure not to introduce whitespace here, as it appears around the footnote.
-  --><sup id="footnote-call-3"><a href="#footnote-body-3">3</a></sup><aside class="footnote" id="footnote-body-3"><span class="marker"><a href="#footnote-call-3">3</a>) </span>This conversion is explicit to avoid accidental O(N) operations on type mismatches.</aside></cxx-footnote> operator basic_string&lt;
+  --><sup id="footnote-call-2"><a href="#footnote-body-2">2</a></sup><aside class="footnote" id="footnote-body-2"><span class="marker"><a href="#footnote-call-2">2</a>) </span>This conversion is explicit to avoid accidental O(N) operations on type mismatches.</aside></cxx-footnote> operator basic_string&lt;
     charT, traits, Allocator&gt;() const;</cxx-signature></code></pre>
 
     <dl>
@@ -7663,10 +7660,10 @@ inline namespace fundamentals_v1 {
       
         
 
-        <cxx-requires para_num="33" id="memory.smartptr.shared.const.33">
+        <cxx-remarks para_num="33" id="memory.smartptr.shared.const.33">
     
-    <dt>Requires:</dt><dd><code>Y*</code> shall be <em>compatible with</em> <code>T*</code>.</dd>
-  </cxx-requires>
+    <dt>Remarks:</dt><dd>This constructor shall not participate in overload resolution unless <code>Y*</code> is <em>compatible with</em> <code>T*</code>.</dd>
+  </cxx-remarks>
 
         <cxx-effects para_num="34" id="memory.smartptr.shared.const.34">
     
@@ -10031,7 +10028,7 @@ namespace pmr {
       
       
 <pre><code>#include &lt;regex&gt;
-#include &lt;exerimental/string&gt;
+#include &lt;experimental/string&gt;
 
 namespace std {
 namespace experimental {
@@ -10382,7 +10379,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
   </cxx-returns>
       <cxx-complexity para_num="5" id="alg.random.sample.5">
     
-    <dt>Complexity:</dt><dd>O(<code>n</code>).</dd>
+    <dt>Complexity:</dt><dd>O(<code>last - first</code>).</dd>
   </cxx-complexity>
       <cxx-remarks para_num="6" id="alg.random.sample.6">
     
