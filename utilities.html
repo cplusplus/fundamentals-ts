@@ -246,6 +246,38 @@ inline namespace fundamentals_v2 {
   template &lt;class T>
     using raw_invocation_type_t = typename raw_invocation_type&lt;T>::type;
 
+  <cxx-ref insynopsis to="meta.detect"></cxx-ref>
+  template &lt;class...> using void_t = void;
+
+  struct nonesuch {
+    nonesuch() = delete;
+    ~nonesuch() = delete;
+    nonesuch(nonesuch const&) = delete;
+
+    void operator=(nonesuch const&) = delete;
+  };
+
+  template &lt;template&lt;class...> class Op, class... Args>
+    using is_detected = <i>see below</i>;
+  template &lt;template&lt;class...> class Op, class... Args>
+    constexpr bool is_detected_v = is_detected&lt;Op, Args...>::value;
+  template &lt;template&lt;class...> class Op, class... Args>
+    using detected_t = <i>see below</i>;
+  template &lt;class Default, template&lt;class...> class Op, class... Args>
+    using detected_or = <i>see below</i>;
+  template &lt;class Default, template&lt;class...> class Op, class... Args>
+    using detected_or_t = typename detected_or&lt;Default, Op, Args...>::type;
+  template &lt;class Expected, template&lt;class...> class Op, class... Args>
+    using is_detected_exact = is_same&lt;Expected, detected_t&lt;Op, Args...>>;
+  template &lt;class Expected, template&lt;class...> class Op, class... Args>
+    constexpr bool is_detected_exact_v
+      = is_detected_exact&lt;Expected, Op, Args...>::value;
+  template &lt;class To, template&lt;class...> class Op, class... Args>
+    using is_detected_convertible = is_convertible&lt;detected_t&lt;Op, Args...>, To>;
+  template &lt;class To, template&lt;class...> class Op, class... Args>
+    constexpr bool is_detected_convertible_v
+      = is_detected_convertible&lt;To, Op, Args...>::value;
+
 } // namespace fundamentals_v2
 } // namespace experimental
 } // namespace std</code></pre>
@@ -389,6 +421,57 @@ inline namespace fundamentals_v2 {
           otherwise <code>Ti</code>.
         </li>
       </ul>
+    </cxx-section>
+
+    <cxx-section id="meta.detect">
+      <h1>Detection idiom</h1>
+
+      <pre><code>template &lt;class Default, class AlwaysVoid,
+          template&lt;class...> class Op, class... Args>
+struct DETECTOR { // <i>exposition only</i>
+  using value_t = false_type;
+  using type = Default;
+};
+
+template &lt;class Default, template&lt;class...> class Op, class... Args>
+struct DETECTOR&lt;Default, void_t&lt;Op&lt;Args...>>, Op, Args...> { // <i>exposition only</i>
+  using value_t = true_type;
+  using type = Op&lt;Args...>;
+};
+
+template &lt;template&lt;class...> class Op, class... Args>
+  using is_detected = typename DETECTOR&lt;nonesuch, void, Op, Args...>::value_t;
+
+template &lt;template&lt;class...> class Op, class... Args>
+  using detected_t = typename DETECTOR&lt;nonesuch, void, Op, Args...>::type;
+
+template &lt;class Default, template&lt;class...> class Op, class... Args>
+  using detected_or = DETECTOR&lt;Default, void, Op, Args...>;</code></pre>
+
+      <cxx-example>
+        <pre><code>// <i>archetypal helper alias for a copy assignment operation:</i>
+template &lt;class T>
+  using copy_assign_t = decltype(declval&lt;T&>() = declval&lt;T const &>());
+
+// <i>plausible implementation for the is_assignable type trait:</i>
+template &lt;class T>
+  using is_copy_assignable = is_detected&lt;T, copy_assign_t>;
+
+// <i>plausible implementation for an augmented is_assignable type trait</i>
+// <i>that also checks the return type:</i>
+template &lt;class T>
+  using is_canonical_copy_assignable = is_detected_exact&lt;T&, T, copy_assign_t>;</code></pre>
+      </cxx-example>
+
+      <cxx-example>
+        <pre><code>// <i>archetypal helper alias for a particular type member:</i>
+template &lt;class T>
+  using diff_t = typename T::difference_type;
+
+// <i>alias the type member, if it exists, otherwise alias </i>ptrdiff_t<i>:</i>
+template &lt;class Ptr>
+  using difference_type = detected_or_t&lt;ptrdiff_t, diff_t, Ptr>;</code></pre>
+      </cxx-example>
     </cxx-section>
   </cxx-section>
 
