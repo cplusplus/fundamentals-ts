@@ -2967,12 +2967,12 @@ template &lt;class T&gt;
 
 // <i>plausible implementation for the is_assignable type trait:</i>
 template &lt;class T&gt;
-  using is_copy_assignable = is_detected&lt;T, copy_assign_t&gt;;
+  using is_copy_assignable = is_detected&lt;copy_assign_t, T&gt;;
 
 // <i>plausible implementation for an augmented is_assignable type trait</i>
 // <i>that also checks the return type:</i>
 template &lt;class T&gt;
-  using is_canonical_copy_assignable = is_detected_exact&lt;T&amp;, T, copy_assign_t&gt;;</code></pre>
+  using is_canonical_copy_assignable = is_detected_exact&lt;T&amp;, copy_assign_t, T&gt;;</code></pre>
       
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>

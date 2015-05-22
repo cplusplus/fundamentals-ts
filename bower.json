@@ -1,0 +1,20 @@
+{
+  "name": "cxx-fundamentals-ts",
+  "version": "2.0.0",
+  "homepage": "https://github.com/cplusplus/fundamentals-ts",
+  "authors": [
+    "Jeffrey Yasskin <jyasskin@google.com>"
+  ],
+  "description": "C++ Library Fundamentals TS",
+  "main": "main.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cxx-html-doc-framework": "cplusplus/html-doc-framework"
+  }
+}
