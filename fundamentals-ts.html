@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-TOC");document.createElement("CXX-FOREWORD");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EDNOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-REQUIRES");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -393,66 +393,76 @@ cxx-titlepagebody.cxx-draft p.warning, body.cxx-draft cxx-titlepage p.warning {
 	position: absolute; bottom: 5%;
 }
 
-cxx-titlepagebody.cxx-pdts .header, body.cxx-pdts cxx-titlepage .header, cxx-titlepagebody.cxx-dts .header, body.cxx-dts cxx-titlepage .header {
+cxx-titlepagebody.cxx-pdts .header, body.cxx-pdts cxx-titlepage .header, cxx-titlepagebody.cxx-dts .header, body.cxx-dts cxx-titlepage .header, cxx-titlepagebody.cxx-ts .header, body.cxx-ts cxx-titlepage .header {
 	position: absolute; right: 0px; top: 0px; text-align: right;
 }
 
-cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-dts .header cxx-docnum, body.cxx-dts cxx-titlepage .header cxx-docnum {
+cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-dts .header cxx-docnum, body.cxx-dts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-ts .header cxx-docnum, body.cxx-ts cxx-titlepage .header cxx-docnum {
 	font-size: 150%;
 }
 
-cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-dts .header cxx-docnum, body.cxx-dts cxx-titlepage .header cxx-docnum {
+cxx-titlepagebody.cxx-pdts .header cxx-docnum, body.cxx-pdts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-dts .header cxx-docnum, body.cxx-dts cxx-titlepage .header cxx-docnum, cxx-titlepagebody.cxx-ts .header cxx-docnum, body.cxx-ts cxx-titlepage .header cxx-docnum {
 	font-size: 150%;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup, body.cxx-pdts cxx-titlepage hgroup, cxx-titlepagebody.cxx-dts hgroup, body.cxx-dts cxx-titlepage hgroup {
+cxx-titlepagebody.cxx-pdts hgroup, body.cxx-pdts cxx-titlepage hgroup, cxx-titlepagebody.cxx-dts hgroup, body.cxx-dts cxx-titlepage hgroup, cxx-titlepagebody.cxx-ts hgroup, body.cxx-ts cxx-titlepage hgroup {
 	position: absolute; top: 30%;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup *, body.cxx-pdts cxx-titlepage hgroup *, cxx-titlepagebody.cxx-dts hgroup *, body.cxx-dts cxx-titlepage hgroup * {
+cxx-titlepagebody.cxx-pdts hgroup *, body.cxx-pdts cxx-titlepage hgroup *, cxx-titlepagebody.cxx-dts hgroup *, body.cxx-dts cxx-titlepage hgroup *, cxx-titlepagebody.cxx-ts hgroup *, body.cxx-ts cxx-titlepage hgroup * {
 	margin: 0px;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup h1, body.cxx-pdts cxx-titlepage hgroup h1, cxx-titlepagebody.cxx-dts hgroup h1, body.cxx-dts cxx-titlepage hgroup h1 {
+cxx-titlepagebody.cxx-pdts hgroup h1, body.cxx-pdts cxx-titlepage hgroup h1, cxx-titlepagebody.cxx-dts hgroup h1, body.cxx-dts cxx-titlepage hgroup h1, cxx-titlepagebody.cxx-ts hgroup h1, body.cxx-ts cxx-titlepage hgroup h1 {
 	font-size: 150%; font-weight: bold;
 }
 
-cxx-titlepagebody.cxx-pdts hgroup h2, body.cxx-pdts cxx-titlepage hgroup h2, cxx-titlepagebody.cxx-dts hgroup h2, body.cxx-dts cxx-titlepage hgroup h2 {
+cxx-titlepagebody.cxx-pdts hgroup h2, body.cxx-pdts cxx-titlepage hgroup h2, cxx-titlepagebody.cxx-dts hgroup h2, body.cxx-dts cxx-titlepage hgroup h2, cxx-titlepagebody.cxx-ts hgroup h2, body.cxx-ts cxx-titlepage hgroup h2 {
 	font-size: 100%; font-weight: normal;
 }
 
-cxx-titlepagebody.cxx-pdts .footer, body.cxx-pdts cxx-titlepage .footer, cxx-titlepagebody.cxx-dts .footer, body.cxx-dts cxx-titlepage .footer {
+cxx-titlepagebody.cxx-pdts .footer, body.cxx-pdts cxx-titlepage .footer, cxx-titlepagebody.cxx-dts .footer, body.cxx-dts cxx-titlepage .footer, cxx-titlepagebody.cxx-ts .footer, body.cxx-ts cxx-titlepage .footer {
 	position: absolute; left: 0px; bottom: 5%;
 }
 
-cxx-titlepagebody.cxx-pdts figure, body.cxx-pdts cxx-titlepage figure, cxx-titlepagebody.cxx-dts figure, body.cxx-dts cxx-titlepage figure {
+cxx-titlepagebody.cxx-pdts figure, body.cxx-pdts cxx-titlepage figure, cxx-titlepagebody.cxx-dts figure, body.cxx-dts cxx-titlepage figure, cxx-titlepagebody.cxx-ts figure, body.cxx-ts cxx-titlepage figure {
 	border: 1px solid rgb(17, 17, 17); padding: 10px; margin-left: auto; margin-right: auto;
 }
 
-cxx-titlepagebody.cxx-pdts figcaption, body.cxx-pdts cxx-titlepage figcaption, cxx-titlepagebody.cxx-dts figcaption, body.cxx-dts cxx-titlepage figcaption {
+cxx-titlepagebody.cxx-pdts figcaption, body.cxx-pdts cxx-titlepage figcaption, cxx-titlepagebody.cxx-dts figcaption, body.cxx-dts cxx-titlepage figcaption, cxx-titlepagebody.cxx-ts figcaption, body.cxx-ts cxx-titlepage figcaption {
 	text-align: center; font-weight: bold;
 }
 
-cxx-titlepagebody.cxx-pdts .warning, body.cxx-pdts cxx-titlepage .warning, cxx-titlepagebody.cxx-dts .warning, body.cxx-dts cxx-titlepage .warning {
+cxx-titlepagebody.cxx-pdts .warning, body.cxx-pdts cxx-titlepage .warning, cxx-titlepagebody.cxx-dts .warning, body.cxx-dts cxx-titlepage .warning, cxx-titlepagebody.cxx-ts .warning, body.cxx-ts cxx-titlepage .warning {
 	position: absolute; bottom: 20%;
 }
 
-cxx-titlepagebody.cxx-pdts .copyright address, body.cxx-pdts cxx-titlepage .copyright address, cxx-titlepagebody.cxx-dts .copyright address, body.cxx-dts cxx-titlepage .copyright address {
+cxx-titlepagebody.cxx-pdts .copyright address, body.cxx-pdts cxx-titlepage .copyright address, cxx-titlepagebody.cxx-dts .copyright address, body.cxx-dts cxx-titlepage .copyright address, cxx-titlepagebody.cxx-ts .copyright address, body.cxx-ts cxx-titlepage .copyright address {
 	font-style: normal; margin-left: 2em;
 }
 
-cxx-titlepagebody.cxx-pdts .copyright address a, body.cxx-pdts cxx-titlepage .copyright address a, cxx-titlepagebody.cxx-dts .copyright address a, body.cxx-dts cxx-titlepage .copyright address a {
+cxx-titlepagebody.cxx-pdts .copyright address a, body.cxx-pdts cxx-titlepage .copyright address a, cxx-titlepagebody.cxx-dts .copyright address a, body.cxx-dts cxx-titlepage .copyright address a, cxx-titlepagebody.cxx-ts .copyright address a, body.cxx-ts cxx-titlepage .copyright address a {
 	color: inherit; text-decoration: inherit;
 }
 
 cxx-titlepage th {
 	text-align: left; vertical-align: top;
-}cxx-ednote {
-	display: block;
+}cxx-foreword {
+	display: block; min-height: 100%;
 }
 
-cxx-ednotebody.cxx-pdts, body.cxx-pdts cxx-ednote {
+cxx-foreword {
+	page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em;
+}
+
+cxx-forewordbody.cxx-draft cxx-foreword -no-combinator, body.cxx-draft cxx-foreword cxx-foreword -no-combinator {
 	display: none;
+}cxx-ednote {
+	display: none;
+}
+
+cxx-ednotebody.cxx-draft, body.cxx-draft cxx-ednote {
+	display: block;
 }
 
 cxx-ednote aside {
@@ -533,13 +543,23 @@ limitations under the License.
 
 @page {
     margin: 10%;
-    @top-left { content: "© ISO/IEC"; font-size: 10pt; }
-    @top-right { content: string(docnum); font-weight: bold; font-size: 10pt; }
-    @bottom-left { content: string(current-section, last); font-size: 10pt; }
+}
+@page :left {
+    @top-left { content: string(docname); font-weight: bold; font-size: 10pt; }
+    @top-right { content: normal; }
+    @bottom-left { content: counter(page); font-size: 10pt; }
+    @bottom-right { content: "© ISO/IEC " string(pubyear) " — All rights reserved";
+                    font-size: 10pt; }
+}
+@page :right {
+    @top-left { content: normal; }
+    @top-right { content: string(docname); font-weight: bold; font-size: 10pt; }
+    @bottom-left { content: "© ISO/IEC " string(pubyear) " — All rights reserved";
+                   font-size: 10pt; }
     @bottom-right { content: counter(page); font-size: 10pt; }
 }
 @page :first {
-    /* @top-left is defined by base.js. */
+    @top-left { content: normal; }
     @top-right { content: normal; }
     @bottom-left { content: normal; }
     @bottom-right { content: normal; }
@@ -567,13 +587,15 @@ body { margin: 0; }
 }
 
 cxx-docnum { string-set: docnum content(); }
+*   .docname { string-set: docname content(); }
+*   .pubyear { string-set: pubyear content(); }
 
-cxx-clause { page-break-before: always; }
+cxx-clause, cxx-foreword { page-break-before: always; }
 @media screen {
-    cxx-clause, cxx-toc { margin-top: 3em; }
+    cxx-clause, cxx-toc, cxx-foreword { margin-top: 3em; }
 }
 
-cxx-clause  header { font-size: 150%; }
+cxx-clause  header, cxx-foreword  h1 { font-size: 150%; }
 cxx-toc  h1 { font-size: 150%; }
 cxx-clause cxx-section  header { font-size: 117%; }
 cxx-clause cxx-section cxx-section  header { font-size: 100%; }
@@ -581,7 +603,7 @@ cxx-clause cxx-section cxx-section  header { font-size: 100%; }
 [data-bookmark-label] { bookmark-label: attr(data-bookmark-label); }
 h1 { bookmark-level: 1; }
 cxx-toc  h1 { bookmark-level: 2; }
-cxx-clause h1 { bookmark-level: 2; }
+cxx-clause h1, cxx-foreword h1 { bookmark-level: 2; }
 cxx-clause cxx-section h1 { bookmark-level: 3; }
 cxx-clause cxx-section cxx-section h1 { bookmark-level: 4; }
 /* The <h2> is a subtitle, which shouldn't get a PDF bookmark. */
@@ -932,36 +954,69 @@ html   [segment], html   segment {
   box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px 5px 5px 5px;
 }</style>
-<style>@page :first { @top-left { content: "© ISO 2015 — All rights reserved"; } }</style><title>C++ Extensions for Library Fundamentals, Working Draft</title></head>
-<body class="cxx-draft">
+<title>C++ Extensions for Library Fundamentals</title></head>
+<body class="cxx-ts">
 <cxx-titlepage>
     
     
-      <div class="page">
-        <table class="header">
-          
-            <tr><th>Document Number:</th><td><cxx-docnum>D????</cxx-docnum></td></tr>
-          
-          
-            <tr><th>Date:</th><td><time pubdate="">2014-??-??</time></td></tr>
-          
-          
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4335">N4335</a></cxx-revises></td></tr>
-          
-          
-            <tr><th>Editor:</th><td><cxx-editor>
-    Jeffrey Yasskin<br>
-    Google, Inc.<br>
-    <cxx-email><a href="mailto:jyasskin@google.com">jyasskin@google.com</a></cxx-email>
-  </cxx-editor></td></tr>
-          
-        </table>
-        <h1>Working Draft, C++ Extensions for Library Fundamentals</h1>
-        <p class="warning"><strong>Note: this is an early draft. It’s known to be
-        incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
-      </div>
-    
 
+    
+      <div class="page">
+        <div class="header">
+          
+          
+            <strong class="docname">ISO/IEC <cxx-project-number>19568</cxx-project-number>:<span class="pubyear">2015</span></strong><br>
+          
+          ISO/IEC JTC1 SC22 WG21<br>
+          Secretariat: ANSI
+        </div>
+        <hgroup>
+          <h1>Programming Languages — C++ Extensions for Library Fundamentals</h1>
+          
+            <h2>Langages de programmation — Extensions C++ pour les fondamentaux de bibliothèque</h2>
+          
+        </hgroup>
+        <figure class="warning">
+          <figcaption>Warning</figcaption>
+          <p>This document is not an ISO International Standard. It is distributed for review and comment. It is
+          subject to change without notice and may not be referred to as an International Standard.
+          </p>
+          <p>Recipients of this draft are invited to submit, with their comments, notification of any relevant
+          patent rights of which they are aware and to provide supporting documentation.</p>
+        </figure>
+        <div class="footer">
+          
+          
+          
+            Document type: Technical Specification<br>
+            Document stage: (60) Publication<br>
+          
+          Document language: E
+        </div>
+      </div>
+      <div class="page">
+        <figure class="copyright">
+          <p>© ISO 2015</p>
+          <p>
+            All rights reserved. Unless otherwise specified, no part
+            of this publication may be reproduced or utilized
+            otherwise in any form or by any means, electronic or
+            mechanical, including photocopying, or posting on the
+            internet or an intranet, without prior written permission.
+            Permission can be requested from either ISO at the address
+            below or ISO's member body in the country of the requester.
+          </p>
+          <address>
+            ISO copyright office<br>
+            Case postale 56 · CH-1211 Geneva 20<br>
+            Tel. + 41 22 749 01 11<br>
+            Fax + 41 22 749 09 47<br>
+            E-mail <a href="mailto:copyright@iso.org">copyright@iso.org</a><br>
+            Web <a href="http://www.iso.org/">www.iso.org</a>
+          </address>
+          <p>Published in Switzerland.</p>
+        </figure>
+      </div>
     
 
     
@@ -974,6 +1029,10 @@ html   [segment], html   segment {
       
         
           <ol>
+            
+              <li><a href="#foreword">Foreword</a>
+        
+      </li>
             
               <li><span class="marker">1</span><a href="#general">General</a>
         
@@ -1631,7 +1690,61 @@ html   [segment], html   segment {
         
       
     </nav>
-  </cxx-toc>
+  </cxx-toc><cxx-foreword id="foreword">
+    
+    <section>
+      <h1>Foreword</h1>
+
+      <p>
+        ISO (the International Organization for Standardization) is a
+        worldwide federation of national standards bodies (ISO member
+        bodies). The work of preparing International Standards is
+        normally carried out through ISO technical committees. Each
+        member body interested in a subject for which a technical
+        committee has been established has the right to be represented
+        on that committee. International organizations, governmental
+        and non-governmental, in liaison with ISO, also take part in
+        the work. ISO collaborates closely with the International
+        Electrotechnical Commission (IEC) on all matters of
+        electrotechnical standardization.
+      </p>
+      <p>
+        The procedures used to develop this document and those
+        intended for its further maintenance are described in the
+        ISO/IEC Directives, Part 1. In particular the different
+        approval criteria needed for the different types of ISO
+        documents should be noted. This document was drafted in
+        accordance with the editorial rules of the ISO/IEC Directives,
+        Part 2.
+        <a href="http://www.iso.org/directives">www.iso.org/directives</a>
+      </p>
+      <p>
+        Attention is drawn to the possibility that some of the
+        elements of this document may be the subject of patent rights.
+        ISO shall not be held responsible for identifying any or all
+        such patent rights. Details of any patent rights identified
+        during the development of the document will be in the
+        Introduction and/or on the ISO list of patent declarations
+        received.
+        <a href="http://www.iso.org/patents">www.iso.org/patents</a>
+      </p>
+      <p>
+        Any trade name used in this document is information given for
+        the convenience of users and does not constitute an
+        endorsement.
+      </p>
+      <p>
+        For an explanation on the meaning of ISO specific terms and
+        expressions related to conformity assessment, as well as
+        information about ISO's adherence to the WTO principles in the
+        Technical Barriers to Trade (TBT) see the following URL:
+        <a href="http://www.iso.org/iso/home/standards_development/resources-for-technical-work/foreword.htm">Foreword - Supplementary information</a>
+      </p>
+      <p>
+        The committee responsible for this document is ISO/IEC JTC1.
+      </p>
+    </section>
+  </cxx-foreword>
 
 <cxx-clause id="general">
     
@@ -1707,12 +1820,7 @@ html   [segment], html   segment {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> This section reflects the consensus between the LWG and LEWG at the
-    <a href="http://wiki.edg.com/twiki/bin/view/Wg21chicago2013/FundamentalsTS#What_can_go_into_a_TS">Chicago 2013</a> and
-    <a href="http://wiki.edg.com/twiki/bin/view/Wg21issaquah/ChangesToExistingInTS">Issaquah 2014</a> meetings.</aside>
-  </cxx-ednote>
 
     <p para_num="1" id="general.namespaces.1">Since the extensions described in this technical specification
     are experimental and not part of the C++ standard library, they
@@ -1858,15 +1966,7 @@ html   [segment], html   segment {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> 
-      These feature-testing macros are my invention, with very little input from anyone else.
-      I've tried to be consistent with the SD-6 recommendations and
-      divide features where I suspect they may be implemented at different times despite being added by the same paper.
-      I'll be happy to accept changes to this section as editorial fixes until the PDTS is published.
-    </aside>
-  </cxx-ednote>
 
     <p para_num="1" id="general.feature.test.1">
       For the sake of improved portability between partial implementations of various C++ standards,
@@ -1941,7 +2041,7 @@ html   [segment], html   segment {
       </tr>
       <tr>
         <td>N3916</td>
-        <td>Type-erased allocator for std::function</td>
+        <td>Type-erased allocator for <code>std::function</code></td>
         <td><cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref></td>
         <td><code>function_erased_allocator</code></td>
         <td>201406</td>
@@ -1997,7 +2097,7 @@ html   [segment], html   segment {
       </tr>
       <tr>
         <td>N3916</td>
-        <td>Type-erased allocator for std::promise</td>
+        <td>Type-erased allocator for <code>std::promise</code></td>
         <td><cxx-ref to="futures.promise"><a title="futures.promise" href="#futures.promise">9.2</a></cxx-ref></td>
         <td><code>promise_erased_allocator</code></td>
         <td>201406</td>
@@ -2005,7 +2105,7 @@ html   [segment], html   segment {
       </tr>
       <tr>
         <td>N3916</td>
-        <td>Type-erased allocator for std::packaged_task</td>
+        <td>Type-erased allocator for <code>std::packaged_task</code></td>
         <td><cxx-ref to="futures.task"><a title="futures.task" href="#futures.task">9.3</a></cxx-ref></td>
         <td><code>packaged_task_erased_allocator</code></td>
         <td>201406</td>
@@ -2072,7 +2172,7 @@ html   [segment], html   segment {
         <cxx-remarks>
     
     <dt>Remarks:</dt><dd>
-          automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
+          Automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
           Meets the BinaryTypeTrait requirements (<cxx-ref in="cxx" to="meta.rqmts">C++14 <span title="meta.rqmts">§20.10.1</span></cxx-ref>).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
           and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type&gt; != false</code>
@@ -2506,7 +2606,7 @@ inline namespace fundamentals_v1 {
           <li>The invocation parameters of <code><em>INVOKE</em>(S(), "abc", 5)</code> are <code>(const char *, int)</code>.
           The defaulted parameter <code>j</code> does not correspond to an argument.</li>
           <li>The invocation parameters of <code><em>INVOKE</em>(S(), locale(), 5)</code> are <code>(locale, int)</code>.
-          Arguments corresponding to ellipsis maintain their types</li>
+          Arguments corresponding to ellipsis maintain their types.</li>
         </ul>
       
     <span class="nowrap">— <em>end example</em> ]</span>
@@ -2740,14 +2840,7 @@ inline namespace fundamentals_v1 {
       
     
 
-    <cxx-ednote class="para">
     
-    <aside><strong>Editor's note:</strong> 
-    The following header synopsis fixes the missing <tt>noexcept</tt> specifications of the comparison functions as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
-    We consider this change <em>editorial</em> at this point because the two different declarations were already in conflict,
-    and this change does not have impact on the actual prototype specifications, which will have the same specifiers as in C++14.
-    </aside>
-  </cxx-ednote>
 
 <pre><code>#include &lt;functional&gt;
 
@@ -2833,14 +2926,7 @@ namespace std {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> 
-      The following class template synopsis fixes the missing <code>noexcept</code> specification of the <code>nullptr_t</code> assignment operator
-      as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
-      We consider this change <em>editorial</em>, because the fundamentals-ts specification otherwise refers to a non-existing declaration in C++14.
-    </aside>
-  </cxx-ednote>
 
     <p para_num="1" id="func.wrap.func.1">
       The specification of all declarations within this sub-clause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref>
@@ -2934,15 +3020,7 @@ namespace std {
       
       
 
-      <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> 
-        The following first paragraph has been slightly editorially improved to
-        (a) make the difference between <code>std::function</code> and <code>std::experimental::function</code> clearer
-        (which seems necessary due to the "including" wording that can be parsed in two different ways) and
-        (b) to make intended normative wording clearer, that had been put into parenthesis before, by simply removing these parenthesis.
-      </aside>
-  </cxx-ednote>
+      
 
       <p para_num="1" id="func.wrap.func.con.1">
         When a <code>function</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
@@ -2998,11 +3076,7 @@ namespace std {
     </dl>
   </cxx-function>
 
-      <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> The following <i>Effects</i> element has been fixed and syncs the wording "<code>*this != NULL</code>"
-      with the C++14 working draft replacing it with "<code>*this != nullptr</code>"</aside>
-  </cxx-ednote>
+      
 
       <cxx-function para_num="9" id="func.wrap.func.con.9">
     
@@ -3199,7 +3273,7 @@ ForwardIterator2 operator()(ForwardIterator2 first, ForwardIterator2 last) const
 
         <cxx-effects para_num="5" id="func.searchers.default.5">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>std::search(first, last, pat_first_, pat_last_, pred_)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return std::search(<w-br><wbr></w-br>first, last, pat_first_, pat_last_, pred_);</code></dd>
   </cxx-effects>
       
     </dl>
@@ -3226,7 +3300,7 @@ make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
 
           <cxx-effects para_num="2" id="func.searchers.default.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(pat_first, pat_last, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, pred);</code></dd>
   </cxx-effects>
         
     </dl>
@@ -3357,7 +3431,7 @@ class BinaryPredicate = equal_to&lt;&gt;&gt;
 
           <cxx-effects para_num="2" id="func.searchers.boyer_moore.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred);</code></dd>
   </cxx-effects>
         
     </dl>
@@ -3494,7 +3568,7 @@ make_boyer_moore_horspool_searcher(
 
           <cxx-effects para_num="2" id="func.searchers.boyer_moore_horspool.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred);</code></dd>
   </cxx-effects>
         
     </dl>
@@ -4446,7 +4520,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
         <cxx-effects para_num="22" id="optional.object.observe.22">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>));</code></dd>
   </cxx-effects>
         <cxx-remarks para_num="23" id="optional.object.observe.23">
     
@@ -4467,7 +4541,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
         <cxx-effects para_num="25" id="optional.object.observe.25">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <w-br><wbr></w-br>std::move(**this) : <w-br><wbr></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <w-br><wbr></w-br>std::move(**this) : <w-br><wbr></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>));</code></dd>
   </cxx-effects>
         <cxx-remarks para_num="26" id="optional.object.observe.26">
     
@@ -6004,7 +6078,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
       <table is="cxx-table" id="tab:string.view.ctr.2">
     
 
-    <caption>Table 8 — <wbr><span><code>basic_string_view(const charT*)<code> effects</code></code></span></caption>
+    <caption>Table 8 — <wbr><span><code>basic_string_view(const charT*)</code> effects</span></caption>
     
       <tbody><tr><th>Element</th><th>Value</th></tr>
       <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -6443,7 +6517,7 @@ explicit<cxx-footnote><!--
 
       <cxx-effects para_num="2" id="string.view.ops.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>basic_string&lt;charT, traits, Allocator&gt;(begin(), end()).</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return basic_string&lt;charT, traits, Allocator&gt;(begin(), end());</code></dd>
   </cxx-effects>
       <cxx-complexity para_num="3" id="string.view.ops.3">
     
@@ -6583,7 +6657,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="24" id="string.view.ops.24">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(str)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(str);</code></dd>
   </cxx-effects>
     
     </dl>
@@ -6599,7 +6673,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="26" id="string.view.ops.26">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(str.substr(pos2, n2))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(str.substr(pos2, n2));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -6614,7 +6688,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="28" id="string.view.ops.28">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>compare(basic_string_view(s))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return compare(basic_string_view(s));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -6629,7 +6703,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="30" id="string.view.ops.30">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(basic_string_view(s))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(basic_string_view(s));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -6645,7 +6719,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="32" id="string.view.ops.32">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(basic_string_view(s, n2))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(basic_string_view(s, n2));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -6667,15 +6741,15 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
 
       <p para_num="3" id="string.view.find.3">Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx1</var>(const charT* s, size_type pos);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx1</var>(basic_string_view(s), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx1</var>(basic_string_view(s), pos);</code></p>
 
       <p para_num="4" id="string.view.find.4">Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx1</var>(const charT* s, size_type pos, size_type n);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx1</var>(basic_string_view(s, n), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx1</var>(basic_string_view(s, n), pos);</code></p>
 
       <p para_num="5" id="string.view.find.5">Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx2</var>(charT c, size_type pos);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx2</var>(basic_string_view(&amp;c, 1), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx2</var>(basic_string_view(&amp;c, 1), pos);</code></p>
 
       <cxx-function para_num="6" id="string.view.find.6">
     
@@ -7058,7 +7132,7 @@ constexpr bool operator==(
 
       <cxx-effects para_num="2" id="string.view.io.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>os &lt;&lt; str.to_string()</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return os &lt;&lt; str.to_string();</code></dd>
   </cxx-effects>
     
     </dl>
@@ -7594,10 +7668,7 @@ inline namespace fundamentals_v1 {
         
         
 
-        <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> N3920 specifies that "implicitly convertible" is removed, but the C++14 draft only has "convertible". Does this make a difference?</aside>
-  </cxx-ednote>
+        
         <cxx-remarks para_num="23" id="memory.smartptr.shared.const.23">
     
     <dt>Remarks:</dt><dd>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</dd>
@@ -8541,7 +8612,7 @@ polymorphic_allocator(const polymorphic_allocator&lt;U&gt;&amp; other) noexcept;
         
         <cxx-returns para_num="2" id="memory.polymorphic.allocator.mem.2">
     
-    <dt>Returns:</dt><dd>Equivalent to <code>static_cast&lt;Tp*&gt;(m_resource-&gt;allocate(n * sizeof(Tp), alignof(Tp)))</code>.</dd>
+    <dt>Returns:</dt><dd>Equivalent to <code>return static_cast&lt;Tp*&gt;(m_resource-&gt;allocate(n * sizeof(Tp), alignof(Tp)));</code></dd>
   </cxx-returns>
       
     </dl>
@@ -8596,7 +8667,7 @@ void construct(T* p, Args&amp;&amp;... args);</cxx-signature></code></pre>
   </cxx-effects>
         <cxx-throws para_num="10" id="memory.polymorphic.allocator.mem.10">
     
-    <dt>Throws:</dt><dd>: Nothing unless the constructor for <code>T</code> throws.</dd>
+    <dt>Throws:</dt><dd>Nothing unless the constructor for <code>T</code> throws.</dd>
   </cxx-throws>
       
     </dl>
@@ -8633,7 +8704,8 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
             then <code>xprime</code> is <code>tuple_cat(std::move(x), make_tuple(this-&gt;resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
-          and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
+          and let <code>yprime</code> be a tuple constructed from <code>y</code>
+          according to the appropriate rule from the following list:
           <ul>
             <li>If <code>uses_allocator_v&lt;T2,memory_resource*&gt;</code> is <code>false</code> and
             <code>is_constructible_v&lt;T,Args2...&gt;</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
@@ -10075,12 +10147,7 @@ namespace pmr {
       
     
 
-    <cxx-ednote>
     
-    <aside><strong>Editor's note:</strong> 
-      An additional editorial fix is applied in the declaration of <code>swap</code> for <code>packaged_task</code>
-    </aside>
-  </cxx-ednote>
 
     <pre><code>#include &lt;future&gt;
 
@@ -10313,7 +10380,7 @@ ForwardIterator search(ForwardIterator first, ForwardIterator last,
 
       <cxx-effects para_num="2" id="alg.search.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>return searcher(first, last)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return searcher(first, last);</code></dd>
   </cxx-effects>
       <cxx-remarks para_num="3" id="alg.search.3">
     

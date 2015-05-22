@@ -20,7 +20,7 @@ limitations under the License.
         this.super();
         var toc = document.querySelector('cxx-toc');
         if (toc) {
-          toc.clauses = document.querySelectorAll('cxx-clause');
+          toc.updateClauses();
         }
       }
       Polymer('cxx-clause', {

@@ -40,7 +40,7 @@ limitations under the License.
         <template if="{{sections.length > 0}}">
           <ol>
             <template repeat="{{sections}}">
-              <li><span class="marker">{{elem.sec_num}}</span><a href="#{{elem.id}}">{{title.textContent}}</a><template bind="" ref="hierarchy"
+              <li><template if="{{elem.sec_num}}"><span class="marker">{{elem.sec_num}}</span></template><a href="#{{elem.id}}">{{title}}</a><template bind="" ref="hierarchy"
               ></template></li>
             </template>
           </ol>
