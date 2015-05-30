@@ -882,7 +882,7 @@ polymorphic_allocator(const polymorphic_allocator&lt;U>& other) noexcept;</cxx-s
 
       <cxx-function>
         <cxx-signature>Tp* allocate(size_t n);</cxx-signature>
-        <cxx-returns>Equivalent to <code>static_cast&lt;Tp*>(m_resource->allocate(n * sizeof(Tp), alignof(Tp)))</code>.</cxx-returns>
+        <cxx-returns>Equivalent to <code>return static_cast&lt;Tp*>(m_resource->allocate(n * sizeof(Tp), alignof(Tp)));</code></cxx-returns>
       </cxx-function>
 
       <cxx-function>

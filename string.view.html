@@ -388,7 +388,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
 explicit<cxx-footnote>This conversion is explicit to avoid accidental O(N) operations on type mismatches.</cxx-footnote> operator basic_string&lt;
     charT, traits, Allocator>() const;</cxx-signature>
 
-      <cxx-effects>Equivalent to <code>basic_string&lt;charT, traits, Allocator>(begin(), end()).</code></cxx-effects>
+      <cxx-effects>Equivalent to <code>return basic_string&lt;charT, traits, Allocator>(begin(), end());</code></cxx-effects>
       <cxx-complexity>O(<code>size()</code>)</cxx-complexity>
       <p><cxx-note>Users who want to control the allocator instance should call <code>to_string(allocator)</code>.</cxx-note></p>
     </cxx-function>
@@ -440,29 +440,29 @@ basic_string&lt;charT, traits, Allocator> to_string(
 
     <cxx-function>
       <cxx-signature>constexpr int compare(size_type pos1, size_type n1, basic_string_view str) const;</cxx-signature>
-      <cxx-effects>Equivalent to <code>substr(pos1, n1).compare(str)</code>.</cxx-effects>
+      <cxx-effects>Equivalent to <code>return substr(pos1, n1).compare(str);</code></cxx-effects>
     </cxx-function>
 
     <cxx-function>
       <cxx-signature>constexpr int compare(size_type pos1, size_type n1, basic_string_view str,
                       size_type pos2, size_type n2) const;</cxx-signature>
-      <cxx-effects>Equivalent to <code>substr(pos1, n1).compare(str.substr(pos2, n2))</code>.</cxx-effects>
+      <cxx-effects>Equivalent to <code>return substr(pos1, n1).compare(str.substr(pos2, n2));</code></cxx-effects>
     </cxx-function>
 
     <cxx-function>
       <cxx-signature>constexpr int compare(const charT* s) const;</cxx-signature>
-      <cxx-effects>Equivalent to <code>compare(basic_string_view(s))</code>.</cxx-effects>
+      <cxx-effects>Equivalent to <code>return compare(basic_string_view(s));</code></cxx-effects>
     </cxx-function>
 
     <cxx-function>
       <cxx-signature>constexpr int compare(size_type pos1, size_type n1, const charT* s) const;</cxx-signature>
-      <cxx-effects>Equivalent to <code>substr(pos1, n1).compare(basic_string_view(s))</code>.</cxx-effects>
+      <cxx-effects>Equivalent to <code>return substr(pos1, n1).compare(basic_string_view(s));</code></cxx-effects>
     </cxx-function>
 
     <cxx-function>
       <cxx-signature>constexpr int compare(size_type pos1, size_type n1,
                       const charT* s, size_type n2) const;</cxx-signature>
-      <cxx-effects>Equivalent to <code>substr(pos1, n1).compare(basic_string_view(s, n2))</code>.</cxx-effects>
+      <cxx-effects>Equivalent to <code>return substr(pos1, n1).compare(basic_string_view(s, n2));</code></cxx-effects>
     </cxx-function>
 
     <cxx-section id="string.view.find">
@@ -476,15 +476,15 @@ basic_string&lt;charT, traits, Allocator> to_string(
 
       <p>Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx1</var>(const charT* s, size_type pos);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx1</var>(basic_string_view(s), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx1</var>(basic_string_view(s), pos);</code></p>
 
       <p>Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx1</var>(const charT* s, size_type pos, size_type n);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx1</var>(basic_string_view(s, n), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx1</var>(basic_string_view(s, n), pos);</code></p>
 
       <p>Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx2</var>(charT c, size_type pos);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx2</var>(basic_string_view(&amp;c, 1), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx2</var>(basic_string_view(&amp;c, 1), pos);</code></p>
 
       <cxx-function>
         <cxx-signature>constexpr size_type find(basic_string_view str, size_type pos = 0) const noexcept;</cxx-signature>
@@ -678,7 +678,7 @@ constexpr bool operator==(
     operator&lt;&lt;(basic_ostream&lt;charT, traits>&amp; os,
                basic_string_view&lt;charT, traits> str);</cxx-signature>
 
-      <cxx-effects>Equivalent to <code>os &lt;&lt; str.to_string()</code>.</cxx-effects>
+      <cxx-effects>Equivalent to <code>return os &lt;&lt; str.to_string();</code></cxx-effects>
     </cxx-function>
   </cxx-section>
 
