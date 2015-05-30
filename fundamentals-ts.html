@@ -2184,7 +2184,7 @@ html   [segment], html   segment {
       </td></tr>
       <tr>
         <td>N3916</td>
-        <td>Type-erased allocator for std::function</td>
+        <td>Type-erased allocator for <code>std::function</code></td>
         <td><cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref></td>
         <td><code>function_erased_allocator</code></td>
         <td>201406</td>
@@ -2280,7 +2280,7 @@ html   [segment], html   segment {
       </tr>
       <tr>
         <td>N3916</td>
-        <td>Type-erased allocator for std::promise</td>
+        <td>Type-erased allocator for <code>std::promise</code></td>
         <td><cxx-ref to="futures.promise"><a title="futures.promise" href="#futures.promise">11.2</a></cxx-ref></td>
         <td><code>promise_erased_allocator</code></td>
         <td>201406</td>
@@ -2288,7 +2288,7 @@ html   [segment], html   segment {
       </tr>
       <tr>
         <td>N3916</td>
-        <td>Type-erased allocator for std::packaged_task</td>
+        <td>Type-erased allocator for <code>std::packaged_task</code></td>
         <td><cxx-ref to="futures.task"><a title="futures.task" href="#futures.task">11.3</a></cxx-ref></td>
         <td><code>packaged_task_erased_allocator</code></td>
         <td>201406</td>
@@ -2371,7 +2371,7 @@ html   [segment], html   segment {
         <cxx-remarks>
     
     <dt>Remarks:</dt><dd>
-          automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
+          Automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
           Meets the BinaryTypeTrait requirements (<cxx-ref in="cxx" to="meta.rqmts">C++14 <span title="meta.rqmts">§20.10.1</span></cxx-ref>).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
           and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type&gt; != false</code>
@@ -2837,7 +2837,7 @@ inline namespace fundamentals_v2 {
           <li>The invocation parameters of <code><em>INVOKE</em>(S(), "abc", 5)</code> are <code>(const char *, int)</code>.
           The defaulted parameter <code>j</code> does not correspond to an argument.</li>
           <li>The invocation parameters of <code><em>INVOKE</em>(S(), locale(), 5)</code> are <code>(locale, int)</code>.
-          Arguments corresponding to ellipsis maintain their types</li>
+          Arguments corresponding to ellipsis maintain their types.</li>
         </ul>
       
     <span class="nowrap">— <em>end example</em> ]</span>
@@ -4952,7 +4952,7 @@ ForwardIterator2 operator()(ForwardIterator2 first, ForwardIterator2 last) const
 
         <cxx-effects para_num="5" id="func.searchers.default.5">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>std::search(first, last, pat_first_, pat_last_, pred_)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return std::search(<w-br><wbr></w-br>first, last, pat_first_, pat_last_, pred_);</code></dd>
   </cxx-effects>
       
     </dl>
@@ -4979,7 +4979,7 @@ make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
 
           <cxx-effects para_num="2" id="func.searchers.default.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(pat_first, pat_last, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, pred);</code></dd>
   </cxx-effects>
         
     </dl>
@@ -5110,7 +5110,7 @@ class BinaryPredicate = equal_to&lt;&gt;&gt;
 
           <cxx-effects para_num="2" id="func.searchers.boyer_moore.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred);</code></dd>
   </cxx-effects>
         
     </dl>
@@ -5247,7 +5247,7 @@ make_boyer_moore_horspool_searcher(
 
           <cxx-effects para_num="2" id="func.searchers.boyer_moore_horspool.creation.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br><wbr></w-br>pat_first, pat_last, hf, pred);</code></dd>
   </cxx-effects>
         
     </dl>
@@ -6262,7 +6262,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
         <cxx-effects para_num="22" id="optional.object.observe.22">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? **this : static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>));</code></dd>
   </cxx-effects>
         <cxx-remarks para_num="23" id="optional.object.observe.23">
     
@@ -6283,7 +6283,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
         <cxx-effects para_num="25" id="optional.object.observe.25">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <w-br><wbr></w-br>std::move(**this) : <w-br><wbr></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return bool(*this) ? <w-br><wbr></w-br>std::move(**this) : <w-br><wbr></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>));</code></dd>
   </cxx-effects>
         <cxx-remarks para_num="26" id="optional.object.observe.26">
     
@@ -7820,7 +7820,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
       <table is="cxx-table" id="tab:string.view.ctr.2">
     
 
-    <caption>Table 9 — <wbr><span><code>basic_string_view(const charT*)<code> effects</code></code></span></caption>
+    <caption>Table 9 — <wbr><span><code>basic_string_view(const charT*)</code> effects</span></caption>
     
       <tbody><tr><th>Element</th><th>Value</th></tr>
       <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -8259,7 +8259,7 @@ explicit<cxx-footnote><!--
 
       <cxx-effects para_num="2" id="string.view.ops.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>basic_string&lt;charT, traits, Allocator&gt;(begin(), end()).</code></dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return basic_string&lt;charT, traits, Allocator&gt;(begin(), end());</code></dd>
   </cxx-effects>
       <cxx-complexity para_num="3" id="string.view.ops.3">
     
@@ -8399,7 +8399,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="24" id="string.view.ops.24">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(str)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(str);</code></dd>
   </cxx-effects>
     
     </dl>
@@ -8415,7 +8415,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="26" id="string.view.ops.26">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(str.substr(pos2, n2))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(str.substr(pos2, n2));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -8430,7 +8430,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="28" id="string.view.ops.28">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>compare(basic_string_view(s))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return compare(basic_string_view(s));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -8445,7 +8445,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="30" id="string.view.ops.30">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(basic_string_view(s))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(basic_string_view(s));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -8461,7 +8461,7 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       
       <cxx-effects para_num="32" id="string.view.ops.32">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>substr(pos1, n1).compare(basic_string_view(s, n2))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return substr(pos1, n1).compare(basic_string_view(s, n2));</code></dd>
   </cxx-effects>
     
     </dl>
@@ -8483,15 +8483,15 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
 
       <p para_num="3" id="string.view.find.3">Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx1</var>(const charT* s, size_type pos);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx1</var>(basic_string_view(s), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx1</var>(basic_string_view(s), pos);</code></p>
 
       <p para_num="4" id="string.view.find.4">Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx1</var>(const charT* s, size_type pos, size_type n);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx1</var>(basic_string_view(s, n), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx1</var>(basic_string_view(s, n), pos);</code></p>
 
       <p para_num="5" id="string.view.find.5">Each member function of the form</p>
       <pre><code>constexpr <var>return-type fx2</var>(charT c, size_type pos);</code></pre>
-      <p class="cont">is equivalent to <code><var>fx2</var>(basic_string_view(&amp;c, 1), pos)</code>.</p>
+      <p class="cont">is equivalent to <code>return <var>fx2</var>(basic_string_view(&amp;c, 1), pos);</code></p>
 
       <cxx-function para_num="6" id="string.view.find.6">
     
@@ -8874,7 +8874,7 @@ constexpr bool operator==(
 
       <cxx-effects para_num="2" id="string.view.io.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>os &lt;&lt; str.to_string()</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return os &lt;&lt; str.to_string();</code></dd>
   </cxx-effects>
     
     </dl>
@@ -10393,7 +10393,7 @@ polymorphic_allocator(const polymorphic_allocator&lt;U&gt;&amp; other) noexcept;
         
         <cxx-returns para_num="2" id="memory.polymorphic.allocator.mem.2">
     
-    <dt>Returns:</dt><dd>Equivalent to <code>static_cast&lt;Tp*&gt;(m_resource-&gt;allocate(n * sizeof(Tp), alignof(Tp)))</code>.</dd>
+    <dt>Returns:</dt><dd>Equivalent to <code>return static_cast&lt;Tp*&gt;(m_resource-&gt;allocate(n * sizeof(Tp), alignof(Tp)));</code></dd>
   </cxx-returns>
       
     </dl>
@@ -10448,7 +10448,7 @@ void construct(T* p, Args&amp;&amp;... args);</cxx-signature></code></pre>
   </cxx-effects>
         <cxx-throws para_num="10" id="memory.polymorphic.allocator.mem.10">
     
-    <dt>Throws:</dt><dd>: Nothing unless the constructor for <code>T</code> throws.</dd>
+    <dt>Throws:</dt><dd>Nothing unless the constructor for <code>T</code> throws.</dd>
   </cxx-throws>
       
     </dl>
@@ -10485,7 +10485,8 @@ void construct(pair&lt;T1,T2&gt;* p, piecewise_construct_t,
             then <code>xprime</code> is <code>tuple_cat(std::move(x), make_tuple(this-&gt;resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
-          and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
+          and let <code>yprime</code> be a tuple constructed from <code>y</code>
+          according to the appropriate rule from the following list:
           <ul>
             <li>If <code>uses_allocator_v&lt;T2,memory_resource*&gt;</code> is <code>false</code> and
             <code>is_constructible_v&lt;T,Args2...&gt;</code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
@@ -13304,7 +13305,7 @@ ForwardIterator search(ForwardIterator first, ForwardIterator last,
 
       <cxx-effects para_num="2" id="alg.search.2">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>return searcher(first, last)</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>return searcher(first, last);</code></dd>
   </cxx-effects>
       <cxx-remarks para_num="3" id="alg.search.3">
     

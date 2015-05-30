@@ -311,7 +311,7 @@ BinaryPredicate pred = BinaryPredicate());</cxx-signature>
         <cxx-signature>template&lt;class ForwardIterator2&gt;
 ForwardIterator2 operator()(ForwardIterator2 first, ForwardIterator2 last) const;</cxx-signature>
 
-        <cxx-effects>Equivalent to <code>std::search(first, last, pat_first_, pat_last_, pred_)</code>.</cxx-effects>
+        <cxx-effects>Equivalent to <code>return std::search(<w-br></w-br>first, last, pat_first_, pat_last_, pred_);</code></cxx-effects>
       </cxx-function>
 
       <cxx-section id="func.searchers.default.creation">
@@ -323,7 +323,7 @@ default_searcher&lt;ForwardIterator, BinaryPredicate&gt;
 make_default_searcher(ForwardIterator pat_first, ForwardIterator pat_last,
                       BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
-          <cxx-effects>Equivalent to <code>default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(pat_first, pat_last, pred)</code>.</cxx-effects>
+          <cxx-effects>Equivalent to <code>return default_searcher&lt;ForwardIterator, BinaryPredicate&gt;(<w-br></w-br>pat_first, pat_last, pred);</code></cxx-effects>
         </cxx-function>
       </cxx-section>
     </cxx-section>
@@ -392,7 +392,7 @@ class BinaryPredicate = equal_to&lt;&gt;&gt;
   make_boyer_moore_searcher(RandomAccessIterator pat_first, RandomAccessIterator pat_last,
                             Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
-          <cxx-effects>Equivalent to <code>boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br></w-br>pat_first, pat_last, hf, pred)</code>.</cxx-effects>
+          <cxx-effects>Equivalent to <code>return boyer_moore_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br></w-br>pat_first, pat_last, hf, pred);</code></cxx-effects>
         </cxx-function>
       </cxx-section>
     </cxx-section>
@@ -467,7 +467,7 @@ make_boyer_moore_horspool_searcher(
     RandomAccessIterator pat_first, RandomAccessIterator pat_last,
     Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
-          <cxx-effects>Equivalent to <code>boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br></w-br>pat_first, pat_last, hf, pred)</code>.</cxx-effects>
+          <cxx-effects>Equivalent to <code>return boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;(<w-br></w-br>pat_first, pat_last, hf, pred);</code></cxx-effects>
         </cxx-function>
       </cxx-section>
     </cxx-section>
