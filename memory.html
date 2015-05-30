@@ -902,7 +902,7 @@ void construct(T* p, Args&&... args);</cxx-signature>
         <cxx-effects>Construct a <code>T</code> object at <code>p</code> by <cxx-term>uses-allocator construction</cxx-term>
         with allocator <code>this->resource()</code> (<cxx-ref to="mods.allocator.uses"></cxx-ref>)
         and constructor arguments <code>std::forward&lt;Args>(args)...</code>.</cxx-effects>
-        <cxx-throws>: Nothing unless the constructor for <code>T</code> throws.</cxx-throws>
+        <cxx-throws>Nothing unless the constructor for <code>T</code> throws.</cxx-throws>
       </cxx-function>
 
       <cxx-function>
@@ -926,7 +926,8 @@ void construct(pair&lt;T1,T2>* p, piecewise_construct_t,
             then <code>xprime</code> is <code>tuple_cat(std::move(x), make_tuple(this->resource()))</code>.</li>
             <li>Otherwise the program is ill formed.</li>
           </ul>
-          and let yprime be a tuple constructed from y according to the appropriate rule from the following list:
+          and let <code>yprime</code> be a tuple constructed from <code>y</code>
+          according to the appropriate rule from the following list:
           <ul>
             <li>If <code>uses_allocator_v&lt;T2,memory_resource*></code> is <code>false</code> and
             <code>is_constructible_v&lt;T,Args2...></code> is <code>true</code>, then <code>yprime</code> is <code>y</code>.</li>
