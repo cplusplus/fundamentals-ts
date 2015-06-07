@@ -46,19 +46,19 @@ cxx-titlepage sets the document title based on its <h1> child.
       :host-context(body.cxx-draft) h1 { position: absolute; top: 40%; text-align: center; }
       :host-context(body.cxx-draft) p.warning { position: absolute; bottom: 5%; }
 
-      :host-context(body.cxx-pdts, body.cxx-dts) .header { position: absolute; right: 0; top: 0; text-align: right; }
-      :host-context(body.cxx-pdts, body.cxx-dts) .header ::content cxx-docnum { font-size: 150%; }
-      :host-context(body.cxx-pdts, body.cxx-dts) .header cxx-docnum { font-size: 150%; }
-      :host-context(body.cxx-pdts, body.cxx-dts) hgroup { position: absolute; top: 30%; }
-      :host-context(body.cxx-pdts, body.cxx-dts) hgroup * { margin: 0; }
-      :host-context(body.cxx-pdts, body.cxx-dts) hgroup h1 { font-size: 150%; font-weight: bold; }
-      :host-context(body.cxx-pdts, body.cxx-dts) hgroup h2 { font-size: 100%; font-weight: normal; }
-      :host-context(body.cxx-pdts, body.cxx-dts) .footer { position: absolute; left: 0; bottom: 5%; }
-      :host-context(body.cxx-pdts, body.cxx-dts) figure { border: #111 solid 1px; padding: 10px; margin-left: auto; margin-right: auto; }
-      :host-context(body.cxx-pdts, body.cxx-dts) figcaption { text-align: center; font-weight: bold; }
-      :host-context(body.cxx-pdts, body.cxx-dts) .warning { position: absolute; bottom: 20%; }
-      :host-context(body.cxx-pdts, body.cxx-dts) .copyright address { font-style: normal; margin-left: 2em; }
-      :host-context(body.cxx-pdts, body.cxx-dts) .copyright address a { color: inherit; text-decoration: inherit; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) .header { position: absolute; right: 0; top: 0; text-align: right; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) .header ::content cxx-docnum { font-size: 150%; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) .header cxx-docnum { font-size: 150%; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) hgroup { position: absolute; top: 30%; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) hgroup * { margin: 0; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) hgroup h1 { font-size: 150%; font-weight: bold; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) hgroup h2 { font-size: 100%; font-weight: normal; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) .footer { position: absolute; left: 0; bottom: 5%; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) figure { border: #111 solid 1px; padding: 10px; margin-left: auto; margin-right: auto; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) figcaption { text-align: center; font-weight: bold; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) .warning { position: absolute; bottom: 20%; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) .copyright address { font-style: normal; margin-left: 2em; }
+      :host-context(body.cxx-pdts, body.cxx-dts, body.cxx-ts) .copyright address a { color: inherit; text-decoration: inherit; }
 
       th { text-align: left; vertical-align: top; }
     </style>
@@ -68,8 +68,8 @@ cxx-titlepage sets the document title based on its <h1> child.
           <template if="{{docnum}}">
             <tr><th>Document Number:</th><td><content select="cxx-docnum"></content></td></tr>
           </template>
-          <template if="{{pubdate}}">
-            <tr><th>Date:</th><td><content select="time[pubdate]"></content></td></tr>
+          <template if="{{hasPubdate}}">
+            <tr><th>Date:</th><td><time pubdate><span class="pubyear">{{pubyear}}</span>-{{pubmonth}}-{{pubday}}</time></td></tr>
           </template>
           <template if="{{revises}}">
             <tr><th>Revises:</th><td><content select="cxx-revises"></content></td></tr>
@@ -88,18 +88,23 @@ cxx-titlepage sets the document title based on its <h1> child.
       </div>
     </template>
 
-    <template if="{{stage == 'pdts' || stage == 'dts'}}">
+    <template if="{{stage == 'pdts' || stage == 'dts' || stage == 'ts'}}">
       <div class="page">
         <div class="header">
-          <strong>ISO/IEC JTC1 SC22 WG21 <content select="cxx-docnum"/></content></strong><br/>
-          Date: <content select="time[pubdate]"></content><br/>
-          <template if="{{stage == 'pdts'}}">
-            ISO/IEC PDTS <content select="cxx-project-number"></content><br/>
+          <template if="{{stage == 'pdts' || stage == 'dts'}}">
+            <strong>ISO/IEC JTC1 SC22 WG21 <content select="cxx-docnum"/></content></strong><br/>
+            Date: <time pubdate><span class="pubyear">{{pubyear}}</span>-{{pubmonth}}-{{pubday}}</time><br/>
+            <template if="{{stage == 'pdts'}}">
+              ISO/IEC PDTS <content select="cxx-project-number"></content><br/>
+            </template>
+            <template if="{{stage == 'dts'}}">
+              ISO/IEC DTS <content select="cxx-project-number"></content><br/>
+            </template>
           </template>
-          <template if="{{stage == 'dts'}}">
-            ISO/IEC DTS <content select="cxx-project-number"></content><br/>
+          <template if="{{stage == 'ts'}}">
+            <strong class="docname">ISO/IEC <content select="cxx-project-number"></content>:<span class="pubyear">{{pubyear}}</span></strong><br/>
           </template>
-          ISO/IEC JTC1 SC22<br/>
+          ISO/IEC JTC1 SC22 WG21<br/>
           Secretariat: ANSI
         </div>
         <hgroup>
@@ -125,29 +130,34 @@ cxx-titlepage sets the document title based on its <h1> child.
             Document type: Draft Technical Specification<br/>
             Document stage: (40) Enquiry<br/>
           </template>
+          <template if="{{stage == 'ts'}}">
+            Document type: Technical Specification<br/>
+            Document stage: (60) Publication<br/>
+          </template>
           Document language: E
         </div>
       </div>
       <div class="page">
         <figure class="copyright">
-          <figcaption>Copyright notice</figcaption>
-          <p>This ISO document is a working draft or committee draft and is copyright-protected by ISO. While
-          the reproduction of working drafts or committee drafts in any form for use by participants in the
-          ISO standards development process is permitted without prior permission from ISO, neither this
-          document nor any extract from it may be reproduced, stored or transmitted in any form for any
-          other purpose without prior written permission from ISO.</p>
-          <p>Requests for permission to reproduce this document for the purpose of selling it should be
-          addressed as shown below or to ISO’s member body in the country of the requester:</p>
+          <p>© ISO {{pubyear}}</p>
+          <p>
+            All rights reserved. Unless otherwise specified, no part
+            of this publication may be reproduced or utilized
+            otherwise in any form or by any means, electronic or
+            mechanical, including photocopying, or posting on the
+            internet or an intranet, without prior written permission.
+            Permission can be requested from either ISO at the address
+            below or ISO's member body in the country of the requester.
+          </p>
           <address>
-            ISO copyright officer<br>
-            Case postale 56, CH-1211 Geneva 20<br>
+            ISO copyright office<br>
+            Case postale 56 · CH-1211 Geneva 20<br>
             Tel. + 41 22 749 01 11<br>
             Fax + 41 22 749 09 47<br>
             E-mail <a href="mailto:copyright@iso.org">copyright@iso.org</a><br>
             Web <a href="http://www.iso.org">www.iso.org</a>
           </address>
-          <p>Reproduction may be subject to royalty payments or a licensing agreement.</p>
-          <p>Violators may be prosecuted.</p>
+          <p>Published in Switzerland.</p>
         </figure>
       </div>
     </template>
@@ -168,7 +178,7 @@ cxx-titlepage sets the document title based on its <h1> child.
   <!-- Find your project number at https://isocpp.org/std/status. -->
   <template><content></content></template>
 </polymer-element>
-<polymer-element name="cxx-docnum" noscript>
+<polymer-element name="cxx-docnum" noscript class="docname">
   <template><content></content></template>
 </polymer-element>
 <polymer-element name="cxx-editor" noscript>

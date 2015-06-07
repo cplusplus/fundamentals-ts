@@ -18,14 +18,14 @@ limitations under the License.
         // Default properties
         projectNumber: null,
         docnum: null,
-        pubdate: null,
+        hasPubdate: false,
         editor: null,
         revises: null,
         title: null,
         stage: null,
 
         computeStage: function() {
-            var stages = ['draft', 'pdts', 'dts'];
+            var stages = ['draft', 'pdts', 'dts', 'ts'];
             var presentStages = stages.filter(function(stage) {
                 return document.body.classList.contains('cxx-' + stage);
             });
@@ -48,10 +48,31 @@ limitations under the License.
             }
         },
 
+        addISOSections: function() {
+                if (this.stage !== 'ts') {
+                    // Only include the ISO requirements in the
+                    // document sent for publication.
+                    return;
+                }
+                var toc = document.querySelector('cxx-toc');
+                if (toc) {
+                    var foreword = document.createElement('cxx-foreword');
+                    foreword.id = 'foreword';
+                    document.body.insertBefore(foreword, toc.nextSibling);
+                }
+        },
+
         domReady: function() {
             this.projectNumber = this.querySelector('cxx-project-number');
             this.docnum = this.querySelector('cxx-docnum');
-            this.pubdate = this.querySelector('time[pubdate]');
+            var pubdateElem = this.querySelector('time[pubdate]');
+            this.hasPubdate = !!pubdateElem;
+            if (pubdateElem) {
+                var pubdate = pubdateElem.textContent.split('-');
+                this.pubyear = pubdate[0];
+                this.pubmonth = pubdate[1];
+                this.pubday = pubdate[2];
+            }
             this.editor = this.querySelector('cxx-editor');
             this.revises = this.querySelector('cxx-revises');
 
@@ -76,6 +97,8 @@ limitations under the License.
             if (this.title) {
                 document.title = this.title + stage_suffix;
             }
+
+            this.addISOSections();
             this.completedDomReady = true;
         },
     })

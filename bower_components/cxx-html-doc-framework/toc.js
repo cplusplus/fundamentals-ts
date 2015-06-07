@@ -30,20 +30,30 @@ limitations under the License.
                     continue;
                 sections.push(this.collectSections(child));
             }
+            var h1 = root.querySelector('h1');
             return {elem: root,
-                    title: root.querySelector('h1'),
+                    title: h1 ? h1.textContent : root.title,
                     sections: sections};
         },
 
+        updateClauses: function() {
+            this.clauses = document.querySelectorAll('cxx-foreword,cxx-clause');
+        },
+
         clausesChanged: function() {
-            this.sections = this.clauses.array().map(function(clause, index) {
-                clause.set_clause_num(index + 1);
+            var clause_num = 1;
+            this.sections = this.clauses.array().map(function(clause) {
+                if (clause.set_clause_num) {
+                    // Don't number things that can't accept numbers, indicated
+                    // by not having a set_clause_num method.
+                    clause_num = clause.set_clause_num(clause_num);
+                }
                 return this.collectSections(clause);
             }, this);
         },
 
         domReady: function() {
-            this.clauses = document.querySelectorAll('cxx-clause');
+            this.updateClauses();
         }
     })
 })();

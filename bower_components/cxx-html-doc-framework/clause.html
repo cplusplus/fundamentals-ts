@@ -20,13 +20,26 @@ limitations under the License.
         this.super();
         var toc = document.querySelector('cxx-toc');
         if (toc) {
-          toc.clauses = document.querySelectorAll('cxx-clause');
+          toc.updateClauses();
         }
       }
       Polymer('cxx-clause', {
-        // Convenience function at the clause level, which gets called from <cxx-toc>.
+
+        // Convenience function at the clause level, which gets called
+        // from <cxx-toc>. If the clause is explicitly numbered, then
+        // this sets the clause_num to that value. Otherwise, the clause
+        // number is set to the argument clause_num. This returns
+        // 1 + the value set.
+        //
+        // Note that this will recursively set the section numbers for
+        // this clause.
         set_clause_num: function(clause_num) {
+          // If the author explicitly specified the clause number, don't
+          // use a different number.
+          if (this.number)
+            clause_num = Number(this.number)
           this.update_sec_nums(clause_num);
+          return clause_num + 1;
         },
 
         domReady: updateTocClauses,
