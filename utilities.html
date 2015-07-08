@@ -812,7 +812,7 @@ inline namespace fundamentals_v2 {
       </p>
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-<i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu)</cxx-signature>
+<i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
 
         <cxx-remarks>
           This constructor shall not participate in overload resolution unless
@@ -829,7 +829,7 @@ inline namespace fundamentals_v2 {
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-<i>see below</i> constexpr propagate_const(U&amp;&amp; u)</cxx-signature>
+<i>see below</i> constexpr propagate_const(U&amp;&amp; u);</cxx-signature>
 
         <cxx-remarks>
           This constructor shall not participate in overload resolution unless
@@ -851,7 +851,7 @@ inline namespace fundamentals_v2 {
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-constexpr propagate_const operator=(propagate_const&lt;U&gt;&amp;&amp; pu)</cxx-signature>
+constexpr propagate_const operator=(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
 
         <cxx-remarks>
           This function shall not participate in overload resolution unless
@@ -863,7 +863,7 @@ constexpr propagate_const operator=(propagate_const&lt;U&gt;&amp;&amp; pu)</cxx-
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature>
+constexpr propagate_const operator=(U&amp;&amp; u);</cxx-signature>
 
         <cxx-remarks>
           This function shall not participate in overload resolution unless
@@ -879,20 +879,20 @@ constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature>
       <h1><code>propagate_const</code> const observers</h1>
 
       <cxx-function>
-        <cxx-signature>explicit constexpr operator bool() const</cxx-signature>
+        <cxx-signature>explicit constexpr operator bool() const;</cxx-signature>
 
         <cxx-returns><code>(bool)t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr const element_type* operator-&gt;() const</cxx-signature>
+        <cxx-signature>constexpr const element_type* operator-&gt;() const;</cxx-signature>
 
         <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
         <cxx-returns><code>get()</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr operator const element_type*() const</cxx-signature>
+        <cxx-signature>constexpr operator const element_type*() const;</cxx-signature>
 
         <cxx-returns><code>get()</code>.</cxx-returns>
         <cxx-remarks>
@@ -903,14 +903,14 @@ constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr const element_type&amp; operator*() const</cxx-signature>
+        <cxx-signature>constexpr const element_type&amp; operator*() const;</cxx-signature>
 
         <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
         <cxx-returns><code>*get()</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr const element_type* get() const</cxx-signature>
+        <cxx-signature>constexpr const element_type* get() const;</cxx-signature>
 
         <cxx-returns>
           <code>t_</code> if <code>T</code> is an object pointer type,
@@ -923,14 +923,14 @@ constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature>
       <h1><code>propagate_const</code> non-const observers</h1>
 
       <cxx-function>
-        <cxx-signature>constexpr element_type* operator-&gt;()</cxx-signature>
+        <cxx-signature>constexpr element_type* operator-&gt;();</cxx-signature>
 
         <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
         <cxx-returns><code>get()</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr operator element_type*()</cxx-signature>
+        <cxx-signature>constexpr operator element_type*();</cxx-signature>
 
         <cxx-returns><code>get()</code>.</cxx-returns>
         <cxx-remarks>
@@ -941,14 +941,14 @@ constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr element_type&amp; operator*()</cxx-signature>
+        <cxx-signature>constexpr element_type&amp; operator*();</cxx-signature>
 
         <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
         <cxx-returns><code>*get()</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>constexpr element_type* get()</cxx-signature>
+        <cxx-signature>constexpr element_type* get();</cxx-signature>
 
         <cxx-returns>
           <code>t_</code> if <code>T</code> is an object pointer type,
@@ -961,7 +961,7 @@ constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature>
       <h1><code>propagate_const</code> modifiers</h1>
 
       <cxx-function>
-        <cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>)</cxx-signature>
+        <cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);</cxx-signature>
 
         <p>
           The constant-expression in the exception-specification is <code>noexcept(swap(t_, pt.t_))</code>.
@@ -976,153 +976,153 @@ constexpr propagate_const operator=(U&amp;&amp; u)</cxx-signature>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, nullptr_t)</cxx-signature>
+constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);</cxx-signature>
 
         <cxx-returns><code>pt.t_ == nullptr</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr bool operator==(nullptr_t, const propagate_const&lt;U&gt;&amp; pt)</cxx-signature>
+constexpr bool operator==(nullptr_t, const propagate_const&lt;U&gt;&amp; pt);</cxx-signature>
 
         <cxx-returns><code>nullptr == pt.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, nullptr_t)</cxx-signature>
+constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);</cxx-signature>
 
         <cxx-returns><code>pt.t_ != nullptr</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr bool operator!=(nullptr_t, const propagate_const&lt;T&gt;&amp; pt)</cxx-signature>
+constexpr bool operator!=(nullptr_t, const propagate_const&lt;T&gt;&amp; pt);</cxx-signature>
 
         <cxx-returns><code>nullptr != pt.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ == pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ != pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &lt; pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &gt; pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &lt;= pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &gt;= pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature>
+constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature>
 
         <cxx-returns><code>pt.t_ == u</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature>
+constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature>
         <cxx-returns><code>pt.t_ != u</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature>
+constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &lt; u</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature>
+constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &gt; u</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature>
+constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &lt;= u</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u)</cxx-signature>
+constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &gt;= u</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator==(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator==(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>t == pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator!=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator!=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>t != pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&lt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>t &lt; pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&gt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>t &gt; pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&lt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>t &lt;= pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu)</cxx-signature>
+constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>t &gt;= pu.t_</code>.</cxx-returns>
       </cxx-function>
@@ -1132,7 +1132,7 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>)</cxx-signature>
+constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);</cxx-signature>
 
         <p>
           The constant-expression in the exception-specification is <code>noexcept(swap(pt1.t_, pt2.t_))</code>.
@@ -1153,7 +1153,7 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept</cxx-signature>
+constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx-signature>
 
         <cxx-returns>
           a reference to the underlying object pointer type.
@@ -1162,7 +1162,7 @@ constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) no
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept</cxx-signature>
+constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx-signature>
 
         <cxx-returns>
           a reference to the underlying object pointer type.
@@ -1175,7 +1175,7 @@ constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept</cxx-
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature>
+struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For an object <code>p</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -1195,7 +1195,7 @@ struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature>
+struct equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -1212,7 +1212,7 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature>
+struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -1227,7 +1227,7 @@ struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&g
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature>
+struct less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -1244,7 +1244,7 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature>
+struct greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -1261,7 +1261,7 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature>
+struct less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -1278,7 +1278,7 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;</cxx-signature>
+struct greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
