@@ -851,7 +851,7 @@ inline namespace fundamentals_v2 {
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-constexpr propagate_const operator=(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
+constexpr propagate_const&amp; operator=(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
 
         <cxx-remarks>
           This function shall not participate in overload resolution unless
@@ -863,7 +863,7 @@ constexpr propagate_const operator=(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-constexpr propagate_const operator=(U&amp;&amp; u);</cxx-signature>
+constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
 
         <cxx-remarks>
           This function shall not participate in overload resolution unless
