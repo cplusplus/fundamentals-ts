@@ -701,7 +701,7 @@ namespace pmr {
 
   template &lt;class Allocator>
     using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
-      typename allocator_traits&lt;Allocator>::rebind_alloc&lt;char>>;
+      typename allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;
 
   // Global memory resources
   memory_resource* new_delete_resource() noexcept;
