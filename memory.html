@@ -470,7 +470,7 @@ inline namespace fundamentals_v2 {
 
         <cxx-returns><code>*get()</code>.</cxx-returns>
 
-        <cxx-remarks>When <code>T</code> is an array type or cv-qualified <code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</cxx-remarks>
+        <cxx-remarks>When <code>T</code> is an array type or (possibly cv-qualified) <code>void</code>, it is unspecified whether this member function is declared. If it is declared, it is unspecified what its return type is, except that the declaration (although not necessarily the definition) of the function shall be well formed.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -1978,22 +1978,22 @@ bool operator&lt;(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signatur
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class W>
-bool operator>(observer_ptr&lt;W> p1, observer_ptr&lt;W> p2);</cxx-signature>
+        <cxx-signature>template &lt;class W1, class W2>
+bool operator>(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
 
         <cxx-returns><code>p2 &lt; p1</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class W>
-bool operator&lt;=(observer_ptr&lt;W> p1, observer_ptr&lt;W> p2);</cxx-signature>
+        <cxx-signature>template &lt;class W1, class W2>
+bool operator&lt;=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
 
          <cxx-returns><code>not (p2 &lt; p1)</code>.</cxx-returns>
         </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class W>
-bool operator>=(observer_ptr&lt;W> p1, observer_ptr&lt;W> p2);</cxx-signature>
+        <cxx-signature>template &lt;class W1, class W2>
+bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
 
         <cxx-returns><code>not (p1 &lt; p2)</code>.</cxx-returns>
       </cxx-function>

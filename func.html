@@ -249,7 +249,7 @@ namespace std {
       <cxx-function>
         <cxx-signature>void swap(function&amp; other);</cxx-signature>
 
-        <cxx-requires><code>this-&gt;get_memory_resource() == other-&gt;get_memory_resource()</code>.</cxx-requires>
+        <cxx-requires><code>*this-&gt;get_memory_resource() == *other.get_memory_resource()</code>.</cxx-requires>
         <cxx-effects>Interchanges the targets of <code>*this</code> and <code>other</code>.</cxx-effects>
         <cxx-remarks>The allocators of <code>*this</code> and <code>other</code> are not interchanged.</cxx-remarks>
       </cxx-function>
