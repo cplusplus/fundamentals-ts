@@ -57,9 +57,9 @@ inline namespace fundamentals_v2 {
     ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);
     template&lt;typename T&gt;
     ostream_joiner&amp; operator=(const T&amp; value);
-    ostream_joiner&amp; operator*();
-    ostream_joiner&amp; operator++();
-    ostream_joiner&amp; operator++(int);
+    ostream_joiner&amp; operator*() noexcept;
+    ostream_joiner&amp; operator++() noexcept;
+    ostream_joiner&amp; operator++(int) noexcept;
   private:
     ostream_type* out_stream; <i>// exposition only</i>
     DelimT delim;             <i>// exposition only</i>
@@ -110,14 +110,14 @@ return *this;</code></pre>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator*();</cxx-signature>
+        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator*() noexcept;</cxx-signature>
 
         <cxx-returns><code>*this</code></cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++();</cxx-signature>
-        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++(int);</cxx-signature>
+        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++() noexcept;</cxx-signature>
+        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++(int) noexcept;</cxx-signature>
 
         <cxx-returns><code>*this</code></cxx-returns>
       </cxx-function>
