@@ -10,15 +10,25 @@ namespace std {
 namespace experimental {
 inline namespace fundamentals_v2 {
 
+  <cxx-ref insynopsis="" to="alg.search"></cxx-ref>
   template&lt;class ForwardIterator, class Searcher&gt;
   ForwardIterator search(ForwardIterator first, ForwardIterator last,
                          const Searcher&amp; searcher);
+
+  <cxx-ref insynopsis="" to="alg.random.sample"></cxx-ref>
+  template&lt;class PopulationIterator, class SampleIterator, class Distance>
+  SampleIterator sample(PopulationIterator first, PopulationIterator last,
+                        SampleIterator out, Distance n);
 
   template&lt;class PopulationIterator, class SampleIterator,
            class Distance, class UniformRandomNumberGenerator>
   SampleIterator sample(PopulationIterator first, PopulationIterator last,
                         SampleIterator out, Distance n,
                         UniformRandomNumberGenerator&amp;&amp; g);
+
+  <cxx-ref insynopsis="" to="alg.random.shuffle"></cxx-ref>
+  template&lt;class RandomAccessIterator>
+  void shuffle(RandomAccessIterator first, RandomAccessIterator last);
 
 } // namespace fundamentals_v2
 } // namespace experimental
@@ -40,7 +50,7 @@ ForwardIterator search(ForwardIterator first, ForwardIterator last,
   </cxx-section>
 
   <cxx-section id="alg.random.sample">
-    <h1>Shufﬂing and sampling</h1>
+    <h1>Sampling</h1>
 
     <cxx-function>
       <cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator,
@@ -71,10 +81,31 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
       <cxx-complexity>O(<code>last - first</code>).</cxx-complexity>
       <cxx-remarks>
         <ul>
-          <li>Stable if and only if <code>PopulationIterator</code> meets the requirements of a <code>ForwardIterator</code> type.</li>
-          <li>To the extent that the implementation of this function makes use of random numbers, the object <code>g</code> shall serve as the implementation’s source of randomness.</li>
+          <li>Stable if and only if <code>PopulationIterator</code> meets the
+            requirements of a <code>ForwardIterator</code> type.</li>
+          <li>If <code>g</code> is not given in the argument list, it denotes
+            the per-thread engine (<cxx-ref to="rand.util.randint"></cxx-ref>).
+            To the extent that the implementation of this function makes use of
+            random numbers, the object <code>g</code> shall serve as the
+            implementation’s source of randomness.</li>
         </ul>
       </cxx-remarks>
+    </cxx-function>
+  </cxx-section>
+  <cxx-section id="alg.random.shuffle">
+    <h1>Shuffle</h1>
+    <cxx-function>
+      <cxx-signature>template&lt;class RandomAccessIterator>
+  void shuffle(RandomAccessIterator first, RandomAccessIterator last);</cxx-signature>
+      <cxx-effects>Permutes the elements in the range <code>[first,last)</code>
+        such that each possible permutation of those elements has equal
+        probability of appearance.</cxx-effects>
+      <cxx-requires><code>RandomAccessIterator</code> shall satisfy the
+        requirements of <code>ValueSwappable</code> (<cxx-ref in="cxx" to="swappable.requirements"></cxx-ref>).</cxx-requires>
+      <cxx-complexity>Exactly <code>(last - first) - 1</code> swaps.</cxx-complexity>
+      <cxx-remarks>To the extent that the implementation of this function
+        makes use of random numbers, the per-thread engine (<cxx-ref to="rand.util.randint"></cxx-ref>)
+        shall serve as the implementation's source of randomness.</cxx-remarks>
     </cxx-function>
   </cxx-section>
 </cxx-clause>
