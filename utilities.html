@@ -246,6 +246,14 @@ inline namespace fundamentals_v2 {
   template &lt;class T>
     using raw_invocation_type_t = typename raw_invocation_type&lt;T>::type;
 
+  <cxx-ref insynopsis="" to="meta.logical"></cxx-ref>
+  template&lt;class... B> struct conjunction;
+  template&lt;class... B> constexpr bool conjunction_v = conjunction&lt;B...>::value;
+  template&lt;class... B> struct disjunction;
+  template&lt;class... B> constexpr bool disjunction_v = disjunction&lt;B...>::value;
+  template&lt;class B> struct negation;
+  template&lt;class B> constexpr bool negation_v = negation&lt;B>::value;
+
   <cxx-ref insynopsis to="meta.detect"></cxx-ref>
   template &lt;class...> using void_t = void;
 
@@ -421,6 +429,61 @@ inline namespace fundamentals_v2 {
           otherwise <code>Ti</code>.
         </li>
       </ul>
+    </cxx-section>
+
+    <cxx-section id="meta.logical">
+      <h1>Logical operator traits</h1>
+
+      <pre><code>template&lt;class... B> struct conjunction : <i>see below</i> { };</code></pre>
+
+      <p>The class template <code>conjunction</code> forms the logical
+      conjunction of its template type arguments. Every template type argument
+      shall be usable as a base class and shall have a static data member
+      <code>value</code> which is convertible to <code>bool</code>, is not
+      hidden, and is unambiguously available in the type.</p>
+
+      <p>The BaseCharacteristic of a specialization <code>conjunction&ltB1, &hellip;, BN></code>
+      is the first type <code>B</code> in the list <code>true_type</code>,
+      <code>B1</code>, &hellip;, <code>BN</code> for which <code>B::value == false</code>,
+      or if every <code>B::value != false</code> the BaseCharacteristic
+      is <code>BN</code>. <cxx-note>This means a specialization of <code>conjunction</code>
+      does not necessarily have a BaseCharacteristic of either <code>true_type</code>
+      or <code>false_type</code>.</cxx-note></p>
+
+      <p>For a specialization <code>conjunction&lt;B1, &hellip;, BN></code> if
+      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value == false</code>
+      then instantiating <code>conjunction&lt;B1, &hellip;, BN>::value</code> does
+      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
+      <cxx-note>This is analogous to the short-circuiting behavior of <code>&amp;&amp;</code>.</cxx-note></p>
+
+      <pre><code>template&lt;class... B> struct disjunction : <i>see below</i> { };</code></pre>
+
+      <p>The class template <code>disjunction</code> forms the logical
+      disjunction of its template type arguments. Every template type argument
+      shall be usable as a base class and shall have a static data member
+      <code>value</code> which is convertible to <code>bool</code>, is not
+      hidden, and is unambiguously available in the type.</p>
+
+      <p>The BaseCharacteristic of a specialization <code>disjunction&lt;B1, &hellip;, BN></code>
+      is the first type <code>B</code> in the list <code>false_type</code>,
+      <code>B1</code>, &hellip;, <code>BN</code> for which <code>B::value != false</code>,
+      or if every <code>B::value == false</code> the BaseCharacteristic
+      is <code>BN</code>. <cxx-note>This means a specialization of <code>disjunction</code>
+      does not necessarily have a BaseCharacteristic of either <code>true_type</code>
+      or <code>false_type</code>.</cxx-note></p>
+
+      <p>For a specialization <code>disjunction&lt;B1, &hellip;, BN></code> if
+      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value != false</code>
+      then instantiating <code>disjunction&lt;B1, &hellip;, BN>::value</code> does
+      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
+      <cxx-note>This is analogous to the short-circuiting behavior of <code>||</code>.</cxx-note></p>
+
+      <pre><code>template&lt;class B> struct negation : integral_constant&lt;bool, !B::value> { };</code></pre>
+
+      <p>The class template <code>negation</code> forms the logical negation of
+      its template type argument. The type <code>negation&lt;B></code> is a
+      UnaryTypeTrait with a BaseCharacteristic of <code>integral_constant&lt;bool, !B::value></code>.</p>
+
     </cxx-section>
 
     <cxx-section id="meta.detect">
