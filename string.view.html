@@ -268,7 +268,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
       <cxx-signature>constexpr const_iterator end() const noexcept;</cxx-signature>
       <cxx-signature>constexpr const_iterator cend() const noexcept;</cxx-signature>
 
-      <cxx-returns> <code>begin() + size()</code></cxx-returns>
+      <cxx-returns> <code>begin() + size()</code>.</cxx-returns>
     </cxx-function>
 
     <cxx-function>
@@ -291,7 +291,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
 
     <cxx-function>
       <cxx-signature>constexpr size_type size() const noexcept;</cxx-signature>
-      <cxx-returns><code>size_</code></cxx-returns>
+      <cxx-returns><code>size_</code>.</cxx-returns>
     </cxx-function>
 
     <cxx-function>
@@ -317,7 +317,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
       <cxx-signature>constexpr const_reference operator[](size_type pos) const;</cxx-signature>
 
       <cxx-requires><code>pos &lt; size()</code>.</cxx-requires>
-      <cxx-returns><code>data_[pos]</code></cxx-returns>
+      <cxx-returns><code>data_[pos]</code>.</cxx-returns>
       <cxx-throws>Nothing.</cxx-throws>
       <p><cxx-note>Unlike <code>basic_string::operator[]</code>,
         <code>basic_string_view::operator[](size())</code> has undefined behavior instead of returning <code>charT()</code>.</cxx-note></p>
@@ -349,7 +349,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
     <cxx-function>
       <cxx-signature>constexpr const_pointer data() const noexcept;</cxx-signature>
 
-      <cxx-returns><code>data_</code></cxx-returns>
+      <cxx-returns><code>data_</code>.</cxx-returns>
       <p><cxx-note>Unlike <code>basic_string::data()</code> and string literals,
       <code>data()</code> may return a pointer to a buffer that is not null-terminated.
       Therefore it is typically a mistake to pass <code>data()</code> to a routine that takes just a <code>const charT*</code> and expects a null-terminated string.</cxx-note></p>
@@ -362,14 +362,14 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
     <cxx-function>
       <cxx-signature>constexpr void remove_prefix(size_type n);</cxx-signature>
 
-      <cxx-requires><code>n &lt;= size()</code></cxx-requires>
+      <cxx-requires><code>n &lt;= size()</code>.</cxx-requires>
       <cxx-effects>Equivalent to <code>data_ += n; size_ -= n;</code></cxx-effects>
     </cxx-function>
 
     <cxx-function>
       <cxx-signature>constexpr void remove_suffix(size_type n);</cxx-signature>
 
-      <cxx-requires><code>n &lt;= size()</code></cxx-requires>
+      <cxx-requires><code>n &lt;= size()</code>.</cxx-requires>
       <cxx-effects>Equivalent to <code>size_ -= n;</code></cxx-effects>
     </cxx-function>
 

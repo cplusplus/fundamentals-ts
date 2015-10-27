@@ -98,7 +98,7 @@ inline namespace fundamentals_v2 {
 
       <cxx-function>
         <cxx-signature>template&lt;typename T&gt;
-ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator=(const T&amp; value);</cxx-signature>
+ostream_joiner&amp; operator=(const T&amp; value);</cxx-signature>
 
         <cxx-effects>
           <pre style="clear:left"><code>if (!first_element)
@@ -110,16 +110,16 @@ return *this;</code></pre>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator*() noexcept;</cxx-signature>
+        <cxx-signature>ostream_joiner&amp; operator*() noexcept;</cxx-signature>
 
-        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++() noexcept;</cxx-signature>
-        <cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++(int) noexcept;</cxx-signature>
+        <cxx-signature>ostream_joiner&amp; operator++() noexcept;</cxx-signature>
+        <cxx-signature>ostream_joiner&amp; operator++(int) noexcept;</cxx-signature>
 
-        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
 

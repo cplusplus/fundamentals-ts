@@ -108,7 +108,7 @@ inline namespace fundamentals_v2 {
       <cxx-function>
         <cxx-signature>any() noexcept;</cxx-signature>
 
-        <cxx-postconditions><code>this-&gt;empty()</code></cxx-postconditions>
+        <cxx-postconditions><code>this-&gt;empty()</code>.</cxx-postconditions>
       </cxx-function>
 
       <cxx-function>
@@ -152,7 +152,7 @@ any(ValueType&amp;&amp; value);</cxx-signature>
 
         <cxx-effects><code>any(rhs).swap(*this)</code>.
         No effects if an exception is thrown.</cxx-effects>
-        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-throws>Any exceptions arising from the copy constructor of the contained object.</cxx-throws>
       </cxx-function>
 
@@ -160,7 +160,7 @@ any(ValueType&amp;&amp; value);</cxx-signature>
         <cxx-signature>any&amp; operator=(any&amp;&amp; rhs) noexcept;</cxx-signature>
 
         <cxx-effects><code>any(std::move(rhs)).swap(*this)</code>.</cxx-effects>
-        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-postconditions>The state of <code>*this</code> is equivalent to the original state of <code>rhs</code>
         and <code>rhs</code> is left in a valid but otherwise unspecified state.</cxx-postconditions>
       </cxx-function>
@@ -174,7 +174,7 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature>
         If <code>is_copy_constructible_v&lt;T&gt;</code> is false, the program is ill-formed.</cxx-requires>
         <cxx-effects>Constructs an object <code>tmp</code> of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(rhs)</code>, and <code>tmp.swap(*this)</code>.
         No effects if an exception is thrown.</cxx-effects>
-        <cxx-returns><code>*this</code></cxx-returns>
+        <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-remarks> This operator shall not participate in overload resolution if <code>decay_t&lt;ValueType&gt;</code> is the same type as <code>any</code>.</cxx-remarks>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
       </cxx-function>

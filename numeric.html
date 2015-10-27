@@ -90,14 +90,16 @@ inline namespace fundamentals_v2 {
     <h1>Utilities</h1>
     <cxx-section id="rand.util.randint">
       <h1>Function template <code>randint</code></h1>
-      <p>A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>,
-      initialized to an unpredictable state, shall be maintained for each thread.</p>
+      <p>A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
+      (<cxx-ref in="cxx" to="rand.predef"></cxx-ref>), initialized to an
+      unpredictable state, shall be maintained for each thread.</p>
       <cxx-function>
         <cxx-signature>template&lt;class IntType>
 IntType randint(IntType a, IntType b);</cxx-signature>
-        <cxx-requires><code>a</code> ≤ <code>b</code>. If the template argument
-          does not meet the requirements for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl"></cxx-ref>),
-          the program is ill-formed.</cxx-requires>
+        <cxx-requires><code>a</code> ≤ <code>b</code>.</cxx-requires>
+        <cxx-remarks>If the template argument does not meet the requirements
+          for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl"></cxx-ref>),
+          the program is ill-formed.</cxx-remarks>
         <cxx-returns>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
           produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType></code>
           (<cxx-ref in="cxx" to="rand.dist.uni.int"></cxx-ref>) invoked with the
