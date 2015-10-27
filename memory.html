@@ -395,7 +395,7 @@ inline namespace fundamentals_v2 {
 
         <cxx-effects>Constructs a <code>shared_ptr</code> instance that stores <code>p</code> and <i>shares ownership</i> with <code>r</code>.</cxx-effects>
 
-        <cxx-postconditions><code>get() == p &amp;&amp; use_count() == r.use_count()</code></cxx-postconditions>
+        <cxx-postconditions><code>get() == p &amp;&amp; use_count() == r.use_count()</code>.</cxx-postconditions>
 
         <p>
           <cxx-note>To avoid the possibility of a dangling pointer, the user of this constructor must ensure that <code>p</code> remains valid at least until the ownership group of <code>r</code> is destroyed.</cxx-note>
@@ -502,7 +502,7 @@ inline namespace fundamentals_v2 {
 
         <cxx-requires>The expression <code>static_cast&lt;T*&gt;((U*)0)</code> shall be well formed.</cxx-requires>
 
-        <cxx-returns><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code></cxx-returns>
+        <cxx-returns><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</cxx-returns>
 
         <p>
           <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(static_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
@@ -902,7 +902,7 @@ public:
 
         <cxx-requires><code>r</code> is non-null.</cxx-requires>
         <cxx-effects>Sets <code>m_resource</code> to <code>r</code>.</cxx-effects>
-        <cxx-throws>Nothing</cxx-throws>
+        <cxx-throws>Nothing.</cxx-throws>
         <cxx-notes>This constructor provides an implicit conversion from <code>memory_resource*</code>.</cxx-notes>
       </cxx-function>
 
@@ -1035,7 +1035,7 @@ bool operator==(const polymorphic_allocator&lt;T1>& a,
         <cxx-signature>template &lt;class T1, class T2>
 bool operator!=(const polymorphic_allocator&lt;T1>& a,
                 const polymorphic_allocator&lt;T2>& b) noexcept;</cxx-signature>
-        <cxx-returns><code>! (a == b)</code></cxx-returns>
+        <cxx-returns><code>! (a == b)</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
   </cxx-section>
@@ -1379,7 +1379,7 @@ protected:
 
         <cxx-effects>Return the memory at <code>p</code> to the pool.
         It is unspecified if or under what circumstances this operation will result in a call to <code>upstream_resource()->deallocate()</code>.</cxx-effects>
-        <cxx-throws>Nothing</cxx-throws>
+        <cxx-throws>Nothing.</cxx-throws>
       </cxx-function>
 
       <cxx-function>
@@ -1520,8 +1520,8 @@ protected:
 
       <cxx-function>
         <cxx-signature>void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature>
-        <cxx-effects>None</cxx-effects>
-        <cxx-throws>Nothing</cxx-throws>
+        <cxx-effects>None.</cxx-effects>
+        <cxx-throws>Nothing.</cxx-throws>
         <cxx-remarks>Memory used by this resource increases monotonically until its destruction.</cxx-remarks>
       </cxx-function>
 

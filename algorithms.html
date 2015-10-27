@@ -53,7 +53,11 @@ ForwardIterator search(ForwardIterator first, ForwardIterator last,
     <h1>Sampling</h1>
 
     <cxx-function>
-      <cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator,
+      <cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator, class Distance>
+SampleIterator sample(PopulationIterator first, PopulationIterator last,
+                      SampleIterator out, Distance n);
+
+template&lt;class PopulationIterator, class SampleIterator,
          class Distance, class UniformRandomNumberGenerator>
 SampleIterator sample(PopulationIterator first, PopulationIterator last,
                       SampleIterator out, Distance n,

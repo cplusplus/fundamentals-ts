@@ -441,7 +441,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-signature>constexpr T&amp;&amp; operator*() &amp;&amp;;</cxx-signature>
         <cxx-signature>constexpr const T&amp;&amp; operator*() const &amp;&amp;;</cxx-signature>
 
-        <cxx-requires><code>*this</code> contains a value</cxx-requires>
+        <cxx-requires><code>*this</code> contains a value.</cxx-requires>
         <cxx-effects>Equivalent to <code>return std::move(*<var>val</var>);</code></cxx-effects>
       </cxx-function>
 

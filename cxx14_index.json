@@ -67,6 +67,7 @@
     "algorithms.general": "25.1",
     "rand.req.genl": "26.5.1.1",
     "rand.req.urng": "26.5.1.3",
+    "rand.predef": "26.5.5",
     "rand.dist.uni.int": "26.5.8.2.1",
     "futures.promise": "30.6.5",
     "futures.task": "30.6.9",
