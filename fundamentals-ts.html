@@ -1911,7 +1911,7 @@ html   [segment], html   segment {
         
           <ol>
             
-              <li><span class="marker">13.2.1</span><a href="#rand.synopsis">Header &lt;random&gt; synopsis</a>
+              <li><span class="marker">13.2.1</span><a href="#rand.synopsis">Header &lt;experimental/random&gt; synopsis</a>
         
       </li>
             
@@ -2115,7 +2115,7 @@ modifications to existing interfaces in the C++ Standard Library.
     <caption>Table 1 — <wbr><span>C++ library headers</span></caption>
     
       
-      <tbody><tr><td><ul><li><code>&lt;experimental/algorithm&gt;</code></li><li><code>&lt;experimental/any&gt;</code></li><li><code>&lt;experimental/array&gt;</code></li><li><code>&lt;experimental/chrono&gt;</code></li><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/future&gt;</code></li><li><code>&lt;experimental/iterator&gt;</code></li><li><code>&lt;experimental/list&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/map&gt;</code></li><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/memory_resource&gt;</code></li><li><code>&lt;experimental/optional&gt;</code></li><li><code>&lt;experimental/propagate_const&gt;</code></li><li><code>&lt;experimental/ratio&gt;</code></li><li><code>&lt;experimental/regex&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li><li><code>&lt;experimental/source_location&gt;</code></li><li><code>&lt;experimental/string&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/string_view&gt;</code></li><li><code>&lt;experimental/system_error&gt;</code></li><li><code>&lt;experimental/tuple&gt;</code></li><li><code>&lt;experimental/type_traits&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/utility&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
+      <tbody><tr><td><ul><li><code>&lt;experimental/algorithm&gt;</code></li><li><code>&lt;experimental/any&gt;</code></li><li><code>&lt;experimental/array&gt;</code></li><li><code>&lt;experimental/chrono&gt;</code></li><li><code>&lt;experimental/deque&gt;</code></li><li><code>&lt;experimental/forward_list&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/future&gt;</code></li><li><code>&lt;experimental/iterator&gt;</code></li><li><code>&lt;experimental/list&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/map&gt;</code></li><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/memory_resource&gt;</code></li><li><code>&lt;experimental/optional&gt;</code></li><li><code>&lt;experimental/propagate_const&gt;</code></li><li><code>&lt;experimental/random&gt;</code></li><li><code>&lt;experimental/ratio&gt;</code></li><li><code>&lt;experimental/regex&gt;</code></li><li><code>&lt;experimental/set&gt;</code></li><li><code>&lt;experimental/source_location&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/string&gt;</code></li><li><code>&lt;experimental/string_view&gt;</code></li><li><code>&lt;experimental/system_error&gt;</code></li><li><code>&lt;experimental/tuple&gt;</code></li><li><code>&lt;experimental/type_traits&gt;</code></li><li><code>&lt;experimental/unordered_map&gt;</code></li><li><code>&lt;experimental/unordered_set&gt;</code></li><li><code>&lt;experimental/utility&gt;</code></li><li><code>&lt;experimental/vector&gt;</code></li></ul></td></tr>
     </tbody>
   </table>
   
@@ -2269,6 +2269,14 @@ translation will fail.)
         <td><code>&lt;experimental/type_traits&gt;</code></td>
       </tr>
       <tr>
+        <td>P0013R1</td>
+        <td>Logical Operator Type Traits</td>
+        <td><cxx-ref to="meta.logical"><a title="meta.logical" href="#meta.logical">3.3.3</a></cxx-ref></td>
+        <td><code>logical_traits</code></td>
+        <td>201511</td>
+        <td><code>&lt;experimental/type_traits&gt;</code></td>
+      </tr>
+      <tr>
         <td>N4502</td>
         <td>The C++ Detection Idiom</td>
         <td><cxx-ref to="meta.detect"><a title="meta.detect" href="#meta.detect">3.3.4</a></cxx-ref></td>
@@ -2413,6 +2421,14 @@ translation will fail.)
         <td><code>&lt;experimental/numeric&gt;</code></td>
       </tr>
       <tr>
+        <td>N4531</td>
+        <td><code>std::rand</code> replacement</td>
+        <td><cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint">13.2.2.1</a></cxx-ref></td>
+        <td><code>randint</code></td>
+        <td>201511</td>
+        <td><code>&lt;experimental/random&gt;</code></td>
+      </tr>
+      <tr>
         <td>N4519</td>
         <td>Source-Code Information Capture</td>
         <td><cxx-ref to="reflection.src_loc"><a title="reflection.src_loc" href="#reflection.src_loc">14.1</a></cxx-ref></td>
@@ -2538,7 +2554,7 @@ namespace std {
 namespace experimental {
 inline namespace fundamentals_v2 {
 
-  <cxx-ref to="utility.erased.type"><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a></cxx-ref>, erased-type placeholder
+  <cxx-ref insynopsis="" to="utility.erased.type">// <i><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a>, Class erased_type</i></cxx-ref>
   struct erased_type { };
 
 } // namespace fundamentals_v2
@@ -3044,16 +3060,18 @@ inline namespace fundamentals_v2 {
       <header><span class="section-number">3.3.3</span> <h1 data-bookmark-label="3.3.3 Logical operator traits">Logical operator traits</h1> <span style="float:right"><a href="#meta.logical">[meta.logical]</a></span></header>
       
       
+      <p para_num="1" id="meta.logical.1">This subclause describes type traits for applying logical operators to
+      other type traits.</p>
 
       <pre><code>template&lt;class... B&gt; struct conjunction : <i>see below</i> { };</code></pre>
 
-      <p para_num="1" id="meta.logical.1">The class template <code>conjunction</code> forms the logical
+      <p para_num="2" id="meta.logical.2">The class template <code>conjunction</code> forms the logical
       conjunction of its template type arguments. Every template type argument
       shall be usable as a base class and shall have a static data member
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
 
-      <p para_num="2" id="meta.logical.2">The BaseCharacteristic of a specialization <code>conjunction&lt;B1, …, BN&gt;</code>
+      <p para_num="3" id="meta.logical.3">The BaseCharacteristic of a specialization <code>conjunction&lt;B1, …, BN&gt;</code>
       is the first type <code>B</code> in the list <code>true_type</code>,
       <code>B1</code>, …, <code>BN</code> for which <code>B::value == false</code>,
       or if every <code>B::value != false</code> the BaseCharacteristic
@@ -3064,7 +3082,7 @@ inline namespace fundamentals_v2 {
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note></p>
 
-      <p para_num="3" id="meta.logical.3">For a specialization <code>conjunction&lt;B1, …, BN&gt;</code> if
+      <p para_num="4" id="meta.logical.4">For a specialization <code>conjunction&lt;B1, …, BN&gt;</code> if
       there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value == false</code>
       then instantiating <code>conjunction&lt;B1, …, BN&gt;::value</code> does
       not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> &gt; <code><var>i</var></code>.
@@ -3075,13 +3093,13 @@ inline namespace fundamentals_v2 {
 
       <pre><code>template&lt;class... B&gt; struct disjunction : <i>see below</i> { };</code></pre>
 
-      <p para_num="4" id="meta.logical.4">The class template <code>disjunction</code> forms the logical
+      <p para_num="5" id="meta.logical.5">The class template <code>disjunction</code> forms the logical
       disjunction of its template type arguments. Every template type argument
       shall be usable as a base class and shall have a static data member
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
 
-      <p para_num="5" id="meta.logical.5">The BaseCharacteristic of a specialization <code>disjunction&lt;B1, …, BN&gt;</code>
+      <p para_num="6" id="meta.logical.6">The BaseCharacteristic of a specialization <code>disjunction&lt;B1, …, BN&gt;</code>
       is the first type <code>B</code> in the list <code>false_type</code>,
       <code>B1</code>, …, <code>BN</code> for which <code>B::value != false</code>,
       or if every <code>B::value == false</code> the BaseCharacteristic
@@ -3092,7 +3110,7 @@ inline namespace fundamentals_v2 {
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note></p>
 
-      <p para_num="6" id="meta.logical.6">For a specialization <code>disjunction&lt;B1, …, BN&gt;</code> if
+      <p para_num="7" id="meta.logical.7">For a specialization <code>disjunction&lt;B1, …, BN&gt;</code> if
       there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value != false</code>
       then instantiating <code>disjunction&lt;B1, …, BN&gt;::value</code> does
       not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> &gt; <code><var>i</var></code>.
@@ -3103,7 +3121,7 @@ inline namespace fundamentals_v2 {
 
       <pre><code>template&lt;class B&gt; struct negation : integral_constant&lt;bool, !B::value&gt; { };</code></pre>
 
-      <p para_num="7" id="meta.logical.7">The class template <code>negation</code> forms the logical negation of
+      <p para_num="8" id="meta.logical.8">The class template <code>negation</code> forms the logical negation of
       its template type argument. The type <code>negation&lt;B&gt;</code> is a
       UnaryTypeTrait with a BaseCharacteristic of <code>integral_constant&lt;bool, !B::value&gt;</code>.</p>
 
@@ -4887,7 +4905,7 @@ namespace std {
   </cxx-effects>
         <cxx-returns para_num="5" id="func.wrap.func.con.5">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -4907,7 +4925,7 @@ namespace std {
   </cxx-effects>
         <cxx-returns para_num="8" id="func.wrap.func.con.8">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -4938,7 +4956,7 @@ namespace std {
   </cxx-postconditions>
         <cxx-returns para_num="12" id="func.wrap.func.con.12">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -4958,7 +4976,7 @@ namespace std {
   </cxx-effects>
         <cxx-returns para_num="15" id="func.wrap.func.con.15">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -4978,7 +4996,7 @@ namespace std {
   </cxx-effects>
         <cxx-returns para_num="18" id="func.wrap.func.con.18">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -6352,7 +6370,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
 
         <cxx-requires para_num="12" id="optional.object.observe.12">
     
-    <dt>Requires:</dt><dd><code>*this</code> contains a value</dd>
+    <dt>Requires:</dt><dd><code>*this</code> contains a value.</dd>
   </cxx-requires>
         <cxx-effects para_num="13" id="optional.object.observe.13">
     
@@ -7288,7 +7306,7 @@ inline namespace fundamentals_v2 {
 
         <cxx-postconditions para_num="2" id="any.cons.2">
     
-    <dt>Postconditions:</dt><dd><code>this-&gt;empty()</code></dd>
+    <dt>Postconditions:</dt><dd><code>this-&gt;empty()</code>.</dd>
   </cxx-postconditions>
       
     </dl>
@@ -7407,7 +7425,7 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
   </cxx-effects>
         <cxx-returns para_num="3" id="any.assign.3">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
         <cxx-throws para_num="4" id="any.assign.4">
     
@@ -7431,7 +7449,7 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
   </cxx-effects>
         <cxx-returns para_num="7" id="any.assign.7">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
         <cxx-postconditions para_num="8" id="any.assign.8">
     
@@ -7464,7 +7482,7 @@ any&amp; operator=(ValueType&amp;&amp; rhs);</cxx-signature></code></pre>
   </cxx-effects>
         <cxx-returns para_num="13" id="any.assign.13">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
         <cxx-remarks para_num="14" id="any.assign.14">
     
@@ -8098,7 +8116,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
 
       <cxx-returns para_num="8" id="string.view.iterators.8">
     
-    <dt>Returns:</dt><dd> <code>begin() + size()</code></dd>
+    <dt>Returns:</dt><dd> <code>begin() + size()</code>.</dd>
   </cxx-returns>
     
     </dl>
@@ -8158,7 +8176,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
       
       <cxx-returns para_num="2" id="string.view.capacity.2">
     
-    <dt>Returns:</dt><dd><code>size_</code></dd>
+    <dt>Returns:</dt><dd><code>size_</code>.</dd>
   </cxx-returns>
     
     </dl>
@@ -8234,7 +8252,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
   </cxx-requires>
       <cxx-returns para_num="3" id="string.view.access.3">
     
-    <dt>Returns:</dt><dd><code>data_[pos]</code></dd>
+    <dt>Returns:</dt><dd><code>data_[pos]</code>.</dd>
   </cxx-returns>
       <cxx-throws para_num="4" id="string.view.access.4">
     
@@ -8327,7 +8345,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
 
       <cxx-returns para_num="18" id="string.view.access.18">
     
-    <dt>Returns:</dt><dd><code>data_</code></dd>
+    <dt>Returns:</dt><dd><code>data_</code>.</dd>
   </cxx-returns>
       <p para_num="19" id="string.view.access.19"><cxx-note><span class="nowrap">[ <em>Note:</em></span>
     Unlike <code>basic_string::data()</code> and string literals,
@@ -8360,7 +8378,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
 
       <cxx-requires para_num="2" id="string.view.modifiers.2">
     
-    <dt>Requires:</dt><dd><code>n &lt;= size()</code></dd>
+    <dt>Requires:</dt><dd><code>n &lt;= size()</code>.</dd>
   </cxx-requires>
       <cxx-effects para_num="3" id="string.view.modifiers.3">
     
@@ -8380,7 +8398,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
 
       <cxx-requires para_num="5" id="string.view.modifiers.5">
     
-    <dt>Requires:</dt><dd><code>n &lt;= size()</code></dd>
+    <dt>Requires:</dt><dd><code>n &lt;= size()</code>.</dd>
   </cxx-requires>
       <cxx-effects para_num="6" id="string.view.modifiers.6">
     
@@ -9562,7 +9580,7 @@ inline namespace fundamentals_v2 {
 
         <cxx-postconditions para_num="15" id="memory.smartptr.shared.const.15">
     
-    <dt>Postconditions:</dt><dd><code>get() == p &amp;&amp; use_count() == r.use_count()</code></dd>
+    <dt>Postconditions:</dt><dd><code>get() == p &amp;&amp; use_count() == r.use_count()</code>.</dd>
   </cxx-postconditions>
 
         <p para_num="16" id="memory.smartptr.shared.const.16">
@@ -9840,7 +9858,7 @@ except that the declaration (although not necessarily the definition) of
 
         <cxx-returns para_num="3" id="memory.smartptr.shared.cast.3">
     
-    <dt>Returns:</dt><dd><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code></dd>
+    <dt>Returns:</dt><dd><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</dd>
   </cxx-returns>
 
         <p para_num="4" id="memory.smartptr.shared.cast.4">
@@ -10528,7 +10546,7 @@ public:
   </cxx-effects>
         <cxx-throws para_num="6" id="memory.polymorphic.allocator.ctor.6">
     
-    <dt>Throws:</dt><dd>Nothing</dd>
+    <dt>Throws:</dt><dd>Nothing.</dd>
   </cxx-throws>
         <cxx-notes para_num="7" id="memory.polymorphic.allocator.ctor.7">
     
@@ -10836,7 +10854,7 @@ bool operator!=(const polymorphic_allocator&lt;T1&gt;&amp; a,
         
         <cxx-returns para_num="4" id="memory.polymorphic.allocator.eq.4">
     
-    <dt>Returns:</dt><dd><code>! (a == b)</code></dd>
+    <dt>Returns:</dt><dd><code>! (a == b)</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -11484,7 +11502,7 @@ granularity.
   </cxx-effects>
         <cxx-throws para_num="13" id="memory.resource.pool.mem.13">
     
-    <dt>Throws:</dt><dd>Nothing</dd>
+    <dt>Throws:</dt><dd>Nothing.</dd>
   </cxx-throws>
       
     </dl>
@@ -11758,11 +11776,11 @@ protected:
         
         <cxx-effects para_num="11" id="memory.resource.monotonic.buffer.mem.11">
     
-    <dt>Effects:</dt><dd>None</dd>
+    <dt>Effects:</dt><dd>None.</dd>
   </cxx-effects>
         <cxx-throws para_num="12" id="memory.resource.monotonic.buffer.mem.12">
     
-    <dt>Throws:</dt><dd>Nothing</dd>
+    <dt>Throws:</dt><dd>Nothing.</dd>
   </cxx-throws>
         <cxx-remarks para_num="13" id="memory.resource.monotonic.buffer.mem.13">
     
@@ -13154,7 +13172,7 @@ inline namespace fundamentals_v2 {
       <cxx-function para_num="1" id="iterator.ostream.joiner.ops.1">
     
     <pre><code><cxx-signature>template&lt;typename T&gt;
-ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator=(const T&amp; value);</cxx-signature></code></pre>
+ostream_joiner&amp; operator=(const T&amp; value);</cxx-signature></code></pre>
 
     <dl>
       
@@ -13176,7 +13194,7 @@ return *this;</code></pre>
 
       <cxx-function para_num="3" id="iterator.ostream.joiner.ops.3">
     
-    <pre><code><cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator*() noexcept;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>ostream_joiner&amp; operator*() noexcept;</cxx-signature></code></pre>
 
     <dl>
       
@@ -13184,7 +13202,7 @@ return *this;</code></pre>
 
         <cxx-returns para_num="4" id="iterator.ostream.joiner.ops.4">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -13192,7 +13210,7 @@ return *this;</code></pre>
 
       <cxx-function para_num="5" id="iterator.ostream.joiner.ops.5">
     
-    <pre><code><cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++() noexcept;</cxx-signature><cxx-signature>ostream_joiner&lt;DelimT, charT, traits&gt;&amp; operator++(int) noexcept;</cxx-signature></code></pre>
+    <pre><code><cxx-signature>ostream_joiner&amp; operator++() noexcept;</cxx-signature><cxx-signature>ostream_joiner&amp; operator++(int) noexcept;</cxx-signature></code></pre>
 
     <dl>
       
@@ -13201,7 +13219,7 @@ return *this;</code></pre>
 
         <cxx-returns para_num="6" id="iterator.ostream.joiner.ops.6">
     
-    <dt>Returns:</dt><dd><code>*this</code></dd>
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
       
     </dl>
@@ -13527,7 +13545,11 @@ ForwardIterator search(ForwardIterator first, ForwardIterator last,
 
     <cxx-function para_num="1" id="alg.random.sample.1">
     
-    <pre><code><cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator,
+    <pre><code><cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator, class Distance&gt;
+SampleIterator sample(PopulationIterator first, PopulationIterator last,
+                      SampleIterator out, Distance n);
+
+template&lt;class PopulationIterator, class SampleIterator,
          class Distance, class UniformRandomNumberGenerator&gt;
 SampleIterator sample(PopulationIterator first, PopulationIterator last,
                       SampleIterator out, Distance n,
@@ -13791,7 +13813,7 @@ constexpr common_type_t&lt;M,N&gt; lcm(M m, N n);</cxx-signature></code></pre>
     
 
     <section>
-      <header><span class="section-number">13.2.1</span> <h1 data-bookmark-label="13.2.1 Header &lt;random&gt; synopsis">Header <code>&lt;random&gt;</code> synopsis</h1> <span style="float:right"><a href="#rand.synopsis">[rand.synopsis]</a></span></header>
+      <header><span class="section-number">13.2.1</span> <h1 data-bookmark-label="13.2.1 Header &lt;experimental/random&gt; synopsis">Header <code>&lt;experimental/random&gt;</code> synopsis</h1> <span style="float:right"><a href="#rand.synopsis">[rand.synopsis]</a></span></header>
       
       
 <pre><code>#include &lt;random&gt;
@@ -13826,8 +13848,9 @@ inline namespace fundamentals_v2 {
       <header><span class="section-number">13.2.2.1</span> <h1 data-bookmark-label="13.2.2.1 Function template randint">Function template <code>randint</code></h1> <span style="float:right"><a href="#rand.util.randint">[rand.util.randint]</a></span></header>
       
       
-      <p para_num="1" id="rand.util.randint.1">A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>,
-      initialized to an unpredictable state, shall be maintained for each thread.</p>
+      <p para_num="1" id="rand.util.randint.1">A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
+      (<cxx-ref in="cxx" to="rand.predef">C++14 <span title="rand.predef">§26.5.5</span></cxx-ref>), initialized to an
+      unpredictable state, shall be maintained for each thread.</p>
       <cxx-function para_num="2" id="rand.util.randint.2">
     
     <pre><code><cxx-signature>template&lt;class IntType&gt;
@@ -13838,11 +13861,15 @@ IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
         
         <cxx-requires para_num="3" id="rand.util.randint.3">
     
-    <dt>Requires:</dt><dd><code>a</code> ≤ <code>b</code>. If the template argument
-          does not meet the requirements for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl">C++14 <span title="rand.req.genl">§26.5.1.1</span></cxx-ref>),
-          the program is ill-formed.</dd>
+    <dt>Requires:</dt><dd><code>a</code> ≤ <code>b</code>.</dd>
   </cxx-requires>
-        <cxx-returns para_num="4" id="rand.util.randint.4">
+        <cxx-remarks para_num="4" id="rand.util.randint.4">
+    
+    <dt>Remarks:</dt><dd>If the template argument does not meet the requirements
+          for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl">C++14 <span title="rand.req.genl">§26.5.1.1</span></cxx-ref>),
+          the program is ill-formed.</dd>
+  </cxx-remarks>
+        <cxx-returns para_num="5" id="rand.util.randint.5">
     
     <dt>Returns:</dt><dd>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
           produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType&gt;</code>
@@ -13852,19 +13879,19 @@ IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
       
     </dl>
   </cxx-function>
-      <cxx-function para_num="5" id="rand.util.randint.5">
+      <cxx-function para_num="6" id="rand.util.randint.6">
     
     <pre><code><cxx-signature>void reseed();</cxx-signature><cxx-signature>void reseed(default_random_engine::result_type value);</cxx-signature></code></pre>
 
     <dl>
       
-        <cxx-effects para_num="6" id="rand.util.randint.6">
+        <cxx-effects para_num="7" id="rand.util.randint.7">
     
     <dt>Effects:</dt><dd>Let <code>g</code> be the per-thread engine. The first
           form sets <code>g</code> to an unpredictable state. The second form
           invokes <code>g.seed(value)</code>.</dd>
   </cxx-effects>
-        <cxx-postconditions para_num="7" id="rand.util.randint.7">
+        <cxx-postconditions para_num="8" id="rand.util.randint.8">
     
     <dt>Postconditions:</dt><dd>Subsequent calls to <code>randint</code> do not
           depend on values produced by <code>g</code> before calling <code>reseed</code>.
