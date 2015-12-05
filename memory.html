@@ -1478,7 +1478,7 @@ protected:
 
         <cxx-requires><code>upstream</code> shall be the address of a valid memory resource.
         <code>buffer_size</code> shall be no larger than the number of bytes in <code>buffer</code>.</cxx-requires>
-        <cxx-effects>Sets <code>upstream_rsrc</code> to <code>upstream</code>, <code>current_buffer</code> to <code>buffer</code>, and <code>next_buffer_size</code> to <code>initial_size</code> (but not less than 1),
+        <cxx-effects>Sets <code>upstream_rsrc</code> to <code>upstream</code>, <code>current_buffer</code> to <code>buffer</code>, and <code>next_buffer_size</code> to <code>buffer_size</code> (but not less than 1),
         then increases <code>next_buffer_size</code> by an implementation-defined growth factor (which need not be integral).</cxx-effects>
       </cxx-function>
 
