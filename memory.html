@@ -185,7 +185,7 @@ inline namespace fundamentals_v2 {
 
   template&lt;class T> class shared_ptr {
   public:
-    typedef typename remove_extent_t&lt;T> element_type;
+    typedef remove_extent_t&lt;T> element_type;
     <cxx-ref insynopsis="" to="memory.smartptr.shared.const"></cxx-ref>
     constexpr shared_ptr() noexcept;
     template&lt;class Y> explicit shared_ptr(Y* p);
@@ -558,7 +558,7 @@ inline namespace fundamentals_v2 {
 
   template&lt;class T> class weak_ptr {
   public:
-    typedef typename remove_extent_t&lt;T&gt; element_type;
+    typedef remove_extent_t&lt;T&gt; element_type;
 
     <cxx-ref insynopsis="" to="memory.smartptr.weak.const"></cxx-ref>
     constexpr weak_ptr() noexcept;
