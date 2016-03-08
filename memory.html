@@ -1165,7 +1165,6 @@ template &lt;class Allocator>
         If <code>r</code> is non-null, sets the value of the default memory resource pointer to <code>r</code>,
         otherwise sets the default memory resource pointer to <code>new_delete_resource()</code>.
       </cxx-effects>
-      <cxx-postconditions><code>get_default_resource() == r</code>.</cxx-postconditions>
       <cxx-returns>The previous value of the default memory resource pointer.</cxx-returns>
       <cxx-remarks>
         Calling the <code>set_default_resource</code> and <code>get_default_resource</code> functions shall not incur a data race.

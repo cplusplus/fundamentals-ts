@@ -142,7 +142,6 @@ namespace std {
       ~function();
 
       void swap(function&amp;);
-      template&lt;class F, class A&gt; void assign(F&amp;&amp;, const A&amp;);
 
       explicit operator bool() const noexcept;
 
@@ -233,6 +232,9 @@ namespace std {
 
         <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
+        <cxx-remarks>This assignment operator shall not participate in overload resolution unless
+          <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is Callable (<cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>)
+          for argument types <code>ArgTypes...</code> and return type <code>R</code>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>

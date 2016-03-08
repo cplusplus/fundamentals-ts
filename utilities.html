@@ -324,7 +324,7 @@ inline namespace fundamentals_v2 {
           the <cxx-term>invocation parameters</cxx-term> are the parameters matching <code>t1</code>, ..., <code>tN</code>
           of the best viable function (<cxx-ref in="cxx" to="over.match.best"></cxx-ref>)
           for the arguments <code>t1</code>, ..., <code>tN</code>
-          among the function call operators of <code>f</code>.
+          among the function call operators and surrogate call functions of <code>f</code>.
         </li>
         <li>
           In all other cases,
@@ -448,7 +448,7 @@ inline namespace fundamentals_v2 {
       is the first type <code>B</code> in the list <code>true_type</code>,
       <code>B1</code>, &hellip;, <code>BN</code> for which <code>B::value == false</code>,
       or if every <code>B::value != false</code> the BaseCharacteristic
-      is <code>BN</code>. <cxx-note>This means a specialization of <code>conjunction</code>
+      is the last type in the list. <cxx-note>This means a specialization of <code>conjunction</code>
       does not necessarily have a BaseCharacteristic of either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
 
@@ -470,7 +470,7 @@ inline namespace fundamentals_v2 {
       is the first type <code>B</code> in the list <code>false_type</code>,
       <code>B1</code>, &hellip;, <code>BN</code> for which <code>B::value != false</code>,
       or if every <code>B::value == false</code> the BaseCharacteristic
-      is <code>BN</code>. <cxx-note>This means a specialization of <code>disjunction</code>
+      is the last type in the list. <cxx-note>This means a specialization of <code>disjunction</code>
       does not necessarily have a BaseCharacteristic of either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
 
