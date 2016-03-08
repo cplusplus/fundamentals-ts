@@ -962,13 +962,13 @@ html   [segment], html   segment {
       <div class="page">
         <table class="header">
           
-            <tbody><tr><th>Document Number:</th><td><cxx-docnum class="docname">N4562</cxx-docnum></td></tr>
+            <tbody><tr><th>Document Number:</th><td><cxx-docnum class="docname">N4584</cxx-docnum></td></tr>
           
           
-            <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">2015</span>-11-05</time></td></tr>
+            <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">2016</span>-03-08</time></td></tr>
           
           
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4529.html">N4529</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4562.html">N4562</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
@@ -2893,7 +2893,7 @@ inline namespace fundamentals_v2 {
           the <cxx-term><i>invocation parameters</i></cxx-term> are the parameters matching <code>t1</code>, ..., <code>tN</code>
           of the best viable function (<cxx-ref in="cxx" to="over.match.best">C++14 <span title="over.match.best">§13.3.3</span></cxx-ref>)
           for the arguments <code>t1</code>, ..., <code>tN</code>
-          among the function call operators of <code>f</code>.
+          among the function call operators and surrogate call functions of <code>f</code>.
         </li>
         <li>
           In all other cases,
@@ -3037,7 +3037,7 @@ inline namespace fundamentals_v2 {
       is the first type <code>B</code> in the list <code>true_type</code>,
       <code>B1</code>, …, <code>BN</code> for which <code>B::value == false</code>,
       or if every <code>B::value != false</code> the BaseCharacteristic
-      is <code>BN</code>. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+      is the last type in the list. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     This means a specialization of <code>conjunction</code>
       does not necessarily have a BaseCharacteristic of either <code>true_type</code>
       or <code>false_type</code>.
@@ -3065,7 +3065,7 @@ inline namespace fundamentals_v2 {
       is the first type <code>B</code> in the list <code>false_type</code>,
       <code>B1</code>, …, <code>BN</code> for which <code>B::value != false</code>,
       or if every <code>B::value == false</code> the BaseCharacteristic
-      is <code>BN</code>. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+      is the last type in the list. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     This means a specialization of <code>disjunction</code>
       does not necessarily have a BaseCharacteristic of either <code>true_type</code>
       or <code>false_type</code>.
@@ -4810,7 +4810,6 @@ namespace std {
       ~function();
 
       void swap(function&amp;);
-      template&lt;class F, class A&gt; void assign(F&amp;&amp;, const A&amp;);
 
       explicit operator bool() const noexcept;
 
@@ -4971,11 +4970,17 @@ put into parenthesis before, by simply removing these parenthesis.
     
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
+        <cxx-remarks para_num="16" id="func.wrap.func.con.16">
+    
+    <dt>Remarks:</dt><dd>This assignment operator shall not participate in overload resolution unless
+          <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is Callable (<cxx-ref in="cxx" to="func.wrap.func">C++14 <span title="func.wrap.func">§20.9.11.2</span></cxx-ref>)
+          for argument types <code>ArgTypes...</code> and return type <code>R</code>.</dd>
+  </cxx-remarks>
       
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="16" id="func.wrap.func.con.16">
+      <cxx-function para_num="17" id="func.wrap.func.con.17">
     
     <pre><code><cxx-signature>template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f);</cxx-signature></code></pre>
 
@@ -4983,11 +4988,11 @@ put into parenthesis before, by simply removing these parenthesis.
       
         
 
-        <cxx-effects para_num="17" id="func.wrap.func.con.17">
+        <cxx-effects para_num="18" id="func.wrap.func.con.18">
     
     <dt>Effects:</dt><dd><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), f).swap(*this);</code></dd>
   </cxx-effects>
-        <cxx-returns para_num="18" id="func.wrap.func.con.18">
+        <cxx-returns para_num="19" id="func.wrap.func.con.19">
     
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
@@ -9187,7 +9192,7 @@ namespace std {
     template&lt;class E, class T, class Y&gt;
       basic_ostream&lt;E, T&gt;&amp; operator&lt;&lt; (basic_ostream&lt;E, T&gt;&amp; os, const shared_ptr&lt;Y&gt;&amp; p);
 
-    // <cxx-ref in="cxx" to="util.smartptr.weak">C++14 <span title="util.smartptr.weak">§20.8.2.3</span></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.smartptr.weak">// <i><a title="memory.smartptr.weak" href="#memory.smartptr.weak">8.2.2</a>, Class template weak_ptr</i></cxx-ref>
     template&lt;class T&gt; class weak_ptr;
 
     // <cxx-ref in="cxx" to="util.smartptr.weak.spec">C++14 <span title="util.smartptr.weak.spec">§20.8.2.3.6</span></cxx-ref>
@@ -9304,7 +9309,7 @@ inline namespace fundamentals_v2 {
 
   template&lt;class T&gt; class shared_ptr {
   public:
-    typedef typename remove_extent_t&lt;T&gt; element_type;
+    typedef remove_extent_t&lt;T&gt; element_type;
     <cxx-ref insynopsis="" to="memory.smartptr.shared.const">// <i><a title="memory.smartptr.shared.const" href="#memory.smartptr.shared.const">8.2.1.1</a>, shared_ptr constructors</i></cxx-ref>
     constexpr shared_ptr() noexcept;
     template&lt;class Y&gt; explicit shared_ptr(Y* p);
@@ -9972,7 +9977,7 @@ inline namespace fundamentals_v2 {
 
   template&lt;class T&gt; class weak_ptr {
   public:
-    typedef typename remove_extent_t&lt;T&gt; element_type;
+    typedef remove_extent_t&lt;T&gt; element_type;
 
     <cxx-ref insynopsis="" to="memory.smartptr.weak.const">// <i><a title="memory.smartptr.weak.const" href="#memory.smartptr.weak.const">8.2.2.1</a>, weak_ptr constructors</i></cxx-ref>
     constexpr weak_ptr() noexcept;
@@ -10159,7 +10164,7 @@ namespace pmr {
 
   template &lt;class Allocator&gt;
     using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
-      allocator_traits&lt;Allocator&gt;::rebind_alloc&lt;char&gt;&gt;;
+      typename allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;
 
   // Global memory resources
   memory_resource* new_delete_resource() noexcept;
@@ -10926,7 +10931,7 @@ protected:
 
 template &lt;class Allocator&gt;
   using resource_adaptor = typename <var>resource_adaptor_imp</var>&lt;
-    allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;</code></pre>
+    typename allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;</code></pre>
     
     </section>
   </cxx-section>
@@ -11103,15 +11108,11 @@ template &lt;class Allocator&gt;
         otherwise sets the default memory resource pointer to <code>new_delete_resource()</code>.
       </dd>
   </cxx-effects>
-      <cxx-postconditions para_num="8" id="memory.resource.global.8">
-    
-    <dt>Postconditions:</dt><dd><code>get_default_resource() == r</code>.</dd>
-  </cxx-postconditions>
-      <cxx-returns para_num="9" id="memory.resource.global.9">
+      <cxx-returns para_num="8" id="memory.resource.global.8">
     
     <dt>Returns:</dt><dd>The previous value of the default memory resource pointer.</dd>
   </cxx-returns>
-      <cxx-remarks para_num="10" id="memory.resource.global.10">
+      <cxx-remarks para_num="9" id="memory.resource.global.9">
     
     <dt>Remarks:</dt><dd>
         Calling the <code>set_default_resource</code> and <code>get_default_resource</code> functions shall not incur a data race.
@@ -11122,14 +11123,14 @@ template &lt;class Allocator&gt;
     </dl>
   </cxx-function>
 
-    <cxx-function para_num="11" id="memory.resource.global.11">
+    <cxx-function para_num="10" id="memory.resource.global.10">
     
     <pre><code><cxx-signature>memory_resource* get_default_resource() noexcept;</cxx-signature></code></pre>
 
     <dl>
       
       
-      <cxx-returns para_num="12" id="memory.resource.global.12">
+      <cxx-returns para_num="11" id="memory.resource.global.11">
     
     <dt>Returns:</dt><dd>The current value of the default memory resource pointer.</dd>
   </cxx-returns>
@@ -11666,7 +11667,7 @@ protected:
   </cxx-requires>
         <cxx-effects para_num="6" id="memory.resource.monotonic.buffer.ctor.6">
     
-    <dt>Effects:</dt><dd>Sets <code>upstream_rsrc</code> to <code>upstream</code>, <code>current_buffer</code> to <code>buffer</code>, and <code>next_buffer_size</code> to <code>initial_size</code> (but not less than 1),
+    <dt>Effects:</dt><dd>Sets <code>upstream_rsrc</code> to <code>upstream</code>, <code>current_buffer</code> to <code>buffer</code>, and <code>next_buffer_size</code> to <code>buffer_size</code> (but not less than 1),
         then increases <code>next_buffer_size</code> by an implementation-defined growth factor (which need not be integral).</dd>
   </cxx-effects>
       
