@@ -464,7 +464,7 @@ RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterat
           <cxx-signature>template&lt;class RandomAccessIterator,
          class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
          class BinaryPredicate = equal_to&lt;&gt;&gt;
-boyer_moore_searcher_horspool&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
 make_boyer_moore_horspool_searcher(
     RandomAccessIterator pat_first, RandomAccessIterator pat_last,
     Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
