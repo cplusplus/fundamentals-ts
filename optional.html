@@ -147,6 +147,7 @@ private:
       is allocated within the storage of the optional object.
       Implementations are not permitted to use additional storage, such as dynamic memory, to allocate its contained value.
       The contained value shall be allocated in a region of the <code>optional&lt;T&gt;</code> storage suitably aligned for the type <code>T</code>.
+      It is implementation-defined whether over-aligned types are supported (<cxx-ref in="cxx" to="basic.align"></cxx-ref>).
       When an object of type <code>optional&lt;T&gt;</code> is contextually converted to <code>bool</code>,
       the conversion returns <code>true</code> if the object contains a value;
       otherwise the conversion returns <code>false</code>.

@@ -1,5 +1,6 @@
 {
     "basic.stc.dynamic.deallocation": "3.7.4.2",
+    "basic.align": "3.11",
     "expr": "5",
     "expr.call": "5.2.2",
     "expr.cond": "5.16",
