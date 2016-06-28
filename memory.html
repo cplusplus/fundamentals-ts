@@ -1794,11 +1794,11 @@ namespace experimental {
 inline namespace fundamentals_v2 {
 
   template &lt;class W> class observer_ptr {
+    using pointer = add_pointer_t&lt;W>;            <i>// exposition-only</i>
+    using reference = add_lvalue_reference_t&lt;W>; <i>// exposition-only</i>
   public:
     // publish our template parameter and variations thereof
     using element_type = W;
-    using pointer = add_pointer_t&lt;W>;            <i>// exposition-only</i>
-    using reference = add_lvalue_reference_t&lt;W>; <i>// exposition-only</i>
 
     <cxx-ref insynopsis to="memory.observer.ptr.ctor"></cxx-ref>
     // default c’tor
