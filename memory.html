@@ -361,13 +361,12 @@ inline namespace fundamentals_v2 {
         otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</cxx-requires>
 
         <cxx-effects>When <code>T</code> is not an array type, constructs a <code>shared_ptr</code> object that <i>owns</i> the pointer <code>p</code>.
-        Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.</cxx-effects>
+        Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.
+        If an exception is thrown, <code>delete p</code> is called when <code>T</code> is not an array type, <code>delete[] p</code> otherwise.</cxx-effects>
 
         <cxx-postconditions><code>use_count() == 1 &amp;&amp; get() == p</code>.</cxx-postconditions>
 
         <cxx-throws><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</cxx-throws>
-
-        <cxx-exception-safety>If an exception is thrown, <code>delete p</code> is called when <code>T</code> is not an array type, <code>delete[] p</code> otherwise.</cxx-exception-safety>
       </cxx-function>
 
       <cxx-function>
@@ -381,13 +380,11 @@ inline namespace fundamentals_v2 {
         when <code>T</code> is <code>U[]</code>, <code>Y(*)[]</code> shall be convertible to <code>T*</code>;
         otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</cxx-requires>
 
-        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use.</cxx-effects>
+        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use. If an exception is thrown, <code>d(p)</code> is called.</cxx-effects>
 
         <cxx-postconditions><code>use_count() == 1 &amp;&amp; get() == p</code>.</cxx-postconditions>
 
         <cxx-throws><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</cxx-throws>
-
-        <cxx-exception-safety>If an exception is thrown, <code>d(p)</code> is called.</cxx-exception-safety>
       </cxx-function>
 
       <cxx-function>
@@ -434,13 +431,11 @@ inline namespace fundamentals_v2 {
 
         <cxx-requires><code>Y*</code> shall be <i>compatible with</i> <code>T*</code>.</cxx-requires>
 
-        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</cxx-effects>
+        <cxx-effects>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>. If an exception is thrown, the constructor has no effect.</cxx-effects>
 
         <cxx-postconditions><code>use_count() == r.use_count()</code>.</cxx-postconditions>
 
         <cxx-throws><code>bad_weak_ptr</code> when <code>r.expired()</code>.</cxx-throws>
-
-        <cxx-exception-safety>If an exception is thrown, the constructor has no effect.</cxx-exception-safety>
       </cxx-function>
 
       <cxx-function>
@@ -448,9 +443,7 @@ inline namespace fundamentals_v2 {
 
         <cxx-remarks>This constructor shall not participate in overload resolution unless <code>Y*</code> is <em>compatible with</em> <code>T*</code>.</cxx-remarks>
 
-        <cxx-effects>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>.</cxx-effects>
-
-        <cxx-exception-safety>If an exception is thrown, the constructor has no effect.</cxx-exception-safety>
+        <cxx-effects>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>. If an exception is thrown, the constructor has no effect.</cxx-effects>
       </cxx-function>
   </cxx-section>
 
