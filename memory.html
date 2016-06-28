@@ -158,7 +158,7 @@ namespace std {
   } // inline namespace fundamentals_v2
   } // namespace experimental
 
-  // <cxx-ref in="cxx" to="util.smartptr.hash"></cxx-ref>
+  <cxx-ref insynopsis to="memory.smartptr.shared.hash"></cxx-ref>
   template&lt;class T> struct hash&lt;experimental::shared_ptr&lt;T>>;
 
   <cxx-ref insynopsis to="memory.observer.ptr.hash"></cxx-ref>
@@ -337,7 +337,7 @@ inline namespace fundamentals_v2 {
 } // namespace fundamentals_v2
 } // namespace experimental
 
-  // <cxx-ref in="cxx" to="util.smartptr.hash"></cxx-ref>
+  <cxx-ref insynopsis to="memory.smartptr.shared.hash"></cxx-ref>
   template&lt;class T> struct hash&lt;experimental::shared_ptr&lt;T>>;
 
 } // namespace std</code></pre>
@@ -545,6 +545,14 @@ inline namespace fundamentals_v2 {
         <cxx-requires>The expression <code>reinterpret_cast&lt;T*>((U*)0)</code> shall be well formed.</cxx-requires>
         <cxx-returns><code>shared_ptr&lt;T>(r, reinterpret_cast&lt;typename shared_ptr&lt;T>::element_type*>(r.get()))</code>.</cxx-returns>
       </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memory.smartptr.shared.hash">
+      <h1><code>shared_ptr</code> hash support</h1>
+        <cxx-function>
+          <cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::shared_ptr&ltT&gt;&gt;;</cxx-signature>
+
+          <p>The template specialization shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>). For an object <code>p</code> of type <code>experimental::shared_ptr&lt;T&gt;</code>, <code>hash&lt;experimental::shared_ptr&lt;T&gt;&gt;()(p)</code> shall evaluate to the same value as <code>hash&lt;typename experimental::shared_ptr&lt;T&gt;::element_type*&gt;()(p.get())</code>.</p>
     </cxx-section>
   </cxx-section>
 
