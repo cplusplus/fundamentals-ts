@@ -105,6 +105,9 @@ public:
   template &lt;class... Args&gt; constexpr explicit optional(in_place_t, Args&amp;&amp;...);
   template &lt;class U, class... Args&gt;
     constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
+  template &lt;class U&gt; constexpr optional(U&amp;&amp;);
+  template &lt;class U&gt; constexpr optional(const optional&lt;U&gt;&amp;);
+  template &lt;class U&gt; constexpr optional(optional&lt;U&gt;&amp;&amp;);
 
   <cxx-ref insynopsis="" to="optional.object.dtor"></cxx-ref>
   ~optional();
@@ -114,6 +117,8 @@ public:
   optional&amp; operator=(const optional&amp;);
   optional&amp; operator=(optional&amp;&amp;) noexcept(<em>see below</em>);
   template &lt;class U&gt; optional&amp; operator=(U&amp;&amp;);
+  template &lt;class U&gt; optional&amp; operator=(const optional&lt;U&gt;&amp;);
+  template &lt;class U&gt; optional&amp; operator=(optional&lt;U&gt;&amp;&amp;);
   template &lt;class... Args&gt; void emplace(Args&amp;&amp;...);
   template &lt;class U, class... Args&gt;
     void emplace(initializer_list&lt;U&gt;, Args&amp;&amp;...);
@@ -232,6 +237,44 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-remarks>The function shall not participate in overload resolution unless <code>is_constructible_v&lt;T, initializer_list&lt;U&gt;&amp;, Args&amp;&amp;...&gt;</code> is <code>true</code>.
         If <code>T</code>'s constructor selected for the initialization is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.</cxx-remarks>
       </cxx-function>
+
+      <cxx-note>The following constructors are conditionally specified as <code>explicit</code>. This is typically implemented by declaring two such constructors, of which at most one participates in overload resolution.</cxx-note>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt;
+constexpr optional(U&amp;&amp; v);</cxx-signature>
+
+        <cxx-effects>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::forward&lt;U&gt;(v)</code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
+          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code> and <code>U</code> is not the same type as <code>T</code>.
+          The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt;
+constexpr optional(const optional&lt;U&gt;&amp; rhs);</cxx-signature>
+
+        <cxx-effects>If <code>rhs</code> contains a value, initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>*rhs</code>.</cxx-effects>
+        <cxx-postconditions><code>bool(rhs) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
+          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, const optional&lt;U&gt;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;const optional&lt;U&gt;&amp;, T&gt;</code> is <code>false</code>.
+          The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;const U&amp;, T&gt;</code> is <code>false</code>.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt;
+constexpr optional(optional&lt;U&gt;&amp;&amp; rhs);</cxx-signature>
+
+        <cxx-effects>If <code>rhs</code> contains a value, initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*rhs)</code>. <code>bool(rhs)</code> is unchanged.</cxx-effects>
+        <cxx-postconditions><code>bool(rhs) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
+        <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
+          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, optional&lt;U&gt;&amp;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;optional&lt;U&gt;&amp;&amp;, T&gt;</code> is <code>false</code> and <code>U</code> is not the same type as <code>T</code>.
+          The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>.</cxx-remarks>
+      </cxx-function>
     </cxx-section>
 
     <cxx-section id="optional.object.dtor">
@@ -340,9 +383,72 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
         <cxx-remarks>
           <p>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
           <p>The function shall not participate in overload resolution unless
-          <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>true</code>.</p>
+          <code>decay_t&lt;U&gt;</code> is not <code>nullopt_t</code> and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>optional</code>.</p>
         </cxx-remarks>
-        <cxx-notes>The reason for providing such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous.</cxx-notes>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; operator=(const optional&lt;U&gt;&amp; rhs);</cxx-signature>
+
+        <cxx-requires><code>is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code> and <code>is_assignable_v&lt;T&amp;, const U&amp&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::operator=(const optional&lt;U&gt;&amp;)</code> effects</caption>
+            <tr>
+              <th></th>
+              <th><code>*this</code> contains a value</th>
+              <th><code>*this</code> does not contain a value</th>
+            </tr>
+            <tr>
+              <th><code>rhs</code> contains a value</th>
+              <td>assigns <code>*rhs</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>*rhs</code></td>
+            </tr>
+            <tr>
+              <th><code>rhs</code> does not contain a value</th>
+              <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
+              <td>no effect</td>
+            </tr>
+          </table>
+        </cxx-effects>
+        <cxx-returns><code>*this</code>.</cxx-returns>
+        <cxx-postconditions><code>bool(rhs) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-remarks>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
+          If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s constructor.
+          If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code>*val</code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s assignment.
+          The function shall not participate in overload resolution unless <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>.</cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; operator=(optional&lt;U&gt;&amp;&amp; rhs);</cxx-signature>
+
+        <cxx-requires><code>is_constructible_v&lt;T, U&gt;</code> is <code>true</code> and <code>is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code>.</cxx-requires>
+        <cxx-effects>The result of the expression <code>bool(rhs)</code> remains unchanged.
+          <table is="cxx-table" class="single-border column-rules">
+            <caption><code>optional::operator=(optional&lt;U&gt;&amp;&amp;)</code> effects</caption>
+            <tr>
+              <th></th>
+              <th><code>*this</code> contains a value</th>
+              <th><code>*this</code> does not contain a value</th>
+            </tr>
+            <tr>
+              <th><code>rhs</code> contains a value</th>
+              <td>assigns <code>std::move(*rhs)</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>std::move(*rhs)</code></td>
+            </tr>
+            <tr>
+              <th><code>rhs</code> does not contain a value</th>
+              <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
+              <td>no effect</td>
+            </tr>
+          </table>
+        </cxx-effects>
+        <cxx-returns><code>*this</code>.</cxx-returns>
+        <cxx-postconditions><code>bool(rhs) == bool(*this)</code>.</cxx-postconditions>
+        <cxx-remarks>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
+          If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s constructor.
+          If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code>*val</code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s assignment.
+          The function shall not participate in overload resolution unless <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is false.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
