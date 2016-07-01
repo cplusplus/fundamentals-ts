@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
 <html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-REQUIRES");document.createElement("CXX-EDNOTE");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-NOTES");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-EXCEPTION-SAFETY");document.createElement("CXX-FIGURE");document.createElement("CXX-GRAMMARTERM");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-EFFECTS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-RETURNS");document.createElement("CXX-REQUIRES");document.createElement("CXX-EDNOTE");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-RANGE");document.createElement("CXX-THROWS");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-FOOTNOTE");document.createElement("CXX-NOTES");document.createElement("CXX-FIGURE");document.createElement("CXX-GRAMMARTERM");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -962,13 +962,13 @@ html   [segment], html   segment {
       <div class="page">
         <table class="header">
           
-            <tbody><tr><th>Document Number:</th><td><cxx-docnum class="docname">N4584</cxx-docnum></td></tr>
+            <tbody><tr><th>Document Number:</th><td><cxx-docnum class="docname">N4600</cxx-docnum></td></tr>
           
           
-            <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">2016</span>-03-08</time></td></tr>
+            <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">2016</span>-07-01</time></td></tr>
           
           
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4562.html">N4562</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/n4584.html">N4584</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
@@ -1490,6 +1490,10 @@ html   [segment], html   segment {
       </li>
             
               <li><span class="marker">8.2.1.3</span><a href="#memory.smartptr.shared.cast">shared_ptr casts</a>
+        
+      </li>
+            
+              <li><span class="marker">8.2.1.4</span><a href="#memory.smartptr.shared.hash">shared_ptr hash support</a>
         
       </li>
             
@@ -5410,7 +5414,7 @@ RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterat
     <pre><code><cxx-signature>template&lt;class RandomAccessIterator,
          class Hash = hash&lt;typename iterator_traits&lt;RandomAccessIterator&gt;::value_type&gt;,
          class BinaryPredicate = equal_to&lt;&gt;&gt;
-boyer_moore_searcher_horspool&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
+boyer_moore_horspool_searcher&lt;RandomAccessIterator, Hash, BinaryPredicate&gt;
 make_boyer_moore_horspool_searcher(
     RandomAccessIterator pat_first, RandomAccessIterator pat_last,
     Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature></code></pre>
@@ -5639,6 +5643,9 @@ public:
   template &lt;class... Args&gt; constexpr explicit optional(in_place_t, Args&amp;&amp;...);
   template &lt;class U, class... Args&gt;
     constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
+  template &lt;class U&gt; constexpr optional(U&amp;&amp;);
+  template &lt;class U&gt; constexpr optional(const optional&lt;U&gt;&amp;);
+  template &lt;class U&gt; constexpr optional(optional&lt;U&gt;&amp;&amp;);
 
   <cxx-ref insynopsis="" to="optional.object.dtor">// <i><a title="optional.object.dtor" href="#optional.object.dtor">5.3.2</a>, Destructor</i></cxx-ref>
   ~optional();
@@ -5648,6 +5655,8 @@ public:
   optional&amp; operator=(const optional&amp;);
   optional&amp; operator=(optional&amp;&amp;) noexcept(<em>see below</em>);
   template &lt;class U&gt; optional&amp; operator=(U&amp;&amp;);
+  template &lt;class U&gt; optional&amp; operator=(const optional&lt;U&gt;&amp;);
+  template &lt;class U&gt; optional&amp; operator=(optional&lt;U&gt;&amp;&amp;);
   template &lt;class... Args&gt; void emplace(Args&amp;&amp;...);
   template &lt;class U, class... Args&gt;
     void emplace(initializer_list&lt;U&gt;, Args&amp;&amp;...);
@@ -5681,6 +5690,7 @@ private:
       is allocated within the storage of the optional object.
       Implementations are not permitted to use additional storage, such as dynamic memory, to allocate its contained value.
       The contained value shall be allocated in a region of the <code>optional&lt;T&gt;</code> storage suitably aligned for the type <code>T</code>.
+      It is implementation-defined whether over-aligned types are supported (<cxx-ref in="cxx" to="basic.align">C++14 <span title="basic.align">§3.11</span></cxx-ref>).
       When an object of type <code>optional&lt;T&gt;</code> is contextually converted to <code>bool</code>,
       the conversion returns <code>true</code> if the object contains a value;
       otherwise the conversion returns <code>false</code>.
@@ -5912,6 +5922,104 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
       
     </dl>
   </cxx-function>
+
+      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The following constructors are conditionally specified as <code>explicit</code>. This is typically implemented by declaring two such constructors, of which at most one participates in overload resolution.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+
+      <cxx-function para_num="39" id="optional.object.ctor.39">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt;
+constexpr optional(U&amp;&amp; v);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="40" id="optional.object.ctor.40">
+    
+    <dt>Effects:</dt><dd>Initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::forward&lt;U&gt;(v)</code>.</dd>
+  </cxx-effects>
+        <cxx-postconditions para_num="41" id="optional.object.ctor.41">
+    
+    <dt>Postconditions:</dt><dd><code>*this</code> contains a value.</dd>
+  </cxx-postconditions>
+        <cxx-throws para_num="42" id="optional.object.ctor.42">
+    
+    <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
+  </cxx-throws>
+        <cxx-remarks para_num="43" id="optional.object.ctor.43">
+    
+    <dt>Remarks:</dt><dd>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
+          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code> and <code>U</code> is not the same type as <code>T</code>.
+          The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>.</dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="44" id="optional.object.ctor.44">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt;
+constexpr optional(const optional&lt;U&gt;&amp; rhs);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="45" id="optional.object.ctor.45">
+    
+    <dt>Effects:</dt><dd>If <code>rhs</code> contains a value, initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>*rhs</code>.</dd>
+  </cxx-effects>
+        <cxx-postconditions para_num="46" id="optional.object.ctor.46">
+    
+    <dt>Postconditions:</dt><dd><code>bool(rhs) == bool(*this)</code>.</dd>
+  </cxx-postconditions>
+        <cxx-throws para_num="47" id="optional.object.ctor.47">
+    
+    <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
+  </cxx-throws>
+        <cxx-remarks para_num="48" id="optional.object.ctor.48">
+    
+    <dt>Remarks:</dt><dd>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
+          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, const optional&lt;U&gt;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;const optional&lt;U&gt;&amp;, T&gt;</code> is <code>false</code>.
+          The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;const U&amp;, T&gt;</code> is <code>false</code>.</dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="49" id="optional.object.ctor.49">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt;
+constexpr optional(optional&lt;U&gt;&amp;&amp; rhs);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-effects para_num="50" id="optional.object.ctor.50">
+    
+    <dt>Effects:</dt><dd>If <code>rhs</code> contains a value, initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*rhs)</code>. <code>bool(rhs)</code> is unchanged.</dd>
+  </cxx-effects>
+        <cxx-postconditions para_num="51" id="optional.object.ctor.51">
+    
+    <dt>Postconditions:</dt><dd><code>bool(rhs) == bool(*this)</code>.</dd>
+  </cxx-postconditions>
+        <cxx-throws para_num="52" id="optional.object.ctor.52">
+    
+    <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
+  </cxx-throws>
+        <cxx-remarks para_num="53" id="optional.object.ctor.53">
+    
+    <dt>Remarks:</dt><dd>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
+          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, optional&lt;U&gt;&amp;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;optional&lt;U&gt;&amp;&amp;, T&gt;</code> is <code>false</code> and <code>U</code> is not the same type as <code>T</code>.
+          The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>.</dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
     
     </section>
   </cxx-section>
@@ -6136,18 +6244,132 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     <dt>Remarks:</dt><dd>
           <p>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged. If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s constructor. If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code><var>*val</var></code> and <code><var>v</var></code> is determined by the exception safety guarantee of <code>T</code>'s assignment.</p>
           <p>The function shall not participate in overload resolution unless
-          <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>true</code>.</p>
+          <code>decay_t&lt;U&gt;</code> is not <code>nullopt_t</code> and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>optional</code>.</p>
         </dd>
   </cxx-remarks>
-        <cxx-notes para_num="23" id="optional.object.assign.23">
-    
-    <dt>Notes:</dt><dd>The reason for providing such generic assignment and then constraining it so that effectively <code>T</code> == <code>U</code> is to guarantee that assignment of the form <code>o = {}</code> is unambiguous.</dd>
-  </cxx-notes>
       
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="24" id="optional.object.assign.24">
+      <cxx-function para_num="23" id="optional.object.assign.23">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; operator=(const optional&lt;U&gt;&amp; rhs);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="24" id="optional.object.assign.24">
+    
+    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code> and <code>is_assignable_v&lt;T&amp;, const U&amp;&gt;</code> is <code>true</code>.</dd>
+  </cxx-requires>
+        <cxx-effects para_num="25" id="optional.object.assign.25">
+    
+    <dt>Effects:</dt><dd>
+          <table is="cxx-table" class="single-border column-rules">
+    
+
+    <caption>Table 7 — <wbr><span><code>optional::operator=(const optional&lt;U&gt;&amp;)</code> effects</span></caption>
+    
+            
+            <tbody><tr>
+              <th></th>
+              <th><code>*this</code> contains a value</th>
+              <th><code>*this</code> does not contain a value</th>
+            </tr>
+            <tr>
+              <th><code>rhs</code> contains a value</th>
+              <td>assigns <code>*rhs</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>*rhs</code></td>
+            </tr>
+            <tr>
+              <th><code>rhs</code> does not contain a value</th>
+              <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
+              <td>no effect</td>
+            </tr>
+          </tbody>
+  </table>
+        </dd>
+  </cxx-effects>
+        <cxx-returns para_num="26" id="optional.object.assign.26">
+    
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
+  </cxx-returns>
+        <cxx-postconditions para_num="27" id="optional.object.assign.27">
+    
+    <dt>Postconditions:</dt><dd><code>bool(rhs) == bool(*this)</code>.</dd>
+  </cxx-postconditions>
+        <cxx-remarks para_num="28" id="optional.object.assign.28">
+    
+    <dt>Remarks:</dt><dd>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
+          If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s constructor.
+          If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code>*val</code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s assignment.
+          The function shall not participate in overload resolution unless <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>.</dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="29" id="optional.object.assign.29">
+    
+    <pre><code><cxx-signature>template &lt;class U&gt; optional&lt;T&gt;&amp; operator=(optional&lt;U&gt;&amp;&amp; rhs);</cxx-signature></code></pre>
+
+    <dl>
+      
+        
+
+        <cxx-requires para_num="30" id="optional.object.assign.30">
+    
+    <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, U&gt;</code> is <code>true</code> and <code>is_assignable_v&lt;T&amp;, U&gt;</code> is <code>true</code>.</dd>
+  </cxx-requires>
+        <cxx-effects para_num="31" id="optional.object.assign.31">
+    
+    <dt>Effects:</dt><dd>The result of the expression <code>bool(rhs)</code> remains unchanged.
+          <table is="cxx-table" class="single-border column-rules">
+    
+
+    <caption>Table 8 — <wbr><span><code>optional::operator=(optional&lt;U&gt;&amp;&amp;)</code> effects</span></caption>
+    
+            
+            <tbody><tr>
+              <th></th>
+              <th><code>*this</code> contains a value</th>
+              <th><code>*this</code> does not contain a value</th>
+            </tr>
+            <tr>
+              <th><code>rhs</code> contains a value</th>
+              <td>assigns <code>std::move(*rhs)</code> to the contained value</td>
+              <td>initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with <code>std::move(*rhs)</code></td>
+            </tr>
+            <tr>
+              <th><code>rhs</code> does not contain a value</th>
+              <td>destroys the contained value by calling <code>val-&gt;T::~T()</code></td>
+              <td>no effect</td>
+            </tr>
+          </tbody>
+  </table>
+        </dd>
+  </cxx-effects>
+        <cxx-returns para_num="32" id="optional.object.assign.32">
+    
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
+  </cxx-returns>
+        <cxx-postconditions para_num="33" id="optional.object.assign.33">
+    
+    <dt>Postconditions:</dt><dd><code>bool(rhs) == bool(*this)</code>.</dd>
+  </cxx-postconditions>
+        <cxx-remarks para_num="34" id="optional.object.assign.34">
+    
+    <dt>Remarks:</dt><dd>If any exception is thrown, the result of the expression <code>bool(*this)</code> remains unchanged.
+          If an exception is thrown during the call to <code>T</code>'s constructor, the state of <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s constructor.
+          If an exception is thrown during the call to <code>T</code>'s assignment, the state of <code>*val</code> and <code>*rhs.val</code> is determined by the exception safety guarantee of <code>T</code>'s assignment.
+          The function shall not participate in overload resolution unless <code>is_same_v&lt;decay_t&lt;U&gt;, T&gt;</code> is false.</dd>
+  </cxx-remarks>
+      
+    </dl>
+  </cxx-function>
+
+      <cxx-function para_num="35" id="optional.object.assign.35">
     
     <pre><code><cxx-signature>template &lt;class... Args&gt; void emplace(Args&amp;&amp;... <var>args</var>);</cxx-signature></code></pre>
 
@@ -6155,23 +6377,23 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
       
         
 
-        <cxx-requires para_num="25" id="optional.object.assign.25">
+        <cxx-requires para_num="36" id="optional.object.assign.36">
     
     <dt>Requires:</dt><dd><code>is_constructible_v&lt;T, Args&amp;&amp;...&gt;</code> is <code>true</code>.</dd>
   </cxx-requires>
-        <cxx-effects para_num="26" id="optional.object.assign.26">
+        <cxx-effects para_num="37" id="optional.object.assign.37">
     
     <dt>Effects:</dt><dd>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code>std::forward&lt;Args&gt;(<var>args</var>)...</code>.</dd>
   </cxx-effects>
-        <cxx-postconditions para_num="27" id="optional.object.assign.27">
+        <cxx-postconditions para_num="38" id="optional.object.assign.38">
     
     <dt>Postconditions:</dt><dd><code>*this</code> contains a value.</dd>
   </cxx-postconditions>
-        <cxx-throws para_num="28" id="optional.object.assign.28">
+        <cxx-throws para_num="39" id="optional.object.assign.39">
     
     <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
   </cxx-throws>
-        <cxx-remarks para_num="29" id="optional.object.assign.29">
+        <cxx-remarks para_num="40" id="optional.object.assign.40">
     
     <dt>Remarks:</dt><dd>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> does not contain a value, and the previous <code><var>*val</var></code> (if any) has been destroyed.</dd>
   </cxx-remarks>
@@ -6179,7 +6401,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="30" id="optional.object.assign.30">
+      <cxx-function para_num="41" id="optional.object.assign.41">
     
     <pre><code><cxx-signature>template &lt;class U, class... Args&gt; <w-br><wbr></w-br>void emplace(initializer_list&lt;U&gt; <var>il</var>, Args&amp;&amp;... <var>args</var>);</cxx-signature></code></pre>
 
@@ -6187,19 +6409,19 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
       
         
 
-        <cxx-effects para_num="31" id="optional.object.assign.31">
+        <cxx-effects para_num="42" id="optional.object.assign.42">
     
     <dt>Effects:</dt><dd>Calls <code>*this = nullopt</code>. Then initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the arguments <code><var>il</var>, std::forward&lt;Args&gt;(<var>args</var>)...</code>.</dd>
   </cxx-effects>
-        <cxx-postconditions para_num="32" id="optional.object.assign.32">
+        <cxx-postconditions para_num="43" id="optional.object.assign.43">
     
     <dt>Postconditions:</dt><dd><code>*this</code> contains a value.</dd>
   </cxx-postconditions>
-        <cxx-throws para_num="33" id="optional.object.assign.33">
+        <cxx-throws para_num="44" id="optional.object.assign.44">
     
     <dt>Throws:</dt><dd>Any exception thrown by the selected constructor of <code>T</code>.</dd>
   </cxx-throws>
-        <cxx-remarks para_num="34" id="optional.object.assign.34">
+        <cxx-remarks para_num="45" id="optional.object.assign.45">
     
     <dt>Remarks:</dt><dd>
           <p>If an exception is thrown during the call to <code>T</code>'s constructor, <code>*this</code> does not contain a value, and the previous <code><var>*val</var></code> (if any) has been destroyed.</p>
@@ -6240,7 +6462,7 @@ constexpr explicit optional(in_place_t, initializer_list&lt;U&gt; <var>il</var>,
           <table is="cxx-table" class="single-border column-rules">
     
 
-    <caption>Table 7 — <wbr><span><code>optional::swap(optional&amp;)</code> effects</span></caption>
+    <caption>Table 9 — <wbr><span><code>optional::swap(optional&amp;)</code> effects</span></caption>
     
             
             <tbody><tr>
@@ -7362,12 +7584,12 @@ any(ValueType&amp;&amp; value);</cxx-signature></code></pre>
         <p para_num="10" id="any.cons.10">Let <code>T</code> be equal to <code>decay_t&lt;ValueType&gt;</code>.</p>
         <cxx-requires para_num="11" id="any.cons.11">
     
-    <dt>Requires:</dt><dd><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements.
+    <dt>Requires:</dt><dd><code>T</code> shall satisfy the <code>CopyConstructible</code> requirements, except for the requirements for <code>MoveConstructible</code>.
         If <code>is_copy_constructible_v&lt;T&gt;</code> is false, the program is ill-formed.</dd>
   </cxx-requires>
         <cxx-effects para_num="12" id="any.cons.12">
     
-    <dt>Effects:</dt><dd>Constructs an object of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(value)</code>.</dd>
+    <dt>Effects:</dt><dd>If <code>is_constructible_v&lt;T, ValueType&amp;&amp;&gt;</code> is true, constructs an object of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>std::forward&lt;ValueType&gt;(value)</code>. Otherwise, constructs an object of type <code>any</code> that contains an object of type <code>T</code> direct-initialized with <code>value</code>.</dd>
   </cxx-effects>
         <cxx-remarks para_num="13" id="any.cons.13">
     
@@ -7640,7 +7862,8 @@ ValueType any_cast(any&amp;&amp; operand);</cxx-signature></code></pre>
       <cxx-returns para_num="5" id="any.nonmembers.5">
     
     <dt>Returns:</dt><dd>For the first form, <code>*any_cast&lt;add_const_t&lt;remove_reference_t&lt;ValueType&gt;&gt;&gt;(&amp;operand)</code>.
-      For the second and third forms, <code>*any_cast&lt;remove_reference_t&lt;ValueType&gt;&gt;(&amp;operand)</code>.</dd>
+      For the second form, <code>*any_cast&lt;remove_reference_t&lt;ValueType&gt;&gt;(&amp;operand)</code>.
+      For the third form, if <code>is_move_constructible_v&lt;ValueType&gt;</code> is <code>true</code> and <code>is_lvalue_reference_v&lt;ValueType&gt;</code> is <code>false</code>, <code>std::move(*any_cast&lt;remove_reference_t&lt;ValueType&gt;&gt;(&amp;operand))</code>, otherwise, <code>*any_cast&lt;remove_reference_t&lt;ValueType&gt;&gt;(&amp;operand)</code>.</dd>
   </cxx-returns>
       <cxx-throws para_num="6" id="any.nonmembers.6">
     
@@ -7970,12 +8193,12 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
 
       <cxx-effects para_num="5" id="string.view.cons.5">
     
-    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.1"><a title="tab:string.view.ctr.1" href="#tab:string.view.ctr.1">Table 8</a></cxx-ref>.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.1"><a title="tab:string.view.ctr.1" href="#tab:string.view.ctr.1">Table 10</a></cxx-ref>.</dd>
   </cxx-effects>
       <table is="cxx-table" id="tab:string.view.ctr.1">
     
 
-    <caption>Table 8 — <wbr><span><code>basic_string_view(const basic_string&amp;)</code> effects</span></caption>
+    <caption>Table 10 — <wbr><span><code>basic_string_view(const basic_string&amp;)</code> effects</span></caption>
     
         
         <tbody><tr><th>Element</th><th>Value</th></tr>
@@ -8002,13 +8225,13 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
       <cxx-effects para_num="8" id="string.view.cons.8">
     
     <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions
-      in <cxx-ref to="tab:string.view.ctr.2"><a title="tab:string.view.ctr.2" href="#tab:string.view.ctr.2">Table 9</a></cxx-ref>.</dd>
+      in <cxx-ref to="tab:string.view.ctr.2"><a title="tab:string.view.ctr.2" href="#tab:string.view.ctr.2">Table 11</a></cxx-ref>.</dd>
   </cxx-effects>
 
       <table is="cxx-table" id="tab:string.view.ctr.2">
     
 
-    <caption>Table 9 — <wbr><span><code>basic_string_view(const charT*)</code> effects</span></caption>
+    <caption>Table 11 — <wbr><span><code>basic_string_view(const charT*)</code> effects</span></caption>
     
       <tbody><tr><th>Element</th><th>Value</th></tr>
       <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -8038,12 +8261,12 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator&gt;&amp; str) n
   </cxx-requires>
       <cxx-effects para_num="12" id="string.view.cons.12">
     
-    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.3"><a title="tab:string.view.ctr.3" href="#tab:string.view.ctr.3">Table 10</a></cxx-ref>.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.3"><a title="tab:string.view.ctr.3" href="#tab:string.view.ctr.3">Table 12</a></cxx-ref>.</dd>
   </cxx-effects>
       <table is="cxx-table" id="tab:string.view.ctr.3">
     
 
-    <caption>Table 10 — <wbr><span><code>basic_string_view(const charT*, size_type)</code> effects</span></caption>
+    <caption>Table 12 — <wbr><span><code>basic_string_view(const charT*, size_type)</code> effects</span></caption>
     
         <tbody><tr><th>Element</th><th>Value</th></tr>
         <tr><td><code>data_</code></td><td><code>str</code></td></tr>
@@ -8560,12 +8783,12 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
       <cxx-returns para_num="22" id="string.view.ops.22">
     
     <dt>Returns:</dt><dd>The nonzero result if the result of the comparison is nonzero.
-        Otherwise, returns a value as indicated in <cxx-ref to="tab:string.view.compare"><a title="tab:string.view.compare" href="#tab:string.view.compare">Table 11</a></cxx-ref>.</dd>
+        Otherwise, returns a value as indicated in <cxx-ref to="tab:string.view.compare"><a title="tab:string.view.compare" href="#tab:string.view.compare">Table 13</a></cxx-ref>.</dd>
   </cxx-returns>
       <table is="cxx-table" id="tab:string.view.compare" class="center">
     
 
-    <caption>Table 11 — <wbr><span><code>compare()</code> results</span></caption>
+    <caption>Table 13 — <wbr><span><code>compare()</code> results</span></caption>
     
         
         <tbody><tr><th>Condition</th><th>Return Value</th></tr>
@@ -8885,13 +9108,13 @@ basic_string&lt;charT, traits, Allocator&gt; to_string(
     <p para_num="1" id="string.view.comparison.1">
       Let <code>S</code> be <code>basic_string_view&lt;charT, traits&gt;</code>, and <code>sv</code> be an instance of <code>S</code>.
       Implementations shall provide sufficient additional overloads marked <code>constexpr</code> and <code>noexcept</code>
-      so that an object <code><var>t</var></code> with an implicit conversion to <code>S</code> can be compared according to <cxx-ref to="tab:string.view.comparison.overloads"><a title="tab:string.view.comparison.overloads" href="#tab:string.view.comparison.overloads">Table 12</a></cxx-ref>.
+      so that an object <code><var>t</var></code> with an implicit conversion to <code>S</code> can be compared according to <cxx-ref to="tab:string.view.comparison.overloads"><a title="tab:string.view.comparison.overloads" href="#tab:string.view.comparison.overloads">Table 14</a></cxx-ref>.
     </p>
 
     <table is="cxx-table" id="tab:string.view.comparison.overloads" class="center">
     
 
-    <caption>Table 12 — <wbr><span>Additional <code>basic_string_view</code> comparison overloads</span></caption>
+    <caption>Table 14 — <wbr><span>Additional <code>basic_string_view</code> comparison overloads</span></caption>
     
       <tbody><tr><th>Expression</th><th>Equivalent to</th></tr>
       <tr><td><code>t == sv</code></td><td><code>S(t) == sv</code></td></tr>
@@ -9270,7 +9493,7 @@ namespace std {
   } // inline namespace fundamentals_v2
   } // namespace experimental
 
-  // <cxx-ref in="cxx" to="util.smartptr.hash">C++14 <span title="util.smartptr.hash">§20.8.2.7</span></cxx-ref>
+  <cxx-ref insynopsis="" to="memory.smartptr.shared.hash">// <i><a title="memory.smartptr.shared.hash" href="#memory.smartptr.shared.hash">8.2.1.4</a>, shared_ptr hash support</i></cxx-ref>
   template&lt;class T&gt; struct hash&lt;experimental::shared_ptr&lt;T&gt;&gt;;
 
   <cxx-ref insynopsis="" to="memory.observer.ptr.hash">// <i><a title="memory.observer.ptr.hash" href="#memory.observer.ptr.hash">8.12.7</a>, observer_ptr hash support</i></cxx-ref>
@@ -9461,7 +9684,7 @@ inline namespace fundamentals_v2 {
 } // namespace fundamentals_v2
 } // namespace experimental
 
-  // <cxx-ref in="cxx" to="util.smartptr.hash">C++14 <span title="util.smartptr.hash">§20.8.2.7</span></cxx-ref>
+  <cxx-ref insynopsis="" to="memory.smartptr.shared.hash">// <i><a title="memory.smartptr.shared.hash" href="#memory.smartptr.shared.hash">8.2.1.4</a>, shared_ptr hash support</i></cxx-ref>
   template&lt;class T&gt; struct hash&lt;experimental::shared_ptr&lt;T&gt;&gt;;
 
 } // namespace std</code></pre>
@@ -9500,7 +9723,8 @@ inline namespace fundamentals_v2 {
         <cxx-effects para_num="3" id="memory.smartptr.shared.const.3">
     
     <dt>Effects:</dt><dd>When <code>T</code> is not an array type, constructs a <code>shared_ptr</code> object that <i>owns</i> the pointer <code>p</code>.
-        Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.</dd>
+        Otherwise, constructs a <code>shared_ptr</code> that <em>owns</em> <code>p</code> and a deleter of an unspecified type that calls <code>delete[] p</code>.
+        If an exception is thrown, <code>delete p</code> is called when <code>T</code> is not an array type, <code>delete[] p</code> otherwise.</dd>
   </cxx-effects>
 
         <cxx-postconditions para_num="4" id="memory.smartptr.shared.const.4">
@@ -9512,16 +9736,11 @@ inline namespace fundamentals_v2 {
     
     <dt>Throws:</dt><dd><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</dd>
   </cxx-throws>
-
-        <cxx-exception-safety para_num="6" id="memory.smartptr.shared.const.6">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, <code>delete p</code> is called when <code>T</code> is not an array type, <code>delete[] p</code> otherwise.</dd>
-  </cxx-exception-safety>
       
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="7" id="memory.smartptr.shared.const.7">
+      <cxx-function para_num="6" id="memory.smartptr.shared.const.6">
     
     <pre><code><cxx-signature>template&lt;class Y, class D&gt; shared_ptr(Y* p, D d);</cxx-signature><cxx-signature>template&lt;class Y, class D, class A&gt; shared_ptr(Y* p, D d, A a);</cxx-signature><cxx-signature>template &lt;class D&gt; shared_ptr(nullptr_t p, D d);</cxx-signature><cxx-signature>template &lt;class D, class A&gt; shared_ptr(nullptr_t p, D d, A a);</cxx-signature></code></pre>
 
@@ -9532,7 +9751,7 @@ inline namespace fundamentals_v2 {
         
         
 
-        <cxx-requires para_num="8" id="memory.smartptr.shared.const.8">
+        <cxx-requires para_num="7" id="memory.smartptr.shared.const.7">
     
     <dt>Requires:</dt><dd><code>D</code> shall be <code>CopyConstructible</code>. The copy constructor and destructor of <code> D</code> shall not throw exceptions. The expression <code>d(p)</code> shall be well formed, shall have well defined behavior, and shall not throw exceptions. <code>A</code> shall be an allocator (<cxx-ref in="cxx" to="allocator.requirements">C++14 <span title="allocator.requirements">§17.6.3.5</span></cxx-ref>). The copy constructor and destructor of <code>A</code> shall not throw exceptions.
         When <code>T</code> is <code>U[N]</code>, <code>Y(*)[N]</code> shall be convertible to <code>T*</code>;
@@ -9540,30 +9759,25 @@ inline namespace fundamentals_v2 {
         otherwise, <code>Y*</code> shall be convertible to <code>T*</code>.</dd>
   </cxx-requires>
 
-        <cxx-effects para_num="9" id="memory.smartptr.shared.const.9">
+        <cxx-effects para_num="8" id="memory.smartptr.shared.const.8">
     
-    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>owns</i> the object <code>p</code> and the deleter <code>d</code>. The second and fourth constructors shall use a copy of <code>a</code> to allocate memory for internal use. If an exception is thrown, <code>d(p)</code> is called.</dd>
   </cxx-effects>
 
-        <cxx-postconditions para_num="10" id="memory.smartptr.shared.const.10">
+        <cxx-postconditions para_num="9" id="memory.smartptr.shared.const.9">
     
     <dt>Postconditions:</dt><dd><code>use_count() == 1 &amp;&amp; get() == p</code>.</dd>
   </cxx-postconditions>
 
-        <cxx-throws para_num="11" id="memory.smartptr.shared.const.11">
+        <cxx-throws para_num="10" id="memory.smartptr.shared.const.10">
     
     <dt>Throws:</dt><dd><code>bad_alloc</code>, or an implementation-defined exception when a resource other than memory could not be obtained.</dd>
   </cxx-throws>
-
-        <cxx-exception-safety para_num="12" id="memory.smartptr.shared.const.12">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, <code>d(p)</code> is called.</dd>
-  </cxx-exception-safety>
       
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="13" id="memory.smartptr.shared.const.13">
+      <cxx-function para_num="11" id="memory.smartptr.shared.const.11">
     
     <pre><code><cxx-signature>template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r, element_type* p) noexcept;</cxx-signature></code></pre>
 
@@ -9571,24 +9785,24 @@ inline namespace fundamentals_v2 {
       
         
 
-        <cxx-effects para_num="14" id="memory.smartptr.shared.const.14">
+        <cxx-effects para_num="12" id="memory.smartptr.shared.const.12">
     
     <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> instance that stores <code>p</code> and <i>shares ownership</i> with <code>r</code>.</dd>
   </cxx-effects>
 
-        <cxx-postconditions para_num="15" id="memory.smartptr.shared.const.15">
+        <cxx-postconditions para_num="13" id="memory.smartptr.shared.const.13">
     
     <dt>Postconditions:</dt><dd><code>get() == p &amp;&amp; use_count() == r.use_count()</code>.</dd>
   </cxx-postconditions>
 
-        <p para_num="16" id="memory.smartptr.shared.const.16">
+        <p para_num="14" id="memory.smartptr.shared.const.14">
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     To avoid the possibility of a dangling pointer, the user of this constructor must ensure that <code>p</code> remains valid at least until the ownership group of <code>r</code> is destroyed.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
         </p>
 
-        <p para_num="17" id="memory.smartptr.shared.const.17">
+        <p para_num="15" id="memory.smartptr.shared.const.15">
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     This constructor allows creation of an <i>empty</i> <code>shared_ptr</code> instance with a non-null stored pointer.
     <span class="nowrap">— <em>end note</em> ]</span>
@@ -9598,7 +9812,7 @@ inline namespace fundamentals_v2 {
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="18" id="memory.smartptr.shared.const.18">
+      <cxx-function para_num="16" id="memory.smartptr.shared.const.16">
     
     <pre><code><cxx-signature>shared_ptr(const shared_ptr&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; shared_ptr(const shared_ptr&lt;Y&gt;&amp; r) noexcept;</cxx-signature></code></pre>
 
@@ -9607,17 +9821,17 @@ inline namespace fundamentals_v2 {
         
         
 
-        <cxx-requires para_num="19" id="memory.smartptr.shared.const.19">
+        <cxx-requires para_num="17" id="memory.smartptr.shared.const.17">
     
     <dt>Requires:</dt><dd> The second constructor shall not participate in the overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</dd>
   </cxx-requires>
 
-        <cxx-effects para_num="20" id="memory.smartptr.shared.const.20">
+        <cxx-effects para_num="18" id="memory.smartptr.shared.const.18">
     
     <dt>Effects:</dt><dd>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>shared_ptr</code> object; otherwise, constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code>.</dd>
   </cxx-effects>
 
-        <cxx-postconditions para_num="21" id="memory.smartptr.shared.const.21">
+        <cxx-postconditions para_num="19" id="memory.smartptr.shared.const.19">
     
     <dt>Postconditions:</dt><dd><code>get() == r.get() &amp;&amp; use_count() == r.use_count()</code>.</dd>
   </cxx-postconditions>
@@ -9625,7 +9839,7 @@ inline namespace fundamentals_v2 {
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="22" id="memory.smartptr.shared.const.22">
+      <cxx-function para_num="20" id="memory.smartptr.shared.const.20">
     
     <pre><code><cxx-signature>shared_ptr(shared_ptr&amp;&amp; r) noexcept;</cxx-signature><cxx-signature>template&lt;class Y&gt; shared_ptr(shared_ptr&lt;Y&gt;&amp;&amp; r) noexcept;</cxx-signature></code></pre>
 
@@ -9640,17 +9854,17 @@ inline namespace fundamentals_v2 {
 "implicitly convertible" is removed, but the C++14 draft only has 
 "convertible". Does this make a difference?</aside>
   </cxx-ednote>
-        <cxx-remarks para_num="23" id="memory.smartptr.shared.const.23">
+        <cxx-remarks para_num="21" id="memory.smartptr.shared.const.21">
     
     <dt>Remarks:</dt><dd>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</dd>
   </cxx-remarks>
 
-        <cxx-effects para_num="24" id="memory.smartptr.shared.const.24">
+        <cxx-effects para_num="22" id="memory.smartptr.shared.const.22">
     
     <dt>Effects:</dt><dd>Move-constructs a <code>shared_ptr</code> instance from <code>r</code>.</dd>
   </cxx-effects>
 
-        <cxx-postconditions para_num="25" id="memory.smartptr.shared.const.25">
+        <cxx-postconditions para_num="23" id="memory.smartptr.shared.const.23">
     
     <dt>Postconditions:</dt><dd><code>*this</code> shall contain the old value of <code>r</code>. <code>r</code> shall be <i>empty</i>. <code>r.get() == 0.</code></dd>
   </cxx-postconditions>
@@ -9658,7 +9872,7 @@ inline namespace fundamentals_v2 {
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="26" id="memory.smartptr.shared.const.26">
+      <cxx-function para_num="24" id="memory.smartptr.shared.const.24">
     
     <pre><code><cxx-signature>template&lt;class Y&gt; explicit shared_ptr(const weak_ptr&lt;Y&gt;&amp; r);</cxx-signature></code></pre>
 
@@ -9666,35 +9880,30 @@ inline namespace fundamentals_v2 {
       
         
 
-        <cxx-requires para_num="27" id="memory.smartptr.shared.const.27">
+        <cxx-requires para_num="25" id="memory.smartptr.shared.const.25">
     
     <dt>Requires:</dt><dd><code>Y*</code> shall be <i>compatible with</i> <code>T*</code>.</dd>
   </cxx-requires>
 
-        <cxx-effects para_num="28" id="memory.smartptr.shared.const.28">
+        <cxx-effects para_num="26" id="memory.smartptr.shared.const.26">
     
-    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</dd>
+    <dt>Effects:</dt><dd>Constructs a <code>shared_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>. If an exception is thrown, the constructor has no effect.</dd>
   </cxx-effects>
 
-        <cxx-postconditions para_num="29" id="memory.smartptr.shared.const.29">
+        <cxx-postconditions para_num="27" id="memory.smartptr.shared.const.27">
     
     <dt>Postconditions:</dt><dd><code>use_count() == r.use_count()</code>.</dd>
   </cxx-postconditions>
 
-        <cxx-throws para_num="30" id="memory.smartptr.shared.const.30">
+        <cxx-throws para_num="28" id="memory.smartptr.shared.const.28">
     
     <dt>Throws:</dt><dd><code>bad_weak_ptr</code> when <code>r.expired()</code>.</dd>
   </cxx-throws>
-
-        <cxx-exception-safety para_num="31" id="memory.smartptr.shared.const.31">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, the constructor has no effect.</dd>
-  </cxx-exception-safety>
       
     </dl>
   </cxx-function>
 
-      <cxx-function para_num="32" id="memory.smartptr.shared.const.32">
+      <cxx-function para_num="29" id="memory.smartptr.shared.const.29">
     
     <pre><code><cxx-signature>template &lt;class Y, class D&gt; shared_ptr(unique_ptr&lt;Y, D&gt;&amp;&amp; r);</cxx-signature></code></pre>
 
@@ -9702,20 +9911,15 @@ inline namespace fundamentals_v2 {
       
         
 
-        <cxx-remarks para_num="33" id="memory.smartptr.shared.const.33">
+        <cxx-remarks para_num="30" id="memory.smartptr.shared.const.30">
     
     <dt>Remarks:</dt><dd>This constructor shall not participate in overload resolution unless <code>Y*</code> is <em>compatible with</em> <code>T*</code>.</dd>
   </cxx-remarks>
 
-        <cxx-effects para_num="34" id="memory.smartptr.shared.const.34">
+        <cxx-effects para_num="31" id="memory.smartptr.shared.const.31">
     
-    <dt>Effects:</dt><dd>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>.</dd>
+    <dt>Effects:</dt><dd>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>. If an exception is thrown, the constructor has no effect.</dd>
   </cxx-effects>
-
-        <cxx-exception-safety para_num="35" id="memory.smartptr.shared.const.35">
-    
-    <dt>Exception safety:</dt><dd>If an exception is thrown, the constructor has no effect.</dd>
-  </cxx-exception-safety>
       
     </dl>
   </cxx-function>
@@ -9958,6 +10162,28 @@ except that the declaration (although not necessarily the definition) of
     
     </section>
   </cxx-section>
+
+    <cxx-section id="memory.smartptr.shared.hash">
+    
+
+    <section>
+      <header><span class="section-number">8.2.1.4</span> <h1 data-bookmark-label="8.2.1.4 shared_ptr hash support"><code>shared_ptr</code> hash support</h1> <span style="float:right"><a href="#memory.smartptr.shared.hash">[memory.smartptr.shared.hash]</a></span></header>
+      
+      
+        <cxx-function para_num="1" id="memory.smartptr.shared.hash.1">
+    
+    <pre><code><cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::shared_ptr&lt;T&gt;&gt;;</cxx-signature></code></pre>
+
+    <dl>
+      
+          
+
+          <p para_num="2" id="memory.smartptr.shared.hash.2">The template specialization shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash">C++14 <span title="unord.hash">§20.9.12</span></cxx-ref>). For an object <code>p</code> of type <code>experimental::shared_ptr&lt;T&gt;</code>, <code>hash&lt;experimental::shared_ptr&lt;T&gt;&gt;()(p)</code> shall evaluate to the same value as <code>hash&lt;typename experimental::shared_ptr&lt;T&gt;::element_type*&gt;()(p.get())</code>.</p>
+    
+    </dl>
+  </cxx-function>
+    </section>
+  </cxx-section>
   
     </section>
   </cxx-section>
@@ -10078,13 +10304,13 @@ inline namespace fundamentals_v2 {
       but where <code>C</code> is not dependent on the type of <code>alloc</code>.
       Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
       <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::experimental::pmr::memory_resource*</code> (<cxx-ref to="memory.resource"><a title="memory.resource" href="#memory.resource">8.5</a></cxx-ref>).
-      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"><a title="tab:memory.resource.type.erased.allocator" href="#tab:memory.resource.type.erased.allocator">Table 13</a></cxx-ref>:
+      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"><a title="tab:memory.resource.type.erased.allocator" href="#tab:memory.resource.type.erased.allocator">Table 15</a></cxx-ref>:
     </p>
 
     <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
     
 
-    <caption>Table 13 — <wbr><span>Computed <code>memory_resource</code> for type-erased allocator</span></caption>
+    <caption>Table 15 — <wbr><span>Computed <code>memory_resource</code> for type-erased allocator</span></caption>
     
       
       <thead>
@@ -12165,11 +12391,11 @@ namespace experimental {
 inline namespace fundamentals_v2 {
 
   template &lt;class W&gt; class observer_ptr {
+    using pointer = add_pointer_t&lt;W&gt;;            <i>// exposition-only</i>
+    using reference = add_lvalue_reference_t&lt;W&gt;; <i>// exposition-only</i>
   public:
     // publish our template parameter and variations thereof
     using element_type = W;
-    using pointer = add_pointer_t&lt;W&gt;;            <i>// exposition-only</i>
-    using reference = add_lvalue_reference_t&lt;W&gt;; <i>// exposition-only</i>
 
     <cxx-ref insynopsis="" to="memory.observer.ptr.ctor">// <i><a title="memory.observer.ptr.ctor" href="#memory.observer.ptr.ctor">8.12.2</a>, observer_ptr constructors</i></cxx-ref>
     // default c’tor
