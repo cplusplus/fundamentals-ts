@@ -582,7 +582,7 @@ constexpr optional(optional&lt;U&gt;&amp;&amp; rhs);</cxx-signature>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template &lt;class U&gt; T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
+        <cxx-signature>template &lt;class U&gt; constexpr T value_or(U&amp;&amp; <var>v</var>) &amp;&amp;;</cxx-signature>
 
         <cxx-effects>Equivalent to <code>return bool(*this) ? <w-br></w-br>std::move(**this) : <w-br></w-br>static_cast&lt;T&gt;(std::forward&lt;U&gt;(<var>v</var>));</code></cxx-effects>
         <cxx-remarks>If <code>is_move_constructible_v&lt;T&gt; &amp;&amp; <w-br></w-br>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>,
