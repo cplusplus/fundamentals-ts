@@ -403,7 +403,7 @@ inline namespace fundamentals_v2 {
       </p>
 
       <p>
-        The nested typedef <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
+        The member <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
         If the expression <code><em>INVOKE</em>(declval&lt;Fn&gt;(), declval&lt;ArgTypes&gt;()...)</code>
         is ill-formed when treated as an unevaluated operand (<cxx-ref in="cxx" to="expr"></cxx-ref>),
         there shall be no member <code>type</code>. Otherwise:
@@ -412,19 +412,19 @@ inline namespace fundamentals_v2 {
         <li>Let <code>R</code> denote <code>result_of_t&lt;Fn(ArgTypes...)&gt;</code>.</li>
         <li>Let the types <code>Ti</code> be the <cxx-term>invocation parameters</cxx-term>
         of <code><em>INVOKE</em>(declval&lt;Fn&gt;(), <nobr>declval&lt;ArgTypes&gt;()...)</code></nobr>.</li>
-        <li>Then the member typedef <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>
+        <li>Then the member <code>type</code> shall name the function type <code>R(T1, T2, ...)</code>.</li>
       </ul>
 
       <p>
-        The nested typedef <code>invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
-        If <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> does not exist, there shall be no member typedef <code>type</code>.
+        The member <code>invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> shall be defined as follows.
+        If <code>raw_invocation_type&lt;Fn(ArgTypes...)&gt;::type</code> does not exist, there shall be no member <code>type</code>.
         Otherwise:
       </p>
       <ul>
         <li>Let <code>A1, A2,</code> … denote <code>ArgTypes...</code></li>
         <li>Let <code>R(T1, T2, …)</code> denote <code>raw_invocation_type_t&lt;Fn(ArgTypes...)&gt;</code></li>
         <li>
-          Then the member typedef <code>type</code> shall name the function type <code>R(U1, U2, …)</code>
+          Then the member <code>type</code> shall name the function type <code>R(U1, U2, …)</code>
           where <code>Ui</code> is <code>decay_t&lt;Ai&gt;</code> if <code>declval&lt;Ai&gt;()</code> is an rvalue
           otherwise <code>Ti</code>.
         </li>
@@ -641,7 +641,7 @@ inline namespace fundamentals_v2 {
   inline namespace fundamentals_v2 {
     template &lt;class T&gt; class propagate_const {
     public:
-      typedef remove_reference_t&lt;decltype(*declval&lt;T&amp;&gt;())&gt; element_type;
+      using element_type = remove_reference_t&lt;decltype(*declval&lt;T&amp;&gt;())&gt;;
 
       <cxx-ref insynopsis to="propagate_const.ctor"></cxx-ref>
       constexpr propagate_const() = default;

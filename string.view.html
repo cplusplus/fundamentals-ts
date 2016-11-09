@@ -54,10 +54,10 @@
                    basic_string_view&lt;charT, traits> str);
 
     // basic_string_view typedef names
-    typedef basic_string_view&lt;char> string_view;
-    typedef basic_string_view&lt;char16_t> u16string_view;
-    typedef basic_string_view&lt;char32_t> u32string_view;
-    typedef basic_string_view&lt;wchar_t> wstring_view;
+    using string_view = basic_string_view&lt;char>;
+    using u16string_view = basic_string_view&lt;char16_t>;
+    using u32string_view = basic_string_view&lt;char32_t>;
+    using wstring_view = basic_string_view&lt;wchar_t>;
 
   }  // namespace fundamentals_v2
   }  // namespace experimental
@@ -83,18 +83,19 @@
 class basic_string_view {
   public:
   // types
-  typedef traits traits_type;
-  typedef charT value_type;
-  typedef charT* pointer;
-  typedef const charT* const_pointer;
-  typedef charT&amp; reference;
-  typedef const charT&amp; const_reference;
-  typedef <var>implementation-defined</var> const_iterator; // See <cxx-ref to="string.view.iterators"></cxx-ref>
-  typedef const_iterator iterator;<cxx-footnote>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</cxx-footnote>
-  typedef reverse_iterator&lt;const_iterator> const_reverse_iterator;
-  typedef const_reverse_iterator reverse_iterator;
-  typedef size_t size_type;
-  typedef ptrdiff_t difference_type;
+  using traits_type = traits;
+  using value_type = charT;
+  using pointer = charT*;
+  using const_pointer = const charT*;
+  using reference = charT&amp;;
+  using const_reference = const charT&amp;;
+  using const_iterator = <var>implementation-defined</var>; // See <cxx-ref to="string.view.iterators"></cxx-ref>
+  using iterator = const_iterator;<cxx-footnote>Because <code>basic_string_view</code> refers to a constant sequence, <code>iterator</code> and <code>const_iterator</code> are the same type.</cxx-footnote>
+  using const_reverse_iterator =
+      reverse_iterator&lt;const_iterator>;
+  using reverse_iterator = const_reverse_iterator;
+  using size_type = size_t;
+  using difference_type = ptrdiff_t;
   static constexpr size_type npos = size_type(-1);
 
   <cxx-ref insynopsis="" to="string.view.cons"></cxx-ref>
@@ -244,7 +245,7 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
     <h1><code>basic_string_view</code> iterator support</h1>
 
     <cxx-function>
-      <cxx-signature>typedef <var>implementation-defined</var> const_iterator;</cxx-signature>
+      <cxx-signature>using const_iterator = <var>implementation-defined</var>;</cxx-signature>
 
       <p>
         A constant random-access iterator type such that, for a <code>const_iterator it</code>, if <code>&amp;*(it+N)</code> is valid, then it is equal to <code>(&amp;*it)+N</code>.

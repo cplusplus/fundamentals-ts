@@ -112,12 +112,12 @@ namespace std {
     template&lt;class R, class... ArgTypes&gt;
     class function&lt;R(ArgTypes...)&gt; {
     public:
-      typedef R result_type;
-      typedef T1 argument_type;
-      typedef T1 first_argument_type;
-      typedef T2 second_argument_type;
+      using result_type = R;
+      using argument_type = T1;
+      using first_argument_type T1;
+      using second_argument_type = T2;
 
-      typedef erased_type allocator_type;
+      using allocator_type = erased_type;
 
       function() noexcept;
       function(nullptr_t) noexcept;
