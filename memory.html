@@ -498,7 +498,7 @@ inline namespace fundamentals_v2 {
         <cxx-returns><code>shared_ptr&lt;T&gt;(r, static_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</cxx-returns>
 
         <p>
-          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(static_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+          <cxx-note>The similar expression <code>shared_ptr&lt;T>(static_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
         </p>
       </cxx-function>
 
@@ -516,7 +516,7 @@ inline namespace fundamentals_v2 {
         </cxx-returns>
 
         <p>
-          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(dynamic_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+          <cxx-note>The similar expression <code>shared_ptr&lt;T>(dynamic_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
         </p>
       </cxx-function>
 
@@ -528,7 +528,7 @@ inline namespace fundamentals_v2 {
         <cxx-returns><code>shared_ptr&lt;T&gt;(r, const_cast&lt;typename shared_ptr&lt;T&gt;::element_type*&gt;(r.get()))</code>.</cxx-returns>
 
         <p>
-          <cxx-note>The seemingly equivalent expression <code>shared_ptr&lt;T>(const_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
+          <cxx-note>The similar expression <code>shared_ptr&lt;T>(const_cast&lt;T*>(r.get()))</code> will eventually result in undefined behavior, attempting to delete the same object twice.</cxx-note>
         </p>
       </cxx-function>
 
