@@ -106,8 +106,8 @@ public:
   template &lt;class U, class... Args&gt;
     constexpr explicit optional(in_place_t, initializer_list&lt;U&gt;, Args&amp;&amp;...);
   template &lt;class U&gt; constexpr optional(U&amp;&amp;);
-  template &lt;class U&gt; constexpr optional(const optional&lt;U&gt;&amp;);
-  template &lt;class U&gt; constexpr optional(optional&lt;U&gt;&amp;&amp;);
+  template &lt;class U&gt; optional(const optional&lt;U&gt;&amp;);
+  template &lt;class U&gt; optional(optional&lt;U&gt;&amp;&amp;);
 
   <cxx-ref insynopsis="" to="optional.object.dtor"></cxx-ref>
   ~optional();
@@ -254,25 +254,23 @@ constexpr optional(U&amp;&amp; v);</cxx-signature>
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-constexpr optional(const optional&lt;U&gt;&amp; rhs);</cxx-signature>
+optional(const optional&lt;U&gt;&amp; rhs);</cxx-signature>
 
         <cxx-effects>If <code>rhs</code> contains a value, initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>*rhs</code>.</cxx-effects>
         <cxx-postconditions><code>bool(rhs) == bool(*this)</code>.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
-        <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
-          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, const optional&lt;U&gt;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;const optional&lt;U&gt;&amp;, T&gt;</code> is <code>false</code>.
+        <cxx-remarks>This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, const U&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, const optional&lt;U&gt;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;const optional&lt;U&gt;&amp;, T&gt;</code> is <code>false</code>.
           The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;const U&amp;, T&gt;</code> is <code>false</code>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class U&gt;
-constexpr optional(optional&lt;U&gt;&amp;&amp; rhs);</cxx-signature>
+optional(optional&lt;U&gt;&amp;&amp; rhs);</cxx-signature>
 
         <cxx-effects>If <code>rhs</code> contains a value, initializes the contained value as if direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*rhs)</code>. <code>bool(rhs)</code> is unchanged.</cxx-effects>
         <cxx-postconditions><code>bool(rhs) == bool(*this)</code>.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
-        <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
-          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, optional&lt;U&gt;&amp;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;optional&lt;U&gt;&amp;&amp;, T&gt;</code> is <code>false</code> and <code>U</code> is not the same type as <code>T</code>.
+        <cxx-remarks>This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code>, <code>is_same&lt;decay_t&lt;U&gt;, T&gt;</code> is <code>false</code>, <code>is_constructible_v&lt;T, optional&lt;U&gt;&amp;&amp;&gt;</code> is <code>false</code> and <code>is_convertible_v&lt;optional&lt;U&gt;&amp;&amp;, T&gt;</code> is <code>false</code> and <code>U</code> is not the same type as <code>T</code>.
           The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>.</cxx-remarks>
       </cxx-function>
     </cxx-section>
