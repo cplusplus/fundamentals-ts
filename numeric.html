@@ -34,8 +34,8 @@ inline namespace fundamentals_v2 {
 constexpr common_type_t&lt;M,N> gcd(M m, N n);</cxx-signature>
 
         <cxx-requires>
-          <code>|m|</code> shall be representable as a value of type <code>M</code> and
-          <code>|n|</code> shall be representable as a value of type <code>N</code>.
+          <code>|m|</code> and <code>|n|</code> shall be representable as values of
+          <code>common_type_t&lt;M, N&gt;</code>.
           <cxx-note>These requirements ensure, for example, that <code>gcd(m, m) = |m|</code> is representable as a value of type <code>M</code>.</cxx-note>
         </cxx-requires>
         <cxx-remarks>If either <code>M</code> or <code>N</code> is not an integer type, or if either is (possibly <i>cv</i>-qualified) <code>bool</code>, the program is ill-formed.</cxx-remarks>
@@ -52,8 +52,8 @@ constexpr common_type_t&lt;M,N> gcd(M m, N n);</cxx-signature>
         <cxx-signature>template&lt;class M, class N>
 constexpr common_type_t&lt;M,N> lcm(M m, N n);</cxx-signature>
         <cxx-requires>
-          <code>|m|</code> shall be representable as a value of type <code>M</code> and
-          <code>|n|</code> shall be representable as a value of type <code>N</code>.
+          <code>|m|</code> and <code>|n|</code> shall be representable as values of
+          <code>common_type_t&lt;M, N&gt;</code>.
           The least common multiple of <code>|m|</code> and <code>|n|</code>
           shall be representable as a value of type <code>common_type_t&lt;M,N></code>.
         </cxx-requires>
