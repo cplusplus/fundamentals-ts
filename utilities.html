@@ -1204,10 +1204,10 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
 constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);</cxx-signature>
 
         <p>
-          The constant-expression in the exception-specification is <code>noexcept(swap(pt1.t_, pt2.t_))</code>.
+          The constant-expression in the exception-specification is <code>noexcept(pt1.swap(pt2))</code>.
         </p>
 
-        <cxx-effects><code>swap(pt1.t_, pt2.t_)</code>.</cxx-effects>
+        <cxx-effects><code>pt1.swap(pt2)</code>.</cxx-effects>
       </cxx-function>
     </cxx-section>
 
