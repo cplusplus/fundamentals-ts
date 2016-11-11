@@ -248,7 +248,7 @@ constexpr optional(U&amp;&amp; v);</cxx-signature>
         <cxx-postconditions><code>*this</code> contains a value.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
         <cxx-remarks>If <code>T</code>'s selected constructor is a <code>constexpr</code> constructor, this constructor shall be a <code>constexpr</code> constructor.
-          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code> and <code>U</code> is not the same type as <code>T</code>.
+          This constructor shall not participate in overload resolution unless <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code> is <code>true</code> and <code>decay_t&lt;U&gt;</code> is not the same type as <code>T</code>.
           The constructor is <code>explicit</code> if and only if <code>is_convertible_v&lt;U&amp;&amp;, T&gt;</code> is <code>false</code>.</cxx-remarks>
       </cxx-function>
 
