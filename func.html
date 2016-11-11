@@ -151,7 +151,7 @@ namespace std {
       template&lt;class T&gt; T* target() noexcept;
       template&lt;class T&gt; const T* target() const noexcept;
 
-      pmr::memory_resource* get_memory_resource();
+      pmr::memory_resource* get_memory_resource() const noexcept;
     };
 
     template &lt;class R, class... ArgTypes&gt;

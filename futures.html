@@ -78,7 +78,7 @@ namespace std {
       void set_value_at_thread_exit(<em>see below</em>);
       void set_exception_at_thread_exit(exception_ptr p);
 
-      pmr::memory_resource* get_memory_resource();
+      pmr::memory_resource* get_memory_resource() const noexcept;
     };
 
     template &lt;class R&gt;
@@ -140,7 +140,7 @@ namespace std {
 
       void reset();
 
-      pmr::memory_resource* get_memory_resource();
+      pmr::memory_resource* get_memory_resource() const noexcept;
     };
 
     template &lt;class R, class... ArgTypes&gt;
