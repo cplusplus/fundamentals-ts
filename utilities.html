@@ -434,12 +434,20 @@ inline namespace fundamentals_v2 {
     <cxx-section id="meta.logical">
       <h1>Logical operator traits</h1>
       <p>This subclause describes type traits for applying logical operators to
-      other type traits.</p>
+        other type traits.</p>
 
       <pre><code>template&lt;class... B> struct conjunction : <i>see below</i> { };</code></pre>
 
       <p>The class template <code>conjunction</code> forms the logical
-      conjunction of its template type arguments. Every template type argument
+      conjunction of its template type arguments.</p>
+
+      <p>For a specialization <code>conjunction&lt;B1, &hellip;, BN></code> if
+      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value == false</code>
+      then instantiating <code>conjunction&lt;B1, &hellip;, BN>::value</code> does
+      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
+      <cxx-note>This is analogous to the short-circuiting behavior of <code>&amp;&amp;</code>.</cxx-note></p>
+
+      <p>Every template type argument for which <code>Bi::value</code> is instantiated
       shall be usable as a base class and shall have a static data member
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
@@ -452,16 +460,18 @@ inline namespace fundamentals_v2 {
       does not necessarily have a BaseCharacteristic of either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
 
-      <p>For a specialization <code>conjunction&lt;B1, &hellip;, BN></code> if
-      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value == false</code>
-      then instantiating <code>conjunction&lt;B1, &hellip;, BN>::value</code> does
-      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
-      <cxx-note>This is analogous to the short-circuiting behavior of <code>&amp;&amp;</code>.</cxx-note></p>
-
       <pre><code>template&lt;class... B> struct disjunction : <i>see below</i> { };</code></pre>
 
       <p>The class template <code>disjunction</code> forms the logical
-      disjunction of its template type arguments. Every template type argument
+      disjunction of its template type arguments.</p>
+
+      <p>For a specialization <code>disjunction&lt;B1, &hellip;, BN></code> if
+      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value != false</code>
+      then instantiating <code>disjunction&lt;B1, &hellip;, BN>::value</code> does
+      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
+      <cxx-note>This is analogous to the short-circuiting behavior of <code>||</code>.</cxx-note></p>
+
+      <p>Every template type argument for which <code>Bi::value</code> is instantiated
       shall be usable as a base class and shall have a static data member
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
@@ -473,12 +483,6 @@ inline namespace fundamentals_v2 {
       is the last type in the list. <cxx-note>This means a specialization of <code>disjunction</code>
       does not necessarily have a BaseCharacteristic of either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
-
-      <p>For a specialization <code>disjunction&lt;B1, &hellip;, BN></code> if
-      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value != false</code>
-      then instantiating <code>disjunction&lt;B1, &hellip;, BN>::value</code> does
-      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
-      <cxx-note>This is analogous to the short-circuiting behavior of <code>||</code>.</cxx-note></p>
 
       <pre><code>template&lt;class B> struct negation : integral_constant&lt;bool, !B::value> { };</code></pre>
 
