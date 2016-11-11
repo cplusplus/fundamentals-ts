@@ -38,7 +38,7 @@ constexpr common_type_t&lt;M,N> gcd(M m, N n);</cxx-signature>
           <code>|n|</code> shall be representable as a value of type <code>N</code>.
           <cxx-note>These requirements ensure, for example, that <code>gcd(m, m) = |m|</code> is representable as a value of type <code>M</code>.</cxx-note>
         </cxx-requires>
-        <cxx-remarks>If either <code>M</code> or <code>N</code> is not an integer type, the program is ill-formed.</cxx-remarks>
+        <cxx-remarks>If either <code>M</code> or <code>N</code> is not an integer type, or if either is (possibly <i>cv</i>-qualified) <code>bool</code>, the program is ill-formed.</cxx-remarks>
         <cxx-returns>
           zero when <code>m</code> and <code>n</code> are both zero.
           Otherwise, returns the greatest common divisor of <code>|m|</code> and <code>|n|</code>.</cxx-returns>
@@ -57,7 +57,7 @@ constexpr common_type_t&lt;M,N> lcm(M m, N n);</cxx-signature>
           The least common multiple of <code>|m|</code> and <code>|n|</code>
           shall be representable as a value of type <code>common_type_t&lt;M,N></code>.
         </cxx-requires>
-        <cxx-remarks>If either <code>M</code> or <code>N</code> is not an integer type, the program is ill-formed.</cxx-remarks>
+        <cxx-remarks>If either <code>M</code> or <code>N</code> is not an integer type, or if either is (possibly <i>cv</i>-qualified) <code>bool</code>, the program is ill-formed.</cxx-remarks>
         <cxx-returns>
           zero when either <code>m</code> or <code>n</code> is zero.
           Otherwise, returns the least common multiple of <code>|m|</code> and <code>|n|</code>.
