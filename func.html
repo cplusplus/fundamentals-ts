@@ -291,8 +291,8 @@ public:
                    BinaryPredicate pred = BinaryPredicate());
 
   template&lt;class ForwardIterator2&gt;
-  ForwardIterator2
-  operator()(ForwardIterator2 first, ForwardIterator2 last) const;
+    pair&lt;ForwardIterator2, ForwardIterator2&gt;
+      operator()(ForwardIterator2 first, ForwardIterator2 last) const;
 
 private:
   ForwardIterator1 pat_first_; <i>// exposition only</i>
@@ -311,9 +311,14 @@ BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
       <cxx-function>
         <cxx-signature>template&lt;class ForwardIterator2&gt;
-ForwardIterator2 operator()(ForwardIterator2 first, ForwardIterator2 last) const;</cxx-signature>
+  pair&lt;ForwardIterator2, ForwardIterator2&gt;
+    operator()(ForwardIterator2 first, ForwardIterator2 last) const;</cxx-signature>
 
-        <cxx-effects>Equivalent to <code>return std::search(<w-br></w-br>first, last, pat_first_, pat_last_, pred_);</code></cxx-effects>
+        <cxx-returns>A pair of iterators <code>i</code> and <code>j</code> such that
+          <ul>
+            <li><code>i == std::search(<w-br></w-br>first, last, pat_first_, pat_last_, pred_)</code>, and</li>
+            <li>if <code>i == last</code>, then <code>j == last</code>, otherwise <code>j == next(i,<wbr> distance(pat_first_,<wbr> pat_last_))</code>.</li>
+          </ul></cxx-returns>
       </cxx-function>
 
       <cxx-section id="func.searchers.default.creation">
@@ -342,8 +347,8 @@ public:
                        Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
   template&lt;class RandomAccessIterator2&gt;
-  RandomAccessIterator2
-  operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
+    pair&lt;RandomAccessIterator2, RandomAccessIterator2&gt;
+      operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
 
 private:
   RandomAccessIterator1 pat_first_; <i>// exposition only</i>
@@ -369,16 +374,21 @@ BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
       <cxx-function>
         <cxx-signature>template&lt;class RandomAccessIterator2&gt;
-RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature>
+  pair&lt;RandomAccessIterator2, RandomAccessIterator2&gt;
+    operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature>
 
         <cxx-requires><code>RandomAccessIterator1</code> and <code>RandomAccessIterator2</code> shall have the same value type.</cxx-requires>
         <cxx-effects>Finds a subsequence of equal values in a sequence.</cxx-effects>
         <cxx-returns>
-          The first iterator <code>i</code> in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)"></cxx-range>
+          A pair of iterators <code>i</code> and <code>j</code> such that
+          <ul>
+            <li><code>i</code> is the first iterator in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)"></cxx-range>
           such that for every non-negative integer <code>n</code> less than <code>pat_last_ - pat_first_</code> the following condition holds:
-          <code>pred(*(i + n), *(pat_first_ + n)) != false</code>.
-          Returns <code>first</code> if <cxx-range begin="pat_first_" end="pat_last_"></cxx-range> is empty,
-          otherwise returns <code>last</code> if no such iterator is found.
+              <code>pred(*(i + n), *(pat_first_ + n)) != false</code>, and</li>
+            <li><code>j == next(i, distance(pat_first_, pat_last_))</code>.</li>
+          </ul>
+          Returns <code>make_pair(first,first)</code> if <cxx-range begin="pat_first_" end="pat_last_"></cxx-range> is empty,
+          otherwise returns <code>make_pair(last,last)</code> if no such iterator is found.
         </cxx-returns>
         <cxx-complexity>At most <code>(last - first) * (pat_last_ - pat_first_)</code> applications of the predicate.</cxx-complexity>
       </cxx-function>
@@ -412,8 +422,8 @@ public:
                                 Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());
 
   template&lt;class RandomAccessIterator2&gt;
-  RandomAccessIterator2
-  operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
+    pair&lt;RandomAccessIterator2, RandomAccessIterator2&gt;
+      operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;
 
 private:
   RandomAccessIterator1 pat_first_; <i>// exposition only</i>
@@ -443,16 +453,21 @@ Hash hf = Hash(), BinaryPredicate pred = BinaryPredicate());</cxx-signature>
 
       <cxx-function>
         <cxx-signature>template&lt;class RandomAccessIterator2&gt;
-RandomAccessIterator2 operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature>
+  pair&lt;RandomAccessIterator2, RandomAccessIterator2&gt;
+    operator()(RandomAccessIterator2 first, RandomAccessIterator2 last) const;</cxx-signature>
 
         <cxx-requires><code>RandomAccessIterator1</code> and <code>RandomAccessIterator2</code> shall have the same value type.</cxx-requires>
         <cxx-effects>Finds a subsequence of equal values in a sequence.</cxx-effects>
         <cxx-returns>
-          The first iterator <code>i</code> in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)"></cxx-range>
+          A pair of iterators <code>i</code> and <code>j</code> such that
+          <ul>
+            <li><code>i</code> is the first iterator in the range <cxx-range begin="first" end="last - (pat_last_ - pat_first_)"></cxx-range>
           such that for every non-negative integer <code>n</code> less than <code>pat_last_ - pat_first_</code> the following condition holds:
-          <code>pred(*(i + n), *(pat_first_ + n)) != false</code>.
-          Returns <code>first</code> if <cxx-range begin="pat_first_" end="pat_last_"></cxx-range> is empty,
-          otherwise returns <code>last</code> if no such iterator is found.
+              <code>pred(*(i + n), *(pat_first_ + n)) != false</code>, and</li>
+            <li><code>j == next(i, distance(pat_first_, pat_last_))</code>.</li>
+          </ul>
+          Returns <code>make_pair(first,first)</code> if <cxx-range begin="pat_first_" end="pat_last_"></cxx-range> is empty,
+          otherwise returns <code>make_pair(last,last)</code> if no such iterator is found.
         </cxx-returns>
         <cxx-complexity>At most <code>(last - first) * (pat_last_ - pat_first_)</code> applications of the predicate.</cxx-complexity>
       </cxx-function>
