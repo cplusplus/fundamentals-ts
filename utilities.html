@@ -452,13 +452,21 @@ inline namespace fundamentals_v2 {
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
 
-      <p>The BaseCharacteristic of a specialization <code>conjunction&ltB1, &hellip;, BN></code>
-      is the first type <code>B</code> in the list <code>true_type</code>,
-      <code>B1</code>, &hellip;, <code>BN</code> for which <code>B::value == false</code>,
-      or if every <code>B::value != false</code> the BaseCharacteristic
-      is the last type in the list. <cxx-note>This means a specialization of <code>conjunction</code>
-      does not necessarily have a BaseCharacteristic of either <code>true_type</code>
+      <p>The specialization <code>conjunction&ltB1, &hellip;, BN></code> has a public and
+      unambiguous base that is either
+        <ul>
+          <li>The first type <code>B<var>i</var></code> in the list <code>true_type</code>,
+            <code>B1</code>, &hellip;, <code>BN</code> for which <code>bool(B<var>i</var>::value)</code>
+            is <code>false</code>, or</li>
+          <li>if there is no such <code>B<var>i</var></code>, the last type in the list.</li>
+        </ul>
+      <cxx-note>This means a specialization of <code>conjunction</code>
+      does not necessarily inherit from either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
+
+      <p>The member names of the base class, other than <code>conjunction</code> and
+      <code>operator=</code>, shall not be hidden and shall be unambiguously available in
+      <code>conjunction</code>.</p>
 
       <pre><code>template&lt;class... B> struct disjunction : <i>see below</i> { };</code></pre>
 
@@ -476,19 +484,27 @@ inline namespace fundamentals_v2 {
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
 
-      <p>The BaseCharacteristic of a specialization <code>disjunction&lt;B1, &hellip;, BN></code>
-      is the first type <code>B</code> in the list <code>false_type</code>,
-      <code>B1</code>, &hellip;, <code>BN</code> for which <code>B::value != false</code>,
-      or if every <code>B::value == false</code> the BaseCharacteristic
-      is the last type in the list. <cxx-note>This means a specialization of <code>disjunction</code>
-      does not necessarily have a BaseCharacteristic of either <code>true_type</code>
+      <p>The specialization <code>disjunction&lt;B1, &hellip;, BN></code> has a public
+      and unambiguous base that is either
+        <ul>
+          <li>the first type <code>B<var>i</var></code> in the list <code>false_type</code>,
+            <code>B1</code>, &hellip;, <code>BN</code> for which <code>bool(B<var>i</var>::value)</code>
+            is <code>true</code>, or,</li>
+          <li>if there is no such <code>B<var>i</var></code>, the last type in the list.</li>
+        </ul>
+      <cxx-note>This means a specialization of <code>disjunction</code>
+      does not necessarily inherit from either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
 
-      <pre><code>template&lt;class B> struct negation : integral_constant&lt;bool, !B::value> { };</code></pre>
+      <p>The member names of the base class, other than <code>disjunction</code> and
+      <code>operator=</code>, shall not be hidden and shall be unambiguously available in
+      <code>disjunction</code>.</p>
+
+      <pre><code>template&lt;class B> struct negation : <i>see below</i> { };</code></pre>
 
       <p>The class template <code>negation</code> forms the logical negation of
       its template type argument. The type <code>negation&lt;B></code> is a
-      UnaryTypeTrait with a BaseCharacteristic of <code>integral_constant&lt;bool, !B::value></code>.</p>
+      UnaryTypeTrait with a BaseCharacteristic of <code>integral_constant&lt;bool, !bool(B::value)></code>.</p>
 
     </cxx-section>
 
