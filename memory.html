@@ -441,7 +441,7 @@ inline namespace fundamentals_v2 {
       <cxx-function>
         <cxx-signature>template &lt;class Y, class D> shared_ptr(unique_ptr&lt;Y, D>&& r);</cxx-signature>
 
-        <cxx-remarks>This constructor shall not participate in overload resolution unless <code>Y*</code> is <em>compatible with</em> <code>T*</code>.</cxx-remarks>
+        <cxx-remarks>This constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-remarks>
 
         <cxx-effects>Equivalent to <code>shared_ptr(r.release(), r.get_deleter())</code> when <code>D</code> is not a reference type, otherwise <code>shared_ptr(r.release(), ref(r.get_deleter()))</code>. If an exception is thrown, the constructor has no effect.</cxx-effects>
       </cxx-function>
@@ -606,16 +606,25 @@ inline namespace fundamentals_v2 {
         <cxx-signature>template&lt;class Y> weak_ptr(const weak_ptr&lt;Y>& r) noexcept;</cxx-signature>
         <cxx-signature>template&lt;class Y> weak_ptr(const shared_ptr&lt;Y>& r) noexcept;</cxx-signature>
 
-        <cxx-requires>The second and third constructors shall not participate in the overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-requires>
+        <cxx-remarks>The second and third constructors shall not participate in the overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-remarks>
 
         <cxx-effects>If <code>r</code> is <i>empty</i>, constructs an <i>empty</i> <code>weak_ptr</code> object; otherwise, constructs a <code>weak_ptr</code> object that <i>shares ownership</i> with <code>r</code> and stores a copy of the pointer stored in <code>r</code>.</cxx-effects>
 
         <cxx-postconditions><code>use_count() == r.use_count()</code>.</cxx-postconditions>
       </cxx-function>
 
-    </cxx-section>
+      <cxx-function>
+        <cxx-signature>weak_ptr(weak_ptr&amp;&amp; r) noexcept;</cxx-signature>
+        <cxx-signature>template&lt;class Y&gt; weak_ptr(weak_ptr&lt;Y&gt;&amp;&amp; r) noexcept;</cxx-signature>
+
+        <cxx-remarks>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-remarks>
+        <cxx-effects>Move-constructs a <code>weak_ptr</code> instance from <code>r</code>.</cxx-effects>
+        <cxx-postconditions><code>*this</code> shall contain the old value of <code>r</code>. <code>r</code> shall be empty. <code>r.use_count() == 0</code>.</cxx-postconditions>
+      </cxx-function>
 
     </cxx-section>
+
+   </cxx-section>
 
   </cxx-section>
 
