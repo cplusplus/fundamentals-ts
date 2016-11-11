@@ -197,7 +197,7 @@ namespace std {
 
       <p>
         In the following descriptions, let <code><em>ALLOCATOR_OF</em>(f)</code> be the allocator specified in the construction of <code>function</code> <code>f</code>,
-        or <code>allocator&lt;char&gt;()</code> if no allocator was specified.
+        or the value of <code>experimental::<wbr>pmr::<wbr>get_default_resource()</code> at the time of the construction of <code>f</code> if no allocator was specified.
       </p>
 
       <cxx-function>
