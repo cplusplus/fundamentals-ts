@@ -447,20 +447,20 @@ inline namespace fundamentals_v2 {
       not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
       <cxx-note>This is analogous to the short-circuiting behavior of <code>&amp;&amp;</code>.</cxx-note></p>
 
-      <p>Every template type argument for which <code>Bi::value</code> is instantiated
+      <p>Every template type argument for which <code>B<var>i</var>::value</code> is instantiated
       shall be usable as a base class and shall have a static data member
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
 
       <p>The specialization <code>conjunction&ltB1, &hellip;, BN></code> has a public and
-      unambiguous base that is either
+      unambiguous base that is either</p>
         <ul>
-          <li>The first type <code>B<var>i</var></code> in the list <code>true_type</code>,
+          <li>the first type <code>B<var>i</var></code> in the list <code>true_type</code>,
             <code>B1</code>, &hellip;, <code>BN</code> for which <code>bool(B<var>i</var>::value)</code>
             is <code>false</code>, or</li>
           <li>if there is no such <code>B<var>i</var></code>, the last type in the list.</li>
         </ul>
-      <cxx-note>This means a specialization of <code>conjunction</code>
+      <p><cxx-note>This means a specialization of <code>conjunction</code>
       does not necessarily inherit from either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
 
@@ -479,20 +479,20 @@ inline namespace fundamentals_v2 {
       not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
       <cxx-note>This is analogous to the short-circuiting behavior of <code>||</code>.</cxx-note></p>
 
-      <p>Every template type argument for which <code>Bi::value</code> is instantiated
+      <p>Every template type argument for which <code>B<var>i</var>::value</code> is instantiated
       shall be usable as a base class and shall have a static data member
       <code>value</code> which is convertible to <code>bool</code>, is not
       hidden, and is unambiguously available in the type.</p>
 
       <p>The specialization <code>disjunction&lt;B1, &hellip;, BN></code> has a public
-      and unambiguous base that is either
+      and unambiguous base that is either</p>
         <ul>
           <li>the first type <code>B<var>i</var></code> in the list <code>false_type</code>,
             <code>B1</code>, &hellip;, <code>BN</code> for which <code>bool(B<var>i</var>::value)</code>
             is <code>true</code>, or,</li>
           <li>if there is no such <code>B<var>i</var></code>, the last type in the list.</li>
         </ul>
-      <cxx-note>This means a specialization of <code>disjunction</code>
+      <p><cxx-note>This means a specialization of <code>disjunction</code>
       does not necessarily inherit from either <code>true_type</code>
       or <code>false_type</code>.</cxx-note></p>
 
