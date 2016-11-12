@@ -418,7 +418,6 @@ inline namespace fundamentals_v2 {
         <cxx-signature>shared_ptr(shared_ptr&& r) noexcept;</cxx-signature>
         <cxx-signature>template&lt;class Y> shared_ptr(shared_ptr&lt;Y>&& r) noexcept;</cxx-signature>
 
-        <cxx-ednote>N3920 specifies that "implicitly convertible" is removed, but the C++14 draft only has "convertible". Does this make a difference?</cxx-ednote>
         <cxx-remarks>The second constructor shall not participate in overload resolution unless <code>Y*</code> is <i>compatible with</i> <code>T*</code>.</cxx-remarks>
 
         <cxx-effects>Move-constructs a <code>shared_ptr</code> instance from <code>r</code>.</cxx-effects>
