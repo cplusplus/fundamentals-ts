@@ -190,7 +190,7 @@ private:
         <cxx-requires><code>is_move_constructible_v&lt;T&gt;</code> is <code>true</code>.</cxx-requires>
         <cxx-effects>If <code><var>rhs</var></code> contains a value, initializes the contained value as if
         direct-non-list-initializing an object of type <code>T</code> with the expression <code>std::move(*<var>rhs</var>)</code>.
-        <code>bool(<var>rhs</var>)</code> is unchanged.</cxx-effects>
+        The value of <code>bool(<var>rhs</var>)</code> is unchanged.</cxx-effects>
         <cxx-postconditions><code>bool(<var>rhs</var>) == bool(*this)</code>.</cxx-postconditions>
         <cxx-throws>Any exception thrown by the selected constructor of <code>T</code>.</cxx-throws>
         <cxx-remarks>The expression inside <code>noexcept</code> is equivalent to:<pre><code>is_nothrow_move_constructible_v&lt;T&gt;</code></pre></cxx-remarks>
@@ -646,7 +646,7 @@ public:
 
       <cxx-requires><code>T</code> shall meet the requirements of <code>EqualityComparable</code>.</cxx-requires>
       <cxx-returns>If <code>bool(<var>x</var>) != bool(<var>y</var>)</code>, <code>false</code>; otherwise if <code>bool(<var>x</var>) == false</code>, <code>true</code>; otherwise <code>*<var>x</var> == *<var>y</var></code>.</cxx-returns>
-      <cxx-remarks>Specializations of this function template,
+      <cxx-remarks>Specializations of this function template
       for which <code>*<var>x</var> == *<var>y</var></code> is a core constant expression,
       shall be <code>constexpr</code> functions.</cxx-remarks>
     </cxx-function>
@@ -664,7 +664,7 @@ public:
       <cxx-returns>If <code>!<var>y</var></code>, <code>false</code>;
       otherwise, if <code>!<var>x</var></code>, <code>true</code>;
       otherwise <code>*<var>x</var> &lt; *<var>y</var></code>.</cxx-returns>
-      <cxx-remarks>Specializations of this function template,
+      <cxx-remarks>Specializations of this function template
       for which <code>*<var>x</var> &lt; *<var>y</var></code> is a core constant expression,
       shall be <code>constexpr</code> functions.</cxx-remarks>
     </cxx-function>

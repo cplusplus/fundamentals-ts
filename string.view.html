@@ -204,7 +204,8 @@ class basic_string_view {
 basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noexcept;</cxx-signature>
 
       <cxx-effects>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.1"></cxx-ref>.</cxx-effects>
-      <table is="cxx-table" id="tab:string.view.ctr.1">
+      <!-- width is a hack to deal with bad formatting in Firefox and Prince -->
+      <table is="cxx-table" id="tab:string.view.ctr.1" style="width:75%">
         <caption><code>basic_string_view(const basic_string&amp;)</code> effects</caption>
         <tr><th>Element</th><th>Value</th></tr>
         <tr><td><code>data_</code></td><td><code>str.data()</code></td></tr>
@@ -219,7 +220,9 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
       <cxx-effects>Constructs a <code>basic_string_view</code>, with the postconditions
       in <cxx-ref to="tab:string.view.ctr.2"></cxx-ref>.</cxx-effects>
 
-      <table is="cxx-table" id="tab:string.view.ctr.2"><caption><code>basic_string_view(const charT*)</code> effects</caption>
+      <!-- width is a hack to deal with bad formatting in Firefox and Prince -->
+      <table is="cxx-table" id="tab:string.view.ctr.2" style="width:75%">
+      <caption><code>basic_string_view(const charT*)</code> effects</caption>
       <tr><th>Element</th><th>Value</th></tr>
       <tr><td><code>data_</code></td><td><code>str</code></td></tr>
       <tr><td><code>size_</code></td><td><code>traits::length(str)</code></td></tr>
@@ -233,7 +236,9 @@ basic_string_view(const basic_string&lt;charT, traits, Allocator>&amp; str) noex
 
       <cxx-requires><cxx-range begin="str" end="str + len"></cxx-range> is a valid range.</cxx-requires>
       <cxx-effects>Constructs a <code>basic_string_view</code>, with the postconditions in <cxx-ref to="tab:string.view.ctr.3"></cxx-ref>.</cxx-effects>
-      <table is="cxx-table" id="tab:string.view.ctr.3"><caption><code>basic_string_view(const charT*, size_type)</code> effects</caption>
+      <!-- width is a hack to deal with bad formatting in Firefox and Prince -->
+      <table is="cxx-table" id="tab:string.view.ctr.3" style="width:75%">
+        <caption><code>basic_string_view(const charT*, size_type)</code> effects</caption>
         <tr><th>Element</th><th>Value</th></tr>
         <tr><td><code>data_</code></td><td><code>str</code></td></tr>
         <tr><td><code>size_</code></td><td><code>len</code></td></tr>
@@ -500,7 +505,6 @@ basic_string&lt;charT, traits, Allocator> to_string(
         </cxx-effects>
         <cxx-returns><code>xpos</code> if the function can determine such a value for <code>xpos</code>.
           Otherwise, returns <code>npos</code>.</cxx-returns>
-        <cxx-remarks>Uses <code>traits::eq()</code>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -516,7 +520,6 @@ basic_string&lt;charT, traits, Allocator> to_string(
         </cxx-effects>
         <cxx-returns><code>xpos</code> if the function can determine such a value for <code>xpos</code>.
           Otherwise, returns <code>npos</code>.</cxx-returns>
-        <cxx-remarks>Uses <code>traits::eq()</code>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -531,7 +534,6 @@ basic_string&lt;charT, traits, Allocator> to_string(
         </cxx-effects>
         <cxx-returns><code>xpos</code> if the function can determine such a value for <code>xpos</code>.
           Otherwise, returns <code>npos</code>.</cxx-returns>
-        <cxx-remarks>Uses <code>traits::eq()</code>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -546,7 +548,6 @@ basic_string&lt;charT, traits, Allocator> to_string(
         </cxx-effects>
         <cxx-returns><code>xpos</code> if the function can determine such a value for <code>xpos</code>.
           Otherwise, returns <code>npos</code>.</cxx-returns>
-        <cxx-remarks>Uses <code>traits::eq()</code>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -560,7 +561,6 @@ basic_string&lt;charT, traits, Allocator> to_string(
           </ul>
         </cxx-effects>
         <cxx-returns><code>xpos</code> if the function can determine such a value for <code>xpos</code>. Otherwise, returns <code>npos</code>.</cxx-returns>
-        <cxx-remarks>Uses <code>traits::eq()</code>.</cxx-remarks>
       </cxx-function>
 
       <cxx-function>
@@ -575,7 +575,6 @@ basic_string&lt;charT, traits, Allocator> to_string(
         </cxx-effects>
         <cxx-returns><code>xpos</code> if the function can determine such a value for <code>xpos</code>.
           Otherwise, returns <code>npos</code>.</cxx-returns>
-        <cxx-remarks>Uses <code>traits::eq()</code>.</cxx-remarks>
       </cxx-function>
     </cxx-section>
   </cxx-section>
@@ -589,7 +588,10 @@ basic_string&lt;charT, traits, Allocator> to_string(
       so that an object <code><var>t</var></code> with an implicit conversion to <code>S</code> can be compared according to <cxx-ref to="tab:string.view.comparison.overloads"></cxx-ref>.
     </p>
 
-    <table is="cxx-table" id="tab:string.view.comparison.overloads" class="center"><caption>Additional <code>basic_string_view</code> comparison overloads</caption>
+    <!-- width is a hack to deal with bad formatting in Firefox and Prince.
+         margin-bottom is a hack to avoid a bad page break -->
+    <table is="cxx-table" id="tab:string.view.comparison.overloads" class="center" style="width:75%; margin-bottom:3em">
+      <caption>Additional <code>basic_string_view</code> comparison overloads</caption>
       <tr><th>Expression</th><th>Equivalent to</th></tr>
       <tr><td><code>t == sv</code></td><td><code>S(t) == sv</code></td></tr>
       <tr><td><code>sv == t</code></td><td><code>sv == S(t)</code></td></tr>
@@ -604,7 +606,6 @@ basic_string&lt;charT, traits, Allocator> to_string(
       <tr><td><code>t >= sv</code></td><td><code>S(t) >= sv</code></td></tr>
       <tr><td><code>sv >= t</code></td><td><code>sv >= S(t)</code></td></tr>
     </table>
-
     <cxx-example>A sample conforming implementation for operator== would be:
 <pre><code>template&lt;class T> using __identity = decay_t&lt;T>;
 template&lt;class charT, class traits>
