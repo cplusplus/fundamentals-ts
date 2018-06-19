@@ -32,13 +32,13 @@
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:2014, <cite>Programming Languages — C++</cite>
-      <cxx-foreign-index id="cxx" src="cxx14_index.json" name="C++14"></cxx-foreign-index></li>
+      <li>ISO/IEC 14882:2017, <cite>Programming Languages — C++</cite>
+      <cxx-foreign-index id="cxx" src="cxx17_index.json" name="C++17"></cxx-foreign-index></li>
     </ul>
 
-    <p>ISO/IEC 14882:2014 is herein called the <dfn>C++ Standard</dfn>.
-    References to clauses within the C++ Standard are written as "C++14
-    &#xa7;3.2". The library described in ISO/IEC 14882:2014 clauses 17–30 is
+    <p>ISO/IEC 14882:2017 is herein called the <dfn>C++ Standard</dfn>.
+    References to clauses within the C++ Standard are written as "C++17
+    &#xa7;3.2". The library described in ISO/IEC 14882:2017 clauses 20–33 is
     herein called the <dfn>C++ Standard Library</dfn>.</p>
 
     <p>Unless otherwise specified, the whole of the C++ Standard's Library
@@ -58,7 +58,7 @@
     <ul>
       <li>modify an existing interface in the C++ Standard Library in-place,</li>
       <li>
-        are declared in a namespace whose name appends <code>::experimental::fundamentals_v2</code>
+        are declared in a namespace whose name appends <code>::experimental::fundamentals_v3</code>
         to a namespace defined in the C++ Standard Library,
         such as <code>std</code> or <code>std::chrono</code>, or
       </li>
@@ -69,20 +69,18 @@
     </ul>
 
     <cxx-example>
-      This TS does not define <code>std::experimental::fundamentals_v2::chrono</code>
-      because the C++ Standard Library defines <code>std::chrono</code>.
-      This TS does not define <code>std::pmr::experimental::fundamentals_v2</code>
-      because the C++ Standard Library does not define <code>std::pmr</code>.
+      This TS does not define <code>std::experimental::fundamentals_v3::pmr</code>
+      because the C++ Standard Library defines <code>std::pmr</code>.
     </cxx-example>
 
     <p>Each header described in this technical
     specification shall import the contents of
-    <code>std::experimental::fundamentals_v2</code> into
+    <code>std::experimental::fundamentals_v3</code> into
     <code>std::experimental</code> as if by</p>
 
     <pre><code>namespace std {
   namespace experimental {
-    inline namespace fundamentals_v2 {}
+    inline namespace fundamentals_v3 {}
   }
 }</code></pre>
 
@@ -113,9 +111,7 @@
       <tr><td>
         <ul>
           <li><code>&lt;experimental/algorithm></code></li>
-          <li><code>&lt;experimental/any></code></li>
           <li><code>&lt;experimental/array></code></li>
-          <li><code>&lt;experimental/chrono></code></li>
           <li><code>&lt;experimental/deque></code></li>
           <li><code>&lt;experimental/forward_list></code></li>
           <li><code>&lt;experimental/functional></code></li>
@@ -125,17 +121,11 @@
           <li><code>&lt;experimental/map></code></li>
           <li><code>&lt;experimental/memory></code></li>
           <li><code>&lt;experimental/memory_resource></code></li>
-          <li><code>&lt;experimental/optional></code></li>
           <li><code>&lt;experimental/propagate_const></code></li>
           <li><code>&lt;experimental/random></code></li>
-          <li><code>&lt;experimental/ratio></code></li>
-          <li><code>&lt;experimental/regex></code></li>
           <li><code>&lt;experimental/set></code></li>
           <li><code>&lt;experimental/source_location></code></li>
           <li><code>&lt;experimental/string></code></li>
-          <li><code>&lt;experimental/string_view></code></li>
-          <li><code>&lt;experimental/system_error></code></li>
-          <li><code>&lt;experimental/tuple></code></li>
           <li><code>&lt;experimental/type_traits></code></li>
           <li><code>&lt;experimental/unordered_map></code></li>
           <li><code>&lt;experimental/unordered_set></code></li>
@@ -144,18 +134,6 @@
         </ul>
       </td></tr>
     </table>
-  </cxx-section>
-
-  <cxx-section id="general.defns">
-    <h1>Terms and definitions</h1>
-
-    <p>For the purposes of this document, the terms and definitions
-    given in the C++ Standard and the following apply.</p>
-
-    <dl is="cxx-definition-section">
-      <dt id="general.defns.direct-non-list-init">direct-non-list-initialization</dt>
-      <dd>A direct-initialization that is not list-initialization.</dd>
-    </dl>
   </cxx-section>
 
   <cxx-section id="general.plans">
@@ -168,9 +146,9 @@
     <p>The C++ committee intends to release a new version of this
     technical specification approximately every year, containing the
     library extensions we hope to add to a near-future version of the
-    C++ Standard.  Future versions will define their contents in
-    <code>std::experimental::fundamentals_v3</code>,
-    <code>std::experimental::fundamentals_v4</code>, etc., with the
+    C++ Standard. Future versions will define their contents in
+    <code>std::experimental::fundamentals_v4</code>,
+    <code>std::experimental::fundamentals_v5</code>, etc., with the
     most recent implemented version inlined into
     <code>std::experimental</code>.</p>
 
@@ -226,35 +204,11 @@
 
       <!-- These rows are in the same order as their feature appears in this document. -->
       <tr>
-        <td>N3915</td>
-        <td>apply() call a function with arguments from a tuple</td>
-        <td><cxx-ref to="tuple.apply"></cxx-ref></td>
-        <td><code>apply</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/tuple></code></td>
-      </tr>
-      <tr>
-        <td>N3932</td>
-        <td>Variable Templates For Type Traits</td>
-        <td><cxx-ref to="meta.type.synop"></cxx-ref></td>
-        <td><code>type_trait_variable_templates</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/type_traits></code></td>
-      </tr>
-      <tr>
         <td>N3866</td>
         <td>Invocation type traits</td>
         <td><cxx-ref to="meta.trans.other"></cxx-ref></td>
         <td><code>invocation_type</code></td>
         <td>201406</td>
-        <td><code>&lt;experimental/type_traits></code></td>
-      </tr>
-      <tr>
-        <td>P0013R1</td>
-        <td>Logical Operator Type Traits</td>
-        <td><cxx-ref to="meta.logical"></cxx-ref></td>
-        <td><code>logical_traits</code></td>
-        <td>201511</td>
         <td><code>&lt;experimental/type_traits></code></td>
       </tr>
       <tr>
@@ -282,62 +236,6 @@
         <td><code>&lt;experimental/functional></code></td>
       </tr>
       <tr>
-        <td>N3905</td>
-        <td>Extending <code>std::search</code> to use Additional Searching Algorithms</td>
-        <td><cxx-ref to="func.searchers"></cxx-ref></td>
-        <td><code>boyer_moore_searching</code></td>
-        <td>201411</td>
-        <td><code>&lt;experimental/functional></code></td>
-      </tr>
-      <tr>
-        <td>N4076</td>
-        <td>A proposal to add a generalized callable negator</th>
-        <td><cxx-ref to="func.not_fn"></cxx-ref></th>
-        <td><code>not_fn</code></th>
-        <td>201406</th>
-        <td><code>&lt;experimental/functional></code></th>
-      </tr>
-      <tr>
-        <td>N3672, N3793</td>
-        <td>A utility class to represent optional objects</td>
-        <td><cxx-ref to="optional"></cxx-ref></td>
-        <td><code>optional</code></td>
-        <td>201411</td>
-        <td><code>&lt;experimental/optional></code></td>
-      </tr>
-      <tr>
-        <td>N3804</td>
-        <td>Any Library Proposal</td>
-        <td><cxx-ref to="any"></cxx-ref></td>
-        <td><code>any</code></td>
-        <td>201411</td>
-        <td><code>&lt;experimental/any></code></td>
-      </tr>
-      <tr>
-        <td>N3921</td>
-        <td><code>string_view</code>: a non-owning reference to a string</td>
-        <td><cxx-ref to="string.view"></cxx-ref></td>
-        <td><code>string_view</code></td>
-        <td>201411</td>
-        <td><code>&lt;experimental/string_view></code></td>
-      </tr>
-      <tr>
-        <td>N3920</td>
-        <td>Extending shared_ptr to Support Arrays</td>
-        <td><cxx-ref to="memory.smartptr"></cxx-ref></td>
-        <td><code>shared_ptr_arrays</code></td>
-        <td>201406</td>
-        <td><code>&lt;experimental/memory></code></td>
-      </tr>
-      <tr>
-        <td>N3916</td>
-        <td>Polymorphic Memory Resources</td>
-        <td><cxx-ref to="memory.resource.synop"></cxx-ref></td>
-        <td><code>memory_resources</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/memory_resource></code></td>
-      </tr>
-      <tr>
         <td>N4282</td>
         <td>The World’s Dumbest Smart Pointer</th>
         <td><cxx-ref to="memory.observer.ptr"></cxx-ref></th>
@@ -351,7 +249,10 @@
         <td><cxx-ref to="container.erasure"></cxx-ref></td>
         <td><code>erase_if</code></td>
         <td>201411</td>
-        <td><code>&lt;experimental/vector></code></td>
+        <td><code>&lt;experimental/vector></code>, <code>&lt;experimental/deque></code>,
+          <code>&lt;experimental/forward_list></code>, <code>&lt;experimental/list></code>,
+          <code>&lt;experimental/map></code>, <code>&lt;experimental/set></code>,
+          <code>&lt;experimental/unordered_map></code>, <code>&lt;experimental/unordered_set></code></td>
       </tr>
       <tr>
         <td>N4391</td>
@@ -384,22 +285,6 @@
         <td><code>packaged_task_erased_allocator</code></td>
         <td>201406</td>
         <td><code>&lt;experimental/future></code></td>
-      </tr>
-      <tr>
-        <td>N3925</td>
-        <td>A <code>sample</code> Proposal</td>
-        <td><cxx-ref to="alg.random.sample"></cxx-ref></td>
-        <td><code>sample</code></td>
-        <td>201402</td>
-        <td><code>&lt;experimental/algorithm></code></td>
-      </tr>
-      <tr>
-        <td>N4061</td>
-        <td>Greatest Common Divisor and Least Common Multiple</td>
-        <td><cxx-ref to="numeric.ops.gcd"></cxx-ref>, <cxx-ref to="numeric.ops.lcm"></cxx-ref></td>
-        <td><code>gcd_lcm</code></td>
-        <td>201411</td>
-        <td><code>&lt;experimental/numeric></code></td>
       </tr>
       <tr>
         <td>N4531</td>

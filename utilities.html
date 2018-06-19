@@ -36,53 +36,6 @@ inline namespace fundamentals_v2 {
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="tuple">
-    <h1>Tuples</h1>
-
-    <cxx-section id="header.tuple.synop">
-      <h1>Header &lt;experimental/tuple> synopsis</h1>
-
-<pre><code>#include &lt;tuple>
-
-namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
-
-  // See <cxx-ref in="cxx" to="tuple.helper"></cxx-ref>, tuple helper classes
-  template &lt;class T> constexpr size_t tuple_size_v
-    = tuple_size&lt;T>::value;
-
-  <cxx-ref insynopsis="" to="tuple.apply"></cxx-ref>
-  template &lt;class F, class Tuple>
-  constexpr decltype(auto) apply(F&& f, Tuple&& t);
-
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
-    </cxx-section>
-
-    <cxx-section id="tuple.apply">
-      <h1>Calling a function with a <code>tuple</code> of arguments</h1>
-
-      <cxx-function>
-        <cxx-signature>template &lt;class F, class Tuple>
-constexpr decltype(auto) apply(F&& f, Tuple&& t);</cxx-signature>
-
-        <cxx-effects>
-          <p>Given the exposition only function</p>
-          <pre><code>template &lt;class F, class Tuple, size_t... I>
-constexpr decltype(auto) apply_impl(  // <i>exposition only</i>
-    F&& f, Tuple&& t, index_sequence&lt;I...>) {
-  return <em>INVOKE</em>(std::forward&lt;F>(f), std::get&lt;I>(std::forward&lt;Tuple>(t))...);
-}</code></pre>
-          <p>Equivalent to</p>
-          <pre><code>return apply_impl(std::forward&lt;F>(f), std::forward&lt;Tuple>(t),
-    make_index_sequence&lt;tuple_size_v&lt;decay_t&lt;Tuple>>>{});</code></pre>
-        </cxx-effects>
-      </cxx-function>
-    </cxx-section>
-  </cxx-section>
-
   <cxx-section id="meta">
     <h1>Metaprogramming and type traits</h1>
 
@@ -245,14 +198,6 @@ inline namespace fundamentals_v2 {
     using invocation_type_t = typename invocation_type&lt;T>::type;
   template &lt;class T>
     using raw_invocation_type_t = typename raw_invocation_type&lt;T>::type;
-
-  <cxx-ref insynopsis="" to="meta.logical"></cxx-ref>
-  template&lt;class... B> struct conjunction;
-  template&lt;class... B> constexpr bool conjunction_v = conjunction&lt;B...>::value;
-  template&lt;class... B> struct disjunction;
-  template&lt;class... B> constexpr bool disjunction_v = disjunction&lt;B...>::value;
-  template&lt;class B> struct negation;
-  template&lt;class B> constexpr bool negation_v = negation&lt;B>::value;
 
   <cxx-ref insynopsis to="meta.detect"></cxx-ref>
   template &lt;class...> using void_t = void;
@@ -431,83 +376,6 @@ inline namespace fundamentals_v2 {
       </ul>
     </cxx-section>
 
-    <cxx-section id="meta.logical">
-      <h1>Logical operator traits</h1>
-      <p>This subclause describes type traits for applying logical operators to
-        other type traits.</p>
-
-      <pre><code>template&lt;class... B> struct conjunction : <i>see below</i> { };</code></pre>
-
-      <p>The class template <code>conjunction</code> forms the logical
-      conjunction of its template type arguments.</p>
-
-      <p>For a specialization <code>conjunction&lt;B1, &hellip;, BN></code> if
-      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value == false</code>
-      then instantiating <code>conjunction&lt;B1, &hellip;, BN>::value</code> does
-      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
-      <cxx-note>This is analogous to the short-circuiting behavior of <code>&amp;&amp;</code>.</cxx-note></p>
-
-      <p>Every template type argument for which <code>B<var>i</var>::value</code> is instantiated
-      shall be usable as a base class and shall have a static data member
-      <code>value</code> which is convertible to <code>bool</code>, is not
-      hidden, and is unambiguously available in the type.</p>
-
-      <p>The specialization <code>conjunction&ltB1, &hellip;, BN></code> has a public and
-      unambiguous base that is either</p>
-        <ul>
-          <li>the first type <code>B<var>i</var></code> in the list <code>true_type</code>,
-            <code>B1</code>, &hellip;, <code>BN</code> for which <code>bool(B<var>i</var>::value)</code>
-            is <code>false</code>, or</li>
-          <li>if there is no such <code>B<var>i</var></code>, the last type in the list.</li>
-        </ul>
-      <p><cxx-note>This means a specialization of <code>conjunction</code>
-      does not necessarily inherit from either <code>true_type</code>
-      or <code>false_type</code>.</cxx-note></p>
-
-      <p>The member names of the base class, other than <code>conjunction</code> and
-      <code>operator=</code>, shall not be hidden and shall be unambiguously available in
-      <code>conjunction</code>.</p>
-
-      <pre><code>template&lt;class... B> struct disjunction : <i>see below</i> { };</code></pre>
-
-      <p>The class template <code>disjunction</code> forms the logical
-      disjunction of its template type arguments.</p>
-
-      <p>For a specialization <code>disjunction&lt;B1, &hellip;, BN></code> if
-      there is a template type argument <code>B<var>i</var></code> with <code>B<var>i</var>::value != false</code>
-      then instantiating <code>disjunction&lt;B1, &hellip;, BN>::value</code> does
-      not require the instantiation of <code>B<var>j</var>::value</code> for <code><var>j</var></code> > <code><var>i</var></code>.
-      <cxx-note>This is analogous to the short-circuiting behavior of <code>||</code>.</cxx-note></p>
-
-      <p>Every template type argument for which <code>B<var>i</var>::value</code> is instantiated
-      shall be usable as a base class and shall have a static data member
-      <code>value</code> which is convertible to <code>bool</code>, is not
-      hidden, and is unambiguously available in the type.</p>
-
-      <p>The specialization <code>disjunction&lt;B1, &hellip;, BN></code> has a public
-      and unambiguous base that is either</p>
-        <ul>
-          <li>the first type <code>B<var>i</var></code> in the list <code>false_type</code>,
-            <code>B1</code>, &hellip;, <code>BN</code> for which <code>bool(B<var>i</var>::value)</code>
-            is <code>true</code>, or,</li>
-          <li>if there is no such <code>B<var>i</var></code>, the last type in the list.</li>
-        </ul>
-      <p><cxx-note>This means a specialization of <code>disjunction</code>
-      does not necessarily inherit from either <code>true_type</code>
-      or <code>false_type</code>.</cxx-note></p>
-
-      <p>The member names of the base class, other than <code>disjunction</code> and
-      <code>operator=</code>, shall not be hidden and shall be unambiguously available in
-      <code>disjunction</code>.</p>
-
-      <pre><code>template&lt;class B> struct negation : <i>see below</i> { };</code></pre>
-
-      <p>The class template <code>negation</code> forms the logical negation of
-      its template type argument. The type <code>negation&lt;B></code> is a
-      UnaryTypeTrait with a BaseCharacteristic of <code>integral_constant&lt;bool, !bool(B::value)></code>.</p>
-
-    </cxx-section>
-
     <cxx-section id="meta.detect">
       <h1>Detection idiom</h1>
 
@@ -557,86 +425,6 @@ template &lt;class T>
 template &lt;class Ptr>
   using difference_type = detected_or_t&lt;ptrdiff_t, diff_t, Ptr>;</code></pre>
       </cxx-example>
-    </cxx-section>
-  </cxx-section>
-
-  <cxx-section id="ratio">
-    <h1>Compile-time rational arithmetic</h1>
-
-    <cxx-section id="header.ratio.synop">
-      <h1>Header &lt;experimental/ratio> synopsis</h1>
-
-<pre><code>#include &lt;ratio>
-
-namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
-
-  // See <cxx-ref in="cxx" to="ratio.comparison"></cxx-ref>, ratio comparison
-  template &lt;class R1, class R2> constexpr bool ratio_equal_v
-    = ratio_equal&lt;R1, R2>::value;
-  template &lt;class R1, class R2> constexpr bool ratio_not_equal_v
-    = ratio_not_equal&lt;R1, R2>::value;
-  template &lt;class R1, class R2> constexpr bool ratio_less_v
-    = ratio_less&lt;R1, R2>::value;
-  template &lt;class R1, class R2> constexpr bool ratio_less_equal_v
-    = ratio_less_equal&lt;R1, R2>::value;
-  template &lt;class R1, class R2> constexpr bool ratio_greater_v
-    = ratio_greater&lt;R1, R2>::value;
-  template &lt;class R1, class R2> constexpr bool ratio_greater_equal_v
-    = ratio_greater_equal&lt;R1, R2>::value;
-
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
-    </cxx-section>
-  </cxx-section>
-
-  <cxx-section id="time">
-    <h1>Time utilities</h1>
-
-    <cxx-section id="header.chrono.synop">
-      <h1>Header &lt;experimental/chrono> synopsis</h1>
-
-<pre><code>#include &lt;chrono>
-
-namespace std {
-namespace chrono {
-namespace experimental {
-inline namespace fundamentals_v2 {
-
-  // See <cxx-ref in="cxx" to="time.traits"></cxx-ref>, customization traits
-  template &lt;class Rep> constexpr bool treat_as_floating_point_v
-    = treat_as_floating_point&lt;Rep>::value;
-
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace chrono
-} // namespace std</code></pre>
-    </cxx-section>
-  </cxx-section>
-
-  <cxx-section id="syserror">
-    <h1>System error support</h1>
-
-    <cxx-section id="header.system_error.synop">
-      <h1>Header &lt;experimental/system_error> synopsis</h1>
-
-<pre><code>#include &lt;system_error>
-
-namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
-
-  // See <cxx-ref in="cxx" to="syserr"></cxx-ref>, System error support
-  template &lt;class T> constexpr bool is_error_code_enum_v
-    = is_error_code_enum&lt;T>::value;
-  template &lt;class T> constexpr bool is_error_condition_enum_v
-    = is_error_condition_enum&lt;T>::value;
-
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
     </cxx-section>
   </cxx-section>
 
