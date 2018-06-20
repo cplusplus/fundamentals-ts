@@ -9,6 +9,11 @@
 namespace std::experimental {
 inline namespace fundamentals_v3 {
 
+  <cxx-ref insynopsis="" to="alg.random.sample"></cxx-ref>
+  template&lt;class PopulationIterator, class SampleIterator, class Distance>
+  SampleIterator sample(PopulationIterator first, PopulationIterator last,
+                        SampleIterator out, Distance n);
+
   <cxx-ref insynopsis="" to="alg.random.shuffle"></cxx-ref>
   template&lt;class RandomAccessIterator>
   void shuffle(RandomAccessIterator first, RandomAccessIterator last);
@@ -16,6 +21,25 @@ inline namespace fundamentals_v3 {
 } // inline namespace fundamentals_v3
 } // namespace std::experimental</code></pre>
 
+  </cxx-section>
+
+  <cxx-section id="alg.random.sample">
+    <h1>Sampling</h1>
+
+    <cxx-function>
+      <cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator, class Distance>
+SampleIterator sample(PopulationIterator first, PopulationIterator last,
+                      SampleIterator out, Distance n);</cxx-signature>
+      <cxx-effects>
+        Equivalent to:
+        <pre><code>return ::std::sample(first, last, out, n, g);</code></pre>
+        where <code>g</code> denotes
+        the per-thread engine (<cxx-ref to="rand.util.randint"></cxx-ref>).
+        To the extent that the implementation of this function makes use of
+        random numbers, the object <code>g</code> shall serve as the
+        implementation’s source of randomness.
+      </cxx-effects>
+    </cxx-function>
   </cxx-section>
 
   <cxx-section id="alg.random.shuffle">
