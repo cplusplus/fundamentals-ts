@@ -1,11 +1,20 @@
 <cxx-clause id="reflection">
   <h1>Reflection library</h1>
 
+  <cxx-section id="reflection.src_loc.synop">
+    <h1>Header <code>&lt;experimental/source_location></code> synopsis</h1>
+
+<pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
+
+  struct source_location;
+
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
+  </cxx-section>
+
   <cxx-section id="reflection.src_loc">
     <h1>Class <code>source_location</code></h1>
-
-    <cxx-section id="reflection.src_loc.synop">
-      <h1>Header <code>&lt;experimental/source_location></code> synopsis</h1>
 
 <pre><code>namespace std::experimental {
 inline namespace fundamentals_v3 {
@@ -26,10 +35,9 @@ inline namespace fundamentals_v3 {
 } // inline namespace fundamentals_v3
 } // namespace std::experimental</code></pre>
 
-      <p>
-        <cxx-note>The intent of <code>source_location</code> is to have a small size and efficient copying.</cxx-note>
-      </p>
-    </cxx-section>
+    <p>
+      <cxx-note>The intent of <code>source_location</code> is to have a small size and efficient copying.</cxx-note>
+    </p>
 
     <cxx-section id="reflection.src_loc.creation">
       <h1><code>source_location</code> creation</h1>
