@@ -59,172 +59,6 @@ namespace std {
 } // namespace std</code></pre>
   </cxx-section>
 
-  <cxx-section id="memory.type.erased.allocator">
-    <h1>Type-erased allocator</h1>
-
-    <p>
-      A <dfn>type-erased allocator</dfn> is an allocator or memory resource, <code>alloc</code>,
-      used to allocate internal data structures for an object <code>X</code> of type <code>C</code>,
-      but where <code>C</code> is not dependent on the type of <code>alloc</code>.
-      Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
-      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::pmr::memory_resource*</code> (<cxx-ref in="cxx" to="mem.res.class"></cxx-ref>).
-      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"></cxx-ref>:
-    </p>
-
-    <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
-      <caption>Computed <code>memory_resource</code> for type-erased allocator</caption>
-      <thead>
-        <tr>
-          <th>If the type of <code>alloc</code> is</th>
-          <th>then the value of <code>rptr</code> is</th>
-        </tr>
-      </thead>
-      <tr>
-        <td>non-existent — no <code>alloc</code> specified</td>
-        <td>The value of <code>pmr::get_default_resource()</code> at the time of construction.</td>
-      </tr>
-      <tr>
-        <td><code>nullptr_t</code></td>
-        <td>The value of <code>pmr::get_default_resource()</code> at the time of construction.</td>
-      </tr>
-      <tr>
-        <td>a pointer type convertible to <code>pmr::memory_resource*</code></td>
-        <td><code>static_cast&lt;pmr::memory_resource*>(alloc)</code></td>
-      </tr>
-      <tr>
-        <td><code>pmr::polymorphic_allocator&lt;U></code></td>
-        <td><code>alloc.resource()</code></td>
-      </tr>
-      <tr>
-        <td>any other type meeting the Allocator requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>)</td>
-        <td>a pointer to a value of type <code>pmr::resource_adaptor&lt;A></code> where <code>A</code> is the type of <code>alloc</code>.
-        <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
-      </tr>
-      <tr>
-        <td>None of the above</td>
-        <td>The program is ill-formed.</td>
-      </tr>
-    </table>
-
-    <p>Additionally, class <code>C</code> shall meet the following requirements:</p>
-    <ul>
-      <li><code>C::allocator_type</code> shall be identical to <code>std::experimental::erased_type</code>.</li>
-      <li><code>X.get_memory_resource()</code> returns <code>rptr</code>.</li>
-    </ul>
-  </cxx-section>
-
-  <cxx-section id="memory.resource.synop">
-    <h1>Header <code>&lt;experimental/memory_resource></code> synopsis</h1>
-
-    <pre><code>namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
-namespace pmr {
-
-  // The name <var>resource_adaptor_imp</var> is for exposition only.
-  template &lt;class Allocator> class <var>resource_adaptor_imp</var>;
-
-  template &lt;class Allocator>
-    using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
-      typename allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;
-
-} // namespace pmr
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
-  </cxx-section>
-
-  <cxx-section id="memory.resource.adaptor">
-    <h1>template alias <code>resource_adaptor</code></h1>
-
-    <cxx-section id="memory.resource.adaptor.overview">
-      <h1><code>resource_adaptor</code></h1>
-
-      <p>
-        An instance of <code>resource_adaptor&lt;Allocator></code> is an adaptor that wraps a <code>memory_resource</code> interface around <code>Allocator</code>.
-        In order that <code>resource_adaptor&lt;X&lt;T>></code> and <code>resource_adaptor&lt;X&lt;U>></code> are the same type for any allocator template <code>X</code> and types <code>T</code> and <code>U</code>,
-        <code>resource_adaptor&lt;Allocator></code> is rendered as an alias to a class template such that <code>Allocator</code> is rebound to a <code>char</code> value type in every specialization of the class template.
-        The requirements on this class template are defined below.
-        The name <code><var>resource_adaptor_imp</var></code> is for exposition only and is not normative,
-        but the definitions of the members of that class, whatever its name, are normative.
-        In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
-      </p>
-      <ul>
-        <li><code>typename allocator_traits&lt;Allocator>::pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type*</code>.</li>
-        <li><code>typename allocator_traits&lt;Allocator>::const_pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type const*</code>.</li>
-        <li><code>typename allocator_traits&lt;Allocator>::void_pointer</code> shall be identical to <code>void*</code>.</li>
-        <li><code>typename allocator_traits&lt;Allocator>::const_void_pointer</code> shall be identical to <code>void const*</code>.</li>
-      </ul>
-
-      <pre><code>
-// The name <var>resource_adaptor_imp</var> is for exposition only.
-template &lt;class Allocator>
-class <var>resource_adaptor_imp</var> : public memory_resource {
-  // for exposition only
-  Allocator m_alloc;
-
-public:
-  using allocator_type = Allocator;
-
-  <var>resource_adaptor_imp</var>() = default;
-  <var>resource_adaptor_imp</var>(const <var>resource_adaptor_imp</var>&) = default;
-  <var>resource_adaptor_imp</var>(<var>resource_adaptor_imp</var>&&) = default;
-
-  explicit <var>resource_adaptor_imp</var>(const Allocator& a2);
-  explicit <var>resource_adaptor_imp</var>(Allocator&& a2);
-
-  <var>resource_adaptor_imp</var>& operator=(const <var>resource_adaptor_imp</var>&) = default;
-
-  allocator_type get_allocator() const { return m_alloc; }
-
-protected:
-  virtual void* do_allocate(size_t bytes, size_t alignment);
-  virtual void do_deallocate(void* p, size_t bytes, size_t alignment);
-
-  virtual bool do_is_equal(const memory_resource& other) const noexcept;
-};
-
-template &lt;class Allocator>
-  using resource_adaptor = typename <var>resource_adaptor_imp</var>&lt;
-    typename allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;</code></pre>
-    </cxx-section>
-
-    <cxx-section id="memory.resource.adaptor.ctor">
-      <h1><code><var>resource_adaptor_imp</var></code> constructors</h1>
-
-      <cxx-function>
-        <cxx-signature>explicit <var>resource_adaptor_imp</var>(const Allocator& a2);</cxx-signature>
-        <cxx-effects>Initializes <code>m_alloc</code> with <code>a2</code>.</cxx-effects>
-      </cxx-function>
-
-      <cxx-function>
-        <cxx-signature>explicit <var>resource_adaptor_imp</var>(Allocator&& a2);</cxx-signature>
-        <cxx-effects>Initializes <code>m_alloc</code> with <code>std::move(a2)</code>.</cxx-effects>
-      </cxx-function>
-    </cxx-section>
-
-    <cxx-section id="memory.resource.adaptor.mem">
-      <h1><code><var>resource_adaptor_imp</var></code> member functions</h1>
-
-      <cxx-function>
-        <cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
-        <cxx-returns>Allocated memory obtained by calling <code>m_alloc.allocate</code>. The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memory.resource"></cxx-ref>).</cxx-returns>
-      </cxx-function>
-
-      <cxx-function>
-        <cxx-signature>void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature>
-        <cxx-requires><code>p</code> was previously allocated using <code>A.allocate</code>, where <code>A == m_alloc</code>, and not subsequently deallocated.</cxx-requires>
-        <cxx-effects>Returns memory to the allocator using <code>m_alloc.deallocate()</code>.</cxx-effects>
-      </cxx-function>
-
-      <cxx-function>
-        <cxx-signature>bool do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
-        <p>Let <code>p</code> be <code>dynamic_cast&lt;const <var>resource_adaptor_imp</var>*>(&other)</code>.</p>
-        <cxx-returns><code>false</code> if <code>p</code> is null, otherwise the value of <code>m_alloc == p->m_alloc</code>.</cxx-returns>
-      </cxx-function>
-    </cxx-section>
-  </cxx-section>
-
   <cxx-section id="memory.observer.ptr">
     <h1>Non-owning pointers</h1>
 
@@ -470,6 +304,172 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
           For an object <code>p</code> of type <code>observer_ptr&lt;T></code>,
           <code>hash&lt;observer_ptr&lt;T>>()(p)</code> shall evaluate to the same value as <code>hash&lt;T*>()(p.get())</code>.
         </p>
+      </cxx-function>
+    </cxx-section>
+  </cxx-section>
+
+  <cxx-section id="memory.type.erased.allocator">
+    <h1>Type-erased allocator</h1>
+
+    <p>
+      A <dfn>type-erased allocator</dfn> is an allocator or memory resource, <code>alloc</code>,
+      used to allocate internal data structures for an object <code>X</code> of type <code>C</code>,
+      but where <code>C</code> is not dependent on the type of <code>alloc</code>.
+      Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
+      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::pmr::memory_resource*</code> (<cxx-ref in="cxx" to="mem.res.class"></cxx-ref>).
+      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"></cxx-ref>:
+    </p>
+
+    <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
+      <caption>Computed <code>memory_resource</code> for type-erased allocator</caption>
+      <thead>
+        <tr>
+          <th>If the type of <code>alloc</code> is</th>
+          <th>then the value of <code>rptr</code> is</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>non-existent — no <code>alloc</code> specified</td>
+        <td>The value of <code>pmr::get_default_resource()</code> at the time of construction.</td>
+      </tr>
+      <tr>
+        <td><code>nullptr_t</code></td>
+        <td>The value of <code>pmr::get_default_resource()</code> at the time of construction.</td>
+      </tr>
+      <tr>
+        <td>a pointer type convertible to <code>pmr::memory_resource*</code></td>
+        <td><code>static_cast&lt;pmr::memory_resource*>(alloc)</code></td>
+      </tr>
+      <tr>
+        <td><code>pmr::polymorphic_allocator&lt;U></code></td>
+        <td><code>alloc.resource()</code></td>
+      </tr>
+      <tr>
+        <td>any other type meeting the Allocator requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>)</td>
+        <td>a pointer to a value of type <code>pmr::resource_adaptor&lt;A></code> where <code>A</code> is the type of <code>alloc</code>.
+        <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
+      </tr>
+      <tr>
+        <td>None of the above</td>
+        <td>The program is ill-formed.</td>
+      </tr>
+    </table>
+
+    <p>Additionally, class <code>C</code> shall meet the following requirements:</p>
+    <ul>
+      <li><code>C::allocator_type</code> shall be identical to <code>std::experimental::erased_type</code>.</li>
+      <li><code>X.get_memory_resource()</code> returns <code>rptr</code>.</li>
+    </ul>
+  </cxx-section>
+
+  <cxx-section id="memory.resource.synop">
+    <h1>Header <code>&lt;experimental/memory_resource></code> synopsis</h1>
+
+    <pre><code>namespace std {
+namespace experimental {
+inline namespace fundamentals_v2 {
+namespace pmr {
+
+  // The name <var>resource_adaptor_imp</var> is for exposition only.
+  template &lt;class Allocator> class <var>resource_adaptor_imp</var>;
+
+  template &lt;class Allocator>
+    using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
+      typename allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;
+
+} // namespace pmr
+} // namespace fundamentals_v2
+} // namespace experimental
+} // namespace std</code></pre>
+  </cxx-section>
+
+  <cxx-section id="memory.resource.adaptor">
+    <h1>template alias <code>resource_adaptor</code></h1>
+
+    <cxx-section id="memory.resource.adaptor.overview">
+      <h1><code>resource_adaptor</code></h1>
+
+      <p>
+        An instance of <code>resource_adaptor&lt;Allocator></code> is an adaptor that wraps a <code>memory_resource</code> interface around <code>Allocator</code>.
+        In order that <code>resource_adaptor&lt;X&lt;T>></code> and <code>resource_adaptor&lt;X&lt;U>></code> are the same type for any allocator template <code>X</code> and types <code>T</code> and <code>U</code>,
+        <code>resource_adaptor&lt;Allocator></code> is rendered as an alias to a class template such that <code>Allocator</code> is rebound to a <code>char</code> value type in every specialization of the class template.
+        The requirements on this class template are defined below.
+        The name <code><var>resource_adaptor_imp</var></code> is for exposition only and is not normative,
+        but the definitions of the members of that class, whatever its name, are normative.
+        In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
+      </p>
+      <ul>
+        <li><code>typename allocator_traits&lt;Allocator>::pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator>::const_pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type const*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator>::void_pointer</code> shall be identical to <code>void*</code>.</li>
+        <li><code>typename allocator_traits&lt;Allocator>::const_void_pointer</code> shall be identical to <code>void const*</code>.</li>
+      </ul>
+
+      <pre><code>
+// The name <var>resource_adaptor_imp</var> is for exposition only.
+template &lt;class Allocator>
+class <var>resource_adaptor_imp</var> : public memory_resource {
+  // for exposition only
+  Allocator m_alloc;
+
+public:
+  using allocator_type = Allocator;
+
+  <var>resource_adaptor_imp</var>() = default;
+  <var>resource_adaptor_imp</var>(const <var>resource_adaptor_imp</var>&) = default;
+  <var>resource_adaptor_imp</var>(<var>resource_adaptor_imp</var>&&) = default;
+
+  explicit <var>resource_adaptor_imp</var>(const Allocator& a2);
+  explicit <var>resource_adaptor_imp</var>(Allocator&& a2);
+
+  <var>resource_adaptor_imp</var>& operator=(const <var>resource_adaptor_imp</var>&) = default;
+
+  allocator_type get_allocator() const { return m_alloc; }
+
+protected:
+  virtual void* do_allocate(size_t bytes, size_t alignment);
+  virtual void do_deallocate(void* p, size_t bytes, size_t alignment);
+
+  virtual bool do_is_equal(const memory_resource& other) const noexcept;
+};
+
+template &lt;class Allocator>
+  using resource_adaptor = typename <var>resource_adaptor_imp</var>&lt;
+    typename allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;</code></pre>
+    </cxx-section>
+
+    <cxx-section id="memory.resource.adaptor.ctor">
+      <h1><code><var>resource_adaptor_imp</var></code> constructors</h1>
+
+      <cxx-function>
+        <cxx-signature>explicit <var>resource_adaptor_imp</var>(const Allocator& a2);</cxx-signature>
+        <cxx-effects>Initializes <code>m_alloc</code> with <code>a2</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>explicit <var>resource_adaptor_imp</var>(Allocator&& a2);</cxx-signature>
+        <cxx-effects>Initializes <code>m_alloc</code> with <code>std::move(a2)</code>.</cxx-effects>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="memory.resource.adaptor.mem">
+      <h1><code><var>resource_adaptor_imp</var></code> member functions</h1>
+
+      <cxx-function>
+        <cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature>
+        <cxx-returns>Allocated memory obtained by calling <code>m_alloc.allocate</code>. The size and alignment of the allocated memory shall meet the requirements for a class derived from <code>memory_resource</code> (<cxx-ref to="memory.resource"></cxx-ref>).</cxx-returns>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature>
+        <cxx-requires><code>p</code> was previously allocated using <code>A.allocate</code>, where <code>A == m_alloc</code>, and not subsequently deallocated.</cxx-requires>
+        <cxx-effects>Returns memory to the allocator using <code>m_alloc.deallocate()</code>.</cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>bool do_is_equal(const memory_resource& other) const noexcept;</cxx-signature>
+        <p>Let <code>p</code> be <code>dynamic_cast&lt;const <var>resource_adaptor_imp</var>*>(&other)</code>.</p>
+        <cxx-returns><code>false</code> if <code>p</code> is null, otherwise the value of <code>m_alloc == p->m_alloc</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
   </cxx-section>
