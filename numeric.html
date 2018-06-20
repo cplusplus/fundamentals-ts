@@ -7,9 +7,8 @@
       <h1>Header <code>&lt;experimental/random></code> synopsis</h1>
 <pre><code>#include &lt;random>
 
-namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+namespace std::experimental {
+inline namespace fundamentals_v3 {
 
   <cxx-ref insynopsis="" to="rand.util.randint"></cxx-ref>
   template &lt;class IntType>
@@ -17,9 +16,8 @@ inline namespace fundamentals_v2 {
   void reseed();
   void reseed(default_random_engine::result_type value);
 
-} // inline namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
     </cxx-section>
   <cxx-section id="rand.util">
     <h1>Utilities</h1>

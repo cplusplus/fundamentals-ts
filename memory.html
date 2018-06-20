@@ -8,7 +8,7 @@
 
 namespace std {
   namespace experimental {
-  inline namespace fundamentals_v2 {
+  inline namespace fundamentals_v3 {
 
     // See <cxx-ref in="cxx" to="allocator.uses"></cxx-ref>, uses_allocator
     template &lt;class T, class Alloc> constexpr bool uses_allocator_v
@@ -46,7 +46,7 @@ namespace std {
     template &lt;class W1, class W2>
     bool operator>=(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
 
-  } // inline namespace fundamentals_v2
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   <cxx-ref insynopsis to="memory.smartptr.shared.hash"></cxx-ref>
@@ -83,9 +83,8 @@ namespace std {
     <cxx-section id="memory.observer.ptr.overview">
       <h1>Class template <code>observer_ptr</code> overview</h1>
 
-<pre><code>namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+<pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
 
   template &lt;class W> class observer_ptr {
     using pointer = add_pointer_t&lt;W>;            <i>// exposition-only</i>
@@ -120,9 +119,8 @@ inline namespace fundamentals_v2 {
     constexpr void swap(observer_ptr&amp;) noexcept;
   }; // observer_ptr&lt;>
 
-} // inline namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
     </cxx-section>
 
     <cxx-section id="memory.observer.ptr.ctor">
@@ -365,9 +363,8 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
   <cxx-section id="memory.resource.synop">
     <h1>Header <code>&lt;experimental/memory_resource></code> synopsis</h1>
 
-    <pre><code>namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+    <pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
 namespace pmr {
 
   // The name <var>resource_adaptor_imp</var> is for exposition only.
@@ -378,9 +375,8 @@ namespace pmr {
       typename allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;
 
 } // namespace pmr
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
   </cxx-section>
 
   <cxx-section id="memory.resource.adaptor">

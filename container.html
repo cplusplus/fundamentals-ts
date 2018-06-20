@@ -12,9 +12,8 @@
         each of which behaves as described by <cxx-ref to="general.namespaces"></cxx-ref>.
       </p>
 
-<pre><code>namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+<pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
 
   <cxx-ref insynopsis="" to="container.erasure.erase_if"></cxx-ref>
   <cxx-ref insynopsis="" to="container.erasure.erase"></cxx-ref>
@@ -73,9 +72,8 @@ inline namespace fundamentals_v2 {
   template &lt;class K, class H, class P, class A, class Predicate>
     void erase_if(unordered_multiset&lt;K, H, P, A>&amp; c, Predicate pred);
 
-} // inline namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
     </cxx-section>
 
     <cxx-section id="container.erasure.erase_if">
@@ -162,9 +160,8 @@ void erase(list&lt;T, A>&amp; c, const U&amp; value);</cxx-signature>
 
       <pre><code>#include &lt;array>
 
-namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+namespace std::experimental {
+inline namespace fundamentals_v3 {
 
   <cxx-ref insynopsis to="container.array.creation"></cxx-ref>
   template &lt;class D = void, class... Types&gt;
@@ -172,9 +169,8 @@ inline namespace fundamentals_v2 {
   template &lt;class T, size_t N&gt;
     constexpr array&lt;remove_cv_t&lt;T&gt;, N&gt; to_array(T (&amp;a)[N]);
 
-} // inline namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
     </cxx-section>
 
     <cxx-section id="container.array.creation">

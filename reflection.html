@@ -7,9 +7,8 @@
     <cxx-section id="reflection.src_loc.synop">
       <h1>Header <code>&lt;experimental/source_location></code> synopsis</h1>
 
-<pre><code>namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+<pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
 
   struct source_location {
     <cxx-ref insynopsis to="reflection.src_loc.creation"></cxx-ref>
@@ -24,9 +23,8 @@ inline namespace fundamentals_v2 {
     constexpr const char* function_name() const noexcept;
   };
 
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
 
       <p>
         <cxx-note>The intent of <code>source_location</code> is to have a small size and efficient copying.</cxx-note>

@@ -78,10 +78,8 @@
     <code>std::experimental::fundamentals_v3</code> into
     <code>std::experimental</code> as if by</p>
 
-    <pre><code>namespace std {
-  namespace experimental {
-    inline namespace fundamentals_v3 {}
-  }
+    <pre><code>namespace std::experimental {
+  inline namespace fundamentals_v3 {}
 }</code></pre>
 
     <p>
@@ -92,7 +90,7 @@
 
     <p>Unless otherwise specified, references to other entities
     described in this technical specification are assumed to be
-    qualified with <code>std::experimental::fundamentals_v2::</code>,
+    qualified with <code>std::experimental::fundamentals_v3::</code>,
     and references to entities described in the standard are assumed
     to be qualified with <code>std::</code>.</p>
 

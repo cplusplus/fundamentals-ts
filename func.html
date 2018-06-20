@@ -14,7 +14,7 @@
 
 namespace std {
   namespace experimental {
-  inline namespace fundamentals_v2 {
+  inline namespace fundamentals_v3 {
 
     // See <cxx-ref in="cxx" to="bind"></cxx-ref>, Function object binders
     template &lt;class T> constexpr bool is_bind_expression_v
@@ -38,7 +38,7 @@ namespace std {
     template&lt;class R, class... ArgTypes&gt;
     bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v2
+  } // namespace fundamentals_v3
   } // namespace experimental
 
   template&lt;class R, class... ArgTypes, class Alloc&gt;
@@ -66,7 +66,7 @@ namespace std {
 
 <pre><code>namespace std {
   namespace experimental {
-  inline namespace fundamentals_v2 {
+  inline namespace fundamentals_v3 {
 
     template&lt;class&gt; class function; <i>// undefined</i>
 
@@ -128,7 +128,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
 
-  } // namespace fundamentals_v2
+  } // namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class... ArgTypes, class Alloc&gt;

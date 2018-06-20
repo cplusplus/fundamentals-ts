@@ -9,16 +9,14 @@
 
 <pre><code>#include &lt;utility>
 
-namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+namespace std::experimental {
+inline namespace fundamentals_v3 {
 
   <cxx-ref insynopsis="" to="utility.erased.type"></cxx-ref>
   struct erased_type { };
 
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
 
     </cxx-section>
 
@@ -44,9 +42,8 @@ inline namespace fundamentals_v2 {
 
 <pre><code>#include &lt;type_traits>
 
-namespace std {
-namespace experimental {
-inline namespace fundamentals_v2 {
+namespace std::experimental {
+inline namespace fundamentals_v3 {
 
   // See <cxx-ref in="cxx" to="meta.unary.cat"></cxx-ref>, primary type categories
   template &lt;class T> constexpr bool is_void_v
@@ -231,9 +228,8 @@ inline namespace fundamentals_v2 {
     constexpr bool is_detected_convertible_v
       = is_detected_convertible&lt;To, Op, Args...>::value;
 
-} // namespace fundamentals_v2
-} // namespace experimental
-} // namespace std</code></pre>
+} // inline namespace fundamentals_v3
+} // namespace std::experimental</code></pre>
 
     </cxx-section>
 
@@ -446,7 +442,7 @@ template &lt;class Ptr>
 
 <pre><code>namespace std {
   namespace experimental {
-  inline namespace fundamentals_v2 {
+  inline namespace fundamentals_v3 {
     template &lt;class T&gt; class propagate_const {
     public:
       using element_type = remove_reference_t&lt;decltype(*declval&lt;T&amp;&gt;())&gt;;
@@ -547,33 +543,33 @@ template &lt;class Ptr>
       constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept;
     template &lt;class T&gt;
       constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;
-  } // inline namespace fundamentals_v2
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   <cxx-ref insynopsis to="propagate_const.hash"></cxx-ref>
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt;
-    struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+    struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
 
   <cxx-ref insynopsis to="propagate_const.comparison_function_objects"></cxx-ref>
   template &lt;class T&gt; struct equal_to;
   template &lt;class T&gt;
-    struct equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+    struct equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
   template &lt;class T&gt; struct not_equal_to;
   template &lt;class T&gt;
-    struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+    struct not_equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
   template &lt;class T&gt; struct less;
   template &lt;class T&gt;
-    struct less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+    struct less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
   template &lt;class T&gt; struct greater;
   template &lt;class T&gt;
-    struct greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+    struct greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
   template &lt;class T&gt; struct less_equal;
   template &lt;class T&gt;
-    struct less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+    struct less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
   template &lt;class T&gt; struct greater_equal;
   template &lt;class T&gt;
-    struct greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;
+    struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
 } // namespace std</code></pre>
     </cxx-section>
 
@@ -1048,11 +1044,11 @@ constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
+struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For an object <code>p</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p)</code>
+          <code>hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p)</code>
           shall evaluate to the same value as <code>hash&lt;T&gt;()(p.t_)</code>.
         </p>
 
@@ -1068,11 +1064,11 @@ struct hash&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
+struct equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+          <code>equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
 q)</code>
           shall evaluate to the same value as <code>equal_to&lt;T&gt;()(p.t_,
 q.t_)</code>.
@@ -1085,11 +1081,11 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
+struct not_equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p, q)</code>
+          <code>not_equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p, q)</code>
           shall evaluate to the same value as <code>not_equal_to&lt;T&gt;()(p.t_, q.t_)</code>.
         </p>
 
@@ -1100,11 +1096,11 @@ struct not_equal_to&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&g
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
+struct less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>less&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+          <code>less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
 q)</code>
           shall evaluate to the same value as <code>less&lt;T&gt;()(p.t_,
 q.t_)</code>.
@@ -1117,11 +1113,11 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
+struct greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>greater&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+          <code>greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
 q)</code>
           shall evaluate to the same value as <code>greater&lt;T&gt;()(p.t_,
 q.t_)</code>.
@@ -1134,11 +1130,11 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
+struct less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>less_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+          <code>less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
 q)</code>
           shall evaluate to the same value as <code>less_equal&lt;T&gt;()(p.t_,
 q.t_)</code>.
@@ -1151,11 +1147,11 @@ q.t_)</code>.
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-struct greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;;</cxx-signature>
+struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>greater_equal&lt;experimental::fundamentals_v2::propagate_const&lt;T&gt;&gt;()(p,
+          <code>greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
 q)</code>
           shall evaluate to the same value as <code>greater_equal&lt;T&gt;()(p.t_, q.t_)</code>.
         </p>
