@@ -4,12 +4,6 @@
   <cxx-section id="header.functional.synop">
     <h1>Header <code>&lt;experimental/functional></code> synopsis</h1>
 
-    <cxx-ednote class="para">
-    The following header synopsis fixes the missing <tt>noexcept</tt> specifications of the comparison functions as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
-    We consider this change <em>editorial</em> at this point because the two different declarations were already in conflict,
-    and this change does not have impact on the actual prototype specifications, which will have the same specifiers as in C++14.
-    </cxx-ednote>
-
 <pre><code>#include &lt;functional>
 
 namespace std {
@@ -50,12 +44,6 @@ namespace std {
 
   <cxx-section id="func.wrap.func">
     <h1>Class template <code>function</code></h1>
-
-    <cxx-ednote>
-      The following class template synopsis fixes the missing <code>noexcept</code> specification of the <code>nullptr_t</code> assignment operator
-      as recently resolved by <a href="http://cplusplus.github.io/LWG/lwg-active.html#2401">LWG 2401</a>.
-      We consider this change <em>editorial</em>, because the fundamentals-ts specification otherwise refers to a non-existing declaration in C++14.
-    </cxx-ednote>
 
     <p>
       The specification of all declarations within this sub-clause <cxx-ref to="func.wrap.func"></cxx-ref>
@@ -174,9 +162,6 @@ namespace std {
         <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::move(f)).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
-
-      <cxx-ednote>The following <i>Effects</i> element has been fixed and syncs the wording "<code>*this != NULL</code>"
-      with the C++14 working draft replacing it with "<code>*this != nullptr</code>"</cxx-ednote>
 
       <cxx-function>
         <cxx-signature>function&amp; operator=(nullptr_t) noexcept;</cxx-signature>
