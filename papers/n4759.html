@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4759 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      .quote { display: inline-block; clear: both; margin-left: 1ex;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1ex; }
+
+      .modify { border-left: thick solid #999; border-right: thick solid #999; padding: 0 1em; }
+      .insert { border-left: thick solid #0A0; border-right: thick solid #0A0; padding: 0 1em; }
+      .comment { color: #753; }
+      .comment a:link, .comment a:visited { color: #A51; }
+
+      table { border-top: 2px solid black; border-bottom: 2px solid black; border-collapse: collapse; margin: 3em auto; }
+      thead th { border-bottom: 2px solid black; }
+      th.sep { border-top: 2px solid black; border-bottom: 2px solid black; }
+      th, td { text-align: left; padding: 0; margin: 0; }
+      tr:first-child td { padding-top: 1ex; }
+      tr:last-child td { padding-bottom: 1ex; }
+
+      td.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                padding: 1em; line-height: 150%; }
+
+      table.x { caption-side: bottom; }
+      table.x caption { padding-top: 1ex; }
+      .x th, .x td { padding: 1ex 1ex 1ex 1ex; }
+      .x th:first-child, .x td:first-child { padding-left: 1ex; }
+      td.y { padding: 0 1em; }
+
+      p.skip { margin-top: 1em; }
+
+      ins { color: #090; }
+      del { color: #A00; }
+      ins code, del code { color: inherit; }
+
+      span.new { color: #080; font-weight: bold; }
+      span.old { color: #800; font-weight: bold; }
+
+      #toggleparams:checked ~ * .params { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>N4759 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2018-06-25</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <h2>Acknowledgements</h2>
+
+    <p>Thanks to Tim Song for pointing out editorial issues.</p>
+    <p>Special thanks to Geoffrey Romer for his stewardship of the
+      previous version of this Technical Specification.</p>
+
+    <h2>New papers</h2>
+
+    <ul>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2018/n4758.html">N4758</a>
+        is the current working draft and the prospective initial working paper for the third
+        version of the Library Fundamentals Technical Specification.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2018/n4759.html">N4759</a>
+        is this Editor&rsquo;s Report.</li>
+    </ul>
+    
+    <h2>Change history and motions</h2>
+
+    <p>The previous version of this Technical Specification, <em>C++ Extensions for Library
+      Fundamentals, Version 2</em> (LFTSv2), was published in 2017;
+      <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/n4617.pdf">N4617</a>
+      is its DTS document. The current working draft, N4758, is the candidate to become the
+      initial working paper for the new Version 3 of the TS (LFTSv3).</p>
+
+    <p>There has been only one motion since the publication of the LFTSv2, which rebases the
+      document from C++14 to C++17 and thereby removes all parts that have already been merged
+      into the C++17 International Standard:</p>
+
+    <ul>
+      <li><strong>Jacksonville 2018, LWG Motion 6:</strong>
+      <em>Move to direct the Convener to request a New Work Item for a Technical Specification on
+      &ldquo;C++ Extensions for Library Fundamentals, Version 3&rdquo; and create a working draft
+      with <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0996r1.html">P0996R1</a>
+      modifying Library Fundamentals Version 2 N4600.</em><br><br>
+      This motion has been applied with changes: P0996R1 asked for the removal of <em>all</em>
+      overloads of the <code>sample</code> algorithm, but only one of the overloads has been
+      merged into C++17. The other overload is retained in the LFTSv3 working draft.</li>
+    </ul>
+
+    <h2>Editorial changes</h2>
+
+    <ul>
+      <li>Clause [memory] has been reordered so that [memory.observer.ptr] immediately
+        follows the synopsis [header.memory.synop] in which the feature is first declared.</li>
+      <li>Classes <code>source_location</code> and <code>propagate_const</code> used to
+        be defined in their header synopsis. This has been changed so that they are merely
+        declared in the synopsis, but defined separately as part of their detailed specification.</li>
+      <li>Further to the above, subclauses of [utility] have been reorganized slightly
+        to remove hanging paragraphs from the specification of <code>propagate_const</code>.
+        The final document will need to avoid hanging paragraphs entirely, and there will be further
+        reorganization in the future.</li>
+    </ul>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit 64392fee2e511870fca3fe09381914b3e7bf0660 (HEAD -> v3, origin/v3)
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon Jun 25 14:28:41 2018 +0100
+
+    [utility] Add a dedicated subclause for propagate_const</div>
+
+    <div class="code"><!--
+-->commit d1975ddd9d86e899602ee44b26aaaffc1e3e828c
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon Jun 25 14:19:33 2018 +0100
+
+    [func,futures] Remove obsolete editor's notes.
+    
+    The underlying issues have already been incorporated into C++17.</div>
+
+    <div class="code"><!--
+-->commit e55344b539581ad161cf98aba21e045c0c2e69ce
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon Jun 25 14:07:29 2018 +0100
+
+    [algorithms, general.feature.test] Restore the one overload of "sample" that has not been merged into the IS (#74)</div>
+
+    <div class="code"><!--
+-->commit 587379108d73ae79ff5d613e12e697f0f3775e91
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Jun 20 12:13:07 2018 +0100
+
+    [utilities] Reorganize clause
+    
+    * Move propogate_const into "Utility components".
+    
+    * Reorganise propagate_const to separate the header synopsis
+      from the class definition, and to use the new outline style
+      used in the IS that does not have hanging paragraphs.</div>
+
+    <div class="code"><!--
+-->commit 27c7b093ad8fe55b43a4aae2e71d7b8328a7ea1b
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Jun 20 01:34:31 2018 +0100
+
+    [reflection] Separate source_location header synopsis from class definition</div>
+
+    <div class="code"><!--
+-->commit 05d43506de5cdb723d461303efa05f854f86a8b7
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Jun 20 01:22:42 2018 +0100
+
+    Update namespaces from v2 to v3 and use C++17-style multiple-namespace syntax where possible</div>
+
+    <div class="code"><!--
+-->commit effc031cee33aa9be9112cae7d1b81e7c4d5e83b
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Jun 20 01:08:06 2018 +0100
+
+    [memory] Move [memory.observer.ptr] subclause up so it is contiguous with the header synopsis that references it</div>
+
+    <div class="code"><!--
+-->commit 40bfeaf8d07afe05a3851f5ecf9a548825bcd427
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Jun 20 00:26:27 2018 +0100
+
+    P0996R1 Rebase Library Fundamentals TS on C++17
+    
+    Excludes namespace renaming, subclause moves and synopsis splits.</div>
+
+    <div class="code"><!--
+-->commit 04ac52895e3902e5e674790fa17031eca61c8a74
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jun 19 23:54:33 2018 +0100
+
+    [main] Update front matter for LFTSv3
+    </div>
+
+  </body>
+</html>
