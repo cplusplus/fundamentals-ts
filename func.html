@@ -10,12 +10,6 @@ namespace std {
   namespace experimental {
   inline namespace fundamentals_v3 {
 
-    // See <cxx-ref in="cxx" to="bind"></cxx-ref>, Function object binders
-    template &lt;class T> constexpr bool is_bind_expression_v
-      = is_bind_expression&lt;T>::value;
-    template &lt;class T> constexpr int is_placeholder_v
-      = is_placeholder&lt;T>::value;
-
     <cxx-ref insynopsis="" to="func.wrap.func"></cxx-ref>
     template&lt;class&gt; class function; <i>// undefined</i>
     template&lt;class R, class... ArgTypes&gt; class function&lt;R(ArgTypes...)&gt;;

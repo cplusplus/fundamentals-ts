@@ -10,10 +10,6 @@ namespace std {
   namespace experimental {
   inline namespace fundamentals_v3 {
 
-    // See <cxx-ref in="cxx" to="allocator.uses"></cxx-ref>, uses_allocator
-    template &lt;class T, class Alloc> constexpr bool uses_allocator_v
-      = uses_allocator&lt;T, Alloc>::value;
-
     <cxx-ref insynopsis to="memory.observer.ptr"></cxx-ref>
     template &lt;class W> class observer_ptr;
 
@@ -48,9 +44,6 @@ namespace std {
 
   } // inline namespace fundamentals_v3
   } // namespace experimental
-
-  <cxx-ref insynopsis to="memory.smartptr.shared.hash"></cxx-ref>
-  template&lt;class T> struct hash&lt;experimental::shared_ptr&lt;T>>;
 
   <cxx-ref insynopsis to="memory.observer.ptr.hash"></cxx-ref>
   template &lt;class T> struct hash;
