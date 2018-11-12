@@ -952,13 +952,7 @@ inline namespace fundamentals_v3 {
   <cxx-ref insynopsis to="meta.detect"></cxx-ref>
   template &lt;class...> using void_t = void;
 
-  struct nonesuch {
-    nonesuch() = delete;
-    ~nonesuch() = delete;
-    nonesuch(nonesuch const&) = delete;
-
-    void operator=(nonesuch const&) = delete;
-  };
+  struct nonesuch;
 
   template &lt;template&lt;class...> class Op, class... Args>
     using is_detected = <i>see below</i>;
@@ -1127,6 +1121,18 @@ inline namespace fundamentals_v3 {
 
     <cxx-section id="meta.detect">
       <h1>Detection idiom</h1>
+
+      <pre><code>struct nonesuch {
+  ~nonesuch() = delete;
+  nonesuch(nonesuch const&) = delete;
+  void operator=(nonesuch const&) = delete;
+};</code></pre>
+      <p>
+        <code>nonesuch</code> has no default constructor
+        (<cxx-ref in="cxx" to="class.ctor"></cxx-ref>) or initializer-list constructor
+        (<cxx-ref in="cxx" to="dcl.init.list"></cxx-ref>), and is not an aggregate
+        (<cxx-ref in="cxx" to="dcl.init.aggr"></cxx-ref>).
+      </p>
 
       <pre><code>template &lt;class Default, class AlwaysVoid,
           template&lt;class...> class Op, class... Args>

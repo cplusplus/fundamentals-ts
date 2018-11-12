@@ -1242,7 +1242,7 @@ html   [segment], html   segment {
         
       </li>
             
-              <li><span class="marker">5.5</span><a href="#memory.resource.adaptor">template alias resource_adaptor</a>
+              <li><span class="marker">5.5</span><a href="#memory.resource.adaptor">Alias template resource_adaptor</a>
         
           <ol>
             
@@ -3503,13 +3503,7 @@ inline namespace fundamentals_v3 {
   <cxx-ref insynopsis="" to="meta.detect">// <i><a title="meta.detect" href="#meta.detect">3.3.3</a>, Detection idiom</i></cxx-ref>
   template &lt;class...&gt; using void_t = void;
 
-  struct nonesuch {
-    nonesuch() = delete;
-    ~nonesuch() = delete;
-    nonesuch(nonesuch const&amp;) = delete;
-
-    void operator=(nonesuch const&amp;) = delete;
-  };
+  struct nonesuch;
 
   template &lt;template&lt;class...&gt; class Op, class... Args&gt;
     using is_detected = <i>see below</i>;
@@ -3705,6 +3699,18 @@ inline namespace fundamentals_v3 {
       <header><span class="section-number">3.3.3</span> <h1 data-bookmark-label="3.3.3 Detection idiom">Detection idiom</h1> <span style="float:right"><a href="#meta.detect">[meta.detect]</a></span></header>
       
       
+
+      <pre><code>struct nonesuch {
+  ~nonesuch() = delete;
+  nonesuch(nonesuch const&amp;) = delete;
+  void operator=(nonesuch const&amp;) = delete;
+};</code></pre>
+      <p id="meta.detect.1" para_num="1">
+        <code>nonesuch</code> has no default constructor
+        (<cxx-ref in="cxx" to="class.ctor">C++17 <span title="class.ctor">§15.1</span></cxx-ref>) or initializer-list constructor
+        (<cxx-ref in="cxx" to="dcl.init.list">C++17 <span title="dcl.init.list">§11.6.4</span></cxx-ref>), and is not an aggregate
+        (<cxx-ref in="cxx" to="dcl.init.aggr">C++17 <span title="dcl.init.aggr">§11.6.1</span></cxx-ref>).
+      </p>
 
       <pre><code>template &lt;class Default, class AlwaysVoid,
           template&lt;class...&gt; class Op, class... Args&gt;
@@ -4820,7 +4826,7 @@ namespace pmr {
     
 
     <section>
-      <header><span class="section-number">5.5</span> <h1 data-bookmark-label="5.5 template alias resource_adaptor">template alias <code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor">[memory.resource.adaptor]</a></span></header>
+      <header><span class="section-number">5.5</span> <h1 data-bookmark-label="5.5 Alias template resource_adaptor">Alias template <code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor">[memory.resource.adaptor]</a></span></header>
       
     
 

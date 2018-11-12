@@ -1,9 +1,12 @@
 {
     "allocator.requirements": "20.5.3.5",
     "allocator.uses": "23.10.7",
+    "class.ctor": "15.1",
     "cpp.line": "19.4",
     "cpp.predefined": "19.8",
     "dcl.fct.default": "11.3.6",
+    "dcl.init.aggr": "11.6.1",
+    "dcl.init.list": "11.6.4",
     "expr": "8",
     "expr.call": "8.2.2",
     "function.objects": "23.14",
