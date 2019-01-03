@@ -87,14 +87,14 @@ inline namespace fundamentals_v3 {
     using element_type = W;
 
     <cxx-ref insynopsis to="memory.observer.ptr.ctor"></cxx-ref>
-    // default c’tor
+    // default constructor
     constexpr observer_ptr() noexcept;
 
-    // pointer-accepting c’tors
+    // pointer-accepting constructors
     constexpr observer_ptr(nullptr_t) noexcept;
     constexpr explicit observer_ptr(pointer) noexcept;
 
-    // copying c’tors (in addition to compiler-generated copy c’tor)
+    // copying constructors (in addition to the implicit copy constructor)
     template &lt;class W2> constexpr observer_ptr(observer_ptr&lt;W2>) noexcept;
 
     <cxx-ref insynopsis to="memory.observer.ptr.obs"></cxx-ref>
