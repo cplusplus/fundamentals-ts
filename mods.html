@@ -6,6 +6,35 @@
     behave as if the modifications contained in this section are made to the C++ Standard.
   </p>
 
+  <cxx-section id="mods.exception.requirements">
+    <h1>Exception Requirements</h1>
+    <p>The following changes to the library introduction allow the destructor
+      of <code>scope_success</code> to throw exceptions.</p>
+    <blockquote>
+      <p><b>20.5.4.8 Other functions [res.on.functions]</b></p>
+      <p>In certain cases [&hellip;]</p>
+      <p>In particular, the effects are undefined in the following cases:</p>
+      <ul>
+        <li>[&hellip;]</li>
+        <li>if any replacement function or handler function or destructor operation
+          exits via an exception, unless specifically allowed in the applicable
+          <i>Required behavior:</i><ins> or <i>Throws:</i></ins> paragraph.
+        </li>
+        <li>if an incomplete type (6.9) is used as a template argument when instantiating
+          a template component, unless specifically allowed for that component.</li>
+      </ul>
+      <p><b>20.5.5.12 Restrictions on exception handling [res.on.exception.handling]</b></p>
+      <p>[&hellip;]</p>
+      <p>Functions from the C standard library shall not throw exceptions<sup>183</sup>
+        except when such a function calls a program-supplied function that throws an exception.<sup>184</sup></p>
+      <p><ins>Unless otherwise specified, destructor</ins><del>Destructor</del>
+        operations defined in the C++ standard library shall not throw exceptions.
+        Every destructor<ins> without an exception specification</ins> in the C++ standard library
+        shall behave as if it had a non-throwing exception specification.</p>
+      <p>Functions defined in the C++ standard library [&hellip]</p>
+    </blockquote>
+  </cxx-section>
+
   <cxx-section id="mods.allocator.uses">
     <h1>Uses-allocator construction</h1>
 

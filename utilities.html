@@ -787,6 +787,605 @@ q)</code>
   </cxx-section>
   </cxx-section>
 
+  <cxx-section id="scopeguard">
+    <h1>Scope guard support</h1>
+
+    <cxx-section id="scope.synopsis">
+      <h1>Header <code>&lt;experimental/scope&gt;</code> synopsis</h1>
+
+      <pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
+  <cxx-ref insynopsis to="scopeguard.exit"></cxx-ref>
+  template &lt;class EF&gt;
+    class scope_exit;
+  template &lt;class EF&gt;
+    class scope_fail;
+  template &lt;class EF&gt;
+    class scope_success;
+
+  <cxx-ref insynopsis to="scopeguard.uniqueres"></cxx-ref>
+  template &lt;class R, class D&gt;
+    class unique_resource;
+
+  <cxx-ref insynopsis to="scopeguard.uniqueres.create"></cxx-ref>
+  template &lt;class R, class D, class S=decay_t&lt;R&gt;&gt;
+    unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
+      make_unique_resource_checked(R&amp;&amp; r, const S&amp; invalid, D&amp;&amp; d) noexcept(<i>see below</i>);
+
+}  // inline namespace fundamentals_v3
+}  // namespace std::experimental</code></pre>
+
+    </cxx-section>
+
+    <cxx-section id="scopeguard.exit">
+      <h1>Class templates <code>scope_exit</code>, <code>scope_fail</code>, and <code>scope_success</code></h1>
+
+      <p>The class templates <code>scope_exit</code>, <code>scope_fail</code>,
+        and <code>scope_success</code> define scope guards that wrap a
+        function object to be called on their destruction.</p>
+
+      <p>In this subclause, the placeholder <code><i>scope-guard</i></code>
+        denotes each of these class templates. In descriptions of the
+        class members, <code><i>scope-guard</i></code> refers to the enclosing
+        class.</p>
+
+      <pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
+
+  template &lt;class EF&gt; class <i>scope-guard</i> {
+  public:
+    template &lt;class EFP&gt;
+      explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(<i>see below</i>);
+    <i>scope-guard</i>(<i>scope-guard</i>&amp;&amp; rhs) noexcept(<i>see below</i>);
+
+    <i>scope-guard</i>(const <i>scope-guard</i>&amp;) = delete;
+    <i>scope-guard</i>&amp; operator=(const <i>scope-guard</i>&amp;) = delete;
+    <i>scope-guard</i>&amp; operator=(<i>scope-guard</i>&amp;&amp;) = delete;
+
+    ~<i>scope-guard</i> () noexcept(<i>see below</i>);
+
+    void release() noexcept;
+
+  private:
+    EF exit_function;                                 // <i>exposition only</i>
+    bool execute_on_destruction{true};                // <i>exposition only</i>
+    int uncaught_on_creation{uncaught_exceptions()};  // <i>exposition only</i>
+  };
+
+  template &lt;class EF&gt;
+    <i>scope-guard</i>(EF) -&gt; <i>scope-guard</i>&lt;EF&gt;;
+
+}  // inline namespace fundamentals_v3
+}  // namespace std::experimental</code></pre>
+
+      <p>The class template <code>scope_exit</code> is a general-purpose
+        scope guard that calls its exit function when a scope is exited. The
+        class templates <code>scope_fail</code> and <code>scope_success</code>
+        share the <code>scope_exit</code> interface, only the situation when the
+        exit function is called differs.</p>
+      <cxx-example><pre><code>void grow(vector&lt;int&gt;&amp; v) {
+  scope_success guard([]{ cout &lt;&lt; "Good!" &lt;&lt; endl; });
+  v.resize(1024);
+}</code></pre></cxx-example>
+
+      <p><cxx-note>If the exit function object of a <code>scope_success</code>
+          or <code>scope_exit</code> object refers to a local variable
+          of the function where it is defined, e.g., as a lambda capturing
+          the variable by reference, and that variable is used as a return
+          operand in that function, that variable might have already been
+          returned when the <code><i>scope-guard</i></code>&rsquo;s destructor
+          executes, calling the exit function. This can lead to surprising
+          behavior.</cxx-note></p>
+
+      <p>Template argument <code>EF</code> shall be a function object type
+        (<cxx-ref in="cxx" to="function.objects"></cxx-ref>), lvalue reference
+        to function, or lvalue reference to function object type. If <code>EF</code>
+        is an object type, it shall satisfy the requirements of <code>Destructible</code>
+        (C++17 Table 27). Given an lvalue <code>g</code> of type
+        <code>remove_reference_t&lt;EF&gt;</code>, the expression
+        <code>g()</code> shall be well-formed.</p>
+
+      <p>The constructor parameter <code>f</code> in the following constructors
+        shall be a reference to a function or a reference to a function
+        object (<cxx-ref in="cxx" to="function.objects"></cxx-ref>).</p>
+
+      <cxx-function>
+        <cxx-signature>template &lt;class EFP&gt;
+explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
+    is_nothrow_constructible_v&lt;EF, EFP&gt; ||
+    is_nothrow_constructible_v&lt;EF, EFP&amp;&gt);</cxx-signature>
+
+        <cxx-requires>
+          The expression <code>f()</code> shall be well-formed.
+          Calling <code>f()</code> shall have well-defined behavior.
+          For <code>scope_exit</code> and <code>scope_fail</code>,
+          calling <code>f()</code> shall not throw an exception.
+        </cxx-requires>
+
+        <cxx-effects>
+          If <code>EFP</code> is not an lvalue reference type and
+          <code>is_nothrow_constructible_v&lt;EF, EFP&gt;</code>
+          is <code>true</code>, initialize <code>exit_function</code>
+          with <code>std::forward&lt;EFP&gt;(f)</code>;
+          otherwise initialize <code>exit_function</code> with <code>f</code>.
+          For <code>scope_exit</code> and <code>scope_fail</code>,
+          if the initialization of <code>exit_function</code> throws an exception,
+          calls <code>f()</code>.
+          <cxx-note>For <code>scope_success</code>, <code>f()</code> will not be
+          called if the initialization fails.</cxx-note>
+        </cxx-effects>
+
+        <cxx-throws>
+          Any exception thrown during the initialization of <code>exit_function</code>.
+        </cxx-throws>
+
+        <cxx-remarks>
+          This constructor shall not participate in overload resolution unless
+          <code>is_same_v&lt;remove_cvref_t&lt;EFP&gt;,
+          <i>scope-guard</i>&gt;</code> is <code>false</code> and
+          <code>is_constructible_v&lt;EF, EFP&gt;</code> is <code>true</code>.
+        </cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature><i>scope-guard</i>(<i>scope-guard</i>&amp;&amp; rhs) noexcept(<i>see below</i>)</cxx-signature>
+
+        <cxx-requires>
+          If <code>EF</code> is an object type:
+          <ul>
+            <li>if <code>is_nothrow_move_constructible_v&lt;EF&gt;</code> is <code>true</code>,
+              <code>EF</code> shall meet the requirements of <code>MoveConstructible</code> (C++17 Table 23),</li>
+            <li>otherwise <code>EF</code> shall meet the requirements of <code>CopyConstructible</code> (C++17 Table 24).</li>
+          </ul>
+        </cxx-requires>
+
+        <cxx-effects>
+          If <code>is_nothrow_move_constructible_v&lt;EF&gt;</code> is <code>true</code>,
+          initializes <code>exit_function</code> with <code>std::forward&lt;EF&gt;(rhs.exit_function)</code>,
+          otherwise initializes <code>exit_function</code> with <code>rhs.exit_function</code>.
+          Initializes <code>execute_on_destruction</code> from <code>rhs.execute_on_destruction</code> and
+          <code>uncaught_on_creation</code> from <code>rhs.uncaught_on_creation</code>.
+          If construction succeeds, call <code>rhs.release()</code>.
+          <cxx-note>Copying instead of moving provides the strong exception guarantee.</cxx-note>
+        </cxx-effects>
+
+        <cxx-postconditions>
+          <code>execute_on_destruction</code> yields the value <code>rhs.execute_on_destruction</code>
+          yielded before the construction. <code>uncaught_on_creation</code> yields the value
+          <code>rhs.uncaught_on_creation</code> yielded before the construction.
+        </cxx-postconditions>
+
+        <cxx-throws>
+          Any exception thrown during the initialization of <code>exit_function</code>.
+        </cxx-throws>
+
+        <cxx-remarks>
+          This constructor shall not participate in overload resolution unless
+          <code>(is_nothrow_move_constructible_v&lt;EF&gt; || is_copy_constructible_v&lt;EF&gt;)</code>
+          is <code>true</code>.
+
+          The expression inside noexcept is equivalent to
+          <code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code>.
+        </cxx-remarks>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>~scope_exit() noexcept(true);</cxx-signature>
+        <cxx-effects>
+          Equivalent to:
+          <pre><code>if (execute_on_destruction)
+  exit_function();</code></pre>
+        </cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>~scope_fail() noexcept(true);</cxx-signature>
+        <cxx-effects>
+          Equivalent to:
+          <pre><code>if (execute_on_destruction &amp;&amp; uncaught_exceptions() &gt; uncaught_on_creation)
+  exit_function();</code></pre>
+        </cxx-effects>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>~scope_success() noexcept(noexcept(exit_function()));</cxx-signature>
+        <cxx-effects>
+          Equivalent to:
+          <pre><code>if (execute_on_destruction &amp;&amp; uncaught_exceptions() &lt;= uncaught_on_creation)
+  exit_function();</code></pre>
+          <cxx-note>
+            If <code>noexcept(exit_function())</code> is <code>false</code>,
+            <code>exit_function()</code> may throw an exception,
+            notwithstanding the restrictions of <cxx-ref in="cxx" to="res.on.exception.handling"></cxx-ref>.
+          </cxx-note>
+        </cxx-effects>
+        <cxx-throws>
+          Any exception thrown by <code>exit_function()</code>.
+        </cxx-throws>
+      </cxx-function>
+
+      <cxx-function>
+        <cxx-signature>void release() noexcept;</cxx-signature>
+        <cxx-effects>
+          Equivalent to <code>execute_on_destruction = false</code>.
+        </cxx-effects>
+      </cxx-function>
+
+    </cxx-section>
+
+    <cxx-section id="scopeguard.uniqueres">
+
+      <h1>Class template <code>unique_resource</code></h1>
+
+      <cxx-section id="scopeguard.uniqueres.overview">
+        <h1>Overview</h1>
+
+        <pre><code>namespace std::experimental {
+inline namespace fundamentals_v3 {
+
+  template &lt;class R, class D&gt; class unique_resource {
+  public:
+    <cxx-ref insynopsis to="scopeguard.uniqueres.ctor"></cxx-ref>
+    unique_resource();
+    template &lt;class RR, class DD&gt;
+      unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>);
+    unique_resource(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);
+
+    <cxx-ref insynopsis to="scopeguard.uniqueres.dtor"></cxx-ref>
+    ~unique_resource();
+
+    <cxx-ref insynopsis to="scopeguard.uniqueres.assign"></cxx-ref>
+    unique_resource&amp; operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);
+
+    <cxx-ref insynopsis to="scopeguard.uniqueres.members"></cxx-ref>
+    void reset() noexcept;
+    template &lt;class RR&gt;
+      void reset(RR&amp;&amp; r);
+    void release() noexcept;
+    const R&amp; get() const noexcept;
+    <i>see below</i> operator*() const noexcept;
+    R operator-&gt;() const noexcept;
+    const D&amp; get_deleter() const noexcept;
+
+  private:
+    using R1 = conditional_t&lt;is_reference_v&lt;R&gt;, reference_wrapper&lt;remove_reference_t&lt;R&gt;&gt;, R&gt;;  // <i>exposition only</i>
+    R1 resource;                  // <i>exposition only</i>
+    D deleter;                    // <i>exposition only</i>
+    bool execute_on_reset{true};  // <i>exposition only</i>
+  };
+
+  template&lt;class R, class D&gt;
+    unique_resource(R, D) -&gt; unique_resource&lt;R, D&gt;;
+
+}  // inline namespace fundamentals_v3
+}  // namespace std::experimental</code></pre>
+
+        <p>
+          <cxx-note><code>unique_resource</code> is a universal RAII wrapper for resource handles.
+            Typically, such resource handles are of trivial type and come with a factory function
+            and a clean-up or deleter function that do not throw exceptions. The clean-up function
+            together with the result of the creation function is used to create a <code>unique_resource</code>
+            variable, that on destruction will call the clean-up function. Access to the underlying
+            resource handle is achieved through <code>get()</code> and in case of a pointer type
+            resource through a set of convenience pointer operator functions.</cxx-note>
+        </p>
+
+        <p>
+          The template argument <code>D</code> shall satisfy the requirements of a
+          <code>Destructible</code> (C++17 Table 27) function object type
+          (<cxx-ref in="cxx" to="function.objects"></cxx-ref>), for which,
+          given a lvalue <code>d</code> of type <code>D</code> and a lvalue <code>r</code> of
+          type <code>R</code>, the expression <code>d(r)</code> shall be well-formed.
+          <code>D</code> shall either satisfy the requirements of <code>CopyConstructible</code>
+          (C++17 Table 24), or <code>D</code> shall satisfy the requirements of <code>MoveConstructible</code>
+          (C++17 Table 23) and <code>is_nothrow_move_constructible_v&lt;D&gt;</code> shall be <code>true</code>.
+        </p>
+
+        <p>
+          For the purpose of this subclause, a resource type <code>T</code>
+          is an object type that satisfies the requirements of <code>CopyConstructible</code>
+          (C++17 Table 24), or is an object type that satisfies the requirements of <code>MoveConstructible</code>
+          (C++17 Table 23) and <code>is_nothrow_move_constructible_v&lt;T&gt;</code> is <code>true</code>,
+          or is an lvalue reference to a resource type. <code>R</code> shall be a resource type.
+        </p>
+
+        <p>
+          For the scope of the adjacent subclauses,
+          let <code><i>RESOURCE</i></code> be defined as follows:
+          <ul>
+            <li><code>resource.get()</code> if <code>is_reference_v&lt;R&gt;</code> is <code>true</code>,</li>
+            <li><code>resource</code> otherwise.</li>
+          </ul>
+        </p>
+      </cxx-section>
+
+      <cxx-section id="scopeguard.uniqueres.ctor">
+        <h1>Constructors</h1>
+
+        <cxx-function>
+          <cxx-signature>unique_resource()</cxx-signature>
+          <cxx-effects>
+            Value-initializes <code>resource</code> and <code>deleter</code>;
+            <code>execute_on_reset</code> is initialized with <code>false</code>.
+          </cxx-effects>
+          <cxx-remarks>
+          This constructor shall not participate in overload resolution unless
+          <code>is_default_constructible_v&lt;R&gt; &amp;&amp;
+            is_default_constructible_v&lt;D&gt;</code> is <code>true</code>.
+          </cxx-remarks>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>template &lt;class RR, class DD&gt;
+unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-signature>
+
+          <cxx-requires>
+            The expressions <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
+            and <code>deleter(<i>RESOURCE</i>)</code> are well-formed.
+            Calling <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
+            or <code>deleter(<i>RESOURCE</i>)</code> shall have well-defined behavior and
+            shall not throw an exception.
+          </cxx-requires>
+
+          <cxx-effects>
+            If <code>is_nothrow_constructible_v&lt;R1, RR&gt;</code> is <code>true</code>,
+            initializes <code>resource</code> with <code>std::forward&lt;RR&gt;(r)</code>,
+            otherwise initializes <code>resource</code> with <code>r</code>.
+            Then, if <code>is_nothrow_constructible_v&lt;D, DD&gt;</code> is true,
+            initializes <code>deleter</code> with <code>std::forward&lt;DD&gt;(d)</code>,
+            otherwise initializes <code>deleter</code> with <code>d</code>.
+            If initialization of <code>resource</code> throws an exception,
+            calls <code>d(r)</code>.
+            If initialization of <code>deleter</code> throws an exception, calls <code>d(<i>RESOURCE</i>)</code>.
+            <cxx-note>
+              The explained mechanism ensures no leaking of resources.
+            </cxx-note>
+          </cxx-effects>
+
+          <cxx-throws>
+            Any exception thrown during initialization of <code>resource</code> or <code>deleter</code>.
+          </cxx-throws>
+
+          <cxx-remarks>
+            This constructor shall not participate in overload resolution unless
+            <pre><code>is_constructible_v&lt;R1, RR&gt; &amp;&amp;
+is_constructible_v&lt;D , DD&gt; &amp;&amp;
+(is_nothrow_constructible_v&lt;R1, RR&gt; || is_constructible_v&lt;R1,RR&amp;&gt;) &amp;&amp;
+(is_nothrow_constructible_v&lt;D , DD&gt; || is_constructible_v&lt;D ,DD&amp;&gt;)</code></pre>
+            is <code>true</code>.
+            <cxx-note>
+              The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
+              or <code>D</code> is a specialization of <code>reference_wrapper</code>.
+            </cxx-note>
+            The expression inside <code>noexcept</code> is equivalent to:
+            <pre><code>(is_nothrow_constructible_v&lt;R1, RR&gt; || is_nothrow_constructible_v&lt;R1, RR&amp;&gt;) &amp;&amp;
+(is_nothrow_constructible_v&lt;D , DD&gt; || is_nothrow_constructible_v&lt;D , DD&amp;&gt;)</code></pre>
+          </cxx-remarks>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>unique_resource(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature>
+
+          <cxx-effects>
+            First, initialize <code>resource</code> as follows:
+            <ul>
+              <li>If <code>is_nothrow_move_constructible_v&lt;R1&gt;</code> is
+                <code>true</code>, from <code>std::move(rhs.resource)</code>;</li>
+              <li>otherwise, from <code>rhs.resource</code>.</li>
+            </ul>
+            <cxx-note>
+              If initialization of <code>resource</code> throws an exception,
+              <code>rhs</code> is left owning the resource and will free it in due time.
+            </cxx-note>
+            Then, initialize <code>deleter</code> as follows:
+            <ul>
+              <li>If <code>is_nothrow_move_constructible_v&lt;D&gt;</code> is
+                <code>true</code>, from <code>std::move(rhs.deleter)</code>;</li>
+              <li>otherwise, from <code>rhs.deleter</code>.</li>
+            </ul>
+            If initialization of <code>deleter</code> throws an exception and
+            <code>is_nothrow_move_constructible_v&lt;R1&gt;</code> is <code>true</code>
+            and <code>rhs.execute_on_reset</code> is true:
+            <pre><code>rhs.deleter(<i>RESOURCE</i>);
+rhs.release();</code></pre>
+            Finally, <code>execute_on_reset</code> is initialized with
+            <code>exchange(rhs.execute_on_reset, false)</code>.
+            <cxx-note>
+              The explained mechanism ensures no leaking and no double release of resources.
+            </cxx-note>
+          </cxx-effects>
+
+          <cxx-remarks>
+            The expression inside <code>noexcept</code> is equivalent to
+            <code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code>.
+          </cxx-remarks>
+        </cxx-function>
+      </cxx-section>
+
+      <cxx-section id="scopeguard.uniqueres.dtor">
+        <h1>Destructor</h1>
+
+        <cxx-function>
+          <cxx-signature>~unique_resource();</cxx-signature>
+          <cxx-effects>Equivalent to <code>reset()</code>.</cxx-effects>
+        </cxx-function>
+      </cxx-section>
+
+      <cxx-section id="scopeguard.uniqueres.assign">
+        <h1>Assignment</h1>
+
+        <cxx-function>
+          <cxx-signature>unique_resource&amp;operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature>
+
+          <cxx-requires>
+            If <code>is_nothrow_move_assignable_v&lt;R1&gt;</code> is <code>true</code>,
+            <code>R1</code> shall satisfy the <code>MoveAssignable</code>
+            requirements (C++17 Table 25); otherwise <code>R1</code>
+            shall satisfy the <code>CopyAssignable</code> requirements (C++17 Table 26).
+            If <code>is_nothrow_move_assignable_v&lt;D&gt;</code> is <code>true</code>,
+            <code>D</code> shall satisfy the <code>MoveAssignable</code> requirements
+            (C++17 Table 25); otherwise <code>D</code> shall satisfy the <code>CopyAssignable</code>
+            requirements (C++17 Table 26).
+          </cxx-requires>
+
+          <cxx-effects>
+            Equivalent to:
+            <pre><code>reset();
+if constexpr (is_nothrow_move_assignable_v&lt;R1&gt;) {
+  if constexpr (is_nothrow_move_assignable_v&lt;D&gt;) {
+    resource = std::move(rhs.resource);
+    deleter = std::move(rhs.deleter);
+  } else {
+    deleter = rhs.deleter;
+    resource = std::move(rhs.resource);
+  }
+} else {
+  if constexpr (is_nothrow_move_assignable_v&lt;D&gt;) {
+    resource = rhs.resource;
+    deleter = std::move(rhs.deleter);
+  } else {
+    resource = rhs.resource;
+    deleter = rhs.deleter;
+  }
+}
+execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
+            <cxx-note>
+              If a copy of a member throws an exception, this mechanism leaves
+              <code>rhs</code> intact and <code>*this</code> in the released state.
+            </cxx-note>
+          </cxx-effects>
+
+          <cxx-throws>
+            Any exception thrown during a copy-assignment of a member that
+            cannot be moved without an exception.
+          </cxx-throws>
+
+          <cxx-remarks>
+            The expression inside <code>noexcept</code> is equivalent to
+            <code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code>.
+          </cxx-remarks>
+        </cxx-function>
+      </cxx-section>
+
+      <cxx-section id="scopeguard.uniqueres.members">
+        <h1>Other member functions</h1>
+
+        <cxx-function>
+          <cxx-signature>void reset() noexcept;</cxx-signature>
+
+          <cxx-effects>
+            Equivalent to:
+            <pre><code>if (execute_on_reset) {
+  execute_on_reset = false;
+  deleter(<i>RESOURCE</i>);
+}</code></pre>
+          </cxx-effects>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>template &lt;class RR&gt; void reset(RR&amp;&amp; r);</cxx-signature>
+
+          <cxx-requires>
+            The expression <code>deleter(r)</code> shall be well-formed.
+            Calling <code>deleter(r)</code> shall have well-defined behavior
+            and shall not throw an exception.
+          </cxx-requires>
+
+          <cxx-effects>
+            Equivalent to:
+            <pre><code>reset();
+if constexpr (is_nothrow_assignable_v&lt;R1&amp;, RR&gt;) {
+  resource = std::forward&lt;RR&gt;(r);
+} else {
+  resource = as_const(r);
+}
+execute_on_reset = true;</code></pre>
+          </cxx-effects>
+
+          <cxx-remarks>
+            This function shall not participate in overload resolution unless
+            the selected assignment expression statement assigning <code>resource</code> is well-formed.
+          </cxx-remarks>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>void release() noexcept;</cxx-signature>
+          <cxx-effects>Equivalent to <code>execute_on_reset = false</code>.</cxx-effects>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>const R&amp; get() const noexcept;</cxx-signature>
+          <cxx-returns><code>resource</code>.</cxx-returns>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature><i>see below</i> operator*() const noexcept;</cxx-signature>
+          <cxx-effects>Equivalent to: <code>return *get();</code></cxx-effects>
+          <cxx-remarks>
+            This function shall not participate in overload resolution unless
+            <code>is_pointer_v&lt;R&gt;</code> is <code>true</code> and
+            <code>is_void_v&lt;remove_pointer_t&lt;R&gt;&gt;</code> is <code>false</code>.
+            The return type is <code>add_lvalue_reference_t&lt;remove_pointer_t&lt;R&gt;&gt;</code>.
+          </cxx-remarks>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>R operator->() const noexcept;</cxx-signature>
+          <cxx-returns><code>get()</code>.</cxx-returns>
+          <cxx-remarks>
+            This function shall not participate in overload resolution unless
+            <code>is_pointer_v&lt;R&gt;</code> is <code>true</code>.</cxx-remarks>
+        </cxx-function>
+
+        <cxx-function>
+          <cxx-signature>const D&amp; get_deleter() const noexcept;</cxx-signature>
+          <cxx-returns><code>deleter</code>.</cxx-returns>
+        </cxx-function>
+      </cxx-section>
+
+      <cxx-section id="scopeguard.uniqueres.create">
+        <h1><code>unique_resource</code> creation</h1>
+
+        <cxx-function>
+          <cxx-signature>template &lt;class R, class D, class S=decay_t&lt;R&gt;&gt;
+unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
+  make_unique_resource_checked(R&amp;&amp; resource, const S&amp; invalid, D&amp;&amp; d)
+  noexcept(is_nothrow_constructible_v&lt;decay_t&lt;R&gt;, R&gt; &amp;&amp;
+           is_nothrow_constructible_v&lt;decay_t&lt;D&gt;, D&gt;);</cxx-signature>
+
+          <cxx-requires>
+            The expression <code>(resource == invalid ? true : false)</code> shall be well-formed.
+            Evaluation of the expression <code>(resource == invalid ? true : false)</code>
+            shall have well-defined behavior and shall not throw an exception.
+          </cxx-requires>
+
+          <cxx-effects>
+            Returns an object constructed with members initialized from
+            <code>std::forward&lt;R&gt;(resource), std::forward&lt;D&gt;(d)</code>,
+            and <code>!bool(resource == invalid)</code>.
+            Any failure during construction of the return value will not call <code>d(resource)</code>
+            if <code>bool(resource == invalid)</code> is <code>true</code>.
+          </cxx-effects>
+        </cxx-function>
+
+        <p>
+          <cxx-note>
+            This creation function exists to avoid calling a deleter function
+            with an invalid argument.
+          </cxx-note>
+          <cxx-example>
+            The following example shows its use to avoid calling <code>fclose</code>
+            when <code>fopen</code> fails.
+            <pre><code>auto file = make_unique_resource_checked(
+    ::fopen("potentially_nonexistent_file.txt", "r"),
+    nullptr,
+    [](auto fptr){ ::fclose(fptr); });</code></pre>
+          </cxx-example>
+        </p>
+      </cxx-section>
+    </cxx-section>
+  </cxx-section>
+
   <cxx-section id="meta">
     <h1>Metaprogramming and type traits</h1>
 
