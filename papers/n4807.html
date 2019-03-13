@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4807 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      ul li { margin: 1em 0 0 0; }
+
+      span.del { text-decoration: line-through; }
+    </style>
+  </head>
+  <body>
+    <h1>N4807 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2019-03-13</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <ul>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4806.html">N4806</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2018/n4786.html">N4786</a>.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4807.html">N4807</a>
+        is this Editor&rsquo;s Report.</li>
+    </ul>
+
+    <h2>Change history and motions</h2>
+
+    <p>There has been one motion since the previous revision:</p>
+
+    <ul>
+      <li><strong>Kona 2019, LWG Motion 1:</strong>
+      <em>Move to apply the changes in
+      <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0052r10.pdf">P0052R10</a>
+      (Generic Scope Guard and RAII Wrapper for the Standard Library) to the
+      Library Fundamentals 3 working paper.</em></li>
+    </ul>
+    <p>
+      This paper has been applied with substantial editorial changes, for the following reason:
+      The paper was written, and reviewed by LWG, to target the C++ IS working draft. However,
+      following a decision by LEWG, the motion was to apply it to the Library Fundamentals TS
+      instead. Since the TS is based on C++17, any wording that uses a new style of specification
+      from the IS WD had to be &ldquo;reverted&rdquo; to the style used by C++17.
+    </p>
+    <p>Specific editorial changes:</p>
+    <ul>
+      <li>C++20-style Mandates/Expects/Contraints elements have been rephrased as
+        Requires/Remarks, using standard phrasing such as &ldquo;This function/constructor shall
+        not participate in overload resolution unless&rdquo;.</li>
+      <li>Edits to change the wording of the IS WD, [requirements] (with the purpose of allowing
+        the destructor of <code>scope_success</code> to throw) have been replaced with new wording
+        in [mods] that <em>describe</em> the edit. Additionally, the added permission for the paragraph
+        &ldquo;<em>Remarks</em>:&rdquo; has been changed to &ldquo;<em>Throws</em>:&rdquo;, since
+        the destructor in question does not actually have a &ldquo;<em>Remarks</em>:&rdquo; element,
+        but only a &ldquo;<em>Throws</em>:&rdquo;.
+      <li>The namespaces and header names have been changed to include &ldquo;experimental&rdquo;.</li>
+      <li>The requirements <em>Cpp17{Destructible,MoveConstructible,CopyConstructible,MoveAssignable,CopyAssignable}</em>
+        have been changed to <code>{Destructible,MoveConstructible,CopyConstructible,MoveAssignable,CopyAssignable}</code>.</li>
+      <li>The placeholder class name has been changed from <code><em>scope_guard</em></code>
+        to <code><em>scope-guard</em></code>, as per our usual convention for names that are not
+        actual type names.</li>
+      <li>Stable labels have been changed; specifically, to avoid ambiguity with [intro.scope],
+        and to shorten the word &ldquo;unique_resource&rdquo;.</li>
+      <li>To avoid hanging paragraphs, non-normative, introductory wording has been dropped
+        (the proposed paragraph 1 of 7.5 and paragraph 1 of 7.5.1; paragraphs 2 and 3
+        (with modifications) of 7.5.1 have been moved to 7.5.2.</li>
+      <li>The description &ldquo;factory function&rdquo; has been renamed to
+        &ldquo;<code>unique_resource</code> creation&rdquo;, similar to existing facilities
+        of this kind.</li>
+      <li>Introductory words &ldquo;The class template&rdquo; have been prepended to 7.5.2p1
+        so as to not start a sentence with a piece of code.</li>
+      <li>The three separate constructor specifications for <code>scope_exit</code>,
+        <code>scope_fail</code>, and <code>scope_success</code> have been merged into
+        a single specification for the placeholder <code><em>scope-guard</em></code>,
+        since they are largely analogous. Distinctions are called out by saying, &ldquo;For
+        <code>scope_exit</code> and <code>scope_fail</code>&hellip;&rdquo;.</li>
+      <li>
+        The phrase &ldquo;Throws: Nothing unless the initialization
+        of <code>exit_function</code> throws&rdquo; has been replaced with &ldquo;Throws: Any
+        exception thrown during the initialization of <code>exit_function</code>&rdquo;, which
+        we already use elsewhere and which seems more precise.</li>
+    </ul>
+      
+    <h2>Editorial changes</h2>
+
+    <p>All stable labels denoting synopses have been renamed to end in just &ldquo;.syn&rdquo;,
+      not &ldquo;.synop&rdquo; or &ldquo;.synopsis&rdquo;, to follow the style of the IS.
+      Moreover, a leading &ldquo;header.&rdquo; has been dropped from the stable labels
+      of synopses.</p>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit 509df8fd4ff81f0ea5455b0d4a3fca974f4fe140
+Author: Thomas Köppe <tkoeppe@google.com>
+Date:   Wed Mar 13 01:21:32 2019 +0000
+
+    Harmonize stable labels for header synopses
+    
+    * change foo.syn{,op,opsis} to just foo.syn, like in the IS WD
+    * change header.foo.syn to just foo.syn</div>
+
+    <div class="code"><!--
+-->commit 5db4c668f1a73b209e45f158aabd3b5c96958b13
+Author: Thomas Köppe <tkoeppe@google.com>
+Date:   Wed Mar 13 01:07:51 2019 +0000
+
+    P0052R10 Generic Scope Guard and RAII Wrapper for the Standard Library</div>
+
+  </body>
+</html>
