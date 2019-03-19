@@ -1373,15 +1373,15 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
             This creation function exists to avoid calling a deleter function
             with an invalid argument.
           </cxx-note>
-          <cxx-example>
-            The following example shows its use to avoid calling <code>fclose</code>
-            when <code>fopen</code> fails.
-            <pre><code>auto file = make_unique_resource_checked(
+        </p>
+        <cxx-example>
+          The following example shows its use to avoid calling <code>fclose</code>
+          when <code>fopen</code> fails.
+          <pre><code>auto file = make_unique_resource_checked(
     ::fopen("potentially_nonexistent_file.txt", "r"),
     nullptr,
     [](auto fptr){ ::fclose(fptr); });</code></pre>
-          </cxx-example>
-        </p>
+        </cxx-example>
       </cxx-section>
     </cxx-section>
   </cxx-section>

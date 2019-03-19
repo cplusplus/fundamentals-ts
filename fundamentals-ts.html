@@ -4365,20 +4365,20 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
           
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
-          <cxx-example>
+        </p>
+        <cxx-example>
     
     <span class="nowrap">[ <em>Example:</em></span>
     
-            The following example shows its use to avoid calling <code>fclose</code>
-            when <code>fopen</code> fails.
-            
-    <span class="nowrap">— <em>end example</em> ]</span>
-  </cxx-example></p><pre><code>auto file = make_unique_resource_checked(
+          The following example shows its use to avoid calling <code>fclose</code>
+          when <code>fopen</code> fails.
+          <pre><code>auto file = make_unique_resource_checked(
     ::fopen("potentially_nonexistent_file.txt", "r"),
     nullptr,
     [](auto fptr){ ::fclose(fptr); });</code></pre>
-          
-        <p id="scopeguard.uniqueres.create.5" para_num="5"></p>
+        
+    <span class="nowrap">— <em>end example</em> ]</span>
+  </cxx-example>
       
     </section>
   </cxx-section>
