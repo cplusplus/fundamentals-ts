@@ -2015,7 +2015,7 @@ inline namespace fundamentals_v3 {
   <cxx-ref insynopsis="" to="utility.erased.type">// <i><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a>, Class erased_type</i></cxx-ref>
   struct erased_type { };
 
-} // namespace fundamentals_v3
+} // inline namespace fundamentals_v3
 } // namespace std::experimental</code></pre>
 
     
@@ -4736,7 +4736,7 @@ namespace std {
     template&lt;class R, class... ArgTypes&gt;
     bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template&lt;class R, class... ArgTypes, class Alloc&gt;
@@ -4830,7 +4830,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class... ArgTypes, class Alloc&gt;
@@ -6530,7 +6530,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
@@ -6593,7 +6593,7 @@ namespace std {
     template &lt;class R&gt;
     void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
@@ -6662,7 +6662,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;

@@ -24,7 +24,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
@@ -80,7 +80,7 @@ namespace std {
     template &lt;class R&gt;
     void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
@@ -142,7 +142,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
