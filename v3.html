@@ -4,7 +4,7 @@
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
-	display: block; page-break-inside: avoid;
+	display: block; break-inside: avoid;
 }
 
 cxx-function:not(:last-child) {
@@ -222,7 +222,7 @@ cxx-section header > h1 {
 }
 
 cxx-section header {
-	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
+	font-weight: bold; margin-top: 20px; margin-bottom: 20px; break-inside: avoid; break-after: avoid;
 }
 
 cxx-section header::after {
@@ -244,7 +244,7 @@ cxx-clause header > h1 {
 }
 
 cxx-clause header {
-	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
+	font-weight: bold; margin-top: 20px; margin-bottom: 20px; break-inside: avoid; break-after: avoid;
 }
 
 cxx-clause header::after {
@@ -362,7 +362,7 @@ cxx-toc li li li li .marker {
 }
 
 cxx-titlepage .page {
-	page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em;
+	break-before: page; break-after: page; min-height: 100vh; margin-bottom: 2em;
 }
 
 @media print {
@@ -452,7 +452,7 @@ cxx-titlepage th {
 }
 
 cxx-foreword {
-	page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em;
+	break-before: page; break-after: page; min-height: 100vh; margin-bottom: 2em;
 }
 
 cxx-forewordbody.cxx-draft cxx-foreword -no-combinator, body.cxx-draft cxx-foreword cxx-foreword -no-combinator {
@@ -973,7 +973,7 @@ html   [segment], html   segment {
             <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">????</span>-??-??</time></td></tr>
           
           
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4806.html">N4806</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4840.html">N4840</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
@@ -1670,8 +1670,8 @@ html   [segment], html   segment {
     this technical specification and plans for moving content into
     future versions of the C++ Standard.</p>
 
-    <p id="general.plans.2" para_num="2">The C++ committee intends to release a new version of this
-    technical specification approximately every year, containing the
+    <p id="general.plans.2" para_num="2">The C++ committee intends to release new versions of this
+    technical specification periodically, containing the
     library extensions we hope to add to a near-future version of the
     C++ Standard. Future versions will define their contents in
     <code>std::experimental::fundamentals_v4</code>,
@@ -1782,7 +1782,9 @@ html   [segment], html   segment {
         <td><cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref></td>
         <td><code>function_erased_allocator</code></td>
         <td>201406</td>
-        <td><code>&lt;experimental/functional&gt;</code></td>
+        <td>
+          <code>&lt;experimental/functional&gt;</code>,
+          <code>&lt;experimental/utility&gt;</code></td>
       </tr>
       <tr>
         <td>N4282</td>
@@ -1801,6 +1803,7 @@ html   [segment], html   segment {
         <td><code>&lt;experimental/vector&gt;</code>, <code>&lt;experimental/deque&gt;</code>,
           <code>&lt;experimental/forward_list&gt;</code>, <code>&lt;experimental/list&gt;</code>,
           <code>&lt;experimental/map&gt;</code>, <code>&lt;experimental/set&gt;</code>,
+          <code>&lt;experimental/string&gt;</code>,
           <code>&lt;experimental/unordered_map&gt;</code>, <code>&lt;experimental/unordered_set&gt;</code></td>
       </tr>
       <tr>
@@ -1825,7 +1828,9 @@ html   [segment], html   segment {
         <td><cxx-ref to="futures.promise"><a title="futures.promise" href="#futures.promise">8.2</a></cxx-ref></td>
         <td><code>promise_erased_allocator</code></td>
         <td>201406</td>
-        <td><code>&lt;experimental/future&gt;</code></td>
+        <td>
+          <code>&lt;experimental/future&gt;</code>,
+          <code>&lt;experimental/utility&gt;</code></td>
       </tr>
       <tr>
         <td>N3916</td>
@@ -1833,7 +1838,9 @@ html   [segment], html   segment {
         <td><cxx-ref to="futures.task"><a title="futures.task" href="#futures.task">8.3</a></cxx-ref></td>
         <td><code>packaged_task_erased_allocator</code></td>
         <td>201406</td>
-        <td><code>&lt;experimental/future&gt;</code></td>
+        <td>
+          <code>&lt;experimental/future&gt;</code>,
+          <code>&lt;experimental/utility&gt;</code></td>
       </tr>
       <tr>
         <td>N3925</td>
@@ -2015,7 +2022,7 @@ inline namespace fundamentals_v3 {
   <cxx-ref insynopsis="" to="utility.erased.type">// <i><a title="utility.erased.type" href="#utility.erased.type">3.1.2</a>, Class erased_type</i></cxx-ref>
   struct erased_type { };
 
-} // namespace fundamentals_v3
+} // inline namespace fundamentals_v3
 } // namespace std::experimental</code></pre>
 
     
@@ -4736,7 +4743,7 @@ namespace std {
     template&lt;class R, class... ArgTypes&gt;
     bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template&lt;class R, class... ArgTypes, class Alloc&gt;
@@ -4830,7 +4837,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class... ArgTypes, class Alloc&gt;
@@ -6530,7 +6537,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
@@ -6593,7 +6600,7 @@ namespace std {
     template &lt;class R&gt;
     void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
@@ -6662,7 +6669,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // namespace fundamentals_v3
+  } // inline namespace fundamentals_v3
   } // namespace experimental
 
   template &lt;class R, class Alloc&gt;
