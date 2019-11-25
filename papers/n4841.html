@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4841 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      ul li { margin: 1em 0 0 0; }
+
+      span.del { text-decoration: line-through; }
+    </style>
+  </head>
+  <body>
+    <h1>N4841 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2019-11-25</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <ul>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4840.html">N4840</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4806.html">N4806</a>.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4841.html">N4841</a>
+        is this Editor&rsquo;s Report.</li>
+    </ul>
+
+    <h2>Change history: only editorial changes</h2>
+
+    <p>There have only been editorial changes since the previous revision; see
+      the below commit log for details.</p>
+
+    <p>One change is worth calling out: the introduction used to say that the
+    committee plans to release one revision of the TS per year. In consultation
+    with the LEWG and LWG chairs, we have removed this mention of a concrete
+    schedule, which does not seem to reflect current committee practice.</p>
+
+    <p>Many thanks to Jonathan Wakely for informing the Editor of the imminent shutdown
+    of rawgit.com, and for driving the move of the prerendered HTML draft preview to
+    <a href="https://cplusplus.github.io/fundamentals-ts/">GitHub Pages</a>.</p>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit 27de2f5e99d75eeae19b1c8e6df13f67234a3e77
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Nov 19 23:44:16 2019 +0000
+
+    [general.plans] Relax future plans, remove "every year".
+    
+    The committee's current practice does not result in a new TS every
+    year and is unlikely to do so anytime soon.</div>
+
+    <div class="code"><!--
+-->commit 40bc189cc5d1af94648633a55328c43a3d05a68c
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sat Nov 9 20:11:43 2019 +0000
+
+    [general.feature.test] Add &lt;experimental/string&gt; to entry for N4273
+    ("Uniform Container Erasure")
+    
+    The feature also includes uniform erasure for std::string, and introduces
+    the experimental "string" header.</div>
+
+    <div class="code"><!--
+-->commit eebfa00a8dcb698fe35a1a10e6c4083fd67a3eba
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sat Nov 9 20:05:01 2019 +0000
+
+    [general.feature.test] Add &lt;experimental/utility&gt; to features
+    introduced by N3916 ("Polymorphic Memory Resources")
+    
+    The "utility" header defines the type "erased_type", which is used by all
+    three PMR-aware facilities (function, promise, packaged_task).</div>
+
+    <div class="code"><!--
+-->commit 2673b450f35048c878015fc687a78984aa6c3651
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sat Nov 9 14:24:02 2019 +0000
+
+    [func, futures, utilities] Include "inline" in namespace-close comment
+    
+    The convention is to say "// inline namespace fundamentals_v3" etc.</div>
+
+    <div class="code"><!--
+-->commit cf3b407a17b8a4bb95a8b2ade295b7a27f69dfdc
+Author: Jonathan Wakely &lt;cxx@kayari.org&gt;
+Date:   Thu Jul 4 14:47:45 2019 +0100
+
+    [README.md] Update links to pre-rendered HTML drafts
+    
+    The rawgit.com site is going away, so use GitHub Pages instead.</div>
+
+    <div class="code"><!--
+-->commit 01c06f4ea358946e30eed51e469eb6cab0f0e147
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Mar 19 23:36:18 2019 +0000
+
+    [scopeguard.uniqueres.create] Fix nesting of example and code.</div>
+
+  </body>
+</html>
