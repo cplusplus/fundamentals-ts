@@ -4,7 +4,7 @@
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
-	display: block; page-break-inside: avoid;
+	display: block; break-inside: avoid;
 }
 
 cxx-function:not(:last-child) {
@@ -222,7 +222,7 @@ cxx-section header > h1 {
 }
 
 cxx-section header {
-	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
+	font-weight: bold; margin-top: 20px; margin-bottom: 20px; break-inside: avoid; break-after: avoid;
 }
 
 cxx-section header::after {
@@ -244,7 +244,7 @@ cxx-clause header > h1 {
 }
 
 cxx-clause header {
-	font-weight: bold; margin-top: 20px; margin-bottom: 20px; page-break-inside: avoid; page-break-after: avoid;
+	font-weight: bold; margin-top: 20px; margin-bottom: 20px; break-inside: avoid; break-after: avoid;
 }
 
 cxx-clause header::after {
@@ -362,7 +362,7 @@ cxx-toc li li li li .marker {
 }
 
 cxx-titlepage .page {
-	page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em;
+	break-before: page; break-after: page; min-height: 100vh; margin-bottom: 2em;
 }
 
 @media print {
@@ -452,7 +452,7 @@ cxx-titlepage th {
 }
 
 cxx-foreword {
-	page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em;
+	break-before: page; break-after: page; min-height: 100vh; margin-bottom: 2em;
 }
 
 cxx-forewordbody.cxx-draft cxx-foreword -no-combinator, body.cxx-draft cxx-foreword cxx-foreword -no-combinator {
@@ -973,7 +973,7 @@ html   [segment], html   segment {
             <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">????</span>-??-??</time></td></tr>
           
           
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4806.html">N4806</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4840.html">N4840</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
