@@ -305,15 +305,15 @@ namespace std::experimental::inline fundamentals_v3 {
           <cxx-constraints>
             <code>is_constructible_v&lt;T, U&gt;</code> is true.
           </cxx-constraints>
-          <cxx-remarks>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </cxx-remarks>
           <cxx-effects>
             Initializes <code>t_</code> as if
             direct-non-list-initializing an object of type <code>T</code> with the
             expression <code>std::move(pu.t_)</code>.
           </cxx-effects>
+          <cxx-remarks>
+            The constructor is specified as <code>explicit</code> if and only if
+            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
+          </cxx-remarks>
         </cxx-function>
 
         <cxx-function>
@@ -324,15 +324,15 @@ namespace std::experimental::inline fundamentals_v3 {
             <code>is_constructible_v&lt;T, U&gt;</code> is true
             and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
           </cxx-constraints>
-          <cxx-remarks>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </cxx-remarks>
           <cxx-effects>
             Initializes <code>t_</code> as if
             direct-non-list-initializing an object of type <code>T</code> with
             the expression <code>std::forward&lt;U&gt;(u)</code>.
           </cxx-effects>
+          <cxx-remarks>
+            The constructor is specified as <code>explicit</code> if and only if
+            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
+          </cxx-remarks>
         </cxx-function>
       </cxx-section>
 
@@ -382,11 +382,11 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
         <cxx-function>
           <cxx-signature>constexpr operator const element_type*() const;</cxx-signature>
 
-          <cxx-returns><code>get()</code>.</cxx-returns>
           <cxx-constraints>
             <code>T</code> is an object pointer type or
             has an implicit conversion to <code>const element_type*</code>.
           </cxx-constraints>
+          <cxx-returns><code>get()</code>.</cxx-returns>
         </cxx-function>
 
         <cxx-function>
@@ -419,11 +419,11 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
       <cxx-function>
         <cxx-signature>constexpr operator element_type*();</cxx-signature>
 
-        <cxx-returns><code>get()</code>.</cxx-returns>
         <cxx-constraints>
           <code>T</code> is an object pointer type or
           has an implicit conversion to <code>element_type*</code>.
         </cxx-constraints>
+        <cxx-returns><code>get()</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
@@ -894,6 +894,12 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
     is_nothrow_constructible_v&lt;EF, EFP&gt; ||
     is_nothrow_constructible_v&lt;EF, EFP&amp;&gt);</cxx-signature>
 
+        <cxx-constraints>
+          <code>is_same_v&lt;remove_cvref_t&lt;EFP&gt;,
+          <i>scope-guard</i>&gt;</code> is <code>false</code> and
+          <code>is_constructible_v&lt;EF, EFP&gt;</code> is <code>true</code>.
+        </cxx-constraints>
+
         <cxx-mandates>
           The expression <code>f()</code> is well-formed.
         </cxx-mandates>
@@ -920,16 +926,15 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         <cxx-throws>
           Any exception thrown during the initialization of <code>exit_function</code>.
         </cxx-throws>
-
-        <cxx-constraints>
-          <code>is_same_v&lt;remove_cvref_t&lt;EFP&gt;,
-          <i>scope-guard</i>&gt;</code> is <code>false</code> and
-          <code>is_constructible_v&lt;EF, EFP&gt;</code> is <code>true</code>.
-        </cxx-constraints>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature><i>scope-guard</i>(<i>scope-guard</i>&amp;&amp; rhs) noexcept(<i>see below</i>)</cxx-signature>
+
+        <cxx-constraints>
+          <code>(is_nothrow_move_constructible_v&lt;EF&gt; || is_copy_constructible_v&lt;EF&gt;)</code>
+          is <code>true</code>.
+        </cxx-constraints>
 
         <cxx-preconditions>
           If <code>EF</code> is an object type:
@@ -959,11 +964,6 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         <cxx-throws>
           Any exception thrown during the initialization of <code>exit_function</code>.
         </cxx-throws>
-
-        <cxx-constraints>
-          <code>(is_nothrow_move_constructible_v&lt;EF&gt; || is_copy_constructible_v&lt;EF&gt;)</code>
-          is <code>true</code>.
-        </cxx-constraints>
 
         <cxx-remarks>
           The expression inside noexcept is equivalent to
@@ -1104,19 +1104,31 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
 
         <cxx-function>
           <cxx-signature>unique_resource()</cxx-signature>
-          <cxx-effects>
-            Value-initializes <code>resource</code> and <code>deleter</code>;
-            <code>execute_on_reset</code> is initialized with <code>false</code>.
-          </cxx-effects>
           <cxx-constraints>
             <code>is_default_constructible_v&lt;R&gt; &amp;&amp;
             is_default_constructible_v&lt;D&gt;</code> is <code>true</code>.
           </cxx-constraints>
+          <cxx-effects>
+            Value-initializes <code>resource</code> and <code>deleter</code>;
+            <code>execute_on_reset</code> is initialized with <code>false</code>.
+          </cxx-effects>
         </cxx-function>
 
         <cxx-function>
           <cxx-signature>template &lt;class RR, class DD&gt;
 unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-signature>
+
+          <cxx-constraints>
+            <pre><code>is_constructible_v&lt;R1, RR&gt; &amp;&amp;
+is_constructible_v&lt;D , DD&gt; &amp;&amp;
+(is_nothrow_constructible_v&lt;R1, RR&gt; || is_constructible_v&lt;R1,RR&amp;&gt;) &amp;&amp;
+(is_nothrow_constructible_v&lt;D , DD&gt; || is_constructible_v&lt;D ,DD&amp;&gt;)</code></pre>
+            is <code>true</code>.
+            <cxx-note>
+              The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
+              or <code>D</code> is a specialization of <code>reference_wrapper</code>.
+            </cxx-note>
+          </cxx-constraints>
 
           <cxx-mandates>
             The expressions <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
@@ -1148,17 +1160,6 @@ unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-
             Any exception thrown during initialization of <code>resource</code> or <code>deleter</code>.
           </cxx-throws>
 
-          <cxx-constraints>
-            <pre><code>is_constructible_v&lt;R1, RR&gt; &amp;&amp;
-is_constructible_v&lt;D , DD&gt; &amp;&amp;
-(is_nothrow_constructible_v&lt;R1, RR&gt; || is_constructible_v&lt;R1,RR&amp;&gt;) &amp;&amp;
-(is_nothrow_constructible_v&lt;D , DD&gt; || is_constructible_v&lt;D ,DD&amp;&gt;)</code></pre>
-            is <code>true</code>.
-            <cxx-note>
-              The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
-              or <code>D</code> is a specialization of <code>reference_wrapper</code>.
-            </cxx-note>
-          </cxx-constraints>
           <cxx-remarks>
             The expression inside <code>noexcept</code> is equivalent to:
             <pre><code>(is_nothrow_constructible_v&lt;R1, RR&gt; || is_nothrow_constructible_v&lt;R1, RR&amp;&gt;) &amp;&amp;
@@ -1287,9 +1288,14 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
         <cxx-function>
           <cxx-signature>template &lt;class RR&gt; void reset(RR&amp;&amp; r);</cxx-signature>
 
+          <cxx-constraints>
+            the selected assignment expression statement assigning <code>resource</code> is well-formed.
+          </cxx-constraints>
+
           <cxx-mandates>
             The expression <code>deleter(r)</code> is well-formed.
           </cxx-mandates>
+
           <cxx-preconditions>
             Calling <code>deleter(r)</code> has well-defined behavior
             and does not throw an exception.
@@ -1307,10 +1313,6 @@ execute_on_reset = true;</code></pre>
             If copy-assignment of <code>resource</code> throws an exception,
             calls <code>deleter(r)</code>.
           </cxx-effects>
-
-          <cxx-constraints>
-            the selected assignment expression statement assigning <code>resource</code> is well-formed.
-          </cxx-constraints>
         </cxx-function>
 
         <cxx-function>
@@ -1325,11 +1327,11 @@ execute_on_reset = true;</code></pre>
 
         <cxx-function>
           <cxx-signature><i>see below</i> operator*() const noexcept;</cxx-signature>
-          <cxx-effects>Equivalent to: <code>return *get();</code></cxx-effects>
           <cxx-constraints>
             <code>is_pointer_v&lt;R&gt;</code> is <code>true</code> and
             <code>is_void_v&lt;remove_pointer_t&lt;R&gt;&gt;</code> is <code>false</code>.
           </cxx-constraints>
+          <cxx-effects>Equivalent to: <code>return *get();</code></cxx-effects>
           <cxx-remarks>
             The return type is <code>add_lvalue_reference_t&lt;remove_pointer_t&lt;R&gt;&gt;</code>.
           </cxx-remarks>
@@ -1337,10 +1339,10 @@ execute_on_reset = true;</code></pre>
 
         <cxx-function>
           <cxx-signature>R operator->() const noexcept;</cxx-signature>
-          <cxx-returns><code>get()</code>.</cxx-returns>
           <cxx-constraints>
             <code>is_pointer_v&lt;R&gt;</code> is <code>true</code>.
           </cxx-constraints>
+          <cxx-returns><code>get()</code>.</cxx-returns>
         </cxx-function>
 
         <cxx-function>

@@ -166,12 +166,12 @@ namespace std {
       <cxx-function>
         <cxx-signature>template&lt;class F&gt; function&amp; operator=(F&amp;&amp; f);</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
-        <cxx-returns><code>*this</code>.</cxx-returns>
         <cxx-constraints>
           <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept>Lvalue-Callable</cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>)
           for argument types <code>ArgTypes...</code> and return type <code>R</code>.
         </cxx-constraints>
+        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
+        <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>

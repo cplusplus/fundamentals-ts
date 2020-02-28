@@ -45,12 +45,12 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
     <cxx-function>
       <cxx-signature>template&lt;class RandomAccessIterator>
   void shuffle(RandomAccessIterator first, RandomAccessIterator last);</cxx-signature>
-      <cxx-effects>Permutes the elements in the range <code>[first,last)</code>
-        such that each possible permutation of those elements has equal
-        probability of appearance.</cxx-effects>
       <cxx-preconditions><code>RandomAccessIterator</code> meets the
         <cxx-17concept>Cpp17ValueSwappable</cxx-17concept> requirements (<cxx-ref in="cxx" to="swappable.requirements"></cxx-ref>).
       </cxx-preconditions>
+      <cxx-effects>Permutes the elements in the range <code>[first,last)</code>
+        such that each possible permutation of those elements has equal
+        probability of appearance.</cxx-effects>
       <cxx-complexity>Exactly <code>(last - first) - 1</code> swaps.</cxx-complexity>
       <cxx-remarks>To the extent that the implementation of this function
         makes use of random numbers, the per-thread engine (<cxx-ref to="rand.randint"></cxx-ref>)

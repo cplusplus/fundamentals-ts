@@ -135,8 +135,8 @@ namespace std {
       <cxx-function>
         <cxx-signature>template &lt;class W2> constexpr observer_ptr(observer_ptr&lt;W2> other) noexcept;</cxx-signature>
 
-        <cxx-postconditions><code>get() == other.get()</code>.</cxx-postconditions>
         <cxx-constraints><code>W2*</code> is convertible to <code>W*</code>.</cxx-constraints>
+        <cxx-postconditions><code>get() == other.get()</code>.</cxx-postconditions>
       </cxx-function>
     </cxx-section>
 

@@ -2301,14 +2301,7 @@ namespace std::experimental::inline fundamentals_v3 {
             <code>is_constructible_v&lt;T, U&gt;</code> is true.
           </dd>
   </cxx-constraints>
-          <cxx-remarks id="propagate_const.ctor.4" para_num="4">
-    
-    <dt>Remarks:</dt><dd>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </dd>
-  </cxx-remarks>
-          <cxx-effects id="propagate_const.ctor.5" para_num="5">
+          <cxx-effects id="propagate_const.ctor.4" para_num="4">
     
     <dt>Effects:</dt><dd>
             Initializes <code>t_</code> as if
@@ -2316,6 +2309,13 @@ namespace std::experimental::inline fundamentals_v3 {
             expression <code>std::move(pu.t_)</code>.
           </dd>
   </cxx-effects>
+          <cxx-remarks id="propagate_const.ctor.5" para_num="5">
+    
+    <dt>Remarks:</dt><dd>
+            The constructor is specified as <code>explicit</code> if and only if
+            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
+          </dd>
+  </cxx-remarks>
         
     </dl>
   </cxx-function>
@@ -2336,14 +2336,7 @@ namespace std::experimental::inline fundamentals_v3 {
             and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
           </dd>
   </cxx-constraints>
-          <cxx-remarks id="propagate_const.ctor.8" para_num="8">
-    
-    <dt>Remarks:</dt><dd>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </dd>
-  </cxx-remarks>
-          <cxx-effects id="propagate_const.ctor.9" para_num="9">
+          <cxx-effects id="propagate_const.ctor.8" para_num="8">
     
     <dt>Effects:</dt><dd>
             Initializes <code>t_</code> as if
@@ -2351,6 +2344,13 @@ namespace std::experimental::inline fundamentals_v3 {
             the expression <code>std::forward&lt;U&gt;(u)</code>.
           </dd>
   </cxx-effects>
+          <cxx-remarks id="propagate_const.ctor.9" para_num="9">
+    
+    <dt>Remarks:</dt><dd>
+            The constructor is specified as <code>explicit</code> if and only if
+            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
+          </dd>
+  </cxx-remarks>
         
     </dl>
   </cxx-function>
@@ -2476,17 +2476,17 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
       
           
 
-          <cxx-returns id="propagate_const.const_observers.7" para_num="7">
-    
-    <dt>Returns:</dt><dd><code>get()</code>.</dd>
-  </cxx-returns>
-          <cxx-constraints id="propagate_const.const_observers.8" para_num="8">
+          <cxx-constraints id="propagate_const.const_observers.7" para_num="7">
     
     <dt>Constraints:</dt><dd>
             <code>T</code> is an object pointer type or
             has an implicit conversion to <code>const element_type*</code>.
           </dd>
   </cxx-constraints>
+          <cxx-returns id="propagate_const.const_observers.8" para_num="8">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
         
     </dl>
   </cxx-function>
@@ -2569,17 +2569,17 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
       
         
 
-        <cxx-returns id="propagate_const.non_const_observers.5" para_num="5">
-    
-    <dt>Returns:</dt><dd><code>get()</code>.</dd>
-  </cxx-returns>
-        <cxx-constraints id="propagate_const.non_const_observers.6" para_num="6">
+        <cxx-constraints id="propagate_const.non_const_observers.5" para_num="5">
     
     <dt>Constraints:</dt><dd>
           <code>T</code> is an object pointer type or
           has an implicit conversion to <code>element_type*</code>.
         </dd>
   </cxx-constraints>
+        <cxx-returns id="propagate_const.non_const_observers.6" para_num="6">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
       
     </dl>
   </cxx-function>
@@ -3498,14 +3498,23 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
       
         
 
-        <cxx-mandates id="scopeguard.exit.8" para_num="8">
+        <cxx-constraints id="scopeguard.exit.8" para_num="8">
+    
+    <dt>Constraints:</dt><dd>
+          <code>is_same_v&lt;remove_cvref_t&lt;EFP&gt;,
+          <i>scope-guard</i>&gt;</code> is <code>false</code> and
+          <code>is_constructible_v&lt;EF, EFP&gt;</code> is <code>true</code>.
+        </dd>
+  </cxx-constraints>
+
+        <cxx-mandates id="scopeguard.exit.9" para_num="9">
     
     <dt>Mandates:</dt><dd>
           The expression <code>f()</code> is well-formed.
         </dd>
   </cxx-mandates>
 
-        <cxx-preconditions id="scopeguard.exit.9" para_num="9">
+        <cxx-preconditions id="scopeguard.exit.10" para_num="10">
     
     <dt>Preconditions:</dt><dd>
           Calling <code>f()</code> has well-defined behavior.
@@ -3514,7 +3523,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </dd>
   </cxx-preconditions>
 
-        <cxx-effects id="scopeguard.exit.10" para_num="10">
+        <cxx-effects id="scopeguard.exit.11" para_num="11">
     
     <dt>Effects:</dt><dd>
           If <code>EFP</code> is not an lvalue reference type and
@@ -3533,21 +3542,12 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </dd>
   </cxx-effects>
 
-        <cxx-throws id="scopeguard.exit.11" para_num="11">
+        <cxx-throws id="scopeguard.exit.12" para_num="12">
     
     <dt>Throws:</dt><dd>
           Any exception thrown during the initialization of <code>exit_function</code>.
         </dd>
   </cxx-throws>
-
-        <cxx-constraints id="scopeguard.exit.12" para_num="12">
-    
-    <dt>Constraints:</dt><dd>
-          <code>is_same_v&lt;remove_cvref_t&lt;EFP&gt;,
-          <i>scope-guard</i>&gt;</code> is <code>false</code> and
-          <code>is_constructible_v&lt;EF, EFP&gt;</code> is <code>true</code>.
-        </dd>
-  </cxx-constraints>
       
     </dl>
   </cxx-function>
@@ -3560,7 +3560,15 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
       
         
 
-        <cxx-preconditions id="scopeguard.exit.14" para_num="14">
+        <cxx-constraints id="scopeguard.exit.14" para_num="14">
+    
+    <dt>Constraints:</dt><dd>
+          <code>(is_nothrow_move_constructible_v&lt;EF&gt; || is_copy_constructible_v&lt;EF&gt;)</code>
+          is <code>true</code>.
+        </dd>
+  </cxx-constraints>
+
+        <cxx-preconditions id="scopeguard.exit.15" para_num="15">
     
     <dt>Preconditions:</dt><dd>
           If <code>EF</code> is an object type:
@@ -3572,7 +3580,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </dd>
   </cxx-preconditions>
 
-        <cxx-effects id="scopeguard.exit.15" para_num="15">
+        <cxx-effects id="scopeguard.exit.16" para_num="16">
     
     <dt>Effects:</dt><dd>
           If <code>is_nothrow_move_constructible_v&lt;EF&gt;</code> is <code>true</code>,
@@ -3588,7 +3596,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </dd>
   </cxx-effects>
 
-        <cxx-postconditions id="scopeguard.exit.16" para_num="16">
+        <cxx-postconditions id="scopeguard.exit.17" para_num="17">
     
     <dt>Postconditions:</dt><dd>
           <code>execute_on_destruction</code> yields the value <code>rhs.execute_on_destruction</code>
@@ -3597,20 +3605,12 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </dd>
   </cxx-postconditions>
 
-        <cxx-throws id="scopeguard.exit.17" para_num="17">
+        <cxx-throws id="scopeguard.exit.18" para_num="18">
     
     <dt>Throws:</dt><dd>
           Any exception thrown during the initialization of <code>exit_function</code>.
         </dd>
   </cxx-throws>
-
-        <cxx-constraints id="scopeguard.exit.18" para_num="18">
-    
-    <dt>Constraints:</dt><dd>
-          <code>(is_nothrow_move_constructible_v&lt;EF&gt; || is_copy_constructible_v&lt;EF&gt;)</code>
-          is <code>true</code>.
-        </dd>
-  </cxx-constraints>
 
         <cxx-remarks id="scopeguard.exit.19" para_num="19">
     
@@ -3829,20 +3829,20 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
     <dl>
       
           
-          <cxx-effects id="scopeguard.uniqueres.ctor.2" para_num="2">
-    
-    <dt>Effects:</dt><dd>
-            Value-initializes <code>resource</code> and <code>deleter</code>;
-            <code>execute_on_reset</code> is initialized with <code>false</code>.
-          </dd>
-  </cxx-effects>
-          <cxx-constraints id="scopeguard.uniqueres.ctor.3" para_num="3">
+          <cxx-constraints id="scopeguard.uniqueres.ctor.2" para_num="2">
     
     <dt>Constraints:</dt><dd>
             <code>is_default_constructible_v&lt;R&gt; &amp;&amp;
             is_default_constructible_v&lt;D&gt;</code> is <code>true</code>.
           </dd>
   </cxx-constraints>
+          <cxx-effects id="scopeguard.uniqueres.ctor.3" para_num="3">
+    
+    <dt>Effects:</dt><dd>
+            Value-initializes <code>resource</code> and <code>deleter</code>;
+            <code>execute_on_reset</code> is initialized with <code>false</code>.
+          </dd>
+  </cxx-effects>
         
     </dl>
   </cxx-function>
@@ -3856,7 +3856,25 @@ unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-
       
           
 
-          <cxx-mandates id="scopeguard.uniqueres.ctor.5" para_num="5">
+          <cxx-constraints id="scopeguard.uniqueres.ctor.5" para_num="5">
+    
+    <dt>Constraints:</dt><dd>
+            <pre><code>is_constructible_v&lt;R1, RR&gt; &amp;&amp;
+is_constructible_v&lt;D , DD&gt; &amp;&amp;
+(is_nothrow_constructible_v&lt;R1, RR&gt; || is_constructible_v&lt;R1,RR&amp;&gt;) &amp;&amp;
+(is_nothrow_constructible_v&lt;D , DD&gt; || is_constructible_v&lt;D ,DD&amp;&gt;)</code></pre>
+            is <code>true</code>.
+            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    
+              The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
+              or <code>D</code> is a specialization of <code>reference_wrapper</code>.
+            
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+          </dd>
+  </cxx-constraints>
+
+          <cxx-mandates id="scopeguard.uniqueres.ctor.6" para_num="6">
     
     <dt>Mandates:</dt><dd>
             The expressions <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
@@ -3864,7 +3882,7 @@ unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-
           </dd>
   </cxx-mandates>
 
-          <cxx-preconditions id="scopeguard.uniqueres.ctor.6" para_num="6">
+          <cxx-preconditions id="scopeguard.uniqueres.ctor.7" para_num="7">
     
     <dt>Preconditions:</dt><dd>
             Calling <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
@@ -3873,7 +3891,7 @@ unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-
           </dd>
   </cxx-preconditions>
 
-          <cxx-effects id="scopeguard.uniqueres.ctor.7" para_num="7">
+          <cxx-effects id="scopeguard.uniqueres.ctor.8" para_num="8">
     
     <dt>Effects:</dt><dd>
             If <code>is_nothrow_constructible_v&lt;R1, RR&gt;</code> is <code>true</code>,
@@ -3894,30 +3912,13 @@ unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-
           </dd>
   </cxx-effects>
 
-          <cxx-throws id="scopeguard.uniqueres.ctor.8" para_num="8">
+          <cxx-throws id="scopeguard.uniqueres.ctor.9" para_num="9">
     
     <dt>Throws:</dt><dd>
             Any exception thrown during initialization of <code>resource</code> or <code>deleter</code>.
           </dd>
   </cxx-throws>
 
-          <cxx-constraints id="scopeguard.uniqueres.ctor.9" para_num="9">
-    
-    <dt>Constraints:</dt><dd>
-            <pre><code>is_constructible_v&lt;R1, RR&gt; &amp;&amp;
-is_constructible_v&lt;D , DD&gt; &amp;&amp;
-(is_nothrow_constructible_v&lt;R1, RR&gt; || is_constructible_v&lt;R1,RR&amp;&gt;) &amp;&amp;
-(is_nothrow_constructible_v&lt;D , DD&gt; || is_constructible_v&lt;D ,DD&amp;&gt;)</code></pre>
-            is <code>true</code>.
-            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
-              The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
-              or <code>D</code> is a specialization of <code>reference_wrapper</code>.
-            
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-          </dd>
-  </cxx-constraints>
           <cxx-remarks id="scopeguard.uniqueres.ctor.10" para_num="10">
     
     <dt>Remarks:</dt><dd>
@@ -4138,13 +4139,21 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
       
           
 
-          <cxx-mandates id="scopeguard.uniqueres.members.4" para_num="4">
+          <cxx-constraints id="scopeguard.uniqueres.members.4" para_num="4">
+    
+    <dt>Constraints:</dt><dd>
+            the selected assignment expression statement assigning <code>resource</code> is well-formed.
+          </dd>
+  </cxx-constraints>
+
+          <cxx-mandates id="scopeguard.uniqueres.members.5" para_num="5">
     
     <dt>Mandates:</dt><dd>
             The expression <code>deleter(r)</code> is well-formed.
           </dd>
   </cxx-mandates>
-          <cxx-preconditions id="scopeguard.uniqueres.members.5" para_num="5">
+
+          <cxx-preconditions id="scopeguard.uniqueres.members.6" para_num="6">
     
     <dt>Preconditions:</dt><dd>
             Calling <code>deleter(r)</code> has well-defined behavior
@@ -4152,7 +4161,7 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
           </dd>
   </cxx-preconditions>
 
-          <cxx-effects id="scopeguard.uniqueres.members.6" para_num="6">
+          <cxx-effects id="scopeguard.uniqueres.members.7" para_num="7">
     
     <dt>Effects:</dt><dd>
             Equivalent to:
@@ -4167,13 +4176,6 @@ execute_on_reset = true;</code></pre>
             calls <code>deleter(r)</code>.
           </dd>
   </cxx-effects>
-
-          <cxx-constraints id="scopeguard.uniqueres.members.7" para_num="7">
-    
-    <dt>Constraints:</dt><dd>
-            the selected assignment expression statement assigning <code>resource</code> is well-formed.
-          </dd>
-  </cxx-constraints>
         
     </dl>
   </cxx-function>
@@ -4215,17 +4217,17 @@ execute_on_reset = true;</code></pre>
     <dl>
       
           
-          <cxx-effects id="scopeguard.uniqueres.members.13" para_num="13">
-    
-    <dt>Effects:</dt><dd>Equivalent to: <code>return *get();</code></dd>
-  </cxx-effects>
-          <cxx-constraints id="scopeguard.uniqueres.members.14" para_num="14">
+          <cxx-constraints id="scopeguard.uniqueres.members.13" para_num="13">
     
     <dt>Constraints:</dt><dd>
             <code>is_pointer_v&lt;R&gt;</code> is <code>true</code> and
             <code>is_void_v&lt;remove_pointer_t&lt;R&gt;&gt;</code> is <code>false</code>.
           </dd>
   </cxx-constraints>
+          <cxx-effects id="scopeguard.uniqueres.members.14" para_num="14">
+    
+    <dt>Effects:</dt><dd>Equivalent to: <code>return *get();</code></dd>
+  </cxx-effects>
           <cxx-remarks id="scopeguard.uniqueres.members.15" para_num="15">
     
     <dt>Remarks:</dt><dd>
@@ -4243,16 +4245,16 @@ execute_on_reset = true;</code></pre>
     <dl>
       
           
-          <cxx-returns id="scopeguard.uniqueres.members.17" para_num="17">
-    
-    <dt>Returns:</dt><dd><code>get()</code>.</dd>
-  </cxx-returns>
-          <cxx-constraints id="scopeguard.uniqueres.members.18" para_num="18">
+          <cxx-constraints id="scopeguard.uniqueres.members.17" para_num="17">
     
     <dt>Constraints:</dt><dd>
             <code>is_pointer_v&lt;R&gt;</code> is <code>true</code>.
           </dd>
   </cxx-constraints>
+          <cxx-returns id="scopeguard.uniqueres.members.18" para_num="18">
+    
+    <dt>Returns:</dt><dd><code>get()</code>.</dd>
+  </cxx-returns>
         
     </dl>
   </cxx-function>
@@ -4908,21 +4910,21 @@ namespace std {
       
         
 
-        <cxx-effects id="func.wrap.func.con.14" para_num="14">
-    
-    <dt>Effects:</dt><dd><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></dd>
-  </cxx-effects>
-        <cxx-returns id="func.wrap.func.con.15" para_num="15">
-    
-    <dt>Returns:</dt><dd><code>*this</code>.</dd>
-  </cxx-returns>
-        <cxx-constraints id="func.wrap.func.con.16" para_num="16">
+        <cxx-constraints id="func.wrap.func.con.14" para_num="14">
     
     <dt>Constraints:</dt><dd>
           <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept><i>Lvalue-Callable</i></cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>)
           for argument types <code>ArgTypes...</code> and return type <code>R</code>.
         </dd>
   </cxx-constraints>
+        <cxx-effects id="func.wrap.func.con.15" para_num="15">
+    
+    <dt>Effects:</dt><dd><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></dd>
+  </cxx-effects>
+        <cxx-returns id="func.wrap.func.con.16" para_num="16">
+    
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
+  </cxx-returns>
       
     </dl>
   </cxx-function>
@@ -5191,14 +5193,14 @@ namespace std {
       
         
 
-        <cxx-postconditions id="memory.observer.ptr.ctor.7" para_num="7">
-    
-    <dt>Postconditions:</dt><dd><code>get() == other.get()</code>.</dd>
-  </cxx-postconditions>
-        <cxx-constraints id="memory.observer.ptr.ctor.8" para_num="8">
+        <cxx-constraints id="memory.observer.ptr.ctor.7" para_num="7">
     
     <dt>Constraints:</dt><dd><code>W2*</code> is convertible to <code>W*</code>.</dd>
   </cxx-constraints>
+        <cxx-postconditions id="memory.observer.ptr.ctor.8" para_num="8">
+    
+    <dt>Postconditions:</dt><dd><code>get() == other.get()</code>.</dd>
+  </cxx-postconditions>
       
     </dl>
   </cxx-function>
@@ -6364,18 +6366,18 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
     <dl>
       
       
-      <cxx-effects id="alg.random.shuffle.2" para_num="2">
-    
-    <dt>Effects:</dt><dd>Permutes the elements in the range <code>[first,last)</code>
-        such that each possible permutation of those elements has equal
-        probability of appearance.</dd>
-  </cxx-effects>
-      <cxx-preconditions id="alg.random.shuffle.3" para_num="3">
+      <cxx-preconditions id="alg.random.shuffle.2" para_num="2">
     
     <dt>Preconditions:</dt><dd><code>RandomAccessIterator</code> meets the
         <cxx-17concept><i>Cpp17ValueSwappable</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.5.3.2</span></cxx-ref>).
       </dd>
   </cxx-preconditions>
+      <cxx-effects id="alg.random.shuffle.3" para_num="3">
+    
+    <dt>Effects:</dt><dd>Permutes the elements in the range <code>[first,last)</code>
+        such that each possible permutation of those elements has equal
+        probability of appearance.</dd>
+  </cxx-effects>
       <cxx-complexity id="alg.random.shuffle.4" para_num="4">
     
     <dt>Complexity:</dt><dd>Exactly <code>(last - first) - 1</code> swaps.</dd>
@@ -6451,17 +6453,17 @@ IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
     <dl>
       
         
-        <cxx-preconditions id="rand.randint.3" para_num="3">
-    
-    <dt>Preconditions:</dt><dd><code>a</code> ≤ <code>b</code>.</dd>
-  </cxx-preconditions>
-        <cxx-mandates id="rand.randint.4" para_num="4">
+        <cxx-mandates id="rand.randint.3" para_num="3">
     
     <dt>Mandates:</dt><dd>
           The template argument meets the requirements for a template parameter named
           <code>IntType</code> in <cxx-ref in="cxx" to="rand.req.genl">C++20 <span title="rand.req.genl">§26.6.2.1</span></cxx-ref>.
         </dd>
   </cxx-mandates>
+        <cxx-preconditions id="rand.randint.4" para_num="4">
+    
+    <dt>Preconditions:</dt><dd><code>a</code> ≤ <code>b</code>.</dd>
+  </cxx-preconditions>
         <cxx-returns id="rand.randint.5" para_num="5">
     
     <dt>Returns:</dt><dd>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
