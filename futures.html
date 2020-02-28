@@ -7,8 +7,7 @@
     <pre><code>#include &lt;future&gt;
 
 namespace std {
-  namespace experimental {
-  inline namespace fundamentals_v3 {
+  namespace experimental::inline fundamentals_v3 {
 
     template &lt;class R&gt; class promise;
     template &lt;class R&gt; class promise&lt;R&amp;&gt;;
@@ -24,8 +23,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // inline namespace fundamentals_v3
-  } // namespace experimental
+  } // namespace experimental::inline fundamentals_v3
 
   template &lt;class R, class Alloc&gt;
   struct uses_allocator&lt;experimental::promise&lt;R&gt;, Alloc&gt;;
@@ -46,8 +44,7 @@ namespace std {
     </p>
 
     <pre><code>namespace std {
-  namespace experimental {
-  inline namespace fundamentals_v3 {
+  namespace experimental::inline fundamentals_v3 {
 
     template &lt;class R&gt;
     class promise {
@@ -80,8 +77,7 @@ namespace std {
     template &lt;class R&gt;
     void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y) noexcept;
 
-  } // inline namespace fundamentals_v3
-  } // namespace experimental
+  } // namespace experimental::inline fundamentals_v3
 
   template &lt;class R, class Alloc&gt;
   struct uses_allocator&lt;experimental::promise&lt;R&gt;, Alloc&gt;;
@@ -105,8 +101,7 @@ namespace std {
     </p>
 
     <pre><code>namespace std {
-  namespace experimental {
-  inline namespace fundamentals_v3 {
+  namespace experimental::inline fundamentals_v3 {
 
     template &lt;class R, class... ArgTypes&gt;
     class packaged_task&lt;R(ArgTypes...)&gt; {
@@ -142,8 +137,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp;, packaged_task&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // inline namespace fundamentals_v3
-  } // namespace experimental
+  } // namespace experimental::inline fundamentals_v3
 
   template &lt;class R, class Alloc&gt;
   struct uses_allocator&lt;experimental::packaged_task&lt;R&gt;, Alloc&gt;;

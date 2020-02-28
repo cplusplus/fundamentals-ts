@@ -7,8 +7,7 @@
 <pre><code>#include &lt;memory>
 
 namespace std {
-  namespace experimental {
-  inline namespace fundamentals_v3 {
+  namespace experimental::inline fundamentals_v3 {
 
     <cxx-ref insynopsis to="memory.observer.ptr"></cxx-ref>
     template &lt;class W> class observer_ptr;
@@ -42,8 +41,7 @@ namespace std {
     template &lt;class W1, class W2>
     bool operator>=(observer_ptr&lt;W1>, observer_ptr&lt;W2>);
 
-  } // inline namespace fundamentals_v3
-  } // namespace experimental
+  } // namespace experimental::inline fundamentals_v3
 
   <cxx-ref insynopsis to="memory.observer.ptr.hash"></cxx-ref>
   template &lt;class T> struct hash;
@@ -76,8 +74,7 @@ namespace std {
     <cxx-section id="memory.observer.ptr.overview">
       <h1>Class template <code>observer_ptr</code> overview</h1>
 
-<pre><code>namespace std::experimental {
-inline namespace fundamentals_v3 {
+<pre><code>namespace std::experimental::inline fundamentals_v3 {
 
   template &lt;class W> class observer_ptr {
     using pointer = add_pointer_t&lt;W>;            <i>// exposition-only</i>
@@ -112,8 +109,7 @@ inline namespace fundamentals_v3 {
     constexpr void swap(observer_ptr&amp;) noexcept;
   }; // observer_ptr&lt;>
 
-} // inline namespace fundamentals_v3
-} // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3</code></pre>
     </cxx-section>
 
     <cxx-section id="memory.observer.ptr.ctor">
@@ -356,9 +352,7 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
   <cxx-section id="memory.resource.syn">
     <h1>Header <code>&lt;experimental/memory_resource></code> synopsis</h1>
 
-    <pre><code>namespace std::experimental {
-inline namespace fundamentals_v3 {
-namespace pmr {
+    <pre><code>namespace std::experimental::inline fundamentals_v3::pmr {
 
   // The name <var>resource_adaptor_imp</var> is for exposition only.
   template &lt;class Allocator> class <var>resource_adaptor_imp</var>;
@@ -367,9 +361,7 @@ namespace pmr {
     using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
       typename allocator_traits&lt;Allocator>::template rebind_alloc&lt;char>>;
 
-} // namespace pmr
-} // inline namespace fundamentals_v3
-} // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3::pmr</code></pre>
   </cxx-section>
 
   <cxx-section id="memory.resource.adaptor">
