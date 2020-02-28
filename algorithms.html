@@ -34,7 +34,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
         where <code>g</code> denotes
         the per-thread engine (<cxx-ref to="rand.util.randint"></cxx-ref>).
         To the extent that the implementation of this function makes use of
-        random numbers, the object <code>g</code> shall serve as the
+        random numbers, the object <code>g</code> serves as the
         implementation’s source of randomness.
       </cxx-effects>
     </cxx-function>
@@ -48,12 +48,14 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
       <cxx-effects>Permutes the elements in the range <code>[first,last)</code>
         such that each possible permutation of those elements has equal
         probability of appearance.</cxx-effects>
-      <cxx-requires><code>RandomAccessIterator</code> shall satisfy the
-        requirements of <code>ValueSwappable</code> (<cxx-ref in="cxx" to="swappable.requirements"></cxx-ref>).</cxx-requires>
+      <cxx-preconditions><code>RandomAccessIterator</code> meets the
+        <cxx-17concept>Cpp17ValueSwappable</cxx-17concept> requirements (<cxx-ref in="cxx" to="swappable.requirements"></cxx-ref>).
+      </cxx-preconditions>
       <cxx-complexity>Exactly <code>(last - first) - 1</code> swaps.</cxx-complexity>
       <cxx-remarks>To the extent that the implementation of this function
         makes use of random numbers, the per-thread engine (<cxx-ref to="rand.randint"></cxx-ref>)
-        shall serve as the implementation's source of randomness.</cxx-remarks>
+        serves as the implementation's source of randomness.
+      </cxx-remarks>
     </cxx-function>
   </cxx-section>
 </cxx-clause>

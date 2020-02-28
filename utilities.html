@@ -302,9 +302,10 @@ namespace std::experimental::inline fundamentals_v3 {
           <cxx-signature>template &lt;class U&gt;
 <i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
 
+          <cxx-constraints>
+            <code>is_constructible_v&lt;T, U&gt;</code> is true.
+          </cxx-constraints>
           <cxx-remarks>
-            This constructor shall not participate in overload resolution unless
-            <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code>.
             The constructor is specified as <code>explicit</code> if and only if
             <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
           </cxx-remarks>
@@ -319,10 +320,11 @@ namespace std::experimental::inline fundamentals_v3 {
           <cxx-signature>template &lt;class U&gt;
 <i>see below</i> constexpr propagate_const(U&amp;&amp; u);</cxx-signature>
 
-          <cxx-remarks>
-            This constructor shall not participate in overload resolution unless
-            <code>is_constructible_v&lt;T, U&amp;&amp;&gt;</code>
+          <cxx-constraints>
+            <code>is_constructible_v&lt;T, U&gt;</code> is true
             and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
+          </cxx-constraints>
+          <cxx-remarks>
             The constructor is specified as <code>explicit</code> if and only if
             <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
           </cxx-remarks>
@@ -341,10 +343,9 @@ namespace std::experimental::inline fundamentals_v3 {
           <cxx-signature>template &lt;class U&gt;
 constexpr propagate_const&amp; operator=(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
 
-          <cxx-remarks>
-            This function shall not participate in overload resolution unless
+          <cxx-constraints>
             <code>U</code> is implicitly convertible to <code>T</code>.
-          </cxx-remarks>
+          </cxx-constraints>
           <cxx-effects><code>t_ = std::move(pu.t_)</code>.</cxx-effects>
           <cxx-returns><code>*this</code>.</cxx-returns>
         </cxx-function>
@@ -353,11 +354,10 @@ constexpr propagate_const&amp; operator=(propagate_const&lt;U&gt;&amp;&amp; pu);
           <cxx-signature>template &lt;class U&gt;
 constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
 
-          <cxx-remarks>
-            This function shall not participate in overload resolution unless
+          <cxx-constraints>
             <code>U</code> is implicitly convertible to <code>T</code> and
             <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
-          </cxx-remarks>
+          </cxx-constraints>
           <cxx-effects><code>t_ = std::forward&lt;U&gt;(u)</code>.</cxx-effects>
           <cxx-returns><code>*this</code>.</cxx-returns>
         </cxx-function>
@@ -375,7 +375,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
         <cxx-function>
           <cxx-signature>constexpr const element_type* operator-&gt;() const;</cxx-signature>
 
-          <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
+          <cxx-preconditions><code>get() != nullptr</code>.</cxx-preconditions>
           <cxx-returns><code>get()</code>.</cxx-returns>
         </cxx-function>
 
@@ -383,17 +383,16 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
           <cxx-signature>constexpr operator const element_type*() const;</cxx-signature>
 
           <cxx-returns><code>get()</code>.</cxx-returns>
-          <cxx-remarks>
-            This function shall not participate in overload resolution unless
+          <cxx-constraints>
             <code>T</code> is an object pointer type or
             has an implicit conversion to <code>const element_type*</code>.
-          </cxx-remarks>
+          </cxx-constraints>
         </cxx-function>
 
         <cxx-function>
           <cxx-signature>constexpr const element_type&amp; operator*() const;</cxx-signature>
 
-          <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
+          <cxx-preconditions><code>get() != nullptr</code>.</cxx-preconditions>
           <cxx-returns><code>*get()</code>.</cxx-returns>
         </cxx-function>
 
@@ -413,7 +412,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
       <cxx-function>
         <cxx-signature>constexpr element_type* operator-&gt;();</cxx-signature>
 
-        <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
+        <cxx-preconditions><code>get() != nullptr</code>.</cxx-preconditions>
         <cxx-returns><code>get()</code>.</cxx-returns>
       </cxx-function>
 
@@ -421,17 +420,16 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
         <cxx-signature>constexpr operator element_type*();</cxx-signature>
 
         <cxx-returns><code>get()</code>.</cxx-returns>
-        <cxx-remarks>
-          This function shall not participate in overload resolution unless
+        <cxx-constraints>
           <code>T</code> is an object pointer type or
           has an implicit conversion to <code>element_type*</code>.
-        </cxx-remarks>
+        </cxx-constraints>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>constexpr element_type&amp; operator*();</cxx-signature>
 
-        <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
+        <cxx-preconditions><code>get() != nullptr</code>.</cxx-preconditions>
         <cxx-returns><code>*get()</code>.</cxx-returns>
       </cxx-function>
 
@@ -666,15 +664,12 @@ constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx
 struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature>
 
         <p>
-          For an object <code>p</code> of type <code>propagate_const&lt;T&gt;</code>,
+          The specialization <code>hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;</code>
+          is enabled (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>) if and only if <code>hash&lt;T&gt;</code> is enabled.
+          When enabled, for an object <code>p</code> of type <code>propagate_const&lt;T&gt;</code>,
           <code>hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p)</code>
-          shall evaluate to the same value as <code>hash&lt;T&gt;()(p.t_)</code>.
+          evaluates to the same value as <code>hash&lt;T&gt;()(p.t_)</code>.
         </p>
-
-        <cxx-requires>
-          The specialization <code>hash&lt;T&gt;</code> shall be well-formed and well-defined,
-          and shall meet the requirements of class template hash.
-        </cxx-requires>
       </cxx-function>
     </cxx-section>
 
@@ -693,9 +688,12 @@ q)</code>
 q.t_)</code>.
         </p>
 
-        <cxx-requires>
-          The specialization <code>equal_to&lt;T&gt;</code> shall be well-formed and well-defined.
-        </cxx-requires>
+        <cxx-mandates>
+          The specialization <code>equal_to&lt;T&gt;</code> is well-formed
+        </cxx-mandates>
+        <cxx-preconditions>
+          The specialization <code>equal_to&lt;T&gt;</code> is well-defined.
+        </cxx-preconditions>
       </cxx-function>
 
       <cxx-function>
@@ -708,9 +706,12 @@ struct not_equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&g
           shall evaluate to the same value as <code>not_equal_to&lt;T&gt;()(p.t_, q.t_)</code>.
         </p>
 
-        <cxx-requires>
-          The specialization <code>not_equal_to&lt;T&gt;</code> shall be well-formed and well-defined.
-        </cxx-requires>
+        <cxx-mandates>
+          The specialization <code>not_equal_to&lt;T&gt;</code> is well-formed
+        </cxx-mandates>
+        <cxx-preconditions>
+          The specialization <code>not_equal_to&lt;T&gt;</code> is well-defined.
+        </cxx-preconditions>
       </cxx-function>
 
       <cxx-function>
@@ -719,15 +720,16 @@ struct less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
-q)</code>
-          shall evaluate to the same value as <code>less&lt;T&gt;()(p.t_,
-q.t_)</code>.
+          <code>less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p, q)</code>
+          shall evaluate to the same value as <code>less&lt;T&gt;()(p.t_, q.t_)</code>.
         </p>
 
-        <cxx-requires>
-          The specialization <code>less&lt;T&gt;</code> shall be well-formed and well-defined.
-        </cxx-requires>
+        <cxx-mandates>
+          The specialization <code>less&lt;T&gt;</code> is well-formed
+        </cxx-mandates>
+        <cxx-preconditions>
+          The specialization <code>less&lt;T&gt;</code> is well-defined.
+        </cxx-preconditions>
       </cxx-function>
 
       <cxx-function>
@@ -736,15 +738,16 @@ struct greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
-q)</code>
-          shall evaluate to the same value as <code>greater&lt;T&gt;()(p.t_,
-q.t_)</code>.
+          <code>greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p, q)</code>
+          shall evaluate to the same value as <code>greater&lt;T&gt;()(p.t_, q.t_)</code>.
         </p>
 
-        <cxx-requires>
-          The specialization <code>greater&lt;T&gt;</code> shall be well-formed and well-defined.
-        </cxx-requires>
+        <cxx-mandates>
+          The specialization <code>greater&lt;T&gt;</code> is well-formed
+        </cxx-mandates>
+        <cxx-preconditions>
+          The specialization <code>greater&lt;T&gt;</code> is well-defined.
+        </cxx-preconditions>
       </cxx-function>
 
       <cxx-function>
@@ -753,15 +756,16 @@ struct less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
-q)</code>
-          shall evaluate to the same value as <code>less_equal&lt;T&gt;()(p.t_,
-q.t_)</code>.
+          <code>less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p, q)</code>
+          shall evaluate to the same value as <code>less_equal&lt;T&gt;()(p.t_, q.t_)</code>.
         </p>
 
-        <cxx-requires>
-          The specialization <code>less_equal&lt;T&gt;</code> shall be well-formed and well-defined.
-        </cxx-requires>
+        <cxx-mandates>
+          The specialization <code>less_equal&lt;T&gt;</code> is well-formed
+        </cxx-mandates>
+        <cxx-preconditions>
+          The specialization <code>less_equal&lt;T&gt;</code> is well-defined.
+        </cxx-preconditions>
       </cxx-function>
 
       <cxx-function>
@@ -770,14 +774,16 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
 
         <p>
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
-          <code>greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p,
-q)</code>
+          <code>greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p, q)</code>
           shall evaluate to the same value as <code>greater_equal&lt;T&gt;()(p.t_, q.t_)</code>.
         </p>
 
-        <cxx-requires>
-          The specialization <code>greater_equal&lt;T&gt;</code> shall be well-formed and well-defined.
-        </cxx-requires>
+        <cxx-mandates>
+          The specialization <code>greater_equal&lt;T&gt;</code> is well-formed
+        </cxx-mandates>
+        <cxx-preconditions>
+          The specialization <code>greater_equal&lt;T&gt;</code> is well-defined.
+        </cxx-preconditions>
       </cxx-function>
     </cxx-section>
   </cxx-section>
@@ -873,8 +879,8 @@ q)</code>
       <p>Template argument <code>EF</code> shall be a function object type
         (<cxx-ref in="cxx" to="function.objects"></cxx-ref>), lvalue reference
         to function, or lvalue reference to function object type. If <code>EF</code>
-        is an object type, it shall satisfy the requirements of <code>Destructible</code>
-        (C++17 Table 27). Given an lvalue <code>g</code> of type
+        is an object type, it shall meet the <cxx-17concept>Cpp17Destructible</cxx-17concept>
+        requirements (C++20 Table 30). Given an lvalue <code>g</code> of type
         <code>remove_reference_t&lt;EF&gt;</code>, the expression
         <code>g()</code> shall be well-formed.</p>
 
@@ -888,12 +894,15 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
     is_nothrow_constructible_v&lt;EF, EFP&gt; ||
     is_nothrow_constructible_v&lt;EF, EFP&amp;&gt);</cxx-signature>
 
-        <cxx-requires>
-          The expression <code>f()</code> shall be well-formed.
-          Calling <code>f()</code> shall have well-defined behavior.
+        <cxx-mandates>
+          The expression <code>f()</code> is well-formed.
+        </cxx-mandates>
+
+        <cxx-preconditions>
+          Calling <code>f()</code> has well-defined behavior.
           For <code>scope_exit</code> and <code>scope_fail</code>,
-          calling <code>f()</code> shall not throw an exception.
-        </cxx-requires>
+          calling <code>f()</code> does not throw an exception.
+        </cxx-preconditions>
 
         <cxx-effects>
           If <code>EFP</code> is not an lvalue reference type and
@@ -912,25 +921,24 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
           Any exception thrown during the initialization of <code>exit_function</code>.
         </cxx-throws>
 
-        <cxx-remarks>
-          This constructor shall not participate in overload resolution unless
+        <cxx-constraints>
           <code>is_same_v&lt;remove_cvref_t&lt;EFP&gt;,
           <i>scope-guard</i>&gt;</code> is <code>false</code> and
           <code>is_constructible_v&lt;EF, EFP&gt;</code> is <code>true</code>.
-        </cxx-remarks>
+        </cxx-constraints>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature><i>scope-guard</i>(<i>scope-guard</i>&amp;&amp; rhs) noexcept(<i>see below</i>)</cxx-signature>
 
-        <cxx-requires>
+        <cxx-preconditions>
           If <code>EF</code> is an object type:
           <ul>
             <li>if <code>is_nothrow_move_constructible_v&lt;EF&gt;</code> is <code>true</code>,
-              <code>EF</code> shall meet the requirements of <code>MoveConstructible</code> (C++17 Table 23),</li>
-            <li>otherwise <code>EF</code> shall meet the requirements of <code>CopyConstructible</code> (C++17 Table 24).</li>
+              <code>EF</code> meets the <cxx-17concept>Cpp17MoveConstructible</cxx-17concept> requirements (C++20 Table 26),</li>
+            <li>otherwise <code>EF</code> meets the <cxx-17concept>Cpp17CopyConstructible</cxx-17concept> requirements (C++20 Table 27).</li>
           </ul>
-        </cxx-requires>
+        </cxx-preconditions>
 
         <cxx-effects>
           If <code>is_nothrow_move_constructible_v&lt;EF&gt;</code> is <code>true</code>,
@@ -952,11 +960,12 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
           Any exception thrown during the initialization of <code>exit_function</code>.
         </cxx-throws>
 
-        <cxx-remarks>
-          This constructor shall not participate in overload resolution unless
+        <cxx-constraints>
           <code>(is_nothrow_move_constructible_v&lt;EF&gt; || is_copy_constructible_v&lt;EF&gt;)</code>
           is <code>true</code>.
+        </cxx-constraints>
 
+        <cxx-remarks>
           The expression inside noexcept is equivalent to
           <code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code>.
         </cxx-remarks>
@@ -1062,21 +1071,21 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </p>
 
         <p>
-          The template argument <code>D</code> shall satisfy the requirements of a
-          <code>Destructible</code> (C++17 Table 27) function object type
+          The template argument <code>D</code> shall meet the requirements of a
+          <cxx-17concept>Cpp17Destructible</cxx-17concept> (C++20 Table 30) function object type
           (<cxx-ref in="cxx" to="function.objects"></cxx-ref>), for which,
           given a lvalue <code>d</code> of type <code>D</code> and a lvalue <code>r</code> of
           type <code>R</code>, the expression <code>d(r)</code> shall be well-formed.
-          <code>D</code> shall either satisfy the requirements of <code>CopyConstructible</code>
-          (C++17 Table 24), or <code>D</code> shall satisfy the requirements of <code>MoveConstructible</code>
-          (C++17 Table 23) and <code>is_nothrow_move_constructible_v&lt;D&gt;</code> shall be <code>true</code>.
+          <code>D</code> shall either meet the <cxx-17concept>Cpp17CopyConstructible</cxx-17concept> requirements
+          (C++20 Table 27), or <code>D</code> shall meet the <cxx-17concept>Cpp17MoveConstructible</cxx-17concept> requirements
+          (C++20 Table 26) and <code>is_nothrow_move_constructible_v&lt;D&gt;</code> shall be <code>true</code>.
         </p>
 
         <p>
           For the purpose of this subclause, a resource type <code>T</code>
-          is an object type that satisfies the requirements of <code>CopyConstructible</code>
-          (C++17 Table 24), or is an object type that satisfies the requirements of <code>MoveConstructible</code>
-          (C++17 Table 23) and <code>is_nothrow_move_constructible_v&lt;T&gt;</code> is <code>true</code>,
+          is an object type that meets the requirements of <cxx-17concept>Cpp17CopyConstructible</cxx-17concept>
+          (C++20 Table 27), or is an object type that meets the requirements of <cxx-17concept>Cpp17MoveConstructible</cxx-17concept>
+          (C++20 Table 26) and <code>is_nothrow_move_constructible_v&lt;T&gt;</code> is <code>true</code>,
           or is an lvalue reference to a resource type. <code>R</code> shall be a resource type.
         </p>
 
@@ -1099,24 +1108,26 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
             Value-initializes <code>resource</code> and <code>deleter</code>;
             <code>execute_on_reset</code> is initialized with <code>false</code>.
           </cxx-effects>
-          <cxx-remarks>
-          This constructor shall not participate in overload resolution unless
-          <code>is_default_constructible_v&lt;R&gt; &amp;&amp;
+          <cxx-constraints>
+            <code>is_default_constructible_v&lt;R&gt; &amp;&amp;
             is_default_constructible_v&lt;D&gt;</code> is <code>true</code>.
-          </cxx-remarks>
+          </cxx-constraints>
         </cxx-function>
 
         <cxx-function>
           <cxx-signature>template &lt;class RR, class DD&gt;
 unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-signature>
 
-          <cxx-requires>
+          <cxx-mandates>
             The expressions <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
             and <code>deleter(<i>RESOURCE</i>)</code> are well-formed.
+          </cxx-mandates>
+
+          <cxx-preconditions>
             Calling <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
-            or <code>deleter(<i>RESOURCE</i>)</code> shall have well-defined behavior and
-            shall not throw an exception.
-          </cxx-requires>
+            or <code>deleter(<i>RESOURCE</i>)</code> has well-defined behavior and
+            does not throw an exception.
+          </cxx-preconditions>
 
           <cxx-effects>
             If <code>is_nothrow_constructible_v&lt;R1, RR&gt;</code> is <code>true</code>,
@@ -1137,8 +1148,7 @@ unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-
             Any exception thrown during initialization of <code>resource</code> or <code>deleter</code>.
           </cxx-throws>
 
-          <cxx-remarks>
-            This constructor shall not participate in overload resolution unless
+          <cxx-constraints>
             <pre><code>is_constructible_v&lt;R1, RR&gt; &amp;&amp;
 is_constructible_v&lt;D , DD&gt; &amp;&amp;
 (is_nothrow_constructible_v&lt;R1, RR&gt; || is_constructible_v&lt;R1,RR&amp;&gt;) &amp;&amp;
@@ -1148,6 +1158,8 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
               The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
               or <code>D</code> is a specialization of <code>reference_wrapper</code>.
             </cxx-note>
+          </cxx-constraints>
+          <cxx-remarks>
             The expression inside <code>noexcept</code> is equivalent to:
             <pre><code>(is_nothrow_constructible_v&lt;R1, RR&gt; || is_nothrow_constructible_v&lt;R1, RR&amp;&gt;) &amp;&amp;
 (is_nothrow_constructible_v&lt;D , DD&gt; || is_nothrow_constructible_v&lt;D , DD&amp;&gt;)</code></pre>
@@ -1208,16 +1220,15 @@ rhs.release();</code></pre>
         <cxx-function>
           <cxx-signature>unique_resource&amp;operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature>
 
-          <cxx-requires>
+          <cxx-preconditions>
             If <code>is_nothrow_move_assignable_v&lt;R1&gt;</code> is <code>true</code>,
-            <code>R1</code> shall satisfy the <code>MoveAssignable</code>
-            requirements (C++17 Table 25); otherwise <code>R1</code>
-            shall satisfy the <code>CopyAssignable</code> requirements (C++17 Table 26).
+            <code>R1</code> meets the <cxx-17concept>Cpp17MoveAssignable</cxx-17concept> (C++20 Table 28)
+            requirements; otherwise <code>R1</code>
+            meets the <cxx-17concept>Cpp17CopyAssignable</cxx-17concept> (C++20 Table 29) requirements.
             If <code>is_nothrow_move_assignable_v&lt;D&gt;</code> is <code>true</code>,
-            <code>D</code> shall satisfy the <code>MoveAssignable</code> requirements
-            (C++17 Table 25); otherwise <code>D</code> shall satisfy the <code>CopyAssignable</code>
-            requirements (C++17 Table 26).
-          </cxx-requires>
+            <code>D</code> meets the <cxx-17concept>Cpp17MoveAssignable</cxx-17concept> (C++20 Table 28) requirements;
+            otherwise <code>D</code> meets the <cxx-17concept>Cpp17CopyAssignable</cxx-17concept> (C++20 Table 29) requirements.
+          </cxx-preconditions>
 
           <cxx-effects>
             Equivalent to:
@@ -1276,11 +1287,13 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
         <cxx-function>
           <cxx-signature>template &lt;class RR&gt; void reset(RR&amp;&amp; r);</cxx-signature>
 
-          <cxx-requires>
-            The expression <code>deleter(r)</code> shall be well-formed.
-            Calling <code>deleter(r)</code> shall have well-defined behavior
-            and shall not throw an exception.
-          </cxx-requires>
+          <cxx-mandates>
+            The expression <code>deleter(r)</code> is well-formed.
+          </cxx-mandates>
+          <cxx-preconditions>
+            Calling <code>deleter(r)</code> has well-defined behavior
+            and does not throw an exception.
+          </cxx-preconditions>
 
           <cxx-effects>
             Equivalent to:
@@ -1295,10 +1308,9 @@ execute_on_reset = true;</code></pre>
             calls <code>deleter(r)</code>.
           </cxx-effects>
 
-          <cxx-remarks>
-            This function shall not participate in overload resolution unless
+          <cxx-constraints>
             the selected assignment expression statement assigning <code>resource</code> is well-formed.
-          </cxx-remarks>
+          </cxx-constraints>
         </cxx-function>
 
         <cxx-function>
@@ -1314,10 +1326,11 @@ execute_on_reset = true;</code></pre>
         <cxx-function>
           <cxx-signature><i>see below</i> operator*() const noexcept;</cxx-signature>
           <cxx-effects>Equivalent to: <code>return *get();</code></cxx-effects>
-          <cxx-remarks>
-            This function shall not participate in overload resolution unless
+          <cxx-constraints>
             <code>is_pointer_v&lt;R&gt;</code> is <code>true</code> and
             <code>is_void_v&lt;remove_pointer_t&lt;R&gt;&gt;</code> is <code>false</code>.
+          </cxx-constraints>
+          <cxx-remarks>
             The return type is <code>add_lvalue_reference_t&lt;remove_pointer_t&lt;R&gt;&gt;</code>.
           </cxx-remarks>
         </cxx-function>
@@ -1325,9 +1338,9 @@ execute_on_reset = true;</code></pre>
         <cxx-function>
           <cxx-signature>R operator->() const noexcept;</cxx-signature>
           <cxx-returns><code>get()</code>.</cxx-returns>
-          <cxx-remarks>
-            This function shall not participate in overload resolution unless
-            <code>is_pointer_v&lt;R&gt;</code> is <code>true</code>.</cxx-remarks>
+          <cxx-constraints>
+            <code>is_pointer_v&lt;R&gt;</code> is <code>true</code>.
+          </cxx-constraints>
         </cxx-function>
 
         <cxx-function>
@@ -1346,11 +1359,13 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
   noexcept(is_nothrow_constructible_v&lt;decay_t&lt;R&gt;, R&gt; &amp;&amp;
            is_nothrow_constructible_v&lt;decay_t&lt;D&gt;, D&gt;);</cxx-signature>
 
-          <cxx-requires>
-            The expression <code>(resource == invalid ? true : false)</code> shall be well-formed.
+          <cxx-mandates>
+            The expression <code>(resource == invalid ? true : false)</code> is well-formed.
+          </cxx-mandates>
+          <cxx-preconditions>
             Evaluation of the expression <code>(resource == invalid ? true : false)</code>
-            shall have well-defined behavior and shall not throw an exception.
-          </cxx-requires>
+            has well-defined behavior and does not throw an exception.
+          </cxx-preconditions>
 
           <cxx-effects>
             Returns an object constructed with members initialized from

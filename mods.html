@@ -45,14 +45,14 @@
     </p>
 
     <blockquote>
-      <p><b>20.7.7 uses_allocator [allocator.uses]</b></p>
-      <p><b>20.7.7.1 uses_allocator trait [allocator.uses.trait]</b></p>
+      <p><b>20.10.8 uses_allocator [allocator.uses]</b></p>
+      <p><b>20.10.8.1 uses_allocator trait [allocator.uses.trait]</b></p>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class Alloc> struct uses_allocator;</cxx-signature>
         <cxx-remarks>
           Automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
-          Meets the BinaryTypeTrait requirements (<cxx-ref in="cxx" to="meta.rqmts"></cxx-ref>).
+          Meets the <cxx-17concept>Cpp17BinaryTypeTrait</cxx-17concept> requirements (<cxx-ref in="cxx" to="meta.rqmts"></cxx-ref>).
           The implementation shall provide a definition that is derived from <code>true_type</code> if a type <code>T::allocator_type</code> exists
           and <ins>either</ins> <code>is_convertible_v&lt;Alloc, T::allocator_type> != false</code>
           <ins>or <code>T::allocator_type</code> is an alias for <code>std::experimental::erased_type</code> (<cxx-ref to="utility.erased.type"></cxx-ref>)</ins>,
@@ -65,7 +65,7 @@
         </cxx-remarks>
       </cxx-function>
 
-      <p><b>20.7.7.2 uses-allocator construction [allocator.uses.construction]</b></p>
+      <p><b>20.10.8.2 uses-allocator construction [allocator.uses.construction]</b></p>
 
       <p>
         <dfn>Uses-allocator construction</dfn> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,

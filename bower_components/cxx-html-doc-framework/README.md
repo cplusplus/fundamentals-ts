@@ -122,7 +122,7 @@ describe the signatures and semantics of a function.
 Use one of these for each related function signature that can be
 described by a single set of attributes.
 
-#### `<cxx-requires>`, `<cxx-effects>`, `<cxx-synchronization>`, `<cxx-postconditions>`, `<cxx-returns>`, `<cxx-throws>`, `<cxx-exception-safety>`, `<cxx-remarks>`, `<cxx-error-conditions>`, and `<cxx-notes>`
+#### `<cxx-constraints>`, `<cxx-mandates>`, `<cxx-preconditions>`, `<cxx-effects>`, `<cxx-synchronization>`, `<cxx-postconditions>`, `<cxx-returns>`, `<cxx-throws>`, `<cxx-exception-safety>`, `<cxx-remarks>`, `<cxx-error-conditions>`, and `<cxx-notes>`
 
 Each of these elements represents one attribute from [structure.specifications]p3 ([except for `<cxx-exception-safety>`](https://github.com/cplusplus/draft/issues/228)).
 
