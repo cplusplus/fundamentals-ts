@@ -32,13 +32,15 @@
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:2017, <cite>Programming Languages — C++</cite>
-      <cxx-foreign-index id="cxx" src="cxx17_index.json" name="C++17"></cxx-foreign-index></li>
+      <li>ISO/IEC 14882:—, <cite>Programming Languages — C++</cite>
+      <cxx-foreign-index id="cxx" src="cxx20_index.json" name="C++20"></cxx-foreign-index></li>
     </ul>
 
-    <p>ISO/IEC 14882:2017 is herein called the <dfn>C++ Standard</dfn>.
-    References to clauses within the C++ Standard are written as "C++17
-    &#xa7;3.2". The library described in ISO/IEC 14882:2017 clauses 20–33 is
+    <cxx-note>Under preparation. Stage at the time of publication: ISO/DIS 14882:2020.</cxx-note>
+
+    <p>ISO/IEC 14882:— is herein called the <dfn>C++ Standard</dfn>.
+    References to clauses within the C++ Standard are written as "C++20
+    &#xa7;3.2". The library described in ISO/IEC 14882:— clauses 16–32 is
     herein called the <dfn>C++ Standard Library</dfn>.</p>
 
     <p>Unless otherwise specified, the whole of the C++ Standard's Library
@@ -78,9 +80,7 @@
     <code>std::experimental::fundamentals_v3</code> into
     <code>std::experimental</code> as if by</p>
 
-    <pre><code>namespace std::experimental {
-  inline namespace fundamentals_v3 {}
-}</code></pre>
+    <pre><code>namespace std::experimental::inline fundamentals_v3 {}</code></pre>
 
     <p>
       This technical specification also describes some experimental modifications to existing interfaces in the C++ Standard Library.
@@ -109,27 +109,16 @@
       <tr><td>
         <ul>
           <li><code>&lt;experimental/algorithm></code></li>
-          <li><code>&lt;experimental/array></code></li>
-          <li><code>&lt;experimental/deque></code></li>
-          <li><code>&lt;experimental/forward_list></code></li>
           <li><code>&lt;experimental/functional></code></li>
           <li><code>&lt;experimental/future></code></li>
           <li><code>&lt;experimental/iterator></code></li>
-          <li><code>&lt;experimental/list></code></li>
-          <li><code>&lt;experimental/map></code></li>
           <li><code>&lt;experimental/memory></code></li>
           <li><code>&lt;experimental/memory_resource></code></li>
           <li><code>&lt;experimental/propagate_const></code></li>
           <li><code>&lt;experimental/random></code></li>
           <li><code>&lt;experimental/scope></code></li>
-          <li><code>&lt;experimental/set></code></li>
-          <li><code>&lt;experimental/source_location></code></li>
-          <li><code>&lt;experimental/string></code></li>
           <li><code>&lt;experimental/type_traits></code></li>
-          <li><code>&lt;experimental/unordered_map></code></li>
-          <li><code>&lt;experimental/unordered_set></code></li>
           <li><code>&lt;experimental/utility></code></li>
-          <li><code>&lt;experimental/vector></code></li>
         </ul>
       </td></tr>
     </table>
@@ -253,26 +242,6 @@
         <td><code>&lt;experimental/memory></code></th>
       </tr>
       <tr>
-        <td>N4273</td>
-        <td>Uniform Container Erasure</td>
-        <td><cxx-ref to="container.erasure"></cxx-ref></td>
-        <td><code>erase_if</code></td>
-        <td>201411</td>
-        <td><code>&lt;experimental/vector></code>, <code>&lt;experimental/deque></code>,
-          <code>&lt;experimental/forward_list></code>, <code>&lt;experimental/list></code>,
-          <code>&lt;experimental/map></code>, <code>&lt;experimental/set></code>,
-          <code>&lt;experimental/string></code>,
-          <code>&lt;experimental/unordered_map></code>, <code>&lt;experimental/unordered_set></code></td>
-      </tr>
-      <tr>
-        <td>N4391</td>
-        <td>make_array</td>
-        <td><cxx-ref to="container.array.creation"></cxx-ref></td>
-        <td><code>make_array</code></td>
-        <td>201505</td>
-        <td><code>&lt;experimental/array></code></td>
-      </tr>
-      <tr>
         <td>N4257</td>
         <td>Delimited iterators</td>
         <td><cxx-ref to="iterator.ostream.joiner"></cxx-ref></td>
@@ -315,14 +284,6 @@
         <td><code>randint</code></td>
         <td>201511</td>
         <td><code>&lt;experimental/random></code></td>
-      </tr>
-      <tr>
-        <td>N4519</td>
-        <td>Source-Code Information Capture</td>
-        <td><cxx-ref to="reflection.src_loc"></cxx-ref></td>
-        <td><code>source_location</code></td>
-        <td>201505</td>
-        <td><code>&lt;experimental/source_location></code></td>
       </tr>
     </table>
   </cxx-section>
