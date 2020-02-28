@@ -1,0 +1,22 @@
+{
+    "allocator.requirements": "16.5.3.5",
+    "class.ctor": "11.4.4",
+    "dcl.init.aggr": "9.4.1",
+    "dcl.init.list": "9.4.4",
+    "expr": "7",
+    "expr.call": "7.6.1.2",
+    "func.wrap.func": "20.14.16.2",
+    "function.objects": "20.14",
+    "futures.promise": "32.9.6",
+    "futures.task": "32.9.10",
+    "library": "16",
+    "mem.res.class": "20.12.2",
+    "meta.rqmts": "20.15.1",
+    "over.match.best": "12.4.3",
+    "rand.dist.uni.int": "26.6.8.2.1",
+    "rand.predef": "26.6.5",
+    "rand.req.genl": "26.6.2.1",
+    "res.on.exception.handling": "16.5.5.13",
+    "swappable.requirements": "16.5.3.2",
+    "unord.hash": "20.14.18"
+}
