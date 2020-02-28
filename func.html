@@ -168,9 +168,10 @@ namespace std {
 
         <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
-        <cxx-remarks>This assignment operator shall not participate in overload resolution unless
-          <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is Callable (<cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>)
-          for argument types <code>ArgTypes...</code> and return type <code>R</code>.</cxx-remarks>
+        <cxx-constraints>
+          <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept>Lvalue-Callable</cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>)
+          for argument types <code>ArgTypes...</code> and return type <code>R</code>.
+        </cxx-constraints>
       </cxx-function>
 
       <cxx-function>
@@ -187,7 +188,7 @@ namespace std {
       <cxx-function>
         <cxx-signature>void swap(function&amp; other);</cxx-signature>
 
-        <cxx-requires><code>*this-&gt;get_memory_resource() == *other.get_memory_resource()</code>.</cxx-requires>
+        <cxx-preconditions><code>*this-&gt;get_memory_resource() == *other.get_memory_resource()</code>.</cxx-preconditions>
         <cxx-effects>Interchanges the targets of <code>*this</code> and <code>other</code>.</cxx-effects>
         <cxx-remarks>The allocators of <code>*this</code> and <code>other</code> are not interchanged.</cxx-remarks>
       </cxx-function>

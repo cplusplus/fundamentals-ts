@@ -62,8 +62,11 @@ namespace std {
     </p>
 
     <p>
-      Specializations of <code>observer_ptr</code> shall meet the requirements of a <code>CopyConstructible</code> and <code>CopyAssignable</code> type.
-      The template parameter <code>W</code> of an <code>observer_ptr</code> shall not be a reference type, but may be an incomplete type.
+      Specializations of <code>observer_ptr</code> shall meet the requirements
+      of a <cxx-17concept>Cpp17CopyConstructible</cxx-17concept>
+      and <cxx-17concept>Cpp17CopyAssignable</cxx-17concept> type.
+      The template parameter <code>W</code> of an <code>observer_ptr</code>
+      shall not be a reference type, but may be an incomplete type.
     </p>
 
     <p>
@@ -133,7 +136,7 @@ namespace std {
         <cxx-signature>template &lt;class W2> constexpr observer_ptr(observer_ptr&lt;W2> other) noexcept;</cxx-signature>
 
         <cxx-postconditions><code>get() == other.get()</code>.</cxx-postconditions>
-        <cxx-remarks>This constructor shall not participate in overload resolution unless <code>W2*</code> is convertible to <code>W*</code>.</cxx-remarks>
+        <cxx-constraints><code>W2*</code> is convertible to <code>W*</code>.</cxx-constraints>
       </cxx-function>
     </cxx-section>
 
@@ -149,7 +152,7 @@ namespace std {
       <cxx-function>
         <cxx-signature>constexpr reference operator*() const;</cxx-signature>
 
-        <cxx-requires><code>get() != nullptr</code>.</cxx-requires>
+        <cxx-preconditions><code>get() != nullptr</code> is <code>true</code>.</cxx-preconditions>
         <cxx-returns><code>*get()</code>.</cxx-returns>
         <cxx-throws>Nothing.</cxx-throws>
       </cxx-function>
@@ -287,9 +290,9 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
         <cxx-signature>template &lt;class T> struct hash&lt;experimental::observer_ptr&lt;T>>;</cxx-signature>
 
         <p>
-          The template specialization shall meet the requirements of class template <code>hash</code> (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>).
+          The specialization is enabled (<cxx-ref in="cxx" to="unord.hash"></cxx-ref>).
           For an object <code>p</code> of type <code>observer_ptr&lt;T></code>,
-          <code>hash&lt;observer_ptr&lt;T>>()(p)</code> shall evaluate to the same value as <code>hash&lt;T*>()(p.get())</code>.
+          <code>hash&lt;observer_ptr&lt;T>>()(p)</code> evaluates to the same value as <code>hash&lt;T*>()(p.get())</code>.
         </p>
       </cxx-function>
     </cxx-section>
@@ -332,7 +335,7 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
         <td><code>alloc.resource()</code></td>
       </tr>
       <tr>
-        <td>any other type meeting the Allocator requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>)</td>
+        <td>any other type meeting the <cxx-17concept>Cpp17Allocator</cxx-17concept> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>)</td>
         <td>a pointer to a value of type <code>pmr::resource_adaptor&lt;A></code> where <code>A</code> is the type of <code>alloc</code>.
         <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
       </tr>
@@ -342,9 +345,9 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
       </tr>
     </table>
 
-    <p>Additionally, class <code>C</code> shall meet the following requirements:</p>
+    <p>Additionally, class <code>C</code> meets the following requirements:</p>
     <ul>
-      <li><code>C::allocator_type</code> shall be identical to <code>std::experimental::erased_type</code>.</li>
+      <li><code>C::allocator_type</code> denotes <code>std::experimental::erased_type</code>.</li>
       <li><code>X.get_memory_resource()</code> returns <code>rptr</code>.</li>
     </ul>
   </cxx-section>
@@ -377,7 +380,7 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
         The requirements on this class template are defined below.
         The name <code><var>resource_adaptor_imp</var></code> is for exposition only and is not normative,
         but the definitions of the members of that class, whatever its name, are normative.
-        In addition to the <code>Allocator</code> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
+        In addition to the <cxx-17concept>Cpp17Allocator</cxx-17concept> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
       </p>
       <ul>
         <li><code>typename allocator_traits&lt;Allocator>::pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator>::value_type*</code>.</li>
@@ -445,7 +448,7 @@ template &lt;class Allocator>
 
       <cxx-function>
         <cxx-signature>void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature>
-        <cxx-requires><code>p</code> was previously allocated using <code>A.allocate</code>, where <code>A == m_alloc</code>, and not subsequently deallocated.</cxx-requires>
+        <cxx-preconditions><code>p</code> was previously allocated using <code>A.allocate</code>, where <code>A == m_alloc</code>, and not subsequently deallocated.</cxx-preconditions>
         <cxx-effects>Returns memory to the allocator using <code>m_alloc.deallocate()</code>.</cxx-effects>
       </cxx-function>
 

@@ -25,10 +25,11 @@ namespace std::experimental::inline fundamentals_v3 {
       <cxx-function>
         <cxx-signature>template&lt;class IntType>
 IntType randint(IntType a, IntType b);</cxx-signature>
-        <cxx-requires><code>a</code> ≤ <code>b</code>.</cxx-requires>
-        <cxx-remarks>If the template argument does not meet the requirements
-          for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl"></cxx-ref>),
-          the program is ill-formed.</cxx-remarks>
+        <cxx-preconditions><code>a</code> ≤ <code>b</code>.</cxx-preconditions>
+        <cxx-mandates>
+          The template argument meets the requirements for a template parameter named
+          <code>IntType</code> in <cxx-ref in="cxx" to="rand.req.genl"></cxx-ref>.
+        </cxx-mandates>
         <cxx-returns>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
           produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType></code>
           (<cxx-ref in="cxx" to="rand.dist.uni.int"></cxx-ref>) invoked with the
