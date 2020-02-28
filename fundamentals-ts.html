@@ -2642,14 +2642,16 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
       
         
 
-        <p id="propagate_const.modifiers.2" para_num="2">
-          The constant-expression in the exception-specification is <code>noexcept(swap(t_, pt.t_))</code>.
-        </p>
-
-        <cxx-effects id="propagate_const.modifiers.3" para_num="3">
+        <cxx-effects id="propagate_const.modifiers.2" para_num="2">
     
     <dt>Effects:</dt><dd><code>swap(t_, pt.t_)</code>.</dd>
   </cxx-effects>
+        <cxx-remarks id="propagate_const.modifiers.3" para_num="3">
+    
+    <dt>Remarks:</dt><dd>
+          The expression inside <code>noexcept</code> is <code>noexcept(swap(t_, pt.t_))</code>.
+        </dd>
+  </cxx-remarks>
       
     </dl>
   </cxx-function>
@@ -3057,14 +3059,16 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
       
         
 
-        <p id="propagate_const.algorithms.2" para_num="2">
-          The constant-expression in the exception-specification is <code>noexcept(pt1.swap(pt2))</code>.
-        </p>
-
-        <cxx-effects id="propagate_const.algorithms.3" para_num="3">
+        <cxx-effects id="propagate_const.algorithms.2" para_num="2">
     
     <dt>Effects:</dt><dd><code>pt1.swap(pt2)</code>.</dd>
   </cxx-effects>
+        <cxx-remarks id="propagate_const.algorithms.3" para_num="3">
+    
+    <dt>Remarks:</dt><dd>
+          The expression inside <code>noexcept</code> is <code>noexcept(pt1.swap(pt2))</code>.
+        </dd>
+  </cxx-remarks>
       
     </dl>
   </cxx-function>
@@ -3615,7 +3619,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         <cxx-remarks id="scopeguard.exit.19" para_num="19">
     
     <dt>Remarks:</dt><dd>
-          The expression inside noexcept is equivalent to
+          The expression inside <code>noexcept</code> is equivalent to
           <code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code>.
         </dd>
   </cxx-remarks>

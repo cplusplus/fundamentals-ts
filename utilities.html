@@ -449,11 +449,10 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
       <cxx-function>
         <cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);</cxx-signature>
 
-        <p>
-          The constant-expression in the exception-specification is <code>noexcept(swap(t_, pt.t_))</code>.
-        </p>
-
         <cxx-effects><code>swap(t_, pt.t_)</code>.</cxx-effects>
+        <cxx-remarks>
+          The expression inside <code>noexcept</code> is <code>noexcept(swap(t_, pt.t_))</code>.
+        </cxx-remarks>
       </cxx-function>
     </cxx-section>
 
@@ -620,11 +619,10 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
         <cxx-signature>template &lt;class T&gt;
 constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);</cxx-signature>
 
-        <p>
-          The constant-expression in the exception-specification is <code>noexcept(pt1.swap(pt2))</code>.
-        </p>
-
         <cxx-effects><code>pt1.swap(pt2)</code>.</cxx-effects>
+        <cxx-remarks>
+          The expression inside <code>noexcept</code> is <code>noexcept(pt1.swap(pt2))</code>.
+        </cxx-remarks>
       </cxx-function>
     </cxx-section>
 
@@ -966,7 +964,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </cxx-throws>
 
         <cxx-remarks>
-          The expression inside noexcept is equivalent to
+          The expression inside <code>noexcept</code> is equivalent to
           <code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code>.
         </cxx-remarks>
       </cxx-function>
