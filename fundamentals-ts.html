@@ -4214,6 +4214,8 @@ if constexpr (is_nothrow_assignable_v&lt;R1&amp;, RR&gt;) {
   resource = as_const(r);
 }
 execute_on_reset = true;</code></pre>
+            If copy-assignment of <code>resource</code> throws an exception,
+            calls <code>deleter(r)</code>.
           </dd>
   </cxx-effects>
 
