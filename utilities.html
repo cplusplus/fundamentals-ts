@@ -9,14 +9,12 @@
 
 <pre><code>#include &lt;utility>
 
-namespace std::experimental {
-inline namespace fundamentals_v3 {
+namespace std::experimental::inline fundamentals_v3 {
 
   <cxx-ref insynopsis="" to="utility.erased.type"></cxx-ref>
   struct erased_type { };
 
-} // inline namespace fundamentals_v3
-} // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3</code></pre>
 
     </cxx-section>
 
@@ -42,8 +40,8 @@ inline namespace fundamentals_v3 {
       <h1>Header <code>&lt;experimental/propagate_const&gt;</code> synopsis</h1>
 
       <pre><code>namespace std {
-  namespace experimental {
-  inline namespace fundamentals_v3 {
+  namespace experimental::inline fundamentals_v3 {
+
     <cxx-ref insynopsis to="propagate_const.overview"></cxx-ref>
     template &lt;class T&gt; class propagate_const;
 
@@ -107,8 +105,7 @@ inline namespace fundamentals_v3 {
     template &lt;class T&gt;
       constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;
 
-  } // inline namespace fundamentals_v3
-  } // namespace experimental
+  } // namespace experimental::inline fundamentals_v3
 
   <cxx-ref insynopsis to="propagate_const.hash"></cxx-ref>
   template &lt;class T&gt; struct hash;
@@ -144,8 +141,8 @@ inline namespace fundamentals_v3 {
       <cxx-section id="propagate_const.overview">
         <h1>Class template <code>propagate_const</code> overview</h1>
 
-        <pre><code>namespace std::experimental {
-inline namespace fundamentals_v3 {
+        <pre><code>namespace std::experimental::inline fundamentals_v3 {
+
   template &lt;class T&gt; class propagate_const {
   public:
     using element_type = remove_reference_t&lt;decltype(*declval&lt;T&amp;&gt;())&gt;;
@@ -187,8 +184,7 @@ inline namespace fundamentals_v3 {
     T t_; //<i>exposition only</i>
   };
 
-} // inline namespace fundamentals_v3
-} // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3</code></pre>
 
         <p>
           <code>propagate_const</code> is a wrapper around a pointer-like object type <code>T</code>
@@ -793,8 +789,8 @@ q)</code>
     <cxx-section id="scope.syn">
       <h1>Header <code>&lt;experimental/scope&gt;</code> synopsis</h1>
 
-      <pre><code>namespace std::experimental {
-inline namespace fundamentals_v3 {
+      <pre><code>namespace std::experimental::inline fundamentals_v3 {
+
   <cxx-ref insynopsis to="scopeguard.exit"></cxx-ref>
   template &lt;class EF&gt;
     class scope_exit;
@@ -812,8 +808,7 @@ inline namespace fundamentals_v3 {
     unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
       make_unique_resource_checked(R&amp;&amp; r, const S&amp; invalid, D&amp;&amp; d) noexcept(<i>see below</i>);
 
-}  // inline namespace fundamentals_v3
-}  // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3</code></pre>
 
     </cxx-section>
 
@@ -829,8 +824,7 @@ inline namespace fundamentals_v3 {
         class members, <code><i>scope-guard</i></code> refers to the enclosing
         class.</p>
 
-      <pre><code>namespace std::experimental {
-inline namespace fundamentals_v3 {
+      <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
   template &lt;class EF&gt; class <i>scope-guard</i> {
   public:
@@ -855,8 +849,7 @@ inline namespace fundamentals_v3 {
   template &lt;class EF&gt;
     <i>scope-guard</i>(EF) -&gt; <i>scope-guard</i>&lt;EF&gt;;
 
-}  // inline namespace fundamentals_v3
-}  // namespace std::experimental</code></pre>
+}  // namespace std::experimental::inline fundamentals_v3</code></pre>
 
       <p>The class template <code>scope_exit</code> is a general-purpose
         scope guard that calls its exit function when a scope is exited. The
@@ -1020,8 +1013,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
       <cxx-section id="scopeguard.uniqueres.overview">
         <h1>Overview</h1>
 
-        <pre><code>namespace std::experimental {
-inline namespace fundamentals_v3 {
+        <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
   template &lt;class R, class D&gt; class unique_resource {
   public:
@@ -1057,8 +1049,7 @@ inline namespace fundamentals_v3 {
   template&lt;class R, class D&gt;
     unique_resource(R, D) -&gt; unique_resource&lt;R, D&gt;;
 
-}  // inline namespace fundamentals_v3
-}  // namespace std::experimental</code></pre>
+}  // namespace std::experimental::inline fundamentals_v3</code></pre>
 
         <p>
           <cxx-note><code>unique_resource</code> is a universal RAII wrapper for resource handles.
@@ -1396,8 +1387,7 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
 
 <pre><code>#include &lt;type_traits>
 
-namespace std::experimental {
-inline namespace fundamentals_v3 {
+namespace std::experimental::inline fundamentals_v3 {
 
   <cxx-ref insynopsis="" to="meta.trans.other"></cxx-ref>
   template &lt;class> class invocation_type; // <i>not defined</i>
@@ -1435,8 +1425,7 @@ inline namespace fundamentals_v3 {
     inline constexpr bool is_detected_convertible_v
       = is_detected_convertible&lt;To, Op, Args...>::value;
 
-} // inline namespace fundamentals_v3
-} // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3</code></pre>
 
     </cxx-section>
 

@@ -6,8 +6,7 @@
 
 <pre><code>#include &lt;iterator>
 
-namespace std::experimental {
-inline namespace fundamentals_v3 {
+namespace std::experimental::inline fundamentals_v3 {
 
   <cxx-ref insynopsis="" to="iterator.ostream.joiner"></cxx-ref>
   template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT> >
@@ -16,8 +15,7 @@ inline namespace fundamentals_v3 {
     ostream_joiner&lt;decay_t&lt;DelimT>, charT, traits>
     make_ostream_joiner(basic_ostream&lt;charT, traits>&amp; os, DelimT&amp;&amp; delimiter);
 
-} // inline namespace fundamentals_v3
-} // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3</code></pre>
   </cxx-section>
 
   <cxx-section id="iterator.ostream.joiner">
@@ -35,8 +33,7 @@ inline namespace fundamentals_v3 {
   <p>
     <code>ostream_joiner</code> is defined as
   </p>
-<pre><code>namespace std::experimental {
-inline namespace fundamentals_v3 {
+<pre><code>namespace std::experimental::inline fundamentals_v3 {
 
   template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
   class ostream_joiner {
@@ -64,8 +61,7 @@ inline namespace fundamentals_v3 {
     bool first_element;       <i>// exposition only</i>
   };
 
-} // inline namespace fundamentals_v3
-} // namespace std::experimental</code></pre>
+} // namespace std::experimental::inline fundamentals_v3</code></pre>
 
     <cxx-section id="iterator.ostream.joiner.cons">
       <h1><code>ostream_joiner</code> constructor</h1>

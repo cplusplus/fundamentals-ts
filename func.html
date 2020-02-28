@@ -7,8 +7,7 @@
 <pre><code>#include &lt;functional>
 
 namespace std {
-  namespace experimental {
-  inline namespace fundamentals_v3 {
+  namespace experimental::inline fundamentals_v3 {
 
     <cxx-ref insynopsis="" to="func.wrap.func"></cxx-ref>
     template&lt;class&gt; class function; <i>// undefined</i>
@@ -26,8 +25,7 @@ namespace std {
     template&lt;class R, class... ArgTypes&gt;
     bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
-  } // inline namespace fundamentals_v3
-  } // namespace experimental
+  } // namespace experimental::inline fundamentals_v3
 
   template&lt;class R, class... ArgTypes, class Alloc&gt;
   struct uses_allocator&lt;experimental::function&lt;R(ArgTypes...)&gt;, Alloc&gt;;
@@ -47,8 +45,7 @@ namespace std {
     </p>
 
 <pre><code>namespace std {
-  namespace experimental {
-  inline namespace fundamentals_v3 {
+  namespace experimental::inline fundamentals_v3 {
 
     template&lt;class&gt; class function; <i>// undefined</i>
 
@@ -110,8 +107,7 @@ namespace std {
     template &lt;class R, class... ArgTypes&gt;
     void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
 
-  } // inline namespace fundamentals_v3
-  } // namespace experimental
+  } // namespace experimental::inline fundamentals_v3
 
   template &lt;class R, class... ArgTypes, class Alloc&gt;
   struct uses_allocator&lt;experimental::function&lt;R(ArgTypes...)&gt;, Alloc&gt;
