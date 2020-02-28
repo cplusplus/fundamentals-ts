@@ -1446,15 +1446,7 @@ html   [segment], html   segment {
         
       </li>
             
-              <li><span class="marker">10.1.2</span><a href="#rand.util">Utilities</a>
-        
-          <ol>
-            
-              <li><span class="marker">10.1.2.1</span><a href="#rand.util.randint">Function template randint</a>
-        
-      </li>
-            
-          </ol>
+              <li><span class="marker">10.1.2</span><a href="#rand.randint">Function template randint</a>
         
       </li>
             
@@ -1853,7 +1845,7 @@ html   [segment], html   segment {
       <tr>
         <td>N4531</td>
         <td><code>std::rand</code> replacement</td>
-        <td><cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint">10.1.2.1</a></cxx-ref></td>
+        <td><cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint"></a></cxx-ref></td>
         <td><code>randint</code></td>
         <td>201511</td>
         <td><code>&lt;experimental/random&gt;</code></td>
@@ -6750,7 +6742,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
         Equivalent to:
         <pre><code>return ::std::sample(first, last, out, n, g);</code></pre>
         where <code>g</code> denotes
-        the per-thread engine (<cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint">10.1.2.1</a></cxx-ref>).
+        the per-thread engine (<cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint"></a></cxx-ref>).
         To the extent that the implementation of this function makes use of
         random numbers, the object <code>g</code> shall serve as the
         implementation’s source of randomness.
@@ -6796,7 +6788,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
       <cxx-remarks id="alg.random.shuffle.5" para_num="5">
     
     <dt>Remarks:</dt><dd>To the extent that the implementation of this function
-        makes use of random numbers, the per-thread engine (<cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint">10.1.2.1</a></cxx-ref>)
+        makes use of random numbers, the per-thread engine (<cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint"></a></cxx-ref>)
         shall serve as the implementation's source of randomness.</dd>
   </cxx-remarks>
     
@@ -6836,7 +6828,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
 namespace std::experimental {
 inline namespace fundamentals_v3 {
 
-  <cxx-ref insynopsis="" to="rand.util.randint">// <i><a title="rand.util.randint" href="#rand.util.randint">10.1.2.1</a>, Function template randint</i></cxx-ref>
+  <cxx-ref insynopsis="" to="rand.randint">// <i><a title="rand.randint" href="#rand.randint">10.1.2</a>, Function template randint</i></cxx-ref>
   template &lt;class IntType&gt;
   IntType randint(IntType a, IntType b);
   void reseed();
@@ -6847,81 +6839,71 @@ inline namespace fundamentals_v3 {
     
     </section>
   </cxx-section>
-    <cxx-section id="rand.util">
+    <cxx-section id="rand.randint">
     
 
     <section>
-      <header><span class="section-number">10.1.2</span> <h1 data-bookmark-label="10.1.2 Utilities">Utilities</h1> <span style="float:right"><a href="#rand.util">[rand.util]</a></span></header>
+      <header><span class="section-number">10.1.2</span> <h1 data-bookmark-label="10.1.2 Function template randint">Function template <code>randint</code></h1> <span style="float:right"><a href="#rand.randint">[rand.randint]</a></span></header>
       
       
-      <cxx-section id="rand.util.randint">
-    
-
-    <section>
-      <header><span class="section-number">10.1.2.1</span> <h1 data-bookmark-label="10.1.2.1 Function template randint">Function template <code>randint</code></h1> <span style="float:right"><a href="#rand.util.randint">[rand.util.randint]</a></span></header>
-      
-        
-        <p id="rand.util.randint.1" para_num="1">A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
-          (<cxx-ref in="cxx" to="rand.predef">C++17 <span title="rand.predef">§29.6.5</span></cxx-ref>), initialized to an
-          unpredictable state, shall be maintained for each thread.</p>
-        <cxx-function id="rand.util.randint.2" para_num="2">
+      <p id="rand.randint.1" para_num="1">A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
+        (<cxx-ref in="cxx" to="rand.predef">C++17 <span title="rand.predef">§29.6.5</span></cxx-ref>), initialized to an
+        unpredictable state, shall be maintained for each thread.</p>
+      <cxx-function id="rand.randint.2" para_num="2">
     
     <pre><code><cxx-signature>template&lt;class IntType&gt;
 IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
 
     <dl>
       
-          
-          <cxx-requires id="rand.util.randint.3" para_num="3">
+        
+        <cxx-requires id="rand.randint.3" para_num="3">
     
     <dt>Requires:</dt><dd><code>a</code> ≤ <code>b</code>.</dd>
   </cxx-requires>
-          <cxx-remarks id="rand.util.randint.4" para_num="4">
+        <cxx-remarks id="rand.randint.4" para_num="4">
     
     <dt>Remarks:</dt><dd>If the template argument does not meet the requirements
-            for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl">C++17 <span title="rand.req.genl">§29.6.1.1</span></cxx-ref>),
-            the program is ill-formed.</dd>
+          for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl">C++17 <span title="rand.req.genl">§29.6.1.1</span></cxx-ref>),
+          the program is ill-formed.</dd>
   </cxx-remarks>
-          <cxx-returns id="rand.util.randint.5" para_num="5">
+        <cxx-returns id="rand.randint.5" para_num="5">
     
     <dt>Returns:</dt><dd>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
-            produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType&gt;</code>
-            (<cxx-ref in="cxx" to="rand.dist.uni.int">C++17 <span title="rand.dist.uni.int">§29.6.8.2.1</span></cxx-ref>) invoked with the
-            per-thread engine.</dd>
+          produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType&gt;</code>
+          (<cxx-ref in="cxx" to="rand.dist.uni.int">C++17 <span title="rand.dist.uni.int">§29.6.8.2.1</span></cxx-ref>) invoked with the
+          per-thread engine.</dd>
   </cxx-returns>
-        
+      
     </dl>
   </cxx-function>
-        <cxx-function id="rand.util.randint.6" para_num="6">
+      <cxx-function id="rand.randint.6" para_num="6">
     
     <pre><code><cxx-signature>void reseed();</cxx-signature><cxx-signature>void reseed(default_random_engine::result_type value);</cxx-signature></code></pre>
 
     <dl>
       
-          
-          
-          <cxx-effects id="rand.util.randint.7" para_num="7">
+        
+        
+        <cxx-effects id="rand.randint.7" para_num="7">
     
     <dt>Effects:</dt><dd>Let <code>g</code> be the per-thread engine. The first
-            form sets <code>g</code> to an unpredictable state. The second form
-            invokes <code>g.seed(value)</code>.</dd>
+          form sets <code>g</code> to an unpredictable state. The second form
+          invokes <code>g.seed(value)</code>.</dd>
   </cxx-effects>
-          <cxx-postconditions id="rand.util.randint.8" para_num="8">
+        <cxx-postconditions id="rand.randint.8" para_num="8">
     
     <dt>Postconditions:</dt><dd>Subsequent calls to <code>randint</code> do not
-            depend on values produced by <code>g</code> before calling <code>reseed</code>.
-            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          depend on values produced by <code>g</code> before calling <code>reseed</code>.
+          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     <code>reseed</code> also resets any instances of <code>uniform_int_distribution</code>
-              used by <code>randint</code>.
+            used by <code>randint</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note></dd>
   </cxx-postconditions>
-        
+      
     </dl>
   </cxx-function>
-      
-    </section>
-  </cxx-section>
     
     </section>
   </cxx-section>

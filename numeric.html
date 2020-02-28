@@ -10,7 +10,7 @@
 namespace std::experimental {
 inline namespace fundamentals_v3 {
 
-  <cxx-ref insynopsis="" to="rand.util.randint"></cxx-ref>
+  <cxx-ref insynopsis="" to="rand.randint"></cxx-ref>
   template &lt;class IntType>
   IntType randint(IntType a, IntType b);
   void reseed();
@@ -19,37 +19,34 @@ inline namespace fundamentals_v3 {
 } // inline namespace fundamentals_v3
 } // namespace std::experimental</code></pre>
     </cxx-section>
-    <cxx-section id="rand.util">
-      <h1>Utilities</h1>
-      <cxx-section id="rand.util.randint">
-        <h1>Function template <code>randint</code></h1>
-        <p>A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
-          (<cxx-ref in="cxx" to="rand.predef"></cxx-ref>), initialized to an
-          unpredictable state, shall be maintained for each thread.</p>
-        <cxx-function>
-          <cxx-signature>template&lt;class IntType>
+    <cxx-section id="rand.randint">
+      <h1>Function template <code>randint</code></h1>
+      <p>A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
+        (<cxx-ref in="cxx" to="rand.predef"></cxx-ref>), initialized to an
+        unpredictable state, shall be maintained for each thread.</p>
+      <cxx-function>
+        <cxx-signature>template&lt;class IntType>
 IntType randint(IntType a, IntType b);</cxx-signature>
-          <cxx-requires><code>a</code> ≤ <code>b</code>.</cxx-requires>
-          <cxx-remarks>If the template argument does not meet the requirements
-            for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl"></cxx-ref>),
-            the program is ill-formed.</cxx-remarks>
-          <cxx-returns>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
-            produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType></code>
-            (<cxx-ref in="cxx" to="rand.dist.uni.int"></cxx-ref>) invoked with the
-            per-thread engine.</cxx-returns>
-        </cxx-function>
-        <cxx-function>
-          <cxx-signature>void reseed();</cxx-signature>
-          <cxx-signature>void reseed(default_random_engine::result_type value);</cxx-signature>
-          <cxx-effects>Let <code>g</code> be the per-thread engine. The first
-            form sets <code>g</code> to an unpredictable state. The second form
-            invokes <code>g.seed(value)</code>.</cxx-effects>
-          <cxx-postconditions>Subsequent calls to <code>randint</code> do not
-            depend on values produced by <code>g</code> before calling <code>reseed</code>.
-            <cxx-note><code>reseed</code> also resets any instances of <code>uniform_int_distribution</code>
-              used by <code>randint</code>.</cxx-note></cxx-postconditions>
-        </cxx-function>
-      </cxx-section>
+        <cxx-requires><code>a</code> ≤ <code>b</code>.</cxx-requires>
+        <cxx-remarks>If the template argument does not meet the requirements
+          for <code>IntType</code> (<cxx-ref in="cxx" to="rand.req.genl"></cxx-ref>),
+          the program is ill-formed.</cxx-remarks>
+        <cxx-returns>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
+          produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType></code>
+          (<cxx-ref in="cxx" to="rand.dist.uni.int"></cxx-ref>) invoked with the
+          per-thread engine.</cxx-returns>
+      </cxx-function>
+      <cxx-function>
+        <cxx-signature>void reseed();</cxx-signature>
+        <cxx-signature>void reseed(default_random_engine::result_type value);</cxx-signature>
+        <cxx-effects>Let <code>g</code> be the per-thread engine. The first
+          form sets <code>g</code> to an unpredictable state. The second form
+          invokes <code>g.seed(value)</code>.</cxx-effects>
+        <cxx-postconditions>Subsequent calls to <code>randint</code> do not
+          depend on values produced by <code>g</code> before calling <code>reseed</code>.
+          <cxx-note><code>reseed</code> also resets any instances of <code>uniform_int_distribution</code>
+            used by <code>randint</code>.</cxx-note></cxx-postconditions>
+      </cxx-function>
     </cxx-section>
   </cxx-section>
 </cxx-clause>
