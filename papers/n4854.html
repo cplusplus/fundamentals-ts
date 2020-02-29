@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4759 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      .quote { display: inline-block; clear: both; margin-left: 1ex;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1ex; }
+
+      .modify { border-left: thick solid #999; border-right: thick solid #999; padding: 0 1em; }
+      .insert { border-left: thick solid #0A0; border-right: thick solid #0A0; padding: 0 1em; }
+      .comment { color: #753; }
+      .comment a:link, .comment a:visited { color: #A51; }
+
+      table { border-top: 2px solid black; border-bottom: 2px solid black; border-collapse: collapse; margin: 3em auto; }
+      thead th { border-bottom: 2px solid black; }
+      th.sep { border-top: 2px solid black; border-bottom: 2px solid black; }
+      th, td { text-align: left; padding: 0; margin: 0; }
+      tr:first-child td { padding-top: 1ex; }
+      tr:last-child td { padding-bottom: 1ex; }
+
+      td.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                padding: 1em; line-height: 150%; }
+
+      table.x { caption-side: bottom; }
+      table.x caption { padding-top: 1ex; }
+      .x th, .x td { padding: 1ex 1ex 1ex 1ex; }
+      .x th:first-child, .x td:first-child { padding-left: 1ex; }
+      td.y { padding: 0 1em; }
+
+      p.skip { margin-top: 1em; }
+
+      ins { color: #090; }
+      del { color: #A00; }
+      ins code, del code { color: inherit; }
+
+      span.new { color: #080; font-weight: bold; }
+      span.old { color: #800; font-weight: bold; }
+
+      #toggleparams:checked ~ * .params { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>N4854 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2020-02-29</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <h2>Acknowledgements</h2>
+
+    <p>Thanks to Daniel Kr&uuml;gler for a very helpful review of the rebase motion application,
+      and indeed also for valuable early feedback on the proposal.</p>
+
+    <h2>New papers</h2>
+
+    <ul>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4853.html">N4853</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4840.html">N4840</a>.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4854.html">N4854</a>
+        is this Editor&rsquo;s Report.</li>
+    </ul>
+    
+    <h2>Change history and motions</h2>
+
+    <p>There has been one motion since the previous revision:</p>
+
+    <ul>
+      <li><strong>Prague 2020, LWG Poll 1:</strong>
+        <em>Apply the changes in <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/p2081r1.html">P2081R1</a>
+        (Rebase the Library Fundamentals v3 TS on C++20) to the Library Fundamentals TS working paper.</em></li>
+    </ul>
+    <p>This motion has been applied. A small number of additional changes that should have been
+      made but were omitted from the paper have also been applied.</p>
+    <p>The working draft currently makes reference to the C++20 DIS. We will editorially
+      update the reference to refer to the IS once that one is published, unless the
+      unlikely situation occurs that the TS is published before the IS.</p>
+
+    <h2>Editorial changes</h2>
+
+    <ul>
+      <li>A normative sentence that was missing from [scopeguard.uniqueres.members]
+        has been added; it was erroneously omitted in the original
+        <a href="https://github.com/cplusplus/fundamentals-ts/commit/5db4c668f1a73b209e45f158aabd3b5c96958b13">motion application</a>.
+      </li>
+      <li>In Clause [numeric], the subclause &ldquo;Utilities&rdquo; has been removed.
+        It was needlessly adding depth to a the structure of a very short clause.</li>
+      <li>Some minor presentational errors have been fixed.</li>
+    </ul>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit ad443f2557163d1ceede1f1625fd9f1f005a58eb
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 23:36:15 2020 +0000
+
+    [utility] Use standard Remarks wording to describe see-below content
+    
+    Moves the description of see-below content from a bare paragraph into
+    a Remarks: element (in the swap functions of propagate_const), and
+    changes the wording to match how we say this elsewhere.
+    
+    Drive-by: Add a missing "code" markup for a "noexcept" (in scope-guard).
+    </div>
+
+    <div class="code"><!--
+-->commit e8da941a9fce0fc5bfeabbf430daa2f0028c5a7a
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 23:22:32 2020 +0000
+
+    Rearrange specification elements into their canonical order
+    
+    The canonical order is given by [C++20, structure.specifications].
+    </div>
+
+    <div class="code"><!--
+-->commit 973da8b7f29d18cbd33958d511828345cbdd6d51
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 13:29:17 2020 +0000
+
+    P2081R1 Rebase the LFTSv3 on C++20, Part 3 of 3
+    
+    Updates function specification to use the new "Mandates" terminology,
+    and updates C++17-concepts to use "Cpp17Concept" names (and use of
+    "meets").
+    
+    Additional fixes:
+    * Includes four missing, trivial replacements of "Requires" to
+    &nbsp; "Preconditions" for propagate_const observers.
+    * Removes an additional "shall" from [alg.random.sample],
+    &nbsp; consistent with the analogous change to [alg.random.shuffle].
+    * Replaces two "satisfies" with "meets" in [scopeguard.uniqueres.overview]p3.
+    </div>
+
+    <div class="code"><!--
+-->commit d7a54ae5a5a073e56514445dc4f69b28b9609636
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 12:12:39 2020 +0000
+
+    P2081R1 Rebase the LFTSv3 on C++20, Part 2 of 3
+    
+    Use compact namespace notation where applicable.
+    </div>
+
+    <div class="code"><!--
+-->commit f27b3a2ecb6829fb27d8b23466ccee343e531ea4
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 11:56:49 2020 +0000
+
+    P2081R1 Rebase the LFTSv3 on C++20, Part 1 of 3
+    
+    * Update front matter
+    * Delete removed material
+    * Update the cross references to the IS
+    </div>
+
+    <div class="code"><!--
+-->commit c66de030ceb380e63faf23f3726cd8add022748c
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 16:05:12 2020 +0000
+
+    [general.feature.test, alg.random.shuffle] Fix stable names following b9c584b887ce383919263dac4448bafa118d024d
+    </div>
+
+    <div class="code"><!--
+-->commit 121e3aca31d482ae547584435faad3aae2cd6f6e
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 15:53:54 2020 +0000
+
+    [memory.resource.adaptor.mem] Fix cross reference
+    
+    The reference used to point inside the TS, but the rebase in
+    40bfeaf8d07afe05a3851f5ecf9a548825bcd427 (after memory_resource had
+    been moved to the IS) failed to update this reference.
+    </div>
+
+    <div class="code"><!--
+-->commit fc3a8fb148ee11a5e2feb7d660cdff2d69e94418
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 15:18:34 2020 +0000
+
+    [res.on.exception.handling] Fix missing semicolon on entity reference
+    </div>
+
+    <div class="code"><!--
+-->commit e0a42a69531455a881d14629f6c40f42ea272651
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 13:28:30 2020 +0000
+
+    [bower] Add new element "cxx-17concept" for Cpp17Concepts in C++20
+    </div>
+
+    <div class="code"><!--
+-->commit b9c584b887ce383919263dac4448bafa118d024d
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 12:24:20 2020 +0000
+
+    [rand] Remove needlessly deep "Utilities" subclause
+    </div>
+
+    <div class="code"><!--
+-->commit 470bf59a81aed6b67770fb9b7ca1dc6607fc5964
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 12:15:23 2020 +0000
+
+    [rand] Fix missing close tag and reindent
+    </div>
+
+    <div class="code"><!--
+-->commit ac936f2bacbf19fc9d45b24e6913a4839bfa9933
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Feb 28 11:25:59 2020 +0000
+
+    [scopeguard.uniqueres.members] Add missing sentence in Effects: of "reset".
+    
+    The sentence was erroneously omitted from the application of P0052R10 in 5db4c668f1a73b209e45f158aabd3b5c96958b13.
+    </div>
+
+  </body>
+</html>
