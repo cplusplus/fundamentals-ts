@@ -1807,9 +1807,9 @@ html   [segment], html   segment {
     <p id="mods.exception.requirements.1" para_num="1">The following changes to the library introduction allow the destructor
       of <code>scope_success</code> to throw exceptions.</p>
     <blockquote>
-      <p><b>20.5.4.8 Other functions [res.on.functions]</b></p>
-      <p>In certain cases […]</p>
-      <p>In particular, the effects are undefined in the following cases:</p>
+      <p><b>16.5.4.8 Other functions [res.on.functions]</b></p>
+      <p para_num="1">In certain cases […]</p>
+      <p para_num="2">In particular, the effects are undefined in the following cases:</p>
       <ul>
         <li>[…]</li>
         <li>if any replacement function or handler function or destructor operation
@@ -1819,15 +1819,15 @@ html   [segment], html   segment {
         <li>if an incomplete type (6.9) is used as a template argument when instantiating
           a template component, unless specifically allowed for that component.</li>
       </ul>
-      <p><b>20.5.5.12 Restrictions on exception handling [res.on.exception.handling]</b></p>
-      <p>[…]</p>
-      <p>Functions from the C standard library shall not throw exceptions<sup>183</sup>
-        except when such a function calls a program-supplied function that throws an exception.<sup>184</sup></p>
-      <p><ins>Unless otherwise specified, destructor</ins><del>Destructor</del>
+      <p><b>16.5.5.13 Restrictions on exception handling [res.on.exception.handling]</b></p>
+      <p para_num="1">[…]</p>
+      <p para_num="2">Functions from the C standard library shall not throw exceptions<sup>181</sup>
+        except when such a function calls a program-supplied function that throws an exception.<sup>182</sup></p>
+      <p para_num="3"><ins>Unless otherwise specified, destructor</ins><del>Destructor</del>
         operations defined in the C++ standard library shall not throw exceptions.
         Every destructor<ins> without an exception specification</ins> in the C++ standard library
         shall behave as if it had a non-throwing exception specification.</p>
-      <p>Functions defined in the C++ standard library […]</p>
+      <p para_num="4">Functions defined in the C++ standard library […]</p>
     </blockquote>
   
     </section>
@@ -1861,7 +1861,7 @@ html   [segment], html   segment {
     <dl>
       
         
-        <cxx-remarks>
+        <cxx-remarks para_num="1">
     
     <dt>Remarks:</dt><dd>
           Automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
@@ -1883,7 +1883,7 @@ html   [segment], html   segment {
 
       <p><b>20.10.8.2 uses-allocator construction [allocator.uses.construction]</b></p>
 
-      <p>
+      <p para_num="1">
         <dfn>Uses-allocator construction</dfn> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,
         using constructor arguments <code>v1, v2, ..., vN</code> of types <code>V1, V2, ..., VN</code>, respectively,
         and an allocator <code>alloc</code> of type <code>Alloc</code>,
