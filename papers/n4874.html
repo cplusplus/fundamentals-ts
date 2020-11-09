@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4759 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      .quote { display: inline-block; clear: both; margin-left: 1ex;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1ex; }
+
+      .modify { border-left: thick solid #999; border-right: thick solid #999; padding: 0 1em; }
+      .insert { border-left: thick solid #0A0; border-right: thick solid #0A0; padding: 0 1em; }
+      .comment { color: #753; }
+      .comment a:link, .comment a:visited { color: #A51; }
+
+      table { border-top: 2px solid black; border-bottom: 2px solid black; border-collapse: collapse; margin: 3em auto; }
+      thead th { border-bottom: 2px solid black; }
+      th.sep { border-top: 2px solid black; border-bottom: 2px solid black; }
+      th, td { text-align: left; padding: 0; margin: 0; }
+      tr:first-child td { padding-top: 1ex; }
+      tr:last-child td { padding-bottom: 1ex; }
+
+      td.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                padding: 1em; line-height: 150%; }
+
+      table.x { caption-side: bottom; }
+      table.x caption { padding-top: 1ex; }
+      .x th, .x td { padding: 1ex 1ex 1ex 1ex; }
+      .x th:first-child, .x td:first-child { padding-left: 1ex; }
+      td.y { padding: 0 1em; }
+
+      p.skip { margin-top: 1em; }
+
+      ins { color: #090; }
+      del { color: #A00; }
+      ins code, del code { color: inherit; }
+
+      span.new { color: #080; font-weight: bold; }
+      span.old { color: #800; font-weight: bold; }
+
+      #toggleparams:checked ~ * .params { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>N4874 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2020-11-09</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <h2>New papers</h2>
+
+    <ul>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4873.html">N4873</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4853.html">N4853</a>.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4874.html">N4874</a>
+        is this Editor&rsquo;s Report.</li>
+    </ul>
+    
+    <h2>Change history and motions</h2>
+
+    <p>There has been one motion since the previous revision:</p>
+
+    <ul>
+      <li><strong>Virtual Meeting November 2020, LWG Poll 1:</strong>
+        <em>Apply the changes for <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/p2236r0.html#3413">issue 3413</a>
+        in <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/p2236r0.html">P2236R0</a>
+        (C++ Standard Library Issues to be moved in Virtual Plenary, Nov. 2020) to the Library Fundamentals TS working paper.</em></li>
+    </ul>
+    <p>This motion has been applied. A reference to the IS has been updated editorially to refer to C++20 instead of C++17.</p>
+
+    <h2>Editorial changes</h2>
+
+    <p>Only minor cosmetic tweaks; see the commit history below for details.</p>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit 63829a0fa948ea0e47bf4d14944571e0ed568d40
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon Nov 9 22:03:10 2020 +0000
+
+    P2236R0 LWG3413 propagate_const's swap's noexcept specification
+    
+    Full issue title: "propagate_const's swap's noexcept specification
+    needs to be constrained and use a trait".
+    
+    The wording of the LWG issue was relative to the older working draft
+    N4840, which was based on C++17. References to the IS have been
+    updated editorially to refer to C++20.</div>
+
+    <div class="code"><!--
+-->commit 0b443d91372aaf1db8f1195e0d8d29fe2ebaa6ba
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon Nov 9 21:41:40 2020 +0000
+
+    [scopeguard] Move "equivalent to:" expressions onto new line
+    
+    This is both for internal consistency as well as for consistency with
+    the IS.</div>
+
+    <div class="code"><!--
+-->commit 463cd3c4de8695756ff72914233d9fc03497fc44
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon Nov 9 21:17:28 2020 +0000
+
+     [scopeguard.uniqueres.assign] Add missing space</div>
+
+    <div class="code"><!--
+-->commit d666dc28d31fed1cb7bd4d9def04bba7692d897d
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Mar 4 16:35:40 2020 +0000
+
+    [mods] Fix section numbers, add paragraph numbers
+    
+    Fixes a few section numbers and footnotes from the parts that are
+    quoted from the IS (accidentally omitted from the rebase), and it adds
+    paragraph numbers to the quoted paragraphs to aid orientation.</div>
+
+  </body>
+</html>
