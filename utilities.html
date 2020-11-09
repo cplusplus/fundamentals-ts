@@ -178,7 +178,7 @@ namespace std::experimental::inline fundamentals_v3 {
     constexpr element_type* get();
 
     <cxx-ref insynopsis to="propagate_const.modifiers"></cxx-ref>
-    constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);
+    constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);
 
   private:
     T t_; //<i>exposition only</i>
@@ -447,12 +447,13 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
       <h1><code>propagate_const</code> modifiers</h1>
 
       <cxx-function>
-        <cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);</cxx-signature>
+        <cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);</cxx-signature>
 
+        <cxx-preconditions>
+          Lvalues of type <code>T</code> are swappable
+          (<cxx-ref in="cxx" to="swappable.requirements"></cxx-ref>).
+        </cxx-preconditions>
         <cxx-effects><code>swap(t_, pt.t_)</code>.</cxx-effects>
-        <cxx-remarks>
-          The expression inside <code>noexcept</code> is <code>noexcept(swap(t_, pt.t_))</code>.
-        </cxx-remarks>
       </cxx-function>
     </cxx-section>
 
@@ -619,9 +620,10 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
         <cxx-signature>template &lt;class T&gt;
 constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);</cxx-signature>
 
-        <cxx-effects><code>pt1.swap(pt2)</code>.</cxx-effects>
-        <cxx-remarks>
-          The expression inside <code>noexcept</code> is <code>noexcept(pt1.swap(pt2))</code>.
+        <cxx-constraints><code>is_swappable_v&lt;T&gt;</code> is <code>true</code>.</cxx-constraints>
+        <cxx-effects>Equivalent to: <code>pt1.swap(pt2)</code>.</cxx-effects>
+        <cxx-remarks>The expression inside <code>noexcept</code> is equivalent to:
+          <pre><code>noexcept(pt1.swap(pt2))</code></pre>
         </cxx-remarks>
       </cxx-function>
     </cxx-section>

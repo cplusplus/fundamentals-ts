@@ -2134,7 +2134,7 @@ namespace std::experimental::inline fundamentals_v3 {
     constexpr element_type* get();
 
     <cxx-ref insynopsis="" to="propagate_const.modifiers">// <i><a title="propagate_const.modifiers" href="#propagate_const.modifiers">3.2.2.7</a>, propagate_const modifiers</i></cxx-ref>
-    constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);
+    constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);
 
   private:
     T t_; //<i>exposition only</i>
@@ -2636,22 +2636,23 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
 
       <cxx-function id="propagate_const.modifiers.1" para_num="1">
     
-    <pre><code><cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);</cxx-signature></code></pre>
 
     <dl>
       
         
 
-        <cxx-effects id="propagate_const.modifiers.2" para_num="2">
+        <cxx-preconditions id="propagate_const.modifiers.2" para_num="2">
+    
+    <dt>Preconditions:</dt><dd>
+          Lvalues of type <code>T</code> are swappable
+          (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.5.3.2</span></cxx-ref>).
+        </dd>
+  </cxx-preconditions>
+        <cxx-effects id="propagate_const.modifiers.3" para_num="3">
     
     <dt>Effects:</dt><dd><code>swap(t_, pt.t_)</code>.</dd>
   </cxx-effects>
-        <cxx-remarks id="propagate_const.modifiers.3" para_num="3">
-    
-    <dt>Remarks:</dt><dd>
-          The expression inside <code>noexcept</code> is <code>noexcept(swap(t_, pt.t_))</code>.
-        </dd>
-  </cxx-remarks>
       
     </dl>
   </cxx-function>
@@ -3059,14 +3060,18 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
       
         
 
-        <cxx-effects id="propagate_const.algorithms.2" para_num="2">
+        <cxx-constraints id="propagate_const.algorithms.2" para_num="2">
     
-    <dt>Effects:</dt><dd><code>pt1.swap(pt2)</code>.</dd>
+    <dt>Constraints:</dt><dd><code>is_swappable_v&lt;T&gt;</code> is <code>true</code>.</dd>
+  </cxx-constraints>
+        <cxx-effects id="propagate_const.algorithms.3" para_num="3">
+    
+    <dt>Effects:</dt><dd>Equivalent to: <code>pt1.swap(pt2)</code>.</dd>
   </cxx-effects>
-        <cxx-remarks id="propagate_const.algorithms.3" para_num="3">
+        <cxx-remarks id="propagate_const.algorithms.4" para_num="4">
     
-    <dt>Remarks:</dt><dd>
-          The expression inside <code>noexcept</code> is <code>noexcept(pt1.swap(pt2))</code>.
+    <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to:
+          <pre><code>noexcept(pt1.swap(pt2))</code></pre>
         </dd>
   </cxx-remarks>
       
