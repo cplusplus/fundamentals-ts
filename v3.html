@@ -987,7 +987,7 @@ html   [segment], html   segment {
             <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">????</span>-??-??</time></td></tr>
           
           
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4853.html">N4853</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4873.html">N4873</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
@@ -1807,9 +1807,9 @@ html   [segment], html   segment {
     <p id="mods.exception.requirements.1" para_num="1">The following changes to the library introduction allow the destructor
       of <code>scope_success</code> to throw exceptions.</p>
     <blockquote>
-      <p><b>20.5.4.8 Other functions [res.on.functions]</b></p>
-      <p>In certain cases […]</p>
-      <p>In particular, the effects are undefined in the following cases:</p>
+      <p><b>16.5.4.8 Other functions [res.on.functions]</b></p>
+      <p para_num="1">In certain cases […]</p>
+      <p para_num="2">In particular, the effects are undefined in the following cases:</p>
       <ul>
         <li>[…]</li>
         <li>if any replacement function or handler function or destructor operation
@@ -1819,15 +1819,15 @@ html   [segment], html   segment {
         <li>if an incomplete type (6.9) is used as a template argument when instantiating
           a template component, unless specifically allowed for that component.</li>
       </ul>
-      <p><b>20.5.5.12 Restrictions on exception handling [res.on.exception.handling]</b></p>
-      <p>[…]</p>
-      <p>Functions from the C standard library shall not throw exceptions<sup>183</sup>
-        except when such a function calls a program-supplied function that throws an exception.<sup>184</sup></p>
-      <p><ins>Unless otherwise specified, destructor</ins><del>Destructor</del>
+      <p><b>16.5.5.13 Restrictions on exception handling [res.on.exception.handling]</b></p>
+      <p para_num="1">[…]</p>
+      <p para_num="2">Functions from the C standard library shall not throw exceptions<sup>181</sup>
+        except when such a function calls a program-supplied function that throws an exception.<sup>182</sup></p>
+      <p para_num="3"><ins>Unless otherwise specified, destructor</ins><del>Destructor</del>
         operations defined in the C++ standard library shall not throw exceptions.
         Every destructor<ins> without an exception specification</ins> in the C++ standard library
         shall behave as if it had a non-throwing exception specification.</p>
-      <p>Functions defined in the C++ standard library […]</p>
+      <p para_num="4">Functions defined in the C++ standard library […]</p>
     </blockquote>
   
     </section>
@@ -1861,7 +1861,7 @@ html   [segment], html   segment {
     <dl>
       
         
-        <cxx-remarks>
+        <cxx-remarks para_num="1">
     
     <dt>Remarks:</dt><dd>
           Automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
@@ -1883,7 +1883,7 @@ html   [segment], html   segment {
 
       <p><b>20.10.8.2 uses-allocator construction [allocator.uses.construction]</b></p>
 
-      <p>
+      <p para_num="1">
         <dfn>Uses-allocator construction</dfn> with allocator <code>Alloc</code> refers to the construction of an object <code>obj</code> of type <code>T</code>,
         using constructor arguments <code>v1, v2, ..., vN</code> of types <code>V1, V2, ..., VN</code>, respectively,
         and an allocator <code>alloc</code> of type <code>Alloc</code>,
@@ -2134,7 +2134,7 @@ namespace std::experimental::inline fundamentals_v3 {
     constexpr element_type* get();
 
     <cxx-ref insynopsis="" to="propagate_const.modifiers">// <i><a title="propagate_const.modifiers" href="#propagate_const.modifiers">3.2.2.7</a>, propagate_const modifiers</i></cxx-ref>
-    constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);
+    constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);
 
   private:
     T t_; //<i>exposition only</i>
@@ -2636,22 +2636,23 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
 
       <cxx-function id="propagate_const.modifiers.1" para_num="1">
     
-    <pre><code><cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(<i>see below</i>);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);</cxx-signature></code></pre>
 
     <dl>
       
         
 
-        <cxx-effects id="propagate_const.modifiers.2" para_num="2">
+        <cxx-preconditions id="propagate_const.modifiers.2" para_num="2">
+    
+    <dt>Preconditions:</dt><dd>
+          Lvalues of type <code>T</code> are swappable
+          (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.5.3.2</span></cxx-ref>).
+        </dd>
+  </cxx-preconditions>
+        <cxx-effects id="propagate_const.modifiers.3" para_num="3">
     
     <dt>Effects:</dt><dd><code>swap(t_, pt.t_)</code>.</dd>
   </cxx-effects>
-        <cxx-remarks id="propagate_const.modifiers.3" para_num="3">
-    
-    <dt>Remarks:</dt><dd>
-          The expression inside <code>noexcept</code> is <code>noexcept(swap(t_, pt.t_))</code>.
-        </dd>
-  </cxx-remarks>
       
     </dl>
   </cxx-function>
@@ -3059,14 +3060,18 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
       
         
 
-        <cxx-effects id="propagate_const.algorithms.2" para_num="2">
+        <cxx-constraints id="propagate_const.algorithms.2" para_num="2">
     
-    <dt>Effects:</dt><dd><code>pt1.swap(pt2)</code>.</dd>
+    <dt>Constraints:</dt><dd><code>is_swappable_v&lt;T&gt;</code> is <code>true</code>.</dd>
+  </cxx-constraints>
+        <cxx-effects id="propagate_const.algorithms.3" para_num="3">
+    
+    <dt>Effects:</dt><dd>Equivalent to: <code>pt1.swap(pt2)</code>.</dd>
   </cxx-effects>
-        <cxx-remarks id="propagate_const.algorithms.3" para_num="3">
+        <cxx-remarks id="propagate_const.algorithms.4" para_num="4">
     
-    <dt>Remarks:</dt><dd>
-          The expression inside <code>noexcept</code> is <code>noexcept(pt1.swap(pt2))</code>.
+    <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to:
+          <pre><code>noexcept(pt1.swap(pt2))</code></pre>
         </dd>
   </cxx-remarks>
       
@@ -3619,8 +3624,8 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         <cxx-remarks id="scopeguard.exit.19" para_num="19">
     
     <dt>Remarks:</dt><dd>
-          The expression inside <code>noexcept</code> is equivalent to
-          <code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code>.
+          The expression inside <code>noexcept</code> is equivalent to:
+          <pre><code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code></pre>
         </dd>
   </cxx-remarks>
       
@@ -3984,8 +3989,8 @@ rhs.release();</code></pre>
           <cxx-remarks id="scopeguard.uniqueres.ctor.13" para_num="13">
     
     <dt>Remarks:</dt><dd>
-            The expression inside <code>noexcept</code> is equivalent to
-            <code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code>.
+            The expression inside <code>noexcept</code> is equivalent to:
+            <pre><code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code></pre>
           </dd>
   </cxx-remarks>
         
@@ -4031,7 +4036,7 @@ rhs.release();</code></pre>
 
         <cxx-function id="scopeguard.uniqueres.assign.1" para_num="1">
     
-    <pre><code><cxx-signature>unique_resource&amp;operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature></code></pre>
+    <pre><code><cxx-signature>unique_resource&amp; operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature></code></pre>
 
     <dl>
       
@@ -4094,8 +4099,8 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
           <cxx-remarks id="scopeguard.uniqueres.assign.5" para_num="5">
     
     <dt>Remarks:</dt><dd>
-            The expression inside <code>noexcept</code> is equivalent to
-            <code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code>.
+            The expression inside <code>noexcept</code> is equivalent to:
+            <pre><code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code></pre>
           </dd>
   </cxx-remarks>
         
