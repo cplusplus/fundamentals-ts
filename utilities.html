@@ -1217,7 +1217,7 @@ rhs.release();</code></pre>
         <h1>Assignment</h1>
 
         <cxx-function>
-          <cxx-signature>unique_resource&amp;operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature>
+          <cxx-signature>unique_resource&amp; operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature>
 
           <cxx-preconditions>
             If <code>is_nothrow_move_assignable_v&lt;R1&gt;</code> is <code>true</code>,
