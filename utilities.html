@@ -964,8 +964,8 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         </cxx-throws>
 
         <cxx-remarks>
-          The expression inside <code>noexcept</code> is equivalent to
-          <code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code>.
+          The expression inside <code>noexcept</code> is equivalent to:
+          <pre><code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code></pre>
         </cxx-remarks>
       </cxx-function>
 
@@ -1198,8 +1198,8 @@ rhs.release();</code></pre>
           </cxx-effects>
 
           <cxx-remarks>
-            The expression inside <code>noexcept</code> is equivalent to
-            <code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code>.
+            The expression inside <code>noexcept</code> is equivalent to:
+            <pre><code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code></pre>
           </cxx-remarks>
         </cxx-function>
       </cxx-section>
@@ -1262,8 +1262,8 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
           </cxx-throws>
 
           <cxx-remarks>
-            The expression inside <code>noexcept</code> is equivalent to
-            <code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code>.
+            The expression inside <code>noexcept</code> is equivalent to:
+            <pre><code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code></pre>
           </cxx-remarks>
         </cxx-function>
       </cxx-section>

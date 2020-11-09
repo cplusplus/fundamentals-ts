@@ -3619,8 +3619,8 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
         <cxx-remarks id="scopeguard.exit.19" para_num="19">
     
     <dt>Remarks:</dt><dd>
-          The expression inside <code>noexcept</code> is equivalent to
-          <code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code>.
+          The expression inside <code>noexcept</code> is equivalent to:
+          <pre><code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code></pre>
         </dd>
   </cxx-remarks>
       
@@ -3984,8 +3984,8 @@ rhs.release();</code></pre>
           <cxx-remarks id="scopeguard.uniqueres.ctor.13" para_num="13">
     
     <dt>Remarks:</dt><dd>
-            The expression inside <code>noexcept</code> is equivalent to
-            <code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code>.
+            The expression inside <code>noexcept</code> is equivalent to:
+            <pre><code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code></pre>
           </dd>
   </cxx-remarks>
         
@@ -4094,8 +4094,8 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
           <cxx-remarks id="scopeguard.uniqueres.assign.5" para_num="5">
     
     <dt>Remarks:</dt><dd>
-            The expression inside <code>noexcept</code> is equivalent to
-            <code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code>.
+            The expression inside <code>noexcept</code> is equivalent to:
+            <pre><code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code></pre>
           </dd>
   </cxx-remarks>
         
