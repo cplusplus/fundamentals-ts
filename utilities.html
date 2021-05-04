@@ -152,9 +152,9 @@ namespace std::experimental::inline fundamentals_v3 {
     propagate_const(const propagate_const&amp; p) = delete;
     constexpr propagate_const(propagate_const&amp;&amp; p) = default;
     template &lt;class U&gt;
-      <i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);
+      explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);
     template &lt;class U&gt;
-      <i>see below</i> constexpr propagate_const(U&amp;&amp; u);
+      explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);
 
     <cxx-ref insynopsis to="propagate_const.assignment"></cxx-ref>
     propagate_const&amp; operator=(const propagate_const&amp; p) = delete;
@@ -293,14 +293,9 @@ namespace std::experimental::inline fundamentals_v3 {
       <cxx-section id="propagate_const.ctor">
         <h1><code>propagate_const</code> constructors</h1>
 
-        <p>
-          <cxx-note>The following constructors are conditionally specified as
-            <code>explicit</code>.  This is typically implemented by declaring two such
-            constructors, of which at most one  participates in overload resolution.</cxx-note>
-        </p>
         <cxx-function>
           <cxx-signature>template &lt;class U&gt;
-<i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
+explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
 
           <cxx-constraints>
             <code>is_constructible_v&lt;T, U&gt;</code> is true.
@@ -310,15 +305,11 @@ namespace std::experimental::inline fundamentals_v3 {
             direct-non-list-initializing an object of type <code>T</code> with the
             expression <code>std::move(pu.t_)</code>.
           </cxx-effects>
-          <cxx-remarks>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </cxx-remarks>
         </cxx-function>
 
         <cxx-function>
           <cxx-signature>template &lt;class U&gt;
-<i>see below</i> constexpr propagate_const(U&amp;&amp; u);</cxx-signature>
+explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);</cxx-signature>
 
           <cxx-constraints>
             <code>is_constructible_v&lt;T, U&gt;</code> is true
@@ -329,10 +320,6 @@ namespace std::experimental::inline fundamentals_v3 {
             direct-non-list-initializing an object of type <code>T</code> with
             the expression <code>std::forward&lt;U&gt;(u)</code>.
           </cxx-effects>
-          <cxx-remarks>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </cxx-remarks>
         </cxx-function>
       </cxx-section>
 
