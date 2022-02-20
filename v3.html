@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-NOTE");document.createElement("CXX-EXAMPLE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-17CONCEPT");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-MANDATES");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-EDNOTE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-17CONCEPT");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-MANDATES");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-EDNOTE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -987,7 +987,7 @@ html   [segment], html   segment {
             <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">????</span>-??-??</time></td></tr>
           
           
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4873.html">N4873</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4908.html">N4908</a></cxx-revises></td></tr>
           
           
             <tr><th>Editor:</th><td><cxx-editor>
@@ -1495,18 +1495,13 @@ html   [segment], html   segment {
     of the referenced document (including any amendments) applies.</p>
 
     <ul>
-      <li>ISO/IEC 14882:—, <cite>Programming Languages — C++</cite>
+      <li>ISO/IEC 14882:2020, <cite>Programming Languages — C++</cite>
       </li>
     </ul>
 
-    <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    Under preparation. Stage at the time of publication: ISO/DIS 14882:2020.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-
-    <p id="general.references.2" para_num="2">ISO/IEC 14882:— is herein called the <dfn>C++ Standard</dfn>.
+    <p id="general.references.2" para_num="2">ISO/IEC 14882:2020 is herein called the <dfn>C++ Standard</dfn>.
     References to clauses within the C++ Standard are written as "C++20
-    §3.2". The library described in ISO/IEC 14882:— clauses 16–32 is
+    §3.2". The library described in ISO/IEC 14882:2020 clauses 16–32 is
     herein called the <dfn>C++ Standard Library</dfn>.</p>
 
     <p id="general.references.3" para_num="3">Unless otherwise specified, the whole of the C++ Standard's Library
@@ -1722,6 +1717,14 @@ html   [segment], html   segment {
         <td>
           <code>&lt;experimental/functional&gt;</code>,
           <code>&lt;experimental/utility&gt;</code></td>
+      </tr>
+      <tr>
+        <td>N3916</td>
+        <td>Polymorphic Memory Resources</td>
+        <td><cxx-ref to="memory.resource.syn"><a title="memory.resource.syn" href="#memory.resource.syn">5.4</a></cxx-ref></td>
+        <td><code>memory_resources</code></td>
+        <td>201803</td>
+        <td><code>&lt;experimental/memory_resouce&gt;</code></td>
       </tr>
       <tr>
         <td>N4282</td>
@@ -2108,9 +2111,9 @@ namespace std::experimental::inline fundamentals_v3 {
     propagate_const(const propagate_const&amp; p) = delete;
     constexpr propagate_const(propagate_const&amp;&amp; p) = default;
     template &lt;class U&gt;
-      <i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);
+      explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);
     template &lt;class U&gt;
-      <i>see below</i> constexpr propagate_const(U&amp;&amp; u);
+      explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);
 
     <cxx-ref insynopsis="" to="propagate_const.assignment">// <i><a title="propagate_const.assignment" href="#propagate_const.assignment">3.2.2.4</a>, propagate_const assignment</i></cxx-ref>
     propagate_const&amp; operator=(const propagate_const&amp; p) = delete;
@@ -2278,30 +2281,22 @@ namespace std::experimental::inline fundamentals_v3 {
       
         
 
-        <p id="propagate_const.ctor.1" para_num="1">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    The following constructors are conditionally specified as
-            <code>explicit</code>.  This is typically implemented by declaring two such
-            constructors, of which at most one  participates in overload resolution.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-        </p>
-        <cxx-function id="propagate_const.ctor.2" para_num="2">
+        <cxx-function id="propagate_const.ctor.1" para_num="1">
     
     <pre><code><cxx-signature>template &lt;class U&gt;
-<i>see below</i> constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature></code></pre>
+explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
       
           
 
-          <cxx-constraints id="propagate_const.ctor.3" para_num="3">
+          <cxx-constraints id="propagate_const.ctor.2" para_num="2">
     
     <dt>Constraints:</dt><dd>
             <code>is_constructible_v&lt;T, U&gt;</code> is true.
           </dd>
   </cxx-constraints>
-          <cxx-effects id="propagate_const.ctor.4" para_num="4">
+          <cxx-effects id="propagate_const.ctor.3" para_num="3">
     
     <dt>Effects:</dt><dd>
             Initializes <code>t_</code> as if
@@ -2309,34 +2304,27 @@ namespace std::experimental::inline fundamentals_v3 {
             expression <code>std::move(pu.t_)</code>.
           </dd>
   </cxx-effects>
-          <cxx-remarks id="propagate_const.ctor.5" para_num="5">
-    
-    <dt>Remarks:</dt><dd>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </dd>
-  </cxx-remarks>
         
     </dl>
   </cxx-function>
 
-        <cxx-function id="propagate_const.ctor.6" para_num="6">
+        <cxx-function id="propagate_const.ctor.4" para_num="4">
     
     <pre><code><cxx-signature>template &lt;class U&gt;
-<i>see below</i> constexpr propagate_const(U&amp;&amp; u);</cxx-signature></code></pre>
+explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);</cxx-signature></code></pre>
 
     <dl>
       
           
 
-          <cxx-constraints id="propagate_const.ctor.7" para_num="7">
+          <cxx-constraints id="propagate_const.ctor.5" para_num="5">
     
     <dt>Constraints:</dt><dd>
             <code>is_constructible_v&lt;T, U&gt;</code> is true
             and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
           </dd>
   </cxx-constraints>
-          <cxx-effects id="propagate_const.ctor.8" para_num="8">
+          <cxx-effects id="propagate_const.ctor.6" para_num="6">
     
     <dt>Effects:</dt><dd>
             Initializes <code>t_</code> as if
@@ -2344,13 +2332,6 @@ namespace std::experimental::inline fundamentals_v3 {
             the expression <code>std::forward&lt;U&gt;(u)</code>.
           </dd>
   </cxx-effects>
-          <cxx-remarks id="propagate_const.ctor.9" para_num="9">
-    
-    <dt>Remarks:</dt><dd>
-            The constructor is specified as <code>explicit</code> if and only if
-            <code>!is_convertible_v&lt;U&amp;&amp;, T&gt;.</code>
-          </dd>
-  </cxx-remarks>
         
     </dl>
   </cxx-function>
