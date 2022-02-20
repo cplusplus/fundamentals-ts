@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4909 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      .quote { display: inline-block; clear: both; margin-left: 1ex;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1ex; }
+
+      .modify { border-left: thick solid #999; border-right: thick solid #999; padding: 0 1em; }
+      .insert { border-left: thick solid #0A0; border-right: thick solid #0A0; padding: 0 1em; }
+      .comment { color: #753; }
+      .comment a:link, .comment a:visited { color: #A51; }
+
+      table { border-top: 2px solid black; border-bottom: 2px solid black; border-collapse: collapse; margin: 3em auto; }
+      thead th { border-bottom: 2px solid black; }
+      th.sep { border-top: 2px solid black; border-bottom: 2px solid black; }
+      th, td { text-align: left; padding: 0; margin: 0; }
+      tr:first-child td { padding-top: 1ex; }
+      tr:last-child td { padding-bottom: 1ex; }
+
+      td.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                padding: 1em; line-height: 150%; }
+
+      table.x { caption-side: bottom; }
+      table.x caption { padding-top: 1ex; }
+      .x th, .x td { padding: 1ex 1ex 1ex 1ex; }
+      .x th:first-child, .x td:first-child { padding-left: 1ex; }
+      td.y { padding: 0 1em; }
+
+      p.skip { margin-top: 1em; }
+
+      ins { color: #090; }
+      del { color: #A00; }
+      ins code, del code { color: inherit; }
+
+      span.new { color: #080; font-weight: bold; }
+      span.old { color: #800; font-weight: bold; }
+
+      #toggleparams:checked ~ * .params { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>N4909 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2022-02-20</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <h2>New papers</h2>
+
+    <ul>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4908.html">N4908</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4873.html">N4873</a>.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4909.html">N4909</a>
+        is this Editor&rsquo;s Report.</li>
+    </ul>
+
+    <h2>Change history and motions</h2>
+
+    <p>There has been one motion since the previous revision:</p>
+
+    <ul>
+      <li><strong>Virtual Meeting February 2022, LWG Poll 1:</strong>
+        <em>Apply the changes for <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2531r0.html#3649">issue 3649</a>
+        in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2531r0.html">P2531R0</a>
+        (C++ Standard Library Issues to be moved in Virtual Plenary, Feb. 2022) to the Library Fundamentals TS working paper.</em></li>
+    </ul>
+    <p>This motion has been applied.</p>
+
+    <h2>Editorial changes</h2>
+
+    <p>See the commit history below for details.</p>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit b162c345a5098b4e089530f09a745fad8007afe4
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon Feb 22 17:29:30 2021 +0000
+
+    [general] Update reference to ISO 14882:2020, which has now been published.</div>
+
+    <div class="code"><!--
+-->commit 29d58a56713d1e211d73dc6cd5f78147467d7c72
+Author: frederick-vs-ja &lt;de34@live.cn&gt;
+Date:   Tue May 4 21:04:14 2021 +0800
+
+    [propagate_const.ctor] Use conditional `explicit` instead of "see below" (#83)
+
+    Also remove redundant `&&`, which is implied by `is_convertible`.</div>
+
+  </body>
+</html>
