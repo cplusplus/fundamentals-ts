@@ -4069,7 +4069,12 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
           </dd>
   </cxx-effects>
 
-          <cxx-throws id="scopeguard.uniqueres.assign.4" para_num="4">
+          <cxx-returns id="scopeguard.uniqueres.assign.4" para_num="4">
+    
+    <dt>Returns:</dt><dd><code>*this</code>.</dd>
+  </cxx-returns>
+
+          <cxx-throws id="scopeguard.uniqueres.assign.5" para_num="5">
     
     <dt>Throws:</dt><dd>
             Any exception thrown during a copy-assignment of a member that
@@ -4077,7 +4082,7 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
           </dd>
   </cxx-throws>
 
-          <cxx-remarks id="scopeguard.uniqueres.assign.5" para_num="5">
+          <cxx-remarks id="scopeguard.uniqueres.assign.6" para_num="6">
     
     <dt>Remarks:</dt><dd>
             The expression inside <code>noexcept</code> is equivalent to:
