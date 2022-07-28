@@ -37,12 +37,15 @@ namespace std {
   <cxx-section id="func.wrap.func">
     <h1>Class template <code>function</code></h1>
 
-    <p>
-      The specification of all declarations within this sub-clause <cxx-ref to="func.wrap.func"></cxx-ref>
-      and its sub-clauses are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>,
-      unless explicitly specified otherwise. <cxx-note><code>std::experimental::function</code> uses
-      <code>std::bad_function_call</code>, there is no additional type <code>std::experimental::bad_function_call</code></cxx-note>.
-    </p>
+    <cxx-section id="func.wrap.func.overview">
+      <h1>Overview</h1>
+
+      <p>
+        The specification of all declarations within subclause <cxx-ref to="func.wrap.func"></cxx-ref>
+        are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>,
+        unless explicitly specified otherwise. <cxx-note><code>std::experimental::function</code> uses
+        <code>std::bad_function_call</code>, there is no additional type <code>std::experimental::bad_function_call</code></cxx-note>.
+      </p>
 
 <pre><code>namespace std {
   namespace experimental::inline fundamentals_v3 {
@@ -114,6 +117,8 @@ namespace std {
     : true_type { };
 
 } // namespace std</code></pre>
+
+    </cxx-section>
 
     <cxx-section id="func.wrap.func.con">
       <h1><code>function</code> construct/copy/destroy</h1>

@@ -1240,11 +1240,15 @@ html   [segment], html   segment {
         
           <ol>
             
-              <li><span class="marker">4.2.1</span><a href="#func.wrap.func.con">function construct/copy/destroy</a>
+              <li><span class="marker">4.2.1</span><a href="#func.wrap.func.overview">Overview</a>
         
       </li>
             
-              <li><span class="marker">4.2.2</span><a href="#func.wrap.func.mod">function modifiers</a>
+              <li><span class="marker">4.2.2</span><a href="#func.wrap.func.con">function construct/copy/destroy</a>
+        
+      </li>
+            
+              <li><span class="marker">4.2.3</span><a href="#func.wrap.func.mod">function modifiers</a>
         
       </li>
             
@@ -2189,7 +2193,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
           <p id="propagate_const.class_type_requirements.1" para_num="1">
             If <code>T</code> is class
-            type then it shall satisfy the following requirements. In this sub-clause
+            type then it shall satisfy the following requirements. In this subclause
             <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
             is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
             an object type.
@@ -4423,7 +4427,7 @@ namespace std::experimental::inline fundamentals_v3 {
       
 
       <p id="meta.trans.other.1" para_num="1">
-        This sub-clause contains templates that may be used to transform one type to another following some predefined rule.
+        This subclause contains templates that may be used to transform one type to another following some predefined rule.
       </p>
 
       <p id="meta.trans.other.2" para_num="2">
@@ -4715,15 +4719,23 @@ namespace std {
       
     
 
-    <p id="func.wrap.func.1" para_num="1">
-      The specification of all declarations within this sub-clause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref>
-      and its sub-clauses are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>,
-      unless explicitly specified otherwise. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    <cxx-section id="func.wrap.func.overview">
+    
+
+    <section>
+      <header><span class="section-number">4.2.1</span> <h1 data-bookmark-label="4.2.1 Overview">Overview</h1> <span style="float:right"><a href="#func.wrap.func.overview">[func.wrap.func.overview]</a></span></header>
+      
+      
+
+      <p id="func.wrap.func.overview.1" para_num="1">
+        The specification of all declarations within subclause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref>
+        are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>,
+        unless explicitly specified otherwise. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     <code>std::experimental::function</code> uses
-      <code>std::bad_function_call</code>, there is no additional type <code>std::experimental::bad_function_call</code>
+        <code>std::bad_function_call</code>, there is no additional type <code>std::experimental::bad_function_call</code>
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>.
-    </p>
+      </p>
 
 <pre><code>namespace std {
   namespace experimental::inline fundamentals_v3 {
@@ -4796,11 +4808,15 @@ namespace std {
 
 } // namespace std</code></pre>
 
+    
+    </section>
+  </cxx-section>
+
     <cxx-section id="func.wrap.func.con">
     
 
     <section>
-      <header><span class="section-number">4.2.1</span> <h1 data-bookmark-label="4.2.1 function construct/copy/destroy"><code>function</code> construct/copy/destroy</h1> <span style="float:right"><a href="#func.wrap.func.con">[func.wrap.func.con]</a></span></header>
+      <header><span class="section-number">4.2.2</span> <h1 data-bookmark-label="4.2.2 function construct/copy/destroy"><code>function</code> construct/copy/destroy</h1> <span style="float:right"><a href="#func.wrap.func.con">[func.wrap.func.con]</a></span></header>
       
       
 
@@ -4951,7 +4967,7 @@ namespace std {
     
 
     <section>
-      <header><span class="section-number">4.2.2</span> <h1 data-bookmark-label="4.2.2 function modifiers"><code>function</code> modifiers</h1> <span style="float:right"><a href="#func.wrap.func.mod">[func.wrap.func.mod]</a></span></header>
+      <header><span class="section-number">4.2.3</span> <h1 data-bookmark-label="4.2.3 function modifiers"><code>function</code> modifiers</h1> <span style="float:right"><a href="#func.wrap.func.mod">[func.wrap.func.mod]</a></span></header>
       
       
 
@@ -6150,8 +6166,8 @@ namespace std {
     
 
     <p id="futures.promise.1" para_num="1">
-      The specification of all declarations within this sub-clause <cxx-ref to="futures.promise"><a title="futures.promise" href="#futures.promise">7.2</a></cxx-ref>
-      and its sub-clauses are the same as the corresponding declarations,
+      The specification of all declarations within this subclause <cxx-ref to="futures.promise"><a title="futures.promise" href="#futures.promise">7.2</a></cxx-ref>
+      are the same as the corresponding declarations,
       as specified in <cxx-ref in="cxx" to="futures.promise">C++20 <span title="futures.promise">§32.9.6</span></cxx-ref>,
       unless explicitly specified otherwise.
     </p>
@@ -6214,8 +6230,8 @@ namespace std {
     
 
     <p id="futures.task.1" para_num="1">
-      The specification of all declarations within this sub-clause <cxx-ref to="futures.task"><a title="futures.task" href="#futures.task">7.3</a></cxx-ref>
-      and its sub-clauses are the same as the corresponding declarations,
+      The specification of all declarations within this subclause <cxx-ref to="futures.task"><a title="futures.task" href="#futures.task">7.3</a></cxx-ref>
+      are the same as the corresponding declarations,
       as specified in <cxx-ref in="cxx" to="futures.task">C++20 <span title="futures.task">§32.9.10</span></cxx-ref>,
       unless explicitly specified otherwise.
     </p>
