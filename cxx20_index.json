@@ -10,6 +10,7 @@
     "futures.promise": "32.9.6",
     "futures.task": "32.9.10",
     "library": "16",
+    "mem.res": "20.12",
     "mem.res.class": "20.12.2",
     "meta.rqmts": "20.15.1",
     "over.match.best": "12.4.3",
