@@ -194,7 +194,7 @@ namespace std::experimental::inline fundamentals_v3 {
       </cxx-section>
 
       <cxx-section id="propagate_const.requirements">
-        <h1><code>propagate_const</code> requirements on <code>T</code></h1>
+        <h1><code>propagate_const</code> general requirements on <code>T</code></h1>
 
         <p>
           <code>T</code> shall be an object pointer type or a class type for which
@@ -210,84 +210,85 @@ namespace std::experimental::inline fundamentals_v3 {
           <cxx-note><code>propagate_const&lt;const int*&gt;</code> is well-formed</cxx-note>
         </p>
 
-        <cxx-section id="propagate_const.class_type_requirements">
-          <h1><code>propagate_const</code> requirements on class type <code>T</code></h1>
+      </cxx-section>
 
-          <p>
-            If <code>T</code> is class
-            type then it shall satisfy the following requirements. In this subclause
-            <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
-            is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
-            an object type.
-          </p>
+      <cxx-section id="propagate_const.class_type_requirements">
+        <h1><code>propagate_const</code> requirements on class type <code>T</code></h1>
 
-          <p>
-            <code>T</code> and <code>const T</code> shall be contextually convertible to <code>bool</code>.
-          </p>
-          <p>If <code>T</code> is implicitly convertible to <code>element_type*</code>,
-            <code>(element_type*)t == t.get()</code> shall be <code>true</code>.
-          </p>
-          <p>
-            If <code>const T</code> is implicitly convertible to <code>const element_type*</code>,
-            <code>(const element_type*)ct == ct.get()</code> shall be <code>true</code>.
-          </p>
+        <p>
+          If <code>T</code> is class
+          type then it shall satisfy the following requirements. In this subclause
+          <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
+          is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
+          an object type.
+        </p>
 
-          <table is="cxx-table">
-            <caption>Requirements on class types <code>T</code></caption>
-            <tr>
-              <th>Expression</th>
-              <th>Return type</th>
-              <th>Pre-conditions</th>
-              <th>Operational semantics</th>
-            </tr>
-            <tr>
-              <td><code>t.get()</code></td>
-              <td><code>element_type*</code></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><code>ct.get()</code></td>
-              <td><code>const element_type*</code> or <code>element_type*</code></td>
-              <td><code></code></td>
-              <td><code>t.get() == ct.get()</code>.</td>
-            </tr>
-            <tr>
-              <td><code>*t</code></td>
-              <td><code>element_type&amp;</code></td>
-              <td><code>t.get() != nullptr</code></td>
-              <td><code>*t</code> refers to the same object as <code>*(t.get())</code></td>
-            </tr>
-            <tr>
-              <td><code>*ct</code></td>
-              <td><code>const element_type&amp;</code> or <code>element_type&amp;</code></td>
-              <td><code>ct.get() != nullptr</code></td>
-              <td><code>*ct</code> refers to the same object as <code>*(ct.get())</code></td>
-            </tr>
-            <tr>
-              <td><code>t.operator-&gt;()</code></td>
-              <td><code>element_type*</code></td>
-              <td><code>t.get() != nullptr</code></td>
-              <td><code>t.operator-&gt;() == t.get()</code></td></tr>
-            <tr>
-              <td><code>ct.operator-&gt;()</code></td>
-              <td><code>const element_type*</code> or <code>element_type*</code></td>
-              <td><code>ct.get() != nullptr</code></td>
-              <td><code>ct.operator-&gt;() == ct.get()</code></td></tr>
-            <tr>
-              <td><code>(bool)t</code></td>
-              <td><code>bool</code></td>
-              <td><code></code></td>
-              <td><code>(bool)t</code> is equivalent to <code>t.get() != nullptr</code></td>
-            </tr>
-            <tr>
-              <td><code>(bool)ct</code></td>
-              <td><code>bool</code></td>
-              <td><code></code></td>
-              <td><code>(bool)ct</code> is equivalent to <code>ct.get() != nullptr</code></td>
-            </tr>
-          </table>
-        </cxx-section>
+        <p>
+          <code>T</code> and <code>const T</code> shall be contextually convertible to <code>bool</code>.
+        </p>
+        <p>If <code>T</code> is implicitly convertible to <code>element_type*</code>,
+          <code>(element_type*)t == t.get()</code> shall be <code>true</code>.
+        </p>
+        <p>
+          If <code>const T</code> is implicitly convertible to <code>const element_type*</code>,
+          <code>(const element_type*)ct == ct.get()</code> shall be <code>true</code>.
+        </p>
+
+        <table is="cxx-table">
+          <caption>Requirements on class types <code>T</code></caption>
+          <tr>
+            <th>Expression</th>
+            <th>Return type</th>
+            <th>Pre-conditions</th>
+            <th>Operational semantics</th>
+          </tr>
+          <tr>
+            <td><code>t.get()</code></td>
+            <td><code>element_type*</code></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>ct.get()</code></td>
+            <td><code>const element_type*</code> or <code>element_type*</code></td>
+            <td><code></code></td>
+            <td><code>t.get() == ct.get()</code>.</td>
+          </tr>
+          <tr>
+            <td><code>*t</code></td>
+            <td><code>element_type&amp;</code></td>
+            <td><code>t.get() != nullptr</code></td>
+            <td><code>*t</code> refers to the same object as <code>*(t.get())</code></td>
+          </tr>
+          <tr>
+            <td><code>*ct</code></td>
+            <td><code>const element_type&amp;</code> or <code>element_type&amp;</code></td>
+            <td><code>ct.get() != nullptr</code></td>
+            <td><code>*ct</code> refers to the same object as <code>*(ct.get())</code></td>
+          </tr>
+          <tr>
+            <td><code>t.operator-&gt;()</code></td>
+            <td><code>element_type*</code></td>
+            <td><code>t.get() != nullptr</code></td>
+            <td><code>t.operator-&gt;() == t.get()</code></td></tr>
+          <tr>
+            <td><code>ct.operator-&gt;()</code></td>
+            <td><code>const element_type*</code> or <code>element_type*</code></td>
+            <td><code>ct.get() != nullptr</code></td>
+            <td><code>ct.operator-&gt;() == ct.get()</code></td></tr>
+          <tr>
+            <td><code>(bool)t</code></td>
+            <td><code>bool</code></td>
+            <td><code></code></td>
+            <td><code>(bool)t</code> is equivalent to <code>t.get() != nullptr</code></td>
+          </tr>
+          <tr>
+            <td><code>(bool)ct</code></td>
+            <td><code>bool</code></td>
+            <td><code></code></td>
+            <td><code>(bool)ct</code> is equivalent to <code>ct.get() != nullptr</code></td>
+          </tr>
+        </table>
       </cxx-section>
 
       <cxx-section id="propagate_const.ctor">

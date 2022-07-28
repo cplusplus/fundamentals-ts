@@ -1096,55 +1096,51 @@ html   [segment], html   segment {
         
       </li>
             
-              <li><span class="marker">3.2.2.2</span><a href="#propagate_const.requirements">propagate_const requirements on T</a>
-        
-          <ol>
-            
-              <li><span class="marker">3.2.2.2.1</span><a href="#propagate_const.class_type_requirements">propagate_const requirements on class type T</a>
+              <li><span class="marker">3.2.2.2</span><a href="#propagate_const.requirements">propagate_const general requirements on T</a>
         
       </li>
             
-          </ol>
+              <li><span class="marker">3.2.2.3</span><a href="#propagate_const.class_type_requirements">propagate_const requirements on class type T</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.3</span><a href="#propagate_const.ctor">propagate_const constructors</a>
+              <li><span class="marker">3.2.2.4</span><a href="#propagate_const.ctor">propagate_const constructors</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.4</span><a href="#propagate_const.assignment">propagate_const assignment</a>
+              <li><span class="marker">3.2.2.5</span><a href="#propagate_const.assignment">propagate_const assignment</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.5</span><a href="#propagate_const.const_observers">propagate_const const observers</a>
+              <li><span class="marker">3.2.2.6</span><a href="#propagate_const.const_observers">propagate_const const observers</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.6</span><a href="#propagate_const.non_const_observers">propagate_const non-const observers</a>
+              <li><span class="marker">3.2.2.7</span><a href="#propagate_const.non_const_observers">propagate_const non-const observers</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.7</span><a href="#propagate_const.modifiers">propagate_const modifiers</a>
+              <li><span class="marker">3.2.2.8</span><a href="#propagate_const.modifiers">propagate_const modifiers</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.8</span><a href="#propagate_const.relational">propagate_const relational operators</a>
+              <li><span class="marker">3.2.2.9</span><a href="#propagate_const.relational">propagate_const relational operators</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.9</span><a href="#propagate_const.algorithms">propagate_const specialized algorithms</a>
+              <li><span class="marker">3.2.2.10</span><a href="#propagate_const.algorithms">propagate_const specialized algorithms</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.10</span><a href="#propagate_const.underlying">propagate_const underlying pointer access</a>
+              <li><span class="marker">3.2.2.11</span><a href="#propagate_const.underlying">propagate_const underlying pointer access</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.11</span><a href="#propagate_const.hash">propagate_const hash support</a>
+              <li><span class="marker">3.2.2.12</span><a href="#propagate_const.hash">propagate_const hash support</a>
         
       </li>
             
-              <li><span class="marker">3.2.2.12</span><a href="#propagate_const.comparison_function_objects">propagate_const comparison function objects</a>
+              <li><span class="marker">3.2.2.13</span><a href="#propagate_const.comparison_function_objects">propagate_const comparison function objects</a>
         
       </li>
             
@@ -1996,7 +1992,7 @@ namespace std::experimental::inline fundamentals_v3 {
     <cxx-ref insynopsis="" to="propagate_const.overview">// <i><a title="propagate_const.overview" href="#propagate_const.overview">3.2.2.1</a>, Class template propagate_const overview</i></cxx-ref>
     template &lt;class T&gt; class propagate_const;
 
-    <cxx-ref insynopsis="" to="propagate_const.relational">// <i><a title="propagate_const.relational" href="#propagate_const.relational">3.2.2.8</a>, propagate_const relational operators</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.relational">// <i><a title="propagate_const.relational" href="#propagate_const.relational">3.2.2.9</a>, propagate_const relational operators</i></cxx-ref>
     template &lt;class T&gt;
       constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);
     template &lt;class T&gt;
@@ -2046,11 +2042,11 @@ namespace std::experimental::inline fundamentals_v3 {
     template &lt;class T, class U&gt;
       constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
 
-    <cxx-ref insynopsis="" to="propagate_const.algorithms">// <i><a title="propagate_const.algorithms" href="#propagate_const.algorithms">3.2.2.9</a>, propagate_const specialized algorithms</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.algorithms">// <i><a title="propagate_const.algorithms" href="#propagate_const.algorithms">3.2.2.10</a>, propagate_const specialized algorithms</i></cxx-ref>
     template &lt;class T&gt;
       constexpr void swap(propagate_const&lt;T&gt;&amp; pt, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);
 
-    <cxx-ref insynopsis="" to="propagate_const.underlying">// <i><a title="propagate_const.underlying" href="#propagate_const.underlying">3.2.2.10</a>, propagate_const underlying pointer access</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.underlying">// <i><a title="propagate_const.underlying" href="#propagate_const.underlying">3.2.2.11</a>, propagate_const underlying pointer access</i></cxx-ref>
     template &lt;class T&gt;
       constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept;
     template &lt;class T&gt;
@@ -2058,12 +2054,12 @@ namespace std::experimental::inline fundamentals_v3 {
 
   } // namespace experimental::inline fundamentals_v3
 
-  <cxx-ref insynopsis="" to="propagate_const.hash">// <i><a title="propagate_const.hash" href="#propagate_const.hash">3.2.2.11</a>, propagate_const hash support</i></cxx-ref>
+  <cxx-ref insynopsis="" to="propagate_const.hash">// <i><a title="propagate_const.hash" href="#propagate_const.hash">3.2.2.12</a>, propagate_const hash support</i></cxx-ref>
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt;
     struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
 
-  <cxx-ref insynopsis="" to="propagate_const.comparison_function_objects">// <i><a title="propagate_const.comparison_function_objects" href="#propagate_const.comparison_function_objects">3.2.2.12</a>, propagate_const comparison function objects</i></cxx-ref>
+  <cxx-ref insynopsis="" to="propagate_const.comparison_function_objects">// <i><a title="propagate_const.comparison_function_objects" href="#propagate_const.comparison_function_objects">3.2.2.13</a>, propagate_const comparison function objects</i></cxx-ref>
   template &lt;class T&gt; struct equal_to;
   template &lt;class T&gt;
     struct equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
@@ -2110,7 +2106,7 @@ namespace std::experimental::inline fundamentals_v3 {
   public:
     using element_type = remove_reference_t&lt;decltype(*declval&lt;T&amp;&gt;())&gt;;
 
-    <cxx-ref insynopsis="" to="propagate_const.ctor">// <i><a title="propagate_const.ctor" href="#propagate_const.ctor">3.2.2.3</a>, propagate_const constructors</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.ctor">// <i><a title="propagate_const.ctor" href="#propagate_const.ctor">3.2.2.4</a>, propagate_const constructors</i></cxx-ref>
     constexpr propagate_const() = default;
     propagate_const(const propagate_const&amp; p) = delete;
     constexpr propagate_const(propagate_const&amp;&amp; p) = default;
@@ -2119,7 +2115,7 @@ namespace std::experimental::inline fundamentals_v3 {
     template &lt;class U&gt;
       explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);
 
-    <cxx-ref insynopsis="" to="propagate_const.assignment">// <i><a title="propagate_const.assignment" href="#propagate_const.assignment">3.2.2.4</a>, propagate_const assignment</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.assignment">// <i><a title="propagate_const.assignment" href="#propagate_const.assignment">3.2.2.5</a>, propagate_const assignment</i></cxx-ref>
     propagate_const&amp; operator=(const propagate_const&amp; p) = delete;
     constexpr propagate_const&amp; operator=(propagate_const&amp;&amp; p) = default;
     template &lt;class U&gt;
@@ -2127,20 +2123,20 @@ namespace std::experimental::inline fundamentals_v3 {
     template &lt;class U&gt;
       constexpr propagate_const&amp; operator=(U&amp;&amp; u);
 
-    <cxx-ref insynopsis="" to="propagate_const.const_observers">// <i><a title="propagate_const.const_observers" href="#propagate_const.const_observers">3.2.2.5</a>, propagate_const const observers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.const_observers">// <i><a title="propagate_const.const_observers" href="#propagate_const.const_observers">3.2.2.6</a>, propagate_const const observers</i></cxx-ref>
     explicit constexpr operator bool() const;
     constexpr const element_type* operator-&gt;() const;
     constexpr operator const element_type*() const; // <i>Not always defined</i>
     constexpr const element_type&amp; operator*() const;
     constexpr const element_type* get() const;
 
-    <cxx-ref insynopsis="" to="propagate_const.non_const_observers">// <i><a title="propagate_const.non_const_observers" href="#propagate_const.non_const_observers">3.2.2.6</a>, propagate_const non-const observers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.non_const_observers">// <i><a title="propagate_const.non_const_observers" href="#propagate_const.non_const_observers">3.2.2.7</a>, propagate_const non-const observers</i></cxx-ref>
     constexpr element_type* operator-&gt;();
     constexpr operator element_type*(); // <i>Not always defined</i>
     constexpr element_type&amp; operator*();
     constexpr element_type* get();
 
-    <cxx-ref insynopsis="" to="propagate_const.modifiers">// <i><a title="propagate_const.modifiers" href="#propagate_const.modifiers">3.2.2.7</a>, propagate_const modifiers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.modifiers">// <i><a title="propagate_const.modifiers" href="#propagate_const.modifiers">3.2.2.8</a>, propagate_const modifiers</i></cxx-ref>
     constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);
 
   private:
@@ -2162,7 +2158,7 @@ namespace std::experimental::inline fundamentals_v3 {
     
 
     <section>
-      <header><span class="section-number">3.2.2.2</span> <h1 data-bookmark-label="3.2.2.2 propagate_const requirements on T"><code>propagate_const</code> requirements on <code>T</code></h1> <span style="float:right"><a href="#propagate_const.requirements">[propagate_const.requirements]</a></span></header>
+      <header><span class="section-number">3.2.2.2</span> <h1 data-bookmark-label="3.2.2.2 propagate_const general requirements on T"><code>propagate_const</code> general requirements on <code>T</code></h1> <span style="float:right"><a href="#propagate_const.requirements">[propagate_const.requirements]</a></span></header>
       
         
 
@@ -2183,96 +2179,97 @@ namespace std::experimental::inline fundamentals_v3 {
   </cxx-note>
         </p>
 
-        <cxx-section id="propagate_const.class_type_requirements">
+      
+    </section>
+  </cxx-section>
+
+      <cxx-section id="propagate_const.class_type_requirements">
     
 
     <section>
-      <header><span class="section-number">3.2.2.2.1</span> <h1 data-bookmark-label="3.2.2.2.1 propagate_const requirements on class type T"><code>propagate_const</code> requirements on class type <code>T</code></h1> <span style="float:right"><a href="#propagate_const.class_type_requirements">[propagate_const.class_type_requirements]</a></span></header>
+      <header><span class="section-number">3.2.2.3</span> <h1 data-bookmark-label="3.2.2.3 propagate_const requirements on class type T"><code>propagate_const</code> requirements on class type <code>T</code></h1> <span style="float:right"><a href="#propagate_const.class_type_requirements">[propagate_const.class_type_requirements]</a></span></header>
       
-          
+        
 
-          <p id="propagate_const.class_type_requirements.1" para_num="1">
-            If <code>T</code> is class
-            type then it shall satisfy the following requirements. In this subclause
-            <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
-            is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
-            an object type.
-          </p>
+        <p id="propagate_const.class_type_requirements.1" para_num="1">
+          If <code>T</code> is class
+          type then it shall satisfy the following requirements. In this subclause
+          <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
+          is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
+          an object type.
+        </p>
 
-          <p id="propagate_const.class_type_requirements.2" para_num="2">
-            <code>T</code> and <code>const T</code> shall be contextually convertible to <code>bool</code>.
-          </p>
-          <p id="propagate_const.class_type_requirements.3" para_num="3">If <code>T</code> is implicitly convertible to <code>element_type*</code>,
-            <code>(element_type*)t == t.get()</code> shall be <code>true</code>.
-          </p>
-          <p id="propagate_const.class_type_requirements.4" para_num="4">
-            If <code>const T</code> is implicitly convertible to <code>const element_type*</code>,
-            <code>(const element_type*)ct == ct.get()</code> shall be <code>true</code>.
-          </p>
+        <p id="propagate_const.class_type_requirements.2" para_num="2">
+          <code>T</code> and <code>const T</code> shall be contextually convertible to <code>bool</code>.
+        </p>
+        <p id="propagate_const.class_type_requirements.3" para_num="3">If <code>T</code> is implicitly convertible to <code>element_type*</code>,
+          <code>(element_type*)t == t.get()</code> shall be <code>true</code>.
+        </p>
+        <p id="propagate_const.class_type_requirements.4" para_num="4">
+          If <code>const T</code> is implicitly convertible to <code>const element_type*</code>,
+          <code>(const element_type*)ct == ct.get()</code> shall be <code>true</code>.
+        </p>
 
-          <table is="cxx-table">
+        <table is="cxx-table">
     
 
     <caption>Table 3 — <wbr><span>Requirements on class types <code>T</code></span></caption>
     
-            
-            <tbody><tr>
-              <th>Expression</th>
-              <th>Return type</th>
-              <th>Pre-conditions</th>
-              <th>Operational semantics</th>
-            </tr>
-            <tr>
-              <td><code>t.get()</code></td>
-              <td><code>element_type*</code></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><code>ct.get()</code></td>
-              <td><code>const element_type*</code> or <code>element_type*</code></td>
-              <td><code></code></td>
-              <td><code>t.get() == ct.get()</code>.</td>
-            </tr>
-            <tr>
-              <td><code>*t</code></td>
-              <td><code>element_type&amp;</code></td>
-              <td><code>t.get() != nullptr</code></td>
-              <td><code>*t</code> refers to the same object as <code>*(t.get())</code></td>
-            </tr>
-            <tr>
-              <td><code>*ct</code></td>
-              <td><code>const element_type&amp;</code> or <code>element_type&amp;</code></td>
-              <td><code>ct.get() != nullptr</code></td>
-              <td><code>*ct</code> refers to the same object as <code>*(ct.get())</code></td>
-            </tr>
-            <tr>
-              <td><code>t.operator-&gt;()</code></td>
-              <td><code>element_type*</code></td>
-              <td><code>t.get() != nullptr</code></td>
-              <td><code>t.operator-&gt;() == t.get()</code></td></tr>
-            <tr>
-              <td><code>ct.operator-&gt;()</code></td>
-              <td><code>const element_type*</code> or <code>element_type*</code></td>
-              <td><code>ct.get() != nullptr</code></td>
-              <td><code>ct.operator-&gt;() == ct.get()</code></td></tr>
-            <tr>
-              <td><code>(bool)t</code></td>
-              <td><code>bool</code></td>
-              <td><code></code></td>
-              <td><code>(bool)t</code> is equivalent to <code>t.get() != nullptr</code></td>
-            </tr>
-            <tr>
-              <td><code>(bool)ct</code></td>
-              <td><code>bool</code></td>
-              <td><code></code></td>
-              <td><code>(bool)ct</code> is equivalent to <code>ct.get() != nullptr</code></td>
-            </tr>
-          </tbody>
+          
+          <tbody><tr>
+            <th>Expression</th>
+            <th>Return type</th>
+            <th>Pre-conditions</th>
+            <th>Operational semantics</th>
+          </tr>
+          <tr>
+            <td><code>t.get()</code></td>
+            <td><code>element_type*</code></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>ct.get()</code></td>
+            <td><code>const element_type*</code> or <code>element_type*</code></td>
+            <td><code></code></td>
+            <td><code>t.get() == ct.get()</code>.</td>
+          </tr>
+          <tr>
+            <td><code>*t</code></td>
+            <td><code>element_type&amp;</code></td>
+            <td><code>t.get() != nullptr</code></td>
+            <td><code>*t</code> refers to the same object as <code>*(t.get())</code></td>
+          </tr>
+          <tr>
+            <td><code>*ct</code></td>
+            <td><code>const element_type&amp;</code> or <code>element_type&amp;</code></td>
+            <td><code>ct.get() != nullptr</code></td>
+            <td><code>*ct</code> refers to the same object as <code>*(ct.get())</code></td>
+          </tr>
+          <tr>
+            <td><code>t.operator-&gt;()</code></td>
+            <td><code>element_type*</code></td>
+            <td><code>t.get() != nullptr</code></td>
+            <td><code>t.operator-&gt;() == t.get()</code></td></tr>
+          <tr>
+            <td><code>ct.operator-&gt;()</code></td>
+            <td><code>const element_type*</code> or <code>element_type*</code></td>
+            <td><code>ct.get() != nullptr</code></td>
+            <td><code>ct.operator-&gt;() == ct.get()</code></td></tr>
+          <tr>
+            <td><code>(bool)t</code></td>
+            <td><code>bool</code></td>
+            <td><code></code></td>
+            <td><code>(bool)t</code> is equivalent to <code>t.get() != nullptr</code></td>
+          </tr>
+          <tr>
+            <td><code>(bool)ct</code></td>
+            <td><code>bool</code></td>
+            <td><code></code></td>
+            <td><code>(bool)ct</code> is equivalent to <code>ct.get() != nullptr</code></td>
+          </tr>
+        </tbody>
   </table>
-        
-    </section>
-  </cxx-section>
       
     </section>
   </cxx-section>
@@ -2281,7 +2278,7 @@ namespace std::experimental::inline fundamentals_v3 {
     
 
     <section>
-      <header><span class="section-number">3.2.2.3</span> <h1 data-bookmark-label="3.2.2.3 propagate_const constructors"><code>propagate_const</code> constructors</h1> <span style="float:right"><a href="#propagate_const.ctor">[propagate_const.ctor]</a></span></header>
+      <header><span class="section-number">3.2.2.4</span> <h1 data-bookmark-label="3.2.2.4 propagate_const constructors"><code>propagate_const</code> constructors</h1> <span style="float:right"><a href="#propagate_const.ctor">[propagate_const.ctor]</a></span></header>
       
         
 
@@ -2347,7 +2344,7 @@ explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u)
     
 
     <section>
-      <header><span class="section-number">3.2.2.4</span> <h1 data-bookmark-label="3.2.2.4 propagate_const assignment"><code>propagate_const</code> assignment</h1> <span style="float:right"><a href="#propagate_const.assignment">[propagate_const.assignment]</a></span></header>
+      <header><span class="section-number">3.2.2.5</span> <h1 data-bookmark-label="3.2.2.5 propagate_const assignment"><code>propagate_const</code> assignment</h1> <span style="float:right"><a href="#propagate_const.assignment">[propagate_const.assignment]</a></span></header>
       
         
 
@@ -2413,7 +2410,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
     
 
     <section>
-      <header><span class="section-number">3.2.2.5</span> <h1 data-bookmark-label="3.2.2.5 propagate_const const observers"><code>propagate_const</code> const observers</h1> <span style="float:right"><a href="#propagate_const.const_observers">[propagate_const.const_observers]</a></span></header>
+      <header><span class="section-number">3.2.2.6</span> <h1 data-bookmark-label="3.2.2.6 propagate_const const observers"><code>propagate_const</code> const observers</h1> <span style="float:right"><a href="#propagate_const.const_observers">[propagate_const.const_observers]</a></span></header>
       
         
 
@@ -2522,7 +2519,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
     
 
     <section>
-      <header><span class="section-number">3.2.2.6</span> <h1 data-bookmark-label="3.2.2.6 propagate_const non-const observers"><code>propagate_const</code> non-const observers</h1> <span style="float:right"><a href="#propagate_const.non_const_observers">[propagate_const.non_const_observers]</a></span></header>
+      <header><span class="section-number">3.2.2.7</span> <h1 data-bookmark-label="3.2.2.7 propagate_const non-const observers"><code>propagate_const</code> non-const observers</h1> <span style="float:right"><a href="#propagate_const.non_const_observers">[propagate_const.non_const_observers]</a></span></header>
       
       
 
@@ -2615,7 +2612,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
     
 
     <section>
-      <header><span class="section-number">3.2.2.7</span> <h1 data-bookmark-label="3.2.2.7 propagate_const modifiers"><code>propagate_const</code> modifiers</h1> <span style="float:right"><a href="#propagate_const.modifiers">[propagate_const.modifiers]</a></span></header>
+      <header><span class="section-number">3.2.2.8</span> <h1 data-bookmark-label="3.2.2.8 propagate_const modifiers"><code>propagate_const</code> modifiers</h1> <span style="float:right"><a href="#propagate_const.modifiers">[propagate_const.modifiers]</a></span></header>
       
       
 
@@ -2649,7 +2646,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
     
 
     <section>
-      <header><span class="section-number">3.2.2.8</span> <h1 data-bookmark-label="3.2.2.8 propagate_const relational operators"><code>propagate_const</code> relational operators</h1> <span style="float:right"><a href="#propagate_const.relational">[propagate_const.relational]</a></span></header>
+      <header><span class="section-number">3.2.2.9</span> <h1 data-bookmark-label="3.2.2.9 propagate_const relational operators"><code>propagate_const</code> relational operators</h1> <span style="float:right"><a href="#propagate_const.relational">[propagate_const.relational]</a></span></header>
       
       
 
@@ -3032,7 +3029,7 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
     
 
     <section>
-      <header><span class="section-number">3.2.2.9</span> <h1 data-bookmark-label="3.2.2.9 propagate_const specialized algorithms"><code>propagate_const</code> specialized algorithms</h1> <span style="float:right"><a href="#propagate_const.algorithms">[propagate_const.algorithms]</a></span></header>
+      <header><span class="section-number">3.2.2.10</span> <h1 data-bookmark-label="3.2.2.10 propagate_const specialized algorithms"><code>propagate_const</code> specialized algorithms</h1> <span style="float:right"><a href="#propagate_const.algorithms">[propagate_const.algorithms]</a></span></header>
       
       
 
@@ -3070,7 +3067,7 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
     
 
     <section>
-      <header><span class="section-number">3.2.2.10</span> <h1 data-bookmark-label="3.2.2.10 propagate_const underlying pointer access"><code>propagate_const</code> underlying pointer access</h1> <span style="float:right"><a href="#propagate_const.underlying">[propagate_const.underlying]</a></span></header>
+      <header><span class="section-number">3.2.2.11</span> <h1 data-bookmark-label="3.2.2.11 propagate_const underlying pointer access"><code>propagate_const</code> underlying pointer access</h1> <span style="float:right"><a href="#propagate_const.underlying">[propagate_const.underlying]</a></span></header>
       
       
 
@@ -3125,7 +3122,7 @@ constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx
     
 
     <section>
-      <header><span class="section-number">3.2.2.11</span> <h1 data-bookmark-label="3.2.2.11 propagate_const hash support"><code>propagate_const</code> hash support</h1> <span style="float:right"><a href="#propagate_const.hash">[propagate_const.hash]</a></span></header>
+      <header><span class="section-number">3.2.2.12</span> <h1 data-bookmark-label="3.2.2.12 propagate_const hash support"><code>propagate_const</code> hash support</h1> <span style="float:right"><a href="#propagate_const.hash">[propagate_const.hash]</a></span></header>
       
       
 
@@ -3156,7 +3153,7 @@ struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx
     
 
     <section>
-      <header><span class="section-number">3.2.2.12</span> <h1 data-bookmark-label="3.2.2.12 propagate_const comparison function objects"><code>propagate_const</code> comparison function objects</h1> <span style="float:right"><a href="#propagate_const.comparison_function_objects">[propagate_const.comparison_function_objects]</a></span></header>
+      <header><span class="section-number">3.2.2.13</span> <h1 data-bookmark-label="3.2.2.13 propagate_const comparison function objects"><code>propagate_const</code> comparison function objects</h1> <span style="float:right"><a href="#propagate_const.comparison_function_objects">[propagate_const.comparison_function_objects]</a></span></header>
       
       
 
