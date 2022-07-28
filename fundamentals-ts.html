@@ -1264,7 +1264,7 @@ html   [segment], html   segment {
         
       </li>
             
-              <li><span class="marker">5.2</span><a href="#memory.observer.ptr">Non-owning pointers</a>
+              <li><span class="marker">5.2</span><a href="#memory.observer.ptr">Non-owning (observer) pointers</a>
         
           <ol>
             
@@ -5026,7 +5026,7 @@ namespace std {
 namespace std {
   namespace experimental::inline fundamentals_v3 {
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr">// <i><a title="memory.observer.ptr" href="#memory.observer.ptr">5.2</a>, Non-owning pointers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr">// <i><a title="memory.observer.ptr" href="#memory.observer.ptr">5.2</a>, Non-owning (observer) pointers</i></cxx-ref>
     template &lt;class W&gt; class observer_ptr;
 
     <cxx-ref insynopsis="" to="memory.observer.ptr.special">// <i><a title="memory.observer.ptr.special" href="#memory.observer.ptr.special">5.2.6</a>, observer_ptr specialized algorithms</i></cxx-ref>
@@ -5073,36 +5073,9 @@ namespace std {
     
 
     <section>
-      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Non-owning pointers">Non-owning pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
+      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Non-owning (observer) pointers">Non-owning (observer) pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
       
     
-
-    <p id="memory.observer.ptr.1" para_num="1">
-      A non-owning pointer, known as an <dfn>observer</dfn>, is an object <code>o</code> that stores a pointer to a second object, <code>w</code>.
-      In this context, <code>w</code> is known as a <dfn>watched</dfn> object.
-      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    There is no watched object when the stored pointer is <code>nullptr</code>.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-      An observer takes no responsibility or ownership of any kind for its watched object, if any;
-      in particular, there is no inherent relationship between the lifetimes of <code>o</code> and <code>w</code>.
-    </p>
-
-    <p id="memory.observer.ptr.2" para_num="2">
-      Specializations of <code>observer_ptr</code> shall meet the requirements
-      of a <cxx-17concept><i>Cpp17CopyConstructible</i></cxx-17concept>
-      and <cxx-17concept><i>Cpp17CopyAssignable</i></cxx-17concept> type.
-      The template parameter <code>W</code> of an <code>observer_ptr</code>
-      shall not be a reference type, but may be an incomplete type.
-    </p>
-
-    <p id="memory.observer.ptr.3" para_num="3">
-      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    The uses of <code>observer_ptr</code> include clarity of interface specification in new code,
-      and interoperability with pointer-based legacy code.
-    <span class="nowrap">— <em>end note</em> ]</span>
-  </cxx-note>
-    </p>
 
     <cxx-section id="memory.observer.ptr.overview">
     
@@ -5148,6 +5121,33 @@ namespace std {
   }; // observer_ptr&lt;&gt;
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
+
+      <p id="memory.observer.ptr.overview.1" para_num="1">
+        A non-owning pointer, known as an <dfn>observer</dfn>, is an object <code>o</code> that stores a pointer to a second object, <code>w</code>.
+        In this context, <code>w</code> is known as a <dfn>watched</dfn> object.
+        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    There is no watched object when the stored pointer is <code>nullptr</code>.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+        An observer takes no responsibility or ownership of any kind for its watched object, if any;
+        in particular, there is no inherent relationship between the lifetimes of <code>o</code> and <code>w</code>.
+      </p>
+
+      <p id="memory.observer.ptr.overview.2" para_num="2">
+        Specializations of <code>observer_ptr</code> shall meet the requirements
+        of a <cxx-17concept><i>Cpp17CopyConstructible</i></cxx-17concept>
+        and <cxx-17concept><i>Cpp17CopyAssignable</i></cxx-17concept> type.
+        The template parameter <code>W</code> of an <code>observer_ptr</code>
+        shall not be a reference type, but may be an incomplete type.
+      </p>
+
+      <p id="memory.observer.ptr.overview.3" para_num="3">
+        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    The uses of <code>observer_ptr</code> include clarity of interface specification in new code,
+          and interoperability with pointer-based legacy code.
+    <span class="nowrap">— <em>end note</em> ]</span>
+  </cxx-note>
+      </p>
     
     </section>
   </cxx-section>
