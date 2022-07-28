@@ -51,28 +51,7 @@ namespace std {
   </cxx-section>
 
   <cxx-section id="memory.observer.ptr">
-    <h1>Non-owning pointers</h1>
-
-    <p>
-      A non-owning pointer, known as an <dfn>observer</dfn>, is an object <code>o</code> that stores a pointer to a second object, <code>w</code>.
-      In this context, <code>w</code> is known as a <dfn>watched</dfn> object.
-      <cxx-note>There is no watched object when the stored pointer is <code>nullptr</code>.</cxx-note>
-      An observer takes no responsibility or ownership of any kind for its watched object, if any;
-      in particular, there is no inherent relationship between the lifetimes of <code>o</code> and <code>w</code>.
-    </p>
-
-    <p>
-      Specializations of <code>observer_ptr</code> shall meet the requirements
-      of a <cxx-17concept>Cpp17CopyConstructible</cxx-17concept>
-      and <cxx-17concept>Cpp17CopyAssignable</cxx-17concept> type.
-      The template parameter <code>W</code> of an <code>observer_ptr</code>
-      shall not be a reference type, but may be an incomplete type.
-    </p>
-
-    <p>
-      <cxx-note>The uses of <code>observer_ptr</code> include clarity of interface specification in new code,
-      and interoperability with pointer-based legacy code.</cxx-note>
-    </p>
+    <h1>Non-owning (observer) pointers</h1>
 
     <cxx-section id="memory.observer.ptr.overview">
       <h1>Class template <code>observer_ptr</code> overview</h1>
@@ -113,6 +92,27 @@ namespace std {
   }; // observer_ptr&lt;>
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
+
+      <p>
+        A non-owning pointer, known as an <dfn>observer</dfn>, is an object <code>o</code> that stores a pointer to a second object, <code>w</code>.
+        In this context, <code>w</code> is known as a <dfn>watched</dfn> object.
+        <cxx-note>There is no watched object when the stored pointer is <code>nullptr</code>.</cxx-note>
+        An observer takes no responsibility or ownership of any kind for its watched object, if any;
+        in particular, there is no inherent relationship between the lifetimes of <code>o</code> and <code>w</code>.
+      </p>
+
+      <p>
+        Specializations of <code>observer_ptr</code> shall meet the requirements
+        of a <cxx-17concept>Cpp17CopyConstructible</cxx-17concept>
+        and <cxx-17concept>Cpp17CopyAssignable</cxx-17concept> type.
+        The template parameter <code>W</code> of an <code>observer_ptr</code>
+        shall not be a reference type, but may be an incomplete type.
+      </p>
+
+      <p>
+        <cxx-note>The uses of <code>observer_ptr</code> include clarity of interface specification in new code,
+          and interoperability with pointer-based legacy code.</cxx-note>
+      </p>
     </cxx-section>
 
     <cxx-section id="memory.observer.ptr.ctor">
