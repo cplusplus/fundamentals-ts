@@ -1344,15 +1344,19 @@ html   [segment], html   segment {
         
           <ol>
             
-              <li><span class="marker">6.2.1</span><a href="#iterator.ostream.joiner.cons">ostream_joiner constructor</a>
+              <li><span class="marker">6.2.1</span><a href="#iterator.ostream.joiner.overview">Overview</a>
         
       </li>
             
-              <li><span class="marker">6.2.2</span><a href="#iterator.ostream.joiner.ops">ostream_joiner operations</a>
+              <li><span class="marker">6.2.2</span><a href="#iterator.ostream.joiner.cons">ostream_joiner constructor</a>
         
       </li>
             
-              <li><span class="marker">6.2.3</span><a href="#iterator.ostream.joiner.creation">ostream_joiner creation function</a>
+              <li><span class="marker">6.2.3</span><a href="#iterator.ostream.joiner.ops">ostream_joiner operations</a>
+        
+      </li>
+            
+              <li><span class="marker">6.2.4</span><a href="#iterator.ostream.joiner.creation">ostream_joiner creation function</a>
         
       </li>
             
@@ -5912,19 +5916,27 @@ namespace std::experimental::inline fundamentals_v3 {
       
     
 
-    <p id="iterator.ostream.joiner.1" para_num="1">
-      <code>ostream_joiner</code> writes (using <code>operator&lt;&lt;</code>) successive elements onto the output stream from which it was constructed.
-      The delimiter that it was constructed with is written to the stream between every two <code>T</code>s that are written.
-      It is not possible to get a value out of the output iterator.
-      Its only use is as an output iterator in situations like
-    </p>
-    <pre><code>while (first != last)
+    <cxx-section id="iterator.ostream.joiner.overview">
+    
+
+    <section>
+      <header><span class="section-number">6.2.1</span> <h1 data-bookmark-label="6.2.1 Overview">Overview</h1> <span style="float:right"><a href="#iterator.ostream.joiner.overview">[iterator.ostream.joiner.overview]</a></span></header>
+      
+      
+
+      <p id="iterator.ostream.joiner.overview.1" para_num="1">
+        <code>ostream_joiner</code> writes (using <code>operator&lt;&lt;</code>) successive elements onto the output stream from which it was constructed.
+        The delimiter that it was constructed with is written to the stream between every two <code>T</code>s that are written.
+        It is not possible to get a value out of the output iterator.
+        Its only use is as an output iterator in situations like
+      </p>
+      <pre><code>while (first != last)
   *result++ = *first++;</code></pre>
 
-  <p id="iterator.ostream.joiner.2" para_num="2">
-    <code>ostream_joiner</code> is defined as
-  </p>
-<pre><code>namespace std::experimental::inline fundamentals_v3 {
+      <p id="iterator.ostream.joiner.overview.2" para_num="2">
+        <code>ostream_joiner</code> is defined as
+      </p>
+      <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
   template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
   class ostream_joiner {
@@ -5953,12 +5965,15 @@ namespace std::experimental::inline fundamentals_v3 {
   };
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
+    
+    </section>
+  </cxx-section>
 
     <cxx-section id="iterator.ostream.joiner.cons">
     
 
     <section>
-      <header><span class="section-number">6.2.1</span> <h1 data-bookmark-label="6.2.1 ostream_joiner constructor"><code>ostream_joiner</code> constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
+      <header><span class="section-number">6.2.2</span> <h1 data-bookmark-label="6.2.2 ostream_joiner constructor"><code>ostream_joiner</code> constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
       
       
 
@@ -6009,7 +6024,7 @@ namespace std::experimental::inline fundamentals_v3 {
     
 
     <section>
-      <header><span class="section-number">6.2.2</span> <h1 data-bookmark-label="6.2.2 ostream_joiner operations"><code>ostream_joiner</code> operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
+      <header><span class="section-number">6.2.3</span> <h1 data-bookmark-label="6.2.3 ostream_joiner operations"><code>ostream_joiner</code> operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
       
       
 
@@ -6076,7 +6091,7 @@ return *this;</code></pre>
     
 
     <section>
-      <header><span class="section-number">6.2.3</span> <h1 data-bookmark-label="6.2.3 ostream_joiner creation function"><code>ostream_joiner</code> creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
+      <header><span class="section-number">6.2.4</span> <h1 data-bookmark-label="6.2.4 ostream_joiner creation function"><code>ostream_joiner</code> creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
       
       
 

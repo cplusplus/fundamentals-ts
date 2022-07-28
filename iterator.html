@@ -21,19 +21,22 @@ namespace std::experimental::inline fundamentals_v3 {
   <cxx-section id="iterator.ostream.joiner">
     <h1>Class template <code>ostream_joiner</code></h1>
 
-    <p>
-      <code>ostream_joiner</code> writes (using <code>operator&lt;&lt;</code>) successive elements onto the output stream from which it was constructed.
-      The delimiter that it was constructed with is written to the stream between every two <code>T</code>s that are written.
-      It is not possible to get a value out of the output iterator.
-      Its only use is as an output iterator in situations like
-    </p>
-    <pre><code>while (first != last)
+    <cxx-section id="iterator.ostream.joiner.overview">
+      <h1>Overview</h1>
+
+      <p>
+        <code>ostream_joiner</code> writes (using <code>operator&lt;&lt;</code>) successive elements onto the output stream from which it was constructed.
+        The delimiter that it was constructed with is written to the stream between every two <code>T</code>s that are written.
+        It is not possible to get a value out of the output iterator.
+        Its only use is as an output iterator in situations like
+      </p>
+      <pre><code>while (first != last)
   *result++ = *first++;</code></pre>
 
-  <p>
-    <code>ostream_joiner</code> is defined as
-  </p>
-<pre><code>namespace std::experimental::inline fundamentals_v3 {
+      <p>
+        <code>ostream_joiner</code> is defined as
+      </p>
+      <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
   template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
   class ostream_joiner {
@@ -62,6 +65,7 @@ namespace std::experimental::inline fundamentals_v3 {
   };
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
+    </cxx-section>
 
     <cxx-section id="iterator.ostream.joiner.cons">
       <h1><code>ostream_joiner</code> constructor</h1>
