@@ -4592,6 +4592,12 @@ namespace std {
       allocator_type get_allocator() const noexcept;
     };
 
+    template &lt;class R, class... ArgTypes&gt;
+      function(R(*)(ArgTypes...)) -&gt; function&lt;R(ArgTypes...)&gt;;
+
+    template&lt;class F&gt;
+      function(F) -&gt; function&lt;<em>see below</em>&gt;;
+
   } // namespace experimental::inline fundamentals_v3
 } // namespace std</code></pre>
 
@@ -4640,8 +4646,12 @@ namespace std {
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
       </p>
+      <p id="func.wrap.func.con.3" para_num="3">
+        The deduction guide <code>template&lt;class F&gt; function(F) -&gt; function&lt;<em>see below</em>&gt;;</code>
+        is specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>.
+      </p>
 
-      <cxx-function id="func.wrap.func.con.3" para_num="3">
+      <cxx-function id="func.wrap.func.con.4" para_num="4">
 
     <pre><code><cxx-signature>function&amp; operator=(const function&amp; f);</cxx-signature></code></pre>
 
@@ -4649,11 +4659,11 @@ namespace std {
 
 
 
-        <cxx-effects id="func.wrap.func.con.4" para_num="4">
+        <cxx-effects id="func.wrap.func.con.5" para_num="5">
 
     <dt>Effects:</dt><dd><code>function(allocator_arg, get_allocator(), f).swap(*this);</code></dd>
   </cxx-effects>
-        <cxx-returns id="func.wrap.func.con.5" para_num="5">
+        <cxx-returns id="func.wrap.func.con.6" para_num="6">
 
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
@@ -4661,7 +4671,7 @@ namespace std {
     </dl>
   </cxx-function>
 
-      <cxx-function id="func.wrap.func.con.6" para_num="6">
+      <cxx-function id="func.wrap.func.con.7" para_num="7">
 
     <pre><code><cxx-signature>function&amp; operator=(function&amp;&amp; f);</cxx-signature></code></pre>
 
@@ -4669,11 +4679,11 @@ namespace std {
 
 
 
-        <cxx-effects id="func.wrap.func.con.7" para_num="7">
+        <cxx-effects id="func.wrap.func.con.8" para_num="8">
 
     <dt>Effects:</dt><dd><code>function(allocator_arg, get_allocator(), std::move(f)).swap(*this);</code></dd>
   </cxx-effects>
-        <cxx-returns id="func.wrap.func.con.8" para_num="8">
+        <cxx-returns id="func.wrap.func.con.9" para_num="9">
 
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
@@ -4681,7 +4691,7 @@ namespace std {
     </dl>
   </cxx-function>
 
-      <cxx-function id="func.wrap.func.con.9" para_num="9">
+      <cxx-function id="func.wrap.func.con.10" para_num="10">
 
     <pre><code><cxx-signature>function&amp; operator=(nullptr_t) noexcept;</cxx-signature></code></pre>
 
@@ -4689,11 +4699,11 @@ namespace std {
 
 
 
-        <cxx-effects id="func.wrap.func.con.10" para_num="10">
+        <cxx-effects id="func.wrap.func.con.11" para_num="11">
 
     <dt>Effects:</dt><dd>If <code>*this != nullptr</code>, destroys the target of <code>this</code>.</dd>
   </cxx-effects>
-        <cxx-postconditions id="func.wrap.func.con.11" para_num="11">
+        <cxx-postconditions id="func.wrap.func.con.12" para_num="12">
 
     <dt>Postconditions:</dt><dd>
           <code>!(*this)</code>.
@@ -4703,7 +4713,7 @@ namespace std {
   </cxx-note>
         </dd>
   </cxx-postconditions>
-        <cxx-returns id="func.wrap.func.con.12" para_num="12">
+        <cxx-returns id="func.wrap.func.con.13" para_num="13">
 
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
@@ -4711,7 +4721,7 @@ namespace std {
     </dl>
   </cxx-function>
 
-      <cxx-function id="func.wrap.func.con.13" para_num="13">
+      <cxx-function id="func.wrap.func.con.14" para_num="14">
 
     <pre><code><cxx-signature>template&lt;class F&gt; function&amp; operator=(F&amp;&amp; f);</cxx-signature></code></pre>
 
@@ -4719,18 +4729,18 @@ namespace std {
 
 
 
-        <cxx-constraints id="func.wrap.func.con.14" para_num="14">
+        <cxx-constraints id="func.wrap.func.con.15" para_num="15">
 
     <dt>Constraints:</dt><dd>
           <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept><i>Lvalue-Callable</i></cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>)
           for argument types <code>ArgTypes...</code> and return type <code>R</code>.
         </dd>
   </cxx-constraints>
-        <cxx-effects id="func.wrap.func.con.15" para_num="15">
+        <cxx-effects id="func.wrap.func.con.16" para_num="16">
 
     <dt>Effects:</dt><dd><code>function(allocator_arg, get_allocator(), std::forward&lt;F&gt;(f)).swap(*this);</code></dd>
   </cxx-effects>
-        <cxx-returns id="func.wrap.func.con.16" para_num="16">
+        <cxx-returns id="func.wrap.func.con.17" para_num="17">
 
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
@@ -4738,7 +4748,7 @@ namespace std {
     </dl>
   </cxx-function>
 
-      <cxx-function id="func.wrap.func.con.17" para_num="17">
+      <cxx-function id="func.wrap.func.con.18" para_num="18">
 
     <pre><code><cxx-signature>template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f) noexcept;</cxx-signature></code></pre>
 
@@ -4746,11 +4756,11 @@ namespace std {
 
 
 
-        <cxx-effects id="func.wrap.func.con.18" para_num="18">
+        <cxx-effects id="func.wrap.func.con.19" para_num="19">
 
     <dt>Effects:</dt><dd><code>function(allocator_arg, get_allocator(), f).swap(*this);</code></dd>
   </cxx-effects>
-        <cxx-returns id="func.wrap.func.con.19" para_num="19">
+        <cxx-returns id="func.wrap.func.con.20" para_num="20">
 
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
