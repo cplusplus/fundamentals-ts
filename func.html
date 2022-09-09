@@ -81,6 +81,12 @@ namespace std {
       allocator_type get_allocator() const noexcept;
     };
 
+    template &lt;class R, class... ArgTypes&gt;
+      function(R(*)(ArgTypes...)) -&gt; function&lt;R(ArgTypes...)&gt;;
+
+    template&lt;class F&gt;
+      function(F) -&gt; function&lt;<em>see below</em>&gt;;
+
   } // namespace experimental::inline fundamentals_v3
 } // namespace std</code></pre>
 
@@ -118,6 +124,10 @@ namespace std {
           has an allocator equal to that of the object being constructed,
           the implementation can often transfer ownership of the target rather than constructing a new one.
         </cxx-note>
+      </p>
+      <p>
+        The deduction guide <code>template&lt;class F&gt; function(F) -&gt; function&lt;<em>see below</em>&gt;;</code>
+        is specified in <cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>.
       </p>
 
       <cxx-function>
