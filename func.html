@@ -18,12 +18,6 @@ namespace std {
 
     template&lt;class R, class... ArgTypes&gt;
     bool operator==(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
-    template&lt;class R, class... ArgTypes&gt;
-    bool operator==(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
-    template&lt;class R, class... ArgTypes&gt;
-    bool operator!=(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
-    template&lt;class R, class... ArgTypes&gt;
-    bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
 
   } // namespace experimental::inline fundamentals_v3
 
@@ -96,19 +90,6 @@ namespace std {
 
       pmr::memory_resource* get_memory_resource() const noexcept;
     };
-
-    template &lt;class R, class... ArgTypes&gt;
-    bool operator==(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
-    template &lt;class R, class... ArgTypes&gt;
-    bool operator==(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
-
-    template &lt;class R, class... ArgTypes&gt;
-    bool operator!=(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
-    template &lt;class R, class... ArgTypes&gt;
-    bool operator!=(nullptr_t, const function&lt;R(ArgTypes...)&gt;&amp;) noexcept;
-
-    template &lt;class R, class... ArgTypes&gt;
-    void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;);
 
   } // namespace experimental::inline fundamentals_v3
 
