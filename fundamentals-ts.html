@@ -2167,18 +2167,13 @@ namespace std::experimental::inline fundamentals_v3 {
         
 
         <p id="propagate_const.requirements.1" para_num="1">
-          <code>T</code> shall be an object pointer type or a class type for which
-          <code>decltype(*declval&lt;T&amp;&gt;())</code> is an lvalue reference; otherwise
+          <code>T</code> shall be a cv-unqualified pointer-to-object type or a cv-unqualified class type for which
+          <code>decltype(*declval&lt;T&amp;&gt;())</code> is an lvalue reference to object type; otherwise
           the program is ill-formed.
         </p>
         <p id="propagate_const.requirements.2" para_num="2">
-          If <code>T</code> is an array type, reference type, pointer to function type or
-          pointer to (possibly cv-qualified) <code>void</code>, then the program is
-          ill-formed.
-        </p>
-        <p id="propagate_const.requirements.3" para_num="3">
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    <code>propagate_const&lt;const int*&gt;</code> is well-formed.
+    <code>propagate_const&lt;const int*&gt;</code> is well-formed but <code>propagate_const&lt;int* const&gt; is not</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
         </p>
@@ -2198,9 +2193,8 @@ namespace std::experimental::inline fundamentals_v3 {
         <p id="propagate_const.class_type_requirements.1" para_num="1">
           If <code>T</code> is class
           type then it shall satisfy the following requirements. In this subclause
-          <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
-          is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
-          an object type.
+          <code>t</code> denotes an lvalue of type <code>T</code>, <code>ct</code>
+          denotes <code>as_const(t)</code>.
         </p>
 
         <p id="propagate_const.class_type_requirements.2" para_num="2">
@@ -4747,9 +4741,6 @@ namespace std {
     class function&lt;R(ArgTypes...)&gt; {
     public:
       using result_type = R;
-      using argument_type = T1;
-      using first_argument_type T1;
-      using second_argument_type = T2;
 
       using allocator_type = erased_type;
 
@@ -5658,7 +5649,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
       </tr>
       <tr>
         <td>any other type meeting the <cxx-17concept><i>Cpp17Allocator</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="allocator.requirements">C++20 <span title="allocator.requirements">§16.5.3.5</span></cxx-ref>)</td>
-        <td>a pointer to a value of type <code>pmr::resource_adaptor&lt;A&gt;</code> where <code>A</code> is the type of <code>alloc</code>.
+        <td>a pointer to a value of type <code>pmr::experimental::resource_adaptor&lt;A&gt;</code> where <code>A</code> is the type of <code>alloc</code>.
         <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
       </tr>
       <tr>
@@ -5685,7 +5676,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
       
     
 
-    <pre><code>namespace std::experimental::inline fundamentals_v3::pmr {
+    <pre><code>namespace std::pmr::experimental::inline fundamentals_v3 {
 
   // The name <var>resource_adaptor_imp</var> is for exposition only.
   template &lt;class Allocator&gt; class <var>resource_adaptor_imp</var>;
@@ -5694,7 +5685,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
     using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
       typename allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;
 
-} // namespace std::experimental::inline fundamentals_v3::pmr</code></pre>
+} // namespace std::pmr::experimental::inline fundamentals_v3</code></pre>
   
     </section>
   </cxx-section>
