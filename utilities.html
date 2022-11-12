@@ -197,17 +197,12 @@ namespace std::experimental::inline fundamentals_v3 {
         <h1><code>propagate_const</code> general requirements on <code>T</code></h1>
 
         <p>
-          <code>T</code> shall be an object pointer type or a class type for which
-          <code>decltype(*declval&lt;T&amp;&gt;())</code> is an lvalue reference; otherwise
+          <code>T</code> shall be a cv-unqualified pointer-to-object type or a cv-unqualified class type for which
+          <code>decltype(*declval&lt;T&amp;&gt;())</code> is an lvalue reference to object type; otherwise
           the program is ill-formed.
         </p>
         <p>
-          If <code>T</code> is an array type, reference type, pointer to function type or
-          pointer to (possibly cv-qualified) <code>void</code>, then the program is
-          ill-formed.
-        </p>
-        <p>
-          <cxx-note><code>propagate_const&lt;const int*&gt;</code> is well-formed.</cxx-note>
+          <cxx-note><code>propagate_const&lt;const int*&gt;</code> is well-formed but <code>propagate_const&lt;int* const&gt; is not</code>.</cxx-note>
         </p>
 
       </cxx-section>
@@ -218,9 +213,8 @@ namespace std::experimental::inline fundamentals_v3 {
         <p>
           If <code>T</code> is class
           type then it shall satisfy the following requirements. In this subclause
-          <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
-          is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
-          an object type.
+          <code>t</code> denotes an lvalue of type <code>T</code>, <code>ct</code>
+          denotes <code>as_const(t)</code>.
         </p>
 
         <p>

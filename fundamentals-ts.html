@@ -2167,18 +2167,13 @@ namespace std::experimental::inline fundamentals_v3 {
         
 
         <p id="propagate_const.requirements.1" para_num="1">
-          <code>T</code> shall be an object pointer type or a class type for which
-          <code>decltype(*declval&lt;T&amp;&gt;())</code> is an lvalue reference; otherwise
+          <code>T</code> shall be a cv-unqualified pointer-to-object type or a cv-unqualified class type for which
+          <code>decltype(*declval&lt;T&amp;&gt;())</code> is an lvalue reference to object type; otherwise
           the program is ill-formed.
         </p>
         <p id="propagate_const.requirements.2" para_num="2">
-          If <code>T</code> is an array type, reference type, pointer to function type or
-          pointer to (possibly cv-qualified) <code>void</code>, then the program is
-          ill-formed.
-        </p>
-        <p id="propagate_const.requirements.3" para_num="3">
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    <code>propagate_const&lt;const int*&gt;</code> is well-formed.
+    <code>propagate_const&lt;const int*&gt;</code> is well-formed but <code>propagate_const&lt;int* const&gt; is not</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
         </p>
@@ -2198,9 +2193,8 @@ namespace std::experimental::inline fundamentals_v3 {
         <p id="propagate_const.class_type_requirements.1" para_num="1">
           If <code>T</code> is class
           type then it shall satisfy the following requirements. In this subclause
-          <code>t</code> denotes a non-<code>const</code> lvalue of type <code>T</code>, <code>ct</code>
-          is a <code>const T&amp;</code> bound to <code>t</code>,  <code>element_type</code> denotes
-          an object type.
+          <code>t</code> denotes an lvalue of type <code>T</code>, <code>ct</code>
+          denotes <code>as_const(t)</code>.
         </p>
 
         <p id="propagate_const.class_type_requirements.2" para_num="2">
