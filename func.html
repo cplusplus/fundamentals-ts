@@ -20,10 +20,6 @@ namespace std {
     bool operator==(const function&lt;R(ArgTypes...)&gt;&amp;, nullptr_t) noexcept;
 
   } // namespace experimental::inline fundamentals_v3
-
-  template&lt;class R, class... ArgTypes, class Alloc&gt;
-  struct uses_allocator&lt;experimental::function&lt;R(ArgTypes...)&gt;, Alloc&gt;;
-
 } // namespace std</code></pre>
 
   </cxx-section>
@@ -51,21 +47,18 @@ namespace std {
     public:
       using result_type = R;
 
-      using allocator_type = erased_type;
+      using allocator_type = std::pmr::polymorphic_allocator<>;;
 
       function() noexcept;
       function(nullptr_t) noexcept;
       function(const function&amp;);
       function(function&amp;&amp;);
       template&lt;class F&gt; function(F);
-      template&lt;class A&gt; function(allocator_arg_t, const A&amp;) noexcept;
-      template&lt;class A&gt; function(allocator_arg_t, const A&amp;,
-        nullptr_t) noexcept;
-      template&lt;class A&gt; function(allocator_arg_t, const A&amp;,
-        const function&amp;);
-      template&lt;class A&gt; function(allocator_arg_t, const A&amp;,
-        function&amp;&amp;);
-      template&lt;class F, class A&gt; function(allocator_arg_t, const A&amp;, F);
+      function(allocator_arg_t, const allocator_type&amp;) noexcept;
+      function(allocator_arg_t, const allocator_type&amp;, nullptr_t) noexcept;
+      function(allocator_arg_t, const allocator_type&amp;, const function&amp;);
+      function(allocator_arg_t, const allocator_type&amp;, function&amp;&amp;);
+      template&lt;class F&gt; function(allocator_arg_t, const allocator_type&amp;, F);
 
       function&amp; operator=(const function&amp;);
       function&amp; operator=(function&amp;&amp;);
@@ -85,15 +78,10 @@ namespace std {
       template&lt;class T&gt; T* target() noexcept;
       template&lt;class T&gt; const T* target() const noexcept;
 
-      pmr::memory_resource* get_memory_resource() const noexcept;
+      allocator_type get_allocator() const noexcept;
     };
 
   } // namespace experimental::inline fundamentals_v3
-
-  template &lt;class R, class... ArgTypes, class Alloc&gt;
-  struct uses_allocator&lt;experimental::function&lt;R(ArgTypes...)&gt;, Alloc&gt;
-    : true_type { };
-
 } // namespace std</code></pre>
 
     </cxx-section>
@@ -101,38 +89,48 @@ namespace std {
     <cxx-section id="func.wrap.func.con">
       <h1><code>function</code> construct/copy/destroy</h1>
 
-      <cxx-ednote>
-        The following first paragraph has been slightly editorially improved to
-        (a) make the difference between <code>std::function</code> and <code>std::experimental::function</code> clearer
-        (which seems necessary due to the "including" wording that can be parsed in two different ways) and
-        (b) to make intended normative wording clearer, that had been put into parenthesis before, by simply removing these parenthesis.
-      </cxx-ednote>
-
       <p>
-        When a <code>function</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
-        the second argument is treated as a <cxx-term>type-erased allocator</cxx-term> (<cxx-ref to="memory.type.erased.allocator"></cxx-ref>).
-        If the constructor moves or makes a copy
-        of a function object (<cxx-ref in="cxx" to="function.objects"></cxx-ref>),
-        including an instance of the <code>experimental::function</code> class template,
-        then that move or copy is performed by <cxx-term>using-allocator construction</cxx-term> with allocator <code>get_memory_resource()</code>.
+        A function object stores an allocator object of type of <code>std::pmr::polymorphic_allocator&lt;&gt;</code>,
+        which it uses to allocate memory for its internal data structures.
+        In the <code>function</code> constructors, the allocator is initialized
+        (before the target object, if any) as follows:
       </p>
-
+      <ul>
+        <li>
+          For the move constructor, the allocator is initialized
+          from <code>f.get_allocator()</code>, where <code>f</code> is the
+          parameter of the constructor.
+        </li>
+        <li>
+          For constructors having a first parameter of type <code>allocator_arg_t</code>,
+          the allocator is initialized from the second parameter.
+        </li>
+        <li>
+          For all other constructors, the allocator is value initialized.
+        </li>
+      </ul>
       <p>
-        In the following descriptions, let <code><em>ALLOCATOR_OF</em>(f)</code> be the allocator specified in the construction of <code>function</code> <code>f</code>,
-        or the value of <code>experimental::<wbr>pmr::<wbr>get_default_resource()</code> at the time of the construction of <code>f</code> if no allocator was specified.
+        In all cases, the allocator of a parameter having type <code>function&amp;&amp;</code> is unchanged.
+        If the constructor creates a target object, that target object is initialized
+        by uses-allocator construction with the allocator and other target object constructor arguments.
+        <cxx-note>
+          If a constructor parameter of type <code>experimental::function&amp;&amp;</code>
+          has an allocator equal to that of the object being constructed,
+          the implementation can often transfer ownership of the target rather than constructing a new one.
+        </cxx-note>
       </p>
 
       <cxx-function>
         <cxx-signature>function&amp; operator=(const function&amp; f);</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), f).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, get_allocator(), f).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>function&amp; operator=(function&amp;&amp; f);</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::move(f)).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, get_allocator(), std::move(f)).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
 
@@ -140,9 +138,10 @@ namespace std {
         <cxx-signature>function&amp; operator=(nullptr_t) noexcept;</cxx-signature>
 
         <cxx-effects>If <code>*this != nullptr</code>, destroys the target of <code>this</code>.</cxx-effects>
-        <cxx-postconditions><code>!(*this)</code>.
-        The memory resource returned by <code>get_memory_resource()</code> after the assignment is equivalent to the memory resource before the assignment.
-        <cxx-note>the address returned by <code>get_memory_resource()</code> might change</cxx-note></cxx-postconditions>
+        <cxx-postconditions>
+          <code>!(*this)</code>.
+          <cxx-note>The stored allocator is unchanged.</cxx-note>
+        </cxx-postconditions>
         <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
 
@@ -153,14 +152,14 @@ namespace std {
           <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept>Lvalue-Callable</cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func"></cxx-ref>)
           for argument types <code>ArgTypes...</code> and return type <code>R</code>.
         </cxx-constraints>
-        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, get_allocator(), std::forward&lt;F&gt;(f)).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
-        <cxx-signature>template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f);</cxx-signature>
+        <cxx-signature>template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f) noexcept;</cxx-signature>
 
-        <cxx-effects><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), f).swap(*this);</code></cxx-effects>
+        <cxx-effects><code>function(allocator_arg, get_allocator(), f).swap(*this);</code></cxx-effects>
         <cxx-returns><code>*this</code>.</cxx-returns>
       </cxx-function>
     </cxx-section>
@@ -171,9 +170,23 @@ namespace std {
       <cxx-function>
         <cxx-signature>void swap(function&amp; other);</cxx-signature>
 
-        <cxx-preconditions><code>*this-&gt;get_memory_resource() == *other.get_memory_resource()</code>.</cxx-preconditions>
+        <cxx-preconditions><code>this-&gt;get_allocator() == other.get_allocator()</code>.</cxx-preconditions>
         <cxx-effects>Interchanges the targets of <code>*this</code> and <code>other</code>.</cxx-effects>
+        <cxx-throws>Nothing.</cxx-throws>
         <cxx-remarks>The allocators of <code>*this</code> and <code>other</code> are not interchanged.</cxx-remarks>
+      </cxx-function>
+    </cxx-section>
+
+    <cxx-section id="func.wrap.func.obs">
+      <h1><code>function</code> observers</h1>
+
+      <cxx-function>
+        <cxx-signature>allocator_type get_allocator() const noexcept;</cxx-signature>
+
+        <cxx-returns>
+          A copy of the allocator initialized during construction
+          (<cxx-ref to="func.wrap.func.con"></cxx-ref>) of this object.
+        </cxx-returns>
       </cxx-function>
     </cxx-section>
   </cxx-section>
