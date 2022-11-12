@@ -5652,7 +5652,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
       </tr>
       <tr>
         <td>any other type meeting the <cxx-17concept><i>Cpp17Allocator</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="allocator.requirements">C++20 <span title="allocator.requirements">§16.5.3.5</span></cxx-ref>)</td>
-        <td>a pointer to a value of type <code>pmr::resource_adaptor&lt;A&gt;</code> where <code>A</code> is the type of <code>alloc</code>.
+        <td>a pointer to a value of type <code>pmr::experimental::resource_adaptor&lt;A&gt;</code> where <code>A</code> is the type of <code>alloc</code>.
         <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
       </tr>
       <tr>
@@ -5679,7 +5679,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
       
     
 
-    <pre><code>namespace std::experimental::inline fundamentals_v3::pmr {
+    <pre><code>namespace std::pmr::experimental::inline fundamentals_v3 {
 
   // The name <var>resource_adaptor_imp</var> is for exposition only.
   template &lt;class Allocator&gt; class <var>resource_adaptor_imp</var>;
@@ -5688,7 +5688,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
     using resource_adaptor = <var>resource_adaptor_imp</var>&lt;
       typename allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;
 
-} // namespace std::experimental::inline fundamentals_v3::pmr</code></pre>
+} // namespace std::pmr::experimental::inline fundamentals_v3</code></pre>
   
     </section>
   </cxx-section>
