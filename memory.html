@@ -298,60 +298,6 @@ bool operator>=(observer_ptr&lt;W1> p1, observer_ptr&lt;W2> p2);</cxx-signature>
     </cxx-section>
   </cxx-section>
 
-  <cxx-section id="memory.type.erased.allocator">
-    <h1>Type-erased allocator</h1>
-
-    <p>
-      A <dfn>type-erased allocator</dfn> is an allocator or memory resource, <code>alloc</code>,
-      used to allocate internal data structures for an object <code>X</code> of type <code>C</code>,
-      but where <code>C</code> is not dependent on the type of <code>alloc</code>.
-      Once <code>alloc</code> has been supplied to <code>X</code> (typically as a constructor argument),
-      <code>alloc</code> can be retrieved from <code>X</code> only as a pointer <code>rptr</code> of static type <code>std::pmr::memory_resource*</code> (<cxx-ref in="cxx" to="mem.res.class"></cxx-ref>).
-      The process by which <code>rptr</code> is computed from <code>alloc</code> depends on the type of <code>alloc</code> as described in <cxx-ref to="tab:memory.resource.type.erased.allocator"></cxx-ref>:
-    </p>
-
-    <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
-      <caption>Computed <code>memory_resource</code> for type-erased allocator</caption>
-      <thead>
-        <tr>
-          <th>If the type of <code>alloc</code> is</th>
-          <th>then the value of <code>rptr</code> is</th>
-        </tr>
-      </thead>
-      <tr>
-        <td>non-existent — no <code>alloc</code> specified</td>
-        <td>The value of <code>pmr::get_default_resource()</code> at the time of construction.</td>
-      </tr>
-      <tr>
-        <td><code>nullptr_t</code></td>
-        <td>The value of <code>pmr::get_default_resource()</code> at the time of construction.</td>
-      </tr>
-      <tr>
-        <td>a pointer type convertible to <code>pmr::memory_resource*</code></td>
-        <td><code>static_cast&lt;pmr::memory_resource*>(alloc)</code></td>
-      </tr>
-      <tr>
-        <td><code>pmr::polymorphic_allocator&lt;U></code></td>
-        <td><code>alloc.resource()</code></td>
-      </tr>
-      <tr>
-        <td>any other type meeting the <cxx-17concept>Cpp17Allocator</cxx-17concept> requirements (<cxx-ref in="cxx" to="allocator.requirements"></cxx-ref>)</td>
-        <td>a pointer to a value of type <code>pmr::experimental::resource_adaptor&lt;A></code> where <code>A</code> is the type of <code>alloc</code>.
-        <code>rptr</code> remains valid only for the lifetime of <code>X</code>.</td>
-      </tr>
-      <tr>
-        <td>None of the above</td>
-        <td>The program is ill-formed.</td>
-      </tr>
-    </table>
-
-    <p>Additionally, class <code>C</code> meets the following requirements:</p>
-    <ul>
-      <li><code>C::allocator_type</code> denotes <code>std::experimental::erased_type</code>.</li>
-      <li><code>X.get_memory_resource()</code> returns <code>rptr</code>.</li>
-    </ul>
-  </cxx-section>
-
   <cxx-section id="memory.resource.syn">
     <h1>Header <code>&lt;experimental/memory_resource></code> synopsis</h1>
 
