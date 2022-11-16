@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-17CONCEPT");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-MANDATES");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-EDNOTE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
-body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-REMARKS");document.createElement("CXX-17CONCEPT");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-MANDATES");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-EDNOTE");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; }
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; }
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
 	display: block; break-inside: avoid;
@@ -488,7 +488,7 @@ cxx-ednote.para aside {
 }cxx-note .nowrap {
 	white-space: nowrap;
 }cxx-footnote {
-	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial; 
+	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial;
 }
 
 @media screen {
@@ -505,7 +505,7 @@ cxx-footnote sup, cxx-footnote .marker {
 }
 
 cxx-footnote aside {
-	
+
 }
 
 
@@ -539,7 +539,7 @@ w-br::after {
 	content: "​";
 }</style>
   <meta charset="utf-8">
-  
+
   <style shim-shadowdom-css="">/* Copyright 2014 Google Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -976,465 +976,465 @@ html   [segment], html   segment {
 </style><title>C++ Extensions for Library Fundamentals, Version 3, Working Draft</title></head>
 <body class="cxx-draft">
 <cxx-titlepage>
-    
-    
+
+
       <div class="page">
         <table class="header">
-          
+
             <tr><th>Document Number:</th><td><cxx-docnum class="docname">N????</cxx-docnum></td></tr>
-          
-          
+
+
             <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">????</span>-??-??</time></td></tr>
-          
-          
+
+
             <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4920.html">N4920</a></cxx-revises></td></tr>
-          
-          
+
+
             <tr><th>Editor:</th><td><cxx-editor>
     Thomas Köppe<br>
     Google DeepMind<br>
     <cxx-email><a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a></cxx-email>
   </cxx-editor></td></tr>
-          
+
         </table>
         <h1>Working Draft, C++ Extensions for Library Fundamentals, Version 3</h1>
         <p class="warning"><strong>Note: this is an early draft. It’s known to be
         incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
       </div>
-    
 
-    
 
-    
+
+
+
   </cxx-titlepage>
 
 <cxx-toc>
-    
+
     <nav>
       <h1>Contents</h1>
-      
-        
+
+
           <ol>
-            
+
               <li><span class="marker">1</span><a href="#general">General</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">1.1</span><a href="#general.scope">Scope</a>
-        
+
       </li>
-            
+
               <li><span class="marker">1.2</span><a href="#general.references">Normative references</a>
-        
+
       </li>
-            
+
               <li><span class="marker">1.3</span><a href="#general.namespaces">Namespaces, headers, and modifications to standard classes</a>
-        
+
       </li>
-            
+
               <li><span class="marker">1.4</span><a href="#general.plans">Future plans (Informative)</a>
-        
+
       </li>
-            
+
               <li><span class="marker">1.5</span><a href="#general.feature.test">Feature-testing recommendations (Informative)</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">2</span><a href="#mods">Modifications to the C++ Standard Library</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">2.1</span><a href="#mods.exception.requirements">Exception Requirements</a>
-        
+
       </li>
-            
+
               <li><span class="marker">2.2</span><a href="#mods.allocator.uses">Uses-allocator construction</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">3</span><a href="#utilities">General utilities library</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">3.1</span><a href="#utility">Utility components</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">3.1.1</span><a href="#utility.syn">Header &lt;experimental/utility&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.1.2</span><a href="#utility.erased.type">Class erased_type</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2</span><a href="#propagate_const">Constness propagation</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">3.2.1</span><a href="#propagate_const.syn">Header &lt;experimental/propagate_const&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2</span><a href="#propagate_const">Class template propagate_const</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">3.2.2.1</span><a href="#propagate_const.overview">Class template propagate_const overview</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.2</span><a href="#propagate_const.requirements">propagate_const general requirements on T</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.3</span><a href="#propagate_const.class_type_requirements">propagate_const requirements on class type T</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.4</span><a href="#propagate_const.ctor">propagate_const constructors</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.5</span><a href="#propagate_const.assignment">propagate_const assignment</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.6</span><a href="#propagate_const.const_observers">propagate_const const observers</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.7</span><a href="#propagate_const.non_const_observers">propagate_const non-const observers</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.8</span><a href="#propagate_const.modifiers">propagate_const modifiers</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.9</span><a href="#propagate_const.relational">propagate_const relational operators</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.10</span><a href="#propagate_const.algorithms">propagate_const specialized algorithms</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.11</span><a href="#propagate_const.underlying">propagate_const underlying pointer access</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.12</span><a href="#propagate_const.hash">propagate_const hash support</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.2.2.13</span><a href="#propagate_const.comparison_function_objects">propagate_const comparison function objects</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3</span><a href="#scopeguard">Scope guard support</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">3.3.1</span><a href="#scope.syn">Header &lt;experimental/scope&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3.2</span><a href="#scopeguard.exit">Class templates scope_exit, scope_fail, and scope_success</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3.3</span><a href="#scopeguard.uniqueres">Class template unique_resource</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">3.3.3.1</span><a href="#scopeguard.uniqueres.overview">Overview</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3.3.2</span><a href="#scopeguard.uniqueres.ctor">Constructors</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3.3.3</span><a href="#scopeguard.uniqueres.dtor">Destructor</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3.3.4</span><a href="#scopeguard.uniqueres.assign">Assignment</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3.3.5</span><a href="#scopeguard.uniqueres.members">Other member functions</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.3.3.6</span><a href="#scopeguard.uniqueres.create">unique_resource creation</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">3.4</span><a href="#meta">Metaprogramming and type traits</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">3.4.1</span><a href="#meta.type.syn">Header &lt;experimental/type_traits&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.4.2</span><a href="#meta.trans.other">Other type transformations</a>
-        
+
       </li>
-            
+
               <li><span class="marker">3.4.3</span><a href="#meta.detect">Detection idiom</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">4</span><a href="#func">Function objects</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">4.1</span><a href="#functional.syn">Header &lt;experimental/functional&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">4.2</span><a href="#func.wrap.func">Class template function</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">4.2.1</span><a href="#func.wrap.func.overview">Overview</a>
-        
+
       </li>
-            
+
               <li><span class="marker">4.2.2</span><a href="#func.wrap.func.con">function construct/copy/destroy</a>
-        
+
       </li>
-            
+
               <li><span class="marker">4.2.3</span><a href="#func.wrap.func.mod">function modifiers</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">5</span><a href="#memory">Memory</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">5.1</span><a href="#memory.syn">Header &lt;experimental/memory&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.2</span><a href="#memory.observer.ptr">Non-owning (observer) pointers</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">5.2.1</span><a href="#memory.observer.ptr.overview">Class template observer_ptr overview</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.2.2</span><a href="#memory.observer.ptr.ctor">observer_ptr constructors</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.2.3</span><a href="#memory.observer.ptr.obs">observer_ptr observers</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.2.4</span><a href="#memory.observer.ptr.conv">observer_ptr conversions</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.2.5</span><a href="#memory.observer.ptr.mod">observer_ptr modifiers</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.2.6</span><a href="#memory.observer.ptr.special">observer_ptr specialized algorithms</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.2.7</span><a href="#memory.observer.ptr.hash">observer_ptr hash support</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">5.3</span><a href="#memory.type.erased.allocator">Type-erased allocator</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.4</span><a href="#memory.resource.syn">Header &lt;experimental/memory_resource&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.5</span><a href="#memory.resource.adaptor">Alias template resource_adaptor</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">5.5.1</span><a href="#memory.resource.adaptor.overview">resource_adaptor</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.5.2</span><a href="#memory.resource.adaptor.ctor">resource_adaptor_imp constructors</a>
-        
+
       </li>
-            
+
               <li><span class="marker">5.5.3</span><a href="#memory.resource.adaptor.mem">resource_adaptor_imp member functions</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">6</span><a href="#iterator">Iterators library</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">6.1</span><a href="#iterator.syn">Header &lt;experimental/iterator&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">6.2</span><a href="#iterator.ostream.joiner">Class template ostream_joiner</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">6.2.1</span><a href="#iterator.ostream.joiner.overview">Overview</a>
-        
+
       </li>
-            
+
               <li><span class="marker">6.2.2</span><a href="#iterator.ostream.joiner.cons">ostream_joiner constructor</a>
-        
+
       </li>
-            
+
               <li><span class="marker">6.2.3</span><a href="#iterator.ostream.joiner.ops">ostream_joiner operations</a>
-        
+
       </li>
-            
+
               <li><span class="marker">6.2.4</span><a href="#iterator.ostream.joiner.creation">ostream_joiner creation function</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">7</span><a href="#futures">Futures</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">7.1</span><a href="#future.syn">Header &lt;experimental/future&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">7.2</span><a href="#futures.promise">Class template promise</a>
-        
+
       </li>
-            
+
               <li><span class="marker">7.3</span><a href="#futures.task">Class template packaged_task</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">8</span><a href="#algorithms">Algorithms library</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">8.1</span><a href="#algorithm.syn">Header &lt;experimental/algorithm&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">8.2</span><a href="#alg.random.sample">Sampling</a>
-        
+
       </li>
-            
+
               <li><span class="marker">8.3</span><a href="#alg.random.shuffle">Shuffle</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
               <li><span class="marker">9</span><a href="#numeric">Numerics library</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">9.1</span><a href="#rand">Random number generation</a>
-        
+
           <ol>
-            
+
               <li><span class="marker">9.1.1</span><a href="#rand.syn">Header &lt;experimental/random&gt; synopsis</a>
-        
+
       </li>
-            
+
               <li><span class="marker">9.1.2</span><a href="#rand.randint">Function template randint</a>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
+
       </li>
-            
+
           </ol>
-        
-      
+
+
     </nav>
   </cxx-toc>
 
@@ -1450,19 +1450,19 @@ html   [segment], html   segment {
 </ul>
 </cxx-foreword -->
 <cxx-clause id="general">
-    
+
 
     <section>
       <header><span class="section-number">1</span> <h1 data-bookmark-label="1 General">General</h1> <span style="float:right"><a href="#general">[general]</a></span></header>
-      
-  
+
+
   <cxx-section id="general.scope">
-    
+
 
     <section>
       <header><span class="section-number">1.1</span> <h1 data-bookmark-label="1.1 Scope">Scope</h1> <span style="float:right"><a href="#general.scope">[general.scope]</a></span></header>
-      
-    
+
+
     <p id="general.scope.1" para_num="1">This technical specification describes extensions to the C++
     Standard Library (<cxx-ref to="general.references"><a title="general.references" href="#general.references">1.2</a></cxx-ref>). These extensions are classes
     and functions that are likely to be used widely within a program
@@ -1481,17 +1481,17 @@ html   [segment], html   segment {
     widespread existing practice for an expanded C++ standard
     library. It gives advice on extensions to those vendors who wish
     to provide them.</p>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="general.references">
-    
+
 
     <section>
       <header><span class="section-number">1.2</span> <h1 data-bookmark-label="1.2 Normative references">Normative references</h1> <span style="float:right"><a href="#general.references">[general.references]</a></span></header>
-      
-    
+
+
 
     <p id="general.references.1" para_num="1">The following referenced document is indispensable for the
     application of this document. For dated references, only the
@@ -1511,17 +1511,17 @@ html   [segment], html   segment {
     <p id="general.references.3" para_num="3">Unless otherwise specified, the whole of the C++ Standard's Library
     introduction (<cxx-ref in="cxx" to="library">C++20 <span title="library">§16</span></cxx-ref>) is included into this
     Technical Specification by reference.</p>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="general.namespaces">
-    
+
 
     <section>
       <header><span class="section-number">1.3</span> <h1 data-bookmark-label="1.3 Namespaces, headers, and modifications to standard classes">Namespaces, headers, and modifications to standard classes</h1> <span style="float:right"><a href="#general.namespaces">[general.namespaces]</a></span></header>
-      
-    
+
+
 
     <p id="general.namespaces.1" para_num="1">Since the extensions described in this technical specification
     are experimental and not part of the C++ standard library, they
@@ -1543,12 +1543,12 @@ html   [segment], html   segment {
     </ul>
 
     <cxx-example>
-    
+
     <span class="nowrap">[ <em>Example:</em></span>
-    
+
       This TS does not define <code>std::experimental::fundamentals_v3::pmr</code>
       because the C++ Standard Library defines <code>std::pmr</code>.
-    
+
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
 
@@ -1582,25 +1582,25 @@ html   [segment], html   segment {
     <code>#include</code>.</p>
 
     <table is="cxx-table" id="tab.cxx.headers" class="list" columns="3" role="presentation">
-    
+
 
     <caption>Table 1 — <wbr><span>C++ library headers</span></caption>
-    
-      
+
+
       <tbody><tr><td><ul><li><code>&lt;experimental/algorithm&gt;</code></li><li><code>&lt;experimental/functional&gt;</code></li><li><code>&lt;experimental/future&gt;</code></li><li><code>&lt;experimental/iterator&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/memory&gt;</code></li><li><code>&lt;experimental/memory_resource&gt;</code></li><li><code>&lt;experimental/propagate_const&gt;</code></li><li><code>&lt;experimental/random&gt;</code></li></ul></td><td><ul><li><code>&lt;experimental/scope&gt;</code></li><li><code>&lt;experimental/type_traits&gt;</code></li><li><code>&lt;experimental/utility&gt;</code></li></ul></td></tr>
     </tbody>
   </table>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="general.plans">
-    
+
 
     <section>
       <header><span class="section-number">1.4</span> <h1 data-bookmark-label="1.4 Future plans (Informative)">Future plans (Informative)</h1> <span style="float:right"><a href="#general.plans">[general.plans]</a></span></header>
-      
-    
+
+
 
     <p id="general.plans.1" para_num="1">This section describes tentative plans for future versions of
     this technical specification and plans for moving content into
@@ -1621,17 +1621,17 @@ html   [segment], html   segment {
     removing the <code>experimental::fundamentals_v<var>N</var></code>
     segment of its namespace and by removing the
     <code>experimental/</code> prefix from its header's path.</p>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="general.feature.test">
-    
+
 
     <section>
       <header><span class="section-number">1.5</span> <h1 data-bookmark-label="1.5 Feature-testing recommendations (Informative)">Feature-testing recommendations (Informative)</h1> <span style="float:right"><a href="#general.feature.test">[general.feature.test]</a></span></header>
-      
-    
+
+
 
     <p id="general.feature.test.1" para_num="1">
       For the sake of improved portability between partial implementations of various C++ standards,
@@ -1662,11 +1662,11 @@ html   [segment], html   segment {
     </p>
 
     <table is="cxx-table" class="column-rules">
-    
+
 
     <caption>Table 2 — <wbr><span>Significant features in this technical specification</span></caption>
-    
-      
+
+
 
       <thead>
         <tr>
@@ -1784,7 +1784,7 @@ html   [segment], html   segment {
       </tr>
     </tbody>
   </table>
-  
+
     </section>
   </cxx-section>
 
@@ -1792,12 +1792,12 @@ html   [segment], html   segment {
   </cxx-clause>
 
 <cxx-clause id="mods">
-    
+
 
     <section>
       <header><span class="section-number">2</span> <h1 data-bookmark-label="2 Modifications to the C++ Standard Library">Modifications to the C++ Standard Library</h1> <span style="float:right"><a href="#mods">[mods]</a></span></header>
-      
-  
+
+
 
   <p id="mods.1" para_num="1">
     Implementations that conform to this technical specification shall
@@ -1805,12 +1805,12 @@ html   [segment], html   segment {
   </p>
 
   <cxx-section id="mods.exception.requirements">
-    
+
 
     <section>
       <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Exception Requirements">Exception Requirements</h1> <span style="float:right"><a href="#mods.exception.requirements">[mods.exception.requirements]</a></span></header>
-      
-    
+
+
     <p id="mods.exception.requirements.1" para_num="1">The following changes to the library introduction allow the destructor
       of <code>scope_success</code> to throw exceptions.</p>
     <blockquote>
@@ -1836,17 +1836,17 @@ html   [segment], html   segment {
         shall behave as if it had a non-throwing exception specification.</p>
       <p para_num="4">Functions defined in the C++ standard library […]</p>
     </blockquote>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="mods.allocator.uses">
-    
+
 
     <section>
       <header><span class="section-number">2.2</span> <h1 data-bookmark-label="2.2 Uses-allocator construction">Uses-allocator construction</h1> <span style="float:right"><a href="#mods.allocator.uses">[mods.allocator.uses]</a></span></header>
-      
-    
+
+
 
     <p id="mods.allocator.uses.1" para_num="1">
       The following changes to the <code>uses_allocator</code> trait and to the description of uses-allocator construction
@@ -1862,14 +1862,14 @@ html   [segment], html   segment {
       <p><b>20.10.8.1 uses_allocator trait [allocator.uses.trait]</b></p>
 
       <cxx-function>
-    
+
     <pre><code><cxx-signature>template &lt;class T, class Alloc&gt; struct uses_allocator;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-remarks para_num="1">
-    
+
     <dt>Remarks:</dt><dd>
           Automatically detects whether <code>T</code> has a nested <code>allocator_type</code> that is convertible from <code>Alloc</code>.
           Meets the <cxx-17concept><i>Cpp17BinaryTypeTrait</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="meta.rqmts">C++20 <span title="meta.rqmts">§20.15.1</span></cxx-ref>).
@@ -1884,7 +1884,7 @@ html   [segment], html   segment {
           </ul>
         </dd>
   </cxx-remarks>
-      
+
     </dl>
   </cxx-function>
 
@@ -1899,7 +1899,7 @@ html   [segment], html   segment {
         according to the following rules:
       </p>
     </blockquote>
-  
+
     </section>
   </cxx-section>
 
@@ -1907,28 +1907,28 @@ html   [segment], html   segment {
   </cxx-clause>
 
 <cxx-clause id="utilities">
-    
+
 
     <section>
       <header><span class="section-number">3</span> <h1 data-bookmark-label="3 General utilities library">General utilities library</h1> <span style="float:right"><a href="#utilities">[utilities]</a></span></header>
-      
-  
+
+
 
   <cxx-section id="utility">
-    
+
 
     <section>
       <header><span class="section-number">3.1</span> <h1 data-bookmark-label="3.1 Utility components">Utility components</h1> <span style="float:right"><a href="#utility">[utility]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="utility.syn">
-    
+
 
     <section>
       <header><span class="section-number">3.1.1</span> <h1 data-bookmark-label="3.1.1 Header <experimental/utility> synopsis">Header <code>&lt;experimental/utility&gt;</code> synopsis</h1> <span style="float:right"><a href="#utility.syn">[utility.syn]</a></span></header>
-      
-      
+
+
 
 <pre><code>#include &lt;utility&gt;
 
@@ -1939,56 +1939,56 @@ namespace std::experimental::inline fundamentals_v3 {
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
 
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="utility.erased.type">
-    
+
 
     <section>
       <header><span class="section-number">3.1.2</span> <h1 data-bookmark-label="3.1.2 Class erased_type">Class <code>erased_type</code></h1> <span style="float:right"><a href="#utility.erased.type">[utility.erased.type]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="utility.erased.type.1" para_num="1">
-    
+
     <pre><code><cxx-signature>struct erased_type { };</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="utility.erased.type.2" para_num="2">
           The <code>erased_type</code> <code>struct</code> is an empty <code>struct</code> that serves as a placeholder for a type <code>T</code> in situations where the actual type <code>T</code> is determined at runtime.
           For example, the nested type, <code>allocator_type</code>, is an alias for <code>erased_type</code> in classes that use <i>type-erased allocators</i> (see <cxx-ref to="memory.type.erased.allocator"><a title="memory.type.erased.allocator" href="#memory.type.erased.allocator">5.3</a></cxx-ref>).
         </p>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="propagate_const">
-    
+
 
     <section>
       <header><span class="section-number">3.2</span> <h1 data-bookmark-label="3.2 Constness propagation">Constness propagation</h1> <span style="float:right"><a href="#propagate_const">[propagate_const]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="propagate_const.syn">
-    
+
 
     <section>
       <header><span class="section-number">3.2.1</span> <h1 data-bookmark-label="3.2.1 Header <experimental/propagate_const> synopsis">Header <code>&lt;experimental/propagate_const&gt;</code> synopsis</h1> <span style="float:right"><a href="#propagate_const.syn">[propagate_const.syn]</a></span></header>
-      
-      
+
+
 
       <pre><code>namespace std {
   namespace experimental::inline fundamentals_v3 {
@@ -2084,25 +2084,25 @@ namespace std::experimental::inline fundamentals_v3 {
     struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
 
 } // namespace std</code></pre>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="propagate_const">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2</span> <h1 data-bookmark-label="3.2.2 Class template propagate_const">Class template <code>propagate_const</code></h1> <span style="float:right"><a href="#propagate_const">[propagate_const]</a></span></header>
-      
-      
+
+
 
       <cxx-section id="propagate_const.overview">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.1</span> <h1 data-bookmark-label="3.2.2.1 Class template propagate_const overview">Class template <code>propagate_const</code> overview</h1> <span style="float:right"><a href="#propagate_const.overview">[propagate_const.overview]</a></span></header>
-      
-        
+
+
 
         <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
@@ -2154,17 +2154,17 @@ namespace std::experimental::inline fundamentals_v3 {
           which treats the wrapped pointer as a pointer to <code>const</code> when
           the wrapper is accessed through a <code>const</code> access path.
         </p>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="propagate_const.requirements">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.2</span> <h1 data-bookmark-label="3.2.2.2 propagate_const general requirements on T"><code>propagate_const</code> general requirements on <code>T</code></h1> <span style="float:right"><a href="#propagate_const.requirements">[propagate_const.requirements]</a></span></header>
-      
-        
+
+
 
         <p id="propagate_const.requirements.1" para_num="1">
           <code>T</code> shall be an object pointer type or a class type for which
@@ -2183,17 +2183,17 @@ namespace std::experimental::inline fundamentals_v3 {
   </cxx-note>
         </p>
 
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="propagate_const.class_type_requirements">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.3</span> <h1 data-bookmark-label="3.2.2.3 propagate_const requirements on class type T"><code>propagate_const</code> requirements on class type <code>T</code></h1> <span style="float:right"><a href="#propagate_const.class_type_requirements">[propagate_const.class_type_requirements]</a></span></header>
-      
-        
+
+
 
         <p id="propagate_const.class_type_requirements.1" para_num="1">
           If <code>T</code> is class
@@ -2215,11 +2215,11 @@ namespace std::experimental::inline fundamentals_v3 {
         </p>
 
         <table is="cxx-table">
-    
+
 
     <caption>Table 3 — <wbr><span>Requirements on class types <code>T</code></span></caption>
-    
-          
+
+
           <tbody><tr>
             <th>Expression</th>
             <th>Return type</th>
@@ -2274,806 +2274,806 @@ namespace std::experimental::inline fundamentals_v3 {
           </tr>
         </tbody>
   </table>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="propagate_const.ctor">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.4</span> <h1 data-bookmark-label="3.2.2.4 propagate_const constructors"><code>propagate_const</code> constructors</h1> <span style="float:right"><a href="#propagate_const.ctor">[propagate_const.ctor]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="propagate_const.ctor.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class U&gt;
 explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-constraints id="propagate_const.ctor.2" para_num="2">
-    
+
     <dt>Constraints:</dt><dd>
             <code>is_constructible_v&lt;T, U&gt;</code> is true.
           </dd>
   </cxx-constraints>
           <cxx-effects id="propagate_const.ctor.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd>
             Initializes <code>t_</code> as if
             direct-non-list-initializing an object of type <code>T</code> with the
             expression <code>std::move(pu.t_)</code>.
           </dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="propagate_const.ctor.4" para_num="4">
-    
+
     <pre><code><cxx-signature>template &lt;class U&gt;
 explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-constraints id="propagate_const.ctor.5" para_num="5">
-    
+
     <dt>Constraints:</dt><dd>
             <code>is_constructible_v&lt;T, U&gt;</code> is true
             and <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
           </dd>
   </cxx-constraints>
           <cxx-effects id="propagate_const.ctor.6" para_num="6">
-    
+
     <dt>Effects:</dt><dd>
             Initializes <code>t_</code> as if
             direct-non-list-initializing an object of type <code>T</code> with
             the expression <code>std::forward&lt;U&gt;(u)</code>.
           </dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="propagate_const.assignment">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.5</span> <h1 data-bookmark-label="3.2.2.5 propagate_const assignment"><code>propagate_const</code> assignment</h1> <span style="float:right"><a href="#propagate_const.assignment">[propagate_const.assignment]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="propagate_const.assignment.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class U&gt;
 constexpr propagate_const&amp; operator=(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-constraints id="propagate_const.assignment.2" para_num="2">
-    
+
     <dt>Constraints:</dt><dd>
             <code>U</code> is implicitly convertible to <code>T</code>.
           </dd>
   </cxx-constraints>
           <cxx-effects id="propagate_const.assignment.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd><code>t_ = std::move(pu.t_)</code>.</dd>
   </cxx-effects>
           <cxx-returns id="propagate_const.assignment.4" para_num="4">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="propagate_const.assignment.5" para_num="5">
-    
+
     <pre><code><cxx-signature>template &lt;class U&gt;
 constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-constraints id="propagate_const.assignment.6" para_num="6">
-    
+
     <dt>Constraints:</dt><dd>
             <code>U</code> is implicitly convertible to <code>T</code> and
             <code>decay_t&lt;U&gt;</code> is not a specialization of <code>propagate_const</code>.
           </dd>
   </cxx-constraints>
           <cxx-effects id="propagate_const.assignment.7" para_num="7">
-    
+
     <dt>Effects:</dt><dd><code>t_ = std::forward&lt;U&gt;(u)</code>.</dd>
   </cxx-effects>
           <cxx-returns id="propagate_const.assignment.8" para_num="8">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="propagate_const.const_observers">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.6</span> <h1 data-bookmark-label="3.2.2.6 propagate_const const observers"><code>propagate_const</code> const observers</h1> <span style="float:right"><a href="#propagate_const.const_observers">[propagate_const.const_observers]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="propagate_const.const_observers.1" para_num="1">
-    
+
     <pre><code><cxx-signature>explicit constexpr operator bool() const;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-returns id="propagate_const.const_observers.2" para_num="2">
-    
+
     <dt>Returns:</dt><dd><code>(bool)t_</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="propagate_const.const_observers.3" para_num="3">
-    
+
     <pre><code><cxx-signature>constexpr const element_type* operator-&gt;() const;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-preconditions id="propagate_const.const_observers.4" para_num="4">
-    
+
     <dt>Preconditions:</dt><dd><code>get() != nullptr</code>.</dd>
   </cxx-preconditions>
           <cxx-returns id="propagate_const.const_observers.5" para_num="5">
-    
+
     <dt>Returns:</dt><dd><code>get()</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="propagate_const.const_observers.6" para_num="6">
-    
+
     <pre><code><cxx-signature>constexpr operator const element_type*() const;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-constraints id="propagate_const.const_observers.7" para_num="7">
-    
+
     <dt>Constraints:</dt><dd>
             <code>T</code> is an object pointer type or
             has an implicit conversion to <code>const element_type*</code>.
           </dd>
   </cxx-constraints>
           <cxx-returns id="propagate_const.const_observers.8" para_num="8">
-    
+
     <dt>Returns:</dt><dd><code>get()</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="propagate_const.const_observers.9" para_num="9">
-    
+
     <pre><code><cxx-signature>constexpr const element_type&amp; operator*() const;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-preconditions id="propagate_const.const_observers.10" para_num="10">
-    
+
     <dt>Preconditions:</dt><dd><code>get() != nullptr</code>.</dd>
   </cxx-preconditions>
           <cxx-returns id="propagate_const.const_observers.11" para_num="11">
-    
+
     <dt>Returns:</dt><dd><code>*get()</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="propagate_const.const_observers.12" para_num="12">
-    
+
     <pre><code><cxx-signature>constexpr const element_type* get() const;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-returns id="propagate_const.const_observers.13" para_num="13">
-    
+
     <dt>Returns:</dt><dd>
             <code>t_</code> if <code>T</code> is an object pointer type,
             otherwise <code>t_.get()</code>.
           </dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
-      
+
     </section>
   </cxx-section>
 
     <cxx-section id="propagate_const.non_const_observers">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.7</span> <h1 data-bookmark-label="3.2.2.7 propagate_const non-const observers"><code>propagate_const</code> non-const observers</h1> <span style="float:right"><a href="#propagate_const.non_const_observers">[propagate_const.non_const_observers]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="propagate_const.non_const_observers.1" para_num="1">
-    
+
     <pre><code><cxx-signature>constexpr element_type* operator-&gt;();</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-preconditions id="propagate_const.non_const_observers.2" para_num="2">
-    
+
     <dt>Preconditions:</dt><dd><code>get() != nullptr</code>.</dd>
   </cxx-preconditions>
         <cxx-returns id="propagate_const.non_const_observers.3" para_num="3">
-    
+
     <dt>Returns:</dt><dd><code>get()</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.non_const_observers.4" para_num="4">
-    
+
     <pre><code><cxx-signature>constexpr operator element_type*();</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-constraints id="propagate_const.non_const_observers.5" para_num="5">
-    
+
     <dt>Constraints:</dt><dd>
           <code>T</code> is an object pointer type or
           has an implicit conversion to <code>element_type*</code>.
         </dd>
   </cxx-constraints>
         <cxx-returns id="propagate_const.non_const_observers.6" para_num="6">
-    
+
     <dt>Returns:</dt><dd><code>get()</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.non_const_observers.7" para_num="7">
-    
+
     <pre><code><cxx-signature>constexpr element_type&amp; operator*();</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-preconditions id="propagate_const.non_const_observers.8" para_num="8">
-    
+
     <dt>Preconditions:</dt><dd><code>get() != nullptr</code>.</dd>
   </cxx-preconditions>
         <cxx-returns id="propagate_const.non_const_observers.9" para_num="9">
-    
+
     <dt>Returns:</dt><dd><code>*get()</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.non_const_observers.10" para_num="10">
-    
+
     <pre><code><cxx-signature>constexpr element_type* get();</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.non_const_observers.11" para_num="11">
-    
+
     <dt>Returns:</dt><dd>
           <code>t_</code> if <code>T</code> is an object pointer type,
           otherwise <code>t_.get()</code>.
         </dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="propagate_const.modifiers">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.8</span> <h1 data-bookmark-label="3.2.2.8 propagate_const modifiers"><code>propagate_const</code> modifiers</h1> <span style="float:right"><a href="#propagate_const.modifiers">[propagate_const.modifiers]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="propagate_const.modifiers.1" para_num="1">
-    
+
     <pre><code><cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-preconditions id="propagate_const.modifiers.2" para_num="2">
-    
+
     <dt>Preconditions:</dt><dd>
           Lvalues of type <code>T</code> are swappable
           (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.5.3.2</span></cxx-ref>).
         </dd>
   </cxx-preconditions>
         <cxx-effects id="propagate_const.modifiers.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd><code>swap(t_, pt.t_)</code>.</dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="propagate_const.relational">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.9</span> <h1 data-bookmark-label="3.2.2.9 propagate_const relational operators"><code>propagate_const</code> relational operators</h1> <span style="float:right"><a href="#propagate_const.relational">[propagate_const.relational]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="propagate_const.relational.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.2" para_num="2">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ == nullptr</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.3" para_num="3">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 constexpr bool operator==(nullptr_t, const propagate_const&lt;T&gt;&amp; pt);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.4" para_num="4">
-    
+
     <dt>Returns:</dt><dd><code>nullptr == pt.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.5" para_num="5">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.6" para_num="6">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ != nullptr</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.7" para_num="7">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 constexpr bool operator!=(nullptr_t, const propagate_const&lt;T&gt;&amp; pt);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.8" para_num="8">
-    
+
     <dt>Returns:</dt><dd><code>nullptr != pt.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.9" para_num="9">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.10" para_num="10">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ == pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.11" para_num="11">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.12" para_num="12">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ != pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.13" para_num="13">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.14" para_num="14">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &lt; pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.15" para_num="15">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.16" para_num="16">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &gt; pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.17" para_num="17">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.18" para_num="18">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &lt;= pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.19" para_num="19">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.20" para_num="20">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &gt;= pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.21" para_num="21">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.22" para_num="22">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ == u</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.23" para_num="23">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-returns id="propagate_const.relational.24" para_num="24">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ != u</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.25" para_num="25">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.26" para_num="26">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &lt; u</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.27" para_num="27">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.28" para_num="28">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &gt; u</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.29" para_num="29">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.30" para_num="30">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &lt;= u</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.31" para_num="31">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.32" para_num="32">
-    
+
     <dt>Returns:</dt><dd><code>pt.t_ &gt;= u</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.33" para_num="33">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator==(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.34" para_num="34">
-    
+
     <dt>Returns:</dt><dd><code>t == pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.35" para_num="35">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator!=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.36" para_num="36">
-    
+
     <dt>Returns:</dt><dd><code>t != pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.37" para_num="37">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&lt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.38" para_num="38">
-    
+
     <dt>Returns:</dt><dd><code>t &lt; pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.39" para_num="39">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&gt;(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.40" para_num="40">
-    
+
     <dt>Returns:</dt><dd><code>t &gt; pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.41" para_num="41">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&lt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.42" para_num="42">
-    
+
     <dt>Returns:</dt><dd><code>t &lt;= pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.relational.43" para_num="43">
-    
+
     <pre><code><cxx-signature>template &lt;class T, class U&gt;
 constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.relational.44" para_num="44">
-    
+
     <dt>Returns:</dt><dd><code>t &gt;= pu.t_</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
     <cxx-section id="propagate_const.algorithms">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.10</span> <h1 data-bookmark-label="3.2.2.10 propagate_const specialized algorithms"><code>propagate_const</code> specialized algorithms</h1> <span style="float:right"><a href="#propagate_const.algorithms">[propagate_const.algorithms]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="propagate_const.algorithms.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-constraints id="propagate_const.algorithms.2" para_num="2">
-    
+
     <dt>Constraints:</dt><dd><code>is_swappable_v&lt;T&gt;</code> is <code>true</code>.</dd>
   </cxx-constraints>
         <cxx-effects id="propagate_const.algorithms.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd>Equivalent to: <code>pt1.swap(pt2)</code>.</dd>
   </cxx-effects>
         <cxx-remarks id="propagate_const.algorithms.4" para_num="4">
-    
+
     <dt>Remarks:</dt><dd>The expression inside <code>noexcept</code> is equivalent to:
           <pre><code>noexcept(pt1.swap(pt2))</code></pre>
         </dd>
   </cxx-remarks>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="propagate_const.underlying">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.11</span> <h1 data-bookmark-label="3.2.2.11 propagate_const underlying pointer access"><code>propagate_const</code> underlying pointer access</h1> <span style="float:right"><a href="#propagate_const.underlying">[propagate_const.underlying]</a></span></header>
-      
-      
+
+
 
       <p id="propagate_const.underlying.1" para_num="1">
         Access to the underlying object pointer type is
@@ -3082,62 +3082,62 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
       </p>
 
       <cxx-function id="propagate_const.underlying.2" para_num="2">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.underlying.3" para_num="3">
-    
+
     <dt>Returns:</dt><dd>
           a reference to the underlying object pointer type.
         </dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.underlying.4" para_num="4">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="propagate_const.underlying.5" para_num="5">
-    
+
     <dt>Returns:</dt><dd>
           a reference to the underlying object pointer type.
         </dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="propagate_const.hash">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.12</span> <h1 data-bookmark-label="3.2.2.12 propagate_const hash support"><code>propagate_const</code> hash support</h1> <span style="float:right"><a href="#propagate_const.hash">[propagate_const.hash]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="propagate_const.hash.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="propagate_const.hash.2" para_num="2">
           The specialization <code>hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;</code>
@@ -3146,29 +3146,29 @@ struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx
           <code>hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p)</code>
           evaluates to the same value as <code>hash&lt;T&gt;()(p.t_)</code>.
         </p>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="propagate_const.comparison_function_objects">
-    
+
 
     <section>
       <header><span class="section-number">3.2.2.13</span> <h1 data-bookmark-label="3.2.2.13 propagate_const comparison function objects"><code>propagate_const</code> comparison function objects</h1> <span style="float:right"><a href="#propagate_const.comparison_function_objects">[propagate_const.comparison_function_objects]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="propagate_const.comparison_function_objects.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 struct equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="propagate_const.comparison_function_objects.2" para_num="2">
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -3179,29 +3179,29 @@ q.t_)</code>.
         </p>
 
         <cxx-mandates id="propagate_const.comparison_function_objects.3" para_num="3">
-    
+
     <dt>Mandates:</dt><dd>
           The specialization <code>equal_to&lt;T&gt;</code> is well-formed
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="propagate_const.comparison_function_objects.4" para_num="4">
-    
+
     <dt>Preconditions:</dt><dd>
           The specialization <code>equal_to&lt;T&gt;</code> is well-defined.
         </dd>
   </cxx-preconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.comparison_function_objects.5" para_num="5">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 struct not_equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="propagate_const.comparison_function_objects.6" para_num="6">
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -3210,29 +3210,29 @@ struct not_equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&g
         </p>
 
         <cxx-mandates id="propagate_const.comparison_function_objects.7" para_num="7">
-    
+
     <dt>Mandates:</dt><dd>
           The specialization <code>not_equal_to&lt;T&gt;</code> is well-formed
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="propagate_const.comparison_function_objects.8" para_num="8">
-    
+
     <dt>Preconditions:</dt><dd>
           The specialization <code>not_equal_to&lt;T&gt;</code> is well-defined.
         </dd>
   </cxx-preconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.comparison_function_objects.9" para_num="9">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 struct less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="propagate_const.comparison_function_objects.10" para_num="10">
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -3241,29 +3241,29 @@ struct less&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx
         </p>
 
         <cxx-mandates id="propagate_const.comparison_function_objects.11" para_num="11">
-    
+
     <dt>Mandates:</dt><dd>
           The specialization <code>less&lt;T&gt;</code> is well-formed
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="propagate_const.comparison_function_objects.12" para_num="12">
-    
+
     <dt>Preconditions:</dt><dd>
           The specialization <code>less&lt;T&gt;</code> is well-defined.
         </dd>
   </cxx-preconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.comparison_function_objects.13" para_num="13">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 struct greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="propagate_const.comparison_function_objects.14" para_num="14">
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -3272,29 +3272,29 @@ struct greater&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</
         </p>
 
         <cxx-mandates id="propagate_const.comparison_function_objects.15" para_num="15">
-    
+
     <dt>Mandates:</dt><dd>
           The specialization <code>greater&lt;T&gt;</code> is well-formed
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="propagate_const.comparison_function_objects.16" para_num="16">
-    
+
     <dt>Preconditions:</dt><dd>
           The specialization <code>greater&lt;T&gt;</code> is well-defined.
         </dd>
   </cxx-preconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.comparison_function_objects.17" para_num="17">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 struct less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="propagate_const.comparison_function_objects.18" para_num="18">
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -3303,29 +3303,29 @@ struct less_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;
         </p>
 
         <cxx-mandates id="propagate_const.comparison_function_objects.19" para_num="19">
-    
+
     <dt>Mandates:</dt><dd>
           The specialization <code>less_equal&lt;T&gt;</code> is well-formed
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="propagate_const.comparison_function_objects.20" para_num="20">
-    
+
     <dt>Preconditions:</dt><dd>
           The specialization <code>less_equal&lt;T&gt;</code> is well-defined.
         </dd>
   </cxx-preconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="propagate_const.comparison_function_objects.21" para_num="21">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt;
 struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="propagate_const.comparison_function_objects.22" para_num="22">
           For objects <code>p, q</code> of type <code>propagate_const&lt;T&gt;</code>,
@@ -3334,45 +3334,45 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
         </p>
 
         <cxx-mandates id="propagate_const.comparison_function_objects.23" para_num="23">
-    
+
     <dt>Mandates:</dt><dd>
           The specialization <code>greater_equal&lt;T&gt;</code> is well-formed
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="propagate_const.comparison_function_objects.24" para_num="24">
-    
+
     <dt>Preconditions:</dt><dd>
           The specialization <code>greater_equal&lt;T&gt;</code> is well-defined.
         </dd>
   </cxx-preconditions>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="scopeguard">
-    
+
 
     <section>
       <header><span class="section-number">3.3</span> <h1 data-bookmark-label="3.3 Scope guard support">Scope guard support</h1> <span style="float:right"><a href="#scopeguard">[scopeguard]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="scope.syn">
-    
+
 
     <section>
       <header><span class="section-number">3.3.1</span> <h1 data-bookmark-label="3.3.1 Header <experimental/scope> synopsis">Header <code>&lt;experimental/scope&gt;</code> synopsis</h1> <span style="float:right"><a href="#scope.syn">[scope.syn]</a></span></header>
-      
-      
+
+
 
       <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
@@ -3395,17 +3395,17 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
 
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="scopeguard.exit">
-    
+
 
     <section>
       <header><span class="section-number">3.3.2</span> <h1 data-bookmark-label="3.3.2 Class templates scope_exit, scope_fail, and scope_success">Class templates <code>scope_exit</code>, <code>scope_fail</code>, and <code>scope_success</code></h1> <span style="float:right"><a href="#scopeguard.exit">[scopeguard.exit]</a></span></header>
-      
-      
+
+
 
       <p id="scopeguard.exit.1" para_num="1">The class templates <code>scope_exit</code>, <code>scope_fail</code>,
         and <code>scope_success</code> define scope guards that wrap a
@@ -3449,7 +3449,7 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
         share the <code>scope_exit</code> interface, only the situation when the
         exit function is called differs.</p>
       <cxx-example>
-    
+
     <span class="nowrap">[ <em>Example:</em></span>
     <pre><code>void grow(vector&lt;int&gt;&amp; v) {
   scope_success guard([]{ cout &lt;&lt; "Good!" &lt;&lt; endl; });
@@ -3483,18 +3483,18 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
         object (<cxx-ref in="cxx" to="function.objects">C++20 <span title="function.objects">§20.14</span></cxx-ref>).</p>
 
       <cxx-function id="scopeguard.exit.7" para_num="7">
-    
+
     <pre><code><cxx-signature>template &lt;class EFP&gt;
 explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
     is_nothrow_constructible_v&lt;EF, EFP&gt; ||
     is_nothrow_constructible_v&lt;EF, EFP&amp;&gt;);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-constraints id="scopeguard.exit.8" para_num="8">
-    
+
     <dt>Constraints:</dt><dd>
           <code>is_same_v&lt;remove_cvref_t&lt;EFP&gt;,
           <i>scope-guard</i>&gt;</code> is <code>false</code> and
@@ -3503,14 +3503,14 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   </cxx-constraints>
 
         <cxx-mandates id="scopeguard.exit.9" para_num="9">
-    
+
     <dt>Mandates:</dt><dd>
           The expression <code>f()</code> is well-formed.
         </dd>
   </cxx-mandates>
 
         <cxx-preconditions id="scopeguard.exit.10" para_num="10">
-    
+
     <dt>Preconditions:</dt><dd>
           Calling <code>f()</code> has well-defined behavior.
           For <code>scope_exit</code> and <code>scope_fail</code>,
@@ -3519,7 +3519,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   </cxx-preconditions>
 
         <cxx-effects id="scopeguard.exit.11" para_num="11">
-    
+
     <dt>Effects:</dt><dd>
           If <code>EFP</code> is not an lvalue reference type and
           <code>is_nothrow_constructible_v&lt;EF, EFP&gt;</code>
@@ -3538,25 +3538,25 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   </cxx-effects>
 
         <cxx-throws id="scopeguard.exit.12" para_num="12">
-    
+
     <dt>Throws:</dt><dd>
           Any exception thrown during the initialization of <code>exit_function</code>.
         </dd>
   </cxx-throws>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="scopeguard.exit.13" para_num="13">
-    
+
     <pre><code><cxx-signature><i>scope-guard</i>(<i>scope-guard</i>&amp;&amp; rhs) noexcept(<i>see below</i>)</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-constraints id="scopeguard.exit.14" para_num="14">
-    
+
     <dt>Constraints:</dt><dd>
           <code>(is_nothrow_move_constructible_v&lt;EF&gt; || is_copy_constructible_v&lt;EF&gt;)</code>
           is <code>true</code>.
@@ -3564,7 +3564,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   </cxx-constraints>
 
         <cxx-preconditions id="scopeguard.exit.15" para_num="15">
-    
+
     <dt>Preconditions:</dt><dd>
           If <code>EF</code> is an object type:
           <ul>
@@ -3576,7 +3576,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   </cxx-preconditions>
 
         <cxx-effects id="scopeguard.exit.16" para_num="16">
-    
+
     <dt>Effects:</dt><dd>
           If <code>is_nothrow_move_constructible_v&lt;EF&gt;</code> is <code>true</code>,
           initializes <code>exit_function</code> with <code>std::forward&lt;EF&gt;(rhs.exit_function)</code>,
@@ -3592,7 +3592,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   </cxx-effects>
 
         <cxx-postconditions id="scopeguard.exit.17" para_num="17">
-    
+
     <dt>Postconditions:</dt><dd>
           <code>execute_on_destruction</code> yields the value <code>rhs.execute_on_destruction</code>
           yielded before the construction. <code>uncaught_on_creation</code> yields the value
@@ -3601,131 +3601,131 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   </cxx-postconditions>
 
         <cxx-throws id="scopeguard.exit.18" para_num="18">
-    
+
     <dt>Throws:</dt><dd>
           Any exception thrown during the initialization of <code>exit_function</code>.
         </dd>
   </cxx-throws>
 
         <cxx-remarks id="scopeguard.exit.19" para_num="19">
-    
+
     <dt>Remarks:</dt><dd>
           The expression inside <code>noexcept</code> is equivalent to:
           <pre><code>is_nothrow_move_constructible_v&lt;EF&gt; || is_nothrow_copy_constructible_v&lt;EF&gt;</code></pre>
         </dd>
   </cxx-remarks>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="scopeguard.exit.20" para_num="20">
-    
+
     <pre><code><cxx-signature>~scope_exit() noexcept(true);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-effects id="scopeguard.exit.21" para_num="21">
-    
+
     <dt>Effects:</dt><dd>
           Equivalent to:
           <pre><code>if (execute_on_destruction)
   exit_function();</code></pre>
         </dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="scopeguard.exit.22" para_num="22">
-    
+
     <pre><code><cxx-signature>~scope_fail() noexcept(true);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-effects id="scopeguard.exit.23" para_num="23">
-    
+
     <dt>Effects:</dt><dd>
           Equivalent to:
           <pre><code>if (execute_on_destruction &amp;&amp; uncaught_exceptions() &gt; uncaught_on_creation)
   exit_function();</code></pre>
         </dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="scopeguard.exit.24" para_num="24">
-    
+
     <pre><code><cxx-signature>~scope_success() noexcept(noexcept(exit_function()));</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-effects id="scopeguard.exit.25" para_num="25">
-    
+
     <dt>Effects:</dt><dd>
           Equivalent to:
           <pre><code>if (execute_on_destruction &amp;&amp; uncaught_exceptions() &lt;= uncaught_on_creation)
   exit_function();</code></pre>
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
+
             If <code>noexcept(exit_function())</code> is <code>false</code>,
             <code>exit_function()</code> may throw an exception,
             notwithstanding the restrictions of <cxx-ref in="cxx" to="res.on.exception.handling">C++20 <span title="res.on.exception.handling">§16.5.5.13</span></cxx-ref>.
-          
+
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
         </dd>
   </cxx-effects>
         <cxx-throws id="scopeguard.exit.26" para_num="26">
-    
+
     <dt>Throws:</dt><dd>
           Any exception thrown by <code>exit_function()</code>.
         </dd>
   </cxx-throws>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="scopeguard.exit.27" para_num="27">
-    
+
     <pre><code><cxx-signature>void release() noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-effects id="scopeguard.exit.28" para_num="28">
-    
+
     <dt>Effects:</dt><dd>
           Equivalent to <code>execute_on_destruction = false</code>.
         </dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="scopeguard.uniqueres">
-    
+
 
     <section>
       <header><span class="section-number">3.3.3</span> <h1 data-bookmark-label="3.3.3 Class template unique_resource">Class template <code>unique_resource</code></h1> <span style="float:right"><a href="#scopeguard.uniqueres">[scopeguard.uniqueres]</a></span></header>
-      
 
-      
+
+
 
       <cxx-section id="scopeguard.uniqueres.overview">
-    
+
 
     <section>
       <header><span class="section-number">3.3.3.1</span> <h1 data-bookmark-label="3.3.3.1 Overview">Overview</h1> <span style="float:right"><a href="#scopeguard.uniqueres.overview">[scopeguard.uniqueres.overview]</a></span></header>
-      
-        
+
+
 
         <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
@@ -3805,54 +3805,54 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
             <li><code>resource</code> otherwise.</li>
           </ul>
         <p id="scopeguard.uniqueres.overview.5" para_num="5"></p>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="scopeguard.uniqueres.ctor">
-    
+
 
     <section>
       <header><span class="section-number">3.3.3.2</span> <h1 data-bookmark-label="3.3.3.2 Constructors">Constructors</h1> <span style="float:right"><a href="#scopeguard.uniqueres.ctor">[scopeguard.uniqueres.ctor]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="scopeguard.uniqueres.ctor.1" para_num="1">
-    
+
     <pre><code><cxx-signature>unique_resource()</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
           <cxx-constraints id="scopeguard.uniqueres.ctor.2" para_num="2">
-    
+
     <dt>Constraints:</dt><dd>
             <code>is_default_constructible_v&lt;R&gt; &amp;&amp;
             is_default_constructible_v&lt;D&gt;</code> is <code>true</code>.
           </dd>
   </cxx-constraints>
           <cxx-effects id="scopeguard.uniqueres.ctor.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd>
             Value-initializes <code>resource</code> and <code>deleter</code>;
             <code>execute_on_reset</code> is initialized with <code>false</code>.
           </dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.ctor.4" para_num="4">
-    
+
     <pre><code><cxx-signature>template &lt;class RR, class DD&gt;
 unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>)</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-constraints id="scopeguard.uniqueres.ctor.5" para_num="5">
-    
+
     <dt>Constraints:</dt><dd>
             <pre><code>is_constructible_v&lt;R1, RR&gt; &amp;&amp;
 is_constructible_v&lt;D , DD&gt; &amp;&amp;
@@ -3860,17 +3860,17 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
 (is_nothrow_constructible_v&lt;D , DD&gt; || is_constructible_v&lt;D ,DD&amp;&gt;)</code></pre>
             is <code>true</code>.
             <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
+
               The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
               or <code>D</code> is a specialization of <code>reference_wrapper</code>.
-            
+
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
           </dd>
   </cxx-constraints>
 
           <cxx-mandates id="scopeguard.uniqueres.ctor.6" para_num="6">
-    
+
     <dt>Mandates:</dt><dd>
             The expressions <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
             and <code>deleter(<i>RESOURCE</i>)</code> are well-formed.
@@ -3878,7 +3878,7 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
   </cxx-mandates>
 
           <cxx-preconditions id="scopeguard.uniqueres.ctor.7" para_num="7">
-    
+
     <dt>Preconditions:</dt><dd>
             Calling <code>d(r)</code>, <code>d(<i>RESOURCE</i>)</code>
             or <code>deleter(<i>RESOURCE</i>)</code> has well-defined behavior and
@@ -3887,7 +3887,7 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
   </cxx-preconditions>
 
           <cxx-effects id="scopeguard.uniqueres.ctor.8" para_num="8">
-    
+
     <dt>Effects:</dt><dd>
             If <code>is_nothrow_constructible_v&lt;R1, RR&gt;</code> is <code>true</code>,
             initializes <code>resource</code> with <code>std::forward&lt;RR&gt;(r)</code>,
@@ -3899,43 +3899,43 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
             calls <code>d(r)</code>.
             If initialization of <code>deleter</code> throws an exception, calls <code>d(<i>RESOURCE</i>)</code>.
             <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
+
               The explained mechanism ensures no leaking of resources.
-            
+
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
           </dd>
   </cxx-effects>
 
           <cxx-throws id="scopeguard.uniqueres.ctor.9" para_num="9">
-    
+
     <dt>Throws:</dt><dd>
             Any exception thrown during initialization of <code>resource</code> or <code>deleter</code>.
           </dd>
   </cxx-throws>
 
           <cxx-remarks id="scopeguard.uniqueres.ctor.10" para_num="10">
-    
+
     <dt>Remarks:</dt><dd>
             The expression inside <code>noexcept</code> is equivalent to:
             <pre><code>(is_nothrow_constructible_v&lt;R1, RR&gt; || is_nothrow_constructible_v&lt;R1, RR&amp;&gt;) &amp;&amp;
 (is_nothrow_constructible_v&lt;D , DD&gt; || is_nothrow_constructible_v&lt;D , DD&amp;&gt;)</code></pre>
           </dd>
   </cxx-remarks>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.ctor.11" para_num="11">
-    
+
     <pre><code><cxx-signature>unique_resource(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-effects id="scopeguard.uniqueres.ctor.12" para_num="12">
-    
+
     <dt>Effects:</dt><dd>
             First, initialize <code>resource</code> as follows:
             <ul>
@@ -3944,10 +3944,10 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
               <li>otherwise, from <code>rhs.resource</code>.</li>
             </ul>
             <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
+
               If initialization of <code>resource</code> throws an exception,
               <code>rhs</code> is left owning the resource and will free it in due time.
-            
+
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
             Then, initialize <code>deleter</code> as follows:
@@ -3964,72 +3964,72 @@ rhs.release();</code></pre>
             Finally, <code>execute_on_reset</code> is initialized with
             <code>exchange(rhs.execute_on_reset, false)</code>.
             <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
+
               The explained mechanism ensures no leaking and no double release of resources.
-            
+
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
           </dd>
   </cxx-effects>
 
           <cxx-remarks id="scopeguard.uniqueres.ctor.13" para_num="13">
-    
+
     <dt>Remarks:</dt><dd>
             The expression inside <code>noexcept</code> is equivalent to:
             <pre><code>is_nothrow_move_constructible_v&lt;R1&gt; &amp;&amp; is_nothrow_move_constructible_v&lt;D&gt;</code></pre>
           </dd>
   </cxx-remarks>
-        
+
     </dl>
   </cxx-function>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="scopeguard.uniqueres.dtor">
-    
+
 
     <section>
       <header><span class="section-number">3.3.3.3</span> <h1 data-bookmark-label="3.3.3.3 Destructor">Destructor</h1> <span style="float:right"><a href="#scopeguard.uniqueres.dtor">[scopeguard.uniqueres.dtor]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="scopeguard.uniqueres.dtor.1" para_num="1">
-    
+
     <pre><code><cxx-signature>~unique_resource();</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
           <cxx-effects id="scopeguard.uniqueres.dtor.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd>Equivalent to <code>reset()</code>.</dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="scopeguard.uniqueres.assign">
-    
+
 
     <section>
       <header><span class="section-number">3.3.3.4</span> <h1 data-bookmark-label="3.3.3.4 Assignment">Assignment</h1> <span style="float:right"><a href="#scopeguard.uniqueres.assign">[scopeguard.uniqueres.assign]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="scopeguard.uniqueres.assign.1" para_num="1">
-    
+
     <pre><code><cxx-signature>unique_resource&amp; operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-preconditions id="scopeguard.uniqueres.assign.2" para_num="2">
-    
+
     <dt>Preconditions:</dt><dd>
             If <code>is_nothrow_move_assignable_v&lt;R1&gt;</code> is <code>true</code>,
             <code>R1</code> meets the <cxx-17concept><i>Cpp17MoveAssignable</i></cxx-17concept> (C++20 Table 28)
@@ -4042,7 +4042,7 @@ rhs.release();</code></pre>
   </cxx-preconditions>
 
           <cxx-effects id="scopeguard.uniqueres.assign.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd>
             Equivalent to:
             <pre><code>reset();
@@ -4065,22 +4065,22 @@ if constexpr (is_nothrow_move_assignable_v&lt;R1&gt;) {
 }
 execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
             <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
+
               If a copy of a member throws an exception, this mechanism leaves
               <code>rhs</code> intact and <code>*this</code> in the released state.
-            
+
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
           </dd>
   </cxx-effects>
 
           <cxx-returns id="scopeguard.uniqueres.assign.4" para_num="4">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
 
           <cxx-throws id="scopeguard.uniqueres.assign.5" para_num="5">
-    
+
     <dt>Throws:</dt><dd>
             Any exception thrown during a copy-assignment of a member that
             cannot be moved without an exception.
@@ -4088,37 +4088,37 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
   </cxx-throws>
 
           <cxx-remarks id="scopeguard.uniqueres.assign.6" para_num="6">
-    
+
     <dt>Remarks:</dt><dd>
             The expression inside <code>noexcept</code> is equivalent to:
             <pre><code>is_nothrow_move_assignable_v&lt;R1&gt; &amp;&amp; is_nothrow_move_assignable_v&lt;D&gt;</code></pre>
           </dd>
   </cxx-remarks>
-        
+
     </dl>
   </cxx-function>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="scopeguard.uniqueres.members">
-    
+
 
     <section>
       <header><span class="section-number">3.3.3.5</span> <h1 data-bookmark-label="3.3.3.5 Other member functions">Other member functions</h1> <span style="float:right"><a href="#scopeguard.uniqueres.members">[scopeguard.uniqueres.members]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="scopeguard.uniqueres.members.1" para_num="1">
-    
+
     <pre><code><cxx-signature>void reset() noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-effects id="scopeguard.uniqueres.members.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd>
             Equivalent to:
             <pre><code>if (execute_on_reset) {
@@ -4127,34 +4127,34 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
 }</code></pre>
           </dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.members.3" para_num="3">
-    
+
     <pre><code><cxx-signature>template &lt;class RR&gt; void reset(RR&amp;&amp; r);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-constraints id="scopeguard.uniqueres.members.4" para_num="4">
-    
+
     <dt>Constraints:</dt><dd>
             the selected assignment expression statement assigning <code>resource</code> is well-formed.
           </dd>
   </cxx-constraints>
 
           <cxx-mandates id="scopeguard.uniqueres.members.5" para_num="5">
-    
+
     <dt>Mandates:</dt><dd>
             The expression <code>deleter(r)</code> is well-formed.
           </dd>
   </cxx-mandates>
 
           <cxx-preconditions id="scopeguard.uniqueres.members.6" para_num="6">
-    
+
     <dt>Preconditions:</dt><dd>
             Calling <code>deleter(r)</code> has well-defined behavior
             and does not throw an exception.
@@ -4162,7 +4162,7 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
   </cxx-preconditions>
 
           <cxx-effects id="scopeguard.uniqueres.members.7" para_num="7">
-    
+
     <dt>Effects:</dt><dd>
             Equivalent to:
             <pre><code>reset();
@@ -4176,117 +4176,117 @@ execute_on_reset = true;</code></pre>
             calls <code>deleter(r)</code>.
           </dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.members.8" para_num="8">
-    
+
     <pre><code><cxx-signature>void release() noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
           <cxx-effects id="scopeguard.uniqueres.members.9" para_num="9">
-    
+
     <dt>Effects:</dt><dd>Equivalent to <code>execute_on_reset = false</code>.</dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.members.10" para_num="10">
-    
+
     <pre><code><cxx-signature>const R&amp; get() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
           <cxx-returns id="scopeguard.uniqueres.members.11" para_num="11">
-    
+
     <dt>Returns:</dt><dd><code>resource</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.members.12" para_num="12">
-    
+
     <pre><code><cxx-signature><i>see below</i> operator*() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
           <cxx-constraints id="scopeguard.uniqueres.members.13" para_num="13">
-    
+
     <dt>Constraints:</dt><dd>
             <code>is_pointer_v&lt;R&gt;</code> is <code>true</code> and
             <code>is_void_v&lt;remove_pointer_t&lt;R&gt;&gt;</code> is <code>false</code>.
           </dd>
   </cxx-constraints>
           <cxx-effects id="scopeguard.uniqueres.members.14" para_num="14">
-    
+
     <dt>Effects:</dt><dd>Equivalent to: <code>return *get();</code></dd>
   </cxx-effects>
           <cxx-remarks id="scopeguard.uniqueres.members.15" para_num="15">
-    
+
     <dt>Remarks:</dt><dd>
             The return type is <code>add_lvalue_reference_t&lt;remove_pointer_t&lt;R&gt;&gt;</code>.
           </dd>
   </cxx-remarks>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.members.16" para_num="16">
-    
+
     <pre><code><cxx-signature>R operator-&gt;() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
           <cxx-constraints id="scopeguard.uniqueres.members.17" para_num="17">
-    
+
     <dt>Constraints:</dt><dd>
             <code>is_pointer_v&lt;R&gt;</code> is <code>true</code>.
           </dd>
   </cxx-constraints>
           <cxx-returns id="scopeguard.uniqueres.members.18" para_num="18">
-    
+
     <dt>Returns:</dt><dd><code>get()</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
         <cxx-function id="scopeguard.uniqueres.members.19" para_num="19">
-    
+
     <pre><code><cxx-signature>const D&amp; get_deleter() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
           <cxx-returns id="scopeguard.uniqueres.members.20" para_num="20">
-    
+
     <dt>Returns:</dt><dd><code>deleter</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
-      
+
     </section>
   </cxx-section>
 
       <cxx-section id="scopeguard.uniqueres.create">
-    
+
 
     <section>
       <header><span class="section-number">3.3.3.6</span> <h1 data-bookmark-label="3.3.3.6 unique_resource creation"><code>unique_resource</code> creation</h1> <span style="float:right"><a href="#scopeguard.uniqueres.create">[scopeguard.uniqueres.create]</a></span></header>
-      
-        
+
+
 
         <cxx-function id="scopeguard.uniqueres.create.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class R, class D, class S=decay_t&lt;R&gt;&gt;
 unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
   make_unique_resource_checked(R&amp;&amp; resource, const S&amp; invalid, D&amp;&amp; d)
@@ -4294,17 +4294,17 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
            is_nothrow_constructible_v&lt;decay_t&lt;D&gt;, D&gt;);</cxx-signature></code></pre>
 
     <dl>
-      
-          
+
+
 
           <cxx-mandates id="scopeguard.uniqueres.create.2" para_num="2">
-    
+
     <dt>Mandates:</dt><dd>
             The expression <code>(resource == invalid ? true : false)</code> is well-formed.
           </dd>
   </cxx-mandates>
           <cxx-preconditions id="scopeguard.uniqueres.create.3" para_num="3">
-    
+
     <dt>Preconditions:</dt><dd>
             Evaluation of the expression <code>(resource == invalid ? true : false)</code>
             has well-defined behavior and does not throw an exception.
@@ -4312,7 +4312,7 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
   </cxx-preconditions>
 
           <cxx-effects id="scopeguard.uniqueres.create.4" para_num="4">
-    
+
     <dt>Effects:</dt><dd>
             Returns an object constructed with members initialized from
             <code>std::forward&lt;R&gt;(resource), std::forward&lt;D&gt;(d)</code>,
@@ -4321,57 +4321,57 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
             if <code>bool(resource == invalid)</code> is <code>true</code>.
           </dd>
   </cxx-effects>
-        
+
     </dl>
   </cxx-function>
 
         <p id="scopeguard.uniqueres.create.5" para_num="5">
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    
+
             This creation function exists to avoid calling a deleter function
             with an invalid argument.
-          
+
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
         </p>
         <cxx-example>
-    
+
     <span class="nowrap">[ <em>Example:</em></span>
-    
+
           The following example shows its use to avoid calling <code>fclose</code>
           when <code>fopen</code> fails.
           <pre><code>auto file = make_unique_resource_checked(
     ::fopen("potentially_nonexistent_file.txt", "r"),
     nullptr,
     [](auto fptr){ ::fclose(fptr); });</code></pre>
-        
+
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
-      
+
     </section>
   </cxx-section>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="meta">
-    
+
 
     <section>
       <header><span class="section-number">3.4</span> <h1 data-bookmark-label="3.4 Metaprogramming and type traits">Metaprogramming and type traits</h1> <span style="float:right"><a href="#meta">[meta]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="meta.type.syn">
-    
+
 
     <section>
       <header><span class="section-number">3.4.1</span> <h1 data-bookmark-label="3.4.1 Header <experimental/type_traits> synopsis">Header &lt;experimental/type_traits&gt; synopsis</h1> <span style="float:right"><a href="#meta.type.syn">[meta.type.syn]</a></span></header>
-      
-      
+
+
 
 <pre><code>#include &lt;type_traits&gt;
 
@@ -4415,17 +4415,17 @@ namespace std::experimental::inline fundamentals_v3 {
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
 
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="meta.trans.other">
-    
+
 
     <section>
       <header><span class="section-number">3.4.2</span> <h1 data-bookmark-label="3.4.2 Other type transformations">Other type transformations</h1> <span style="float:right"><a href="#meta.trans.other">[meta.trans.other]</a></span></header>
-      
-      
+
+
 
       <p id="meta.trans.other.1" para_num="1">
         This subclause contains templates that may be used to transform one type to another following some predefined rule.
@@ -4472,9 +4472,9 @@ namespace std::experimental::inline fundamentals_v3 {
       </p>
 
       <cxx-example>
-    
+
     <span class="nowrap">[ <em>Example:</em></span>
-    
+
         Assume <code>S</code> is defined as
         <pre><code>struct S {
   int f(double const &amp;) const;
@@ -4490,16 +4490,16 @@ namespace std::experimental::inline fundamentals_v3 {
           <li>The invocation parameters of <code><em>INVOKE</em>(S(), locale(), 5)</code> are <code>(locale, int)</code>.
           Arguments corresponding to ellipsis maintain their types.</li>
         </ul>
-      
+
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
 
       <table is="cxx-table" id="tab:meta.trans.other">
-    
+
 
     <caption>Table 4 — <wbr><span>Other type transformations</span></caption>
-    
-        
+
+
         <thead>
           <tr><th>Template</th><th>Condition</th><th>Comments</th></tr>
         </thead>
@@ -4574,17 +4574,17 @@ namespace std::experimental::inline fundamentals_v3 {
           otherwise <code>Ti</code>.
         </li>
       </ul>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="meta.detect">
-    
+
 
     <section>
       <header><span class="section-number">3.4.3</span> <h1 data-bookmark-label="3.4.3 Detection idiom">Detection idiom</h1> <span style="float:right"><a href="#meta.detect">[meta.detect]</a></span></header>
-      
-      
+
+
 
       <pre><code>struct nonesuch {
   ~nonesuch() = delete;
@@ -4621,9 +4621,9 @@ template &lt;class Default, template&lt;class...&gt; class Op, class... Args&gt;
   using detected_or = DETECTOR&lt;Default, void, Op, Args...&gt;;</code></pre>
 
       <cxx-example>
-    
+
     <span class="nowrap">[ <em>Example:</em></span>
-    
+
         <pre><code>// <i>archetypal helper alias for a copy assignment operation:</i>
 template &lt;class T&gt;
   using copy_assign_t = decltype(declval&lt;T&amp;&gt;() = declval&lt;T const &amp;&gt;());
@@ -4636,14 +4636,14 @@ template &lt;class T&gt;
 // <i>that also checks the return type:</i>
 template &lt;class T&gt;
   using is_canonical_copy_assignable = is_detected_exact&lt;T&amp;, copy_assign_t, T&gt;;</code></pre>
-      
+
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
 
       <cxx-example>
-    
+
     <span class="nowrap">[ <em>Example:</em></span>
-    
+
         <pre><code>// <i>archetypal helper alias for a particular type member:</i>
 template &lt;class T&gt;
   using diff_t = typename T::difference_type;
@@ -4651,13 +4651,13 @@ template &lt;class T&gt;
 // <i>alias the type member, if it exists, otherwise alias </i>ptrdiff_t<i>:</i>
 template &lt;class Ptr&gt;
   using difference_type = detected_or_t&lt;ptrdiff_t, diff_t, Ptr&gt;;</code></pre>
-      
+
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
@@ -4665,20 +4665,20 @@ template &lt;class Ptr&gt;
   </cxx-clause>
 
 <cxx-clause id="func">
-    
+
 
     <section>
       <header><span class="section-number">4</span> <h1 data-bookmark-label="4 Function objects">Function objects</h1> <span style="float:right"><a href="#func">[func]</a></span></header>
-      
-  
+
+
 
   <cxx-section id="functional.syn">
-    
+
 
     <section>
       <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 Header <experimental/functional> synopsis">Header <code>&lt;experimental/functional&gt;</code> synopsis</h1> <span style="float:right"><a href="#functional.syn">[functional.syn]</a></span></header>
-      
-    
+
+
 
 <pre><code>#include &lt;functional&gt;
 
@@ -4708,25 +4708,25 @@ namespace std {
 
 } // namespace std</code></pre>
 
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="func.wrap.func">
-    
+
 
     <section>
       <header><span class="section-number">4.2</span> <h1 data-bookmark-label="4.2 Class template function">Class template <code>function</code></h1> <span style="float:right"><a href="#func.wrap.func">[func.wrap.func]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="func.wrap.func.overview">
-    
+
 
     <section>
       <header><span class="section-number">4.2.1</span> <h1 data-bookmark-label="4.2.1 Overview">Overview</h1> <span style="float:right"><a href="#func.wrap.func.overview">[func.wrap.func.overview]</a></span></header>
-      
-      
+
+
 
       <p id="func.wrap.func.overview.1" para_num="1">
         The specification of all declarations within subclause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref>
@@ -4809,21 +4809,21 @@ namespace std {
 
 } // namespace std</code></pre>
 
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="func.wrap.func.con">
-    
+
 
     <section>
       <header><span class="section-number">4.2.2</span> <h1 data-bookmark-label="4.2.2 function construct/copy/destroy"><code>function</code> construct/copy/destroy</h1> <span style="float:right"><a href="#func.wrap.func.con">[func.wrap.func.con]</a></span></header>
-      
-      
+
+
 
       <cxx-ednote>
-    
-    <aside><strong>Editor's note:</strong> 
+
+    <aside><strong>Editor's note:</strong>
         The following first paragraph has been slightly editorially improved to
         (a) make the difference between <code>std::function</code> and <code>std::experimental::function</code> clearer
         (which seems necessary due to the "including" wording that can be parsed in two different ways) and
@@ -4846,59 +4846,59 @@ namespace std {
       </p>
 
       <cxx-function id="func.wrap.func.con.3" para_num="3">
-    
+
     <pre><code><cxx-signature>function&amp; operator=(const function&amp; f);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="func.wrap.func.con.4" para_num="4">
-    
+
     <dt>Effects:</dt><dd><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), f).swap(*this);</code></dd>
   </cxx-effects>
         <cxx-returns id="func.wrap.func.con.5" para_num="5">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="func.wrap.func.con.6" para_num="6">
-    
+
     <pre><code><cxx-signature>function&amp; operator=(function&amp;&amp; f);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="func.wrap.func.con.7" para_num="7">
-    
+
     <dt>Effects:</dt><dd><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::move(f)).swap(*this);</code></dd>
   </cxx-effects>
         <cxx-returns id="func.wrap.func.con.8" para_num="8">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="func.wrap.func.con.9" para_num="9">
-    
+
     <pre><code><cxx-signature>function&amp; operator=(nullptr_t) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="func.wrap.func.con.10" para_num="10">
-    
+
     <dt>Effects:</dt><dd>If <code>*this != nullptr</code>, destroys the target of <code>this</code>.</dd>
   </cxx-effects>
         <cxx-postconditions id="func.wrap.func.con.11" para_num="11">
-    
+
     <dt>Postconditions:</dt><dd><code>!(*this)</code>.
         The memory resource returned by <code>get_memory_resource()</code> after the assignment is equivalent to the memory resource before the assignment.
         <cxx-note><span class="nowrap">[ <em>Note:</em></span>
@@ -4907,98 +4907,98 @@ namespace std {
   </cxx-note></dd>
   </cxx-postconditions>
         <cxx-returns id="func.wrap.func.con.12" para_num="12">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="func.wrap.func.con.13" para_num="13">
-    
+
     <pre><code><cxx-signature>template&lt;class F&gt; function&amp; operator=(F&amp;&amp; f);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-constraints id="func.wrap.func.con.14" para_num="14">
-    
+
     <dt>Constraints:</dt><dd>
           <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept><i>Lvalue-Callable</i></cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>)
           for argument types <code>ArgTypes...</code> and return type <code>R</code>.
         </dd>
   </cxx-constraints>
         <cxx-effects id="func.wrap.func.con.15" para_num="15">
-    
+
     <dt>Effects:</dt><dd><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), std::forward&lt;F&gt;(f)).swap(*this);</code></dd>
   </cxx-effects>
         <cxx-returns id="func.wrap.func.con.16" para_num="16">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="func.wrap.func.con.17" para_num="17">
-    
+
     <pre><code><cxx-signature>template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="func.wrap.func.con.18" para_num="18">
-    
+
     <dt>Effects:</dt><dd><code>function(allocator_arg, <em>ALLOCATOR_OF</em>(*this), f).swap(*this);</code></dd>
   </cxx-effects>
         <cxx-returns id="func.wrap.func.con.19" para_num="19">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="func.wrap.func.mod">
-    
+
 
     <section>
       <header><span class="section-number">4.2.3</span> <h1 data-bookmark-label="4.2.3 function modifiers"><code>function</code> modifiers</h1> <span style="float:right"><a href="#func.wrap.func.mod">[func.wrap.func.mod]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="func.wrap.func.mod.1" para_num="1">
-    
+
     <pre><code><cxx-signature>void swap(function&amp; other);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-preconditions id="func.wrap.func.mod.2" para_num="2">
-    
+
     <dt>Preconditions:</dt><dd><code>*this-&gt;get_memory_resource() == *other.get_memory_resource()</code>.</dd>
   </cxx-preconditions>
         <cxx-effects id="func.wrap.func.mod.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd>Interchanges the targets of <code>*this</code> and <code>other</code>.</dd>
   </cxx-effects>
         <cxx-remarks id="func.wrap.func.mod.4" para_num="4">
-    
+
     <dt>Remarks:</dt><dd>The allocators of <code>*this</code> and <code>other</code> are not interchanged.</dd>
   </cxx-remarks>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
@@ -5006,20 +5006,20 @@ namespace std {
   </cxx-clause>
 
 <cxx-clause id="memory">
-    
+
 
     <section>
       <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Memory">Memory</h1> <span style="float:right"><a href="#memory">[memory]</a></span></header>
-      
-  
+
+
 
   <cxx-section id="memory.syn">
-    
+
 
     <section>
       <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 Header <experimental/memory> synopsis">Header &lt;experimental/memory&gt; synopsis</h1> <span style="float:right"><a href="#memory.syn">[memory.syn]</a></span></header>
-      
-    
+
+
 
 <pre><code>#include &lt;memory&gt;
 
@@ -5065,25 +5065,25 @@ namespace std {
   template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;
 
 } // namespace std</code></pre>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="memory.observer.ptr">
-    
+
 
     <section>
       <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Non-owning (observer) pointers">Non-owning (observer) pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="memory.observer.ptr.overview">
-    
+
 
     <section>
       <header><span class="section-number">5.2.1</span> <h1 data-bookmark-label="5.2.1 Class template observer_ptr overview">Class template <code>observer_ptr</code> overview</h1> <span style="float:right"><a href="#memory.observer.ptr.overview">[memory.observer.ptr.overview]</a></span></header>
-      
-      
+
+
 
 <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
@@ -5148,476 +5148,476 @@ namespace std {
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
       </p>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.observer.ptr.ctor">
-    
+
 
     <section>
       <header><span class="section-number">5.2.2</span> <h1 data-bookmark-label="5.2.2 observer_ptr constructors"><code>observer_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.observer.ptr.ctor">[memory.observer.ptr.ctor]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.observer.ptr.ctor.1" para_num="1">
-    
+
     <pre><code><cxx-signature>constexpr observer_ptr() noexcept;</cxx-signature><cxx-signature>constexpr observer_ptr(nullptr_t) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
-        
+
+
+
 
         <cxx-effects id="memory.observer.ptr.ctor.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd>Constructs an observer_ptr object that has no corresponding watched object.</dd>
   </cxx-effects>
         <cxx-postconditions id="memory.observer.ptr.ctor.3" para_num="3">
-    
+
     <dt>Postconditions:</dt><dd><code>get() == nullptr</code>.</dd>
   </cxx-postconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.ctor.4" para_num="4">
-    
+
     <pre><code><cxx-signature>constexpr explicit observer_ptr(pointer other) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-postconditions id="memory.observer.ptr.ctor.5" para_num="5">
-    
+
     <dt>Postconditions:</dt><dd><code>get() == other</code>.</dd>
   </cxx-postconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.ctor.6" para_num="6">
-    
+
     <pre><code><cxx-signature>template &lt;class W2&gt; constexpr observer_ptr(observer_ptr&lt;W2&gt; other) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-constraints id="memory.observer.ptr.ctor.7" para_num="7">
-    
+
     <dt>Constraints:</dt><dd><code>W2*</code> is convertible to <code>W*</code>.</dd>
   </cxx-constraints>
         <cxx-postconditions id="memory.observer.ptr.ctor.8" para_num="8">
-    
+
     <dt>Postconditions:</dt><dd><code>get() == other.get()</code>.</dd>
   </cxx-postconditions>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.observer.ptr.obs">
-    
+
 
     <section>
       <header><span class="section-number">5.2.3</span> <h1 data-bookmark-label="5.2.3 observer_ptr observers"><code>observer_ptr</code> observers</h1> <span style="float:right"><a href="#memory.observer.ptr.obs">[memory.observer.ptr.obs]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.observer.ptr.obs.1" para_num="1">
-    
+
     <pre><code><cxx-signature>constexpr pointer get() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.obs.2" para_num="2">
-    
+
     <dt>Returns:</dt><dd>The stored pointer.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.obs.3" para_num="3">
-    
+
     <pre><code><cxx-signature>constexpr reference operator*() const;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-preconditions id="memory.observer.ptr.obs.4" para_num="4">
-    
+
     <dt>Preconditions:</dt><dd><code>get() != nullptr</code> is <code>true</code>.</dd>
   </cxx-preconditions>
         <cxx-returns id="memory.observer.ptr.obs.5" para_num="5">
-    
+
     <dt>Returns:</dt><dd><code>*get()</code>.</dd>
   </cxx-returns>
         <cxx-throws id="memory.observer.ptr.obs.6" para_num="6">
-    
+
     <dt>Throws:</dt><dd>Nothing.</dd>
   </cxx-throws>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.obs.7" para_num="7">
-    
+
     <pre><code><cxx-signature>constexpr pointer operator-&gt;() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.obs.8" para_num="8">
-    
+
     <dt>Returns:</dt><dd><code>get()</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.obs.9" para_num="9">
-    
+
     <pre><code><cxx-signature>constexpr explicit operator bool() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.obs.10" para_num="10">
-    
+
     <dt>Returns:</dt><dd><code>get() != nullptr</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.observer.ptr.conv">
-    
+
 
     <section>
       <header><span class="section-number">5.2.4</span> <h1 data-bookmark-label="5.2.4 observer_ptr conversions"><code>observer_ptr</code> conversions</h1> <span style="float:right"><a href="#memory.observer.ptr.conv">[memory.observer.ptr.conv]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.observer.ptr.conv.1" para_num="1">
-    
+
     <pre><code><cxx-signature>constexpr explicit operator pointer() const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.conv.2" para_num="2">
-    
+
     <dt>Returns:</dt><dd><code>get()</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.observer.ptr.mod">
-    
+
 
     <section>
       <header><span class="section-number">5.2.5</span> <h1 data-bookmark-label="5.2.5 observer_ptr modifiers"><code>observer_ptr</code> modifiers</h1> <span style="float:right"><a href="#memory.observer.ptr.mod">[memory.observer.ptr.mod]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.observer.ptr.mod.1" para_num="1">
-    
+
     <pre><code><cxx-signature>constexpr pointer release() noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-postconditions id="memory.observer.ptr.mod.2" para_num="2">
-    
+
     <dt>Postconditions:</dt><dd><code>get() == nullptr</code>.</dd>
   </cxx-postconditions>
         <cxx-returns id="memory.observer.ptr.mod.3" para_num="3">
-    
+
     <dt>Returns:</dt><dd>The value <code>get()</code> had at the start of the call to <code>release</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.mod.4" para_num="4">
-    
+
     <pre><code><cxx-signature>constexpr void reset(pointer p = nullptr) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-postconditions id="memory.observer.ptr.mod.5" para_num="5">
-    
+
     <dt>Postconditions:</dt><dd><code>get() == p</code>.</dd>
   </cxx-postconditions>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.mod.6" para_num="6">
-    
+
     <pre><code><cxx-signature>constexpr void swap(observer_ptr&amp; other) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="memory.observer.ptr.mod.7" para_num="7">
-    
+
     <dt>Effects:</dt><dd>Invokes <code>swap</code> on the stored pointers of <code>*this</code> and <code>other</code>.</dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.observer.ptr.special">
-    
+
 
     <section>
       <header><span class="section-number">5.2.6</span> <h1 data-bookmark-label="5.2.6 observer_ptr specialized algorithms"><code>observer_ptr</code> specialized algorithms</h1> <span style="float:right"><a href="#memory.observer.ptr.special">[memory.observer.ptr.special]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.observer.ptr.special.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class W&gt;
 void swap(observer_ptr&lt;W&gt;&amp; p1, observer_ptr&lt;W&gt;&amp; p2) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="memory.observer.ptr.special.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd><code>p1.swap(p2)</code>.</dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.3" para_num="3">
-    
+
     <pre><code><cxx-signature>template &lt;class W&gt; observer_ptr&lt;W&gt; make_observer(W* p) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.special.4" para_num="4">
-    
+
     <dt>Returns:</dt><dd><code>observer_ptr&lt;W&gt;{p}</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.5" para_num="5">
-    
+
     <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
 bool operator==(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.special.6" para_num="6">
-    
+
     <dt>Returns:</dt><dd><code>p1.get() == p2.get()</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.7" para_num="7">
-    
+
     <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
 bool operator!=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.special.8" para_num="8">
-    
+
     <dt>Returns:</dt><dd><code>not (p1 == p2)</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.9" para_num="9">
-    
+
     <pre><code><cxx-signature>template &lt;class W&gt;
 bool operator==(observer_ptr&lt;W&gt; p, nullptr_t) noexcept;</cxx-signature><cxx-signature>template &lt;class W&gt;
 bool operator==(nullptr_t, observer_ptr&lt;W&gt; p) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
-        
+
+
+
 
         <cxx-returns id="memory.observer.ptr.special.10" para_num="10">
-    
+
     <dt>Returns:</dt><dd><code>not p</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.11" para_num="11">
-    
+
     <pre><code><cxx-signature>template &lt;class W&gt;
 bool operator!=(observer_ptr&lt;W&gt; p, nullptr_t) noexcept;</cxx-signature><cxx-signature>template &lt;class W&gt;
 bool operator!=(nullptr_t, observer_ptr&lt;W&gt; p) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
-        
+
+
+
 
         <cxx-returns id="memory.observer.ptr.special.12" para_num="12">
-    
+
     <dt>Returns:</dt><dd><code>(bool)p</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.13" para_num="13">
-    
+
     <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
 bool operator&lt;(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.special.14" para_num="14">
-    
+
     <dt>Returns:</dt><dd>
           <code>less&lt;W3&gt;()(p1.get(), p2.get())</code>,
           where <code>W3</code> is the composite pointer type (<cxx-ref in="cxx" to="expr">C++20 <span title="expr">§7</span></cxx-ref>) of <code>W1*</code> and <code>W2*</code>.
         </dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.15" para_num="15">
-    
+
     <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
 bool operator&gt;(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.special.16" para_num="16">
-    
+
     <dt>Returns:</dt><dd><code>p2 &lt; p1</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.17" para_num="17">
-    
+
     <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
 bool operator&lt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
          <cxx-returns id="memory.observer.ptr.special.18" para_num="18">
-    
+
     <dt>Returns:</dt><dd><code>not (p2 &lt; p1)</code>.</dd>
   </cxx-returns>
-        
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.observer.ptr.special.19" para_num="19">
-    
+
     <pre><code><cxx-signature>template &lt;class W1, class W2&gt;
 bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="memory.observer.ptr.special.20" para_num="20">
-    
+
     <dt>Returns:</dt><dd><code>not (p1 &lt; p2)</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.observer.ptr.hash">
-    
+
 
     <section>
       <header><span class="section-number">5.2.7</span> <h1 data-bookmark-label="5.2.7 observer_ptr hash support"><code>observer_ptr</code> hash support</h1> <span style="float:right"><a href="#memory.observer.ptr.hash">[memory.observer.ptr.hash]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.observer.ptr.hash.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <p id="memory.observer.ptr.hash.2" para_num="2">
           The specialization is enabled (<cxx-ref in="cxx" to="unord.hash">C++20 <span title="unord.hash">§20.14.18</span></cxx-ref>).
           For an object <code>p</code> of type <code>observer_ptr&lt;T&gt;</code>,
           <code>hash&lt;observer_ptr&lt;T&gt;&gt;()(p)</code> evaluates to the same value as <code>hash&lt;T*&gt;()(p.get())</code>.
         </p>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="memory.type.erased.allocator">
-    
+
 
     <section>
       <header><span class="section-number">5.3</span> <h1 data-bookmark-label="5.3 Type-erased allocator">Type-erased allocator</h1> <span style="float:right"><a href="#memory.type.erased.allocator">[memory.type.erased.allocator]</a></span></header>
-      
-    
+
+
 
     <p id="memory.type.erased.allocator.1" para_num="1">
       A <dfn>type-erased allocator</dfn> is an allocator or memory resource, <code>alloc</code>,
@@ -5629,11 +5629,11 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
     </p>
 
     <table is="cxx-table" id="tab:memory.resource.type.erased.allocator">
-    
+
 
     <caption>Table 5 — <wbr><span>Computed <code>memory_resource</code> for type-erased allocator</span></caption>
-    
-      
+
+
       <thead>
         <tr>
           <th>If the type of <code>alloc</code> is</th>
@@ -5673,17 +5673,17 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
       <li><code>C::allocator_type</code> denotes <code>std::experimental::erased_type</code>.</li>
       <li><code>X.get_memory_resource()</code> returns <code>rptr</code>.</li>
     </ul>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="memory.resource.syn">
-    
+
 
     <section>
       <header><span class="section-number">5.4</span> <h1 data-bookmark-label="5.4 Header <experimental/memory_resource> synopsis">Header <code>&lt;experimental/memory_resource&gt;</code> synopsis</h1> <span style="float:right"><a href="#memory.resource.syn">[memory.resource.syn]</a></span></header>
-      
-    
+
+
 
     <pre><code>namespace std::experimental::inline fundamentals_v3::pmr {
 
@@ -5695,25 +5695,25 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
       typename allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;
 
 } // namespace std::experimental::inline fundamentals_v3::pmr</code></pre>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="memory.resource.adaptor">
-    
+
 
     <section>
       <header><span class="section-number">5.5</span> <h1 data-bookmark-label="5.5 Alias template resource_adaptor">Alias template <code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor">[memory.resource.adaptor]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="memory.resource.adaptor.overview">
-    
+
 
     <section>
       <header><span class="section-number">5.5.1</span> <h1 data-bookmark-label="5.5.1 resource_adaptor"><code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor.overview">[memory.resource.adaptor.overview]</a></span></header>
-      
-      
+
+
 
       <p id="memory.resource.adaptor.overview.1" para_num="1">
         An instance of <code>resource_adaptor&lt;Allocator&gt;</code> is an adaptor that wraps a <code>memory_resource</code> interface around <code>Allocator</code>.
@@ -5762,114 +5762,114 @@ protected:
 template &lt;class Allocator&gt;
   using resource_adaptor = typename <var>resource_adaptor_imp</var>&lt;
     typename allocator_traits&lt;Allocator&gt;::template rebind_alloc&lt;char&gt;&gt;;</code></pre>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.resource.adaptor.ctor">
-    
+
 
     <section>
       <header><span class="section-number">5.5.2</span> <h1 data-bookmark-label="5.5.2 resource_adaptor_imp constructors"><code><var>resource_adaptor_imp</var></code> constructors</h1> <span style="float:right"><a href="#memory.resource.adaptor.ctor">[memory.resource.adaptor.ctor]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.resource.adaptor.ctor.1" para_num="1">
-    
+
     <pre><code><cxx-signature>explicit <var>resource_adaptor_imp</var>(const Allocator&amp; a2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-effects id="memory.resource.adaptor.ctor.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd>Initializes <code>m_alloc</code> with <code>a2</code>.</dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.resource.adaptor.ctor.3" para_num="3">
-    
+
     <pre><code><cxx-signature>explicit <var>resource_adaptor_imp</var>(Allocator&amp;&amp; a2);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-effects id="memory.resource.adaptor.ctor.4" para_num="4">
-    
+
     <dt>Effects:</dt><dd>Initializes <code>m_alloc</code> with <code>std::move(a2)</code>.</dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="memory.resource.adaptor.mem">
-    
+
 
     <section>
       <header><span class="section-number">5.5.3</span> <h1 data-bookmark-label="5.5.3 resource_adaptor_imp member functions"><code><var>resource_adaptor_imp</var></code> member functions</h1> <span style="float:right"><a href="#memory.resource.adaptor.mem">[memory.resource.adaptor.mem]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="memory.resource.adaptor.mem.1" para_num="1">
-    
+
     <pre><code><cxx-signature>void* do_allocate(size_t bytes, size_t alignment);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-returns id="memory.resource.adaptor.mem.2" para_num="2">
-    
+
     <dt>Returns:</dt><dd>Allocated memory obtained by calling <code>m_alloc.allocate</code>.
           The size and alignment of the allocated memory shall meet the requirements
           for a class derived from <code>memory_resource</code> (<cxx-ref in="cxx" to="mem.res.class">C++20 <span title="mem.res.class">§20.12.2</span></cxx-ref>).</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.resource.adaptor.mem.3" para_num="3">
-    
+
     <pre><code><cxx-signature>void do_deallocate(void* p, size_t bytes, size_t alignment);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-preconditions id="memory.resource.adaptor.mem.4" para_num="4">
-    
+
     <dt>Preconditions:</dt><dd><code>p</code> was previously allocated using <code>A.allocate</code>, where <code>A == m_alloc</code>, and not subsequently deallocated.</dd>
   </cxx-preconditions>
         <cxx-effects id="memory.resource.adaptor.mem.5" para_num="5">
-    
+
     <dt>Effects:</dt><dd>Returns memory to the allocator using <code>m_alloc.deallocate()</code>.</dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="memory.resource.adaptor.mem.6" para_num="6">
-    
+
     <pre><code><cxx-signature>bool do_is_equal(const memory_resource&amp; other) const noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <p id="memory.resource.adaptor.mem.7" para_num="7">Let <code>p</code> be <code>dynamic_cast&lt;const <var>resource_adaptor_imp</var>*&gt;(&amp;other)</code>.</p>
         <cxx-returns id="memory.resource.adaptor.mem.8" para_num="8">
-    
+
     <dt>Returns:</dt><dd><code>false</code> if <code>p</code> is null, otherwise the value of <code>m_alloc == p-&gt;m_alloc</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
@@ -5877,20 +5877,20 @@ template &lt;class Allocator&gt;
   </cxx-clause>
 
 <cxx-clause id="iterator">
-    
+
 
     <section>
       <header><span class="section-number">6</span> <h1 data-bookmark-label="6 Iterators library">Iterators library</h1> <span style="float:right"><a href="#iterator">[iterator]</a></span></header>
-      
-  
+
+
 
   <cxx-section id="iterator.syn">
-    
+
 
     <section>
       <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Header <experimental/iterator> synopsis">Header <code>&lt;experimental/iterator&gt;</code> synopsis</h1> <span style="float:right"><a href="#iterator.syn">[iterator.syn]</a></span></header>
-      
-    
+
+
 
 <pre><code>#include &lt;iterator&gt;
 
@@ -5904,25 +5904,25 @@ namespace std::experimental::inline fundamentals_v3 {
     make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp; delimiter);
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="iterator.ostream.joiner">
-    
+
 
     <section>
       <header><span class="section-number">6.2</span> <h1 data-bookmark-label="6.2 Class template ostream_joiner">Class template <code>ostream_joiner</code></h1> <span style="float:right"><a href="#iterator.ostream.joiner">[iterator.ostream.joiner]</a></span></header>
-      
-    
+
+
 
     <cxx-section id="iterator.ostream.joiner.overview">
-    
+
 
     <section>
       <header><span class="section-number">6.2.1</span> <h1 data-bookmark-label="6.2.1 Overview">Overview</h1> <span style="float:right"><a href="#iterator.ostream.joiner.overview">[iterator.ostream.joiner.overview]</a></span></header>
-      
-      
+
+
 
       <p id="iterator.ostream.joiner.overview.1" para_num="1">
         <code>ostream_joiner</code> writes (using <code>operator&lt;&lt;</code>) successive elements onto the output stream from which it was constructed.
@@ -5965,80 +5965,80 @@ namespace std::experimental::inline fundamentals_v3 {
   };
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="iterator.ostream.joiner.cons">
-    
+
 
     <section>
       <header><span class="section-number">6.2.2</span> <h1 data-bookmark-label="6.2.2 ostream_joiner constructor"><code>ostream_joiner</code> constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="iterator.ostream.joiner.cons.1" para_num="1">
-    
+
     <pre><code><cxx-signature>ostream_joiner(ostream_type&amp; s, const DelimT&amp; delimiter);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="iterator.ostream.joiner.cons.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd>
           Initializes <code>out_stream</code> with <code>std::addressof(s)</code>,
           <code>delim</code> with <code>delimiter</code>,
           and <code>first_element</code> with <code>true</code>.
         </dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="iterator.ostream.joiner.cons.3" para_num="3">
-    
+
     <pre><code><cxx-signature>ostream_joiner(ostream_type&amp; s, DelimT&amp;&amp; delimiter);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="iterator.ostream.joiner.cons.4" para_num="4">
-    
+
     <dt>Effects:</dt><dd>
           Initializes <code>out_stream</code> with <code>std::addressof(s)</code>,
           <code>delim</code> with <code>move(delimiter)</code>,
           and <code>first_element</code> with <code>true</code>.
         </dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="iterator.ostream.joiner.ops">
-    
+
 
     <section>
       <header><span class="section-number">6.2.3</span> <h1 data-bookmark-label="6.2.3 ostream_joiner operations"><code>ostream_joiner</code> operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="iterator.ostream.joiner.ops.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template&lt;typename T&gt;
 ostream_joiner&amp; operator=(const T&amp; value);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-effects id="iterator.ostream.joiner.ops.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd>
           <pre style="clear:left"><code>if (!first_element)
   *out_stream &lt;&lt; delim;
@@ -6047,75 +6047,75 @@ first_element = false;
 return *this;</code></pre>
         </dd>
   </cxx-effects>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="iterator.ostream.joiner.ops.3" para_num="3">
-    
+
     <pre><code><cxx-signature>ostream_joiner&amp; operator*() noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="iterator.ostream.joiner.ops.4" para_num="4">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
 
       <cxx-function id="iterator.ostream.joiner.ops.5" para_num="5">
-    
+
     <pre><code><cxx-signature>ostream_joiner&amp; operator++() noexcept;</cxx-signature><cxx-signature>ostream_joiner&amp; operator++(int) noexcept;</cxx-signature></code></pre>
 
     <dl>
-      
-        
-        
+
+
+
 
         <cxx-returns id="iterator.ostream.joiner.ops.6" para_num="6">
-    
+
     <dt>Returns:</dt><dd><code>*this</code>.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
 
     <cxx-section id="iterator.ostream.joiner.creation">
-    
+
 
     <section>
       <header><span class="section-number">6.2.4</span> <h1 data-bookmark-label="6.2.4 ostream_joiner creation function"><code>ostream_joiner</code> creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
-      
-      
+
+
 
       <cxx-function id="iterator.ostream.joiner.creation.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template &lt;class charT, class traits, class DelimT&gt;
 ostream_joiner&lt;decay_t&lt;DelimT&gt;, charT, traits&gt;
 make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp; delimiter);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
 
         <cxx-returns id="iterator.ostream.joiner.creation.2" para_num="2">
-    
+
     <dt>Returns:</dt><dd><code>ostream_joiner&lt;decay_t&lt;DelimT&gt;, charT, traits&gt;(os, forward&lt;DelimT&gt;(delimiter));</code></dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
@@ -6123,20 +6123,20 @@ make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp;
   </cxx-clause>
 
 <cxx-clause id="futures">
-    
+
 
     <section>
       <header><span class="section-number">7</span> <h1 data-bookmark-label="7 Futures">Futures</h1> <span style="float:right"><a href="#futures">[futures]</a></span></header>
-      
-  
+
+
 
   <cxx-section id="future.syn">
-    
+
 
     <section>
       <header><span class="section-number">7.1</span> <h1 data-bookmark-label="7.1 Header <experimental/future> synopsis">Header &lt;experimental/future&gt; synopsis</h1> <span style="float:right"><a href="#future.syn">[future.syn]</a></span></header>
-      
-    
+
+
 
     <pre><code>#include &lt;future&gt;
 
@@ -6166,16 +6166,16 @@ namespace std {
   struct uses_allocator&lt;experimental::packaged_task&lt;R&gt;, Alloc&gt;;
 
 } // namespace std</code></pre>
-  
+
     </section>
   </cxx-section>
   <cxx-section id="futures.promise">
-    
+
 
     <section>
       <header><span class="section-number">7.2</span> <h1 data-bookmark-label="7.2 Class template promise">Class template <code>promise</code></h1> <span style="float:right"><a href="#futures.promise">[futures.promise]</a></span></header>
-      
-    
+
+
 
     <p id="futures.promise.1" para_num="1">
       The specification of all declarations within this subclause <cxx-ref to="futures.promise"><a title="futures.promise" href="#futures.promise">7.2</a></cxx-ref>
@@ -6229,17 +6229,17 @@ namespace std {
       When a <code>promise</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
       the second argument is treated as a type-erased allocator (<cxx-ref to="memory.type.erased.allocator"><a title="memory.type.erased.allocator" href="#memory.type.erased.allocator">5.3</a></cxx-ref>).
     </p>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="futures.task">
-    
+
 
     <section>
       <header><span class="section-number">7.3</span> <h1 data-bookmark-label="7.3 Class template packaged_task">Class template <code>packaged_task</code></h1> <span style="float:right"><a href="#futures.task">[futures.task]</a></span></header>
-      
-    
+
+
 
     <p id="futures.task.1" para_num="1">
       The specification of all declarations within this subclause <cxx-ref to="futures.task"><a title="futures.task" href="#futures.task">7.3</a></cxx-ref>
@@ -6296,7 +6296,7 @@ namespace std {
       When a <code>packaged_task</code> constructor that takes a first argument of type <code>allocator_arg_t</code> is invoked,
       the second argument is treated as a type-erased allocator (<cxx-ref to="memory.type.erased.allocator"><a title="memory.type.erased.allocator" href="#memory.type.erased.allocator">5.3</a></cxx-ref>).
     </p>
-  
+
     </section>
   </cxx-section>
 
@@ -6304,20 +6304,20 @@ namespace std {
   </cxx-clause>
 
 <cxx-clause id="algorithms">
-    
+
 
     <section>
       <header><span class="section-number">8</span> <h1 data-bookmark-label="8 Algorithms library">Algorithms library</h1> <span style="float:right"><a href="#algorithms">[algorithms]</a></span></header>
-      
-  
+
+
 
   <cxx-section id="algorithm.syn">
-    
+
 
     <section>
       <header><span class="section-number">8.1</span> <h1 data-bookmark-label="8.1 Header <experimental/algorithm> synopsis">Header <code>&lt;experimental/algorithm&gt;</code> synopsis</h1> <span style="float:right"><a href="#algorithm.syn">[algorithm.syn]</a></span></header>
-      
-    
+
+
 
 <pre><code>#include &lt;algorithm&gt;
 
@@ -6334,29 +6334,29 @@ namespace std::experimental::inline fundamentals_v3 {
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
 
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="alg.random.sample">
-    
+
 
     <section>
       <header><span class="section-number">8.2</span> <h1 data-bookmark-label="8.2 Sampling">Sampling</h1> <span style="float:right"><a href="#alg.random.sample">[alg.random.sample]</a></span></header>
-      
-    
+
+
 
     <cxx-function id="alg.random.sample.1" para_num="1">
-    
+
     <pre><code><cxx-signature class="formatted">template&lt;class PopulationIterator, class SampleIterator, class Distance&gt;
 SampleIterator sample(PopulationIterator first, PopulationIterator last,
                       SampleIterator out, Distance n);</cxx-signature></code></pre>
 
     <dl>
-      
-      
+
+
       <cxx-effects id="alg.random.sample.2" para_num="2">
-    
+
     <dt>Effects:</dt><dd>
         Equivalent to:
         <pre><code>return ::std::sample(first, last, out, n, g);</code></pre>
@@ -6367,55 +6367,55 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
         implementation’s source of randomness.
       </dd>
   </cxx-effects>
-    
+
     </dl>
   </cxx-function>
-  
+
     </section>
   </cxx-section>
 
   <cxx-section id="alg.random.shuffle">
-    
+
 
     <section>
       <header><span class="section-number">8.3</span> <h1 data-bookmark-label="8.3 Shuffle">Shuffle</h1> <span style="float:right"><a href="#alg.random.shuffle">[alg.random.shuffle]</a></span></header>
-      
-    
+
+
     <cxx-function id="alg.random.shuffle.1" para_num="1">
-    
+
     <pre><code><cxx-signature>template&lt;class RandomAccessIterator&gt;
   void shuffle(RandomAccessIterator first, RandomAccessIterator last);</cxx-signature></code></pre>
 
     <dl>
-      
-      
+
+
       <cxx-preconditions id="alg.random.shuffle.2" para_num="2">
-    
+
     <dt>Preconditions:</dt><dd><code>RandomAccessIterator</code> meets the
         <cxx-17concept><i>Cpp17ValueSwappable</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.5.3.2</span></cxx-ref>).
       </dd>
   </cxx-preconditions>
       <cxx-effects id="alg.random.shuffle.3" para_num="3">
-    
+
     <dt>Effects:</dt><dd>Permutes the elements in the range <code>[first,last)</code>
         such that each possible permutation of those elements has equal
         probability of appearance.</dd>
   </cxx-effects>
       <cxx-complexity id="alg.random.shuffle.4" para_num="4">
-    
+
     <dt>Complexity:</dt><dd>Exactly <code>(last - first) - 1</code> swaps.</dd>
   </cxx-complexity>
       <cxx-remarks id="alg.random.shuffle.5" para_num="5">
-    
+
     <dt>Remarks:</dt><dd>To the extent that the implementation of this function
         makes use of random numbers, the per-thread engine (<cxx-ref to="rand.randint"><a title="rand.randint" href="#rand.randint">9.1.2</a></cxx-ref>)
         serves as the implementation's source of randomness.
       </dd>
   </cxx-remarks>
-    
+
     </dl>
   </cxx-function>
-  
+
     </section>
   </cxx-section>
 
@@ -6423,27 +6423,27 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
   </cxx-clause>
 
 <cxx-clause id="numeric">
-    
+
 
     <section>
       <header><span class="section-number">9</span> <h1 data-bookmark-label="9 Numerics library">Numerics library</h1> <span style="float:right"><a href="#numeric">[numeric]</a></span></header>
-      
-  
+
+
 
   <cxx-section id="rand">
-    
+
 
     <section>
       <header><span class="section-number">9.1</span> <h1 data-bookmark-label="9.1 Random number generation">Random number generation</h1> <span style="float:right"><a href="#rand">[rand]</a></span></header>
-      
-    
+
+
     <cxx-section id="rand.syn">
-    
+
 
     <section>
       <header><span class="section-number">9.1.1</span> <h1 data-bookmark-label="9.1.1 Header <experimental/random> synopsis">Header <code>&lt;experimental/random&gt;</code> synopsis</h1> <span style="float:right"><a href="#rand.syn">[rand.syn]</a></span></header>
-      
-      
+
+
       <pre><code>#include &lt;random&gt;
 
 namespace std::experimental::inline fundamentals_v3 {
@@ -6455,64 +6455,64 @@ namespace std::experimental::inline fundamentals_v3 {
   void reseed(default_random_engine::result_type value);
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
-    
+
     </section>
   </cxx-section>
     <cxx-section id="rand.randint">
-    
+
 
     <section>
       <header><span class="section-number">9.1.2</span> <h1 data-bookmark-label="9.1.2 Function template randint">Function template <code>randint</code></h1> <span style="float:right"><a href="#rand.randint">[rand.randint]</a></span></header>
-      
-      
+
+
       <p id="rand.randint.1" para_num="1">A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
         (<cxx-ref in="cxx" to="rand.predef">C++20 <span title="rand.predef">§26.6.5</span></cxx-ref>), initialized to an
         unpredictable state, shall be maintained for each thread.</p>
       <cxx-function id="rand.randint.2" para_num="2">
-    
+
     <pre><code><cxx-signature>template&lt;class IntType&gt;
 IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
 
     <dl>
-      
-        
+
+
         <cxx-mandates id="rand.randint.3" para_num="3">
-    
+
     <dt>Mandates:</dt><dd>
           The template argument meets the requirements for a template parameter named
           <code>IntType</code> in <cxx-ref in="cxx" to="rand.req.genl">C++20 <span title="rand.req.genl">§26.6.2.1</span></cxx-ref>.
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="rand.randint.4" para_num="4">
-    
+
     <dt>Preconditions:</dt><dd><code>a</code> ≤ <code>b</code>.</dd>
   </cxx-preconditions>
         <cxx-returns id="rand.randint.5" para_num="5">
-    
+
     <dt>Returns:</dt><dd>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
           produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType&gt;</code>
           (<cxx-ref in="cxx" to="rand.dist.uni.int">C++20 <span title="rand.dist.uni.int">§26.6.8.2.1</span></cxx-ref>) invoked with the
           per-thread engine.</dd>
   </cxx-returns>
-      
+
     </dl>
   </cxx-function>
       <cxx-function id="rand.randint.6" para_num="6">
-    
+
     <pre><code><cxx-signature>void reseed();</cxx-signature><cxx-signature>void reseed(default_random_engine::result_type value);</cxx-signature></code></pre>
 
     <dl>
-      
-        
-        
+
+
+
         <cxx-effects id="rand.randint.7" para_num="7">
-    
+
     <dt>Effects:</dt><dd>Let <code>g</code> be the per-thread engine. The first
           form sets <code>g</code> to an unpredictable state. The second form
           invokes <code>g.seed(value)</code>.</dd>
   </cxx-effects>
         <cxx-postconditions id="rand.randint.8" para_num="8">
-    
+
     <dt>Postconditions:</dt><dd>Subsequent calls to <code>randint</code> do not
           depend on values produced by <code>g</code> before calling <code>reseed</code>.
           <cxx-note><span class="nowrap">[ <em>Note:</em></span>
@@ -6521,13 +6521,13 @@ IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note></dd>
   </cxx-postconditions>
-      
+
     </dl>
   </cxx-function>
-    
+
     </section>
   </cxx-section>
-  
+
     </section>
   </cxx-section>
 
