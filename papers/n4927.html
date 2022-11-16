@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4927 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      .quote { display: inline-block; clear: both; margin-left: 1ex;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1ex; }
+
+      .modify { border-left: thick solid #999; border-right: thick solid #999; padding: 0 1em; }
+      .insert { border-left: thick solid #0A0; border-right: thick solid #0A0; padding: 0 1em; }
+      .comment { color: #753; }
+      .comment a:link, .comment a:visited { color: #A51; }
+
+      table { border-top: 2px solid black; border-bottom: 2px solid black; border-collapse: collapse; margin: 3em auto; }
+      thead th { border-bottom: 2px solid black; }
+      th.sep { border-top: 2px solid black; border-bottom: 2px solid black; }
+      th, td { text-align: left; padding: 0; margin: 0; }
+      tr:first-child td { padding-top: 1ex; }
+      tr:last-child td { padding-bottom: 1ex; }
+
+      td.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                padding: 1em; line-height: 150%; }
+
+      table.x { caption-side: bottom; }
+      table.x caption { padding-top: 1ex; }
+      .x th, .x td { padding: 1ex 1ex 1ex 1ex; }
+      .x th:first-child, .x td:first-child { padding-left: 1ex; }
+      td.y { padding: 0 1em; }
+
+      p.skip { margin-top: 1em; }
+
+      ins { color: #090; }
+      del { color: #A00; }
+      ins code, del code { color: inherit; }
+
+      span.new { color: #080; font-weight: bold; }
+      span.old { color: #800; font-weight: bold; }
+
+      #toggleparams:checked ~ * .params { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>N4927 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2022-11-16</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <h2>New papers</h2>
+
+    <ul>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4926.html">N4926</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4920.html">N4920</a>.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4927.html">N4927</a>
+        is this Editor&rsquo;s Report.</li>
+    </ul>
+
+    <h2>Change history and motions</h2>
+
+    <p>There were three motions affecting the Library Fundamentals TS since the previous revision,
+      all at the first face-to-face WG21 meeting since the pandemic, in Kona 2022:</p>
+    <ul>
+      <li><strong>LWG Poll 1:</strong> Apply the changes for all Tentatively Ready issues in
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2705r0.html">P2705R0</a>
+        (C++ Library Fundamentals TS Ready Issues to be moved in Kona, Nov. 2022)
+        to the Working Paper for C++ Extensions for Library Fundamentals, version 3.</li>
+      <li><strong>LWG Poll 2:</strong> Apply the changes in
+        <a href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p0987r2.pdf">P0987R2</a>
+        (<code>polymorphic_allocator&lt;&gt;</code> instead of type-erasure)
+        to the Working Paper for C++ Extensions for Library Fundamentals, version 3.</li>
+      <li><strong>LWG Poll 3:</strong> Apply the changes in <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2708r1.html">P2708R1</a>
+        (No Further Fundamentals TSes) to the Working Paper for C++ Extensions for Library Fundamentals, version 3.</li>
+    </ul>
+    <p>All changes have been applied, with minor editorial corrections for P0987R2.
+      Subclause <code>[general.plans]</code> has been dissolved because P2708R1 made it superfluous,
+      and the remaining note has been moved into the preceding subclause.</p>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit 9de74d5b6f444a3ffe5d1b32d58f7be046c60dd9
+Author: Jonathan Wakely &lt;cxx@kayari.org&gt;
+Date:   Fri Sep 9 12:25:50 2022 +0100
+
+    [propagate_const.comparison_function_objects] Add missing periods</div>
+
+    <div class="code"><!--
+-->commit 02d0c73726c96f17dbe8bf91f061a9095e9088f1
+Author: Alisdair Meredith &lt;alisdairm@me.com&gt;
+Date:   Fri Sep 9 12:19:06 2022 -0400
+
+    [functional.syn] use same comment wording as in C++20 (#96)</div>
+
+    <div class="code"><!--
+-->commit ae480c92113bd0bf494dbd279ef9eda6f93f88a4
+Author: Alisdair Meredith &lt;alisdairm@me.com&gt;
+Date:   Fri Sep 9 12:21:03 2022 -0400
+
+    functional.syn, func.wrap.func.overview] Remove operator== overloads (#93)
+
+      Remove the redundant overloads of <code>operator==</code> that have been struck from C++20.
+      For further simplicity, this follows the convention fully enforced in C++23
+      that the functions declared in the header synopsis are not repeated below the class definition.</div>
+
+  </body>
+</html>
