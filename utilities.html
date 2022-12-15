@@ -103,11 +103,11 @@
 } // namespace std</code></pre>
     </cxx-section>
 
-    <cxx-section id="propagate_const">
+    <cxx-section id="propagate_const.tmpl">
       <h1>Class template <code>propagate_const</code></h1>
 
       <cxx-section id="propagate_const.overview">
-        <h1>Class template <code>propagate_const</code> overview</h1>
+        <h1>Overview</h1>
 
         <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
@@ -162,7 +162,7 @@
       </cxx-section>
 
       <cxx-section id="propagate_const.requirements">
-        <h1><code>propagate_const</code> general requirements on <code>T</code></h1>
+        <h1>General requirements on <code>T</code></h1>
 
         <p>
           <code>T</code> shall be a cv-unqualified pointer-to-object type or a cv-unqualified class type for which
@@ -176,7 +176,7 @@
       </cxx-section>
 
       <cxx-section id="propagate_const.class_type_requirements">
-        <h1><code>propagate_const</code> requirements on class type <code>T</code></h1>
+        <h1>Requirements on class type <code>T</code></h1>
 
         <p>
           If <code>T</code> is class
@@ -254,7 +254,7 @@
       </cxx-section>
 
       <cxx-section id="propagate_const.ctor">
-        <h1><code>propagate_const</code> constructors</h1>
+        <h1>Constructors</h1>
 
         <cxx-function>
           <cxx-signature>template &lt;class U&gt;
@@ -287,7 +287,7 @@ explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u)
       </cxx-section>
 
       <cxx-section id="propagate_const.assignment">
-        <h1><code>propagate_const</code> assignment</h1>
+        <h1>Assignment</h1>
 
         <cxx-function>
           <cxx-signature>template &lt;class U&gt;
@@ -314,7 +314,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
       </cxx-section>
 
       <cxx-section id="propagate_const.const_observers">
-        <h1><code>propagate_const</code> const observers</h1>
+        <h1>Const observers</h1>
 
         <cxx-function>
           <cxx-signature>explicit constexpr operator bool() const;</cxx-signature>
@@ -357,7 +357,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
       </cxx-section>
 
     <cxx-section id="propagate_const.non_const_observers">
-      <h1><code>propagate_const</code> non-const observers</h1>
+      <h1>Non-const observers</h1>
 
       <cxx-function>
         <cxx-signature>constexpr element_type* operator-&gt;();</cxx-signature>
@@ -394,7 +394,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
     </cxx-section>
 
     <cxx-section id="propagate_const.modifiers">
-      <h1><code>propagate_const</code> modifiers</h1>
+      <h1>Modifiers</h1>
 
       <cxx-function>
         <cxx-signature>constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);</cxx-signature>
@@ -408,7 +408,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature>
     </cxx-section>
 
     <cxx-section id="propagate_const.relational">
-      <h1><code>propagate_const</code> relational operators</h1>
+      <h1>Relational operators</h1>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
@@ -564,7 +564,7 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
       </cxx-function>
     </cxx-section>
     <cxx-section id="propagate_const.algorithms">
-      <h1><code>propagate_const</code> specialized algorithms</h1>
+      <h1>Specialized algorithms</h1>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
@@ -579,7 +579,7 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
     </cxx-section>
 
     <cxx-section id="propagate_const.underlying">
-      <h1><code>propagate_const</code> underlying pointer access</h1>
+      <h1>Underlying pointer access</h1>
 
       <p>
         Access to the underlying object pointer type is
@@ -607,7 +607,7 @@ constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx
     </cxx-section>
 
     <cxx-section id="propagate_const.hash">
-      <h1><code>propagate_const</code> hash support</h1>
+      <h1>Hash support</h1>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
@@ -624,7 +624,7 @@ struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx
     </cxx-section>
 
     <cxx-section id="propagate_const.comparison_function_objects">
-      <h1><code>propagate_const</code> comparison function objects</h1>
+      <h1>Comparison function objects</h1>
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
