@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-SECTION");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-REMARKS");document.createElement("CXX-MANDATES");document.createElement("CXX-17CONCEPT");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; }
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-PROJECT-NUMBER");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-SECTION");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-REMARKS");document.createElement("CXX-MANDATES");document.createElement("CXX-17CONCEPT");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; }
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; }
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -429,10 +429,13 @@ cxx-titlepagebody.cxx-pdts hgroup *, body.cxx-pdts cxx-titlepage hgroup *, cxx-t
 
 cxx-titlepagebody.cxx-pdts hgroup h1, body.cxx-pdts cxx-titlepage hgroup h1, cxx-titlepagebody.cxx-dts hgroup h1, body.cxx-dts cxx-titlepage hgroup h1, cxx-titlepagebody.cxx-ts hgroup h1, body.cxx-ts cxx-titlepage hgroup h1 {
 	font-size: 150%; font-weight: bold;
+	line-height: 150%;
 }
 
 cxx-titlepagebody.cxx-pdts hgroup h2, body.cxx-pdts cxx-titlepage hgroup h2, cxx-titlepagebody.cxx-dts hgroup h2, body.cxx-dts cxx-titlepage hgroup h2, cxx-titlepagebody.cxx-ts hgroup h2, body.cxx-ts cxx-titlepage hgroup h2 {
-	font-size: 100%; font-weight: normal;
+	font-size: 135%; font-weight: normal;
+	line-height: 150%;
+	margin: 2em 0;
 }
 
 cxx-titlepagebody.cxx-pdts .footer, body.cxx-pdts cxx-titlepage .footer, cxx-titlepagebody.cxx-dts .footer, body.cxx-dts cxx-titlepage .footer, cxx-titlepagebody.cxx-ts .footer, body.cxx-ts cxx-titlepage .footer {
@@ -488,7 +491,7 @@ cxx-ednote.para aside {
 }cxx-note .nowrap {
 	white-space: nowrap;
 }cxx-footnote {
-	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial;
+	white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial;
 }
 
 @media screen {
@@ -582,14 +585,16 @@ limitations under the License.
 body { margin: 0; }
 
 @media screen {
+    html, body { font-family: "NewComputerModern10", "NewComputerModernMath", serif; font-size: 10pt; line-height: 150%; }
+    *   code { font-family: "NewComputerModernMono10", monospace; font-size: 100%; }
     body { max-width: 7in;
            /* Make room for paragraph numbers. */
            margin-left: 2em }
 }
 
 @media print {
-    html { font-size: 10pt; }
-    *   code { font-size: 80%; }
+    html, body { font-family: "NewComputerModern10", "NewComputerModernMath", serif; font-size: 10pt; line-height: 150%; }
+    *   code { font-family: "NewComputerModernMono10", monospace; font-size: 100%; }
     /* Note that only Prince generates clickable links. */
     *   a[href] { text-decoration:none; }
 }
@@ -973,36 +978,74 @@ html   [segment], html   segment {
 [touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y;}
 [touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y;}
 [touch-action="manipulation"]{ -ms-touch-action: manipulation; touch-action: manipulation;}
-</style><title>C++ Extensions for Library Fundamentals, Version 3, Working Draft</title></head>
-<body class="cxx-draft">
+</style><title>C++ Extensions for Library Fundamentals, Version 3, PDTS</title></head>
+<body class="cxx-pdts">
 <cxx-titlepage>
 
 
+
+
       <div class="page">
-        <table class="header">
+        <div class="header">
 
-            <tr><th>Document Number:</th><td><cxx-docnum class="docname">N4939</cxx-docnum></td></tr>
+            <strong>ISO/IEC JTC1 SC22 WG21 <cxx-docnum class="docname">N4937</cxx-docnum></strong><br>
+            Date: <time pubdate=""><span class="pubyear">2022</span>-12-15</time><br>
 
-
-            <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">2022</span>-12-17</time></td></tr>
-
-
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4926.html">N4926</a></cxx-revises></td></tr>
+              ISO/IEC PDTS <cxx-project-number>19568</cxx-project-number><br>
 
 
-            <tr><th>Editor:</th><td><cxx-editor>
-    Thomas Köppe<br>
-    Google DeepMind<br>
-    <cxx-email><a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a></cxx-email>
-  </cxx-editor></td></tr>
 
-        </table>
-        <h1>Working Draft, C++ Extensions for Library Fundamentals, Version 3</h1>
-        <p class="warning"><strong>Note: this is an early draft. It’s known to be
-        incomplet and incorrekt, and it has lots of b<span style="margin-left: -1.2pt; margin-right: 1pt">a</span>d<span style="width:1.5em"> </span>for<span style="margin-left:-3pt; margin-right:0.6pt">mat</span>ti<span style="position:relative; top:-0.15ex">n</span>g.</strong></p>
+
+          ISO/IEC JTC1 SC22 WG21<br>
+          Secretariat: ANSI
+        </div>
+        <hgroup>
+          <h1>Programming Languages —<br>C++ Extensions for Library Fundamentals, Version 3</h1>
+
+            <h2>Langages de programmation —<br> Extensions C++ pour la bibliothèque fondamentaux, version 3</h2>
+
+        </hgroup>
+        <figure class="warning">
+          <figcaption>Warning</figcaption>
+          <p>This document is not an ISO International Standard. It is distributed for review and comment. It is
+          subject to change without notice and may not be referred to as an International Standard.
+          </p>
+          <p>Recipients of this draft are invited to submit, with their comments, notification of any relevant
+          patent rights of which they are aware and to provide supporting documentation.</p>
+        </figure>
+        <div class="footer">
+
+            Document type: Proposed Draft Technical Specification<br>
+            Document stage: (30) Committee<br>
+
+
+
+          Document language: E
+        </div>
       </div>
-
-
+      <div class="page">
+        <figure class="copyright">
+          <p>© ISO 2022</p>
+          <p>
+            All rights reserved. Unless otherwise specified, no part
+            of this publication may be reproduced or utilized
+            otherwise in any form or by any means, electronic or
+            mechanical, including photocopying, or posting on the
+            internet or an intranet, without prior written permission.
+            Permission can be requested from either ISO at the address
+            below or ISO's member body in the country of the requester.
+          </p>
+          <address>
+            ISO copyright office<br>
+            Case postale 56 · CH-1211 Geneva 20<br>
+            Tel. + 41 22 749 01 11<br>
+            Fax + 41 22 749 09 47<br>
+            E-mail <a href="mailto:copyright@iso.org">copyright@iso.org</a><br>
+            Web <a href="http://www.iso.org/">www.iso.org</a>
+          </address>
+          <p>Published in Switzerland.</p>
+        </figure>
+      </div>
 
 
 
