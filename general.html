@@ -1,50 +1,59 @@
+<cxx-clause id="general.scope">
+  <h1>Scope</h1>
+  <p>This technical specification describes extensions to the C++
+  Standard Library (<cxx-ref to="general.references"></cxx-ref>).
+  These extensions are classes and functions that are likely to be
+  used widely within a program and/or on the interface boundaries
+  between libraries written by different organizations.</p>
+
+  <p>This technical specification is non-normative. Some of the
+  library components in this technical specification may be
+  considered for standardization in a future version of C++, but
+  they are not currently part of any C++ standard. Some of the
+  components in this technical specification may never be
+  standardized, and others may be standardized in a substantially
+  changed form.</p>
+
+  <p>The goal of this technical specification is to build more
+  widespread existing practice for an expanded C++ standard
+  library. It gives advice on extensions to those vendors who wish
+  to provide them.</p>
+</cxx-clause>
+
+<cxx-clause id="general.references">
+  <h1>Normative references</h1>
+
+  <p>The following referenced document is indispensable for the
+  application of this document. For dated references, only the edition
+  cited applies. For undated references, the latest edition of the
+  referenced document (including any amendments) applies.</p>
+
+  <ul>
+    <li>ISO/IEC 14882:2020, <cite>Programming Languages — C++</cite>
+    <cxx-foreign-index id="cxx" src="cxx20_index.json" name="C++20"></cxx-foreign-index></li>
+  </ul>
+
+  <p>ISO/IEC 14882:2020 is herein called the <dfn>C++ Standard</dfn>.
+  References to clauses within the C++ Standard are written as "C++20
+  &#xa7;3.2". The library described in ISO/IEC 14882:2020 clauses 16–32 is
+  herein called the <dfn>C++ Standard Library</dfn>.</p>
+
+  <p>Unless otherwise specified, the whole of the C++ Standard's Library
+  introduction (<cxx-ref in="cxx" to="library"></cxx-ref>) is included into this
+  Technical Specification by reference.</p>
+</cxx-clause>
+
+<cxx-clause id="general.terms">
+  <h1>Terms and definitions</h1>
+
+  <p>For the purposes of this document, the terms and definitions
+  given in the C++ Standard apply.</p>
+
+  <p>This document does not contain any additional terminological entries.</p>
+</cxx-clause>
+
 <cxx-clause id="general">
-  <h1>General</h1>
-  <cxx-section id="general.scope">
-    <h1>Scope</h1>
-    <p>This technical specification describes extensions to the C++
-    Standard Library (<cxx-ref
-    to="general.references"></cxx-ref>). These extensions are classes
-    and functions that are likely to be used widely within a program
-    and/or on the interface boundaries between libraries written by
-    different organizations.</p>
-
-    <p>This technical specification is non-normative. Some of the
-    library components in this technical specification may be
-    considered for standardization in a future version of C++, but
-    they are not currently part of any C++ standard. Some of the
-    components in this technical specification may never be
-    standardized, and others may be standardized in a substantially
-    changed form.</p>
-
-    <p>The goal of this technical specification is to build more
-    widespread existing practice for an expanded C++ standard
-    library. It gives advice on extensions to those vendors who wish
-    to provide them.</p>
-  </cxx-section>
-
-  <cxx-section id="general.references">
-    <h1>Normative references</h1>
-
-    <p>The following referenced document is indispensable for the
-    application of this document. For dated references, only the
-    edition cited applies. For undated references, the latest edition
-    of the referenced document (including any amendments) applies.</p>
-
-    <ul>
-      <li>ISO/IEC 14882:2020, <cite>Programming Languages — C++</cite>
-      <cxx-foreign-index id="cxx" src="cxx20_index.json" name="C++20"></cxx-foreign-index></li>
-    </ul>
-
-    <p>ISO/IEC 14882:2020 is herein called the <dfn>C++ Standard</dfn>.
-    References to clauses within the C++ Standard are written as "C++20
-    &#xa7;3.2". The library described in ISO/IEC 14882:2020 clauses 16–32 is
-    herein called the <dfn>C++ Standard Library</dfn>.</p>
-
-    <p>Unless otherwise specified, the whole of the C++ Standard's Library
-    introduction (<cxx-ref in="cxx" to="library"></cxx-ref>) is included into this
-    Technical Specification by reference.</p>
-  </cxx-section>
+  <h1>General principles</h1>
 
   <cxx-section id="general.namespaces">
     <h1>Namespaces, headers, and modifications to standard classes</h1>
