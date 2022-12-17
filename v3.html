@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Sources at https://github.com/cplusplus/fundamentals-ts -->
-<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-SECTION");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-REMARKS");document.createElement("CXX-MANDATES");document.createElement("CXX-17CONCEPT");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; }
+<html lang="en"><head><!--[if lte IE 8]><script>document.createElement("nav");document.createElement("section");document.createElement("time");document.createElement("CXX-TITLEPAGE");document.createElement("CXX-DOCNUM");document.createElement("CXX-REVISES");document.createElement("CXX-EDITOR");document.createElement("CXX-EMAIL");document.createElement("CXX-TOC");document.createElement("CXX-CLAUSE");document.createElement("CXX-REF");document.createElement("CXX-FOREIGN-INDEX");document.createElement("CXX-SECTION");document.createElement("CXX-EXAMPLE");document.createElement("CXX-NOTE");document.createElement("CXX-FUNCTION");document.createElement("CXX-SIGNATURE");document.createElement("CXX-CONSTRAINTS");document.createElement("CXX-EFFECTS");document.createElement("CXX-RETURNS");document.createElement("CXX-PRECONDITIONS");document.createElement("CXX-REMARKS");document.createElement("CXX-MANDATES");document.createElement("CXX-17CONCEPT");document.createElement("CXX-THROWS");document.createElement("CXX-POSTCONDITIONS");document.createElement("CXX-TERM");document.createElement("W-BR");document.createElement("CXX-COMPLEXITY");document.createElement("CXX-PUBLISH-BUTTON");</script><![endif]--><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; }
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; }
 </style><style shim-shadowdom-css="">style { display: none !important; }
 cxx-function {
@@ -987,7 +987,7 @@ html   [segment], html   segment {
             <tr><th>Date:</th><td><time pubdate=""><span class="pubyear">????</span>-??-??</time></td></tr>
 
 
-            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4926.html">N4926</a></cxx-revises></td></tr>
+            <tr><th>Revises:</th><td><cxx-revises><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4939.html">N4939</a></cxx-revises></td></tr>
 
 
             <tr><th>Editor:</th><td><cxx-editor>
@@ -1016,23 +1016,27 @@ html   [segment], html   segment {
 
           <ol>
 
-              <li><span class="marker">1</span><a href="#general">General</a>
+              <li><span class="marker">1</span><a href="#general.scope">Scope</a>
+
+      </li>
+
+              <li><span class="marker">2</span><a href="#general.references">Normative references</a>
+
+      </li>
+
+              <li><span class="marker">3</span><a href="#general.terms">Terms and definitions</a>
+
+      </li>
+
+              <li><span class="marker">4</span><a href="#general">General principles</a>
 
           <ol>
 
-              <li><span class="marker">1.1</span><a href="#general.scope">Scope</a>
+              <li><span class="marker">4.1</span><a href="#general.namespaces">Namespaces, headers, and modifications to standard classes</a>
 
       </li>
 
-              <li><span class="marker">1.2</span><a href="#general.references">Normative references</a>
-
-      </li>
-
-              <li><span class="marker">1.3</span><a href="#general.namespaces">Namespaces, headers, and modifications to standard classes</a>
-
-      </li>
-
-              <li><span class="marker">1.4</span><a href="#general.feature.test">Feature-testing recommendations (Informative)</a>
+              <li><span class="marker">4.2</span><a href="#general.feature.test">Feature-testing recommendations (Informative)</a>
 
       </li>
 
@@ -1040,11 +1044,15 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">2</span><a href="#mods">Modifications to the C++ Standard Library</a>
+              <li><span class="marker">5</span><a href="#mods">Modifications to the C++ Standard Library</a>
 
           <ol>
 
-              <li><span class="marker">2.1</span><a href="#mods.exception.requirements">Exception Requirements</a>
+              <li><span class="marker">5.1</span><a href="#mods.general">General</a>
+
+      </li>
+
+              <li><span class="marker">5.2</span><a href="#mods.exception.requirements">Exception Requirements</a>
 
       </li>
 
@@ -1052,119 +1060,71 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">3</span><a href="#utilities">General utilities library</a>
+              <li><span class="marker">6</span><a href="#utilities">General utilities library</a>
 
           <ol>
 
-              <li><span class="marker">3.1</span><a href="#propagate_const">Constness propagation</a>
+              <li><span class="marker">6.1</span><a href="#propagate_const">Constness propagation</a>
 
           <ol>
 
-              <li><span class="marker">3.1.1</span><a href="#propagate_const.syn">Header &lt;experimental/propagate_const&gt; synopsis</a>
+              <li><span class="marker">6.1.1</span><a href="#propagate_const.syn">Header &lt;experimental/propagate_const&gt; synopsis</a>
 
       </li>
 
-              <li><span class="marker">3.1.2</span><a href="#propagate_const">Class template propagate_const</a>
+              <li><span class="marker">6.1.2</span><a href="#propagate_const.tmpl">Class template propagate_const</a>
 
           <ol>
 
-              <li><span class="marker">3.1.2.1</span><a href="#propagate_const.overview">Class template propagate_const overview</a>
+              <li><span class="marker">6.1.2.1</span><a href="#propagate_const.overview">Overview</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.2</span><a href="#propagate_const.requirements">propagate_const general requirements on T</a>
+              <li><span class="marker">6.1.2.2</span><a href="#propagate_const.requirements">General requirements on T</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.3</span><a href="#propagate_const.class_type_requirements">propagate_const requirements on class type T</a>
+              <li><span class="marker">6.1.2.3</span><a href="#propagate_const.class_type_requirements">Requirements on class type T</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.4</span><a href="#propagate_const.ctor">propagate_const constructors</a>
+              <li><span class="marker">6.1.2.4</span><a href="#propagate_const.ctor">Constructors</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.5</span><a href="#propagate_const.assignment">propagate_const assignment</a>
+              <li><span class="marker">6.1.2.5</span><a href="#propagate_const.assignment">Assignment</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.6</span><a href="#propagate_const.const_observers">propagate_const const observers</a>
+              <li><span class="marker">6.1.2.6</span><a href="#propagate_const.const_observers">Const observers</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.7</span><a href="#propagate_const.non_const_observers">propagate_const non-const observers</a>
+              <li><span class="marker">6.1.2.7</span><a href="#propagate_const.non_const_observers">Non-const observers</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.8</span><a href="#propagate_const.modifiers">propagate_const modifiers</a>
+              <li><span class="marker">6.1.2.8</span><a href="#propagate_const.modifiers">Modifiers</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.9</span><a href="#propagate_const.relational">propagate_const relational operators</a>
+              <li><span class="marker">6.1.2.9</span><a href="#propagate_const.relational">Relational operators</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.10</span><a href="#propagate_const.algorithms">propagate_const specialized algorithms</a>
+              <li><span class="marker">6.1.2.10</span><a href="#propagate_const.algorithms">Specialized algorithms</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.11</span><a href="#propagate_const.underlying">propagate_const underlying pointer access</a>
+              <li><span class="marker">6.1.2.11</span><a href="#propagate_const.underlying">Underlying pointer access</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.12</span><a href="#propagate_const.hash">propagate_const hash support</a>
+              <li><span class="marker">6.1.2.12</span><a href="#propagate_const.hash">Hash support</a>
 
       </li>
 
-              <li><span class="marker">3.1.2.13</span><a href="#propagate_const.comparison_function_objects">propagate_const comparison function objects</a>
-
-      </li>
-
-          </ol>
-
-      </li>
-
-          </ol>
-
-      </li>
-
-              <li><span class="marker">3.2</span><a href="#scopeguard">Scope guard support</a>
-
-          <ol>
-
-              <li><span class="marker">3.2.1</span><a href="#scope.syn">Header &lt;experimental/scope&gt; synopsis</a>
-
-      </li>
-
-              <li><span class="marker">3.2.2</span><a href="#scopeguard.exit">Class templates scope_exit, scope_fail, and scope_success</a>
-
-      </li>
-
-              <li><span class="marker">3.2.3</span><a href="#scopeguard.uniqueres">Class template unique_resource</a>
-
-          <ol>
-
-              <li><span class="marker">3.2.3.1</span><a href="#scopeguard.uniqueres.overview">Overview</a>
-
-      </li>
-
-              <li><span class="marker">3.2.3.2</span><a href="#scopeguard.uniqueres.ctor">Constructors</a>
-
-      </li>
-
-              <li><span class="marker">3.2.3.3</span><a href="#scopeguard.uniqueres.dtor">Destructor</a>
-
-      </li>
-
-              <li><span class="marker">3.2.3.4</span><a href="#scopeguard.uniqueres.assign">Assignment</a>
-
-      </li>
-
-              <li><span class="marker">3.2.3.5</span><a href="#scopeguard.uniqueres.members">Other member functions</a>
-
-      </li>
-
-              <li><span class="marker">3.2.3.6</span><a href="#scopeguard.uniqueres.create">unique_resource creation</a>
+              <li><span class="marker">6.1.2.13</span><a href="#propagate_const.comparison_function_objects">Comparison function objects</a>
 
       </li>
 
@@ -1176,19 +1136,43 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">3.3</span><a href="#meta">Metaprogramming and type traits</a>
+              <li><span class="marker">6.2</span><a href="#scopeguard">Scope guard support</a>
 
           <ol>
 
-              <li><span class="marker">3.3.1</span><a href="#meta.type.syn">Header &lt;experimental/type_traits&gt; synopsis</a>
+              <li><span class="marker">6.2.1</span><a href="#scope.syn">Header &lt;experimental/scope&gt; synopsis</a>
 
       </li>
 
-              <li><span class="marker">3.3.2</span><a href="#meta.trans.other">Other type transformations</a>
+              <li><span class="marker">6.2.2</span><a href="#scopeguard.exit">Class templates scope_exit, scope_fail, and scope_success</a>
 
       </li>
 
-              <li><span class="marker">3.3.3</span><a href="#meta.detect">Detection idiom</a>
+              <li><span class="marker">6.2.3</span><a href="#scopeguard.uniqueres">Class template unique_resource</a>
+
+          <ol>
+
+              <li><span class="marker">6.2.3.1</span><a href="#scopeguard.uniqueres.overview">Overview</a>
+
+      </li>
+
+              <li><span class="marker">6.2.3.2</span><a href="#scopeguard.uniqueres.ctor">Constructors</a>
+
+      </li>
+
+              <li><span class="marker">6.2.3.3</span><a href="#scopeguard.uniqueres.dtor">Destructor</a>
+
+      </li>
+
+              <li><span class="marker">6.2.3.4</span><a href="#scopeguard.uniqueres.assign">Assignment</a>
+
+      </li>
+
+              <li><span class="marker">6.2.3.5</span><a href="#scopeguard.uniqueres.members">Other member functions</a>
+
+      </li>
+
+              <li><span class="marker">6.2.3.6</span><a href="#scopeguard.uniqueres.create">unique_resource creation</a>
 
       </li>
 
@@ -1200,31 +1184,19 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">4</span><a href="#func">Function objects</a>
+              <li><span class="marker">6.3</span><a href="#meta">Metaprogramming and type traits</a>
 
           <ol>
 
-              <li><span class="marker">4.1</span><a href="#functional.syn">Header &lt;experimental/functional&gt; synopsis</a>
+              <li><span class="marker">6.3.1</span><a href="#meta.type.syn">Header &lt;experimental/type_traits&gt; synopsis</a>
 
       </li>
 
-              <li><span class="marker">4.2</span><a href="#func.wrap.func">Class template function</a>
-
-          <ol>
-
-              <li><span class="marker">4.2.1</span><a href="#func.wrap.func.overview">Overview</a>
+              <li><span class="marker">6.3.2</span><a href="#meta.trans.other">Other type transformations</a>
 
       </li>
 
-              <li><span class="marker">4.2.2</span><a href="#func.wrap.func.con">function construct/copy/destroy</a>
-
-      </li>
-
-              <li><span class="marker">4.2.3</span><a href="#func.wrap.func.mod">function modifiers</a>
-
-      </li>
-
-              <li><span class="marker">4.2.4</span><a href="#func.wrap.func.obs">function observers</a>
+              <li><span class="marker">6.3.3</span><a href="#meta.detect">Detection idiom</a>
 
       </li>
 
@@ -1236,67 +1208,31 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">5</span><a href="#memory">Memory</a>
+              <li><span class="marker">7</span><a href="#func">Function objects</a>
 
           <ol>
 
-              <li><span class="marker">5.1</span><a href="#memory.syn">Header &lt;experimental/memory&gt; synopsis</a>
+              <li><span class="marker">7.1</span><a href="#functional.syn">Header &lt;experimental/functional&gt; synopsis</a>
 
       </li>
 
-              <li><span class="marker">5.2</span><a href="#memory.observer.ptr">Non-owning (observer) pointers</a>
+              <li><span class="marker">7.2</span><a href="#func.wrap.func">Class template function</a>
 
           <ol>
 
-              <li><span class="marker">5.2.1</span><a href="#memory.observer.ptr.overview">Class template observer_ptr overview</a>
+              <li><span class="marker">7.2.1</span><a href="#func.wrap.func.overview">Overview</a>
 
       </li>
 
-              <li><span class="marker">5.2.2</span><a href="#memory.observer.ptr.ctor">observer_ptr constructors</a>
+              <li><span class="marker">7.2.2</span><a href="#func.wrap.func.con">Construct/copy/destroy</a>
 
       </li>
 
-              <li><span class="marker">5.2.3</span><a href="#memory.observer.ptr.obs">observer_ptr observers</a>
+              <li><span class="marker">7.2.3</span><a href="#func.wrap.func.mod">Modifiers</a>
 
       </li>
 
-              <li><span class="marker">5.2.4</span><a href="#memory.observer.ptr.conv">observer_ptr conversions</a>
-
-      </li>
-
-              <li><span class="marker">5.2.5</span><a href="#memory.observer.ptr.mod">observer_ptr modifiers</a>
-
-      </li>
-
-              <li><span class="marker">5.2.6</span><a href="#memory.observer.ptr.special">observer_ptr specialized algorithms</a>
-
-      </li>
-
-              <li><span class="marker">5.2.7</span><a href="#memory.observer.ptr.hash">observer_ptr hash support</a>
-
-      </li>
-
-          </ol>
-
-      </li>
-
-              <li><span class="marker">5.3</span><a href="#memory.resource.syn">Header &lt;experimental/memory_resource&gt; synopsis</a>
-
-      </li>
-
-              <li><span class="marker">5.4</span><a href="#memory.resource.adaptor">Alias template resource_adaptor</a>
-
-          <ol>
-
-              <li><span class="marker">5.4.1</span><a href="#memory.resource.adaptor.overview">resource_adaptor</a>
-
-      </li>
-
-              <li><span class="marker">5.4.2</span><a href="#memory.resource.adaptor.ctor">resource_adaptor_imp constructors</a>
-
-      </li>
-
-              <li><span class="marker">5.4.3</span><a href="#memory.resource.adaptor.mem">resource_adaptor_imp member functions</a>
+              <li><span class="marker">7.2.4</span><a href="#func.wrap.func.obs">Observers</a>
 
       </li>
 
@@ -1308,31 +1244,67 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">6</span><a href="#iterator">Iterators library</a>
+              <li><span class="marker">8</span><a href="#memory">Memory</a>
 
           <ol>
 
-              <li><span class="marker">6.1</span><a href="#iterator.syn">Header &lt;experimental/iterator&gt; synopsis</a>
+              <li><span class="marker">8.1</span><a href="#memory.syn">Header &lt;experimental/memory&gt; synopsis</a>
 
       </li>
 
-              <li><span class="marker">6.2</span><a href="#iterator.ostream.joiner">Class template ostream_joiner</a>
+              <li><span class="marker">8.2</span><a href="#memory.observer.ptr">Non-owning (observer) pointers</a>
 
           <ol>
 
-              <li><span class="marker">6.2.1</span><a href="#iterator.ostream.joiner.overview">Overview</a>
+              <li><span class="marker">8.2.1</span><a href="#memory.observer.ptr.overview">Class template observer_ptr overview</a>
 
       </li>
 
-              <li><span class="marker">6.2.2</span><a href="#iterator.ostream.joiner.cons">ostream_joiner constructor</a>
+              <li><span class="marker">8.2.2</span><a href="#memory.observer.ptr.ctor">observer_ptr constructors</a>
 
       </li>
 
-              <li><span class="marker">6.2.3</span><a href="#iterator.ostream.joiner.ops">ostream_joiner operations</a>
+              <li><span class="marker">8.2.3</span><a href="#memory.observer.ptr.obs">observer_ptr observers</a>
 
       </li>
 
-              <li><span class="marker">6.2.4</span><a href="#iterator.ostream.joiner.creation">ostream_joiner creation function</a>
+              <li><span class="marker">8.2.4</span><a href="#memory.observer.ptr.conv">observer_ptr conversions</a>
+
+      </li>
+
+              <li><span class="marker">8.2.5</span><a href="#memory.observer.ptr.mod">observer_ptr modifiers</a>
+
+      </li>
+
+              <li><span class="marker">8.2.6</span><a href="#memory.observer.ptr.special">observer_ptr specialized algorithms</a>
+
+      </li>
+
+              <li><span class="marker">8.2.7</span><a href="#memory.observer.ptr.hash">observer_ptr hash support</a>
+
+      </li>
+
+          </ol>
+
+      </li>
+
+              <li><span class="marker">8.3</span><a href="#memory.resource.syn">Header &lt;experimental/memory_resource&gt; synopsis</a>
+
+      </li>
+
+              <li><span class="marker">8.4</span><a href="#memory.resource.adaptor">Alias template resource_adaptor</a>
+
+          <ol>
+
+              <li><span class="marker">8.4.1</span><a href="#memory.resource.adaptor.overview">resource_adaptor</a>
+
+      </li>
+
+              <li><span class="marker">8.4.2</span><a href="#memory.resource.adaptor.ctor">resource_adaptor_imp constructors</a>
+
+      </li>
+
+              <li><span class="marker">8.4.3</span><a href="#memory.resource.adaptor.mem">resource_adaptor_imp member functions</a>
 
       </li>
 
@@ -1344,19 +1316,31 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">7</span><a href="#algorithms">Algorithms library</a>
+              <li><span class="marker">9</span><a href="#iterator">Iterators library</a>
 
           <ol>
 
-              <li><span class="marker">7.1</span><a href="#algorithm.syn">Header &lt;experimental/algorithm&gt; synopsis</a>
+              <li><span class="marker">9.1</span><a href="#iterator.syn">Header &lt;experimental/iterator&gt; synopsis</a>
 
       </li>
 
-              <li><span class="marker">7.2</span><a href="#alg.random.sample">Sampling</a>
+              <li><span class="marker">9.2</span><a href="#iterator.ostream.joiner">Class template ostream_joiner</a>
+
+          <ol>
+
+              <li><span class="marker">9.2.1</span><a href="#iterator.ostream.joiner.overview">Overview</a>
 
       </li>
 
-              <li><span class="marker">7.3</span><a href="#alg.random.shuffle">Shuffle</a>
+              <li><span class="marker">9.2.2</span><a href="#iterator.ostream.joiner.cons">Constructor</a>
+
+      </li>
+
+              <li><span class="marker">9.2.3</span><a href="#iterator.ostream.joiner.ops">Operations</a>
+
+      </li>
+
+              <li><span class="marker">9.2.4</span><a href="#iterator.ostream.joiner.creation">Creation function</a>
 
       </li>
 
@@ -1364,19 +1348,43 @@ html   [segment], html   segment {
 
       </li>
 
-              <li><span class="marker">8</span><a href="#numeric">Numerics library</a>
-
-          <ol>
-
-              <li><span class="marker">8.1</span><a href="#rand">Random number generation</a>
-
-          <ol>
-
-              <li><span class="marker">8.1.1</span><a href="#rand.syn">Header &lt;experimental/random&gt; synopsis</a>
+          </ol>
 
       </li>
 
-              <li><span class="marker">8.1.2</span><a href="#rand.randint">Function template randint</a>
+              <li><span class="marker">10</span><a href="#algorithms">Algorithms library</a>
+
+          <ol>
+
+              <li><span class="marker">10.1</span><a href="#algorithm.syn">Header &lt;experimental/algorithm&gt; synopsis</a>
+
+      </li>
+
+              <li><span class="marker">10.2</span><a href="#alg.random.sample">Sampling</a>
+
+      </li>
+
+              <li><span class="marker">10.3</span><a href="#alg.random.shuffle">Shuffle</a>
+
+      </li>
+
+          </ol>
+
+      </li>
+
+              <li><span class="marker">11</span><a href="#numeric">Numerics library</a>
+
+          <ol>
+
+              <li><span class="marker">11.1</span><a href="#rand">Random number generation</a>
+
+          <ol>
+
+              <li><span class="marker">11.1.1</span><a href="#rand.syn">Header &lt;experimental/random&gt; synopsis</a>
+
+      </li>
+
+              <li><span class="marker">11.1.2</span><a href="#rand.randint">Function template randint</a>
 
       </li>
 
@@ -1405,77 +1413,94 @@ html   [segment], html   segment {
   <li>[to be provided]</li>
 </ul>
 </cxx-foreword -->
+<cxx-clause id="general.scope">
+
+
+    <section>
+      <header><span class="section-number">1</span> <h1 data-bookmark-label="1 Scope">Scope</h1> <span style="float:right"><a href="#general.scope">[general.scope]</a></span></header>
+
+
+  <p id="general.scope.1" para_num="1">This technical specification describes extensions to the C++
+  Standard Library (<cxx-ref to="general.references"><a title="general.references" href="#general.references">2</a></cxx-ref>).
+  These extensions are classes and functions that are likely to be
+  used widely within a program and/or on the interface boundaries
+  between libraries written by different organizations.</p>
+
+  <p id="general.scope.2" para_num="2">This technical specification is non-normative. Some of the
+  library components in this technical specification may be
+  considered for standardization in a future version of C++, but
+  they are not currently part of any C++ standard. Some of the
+  components in this technical specification may never be
+  standardized, and others may be standardized in a substantially
+  changed form.</p>
+
+  <p id="general.scope.3" para_num="3">The goal of this technical specification is to build more
+  widespread existing practice for an expanded C++ standard
+  library. It gives advice on extensions to those vendors who wish
+  to provide them.</p>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="general.references">
+
+
+    <section>
+      <header><span class="section-number">2</span> <h1 data-bookmark-label="2 Normative references">Normative references</h1> <span style="float:right"><a href="#general.references">[general.references]</a></span></header>
+
+
+
+  <p id="general.references.1" para_num="1">The following referenced document is indispensable for the
+  application of this document. For dated references, only the edition
+  cited applies. For undated references, the latest edition of the
+  referenced document (including any amendments) applies.</p>
+
+  <ul>
+    <li>ISO/IEC 14882:2020, <cite>Programming Languages — C++</cite>
+    </li>
+  </ul>
+
+  <p id="general.references.2" para_num="2">ISO/IEC 14882:2020 is herein called the <dfn>C++ Standard</dfn>.
+  References to clauses within the C++ Standard are written as "C++20
+  §3.2". The library described in ISO/IEC 14882:2020 clauses 16–32 is
+  herein called the <dfn>C++ Standard Library</dfn>.</p>
+
+  <p id="general.references.3" para_num="3">Unless otherwise specified, the whole of the C++ Standard's Library
+  introduction (<cxx-ref in="cxx" to="library">C++20 <span title="library">§16</span></cxx-ref>) is included into this
+  Technical Specification by reference.</p>
+
+    </section>
+  </cxx-clause>
+
+<cxx-clause id="general.terms">
+
+
+    <section>
+      <header><span class="section-number">3</span> <h1 data-bookmark-label="3 Terms and definitions">Terms and definitions</h1> <span style="float:right"><a href="#general.terms">[general.terms]</a></span></header>
+
+
+
+  <p id="general.terms.1" para_num="1">For the purposes of this document, the terms and definitions
+  given in the C++ Standard apply.</p>
+
+  <p id="general.terms.2" para_num="2">This document does not contain any additional terminological entries.</p>
+
+    </section>
+  </cxx-clause>
+
 <cxx-clause id="general">
 
 
     <section>
-      <header><span class="section-number">1</span> <h1 data-bookmark-label="1 General">General</h1> <span style="float:right"><a href="#general">[general]</a></span></header>
+      <header><span class="section-number">4</span> <h1 data-bookmark-label="4 General principles">General principles</h1> <span style="float:right"><a href="#general">[general]</a></span></header>
 
 
-  <cxx-section id="general.scope">
-
-
-    <section>
-      <header><span class="section-number">1.1</span> <h1 data-bookmark-label="1.1 Scope">Scope</h1> <span style="float:right"><a href="#general.scope">[general.scope]</a></span></header>
-
-
-    <p id="general.scope.1" para_num="1">This technical specification describes extensions to the C++
-    Standard Library (<cxx-ref to="general.references"><a title="general.references" href="#general.references">1.2</a></cxx-ref>). These extensions are classes
-    and functions that are likely to be used widely within a program
-    and/or on the interface boundaries between libraries written by
-    different organizations.</p>
-
-    <p id="general.scope.2" para_num="2">This technical specification is non-normative. Some of the
-    library components in this technical specification may be
-    considered for standardization in a future version of C++, but
-    they are not currently part of any C++ standard. Some of the
-    components in this technical specification may never be
-    standardized, and others may be standardized in a substantially
-    changed form.</p>
-
-    <p id="general.scope.3" para_num="3">The goal of this technical specification is to build more
-    widespread existing practice for an expanded C++ standard
-    library. It gives advice on extensions to those vendors who wish
-    to provide them.</p>
-
-    </section>
-  </cxx-section>
-
-  <cxx-section id="general.references">
-
-
-    <section>
-      <header><span class="section-number">1.2</span> <h1 data-bookmark-label="1.2 Normative references">Normative references</h1> <span style="float:right"><a href="#general.references">[general.references]</a></span></header>
-
-
-
-    <p id="general.references.1" para_num="1">The following referenced document is indispensable for the
-    application of this document. For dated references, only the
-    edition cited applies. For undated references, the latest edition
-    of the referenced document (including any amendments) applies.</p>
-
-    <ul>
-      <li>ISO/IEC 14882:2020, <cite>Programming Languages — C++</cite>
-      </li>
-    </ul>
-
-    <p id="general.references.2" para_num="2">ISO/IEC 14882:2020 is herein called the <dfn>C++ Standard</dfn>.
-    References to clauses within the C++ Standard are written as "C++20
-    §3.2". The library described in ISO/IEC 14882:2020 clauses 16–32 is
-    herein called the <dfn>C++ Standard Library</dfn>.</p>
-
-    <p id="general.references.3" para_num="3">Unless otherwise specified, the whole of the C++ Standard's Library
-    introduction (<cxx-ref in="cxx" to="library">C++20 <span title="library">§16</span></cxx-ref>) is included into this
-    Technical Specification by reference.</p>
-
-    </section>
-  </cxx-section>
 
   <cxx-section id="general.namespaces">
 
 
     <section>
-      <header><span class="section-number">1.3</span> <h1 data-bookmark-label="1.3 Namespaces, headers, and modifications to standard classes">Namespaces, headers, and modifications to standard classes</h1> <span style="float:right"><a href="#general.namespaces">[general.namespaces]</a></span></header>
+      <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 Namespaces, headers, and modifications to standard classes">Namespaces, headers, and modifications to standard classes</h1> <span style="float:right"><a href="#general.namespaces">[general.namespaces]</a></span></header>
 
 
 
@@ -1565,7 +1590,7 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">1.4</span> <h1 data-bookmark-label="1.4 Feature-testing recommendations (Informative)">Feature-testing recommendations (Informative)</h1> <span style="float:right"><a href="#general.feature.test">[general.feature.test]</a></span></header>
+      <header><span class="section-number">4.2</span> <h1 data-bookmark-label="4.2 Feature-testing recommendations (Informative)">Feature-testing recommendations (Informative)</h1> <span style="float:right"><a href="#general.feature.test">[general.feature.test]</a></span></header>
 
 
 
@@ -1619,7 +1644,7 @@ html   [segment], html   segment {
       <tbody><tr>
         <td>N4388</td>
         <td>A Proposal to Add a Const-Propagating Wrapper to the Standard Library
-        </td><td><cxx-ref to="propagate_const"><a title="propagate_const" href="#propagate_const">3.1</a></cxx-ref>
+        </td><td><cxx-ref to="propagate_const"><a title="propagate_const" href="#propagate_const">6.1</a></cxx-ref>
         </td><td><code>propagate_const</code>
         </td><td>201505
         </td><td><code>&lt;experimental/propagate_const&gt;</code>
@@ -1627,7 +1652,7 @@ html   [segment], html   segment {
       <tr>
         <td>P0052R10</td>
         <td>Generic Scope Guard and RAII Wrapper for the Standard Library
-        </td><td><cxx-ref to="scopeguard"><a title="scopeguard" href="#scopeguard">3.2</a></cxx-ref>
+        </td><td><cxx-ref to="scopeguard"><a title="scopeguard" href="#scopeguard">6.2</a></cxx-ref>
         </td><td><code>scope</code>
         </td><td>201902
         </td><td><code>&lt;experimental/scope&gt;</code>
@@ -1635,7 +1660,7 @@ html   [segment], html   segment {
       <tr>
         <td>N3866</td>
         <td>Invocation type traits</td>
-        <td><cxx-ref to="meta.trans.other"><a title="meta.trans.other" href="#meta.trans.other">3.3.2</a></cxx-ref></td>
+        <td><cxx-ref to="meta.trans.other"><a title="meta.trans.other" href="#meta.trans.other">6.3.2</a></cxx-ref></td>
         <td><code>invocation_type</code></td>
         <td>201406</td>
         <td><code>&lt;experimental/type_traits&gt;</code></td>
@@ -1643,7 +1668,7 @@ html   [segment], html   segment {
       <tr>
         <td>N4502</td>
         <td>The C++ Detection Idiom</td>
-        <td><cxx-ref to="meta.detect"><a title="meta.detect" href="#meta.detect">3.3.3</a></cxx-ref></td>
+        <td><cxx-ref to="meta.detect"><a title="meta.detect" href="#meta.detect">6.3.3</a></cxx-ref></td>
         <td><code>detect</code></td>
         <td>201505</td>
         <td><code>&lt;experimental/type_traits&gt;</code></td>
@@ -1651,7 +1676,7 @@ html   [segment], html   segment {
       <tr>
         <td>P0987R1</td>
         <td>Polymorphic allocator for <code>std::function</code></td>
-        <td><cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref></td>
+        <td><cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">7.2</a></cxx-ref></td>
         <td><code>function_polymorphic_allocator</code></td>
         <td>202211</td>
         <td><code>&lt;experimental/functional&gt;</code></td>
@@ -1659,7 +1684,7 @@ html   [segment], html   segment {
       <tr>
         <td>N3916</td>
         <td>Polymorphic Memory Resources</td>
-        <td><cxx-ref to="memory.resource.syn"><a title="memory.resource.syn" href="#memory.resource.syn">5.3</a></cxx-ref></td>
+        <td><cxx-ref to="memory.resource.syn"><a title="memory.resource.syn" href="#memory.resource.syn">8.3</a></cxx-ref></td>
         <td><code>memory_resources</code></td>
         <td>201803</td>
         <td><code>&lt;experimental/memory_resouce&gt;</code></td>
@@ -1667,7 +1692,7 @@ html   [segment], html   segment {
       <tr>
         <td>N4282</td>
         <td>The World’s Dumbest Smart Pointer
-        </td><td><cxx-ref to="memory.observer.ptr"><a title="memory.observer.ptr" href="#memory.observer.ptr">5.2</a></cxx-ref>
+        </td><td><cxx-ref to="memory.observer.ptr"><a title="memory.observer.ptr" href="#memory.observer.ptr">8.2</a></cxx-ref>
         </td><td><code>observer_ptr</code>
         </td><td>201411
         </td><td><code>&lt;experimental/memory&gt;</code>
@@ -1675,7 +1700,7 @@ html   [segment], html   segment {
       <tr>
         <td>N4257</td>
         <td>Delimited iterators</td>
-        <td><cxx-ref to="iterator.ostream.joiner"><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">6.2</a></cxx-ref></td>
+        <td><cxx-ref to="iterator.ostream.joiner"><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">9.2</a></cxx-ref></td>
         <td><code>ostream_joiner</code></td>
         <td>201411</td>
         <td><code>&lt;experimental/iterator&gt;</code></td>
@@ -1683,7 +1708,7 @@ html   [segment], html   segment {
       <tr>
         <td>N3925</td>
         <td>A <code>sample</code> Proposal</td>
-        <td><cxx-ref to="alg.random.sample"><a title="alg.random.sample" href="#alg.random.sample">7.2</a></cxx-ref></td>
+        <td><cxx-ref to="alg.random.sample"><a title="alg.random.sample" href="#alg.random.sample">10.2</a></cxx-ref></td>
         <td><code>sample</code></td>
         <td>201402</td>
         <td><code>&lt;experimental/algorithm&gt;</code></td>
@@ -1691,7 +1716,7 @@ html   [segment], html   segment {
       <tr>
         <td>N4531</td>
         <td><code>std::rand</code> replacement</td>
-        <td><cxx-ref to="rand.randint"><a title="rand.randint" href="#rand.randint">8.1.2</a></cxx-ref></td>
+        <td><cxx-ref to="rand.randint"><a title="rand.randint" href="#rand.randint">11.1.2</a></cxx-ref></td>
         <td><code>randint</code></td>
         <td>201511</td>
         <td><code>&lt;experimental/random&gt;</code></td>
@@ -1709,20 +1734,30 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">2</span> <h1 data-bookmark-label="2 Modifications to the C++ Standard Library">Modifications to the C++ Standard Library</h1> <span style="float:right"><a href="#mods">[mods]</a></span></header>
+      <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Modifications to the C++ Standard Library">Modifications to the C++ Standard Library</h1> <span style="float:right"><a href="#mods">[mods]</a></span></header>
 
 
 
-  <p id="mods.1" para_num="1">
-    Implementations that conform to this technical specification shall
-    behave as if the modifications contained in this section are made to the C++ Standard.
-  </p>
+  <cxx-section id="mods.general">
+
+
+    <section>
+      <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 General">General</h1> <span style="float:right"><a href="#mods.general">[mods.general]</a></span></header>
+
+
+    <p id="mods.general.1" para_num="1">
+      Implementations that conform to this technical specification shall
+      behave as if the modifications contained in this section are made to the C++ Standard.
+    </p>
+
+    </section>
+  </cxx-section>
 
   <cxx-section id="mods.exception.requirements">
 
 
     <section>
-      <header><span class="section-number">2.1</span> <h1 data-bookmark-label="2.1 Exception Requirements">Exception Requirements</h1> <span style="float:right"><a href="#mods.exception.requirements">[mods.exception.requirements]</a></span></header>
+      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Exception Requirements">Exception Requirements</h1> <span style="float:right"><a href="#mods.exception.requirements">[mods.exception.requirements]</a></span></header>
 
 
     <p id="mods.exception.requirements.1" para_num="1">The following changes to the library introduction allow the destructor
@@ -1761,7 +1796,7 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">3</span> <h1 data-bookmark-label="3 General utilities library">General utilities library</h1> <span style="float:right"><a href="#utilities">[utilities]</a></span></header>
+      <header><span class="section-number">6</span> <h1 data-bookmark-label="6 General utilities library">General utilities library</h1> <span style="float:right"><a href="#utilities">[utilities]</a></span></header>
 
 
 
@@ -1769,7 +1804,7 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">3.1</span> <h1 data-bookmark-label="3.1 Constness propagation">Constness propagation</h1> <span style="float:right"><a href="#propagate_const">[propagate_const]</a></span></header>
+      <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Constness propagation">Constness propagation</h1> <span style="float:right"><a href="#propagate_const">[propagate_const]</a></span></header>
 
 
 
@@ -1777,17 +1812,17 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">3.1.1</span> <h1 data-bookmark-label="3.1.1 Header <experimental/propagate_const> synopsis">Header <code>&lt;experimental/propagate_const&gt;</code> synopsis</h1> <span style="float:right"><a href="#propagate_const.syn">[propagate_const.syn]</a></span></header>
+      <header><span class="section-number">6.1.1</span> <h1 data-bookmark-label="6.1.1 Header <experimental/propagate_const> synopsis">Header <code>&lt;experimental/propagate_const&gt;</code> synopsis</h1> <span style="float:right"><a href="#propagate_const.syn">[propagate_const.syn]</a></span></header>
 
 
 
       <pre><code>namespace std {
   namespace experimental::inline fundamentals_v3 {
 
-    <cxx-ref insynopsis="" to="propagate_const.overview">// <i><a title="propagate_const.overview" href="#propagate_const.overview">3.1.2.1</a>, Class template propagate_const overview</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.overview">// <i><a title="propagate_const.overview" href="#propagate_const.overview">6.1.2.1</a>, Overview</i></cxx-ref>
     template &lt;class T&gt; class propagate_const;
 
-    <cxx-ref insynopsis="" to="propagate_const.relational">// <i><a title="propagate_const.relational" href="#propagate_const.relational">3.1.2.9</a>, propagate_const relational operators</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.relational">// <i><a title="propagate_const.relational" href="#propagate_const.relational">6.1.2.9</a>, Relational operators</i></cxx-ref>
     template &lt;class T&gt;
       constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, nullptr_t);
     template &lt;class T&gt;
@@ -1837,11 +1872,11 @@ html   [segment], html   segment {
     template &lt;class T, class U&gt;
       constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp; pu);
 
-    <cxx-ref insynopsis="" to="propagate_const.algorithms">// <i><a title="propagate_const.algorithms" href="#propagate_const.algorithms">3.1.2.10</a>, propagate_const specialized algorithms</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.algorithms">// <i><a title="propagate_const.algorithms" href="#propagate_const.algorithms">6.1.2.10</a>, Specialized algorithms</i></cxx-ref>
     template &lt;class T&gt;
       constexpr void swap(propagate_const&lt;T&gt;&amp; pt, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);
 
-    <cxx-ref insynopsis="" to="propagate_const.underlying">// <i><a title="propagate_const.underlying" href="#propagate_const.underlying">3.1.2.11</a>, propagate_const underlying pointer access</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.underlying">// <i><a title="propagate_const.underlying" href="#propagate_const.underlying">6.1.2.11</a>, Underlying pointer access</i></cxx-ref>
     template &lt;class T&gt;
       constexpr const T&amp; get_underlying(const propagate_const&lt;T&gt;&amp; pt) noexcept;
     template &lt;class T&gt;
@@ -1849,12 +1884,12 @@ html   [segment], html   segment {
 
   } // namespace experimental::inline fundamentals_v3
 
-  <cxx-ref insynopsis="" to="propagate_const.hash">// <i><a title="propagate_const.hash" href="#propagate_const.hash">3.1.2.12</a>, propagate_const hash support</i></cxx-ref>
+  <cxx-ref insynopsis="" to="propagate_const.hash">// <i><a title="propagate_const.hash" href="#propagate_const.hash">6.1.2.12</a>, Hash support</i></cxx-ref>
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt;
     struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
 
-  <cxx-ref insynopsis="" to="propagate_const.comparison_function_objects">// <i><a title="propagate_const.comparison_function_objects" href="#propagate_const.comparison_function_objects">3.1.2.13</a>, propagate_const comparison function objects</i></cxx-ref>
+  <cxx-ref insynopsis="" to="propagate_const.comparison_function_objects">// <i><a title="propagate_const.comparison_function_objects" href="#propagate_const.comparison_function_objects">6.1.2.13</a>, Comparison function objects</i></cxx-ref>
   template &lt;class T&gt; struct equal_to;
   template &lt;class T&gt;
     struct equal_to&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;
@@ -1879,11 +1914,11 @@ html   [segment], html   segment {
     </section>
   </cxx-section>
 
-    <cxx-section id="propagate_const">
+    <cxx-section id="propagate_const.tmpl">
 
 
     <section>
-      <header><span class="section-number">3.1.2</span> <h1 data-bookmark-label="3.1.2 Class template propagate_const">Class template <code>propagate_const</code></h1> <span style="float:right"><a href="#propagate_const">[propagate_const]</a></span></header>
+      <header><span class="section-number">6.1.2</span> <h1 data-bookmark-label="6.1.2 Class template propagate_const">Class template <code>propagate_const</code></h1> <span style="float:right"><a href="#propagate_const.tmpl">[propagate_const.tmpl]</a></span></header>
 
 
 
@@ -1891,7 +1926,7 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">3.1.2.1</span> <h1 data-bookmark-label="3.1.2.1 Class template propagate_const overview">Class template <code>propagate_const</code> overview</h1> <span style="float:right"><a href="#propagate_const.overview">[propagate_const.overview]</a></span></header>
+      <header><span class="section-number">6.1.2.1</span> <h1 data-bookmark-label="6.1.2.1 Overview">Overview</h1> <span style="float:right"><a href="#propagate_const.overview">[propagate_const.overview]</a></span></header>
 
 
 
@@ -1901,7 +1936,7 @@ html   [segment], html   segment {
   public:
     using element_type = remove_reference_t&lt;decltype(*declval&lt;T&amp;&gt;())&gt;;
 
-    <cxx-ref insynopsis="" to="propagate_const.ctor">// <i><a title="propagate_const.ctor" href="#propagate_const.ctor">3.1.2.4</a>, propagate_const constructors</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.ctor">// <i><a title="propagate_const.ctor" href="#propagate_const.ctor">6.1.2.4</a>, Constructors</i></cxx-ref>
     constexpr propagate_const() = default;
     propagate_const(const propagate_const&amp; p) = delete;
     constexpr propagate_const(propagate_const&amp;&amp; p) = default;
@@ -1910,7 +1945,7 @@ html   [segment], html   segment {
     template &lt;class U&gt;
       explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);
 
-    <cxx-ref insynopsis="" to="propagate_const.assignment">// <i><a title="propagate_const.assignment" href="#propagate_const.assignment">3.1.2.5</a>, propagate_const assignment</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.assignment">// <i><a title="propagate_const.assignment" href="#propagate_const.assignment">6.1.2.5</a>, Assignment</i></cxx-ref>
     propagate_const&amp; operator=(const propagate_const&amp; p) = delete;
     constexpr propagate_const&amp; operator=(propagate_const&amp;&amp; p) = default;
     template &lt;class U&gt;
@@ -1918,20 +1953,20 @@ html   [segment], html   segment {
     template &lt;class U&gt;
       constexpr propagate_const&amp; operator=(U&amp;&amp; u);
 
-    <cxx-ref insynopsis="" to="propagate_const.const_observers">// <i><a title="propagate_const.const_observers" href="#propagate_const.const_observers">3.1.2.6</a>, propagate_const const observers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.const_observers">// <i><a title="propagate_const.const_observers" href="#propagate_const.const_observers">6.1.2.6</a>, Const observers</i></cxx-ref>
     explicit constexpr operator bool() const;
     constexpr const element_type* operator-&gt;() const;
     constexpr operator const element_type*() const; // <i>Not always defined</i>
     constexpr const element_type&amp; operator*() const;
     constexpr const element_type* get() const;
 
-    <cxx-ref insynopsis="" to="propagate_const.non_const_observers">// <i><a title="propagate_const.non_const_observers" href="#propagate_const.non_const_observers">3.1.2.7</a>, propagate_const non-const observers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.non_const_observers">// <i><a title="propagate_const.non_const_observers" href="#propagate_const.non_const_observers">6.1.2.7</a>, Non-const observers</i></cxx-ref>
     constexpr element_type* operator-&gt;();
     constexpr operator element_type*(); // <i>Not always defined</i>
     constexpr element_type&amp; operator*();
     constexpr element_type* get();
 
-    <cxx-ref insynopsis="" to="propagate_const.modifiers">// <i><a title="propagate_const.modifiers" href="#propagate_const.modifiers">3.1.2.8</a>, propagate_const modifiers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="propagate_const.modifiers">// <i><a title="propagate_const.modifiers" href="#propagate_const.modifiers">6.1.2.8</a>, Modifiers</i></cxx-ref>
     constexpr void swap(propagate_const&amp; pt) noexcept(is_nothrow_swappable&lt;T&gt;);
 
   private:
@@ -1953,7 +1988,7 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">3.1.2.2</span> <h1 data-bookmark-label="3.1.2.2 propagate_const general requirements on T"><code>propagate_const</code> general requirements on <code>T</code></h1> <span style="float:right"><a href="#propagate_const.requirements">[propagate_const.requirements]</a></span></header>
+      <header><span class="section-number">6.1.2.2</span> <h1 data-bookmark-label="6.1.2.2 General requirements on T">General requirements on <code>T</code></h1> <span style="float:right"><a href="#propagate_const.requirements">[propagate_const.requirements]</a></span></header>
 
 
 
@@ -1977,7 +2012,7 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">3.1.2.3</span> <h1 data-bookmark-label="3.1.2.3 propagate_const requirements on class type T"><code>propagate_const</code> requirements on class type <code>T</code></h1> <span style="float:right"><a href="#propagate_const.class_type_requirements">[propagate_const.class_type_requirements]</a></span></header>
+      <header><span class="section-number">6.1.2.3</span> <h1 data-bookmark-label="6.1.2.3 Requirements on class type T">Requirements on class type <code>T</code></h1> <span style="float:right"><a href="#propagate_const.class_type_requirements">[propagate_const.class_type_requirements]</a></span></header>
 
 
 
@@ -2067,7 +2102,7 @@ html   [segment], html   segment {
 
 
     <section>
-      <header><span class="section-number">3.1.2.4</span> <h1 data-bookmark-label="3.1.2.4 propagate_const constructors"><code>propagate_const</code> constructors</h1> <span style="float:right"><a href="#propagate_const.ctor">[propagate_const.ctor]</a></span></header>
+      <header><span class="section-number">6.1.2.4</span> <h1 data-bookmark-label="6.1.2.4 Constructors">Constructors</h1> <span style="float:right"><a href="#propagate_const.ctor">[propagate_const.ctor]</a></span></header>
 
 
 
@@ -2133,7 +2168,7 @@ explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u)
 
 
     <section>
-      <header><span class="section-number">3.1.2.5</span> <h1 data-bookmark-label="3.1.2.5 propagate_const assignment"><code>propagate_const</code> assignment</h1> <span style="float:right"><a href="#propagate_const.assignment">[propagate_const.assignment]</a></span></header>
+      <header><span class="section-number">6.1.2.5</span> <h1 data-bookmark-label="6.1.2.5 Assignment">Assignment</h1> <span style="float:right"><a href="#propagate_const.assignment">[propagate_const.assignment]</a></span></header>
 
 
 
@@ -2199,7 +2234,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
 
 
     <section>
-      <header><span class="section-number">3.1.2.6</span> <h1 data-bookmark-label="3.1.2.6 propagate_const const observers"><code>propagate_const</code> const observers</h1> <span style="float:right"><a href="#propagate_const.const_observers">[propagate_const.const_observers]</a></span></header>
+      <header><span class="section-number">6.1.2.6</span> <h1 data-bookmark-label="6.1.2.6 Const observers">Const observers</h1> <span style="float:right"><a href="#propagate_const.const_observers">[propagate_const.const_observers]</a></span></header>
 
 
 
@@ -2308,7 +2343,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
 
 
     <section>
-      <header><span class="section-number">3.1.2.7</span> <h1 data-bookmark-label="3.1.2.7 propagate_const non-const observers"><code>propagate_const</code> non-const observers</h1> <span style="float:right"><a href="#propagate_const.non_const_observers">[propagate_const.non_const_observers]</a></span></header>
+      <header><span class="section-number">6.1.2.7</span> <h1 data-bookmark-label="6.1.2.7 Non-const observers">Non-const observers</h1> <span style="float:right"><a href="#propagate_const.non_const_observers">[propagate_const.non_const_observers]</a></span></header>
 
 
 
@@ -2401,7 +2436,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
 
 
     <section>
-      <header><span class="section-number">3.1.2.8</span> <h1 data-bookmark-label="3.1.2.8 propagate_const modifiers"><code>propagate_const</code> modifiers</h1> <span style="float:right"><a href="#propagate_const.modifiers">[propagate_const.modifiers]</a></span></header>
+      <header><span class="section-number">6.1.2.8</span> <h1 data-bookmark-label="6.1.2.8 Modifiers">Modifiers</h1> <span style="float:right"><a href="#propagate_const.modifiers">[propagate_const.modifiers]</a></span></header>
 
 
 
@@ -2435,7 +2470,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
 
 
     <section>
-      <header><span class="section-number">3.1.2.9</span> <h1 data-bookmark-label="3.1.2.9 propagate_const relational operators"><code>propagate_const</code> relational operators</h1> <span style="float:right"><a href="#propagate_const.relational">[propagate_const.relational]</a></span></header>
+      <header><span class="section-number">6.1.2.9</span> <h1 data-bookmark-label="6.1.2.9 Relational operators">Relational operators</h1> <span style="float:right"><a href="#propagate_const.relational">[propagate_const.relational]</a></span></header>
 
 
 
@@ -2818,7 +2853,7 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
 
 
     <section>
-      <header><span class="section-number">3.1.2.10</span> <h1 data-bookmark-label="3.1.2.10 propagate_const specialized algorithms"><code>propagate_const</code> specialized algorithms</h1> <span style="float:right"><a href="#propagate_const.algorithms">[propagate_const.algorithms]</a></span></header>
+      <header><span class="section-number">6.1.2.10</span> <h1 data-bookmark-label="6.1.2.10 Specialized algorithms">Specialized algorithms</h1> <span style="float:right"><a href="#propagate_const.algorithms">[propagate_const.algorithms]</a></span></header>
 
 
 
@@ -2856,7 +2891,7 @@ constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&
 
 
     <section>
-      <header><span class="section-number">3.1.2.11</span> <h1 data-bookmark-label="3.1.2.11 propagate_const underlying pointer access"><code>propagate_const</code> underlying pointer access</h1> <span style="float:right"><a href="#propagate_const.underlying">[propagate_const.underlying]</a></span></header>
+      <header><span class="section-number">6.1.2.11</span> <h1 data-bookmark-label="6.1.2.11 Underlying pointer access">Underlying pointer access</h1> <span style="float:right"><a href="#propagate_const.underlying">[propagate_const.underlying]</a></span></header>
 
 
 
@@ -2911,7 +2946,7 @@ constexpr T&amp; get_underlying(propagate_const&lt;T&gt;&amp; pt) noexcept;</cxx
 
 
     <section>
-      <header><span class="section-number">3.1.2.12</span> <h1 data-bookmark-label="3.1.2.12 propagate_const hash support"><code>propagate_const</code> hash support</h1> <span style="float:right"><a href="#propagate_const.hash">[propagate_const.hash]</a></span></header>
+      <header><span class="section-number">6.1.2.12</span> <h1 data-bookmark-label="6.1.2.12 Hash support">Hash support</h1> <span style="float:right"><a href="#propagate_const.hash">[propagate_const.hash]</a></span></header>
 
 
 
@@ -2942,7 +2977,7 @@ struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx
 
 
     <section>
-      <header><span class="section-number">3.1.2.13</span> <h1 data-bookmark-label="3.1.2.13 propagate_const comparison function objects"><code>propagate_const</code> comparison function objects</h1> <span style="float:right"><a href="#propagate_const.comparison_function_objects">[propagate_const.comparison_function_objects]</a></span></header>
+      <header><span class="section-number">6.1.2.13</span> <h1 data-bookmark-label="6.1.2.13 Comparison function objects">Comparison function objects</h1> <span style="float:right"><a href="#propagate_const.comparison_function_objects">[propagate_const.comparison_function_objects]</a></span></header>
 
 
 
@@ -3147,7 +3182,7 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
 
 
     <section>
-      <header><span class="section-number">3.2</span> <h1 data-bookmark-label="3.2 Scope guard support">Scope guard support</h1> <span style="float:right"><a href="#scopeguard">[scopeguard]</a></span></header>
+      <header><span class="section-number">6.2</span> <h1 data-bookmark-label="6.2 Scope guard support">Scope guard support</h1> <span style="float:right"><a href="#scopeguard">[scopeguard]</a></span></header>
 
 
 
@@ -3155,13 +3190,13 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
 
 
     <section>
-      <header><span class="section-number">3.2.1</span> <h1 data-bookmark-label="3.2.1 Header <experimental/scope> synopsis">Header <code>&lt;experimental/scope&gt;</code> synopsis</h1> <span style="float:right"><a href="#scope.syn">[scope.syn]</a></span></header>
+      <header><span class="section-number">6.2.1</span> <h1 data-bookmark-label="6.2.1 Header <experimental/scope> synopsis">Header <code>&lt;experimental/scope&gt;</code> synopsis</h1> <span style="float:right"><a href="#scope.syn">[scope.syn]</a></span></header>
 
 
 
       <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
-  <cxx-ref insynopsis="" to="scopeguard.exit">// <i><a title="scopeguard.exit" href="#scopeguard.exit">3.2.2</a>, Class templates scope_exit, scope_fail, and scope_success</i></cxx-ref>
+  <cxx-ref insynopsis="" to="scopeguard.exit">// <i><a title="scopeguard.exit" href="#scopeguard.exit">6.2.2</a>, Class templates scope_exit, scope_fail, and scope_success</i></cxx-ref>
   template &lt;class EF&gt;
     class scope_exit;
   template &lt;class EF&gt;
@@ -3169,11 +3204,11 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
   template &lt;class EF&gt;
     class scope_success;
 
-  <cxx-ref insynopsis="" to="scopeguard.uniqueres">// <i><a title="scopeguard.uniqueres" href="#scopeguard.uniqueres">3.2.3</a>, Class template unique_resource</i></cxx-ref>
+  <cxx-ref insynopsis="" to="scopeguard.uniqueres">// <i><a title="scopeguard.uniqueres" href="#scopeguard.uniqueres">6.2.3</a>, Class template unique_resource</i></cxx-ref>
   template &lt;class R, class D&gt;
     class unique_resource;
 
-  <cxx-ref insynopsis="" to="scopeguard.uniqueres.create">// <i><a title="scopeguard.uniqueres.create" href="#scopeguard.uniqueres.create">3.2.3.6</a>, unique_resource creation</i></cxx-ref>
+  <cxx-ref insynopsis="" to="scopeguard.uniqueres.create">// <i><a title="scopeguard.uniqueres.create" href="#scopeguard.uniqueres.create">6.2.3.6</a>, unique_resource creation</i></cxx-ref>
   template &lt;class R, class D, class S=decay_t&lt;R&gt;&gt;
     unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
       make_unique_resource_checked(R&amp;&amp; r, const S&amp; invalid, D&amp;&amp; d) noexcept(<i>see below</i>);
@@ -3188,7 +3223,7 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
 
 
     <section>
-      <header><span class="section-number">3.2.2</span> <h1 data-bookmark-label="3.2.2 Class templates scope_exit, scope_fail, and scope_success">Class templates <code>scope_exit</code>, <code>scope_fail</code>, and <code>scope_success</code></h1> <span style="float:right"><a href="#scopeguard.exit">[scopeguard.exit]</a></span></header>
+      <header><span class="section-number">6.2.2</span> <h1 data-bookmark-label="6.2.2 Class templates scope_exit, scope_fail, and scope_success">Class templates <code>scope_exit</code>, <code>scope_fail</code>, and <code>scope_success</code></h1> <span style="float:right"><a href="#scopeguard.exit">[scopeguard.exit]</a></span></header>
 
 
 
@@ -3248,7 +3283,7 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
           or <code>scope_exit</code> object refers to a local variable
           of the function where it is defined, e.g., as a lambda capturing
           the variable by reference, and that variable is used as a return
-          operand in that function, that variable might have already been
+          operand in that function, it is possible for that variable to already have been
           returned when the <code><i>scope-guard</i></code>’s destructor
           executes, calling the exit function. This can lead to surprising
           behavior.
@@ -3499,7 +3534,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
 
 
     <section>
-      <header><span class="section-number">3.2.3</span> <h1 data-bookmark-label="3.2.3 Class template unique_resource">Class template <code>unique_resource</code></h1> <span style="float:right"><a href="#scopeguard.uniqueres">[scopeguard.uniqueres]</a></span></header>
+      <header><span class="section-number">6.2.3</span> <h1 data-bookmark-label="6.2.3 Class template unique_resource">Class template <code>unique_resource</code></h1> <span style="float:right"><a href="#scopeguard.uniqueres">[scopeguard.uniqueres]</a></span></header>
 
 
 
@@ -3508,7 +3543,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
 
 
     <section>
-      <header><span class="section-number">3.2.3.1</span> <h1 data-bookmark-label="3.2.3.1 Overview">Overview</h1> <span style="float:right"><a href="#scopeguard.uniqueres.overview">[scopeguard.uniqueres.overview]</a></span></header>
+      <header><span class="section-number">6.2.3.1</span> <h1 data-bookmark-label="6.2.3.1 Overview">Overview</h1> <span style="float:right"><a href="#scopeguard.uniqueres.overview">[scopeguard.uniqueres.overview]</a></span></header>
 
 
 
@@ -3516,19 +3551,19 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
 
   template &lt;class R, class D&gt; class unique_resource {
   public:
-    <cxx-ref insynopsis="" to="scopeguard.uniqueres.ctor">// <i><a title="scopeguard.uniqueres.ctor" href="#scopeguard.uniqueres.ctor">3.2.3.2</a>, Constructors</i></cxx-ref>
+    <cxx-ref insynopsis="" to="scopeguard.uniqueres.ctor">// <i><a title="scopeguard.uniqueres.ctor" href="#scopeguard.uniqueres.ctor">6.2.3.2</a>, Constructors</i></cxx-ref>
     unique_resource();
     template &lt;class RR, class DD&gt;
       unique_resource(RR&amp;&amp; r, DD&amp;&amp; d) noexcept(<i>see below</i>);
     unique_resource(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);
 
-    <cxx-ref insynopsis="" to="scopeguard.uniqueres.dtor">// <i><a title="scopeguard.uniqueres.dtor" href="#scopeguard.uniqueres.dtor">3.2.3.3</a>, Destructor</i></cxx-ref>
+    <cxx-ref insynopsis="" to="scopeguard.uniqueres.dtor">// <i><a title="scopeguard.uniqueres.dtor" href="#scopeguard.uniqueres.dtor">6.2.3.3</a>, Destructor</i></cxx-ref>
     ~unique_resource();
 
-    <cxx-ref insynopsis="" to="scopeguard.uniqueres.assign">// <i><a title="scopeguard.uniqueres.assign" href="#scopeguard.uniqueres.assign">3.2.3.4</a>, Assignment</i></cxx-ref>
+    <cxx-ref insynopsis="" to="scopeguard.uniqueres.assign">// <i><a title="scopeguard.uniqueres.assign" href="#scopeguard.uniqueres.assign">6.2.3.4</a>, Assignment</i></cxx-ref>
     unique_resource&amp; operator=(unique_resource&amp;&amp; rhs) noexcept(<i>see below</i>);
 
-    <cxx-ref insynopsis="" to="scopeguard.uniqueres.members">// <i><a title="scopeguard.uniqueres.members" href="#scopeguard.uniqueres.members">3.2.3.5</a>, Other member functions</i></cxx-ref>
+    <cxx-ref insynopsis="" to="scopeguard.uniqueres.members">// <i><a title="scopeguard.uniqueres.members" href="#scopeguard.uniqueres.members">6.2.3.5</a>, Other member functions</i></cxx-ref>
     void reset() noexcept;
     template &lt;class RR&gt;
       void reset(RR&amp;&amp; r);
@@ -3598,7 +3633,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
 
 
     <section>
-      <header><span class="section-number">3.2.3.2</span> <h1 data-bookmark-label="3.2.3.2 Constructors">Constructors</h1> <span style="float:right"><a href="#scopeguard.uniqueres.ctor">[scopeguard.uniqueres.ctor]</a></span></header>
+      <header><span class="section-number">6.2.3.2</span> <h1 data-bookmark-label="6.2.3.2 Constructors">Constructors</h1> <span style="float:right"><a href="#scopeguard.uniqueres.ctor">[scopeguard.uniqueres.ctor]</a></span></header>
 
 
 
@@ -3775,7 +3810,7 @@ rhs.release();</code></pre>
 
 
     <section>
-      <header><span class="section-number">3.2.3.3</span> <h1 data-bookmark-label="3.2.3.3 Destructor">Destructor</h1> <span style="float:right"><a href="#scopeguard.uniqueres.dtor">[scopeguard.uniqueres.dtor]</a></span></header>
+      <header><span class="section-number">6.2.3.3</span> <h1 data-bookmark-label="6.2.3.3 Destructor">Destructor</h1> <span style="float:right"><a href="#scopeguard.uniqueres.dtor">[scopeguard.uniqueres.dtor]</a></span></header>
 
 
 
@@ -3801,7 +3836,7 @@ rhs.release();</code></pre>
 
 
     <section>
-      <header><span class="section-number">3.2.3.4</span> <h1 data-bookmark-label="3.2.3.4 Assignment">Assignment</h1> <span style="float:right"><a href="#scopeguard.uniqueres.assign">[scopeguard.uniqueres.assign]</a></span></header>
+      <header><span class="section-number">6.2.3.4</span> <h1 data-bookmark-label="6.2.3.4 Assignment">Assignment</h1> <span style="float:right"><a href="#scopeguard.uniqueres.assign">[scopeguard.uniqueres.assign]</a></span></header>
 
 
 
@@ -3890,7 +3925,7 @@ execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
 
 
     <section>
-      <header><span class="section-number">3.2.3.5</span> <h1 data-bookmark-label="3.2.3.5 Other member functions">Other member functions</h1> <span style="float:right"><a href="#scopeguard.uniqueres.members">[scopeguard.uniqueres.members]</a></span></header>
+      <header><span class="section-number">6.2.3.5</span> <h1 data-bookmark-label="6.2.3.5 Other member functions">Other member functions</h1> <span style="float:right"><a href="#scopeguard.uniqueres.members">[scopeguard.uniqueres.members]</a></span></header>
 
 
 
@@ -4066,7 +4101,7 @@ execute_on_reset = true;</code></pre>
 
 
     <section>
-      <header><span class="section-number">3.2.3.6</span> <h1 data-bookmark-label="3.2.3.6 unique_resource creation"><code>unique_resource</code> creation</h1> <span style="float:right"><a href="#scopeguard.uniqueres.create">[scopeguard.uniqueres.create]</a></span></header>
+      <header><span class="section-number">6.2.3.6</span> <h1 data-bookmark-label="6.2.3.6 unique_resource creation"><code>unique_resource</code> creation</h1> <span style="float:right"><a href="#scopeguard.uniqueres.create">[scopeguard.uniqueres.create]</a></span></header>
 
 
 
@@ -4146,7 +4181,7 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
 
 
     <section>
-      <header><span class="section-number">3.3</span> <h1 data-bookmark-label="3.3 Metaprogramming and type traits">Metaprogramming and type traits</h1> <span style="float:right"><a href="#meta">[meta]</a></span></header>
+      <header><span class="section-number">6.3</span> <h1 data-bookmark-label="6.3 Metaprogramming and type traits">Metaprogramming and type traits</h1> <span style="float:right"><a href="#meta">[meta]</a></span></header>
 
 
 
@@ -4154,7 +4189,7 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
 
 
     <section>
-      <header><span class="section-number">3.3.1</span> <h1 data-bookmark-label="3.3.1 Header <experimental/type_traits> synopsis">Header &lt;experimental/type_traits&gt; synopsis</h1> <span style="float:right"><a href="#meta.type.syn">[meta.type.syn]</a></span></header>
+      <header><span class="section-number">6.3.1</span> <h1 data-bookmark-label="6.3.1 Header <experimental/type_traits> synopsis">Header &lt;experimental/type_traits&gt; synopsis</h1> <span style="float:right"><a href="#meta.type.syn">[meta.type.syn]</a></span></header>
 
 
 
@@ -4162,7 +4197,7 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
 
 namespace std::experimental::inline fundamentals_v3 {
 
-  <cxx-ref insynopsis="" to="meta.trans.other">// <i><a title="meta.trans.other" href="#meta.trans.other">3.3.2</a>, Other type transformations</i></cxx-ref>
+  <cxx-ref insynopsis="" to="meta.trans.other">// <i><a title="meta.trans.other" href="#meta.trans.other">6.3.2</a>, Other type transformations</i></cxx-ref>
   template &lt;class&gt; class invocation_type; // <i>not defined</i>
   template &lt;class F, class... ArgTypes&gt; class invocation_type&lt;F(ArgTypes...)&gt;;
   template &lt;class&gt; class raw_invocation_type; // <i>not defined</i>
@@ -4173,7 +4208,7 @@ namespace std::experimental::inline fundamentals_v3 {
   template &lt;class T&gt;
     using raw_invocation_type_t = typename raw_invocation_type&lt;T&gt;::type;
 
-  <cxx-ref insynopsis="" to="meta.detect">// <i><a title="meta.detect" href="#meta.detect">3.3.3</a>, Detection idiom</i></cxx-ref>
+  <cxx-ref insynopsis="" to="meta.detect">// <i><a title="meta.detect" href="#meta.detect">6.3.3</a>, Detection idiom</i></cxx-ref>
   struct nonesuch;
 
   template &lt;template&lt;class...&gt; class Op, class... Args&gt;
@@ -4208,7 +4243,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">3.3.2</span> <h1 data-bookmark-label="3.3.2 Other type transformations">Other type transformations</h1> <span style="float:right"><a href="#meta.trans.other">[meta.trans.other]</a></span></header>
+      <header><span class="section-number">6.3.2</span> <h1 data-bookmark-label="6.3.2 Other type transformations">Other type transformations</h1> <span style="float:right"><a href="#meta.trans.other">[meta.trans.other]</a></span></header>
 
 
 
@@ -4367,7 +4402,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">3.3.3</span> <h1 data-bookmark-label="3.3.3 Detection idiom">Detection idiom</h1> <span style="float:right"><a href="#meta.detect">[meta.detect]</a></span></header>
+      <header><span class="section-number">6.3.3</span> <h1 data-bookmark-label="6.3.3 Detection idiom">Detection idiom</h1> <span style="float:right"><a href="#meta.detect">[meta.detect]</a></span></header>
 
 
 
@@ -4453,7 +4488,7 @@ template &lt;class Ptr&gt;
 
 
     <section>
-      <header><span class="section-number">4</span> <h1 data-bookmark-label="4 Function objects">Function objects</h1> <span style="float:right"><a href="#func">[func]</a></span></header>
+      <header><span class="section-number">7</span> <h1 data-bookmark-label="7 Function objects">Function objects</h1> <span style="float:right"><a href="#func">[func]</a></span></header>
 
 
 
@@ -4461,7 +4496,7 @@ template &lt;class Ptr&gt;
 
 
     <section>
-      <header><span class="section-number">4.1</span> <h1 data-bookmark-label="4.1 Header <experimental/functional> synopsis">Header <code>&lt;experimental/functional&gt;</code> synopsis</h1> <span style="float:right"><a href="#functional.syn">[functional.syn]</a></span></header>
+      <header><span class="section-number">7.1</span> <h1 data-bookmark-label="7.1 Header <experimental/functional> synopsis">Header <code>&lt;experimental/functional&gt;</code> synopsis</h1> <span style="float:right"><a href="#functional.syn">[functional.syn]</a></span></header>
 
 
 
@@ -4470,7 +4505,7 @@ template &lt;class Ptr&gt;
 namespace std {
   namespace experimental::inline fundamentals_v3 {
 
-    <cxx-ref insynopsis="" to="func.wrap.func">// <i><a title="func.wrap.func" href="#func.wrap.func">4.2</a>, Class template function</i></cxx-ref>
+    <cxx-ref insynopsis="" to="func.wrap.func">// <i><a title="func.wrap.func" href="#func.wrap.func">7.2</a>, Class template function</i></cxx-ref>
     template&lt;class&gt; class function; <i>// not defined</i>
     template&lt;class R, class... ArgTypes&gt; class function&lt;R(ArgTypes...)&gt;;
 
@@ -4491,7 +4526,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">4.2</span> <h1 data-bookmark-label="4.2 Class template function">Class template <code>function</code></h1> <span style="float:right"><a href="#func.wrap.func">[func.wrap.func]</a></span></header>
+      <header><span class="section-number">7.2</span> <h1 data-bookmark-label="7.2 Class template function">Class template <code>function</code></h1> <span style="float:right"><a href="#func.wrap.func">[func.wrap.func]</a></span></header>
 
 
 
@@ -4499,12 +4534,12 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">4.2.1</span> <h1 data-bookmark-label="4.2.1 Overview">Overview</h1> <span style="float:right"><a href="#func.wrap.func.overview">[func.wrap.func.overview]</a></span></header>
+      <header><span class="section-number">7.2.1</span> <h1 data-bookmark-label="7.2.1 Overview">Overview</h1> <span style="float:right"><a href="#func.wrap.func.overview">[func.wrap.func.overview]</a></span></header>
 
 
 
       <p id="func.wrap.func.overview.1" para_num="1">
-        The specification of all declarations within subclause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">4.2</a></cxx-ref>
+        The specification of all declarations within subclause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">7.2</a></cxx-ref>
         are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>,
         unless explicitly specified otherwise. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
     <code>std::experimental::function</code> uses
@@ -4523,7 +4558,7 @@ namespace std {
     public:
       using result_type = R;
 
-      using allocator_type = std::pmr::polymorphic_allocator&lt;&gt;;;
+      using allocator_type = std::pmr::polymorphic_allocator&lt;&gt;;
 
       function() noexcept;
       function(nullptr_t) noexcept;
@@ -4568,7 +4603,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">4.2.2</span> <h1 data-bookmark-label="4.2.2 function construct/copy/destroy"><code>function</code> construct/copy/destroy</h1> <span style="float:right"><a href="#func.wrap.func.con">[func.wrap.func.con]</a></span></header>
+      <header><span class="section-number">7.2.2</span> <h1 data-bookmark-label="7.2.2 Construct/copy/destroy">Construct/copy/destroy</h1> <span style="float:right"><a href="#func.wrap.func.con">[func.wrap.func.con]</a></span></header>
 
 
 
@@ -4730,7 +4765,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">4.2.3</span> <h1 data-bookmark-label="4.2.3 function modifiers"><code>function</code> modifiers</h1> <span style="float:right"><a href="#func.wrap.func.mod">[func.wrap.func.mod]</a></span></header>
+      <header><span class="section-number">7.2.3</span> <h1 data-bookmark-label="7.2.3 Modifiers">Modifiers</h1> <span style="float:right"><a href="#func.wrap.func.mod">[func.wrap.func.mod]</a></span></header>
 
 
 
@@ -4769,7 +4804,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">4.2.4</span> <h1 data-bookmark-label="4.2.4 function observers"><code>function</code> observers</h1> <span style="float:right"><a href="#func.wrap.func.obs">[func.wrap.func.obs]</a></span></header>
+      <header><span class="section-number">7.2.4</span> <h1 data-bookmark-label="7.2.4 Observers">Observers</h1> <span style="float:right"><a href="#func.wrap.func.obs">[func.wrap.func.obs]</a></span></header>
 
 
 
@@ -4785,7 +4820,7 @@ namespace std {
 
     <dt>Returns:</dt><dd>
           A copy of the allocator initialized during construction
-          (<cxx-ref to="func.wrap.func.con"><a title="func.wrap.func.con" href="#func.wrap.func.con">4.2.2</a></cxx-ref>) of this object.
+          (<cxx-ref to="func.wrap.func.con"><a title="func.wrap.func.con" href="#func.wrap.func.con">7.2.2</a></cxx-ref>) of this object.
         </dd>
   </cxx-returns>
 
@@ -4805,7 +4840,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5</span> <h1 data-bookmark-label="5 Memory">Memory</h1> <span style="float:right"><a href="#memory">[memory]</a></span></header>
+      <header><span class="section-number">8</span> <h1 data-bookmark-label="8 Memory">Memory</h1> <span style="float:right"><a href="#memory">[memory]</a></span></header>
 
 
 
@@ -4813,7 +4848,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.1</span> <h1 data-bookmark-label="5.1 Header <experimental/memory> synopsis">Header &lt;experimental/memory&gt; synopsis</h1> <span style="float:right"><a href="#memory.syn">[memory.syn]</a></span></header>
+      <header><span class="section-number">8.1</span> <h1 data-bookmark-label="8.1 Header <experimental/memory> synopsis">Header &lt;experimental/memory&gt; synopsis</h1> <span style="float:right"><a href="#memory.syn">[memory.syn]</a></span></header>
 
 
 
@@ -4822,10 +4857,10 @@ namespace std {
 namespace std {
   namespace experimental::inline fundamentals_v3 {
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr">// <i><a title="memory.observer.ptr" href="#memory.observer.ptr">5.2</a>, Non-owning (observer) pointers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr">// <i><a title="memory.observer.ptr" href="#memory.observer.ptr">8.2</a>, Non-owning (observer) pointers</i></cxx-ref>
     template &lt;class W&gt; class observer_ptr;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.special">// <i><a title="memory.observer.ptr.special" href="#memory.observer.ptr.special">5.2.6</a>, observer_ptr specialized algorithms</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.special">// <i><a title="memory.observer.ptr.special" href="#memory.observer.ptr.special">8.2.6</a>, observer_ptr specialized algorithms</i></cxx-ref>
     template &lt;class W&gt;
     void swap(observer_ptr&lt;W&gt;&amp;, observer_ptr&lt;W&gt;&amp;) noexcept;
     template &lt;class W&gt;
@@ -4856,7 +4891,7 @@ namespace std {
 
   } // namespace experimental::inline fundamentals_v3
 
-  <cxx-ref insynopsis="" to="memory.observer.ptr.hash">// <i><a title="memory.observer.ptr.hash" href="#memory.observer.ptr.hash">5.2.7</a>, observer_ptr hash support</i></cxx-ref>
+  <cxx-ref insynopsis="" to="memory.observer.ptr.hash">// <i><a title="memory.observer.ptr.hash" href="#memory.observer.ptr.hash">8.2.7</a>, observer_ptr hash support</i></cxx-ref>
   template &lt;class T&gt; struct hash;
   template &lt;class T&gt; struct hash&lt;experimental::observer_ptr&lt;T&gt;&gt;;
 
@@ -4869,7 +4904,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Non-owning (observer) pointers">Non-owning (observer) pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
+      <header><span class="section-number">8.2</span> <h1 data-bookmark-label="8.2 Non-owning (observer) pointers">Non-owning (observer) pointers</h1> <span style="float:right"><a href="#memory.observer.ptr">[memory.observer.ptr]</a></span></header>
 
 
 
@@ -4877,7 +4912,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.2.1</span> <h1 data-bookmark-label="5.2.1 Class template observer_ptr overview">Class template <code>observer_ptr</code> overview</h1> <span style="float:right"><a href="#memory.observer.ptr.overview">[memory.observer.ptr.overview]</a></span></header>
+      <header><span class="section-number">8.2.1</span> <h1 data-bookmark-label="8.2.1 Class template observer_ptr overview">Class template <code>observer_ptr</code> overview</h1> <span style="float:right"><a href="#memory.observer.ptr.overview">[memory.observer.ptr.overview]</a></span></header>
 
 
 
@@ -4890,7 +4925,7 @@ namespace std {
     // publish our template parameter and variations thereof
     using element_type = W;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.ctor">// <i><a title="memory.observer.ptr.ctor" href="#memory.observer.ptr.ctor">5.2.2</a>, observer_ptr constructors</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.ctor">// <i><a title="memory.observer.ptr.ctor" href="#memory.observer.ptr.ctor">8.2.2</a>, observer_ptr constructors</i></cxx-ref>
     // default constructor
     constexpr observer_ptr() noexcept;
 
@@ -4901,16 +4936,16 @@ namespace std {
     // copying constructors (in addition to the implicit copy constructor)
     template &lt;class W2&gt; constexpr observer_ptr(observer_ptr&lt;W2&gt;) noexcept;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.obs">// <i><a title="memory.observer.ptr.obs" href="#memory.observer.ptr.obs">5.2.3</a>, observer_ptr observers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.obs">// <i><a title="memory.observer.ptr.obs" href="#memory.observer.ptr.obs">8.2.3</a>, observer_ptr observers</i></cxx-ref>
     constexpr pointer get() const noexcept;
     constexpr reference operator*() const;
     constexpr pointer operator-&gt;() const noexcept;
     constexpr explicit operator bool() const noexcept;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.conv">// <i><a title="memory.observer.ptr.conv" href="#memory.observer.ptr.conv">5.2.4</a>, observer_ptr conversions</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.conv">// <i><a title="memory.observer.ptr.conv" href="#memory.observer.ptr.conv">8.2.4</a>, observer_ptr conversions</i></cxx-ref>
     constexpr explicit operator pointer() const noexcept;
 
-    <cxx-ref insynopsis="" to="memory.observer.ptr.mod">// <i><a title="memory.observer.ptr.mod" href="#memory.observer.ptr.mod">5.2.5</a>, observer_ptr modifiers</i></cxx-ref>
+    <cxx-ref insynopsis="" to="memory.observer.ptr.mod">// <i><a title="memory.observer.ptr.mod" href="#memory.observer.ptr.mod">8.2.5</a>, observer_ptr modifiers</i></cxx-ref>
     constexpr pointer release() noexcept;
     constexpr void reset(pointer = nullptr) noexcept;
     constexpr void swap(observer_ptr&amp;) noexcept;
@@ -4952,7 +4987,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.2.2</span> <h1 data-bookmark-label="5.2.2 observer_ptr constructors"><code>observer_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.observer.ptr.ctor">[memory.observer.ptr.ctor]</a></span></header>
+      <header><span class="section-number">8.2.2</span> <h1 data-bookmark-label="8.2.2 observer_ptr constructors"><code>observer_ptr</code> constructors</h1> <span style="float:right"><a href="#memory.observer.ptr.ctor">[memory.observer.ptr.ctor]</a></span></header>
 
 
 
@@ -5020,7 +5055,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.2.3</span> <h1 data-bookmark-label="5.2.3 observer_ptr observers"><code>observer_ptr</code> observers</h1> <span style="float:right"><a href="#memory.observer.ptr.obs">[memory.observer.ptr.obs]</a></span></header>
+      <header><span class="section-number">8.2.3</span> <h1 data-bookmark-label="8.2.3 observer_ptr observers"><code>observer_ptr</code> observers</h1> <span style="float:right"><a href="#memory.observer.ptr.obs">[memory.observer.ptr.obs]</a></span></header>
 
 
 
@@ -5103,7 +5138,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.2.4</span> <h1 data-bookmark-label="5.2.4 observer_ptr conversions"><code>observer_ptr</code> conversions</h1> <span style="float:right"><a href="#memory.observer.ptr.conv">[memory.observer.ptr.conv]</a></span></header>
+      <header><span class="section-number">8.2.4</span> <h1 data-bookmark-label="8.2.4 observer_ptr conversions"><code>observer_ptr</code> conversions</h1> <span style="float:right"><a href="#memory.observer.ptr.conv">[memory.observer.ptr.conv]</a></span></header>
 
 
 
@@ -5130,7 +5165,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.2.5</span> <h1 data-bookmark-label="5.2.5 observer_ptr modifiers"><code>observer_ptr</code> modifiers</h1> <span style="float:right"><a href="#memory.observer.ptr.mod">[memory.observer.ptr.mod]</a></span></header>
+      <header><span class="section-number">8.2.5</span> <h1 data-bookmark-label="8.2.5 observer_ptr modifiers"><code>observer_ptr</code> modifiers</h1> <span style="float:right"><a href="#memory.observer.ptr.mod">[memory.observer.ptr.mod]</a></span></header>
 
 
 
@@ -5193,7 +5228,7 @@ namespace std {
 
 
     <section>
-      <header><span class="section-number">5.2.6</span> <h1 data-bookmark-label="5.2.6 observer_ptr specialized algorithms"><code>observer_ptr</code> specialized algorithms</h1> <span style="float:right"><a href="#memory.observer.ptr.special">[memory.observer.ptr.special]</a></span></header>
+      <header><span class="section-number">8.2.6</span> <h1 data-bookmark-label="8.2.6 observer_ptr specialized algorithms"><code>observer_ptr</code> specialized algorithms</h1> <span style="float:right"><a href="#memory.observer.ptr.special">[memory.observer.ptr.special]</a></span></header>
 
 
 
@@ -5380,7 +5415,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
 
 
     <section>
-      <header><span class="section-number">5.2.7</span> <h1 data-bookmark-label="5.2.7 observer_ptr hash support"><code>observer_ptr</code> hash support</h1> <span style="float:right"><a href="#memory.observer.ptr.hash">[memory.observer.ptr.hash]</a></span></header>
+      <header><span class="section-number">8.2.7</span> <h1 data-bookmark-label="8.2.7 observer_ptr hash support"><code>observer_ptr</code> hash support</h1> <span style="float:right"><a href="#memory.observer.ptr.hash">[memory.observer.ptr.hash]</a></span></header>
 
 
 
@@ -5411,7 +5446,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
 
 
     <section>
-      <header><span class="section-number">5.3</span> <h1 data-bookmark-label="5.3 Header <experimental/memory_resource> synopsis">Header <code>&lt;experimental/memory_resource&gt;</code> synopsis</h1> <span style="float:right"><a href="#memory.resource.syn">[memory.resource.syn]</a></span></header>
+      <header><span class="section-number">8.3</span> <h1 data-bookmark-label="8.3 Header <experimental/memory_resource> synopsis">Header <code>&lt;experimental/memory_resource&gt;</code> synopsis</h1> <span style="float:right"><a href="#memory.resource.syn">[memory.resource.syn]</a></span></header>
 
 
 
@@ -5433,7 +5468,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
 
 
     <section>
-      <header><span class="section-number">5.4</span> <h1 data-bookmark-label="5.4 Alias template resource_adaptor">Alias template <code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor">[memory.resource.adaptor]</a></span></header>
+      <header><span class="section-number">8.4</span> <h1 data-bookmark-label="8.4 Alias template resource_adaptor">Alias template <code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor">[memory.resource.adaptor]</a></span></header>
 
 
 
@@ -5441,7 +5476,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
 
 
     <section>
-      <header><span class="section-number">5.4.1</span> <h1 data-bookmark-label="5.4.1 resource_adaptor"><code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor.overview">[memory.resource.adaptor.overview]</a></span></header>
+      <header><span class="section-number">8.4.1</span> <h1 data-bookmark-label="8.4.1 resource_adaptor"><code>resource_adaptor</code></h1> <span style="float:right"><a href="#memory.resource.adaptor.overview">[memory.resource.adaptor.overview]</a></span></header>
 
 
 
@@ -5500,7 +5535,7 @@ template &lt;class Allocator&gt;
 
 
     <section>
-      <header><span class="section-number">5.4.2</span> <h1 data-bookmark-label="5.4.2 resource_adaptor_imp constructors"><code><var>resource_adaptor_imp</var></code> constructors</h1> <span style="float:right"><a href="#memory.resource.adaptor.ctor">[memory.resource.adaptor.ctor]</a></span></header>
+      <header><span class="section-number">8.4.2</span> <h1 data-bookmark-label="8.4.2 resource_adaptor_imp constructors"><code><var>resource_adaptor_imp</var></code> constructors</h1> <span style="float:right"><a href="#memory.resource.adaptor.ctor">[memory.resource.adaptor.ctor]</a></span></header>
 
 
 
@@ -5541,7 +5576,7 @@ template &lt;class Allocator&gt;
 
 
     <section>
-      <header><span class="section-number">5.4.3</span> <h1 data-bookmark-label="5.4.3 resource_adaptor_imp member functions"><code><var>resource_adaptor_imp</var></code> member functions</h1> <span style="float:right"><a href="#memory.resource.adaptor.mem">[memory.resource.adaptor.mem]</a></span></header>
+      <header><span class="section-number">8.4.3</span> <h1 data-bookmark-label="8.4.3 resource_adaptor_imp member functions"><code><var>resource_adaptor_imp</var></code> member functions</h1> <span style="float:right"><a href="#memory.resource.adaptor.mem">[memory.resource.adaptor.mem]</a></span></header>
 
 
 
@@ -5610,7 +5645,7 @@ template &lt;class Allocator&gt;
 
 
     <section>
-      <header><span class="section-number">6</span> <h1 data-bookmark-label="6 Iterators library">Iterators library</h1> <span style="float:right"><a href="#iterator">[iterator]</a></span></header>
+      <header><span class="section-number">9</span> <h1 data-bookmark-label="9 Iterators library">Iterators library</h1> <span style="float:right"><a href="#iterator">[iterator]</a></span></header>
 
 
 
@@ -5618,7 +5653,7 @@ template &lt;class Allocator&gt;
 
 
     <section>
-      <header><span class="section-number">6.1</span> <h1 data-bookmark-label="6.1 Header <experimental/iterator> synopsis">Header <code>&lt;experimental/iterator&gt;</code> synopsis</h1> <span style="float:right"><a href="#iterator.syn">[iterator.syn]</a></span></header>
+      <header><span class="section-number">9.1</span> <h1 data-bookmark-label="9.1 Header <experimental/iterator> synopsis">Header <code>&lt;experimental/iterator&gt;</code> synopsis</h1> <span style="float:right"><a href="#iterator.syn">[iterator.syn]</a></span></header>
 
 
 
@@ -5626,7 +5661,7 @@ template &lt;class Allocator&gt;
 
 namespace std::experimental::inline fundamentals_v3 {
 
-  <cxx-ref insynopsis="" to="iterator.ostream.joiner">// <i><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">6.2</a>, Class template ostream_joiner</i></cxx-ref>
+  <cxx-ref insynopsis="" to="iterator.ostream.joiner">// <i><a title="iterator.ostream.joiner" href="#iterator.ostream.joiner">9.2</a>, Class template ostream_joiner</i></cxx-ref>
   template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
       class ostream_joiner;
   template &lt;class charT, class traits, class DelimT&gt;
@@ -5642,7 +5677,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">6.2</span> <h1 data-bookmark-label="6.2 Class template ostream_joiner">Class template <code>ostream_joiner</code></h1> <span style="float:right"><a href="#iterator.ostream.joiner">[iterator.ostream.joiner]</a></span></header>
+      <header><span class="section-number">9.2</span> <h1 data-bookmark-label="9.2 Class template ostream_joiner">Class template <code>ostream_joiner</code></h1> <span style="float:right"><a href="#iterator.ostream.joiner">[iterator.ostream.joiner]</a></span></header>
 
 
 
@@ -5650,7 +5685,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">6.2.1</span> <h1 data-bookmark-label="6.2.1 Overview">Overview</h1> <span style="float:right"><a href="#iterator.ostream.joiner.overview">[iterator.ostream.joiner.overview]</a></span></header>
+      <header><span class="section-number">9.2.1</span> <h1 data-bookmark-label="9.2.1 Overview">Overview</h1> <span style="float:right"><a href="#iterator.ostream.joiner.overview">[iterator.ostream.joiner.overview]</a></span></header>
 
 
 
@@ -5703,7 +5738,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">6.2.2</span> <h1 data-bookmark-label="6.2.2 ostream_joiner constructor"><code>ostream_joiner</code> constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
+      <header><span class="section-number">9.2.2</span> <h1 data-bookmark-label="9.2.2 Constructor">Constructor</h1> <span style="float:right"><a href="#iterator.ostream.joiner.cons">[iterator.ostream.joiner.cons]</a></span></header>
 
 
 
@@ -5754,7 +5789,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">6.2.3</span> <h1 data-bookmark-label="6.2.3 ostream_joiner operations"><code>ostream_joiner</code> operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
+      <header><span class="section-number">9.2.3</span> <h1 data-bookmark-label="9.2.3 Operations">Operations</h1> <span style="float:right"><a href="#iterator.ostream.joiner.ops">[iterator.ostream.joiner.ops]</a></span></header>
 
 
 
@@ -5821,7 +5856,7 @@ return *this;</code></pre>
 
 
     <section>
-      <header><span class="section-number">6.2.4</span> <h1 data-bookmark-label="6.2.4 ostream_joiner creation function"><code>ostream_joiner</code> creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
+      <header><span class="section-number">9.2.4</span> <h1 data-bookmark-label="9.2.4 Creation function">Creation function</h1> <span style="float:right"><a href="#iterator.ostream.joiner.creation">[iterator.ostream.joiner.creation]</a></span></header>
 
 
 
@@ -5856,7 +5891,7 @@ make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp;
 
 
     <section>
-      <header><span class="section-number">7</span> <h1 data-bookmark-label="7 Algorithms library">Algorithms library</h1> <span style="float:right"><a href="#algorithms">[algorithms]</a></span></header>
+      <header><span class="section-number">10</span> <h1 data-bookmark-label="10 Algorithms library">Algorithms library</h1> <span style="float:right"><a href="#algorithms">[algorithms]</a></span></header>
 
 
 
@@ -5864,7 +5899,7 @@ make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp;
 
 
     <section>
-      <header><span class="section-number">7.1</span> <h1 data-bookmark-label="7.1 Header <experimental/algorithm> synopsis">Header <code>&lt;experimental/algorithm&gt;</code> synopsis</h1> <span style="float:right"><a href="#algorithm.syn">[algorithm.syn]</a></span></header>
+      <header><span class="section-number">10.1</span> <h1 data-bookmark-label="10.1 Header <experimental/algorithm> synopsis">Header <code>&lt;experimental/algorithm&gt;</code> synopsis</h1> <span style="float:right"><a href="#algorithm.syn">[algorithm.syn]</a></span></header>
 
 
 
@@ -5872,12 +5907,12 @@ make_ostream_joiner(basic_ostream&lt;charT, traits&gt;&amp; os, DelimT&amp;&amp;
 
 namespace std::experimental::inline fundamentals_v3 {
 
-  <cxx-ref insynopsis="" to="alg.random.sample">// <i><a title="alg.random.sample" href="#alg.random.sample">7.2</a>, Sampling</i></cxx-ref>
+  <cxx-ref insynopsis="" to="alg.random.sample">// <i><a title="alg.random.sample" href="#alg.random.sample">10.2</a>, Sampling</i></cxx-ref>
   template&lt;class PopulationIterator, class SampleIterator, class Distance&gt;
   SampleIterator sample(PopulationIterator first, PopulationIterator last,
                         SampleIterator out, Distance n);
 
-  <cxx-ref insynopsis="" to="alg.random.shuffle">// <i><a title="alg.random.shuffle" href="#alg.random.shuffle">7.3</a>, Shuffle</i></cxx-ref>
+  <cxx-ref insynopsis="" to="alg.random.shuffle">// <i><a title="alg.random.shuffle" href="#alg.random.shuffle">10.3</a>, Shuffle</i></cxx-ref>
   template&lt;class RandomAccessIterator&gt;
   void shuffle(RandomAccessIterator first, RandomAccessIterator last);
 
@@ -5891,7 +5926,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">7.2</span> <h1 data-bookmark-label="7.2 Sampling">Sampling</h1> <span style="float:right"><a href="#alg.random.sample">[alg.random.sample]</a></span></header>
+      <header><span class="section-number">10.2</span> <h1 data-bookmark-label="10.2 Sampling">Sampling</h1> <span style="float:right"><a href="#alg.random.sample">[alg.random.sample]</a></span></header>
 
 
 
@@ -5910,7 +5945,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
         Equivalent to:
         <pre><code>return ::std::sample(first, last, out, n, g);</code></pre>
         where <code>g</code> denotes
-        the per-thread engine (<cxx-ref to="rand.util.randint"><a title="rand.util.randint" href="#rand.util.randint"></a></cxx-ref>).
+        the per-thread engine (<cxx-ref to="rand.randint"><a title="rand.randint" href="#rand.randint">11.1.2</a></cxx-ref>).
         To the extent that the implementation of this function makes use of
         random numbers, the object <code>g</code> serves as the
         implementation’s source of randomness.
@@ -5927,7 +5962,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
 
 
     <section>
-      <header><span class="section-number">7.3</span> <h1 data-bookmark-label="7.3 Shuffle">Shuffle</h1> <span style="float:right"><a href="#alg.random.shuffle">[alg.random.shuffle]</a></span></header>
+      <header><span class="section-number">10.3</span> <h1 data-bookmark-label="10.3 Shuffle">Shuffle</h1> <span style="float:right"><a href="#alg.random.shuffle">[alg.random.shuffle]</a></span></header>
 
 
     <cxx-function id="alg.random.shuffle.1" para_num="1">
@@ -5957,7 +5992,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
       <cxx-remarks id="alg.random.shuffle.5" para_num="5">
 
     <dt>Remarks:</dt><dd>To the extent that the implementation of this function
-        makes use of random numbers, the per-thread engine (<cxx-ref to="rand.randint"><a title="rand.randint" href="#rand.randint">8.1.2</a></cxx-ref>)
+        makes use of random numbers, the per-thread engine (<cxx-ref to="rand.randint"><a title="rand.randint" href="#rand.randint">11.1.2</a></cxx-ref>)
         serves as the implementation's source of randomness.
       </dd>
   </cxx-remarks>
@@ -5975,7 +6010,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
 
 
     <section>
-      <header><span class="section-number">8</span> <h1 data-bookmark-label="8 Numerics library">Numerics library</h1> <span style="float:right"><a href="#numeric">[numeric]</a></span></header>
+      <header><span class="section-number">11</span> <h1 data-bookmark-label="11 Numerics library">Numerics library</h1> <span style="float:right"><a href="#numeric">[numeric]</a></span></header>
 
 
 
@@ -5983,21 +6018,21 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
 
 
     <section>
-      <header><span class="section-number">8.1</span> <h1 data-bookmark-label="8.1 Random number generation">Random number generation</h1> <span style="float:right"><a href="#rand">[rand]</a></span></header>
+      <header><span class="section-number">11.1</span> <h1 data-bookmark-label="11.1 Random number generation">Random number generation</h1> <span style="float:right"><a href="#rand">[rand]</a></span></header>
 
 
     <cxx-section id="rand.syn">
 
 
     <section>
-      <header><span class="section-number">8.1.1</span> <h1 data-bookmark-label="8.1.1 Header <experimental/random> synopsis">Header <code>&lt;experimental/random&gt;</code> synopsis</h1> <span style="float:right"><a href="#rand.syn">[rand.syn]</a></span></header>
+      <header><span class="section-number">11.1.1</span> <h1 data-bookmark-label="11.1.1 Header <experimental/random> synopsis">Header <code>&lt;experimental/random&gt;</code> synopsis</h1> <span style="float:right"><a href="#rand.syn">[rand.syn]</a></span></header>
 
 
       <pre><code>#include &lt;random&gt;
 
 namespace std::experimental::inline fundamentals_v3 {
 
-  <cxx-ref insynopsis="" to="rand.randint">// <i><a title="rand.randint" href="#rand.randint">8.1.2</a>, Function template randint</i></cxx-ref>
+  <cxx-ref insynopsis="" to="rand.randint">// <i><a title="rand.randint" href="#rand.randint">11.1.2</a>, Function template randint</i></cxx-ref>
   template &lt;class IntType&gt;
   IntType randint(IntType a, IntType b);
   void reseed();
@@ -6011,7 +6046,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
     <section>
-      <header><span class="section-number">8.1.2</span> <h1 data-bookmark-label="8.1.2 Function template randint">Function template <code>randint</code></h1> <span style="float:right"><a href="#rand.randint">[rand.randint]</a></span></header>
+      <header><span class="section-number">11.1.2</span> <h1 data-bookmark-label="11.1.2 Function template randint">Function template <code>randint</code></h1> <span style="float:right"><a href="#rand.randint">[rand.randint]</a></span></header>
 
 
       <p id="rand.randint.1" para_num="1">A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
