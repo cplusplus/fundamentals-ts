@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4927 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      .quote { display: inline-block; clear: both; margin-left: 1ex;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1ex; }
+
+      .modify { border-left: thick solid #999; border-right: thick solid #999; padding: 0 1em; }
+      .insert { border-left: thick solid #0A0; border-right: thick solid #0A0; padding: 0 1em; }
+      .comment { color: #753; }
+      .comment a:link, .comment a:visited { color: #A51; }
+
+      table { border-top: 2px solid black; border-bottom: 2px solid black; border-collapse: collapse; margin: 3em auto; }
+      thead th { border-bottom: 2px solid black; }
+      th.sep { border-top: 2px solid black; border-bottom: 2px solid black; }
+      th, td { text-align: left; padding: 0; margin: 0; }
+      tr:first-child td { padding-top: 1ex; }
+      tr:last-child td { padding-bottom: 1ex; }
+
+      td.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                padding: 1em; line-height: 150%; }
+
+      table.x { caption-side: bottom; }
+      table.x caption { padding-top: 1ex; }
+      .x th, .x td { padding: 1ex 1ex 1ex 1ex; }
+      .x th:first-child, .x td:first-child { padding-left: 1ex; }
+      td.y { padding: 0 1em; }
+
+      p.skip { margin-top: 1em; }
+
+      ins { color: #090; }
+      del { color: #A00; }
+      ins code, del code { color: inherit; }
+
+      span.new { color: #080; font-weight: bold; }
+      span.old { color: #800; font-weight: bold; }
+
+      #toggleparams:checked ~ * .params { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>N4938 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2022-12-15</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <h2>New papers</h2>
+
+    <ul>
+      <li>N4937 is the PDTS document.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4938.html">N4938</a>
+        is this Editor&rsquo;s Report.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4939.html">N4939</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4926.html">N4926</a>.</li>
+    </ul>
+
+    <h2>Change history and motions</h2>
+
+    <p>
+      There have not been any motions since the previous revision. This revision only contains
+      editorial changes, including those requested by the editorial review committee. New clauses
+      &ldquo;Scope&rdquo;, &ldquo;Normative references&rdquo;, and &ldquo;Terms and definitions&rdquo;
+      have been created in accordance with the ISO Drafting Directives.
+    </p>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit ba4a59885a1c1827f80bef0a512bd6e072a6373e
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Thu Nov 17 08:19:03 2022 +0000
+
+    [func.wrap.func.overview] Remove extraneous semicolon</div>
+
+    <div class="code"><!--
+-->commit d8dd71714fe0a30eeb2906bdc0108b3d2019337c
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Thu Dec 15 00:56:29 2022 +0000
+
+    [alg.random.sample] Fix stable name following b9c584b887ce383919263dac4448bafa118d024d.
+
+    This fix was not applied to the reinstatement of `sample` in
+    e55344b539581ad161cf98aba21e045c0c2e69ce.</div>
+
+    <div class="code"><!--
+-->commit 2cc7ce1845a0e40571c97dfb4ae352dd0b47ed81
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Thu Dec 15 01:06:29 2022 +0000
+
+    [propagate_const] Fix duplicate stable lable, shorten headings</div>
+
+    <div class="code"><!--
+-->commit 18f1fd7c26930401a58855c3ceed12c65d8baaad
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Thu Dec 15 01:15:00 2022 +0000
+
+    [func.wrap.func, iterator.ostream.joiner] Shorten headings</div>
+
+    <div class="code"><!--
+-->commit f638303d1a6e1180e208de883df229b84d1977e4
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Dec 16 21:19:01 2022 +0000
+
+    Turn Scope, References, and Terms and Definitions into clauses.
+
+    This is a requirement of the ISO Drafting Directives that only
+    came into effect after the LFTSv2 was published.</div>
+
+    <div class="code"><!--
+-->commit 6bb7019250c016a9103e7fa6e3feea6b259720c7
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Dec 16 21:39:17 2022 +0000
+
+    [scopeguard.exit] Reword note to avoid "might"</div>
+
+    <div class="code"><!--
+-->commit 21673735b1262c5b41b2bdc892a62500c8995014 (origin/v3, v3)
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Fri Dec 16 22:22:11 2022 +0000
+
+    [mods] Introduce "General" subclause to avoid hanging paragraphs</div>
+
+  </body>
+</html>
