@@ -30,6 +30,12 @@ limitations under the License.
                    font-size: 10pt; }
     @bottom-right { content: counter(page); font-size: 10pt; }
 }
+@page front-matter :left {
+    @bottom-left { content: counter(page, lower-roman); font-size: 10pt; }
+}
+@page front-matter :right {
+    @bottom-right { content: counter(page, lower-roman); font-size: 10pt; }
+}
 @page :first {
     @top-left { content: normal; }
     @top-right { content: normal; }

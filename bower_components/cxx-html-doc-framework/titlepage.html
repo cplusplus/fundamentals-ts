@@ -28,6 +28,7 @@ cxx-titlepage sets the document title based on its <h1> child.
 <polymer-element name="cxx-titlepage" attributes="stage">
   <template>
     <style>
+      :host { page: front-matter; }
       :host, .page { display: block; min-height: 100%; }
       .page { page-break-before: always; page-break-after: always; min-height: 100vh; margin-bottom: 2em; }
       @media print {

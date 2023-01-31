@@ -323,6 +323,7 @@ cxx-figure figcaption figcaption {
 	margin-left: 0px;
 }cxx-toc {
 	display: block;
+	page: front-matter;
 }
 
 cxx-toc nav > ol {
@@ -375,7 +376,11 @@ cxx-toc li li li li .marker {
 	display: none;
 }cxx-foreign-index {
 	display: none;
-}cxx-titlepage, cxx-titlepage .page {
+}cxx-titlepage {
+	page: front-matter;
+}
+
+cxx-titlepage, cxx-titlepage .page {
 	display: block; min-height: 100%;
 }
 
@@ -575,6 +580,12 @@ limitations under the License.
     @bottom-left { content: "© ISO/IEC " string(pubyear) " — All rights reserved";
                    font-size: 10pt; }
     @bottom-right { content: counter(page); font-size: 10pt; }
+}
+@page front-matter :left {
+    @bottom-left { content: counter(page, lower-roman); font-size: 10pt; }
+}
+@page front-matter :right {
+    @bottom-right { content: counter(page, lower-roman); font-size: 10pt; }
 }
 @page :first {
     @top-left { content: normal; }
