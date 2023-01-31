@@ -1420,21 +1420,21 @@ html   [segment], html   segment {
       <header><span class="section-number">1</span> <h1 data-bookmark-label="1 Scope">Scope</h1> <span style="float:right"><a href="#general.scope">[general.scope]</a></span></header>
 
 
-  <p id="general.scope.1" para_num="1">This technical specification describes extensions to the C++
+  <p id="general.scope.1" para_num="1">This document describes extensions to the C++
   Standard Library (<cxx-ref to="general.references"><a title="general.references" href="#general.references">2</a></cxx-ref>).
   These extensions are classes and functions that are likely to be
   used widely within a program and/or on the interface boundaries
   between libraries written by different organizations.</p>
 
-  <p id="general.scope.2" para_num="2">This technical specification is non-normative. Some of the
-  library components in this technical specification may be
+  <p id="general.scope.2" para_num="2">This document is non-normative. Some of the
+  library components in this document may be
   considered for standardization in a future version of C++, but
   they are not currently part of any C++ standard. Some of the
-  components in this technical specification may never be
+  components in this document may never be
   standardized, and others may be standardized in a substantially
   changed form.</p>
 
-  <p id="general.scope.3" para_num="3">The goal of this technical specification is to build more
+  <p id="general.scope.3" para_num="3">The goal of this document is to build more
   widespread existing practice for an expanded C++ standard
   library. It gives advice on extensions to those vendors who wish
   to provide them.</p>
@@ -1504,11 +1504,11 @@ html   [segment], html   segment {
 
 
 
-    <p id="general.namespaces.1" para_num="1">Since the extensions described in this technical specification
+    <p id="general.namespaces.1" para_num="1">Since the extensions described in this document
     are experimental and not part of the C++ standard library, they
     should not be declared directly within namespace
     <code>std</code>.
-    Unless otherwise specified, all components described in this technical specification either:
+    Unless otherwise specified, all components described in this document either:
     </p>
     <ul>
       <li>modify an existing interface in the C++ Standard Library in-place,</li>
@@ -1533,21 +1533,20 @@ html   [segment], html   segment {
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
 
-    <p id="general.namespaces.2" para_num="2">Each header described in this technical
-    specification shall import the contents of
+    <p id="general.namespaces.2" para_num="2">Each header described in this document shall import the contents of
     <code>std::experimental::fundamentals_v3</code> into
     <code>std::experimental</code> as if by</p>
 
     <pre><code>namespace std::experimental::inline fundamentals_v3 {}</code></pre>
 
     <p id="general.namespaces.3" para_num="3">
-      This technical specification also describes some experimental modifications to existing interfaces in the C++ Standard Library.
+      This document also describes some experimental modifications to existing interfaces in the C++ Standard Library.
       These modifications are described by quoting the affected parts of the standard
       and using <ins>underlining</ins> to represent added text and <del>strike-through</del> to represent deleted text.
     </p>
 
     <p id="general.namespaces.4" para_num="4">Unless otherwise specified, references to other entities
-    described in this technical specification are assumed to be
+    described in this document are assumed to be
     qualified with <code>std::experimental::fundamentals_v3::</code>,
     and references to entities described in the standard are assumed
     to be qualified with <code>std::</code>.</p>
@@ -1573,7 +1572,7 @@ html   [segment], html   segment {
   </table>
 
     <p id="general.namespaces.7" para_num="7"><cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    This is the last in a series of revisions of this technical specification
+    This is the last in a series of revisions of this document
     planned by the C++ committee; while there are no plans to resume the series,
     any future versions will define their contents in
     <code>std::experimental::fundamentals_v4</code>,
@@ -1609,7 +1608,7 @@ html   [segment], html   segment {
       in the same circumstances under which the feature is available (for example, taking into account relevant command-line options),
       to indicate the presence of support for that feature.
       Implementers should define that macro with the value specified in
-      the most recent version of this technical specification that they have implemented.
+      the most recent version of this document that they have implemented.
       The recommended macro name is "<code>__cpp_lib_experimental_</code>" followed by the string in the "Macro Name Suffix" column.
     </p>
 
@@ -1625,7 +1624,7 @@ html   [segment], html   segment {
     <table is="cxx-table" class="column-rules">
 
 
-    <caption>Table 2 — <wbr><span>Significant features in this technical specification</span></caption>
+    <caption>Table 2 — <wbr><span>Significant features in this document</span></caption>
 
 
 
@@ -1746,7 +1745,7 @@ html   [segment], html   segment {
 
 
     <p id="mods.general.1" para_num="1">
-      Implementations that conform to this technical specification shall
+      Implementations that conform to this document shall
       behave as if the modifications contained in this section are made to the C++ Standard.
     </p>
 
