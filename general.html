@@ -1,20 +1,20 @@
 <cxx-clause id="general.scope">
   <h1>Scope</h1>
-  <p>This technical specification describes extensions to the C++
+  <p>This document describes extensions to the C++
   Standard Library (<cxx-ref to="general.references"></cxx-ref>).
   These extensions are classes and functions that are likely to be
   used widely within a program and/or on the interface boundaries
   between libraries written by different organizations.</p>
 
-  <p>This technical specification is non-normative. Some of the
-  library components in this technical specification may be
+  <p>This document is non-normative. Some of the
+  library components in this document may be
   considered for standardization in a future version of C++, but
   they are not currently part of any C++ standard. Some of the
-  components in this technical specification may never be
+  components in this document may never be
   standardized, and others may be standardized in a substantially
   changed form.</p>
 
-  <p>The goal of this technical specification is to build more
+  <p>The goal of this document is to build more
   widespread existing practice for an expanded C++ standard
   library. It gives advice on extensions to those vendors who wish
   to provide them.</p>
@@ -58,11 +58,11 @@
   <cxx-section id="general.namespaces">
     <h1>Namespaces, headers, and modifications to standard classes</h1>
 
-    <p>Since the extensions described in this technical specification
+    <p>Since the extensions described in this document
     are experimental and not part of the C++ standard library, they
     should not be declared directly within namespace
     <code>std</code>.
-    Unless otherwise specified, all components described in this technical specification either:
+    Unless otherwise specified, all components described in this document either:
     </p>
     <ul>
       <li>modify an existing interface in the C++ Standard Library in-place,</li>
@@ -82,21 +82,20 @@
       because the C++ Standard Library defines <code>std::pmr</code>.
     </cxx-example>
 
-    <p>Each header described in this technical
-    specification shall import the contents of
+    <p>Each header described in this document shall import the contents of
     <code>std::experimental::fundamentals_v3</code> into
     <code>std::experimental</code> as if by</p>
 
     <pre><code>namespace std::experimental::inline fundamentals_v3 {}</code></pre>
 
     <p>
-      This technical specification also describes some experimental modifications to existing interfaces in the C++ Standard Library.
+      This document also describes some experimental modifications to existing interfaces in the C++ Standard Library.
       These modifications are described by quoting the affected parts of the standard
       and using <ins>underlining</ins> to represent added text and <del>strike-through</del> to represent deleted text.
     </p>
 
     <p>Unless otherwise specified, references to other entities
-    described in this technical specification are assumed to be
+    described in this document are assumed to be
     qualified with <code>std::experimental::fundamentals_v3::</code>,
     and references to entities described in the standard are assumed
     to be qualified with <code>std::</code>.</p>
@@ -130,7 +129,7 @@
       </td></tr>
     </table>
 
-    <p><cxx-note>This is the last in a series of revisions of this technical specification
+    <p><cxx-note>This is the last in a series of revisions of this document
     planned by the C++ committee; while there are no plans to resume the series,
     any future versions will define their contents in
     <code>std::experimental::fundamentals_v4</code>,
@@ -154,7 +153,7 @@
       in the same circumstances under which the feature is available (for example, taking into account relevant command-line options),
       to indicate the presence of support for that feature.
       Implementers should define that macro with the value specified in
-      the most recent version of this technical specification that they have implemented.
+      the most recent version of this document that they have implemented.
       The recommended macro name is "<code>__cpp_lib_experimental_</code>" followed by the string in the "Macro Name Suffix" column.
     </p>
 
@@ -168,7 +167,7 @@
     </p>
 
     <table is="cxx-table" class="column-rules">
-      <caption>Significant features in this technical specification</caption>
+      <caption>Significant features in this document</caption>
 
       <thead>
         <tr>
