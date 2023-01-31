@@ -1449,24 +1449,18 @@ html   [segment], html   segment {
 
 
 
-  <p id="general.references.1" para_num="1">The following referenced document is indispensable for the
-  application of this document. For dated references, only the edition
-  cited applies. For undated references, the latest edition of the
-  referenced document (including any amendments) applies.</p>
+  <p id="general.references.1" para_num="1">The following documents are referred to in the text
+  in such a way that some or all of their content
+  constitutes requirements of this document.
+  For dated references, only the edition cited applies.
+  For undated references, the latest edition
+  of the referenced document (including any amendments) applies.</p>
 
   <ul>
     <li>ISO/IEC 14882:2020, <cite>Programming Languages — C++</cite>
-    </li>
-  </ul>
+  </li></ul>
 
-  <p id="general.references.2" para_num="2">ISO/IEC 14882:2020 is herein called the <dfn>C++ Standard</dfn>.
-  References to clauses within the C++ Standard are written as "C++20
-  §3.2". The library described in ISO/IEC 14882:2020 clauses 16–32 is
-  herein called the <dfn>C++ Standard Library</dfn>.</p>
 
-  <p id="general.references.3" para_num="3">Unless otherwise specified, the whole of the C++ Standard's Library
-  introduction (<cxx-ref in="cxx" to="library">C++20 <span title="library">§16</span></cxx-ref>) is included into this
-  Technical Specification by reference.</p>
 
     </section>
   </cxx-clause>
@@ -1480,9 +1474,21 @@ html   [segment], html   segment {
 
 
   <p id="general.terms.1" para_num="1">For the purposes of this document, the terms and definitions
-  given in the C++ Standard apply.</p>
+  given in ISO/IEC 14882:2020 apply.</p>
 
-  <p id="general.terms.2" para_num="2">This document does not contain any additional terminological entries.</p>
+  <dl is="cxx-definition-section">
+
+
+
+    <dt id="defns.stdlib">
+    3.1
+    <span style="float:right"><a href="#defns.stdlib">[defns.stdlib]</a></span>
+    <br clear="all">
+    C++ Standard Library
+  </dt>
+    <dd>the library described in ISO/IEC 14882:2020 clauses 16–32</dd>
+
+  </dl>
 
     </section>
   </cxx-clause>
@@ -1597,7 +1603,7 @@ html   [segment], html   segment {
       WG21 (the ISO technical committee for the C++ programming language) recommends
       that implementers and programmers follow the guidelines in this section concerning feature-test macros.
       <cxx-note><span class="nowrap">[ <em>Note:</em></span>
-    <a href="http://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">WG21's SD-6</a> makes similar recommendations for the C++ Standard itself.
+    <a href="http://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">WG21's SD-6</a> makes similar recommendations for ISO/IEC 14882:2020.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
     </p>
@@ -1745,8 +1751,14 @@ html   [segment], html   segment {
 
     <p id="mods.general.1" para_num="1">
       Implementations that conform to this document shall
-      behave as if the modifications contained in this section are made to the C++ Standard.
+      behave as if the modifications contained in this section are made to ISO/IEC 14882:2020.
     </p>
+
+    <p id="mods.general.2" para_num="2">References to clauses within ISO/IEC 14882:2020 are written as "C++20 §3.2".</p>
+
+    <p id="mods.general.3" para_num="3">Unless otherwise specified, the whole of
+      the Library introduction of ISO/IEC 14882:2020 (<cxx-ref in="cxx" to="library">C++20 <span title="library">§16</span></cxx-ref>)
+      is included into this document by reference.</p>
 
     </section>
   </cxx-section>
