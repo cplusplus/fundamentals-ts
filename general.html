@@ -22,33 +22,30 @@
 <cxx-clause id="general.references">
   <h1>Normative references</h1>
 
-  <p>The following referenced document is indispensable for the
-  application of this document. For dated references, only the edition
-  cited applies. For undated references, the latest edition of the
-  referenced document (including any amendments) applies.</p>
+  <p>The following documents are referred to in the text
+  in such a way that some or all of their content
+  constitutes requirements of this document.
+  For dated references, only the edition cited applies.
+  For undated references, the latest edition
+  of the referenced document (including any amendments) applies.</p>
 
   <ul>
     <li>ISO/IEC 14882:2020, <cite>Programming Languages — C++</cite>
-    <cxx-foreign-index id="cxx" src="cxx20_index.json" name="C++20"></cxx-foreign-index></li>
   </ul>
 
-  <p>ISO/IEC 14882:2020 is herein called the <dfn>C++ Standard</dfn>.
-  References to clauses within the C++ Standard are written as "C++20
-  &#xa7;3.2". The library described in ISO/IEC 14882:2020 clauses 16–32 is
-  herein called the <dfn>C++ Standard Library</dfn>.</p>
-
-  <p>Unless otherwise specified, the whole of the C++ Standard's Library
-  introduction (<cxx-ref in="cxx" to="library"></cxx-ref>) is included into this
-  Technical Specification by reference.</p>
+  <cxx-foreign-index id="cxx" src="cxx20_index.json" name="C++20"></cxx-foreign-index></li>
 </cxx-clause>
 
 <cxx-clause id="general.terms">
   <h1>Terms and definitions</h1>
 
   <p>For the purposes of this document, the terms and definitions
-  given in the C++ Standard apply.</p>
+  given in ISO/IEC 14882:2020 apply.</p>
 
-  <p>This document does not contain any additional terminological entries.</p>
+  <dl is="cxx-definition-section">
+    <dt id="defns.stdlib">C++ Standard Library</dt>
+    <dd>the library described in ISO/IEC 14882:2020 clauses 16–32</dd>
+  </dl>
 </cxx-clause>
 
 <cxx-clause id="general">
@@ -144,7 +141,7 @@
       For the sake of improved portability between partial implementations of various C++ standards,
       WG21 (the ISO technical committee for the C++ programming language) recommends
       that implementers and programmers follow the guidelines in this section concerning feature-test macros.
-      <cxx-note><a href="http://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">WG21's SD-6</a> makes similar recommendations for the C++ Standard itself.</cxx-note>
+      <cxx-note><a href="http://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">WG21's SD-6</a> makes similar recommendations for ISO/IEC 14882:2020.</cxx-note>
     </p>
 
     <p>
