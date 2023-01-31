@@ -36,8 +36,14 @@ limitations under the License.
         set_clause_num: function(clause_num) {
           // If the author explicitly specified the clause number, don't
           // use a different number.
-          if (this.number)
+          if (this.number) {
+            // The special number "none" creates an unnumbered clause.
+            if (this.number == "none") {
+              this.sec_num = "";
+              return "";
+            }
             clause_num = Number(this.number)
+          }
           this.update_sec_nums(clause_num);
           return clause_num + 1;
         },
