@@ -276,7 +276,7 @@ cxx-clause header::after {
 }
 
 [is=cxx-table] th, [is=cxx-table] td {
-	border-style: solid none; border-color: black; border-width: thin; padding: 0px 0.25em;
+	border-style: solid none; border-color: black; border-width: thin; padding: 0px 0.25em; break-inside: avoid-page;
 }
 
 [is=cxx-table].column-rules th, [is=cxx-table].column-rules td {
@@ -331,6 +331,10 @@ cxx-toc nav > ol {
 
 cxx-toc ol {
 	font-weight: normal; padding-left: 0px; margin-left: 0px;
+}
+
+cxx-toc li > ol, cxx-toc li > ol > li {
+	break-before: avoid;
 }
 
 cxx-toc li {

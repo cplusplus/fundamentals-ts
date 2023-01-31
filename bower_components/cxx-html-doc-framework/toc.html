@@ -22,6 +22,9 @@ limitations under the License.
       nav > ol { font-weight: bold; }
       ol { font-weight: normal; padding-left: 0; margin-left: 0; }
 
+      /* No page break immediately after a supersection entry. */
+      li > ol, li > ol > li { page-break-before: avoid; }
+
       /* Browsers don't support ::marker or display:marker, so emulate it. */
       li { list-style-type: none; }
       .marker { display: inline-block; }
