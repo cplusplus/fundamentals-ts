@@ -25,11 +25,12 @@ limitations under the License.
     Polymer('cxx-definition-section', {
         ready: function() {
             var parent_section = this.parentElement;
-            while (parent_section && parent_section.tagName != 'CXX-SECTION')
+            while (parent_section && (parent_section.tagName != 'CXX-SECTION' && parent_section.tagName != 'CXX-CLAUSE')) {
                 parent_section = parent_section.parentElement;
+            }
             if (!parent_section) {
                 console.error('cxx-definition-section', this,
-                              'must be a descendent of a <cxx-section> element.');
+                              'must be a descendent of a <cxx-section> or <cxx-clause> element.');
                 return;
             }
 
