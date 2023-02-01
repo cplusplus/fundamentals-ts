@@ -36,6 +36,18 @@ limitations under the License.
 @page front-matter :right {
     @bottom-right { content: counter(page, lower-roman); font-size: 10pt; }
 }
+@page first-technical {
+    @top-left {
+        content: "TECHNICAL SPECIFICATION";
+        font-weight: bold; font-size: 10pt;
+        border-top: thick solid black; border-bottom: thick solid black; margin: 2.5em 0;
+    }
+    @top-right {
+        content: "ISO/IEC TS 19568:" string(pubyear) "(E)";
+        font-weight: bold; font-size: 10pt;
+        border-top: thick solid black; border-bottom: thick solid black; margin: 2.5em 0;
+    }
+}
 @page :first {
     @top-left { content: normal; }
     @top-right { content: normal; }
@@ -44,6 +56,21 @@ limitations under the License.
 }
 
 body { margin: 0; }
+
+.firsttech {
+    page: first-technical;
+    font-weight: bold;
+    font-size: 12pt;
+    line-height: 150%;
+    page-break-before: always;
+    counter-reset: page 1;
+    margin-bottom: 6em;
+}
+
+.firsttech + cxx-clause {
+    page: first-technical;
+    page-break-before: avoid;
+}
 
 @media screen {
     body { max-width: 7in;
