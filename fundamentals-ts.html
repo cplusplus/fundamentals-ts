@@ -220,7 +220,7 @@ cxx-notes dd {
 cxx-notes dd > ul, cxx-notes dd > ol {
 	clear: left;
 }cxx-section {
-	display: block;
+	display: block; counter-reset: note 0;
 }
 
 cxx-section:target {
@@ -242,7 +242,7 @@ cxx-section header {
 cxx-section header::after {
 	clear: both; display: block; content: " "; height: 0px;
 }cxx-clause {
-	display: block;
+	display: block; counter-reset: note 0;
 }
 
 cxx-clause:target {
@@ -496,6 +496,10 @@ cxx-ednote.para aside {
 	float: none; max-width: none;
 }cxx-note .nowrap {
 	white-space: nowrap;
+}
+
+cxx-note .notenum::after {
+	content: "" counter(note) ""; counter-increment: note 1;
 }cxx-footnote {
 	font-family: serif; white-space: normal; text-indent: initial;textIndent: initial; text-indent: initial;
 }
@@ -1624,7 +1628,7 @@ html   [segment], html   segment {
     </tbody>
   </table>
 
-    <p id="general.namespaces.7" para_num="7"><cxx-note><span class="nowrap">[ <em>Note:</em></span>
+    <p id="general.namespaces.7" para_num="7"><cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     This is the last in a series of revisions of this document
     planned by the C++ committee; while there are no plans to resume the series,
     any future versions will define their contents in
@@ -1650,7 +1654,7 @@ html   [segment], html   segment {
       For the sake of improved portability between partial implementations of various C++ standards,
       WG21 (the ISO technical committee for the C++ programming language) recommends
       that implementers and programmers follow the guidelines in this section concerning feature-test macros.
-      <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+      <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     <a href="http://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations">WG21's SD-6</a> makes similar recommendations for ISO/IEC 14882:2020.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
@@ -2045,7 +2049,7 @@ html   [segment], html   segment {
           the program is ill-formed.
         </p>
         <p id="propagate_const.requirements.2" para_num="2">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     <code>propagate_const&lt;const int*&gt;</code> is well-formed but <code>propagate_const&lt;int* const&gt; is not</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
@@ -3325,7 +3329,7 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
     <span class="nowrap">— <em>end example</em> ]</span>
   </cxx-example>
 
-      <p id="scopeguard.exit.4" para_num="4"><cxx-note><span class="nowrap">[ <em>Note:</em></span>
+      <p id="scopeguard.exit.4" para_num="4"><cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     If the exit function object of a <code>scope_success</code>
           or <code>scope_exit</code> object refers to a local variable
           of the function where it is defined, e.g., as a lambda capturing
@@ -3396,7 +3400,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
           For <code>scope_exit</code> and <code>scope_fail</code>,
           if the initialization of <code>exit_function</code> throws an exception,
           calls <code>f()</code>.
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     For <code>scope_success</code>, <code>f()</code> will not be
           called if the initialization fails.
     <span class="nowrap">— <em>end note</em> ]</span>
@@ -3451,7 +3455,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
           Initializes <code>execute_on_destruction</code> from <code>rhs.execute_on_destruction</code> and
           <code>uncaught_on_creation</code> from <code>rhs.uncaught_on_creation</code>.
           If construction succeeds, call <code>rhs.release()</code>.
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     Copying instead of moving provides the strong exception guarantee.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
@@ -3536,7 +3540,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
           Equivalent to:
           <pre><code>if (execute_on_destruction &amp;&amp; uncaught_exceptions() &lt;= uncaught_on_creation)
   exit_function();</code></pre>
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
             If <code>noexcept(exit_function())</code> is <code>false</code>,
             <code>exit_function()</code> may throw an exception,
@@ -3633,7 +3637,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
 }  // namespace std::experimental::inline fundamentals_v3</code></pre>
 
         <p id="scopeguard.uniqueres.overview.1" para_num="1">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     <code>unique_resource</code> is a universal RAII wrapper for resource handles.
             Typically, such resource handles are of trivial type and come with a factory function
             and a clean-up or deleter function that do not throw exceptions. The clean-up function
@@ -3726,7 +3730,7 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
 (is_nothrow_constructible_v&lt;R1, RR&gt; || is_constructible_v&lt;R1,RR&amp;&gt;) &amp;&amp;
 (is_nothrow_constructible_v&lt;D , DD&gt; || is_constructible_v&lt;D ,DD&amp;&gt;)</code></pre>
             is <code>true</code>.
-            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+            <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
               The first two conditions prohibit initialization from an rvalue reference when either <code>R1</code>
               or <code>D</code> is a specialization of <code>reference_wrapper</code>.
@@ -3765,7 +3769,7 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
             If initialization of <code>resource</code> throws an exception,
             calls <code>d(r)</code>.
             If initialization of <code>deleter</code> throws an exception, calls <code>d(<i>RESOURCE</i>)</code>.
-            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+            <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
               The explained mechanism ensures no leaking of resources.
 
@@ -3810,7 +3814,7 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
                 <code>true</code>, from <code>std::move(rhs.resource)</code>;</li>
               <li>otherwise, from <code>rhs.resource</code>.</li>
             </ul>
-            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+            <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
               If initialization of <code>resource</code> throws an exception,
               <code>rhs</code> is left owning the resource and will free it in due time.
@@ -3830,7 +3834,7 @@ is_constructible_v&lt;D , DD&gt; &amp;&amp;
 rhs.release();</code></pre>
             Finally, <code>execute_on_reset</code> is initialized with
             <code>exchange(rhs.execute_on_reset, false)</code>.
-            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+            <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
               The explained mechanism ensures no leaking and no double release of resources.
 
@@ -3931,7 +3935,7 @@ if constexpr (is_nothrow_move_assignable_v&lt;R1&gt;) {
   }
 }
 execute_on_reset = exchange(rhs.execute_on_reset, false);</code></pre>
-            <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+            <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
               If a copy of a member throws an exception, this mechanism leaves
               <code>rhs</code> intact and <code>*this</code> in the released state.
@@ -4193,7 +4197,7 @@ unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
   </cxx-function>
 
         <p id="scopeguard.uniqueres.create.5" para_num="5">
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
             This creation function exists to avoid calling a deleter function
             with an invalid argument.
@@ -4404,7 +4408,7 @@ namespace std::experimental::inline fundamentals_v3 {
       <p id="meta.trans.other.5" para_num="5">
         Access checking is performed as if in a context unrelated to <code>Fn</code> and <code>ArgTypes</code>.
         Only the validity of the immediate context of the expression is considered.
-        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+        <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     The compilation of the expression can result in side effects
         such as the instantiation of class template specializations and function template specializations,
         the generation of implicitly-defined functions, and so on.
@@ -4588,7 +4592,7 @@ namespace std {
       <p id="func.wrap.func.overview.1" para_num="1">
         The specification of all declarations within subclause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">7.2</a></cxx-ref>
         are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>,
-        unless explicitly specified otherwise. <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+        unless explicitly specified otherwise. <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     <code>std::experimental::function</code> uses
         <code>std::bad_function_call</code>, there is no additional type <code>std::experimental::bad_function_call</code>
     <span class="nowrap">— <em>end note</em> ]</span>
@@ -4684,7 +4688,7 @@ namespace std {
         In all cases, the allocator of a parameter having type <code>function&amp;&amp;</code> is unchanged.
         If the constructor creates a target object, that target object is initialized
         by uses-allocator construction with the allocator and other target object constructor arguments.
-        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+        <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
 
           If a constructor parameter of type <code>experimental::function&amp;&amp;</code>
           has an allocator equal to that of the object being constructed,
@@ -4754,7 +4758,7 @@ namespace std {
 
     <dt>Postconditions:</dt><dd>
           <code>!(*this)</code>.
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     The stored allocator is unchanged.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
@@ -5013,7 +5017,7 @@ namespace std {
       <p id="memory.observer.ptr.overview.1" para_num="1">
         A non-owning pointer, known as an <dfn>observer</dfn>, is an object <code>o</code> that stores a pointer to a second object, <code>w</code>.
         In this context, <code>w</code> is known as a <dfn>watched</dfn> object.
-        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+        <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     There is no watched object when the stored pointer is <code>nullptr</code>.
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
@@ -5030,7 +5034,7 @@ namespace std {
       </p>
 
       <p id="memory.observer.ptr.overview.3" para_num="3">
-        <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+        <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     The uses of <code>observer_ptr</code> include clarity of interface specification in new code,
           and interoperability with pointer-based legacy code.
     <span class="nowrap">— <em>end note</em> ]</span>
@@ -6156,7 +6160,7 @@ IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
 
     <dt>Postconditions:</dt><dd>Subsequent calls to <code>randint</code> do not
           depend on values produced by <code>g</code> before calling <code>reseed</code>.
-          <cxx-note><span class="nowrap">[ <em>Note:</em></span>
+          <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     <code>reseed</code> also resets any instances of <code>uniform_int_distribution</code>
             used by <code>randint</code>.
     <span class="nowrap">— <em>end note</em> ]</span>

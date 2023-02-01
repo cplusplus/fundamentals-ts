@@ -25,7 +25,7 @@ limitations under the License.
 <polymer-element name="cxx-section" constructor="CxxSectionElement" attributes="number">
   <template>
     <style>
-      :host { display: block; }
+      :host { display: block; counter-reset: note; }
       :host:target {background-color: inherit;}
       :host:target > section > h1 {background-color: #fed;}
       polyfill-next-selector { content: 'header > h1' }

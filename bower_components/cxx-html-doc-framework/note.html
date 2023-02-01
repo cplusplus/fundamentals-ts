@@ -16,7 +16,8 @@ limitations under the License.
 <polymer-element name="cxx-note" noscript>
   <template><style>
       .nowrap { white-space: nowrap; }
-    </style><span class="nowrap">[ <em>Note:</em></span>
+      .notenum:after { content: "" counter(note) ""; counter-increment: note; }
+    </style><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     <content></content>
     <span class="nowrap">— <em>end note</em> ]</span>
   </template>
