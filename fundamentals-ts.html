@@ -1613,8 +1613,6 @@ html   [segment], html   segment {
 
     <p id="general.namespaces.3" para_num="3">
       This document also describes some experimental modifications to existing interfaces in the C++ Standard Library.
-      These modifications are described by quoting the affected parts of the standard
-      and using <ins>underlining</ins> to represent added text and <del>strike-through</del> to represent deleted text.
     </p>
 
     <p id="general.namespaces.4" para_num="4">Unless otherwise specified, references to other entities
@@ -1827,31 +1825,22 @@ html   [segment], html   segment {
       <header><span class="section-number">5.2</span> <h1 data-bookmark-label="5.2 Exception Requirements">Exception Requirements</h1> <span style="float:right"><a href="#mods.exception.requirements">[mods.exception.requirements]</a></span></header>
 
 
-    <p id="mods.exception.requirements.1" para_num="1">The following changes to the library introduction allow the destructor
-      of <code>scope_success</code> to throw exceptions.</p>
-    <blockquote>
-      <p><b>16.4.5.8 Other functions [res.on.functions]</b></p>
-      <p para_num="1">In certain cases […]</p>
-      <p para_num="2">In particular, the effects are undefined in the following cases:</p>
-      <ul>
-        <li>[…]</li>
-        <li>if any replacement function or handler function or destructor operation
-          exits via an exception, unless specifically allowed in the applicable
-          <i>Required behavior:</i><ins> or <i>Throws:</i></ins> paragraph.
-        </li>
-        <li>if an incomplete type (6.9) is used as a template argument when instantiating
-          a template component, unless specifically allowed for that component.</li>
-      </ul>
-      <p><b>16.4.6.13 Restrictions on exception handling [res.on.exception.handling]</b></p>
-      <p para_num="1">[…]</p>
-      <p para_num="2">Functions from the C standard library shall not throw exceptions<sup>181</sup>
-        except when such a function calls a program-supplied function that throws an exception.<sup>182</sup></p>
-      <p para_num="3"><ins>Unless otherwise specified, destructor</ins><del>Destructor</del>
-        operations defined in the C++ standard library shall not throw exceptions.
-        Every destructor<ins> without an exception specification</ins> in the C++ standard library
-        shall behave as if it had a non-throwing exception specification.</p>
-      <p para_num="4">Functions defined in the C++ standard library […]</p>
-    </blockquote>
+    <p id="mods.exception.requirements.1" para_num="1">The following modifications to the Library introduction (<cxx-ref in="cxx" to="library">C++20 <span title="library">§16</span></cxx-ref>)
+      allow the destructor of <code>scope_success</code> (<cxx-ref to="scopeguard"><a title="scopeguard" href="#scopeguard">6.2</a></cxx-ref>) to throw exceptions.</p>
+    <p id="mods.exception.requirements.2" para_num="2">The requirements of <cxx-ref in="cxx" to="res.on.functions">C++20 <span title="res.on.functions">§16.4.5.8</span></cxx-ref>
+      shall apply with the following modification:
+      An applicable <i>Throws:</i> paragraph
+      (in addition to any applicable <i>Required behavior:</i> paragraph)
+      can allow a replacement function or handler function or destructor operation
+      to exit via an exception.
+    </p>
+    <p id="mods.exception.requirements.3" para_num="3">The requirements of <cxx-ref in="cxx" to="res.on.exception.handling">C++20 <span title="res.on.exception.handling">§16.4.6.13</span></cxx-ref>
+      shall apply with the following modifications:
+      Destructor operations defined in the C++ standard library are permitted to throw exceptions
+      if this is explicitly specified.
+      Only those destructors in the C++ standard library that do not have an exception specification
+      shall behave as if they had a non-throwing exception specification.
+    </p>
 
     </section>
   </cxx-section>
