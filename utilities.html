@@ -25,17 +25,23 @@
       constexpr bool operator!=(nullptr_t, const propagate_const&lt;T&gt;&amp; pu);
 
     template &lt;class T, class U&gt;
-      constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+      constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt,
+                                const propagate_const&lt;U&gt;&amp; pu);
     template &lt;class T, class U&gt;
-      constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+      constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt,
+                                const propagate_const&lt;U&gt;&amp; pu);
     template &lt;class T, class U&gt;
-      constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+      constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt,
+                                const propagate_const&lt;U&gt;&amp; pu);
     template &lt;class T, class U&gt;
-      constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+      constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt,
+                                const propagate_const&lt;U&gt;&amp; pu);
     template &lt;class T, class U&gt;
-      constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+      constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt,
+                                const propagate_const&lt;U&gt;&amp; pu);
     template &lt;class T, class U&gt;
-      constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);
+      constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt,
+                                const propagate_const&lt;U&gt;&amp; pu);
 
     template &lt;class T, class U&gt;
       constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const U&amp; u);
@@ -65,7 +71,8 @@
 
     <cxx-ref insynopsis to="propagate_const.algorithms"></cxx-ref>
     template &lt;class T&gt;
-      constexpr void swap(propagate_const&lt;T&gt;&amp; pt, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);
+      constexpr void swap(propagate_const&lt;T&gt;&amp; pt,
+                          propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);
 
     <cxx-ref insynopsis to="propagate_const.underlying"></cxx-ref>
     template &lt;class T&gt;
@@ -120,9 +127,11 @@
     propagate_const(const propagate_const&amp; p) = delete;
     constexpr propagate_const(propagate_const&amp;&amp; p) = default;
     template &lt;class U&gt;
-      explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);
+      explicit(!is_convertible_v&lt;U, T&gt;)
+      constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);
     template &lt;class U&gt;
-      explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(U&amp;&amp; u);
+      explicit(!is_convertible_v&lt;U, T&gt;)
+      constexpr propagate_const(U&amp;&amp; u);
 
     <cxx-ref insynopsis to="propagate_const.assignment"></cxx-ref>
     propagate_const&amp; operator=(const propagate_const&amp; p) = delete;
@@ -258,7 +267,8 @@
 
         <cxx-function>
           <cxx-signature>template &lt;class U&gt;
-explicit(!is_convertible_v&lt;U, T&gt;) constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
+explicit(!is_convertible_v&lt;U, T&gt;)
+constexpr propagate_const(propagate_const&lt;U&gt;&amp;&amp; pu);</cxx-signature>
 
           <cxx-constraints>
             <code>is_constructible_v&lt;T, U&gt;</code> is true.
@@ -440,42 +450,48 @@ constexpr bool operator!=(nullptr_t, const propagate_const&lt;T&gt;&amp; pt);</c
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
+constexpr bool operator==(const propagate_const&lt;T&gt;&amp; pt,
+                          const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ == pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
+constexpr bool operator!=(const propagate_const&lt;T&gt;&amp; pt,
+                          const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ != pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
+constexpr bool operator&lt;(const propagate_const&lt;T&gt;&amp; pt,
+                          const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &lt; pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
+constexpr bool operator&gt;(const propagate_const&lt;T&gt;&amp; pt,
+                          const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &gt; pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
+constexpr bool operator&lt;=(const propagate_const&lt;T&gt;&amp; pt,
+                          const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &lt;= pu.t_</code>.</cxx-returns>
       </cxx-function>
 
       <cxx-function>
         <cxx-signature>template &lt;class T, class U&gt;
-constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt, const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
+constexpr bool operator&gt;=(const propagate_const&lt;T&gt;&amp; pt,
+                          const propagate_const&lt;U&gt;&amp; pu);</cxx-signature>
 
         <cxx-returns><code>pt.t_ &gt;= pu.t_</code>.</cxx-returns>
       </cxx-function>
@@ -568,7 +584,8 @@ constexpr bool operator&gt;=(const T&amp; t, const propagate_const&lt;U&gt;&amp;
 
       <cxx-function>
         <cxx-signature>template &lt;class T&gt;
-constexpr void swap(propagate_const&lt;T&gt;&amp; pt1, propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);</cxx-signature>
+constexpr void swap(propagate_const&lt;T&gt;&amp; pt1,
+                    propagate_const&lt;T&gt;&amp; pt2) noexcept(<i>see below</i>);</cxx-signature>
 
         <cxx-constraints><code>is_swappable_v&lt;T&gt;</code> is <code>true</code>.</cxx-constraints>
         <cxx-effects>Equivalent to: <code>pt1.swap(pt2)</code>.</cxx-effects>
@@ -762,7 +779,8 @@ struct greater_equal&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&
   <cxx-ref insynopsis to="scopeguard.uniqueres.create"></cxx-ref>
   template &lt;class R, class D, class S=decay_t&lt;R&gt;&gt;
     unique_resource&lt;decay_t&lt;R&gt;, decay_t&lt;D&gt;&gt;
-      make_unique_resource_checked(R&amp;&amp; r, const S&amp; invalid, D&amp;&amp; d) noexcept(<i>see below</i>);
+      make_unique_resource_checked(
+        R&amp;&amp; r, const S&amp; invalid, D&amp;&amp; d) noexcept(<i>see below</i>);
 
 } // namespace std::experimental::inline fundamentals_v3</code></pre>
 
@@ -999,7 +1017,9 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
     const D&amp; get_deleter() const noexcept;
 
   private:
-    using R1 = conditional_t&lt;is_reference_v&lt;R&gt;, reference_wrapper&lt;remove_reference_t&lt;R&gt;&gt;, R&gt;;  // <i>exposition only</i>
+    using R1 = conditional_t&lt;is_reference_v&lt;
+      R&gt;, reference_wrapper&lt;remove_reference_t&lt;R&gt;&gt;, R&gt;;  // <i>exposition only</i>
+
     R1 resource;                  // <i>exposition only</i>
     D deleter;                    // <i>exposition only</i>
     bool execute_on_reset{true};  // <i>exposition only</i>

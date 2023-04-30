@@ -9,7 +9,7 @@
 namespace std::experimental::inline fundamentals_v3 {
 
   <cxx-ref insynopsis="" to="iterator.ostream.joiner"></cxx-ref>
-  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT> >
+  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT>>
       class ostream_joiner;
   template &lt;class charT, class traits, class DelimT>
     ostream_joiner&lt;decay_t&lt;DelimT>, charT, traits>
@@ -38,7 +38,7 @@ namespace std::experimental::inline fundamentals_v3 {
       </p>
       <pre><code>namespace std::experimental::inline fundamentals_v3 {
 
-  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt; &gt;
+  template &lt;class DelimT, class charT = char, class traits = char_traits&lt;charT&gt;&gt;
   class ostream_joiner {
   public:
     using char_type = charT;
