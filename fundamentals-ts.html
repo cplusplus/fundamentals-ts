@@ -1814,7 +1814,7 @@ html   [segment], html   segment {
     <p id="mods.exception.requirements.1" para_num="1">The following changes to the library introduction allow the destructor
       of <code>scope_success</code> to throw exceptions.</p>
     <blockquote>
-      <p><b>16.5.4.8 Other functions [res.on.functions]</b></p>
+      <p><b>16.4.5.8 Other functions [res.on.functions]</b></p>
       <p para_num="1">In certain cases […]</p>
       <p para_num="2">In particular, the effects are undefined in the following cases:</p>
       <ul>
@@ -1826,7 +1826,7 @@ html   [segment], html   segment {
         <li>if an incomplete type (6.9) is used as a template argument when instantiating
           a template component, unless specifically allowed for that component.</li>
       </ul>
-      <p><b>16.5.5.13 Restrictions on exception handling [res.on.exception.handling]</b></p>
+      <p><b>16.4.6.13 Restrictions on exception handling [res.on.exception.handling]</b></p>
       <p para_num="1">[…]</p>
       <p para_num="2">Functions from the C standard library shall not throw exceptions<sup>181</sup>
         except when such a function calls a program-supplied function that throws an exception.<sup>182</sup></p>
@@ -2503,7 +2503,7 @@ constexpr propagate_const&amp; operator=(U&amp;&amp; u);</cxx-signature></code><
 
     <dt>Preconditions:</dt><dd>
           Lvalues of type <code>T</code> are swappable
-          (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.5.3.2</span></cxx-ref>).
+          (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.4.4.3</span></cxx-ref>).
         </dd>
   </cxx-preconditions>
         <cxx-effects id="propagate_const.modifiers.3" para_num="3">
@@ -3012,7 +3012,7 @@ struct hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;;</cxx
 
         <p id="propagate_const.hash.2" para_num="2">
           The specialization <code>hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;</code>
-          is enabled (<cxx-ref in="cxx" to="unord.hash">C++20 <span title="unord.hash">§20.14.18</span></cxx-ref>) if and only if <code>hash&lt;T&gt;</code> is enabled.
+          is enabled (<cxx-ref in="cxx" to="unord.hash">C++20 <span title="unord.hash">§20.14.19</span></cxx-ref>) if and only if <code>hash&lt;T&gt;</code> is enabled.
           When enabled, for an object <code>p</code> of type <code>propagate_const&lt;T&gt;</code>,
           <code>hash&lt;experimental::fundamentals_v3::propagate_const&lt;T&gt;&gt;()(p)</code>
           evaluates to the same value as <code>hash&lt;T&gt;()(p.t_)</code>.
@@ -3544,7 +3544,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
 
             If <code>noexcept(exit_function())</code> is <code>false</code>,
             <code>exit_function()</code> may throw an exception,
-            notwithstanding the restrictions of <cxx-ref in="cxx" to="res.on.exception.handling">C++20 <span title="res.on.exception.handling">§16.5.5.13</span></cxx-ref>.
+            notwithstanding the restrictions of <cxx-ref in="cxx" to="res.on.exception.handling">C++20 <span title="res.on.exception.handling">§16.4.6.13</span></cxx-ref>.
 
     <span class="nowrap">— <em>end note</em> ]</span>
   </cxx-note>
@@ -4303,7 +4303,7 @@ namespace std::experimental::inline fundamentals_v3 {
       </p>
 
       <p id="meta.trans.other.2" para_num="2">
-        Each of the templates in this subclause shall be a <cxx-term><i>TransformationTrait</i></cxx-term> (<cxx-ref in="cxx" to="meta.rqmts">C++20 <span title="meta.rqmts">§20.15.1</span></cxx-ref>).
+        Each of the templates in this subclause shall be a <cxx-term><i>TransformationTrait</i></cxx-term> (<cxx-ref in="cxx" to="meta.rqmts">C++20 <span title="meta.rqmts">§20.15.2</span></cxx-ref>).
       </p>
 
       <p id="meta.trans.other.3" para_num="3">
@@ -4325,7 +4325,7 @@ namespace std::experimental::inline fundamentals_v3 {
         <li>
           If <code>f</code> is a class object,
           the <cxx-term><i>invocation parameters</i></cxx-term> are the parameters matching <code>t1</code>, ..., <code>tN</code>
-          of the best viable function (<cxx-ref in="cxx" to="over.match.best">C++20 <span title="over.match.best">§12.4.3</span></cxx-ref>)
+          of the best viable function (<cxx-ref in="cxx" to="over.match.best">C++20 <span title="over.match.best">§12.4.4</span></cxx-ref>)
           for the arguments <code>t1</code>, ..., <code>tN</code>
           among the function call operators and surrogate call functions of <code>f</code>.
         </li>
@@ -4339,7 +4339,7 @@ namespace std::experimental::inline fundamentals_v3 {
         In all of the above cases,
         if an argument <code>tI</code> matches the ellipsis in the function's <cxx-term><i>parameter-declaration-clause</i></cxx-term>,
         the corresponding <cxx-term><i>invocation parameter</i></cxx-term> is defined to be
-        the result of applying the default argument promotions (<cxx-ref in="cxx" to="expr.call">C++20 <span title="expr.call">§7.6.1.2</span></cxx-ref>) to <code>tI</code>.
+        the result of applying the default argument promotions (<cxx-ref in="cxx" to="expr.call">C++20 <span title="expr.call">§7.6.1.3</span></cxx-ref>) to <code>tI</code>.
       </p>
 
       <cxx-example>
@@ -4464,9 +4464,9 @@ namespace std::experimental::inline fundamentals_v3 {
 };</code></pre>
       <p id="meta.detect.1" para_num="1">
         <code>nonesuch</code> has no default constructor
-        (<cxx-ref in="cxx" to="class.ctor">C++20 <span title="class.ctor">§11.4.4</span></cxx-ref>) or initializer-list constructor
-        (<cxx-ref in="cxx" to="dcl.init.list">C++20 <span title="dcl.init.list">§9.4.4</span></cxx-ref>), and is not an aggregate
-        (<cxx-ref in="cxx" to="dcl.init.aggr">C++20 <span title="dcl.init.aggr">§9.4.1</span></cxx-ref>).
+        (<cxx-ref in="cxx" to="class.ctor">C++20 <span title="class.ctor">§11.4.5</span></cxx-ref>) or initializer-list constructor
+        (<cxx-ref in="cxx" to="dcl.init.list">C++20 <span title="dcl.init.list">§9.4.5</span></cxx-ref>), and is not an aggregate
+        (<cxx-ref in="cxx" to="dcl.init.aggr">C++20 <span title="dcl.init.aggr">§9.4.2</span></cxx-ref>).
       </p>
 
       <pre><code>template &lt;class Default, class AlwaysVoid,
@@ -4591,7 +4591,7 @@ namespace std {
 
       <p id="func.wrap.func.overview.1" para_num="1">
         The specification of all declarations within subclause <cxx-ref to="func.wrap.func"><a title="func.wrap.func" href="#func.wrap.func">7.2</a></cxx-ref>
-        are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>,
+        are the same as the corresponding declarations, as specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.17.3</span></cxx-ref>,
         unless explicitly specified otherwise. <cxx-note><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
     <code>std::experimental::function</code> uses
         <code>std::bad_function_call</code>, there is no additional type <code>std::experimental::bad_function_call</code>
@@ -4699,7 +4699,7 @@ namespace std {
       </p>
       <p id="func.wrap.func.con.3" para_num="3">
         The deduction guide <code>template&lt;class F&gt; function(F) -&gt; function&lt;<em>see below</em>&gt;;</code>
-        is specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>.
+        is specified in <cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.17.3</span></cxx-ref>.
       </p>
 
       <cxx-function id="func.wrap.func.con.4" para_num="4">
@@ -4783,7 +4783,7 @@ namespace std {
         <cxx-constraints id="func.wrap.func.con.15" para_num="15">
 
     <dt>Constraints:</dt><dd>
-          <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept><i>Lvalue-Callable</i></cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.16.2</span></cxx-ref>)
+          <code>declval&lt;decay_t&lt;F&gt;&amp;&gt;()</code> is <cxx-17concept><i>Lvalue-Callable</i></cxx-17concept> (<cxx-ref in="cxx" to="func.wrap.func">C++20 <span title="func.wrap.func">§20.14.17.3</span></cxx-ref>)
           for argument types <code>ArgTypes...</code> and return type <code>R</code>.
         </dd>
   </cxx-constraints>
@@ -5489,7 +5489,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
 
 
         <p id="memory.observer.ptr.hash.2" para_num="2">
-          The specialization is enabled (<cxx-ref in="cxx" to="unord.hash">C++20 <span title="unord.hash">§20.14.18</span></cxx-ref>).
+          The specialization is enabled (<cxx-ref in="cxx" to="unord.hash">C++20 <span title="unord.hash">§20.14.19</span></cxx-ref>).
           For an object <code>p</code> of type <code>observer_ptr&lt;T&gt;</code>,
           <code>hash&lt;observer_ptr&lt;T&gt;&gt;()(p)</code> evaluates to the same value as <code>hash&lt;T*&gt;()(p.get())</code>.
         </p>
@@ -5548,7 +5548,7 @@ bool operator&gt;=(observer_ptr&lt;W1&gt; p1, observer_ptr&lt;W2&gt; p2);</cxx-s
         The requirements on this class template are defined below.
         The name <code><var>resource_adaptor_imp</var></code> is for exposition only and is not normative,
         but the definitions of the members of that class, whatever its name, are normative.
-        In addition to the <cxx-17concept><i>Cpp17Allocator</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="allocator.requirements">C++20 <span title="allocator.requirements">§16.5.3.5</span></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
+        In addition to the <cxx-17concept><i>Cpp17Allocator</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="allocator.requirements">C++20 <span title="allocator.requirements">§16.4.4.6</span></cxx-ref>), the parameter to <code>resource_adaptor</code> shall meet the following additional requirements:
       </p>
       <ul>
         <li><code>typename allocator_traits&lt;Allocator&gt;::pointer</code> shall be identical to <code>typename allocator_traits&lt;Allocator&gt;::value_type*</code>.</li>
@@ -6037,7 +6037,7 @@ SampleIterator sample(PopulationIterator first, PopulationIterator last,
       <cxx-preconditions id="alg.random.shuffle.2" para_num="2">
 
     <dt>Preconditions:</dt><dd><code>RandomAccessIterator</code> meets the
-        <cxx-17concept><i>Cpp17ValueSwappable</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.5.3.2</span></cxx-ref>).
+        <cxx-17concept><i>Cpp17ValueSwappable</i></cxx-17concept> requirements (<cxx-ref in="cxx" to="swappable.requirements">C++20 <span title="swappable.requirements">§16.4.4.3</span></cxx-ref>).
       </dd>
   </cxx-preconditions>
       <cxx-effects id="alg.random.shuffle.3" para_num="3">
@@ -6111,7 +6111,7 @@ namespace std::experimental::inline fundamentals_v3 {
 
 
       <p id="rand.randint.1" para_num="1">A separate <dfn>per-thread engine</dfn> of type <code>default_random_engine</code>
-        (<cxx-ref in="cxx" to="rand.predef">C++20 <span title="rand.predef">§26.6.5</span></cxx-ref>), initialized to an
+        (<cxx-ref in="cxx" to="rand.predef">C++20 <span title="rand.predef">§26.6.6</span></cxx-ref>), initialized to an
         unpredictable state, shall be maintained for each thread.</p>
       <cxx-function id="rand.randint.2" para_num="2">
 
@@ -6125,7 +6125,7 @@ IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
 
     <dt>Mandates:</dt><dd>
           The template argument meets the requirements for a template parameter named
-          <code>IntType</code> in <cxx-ref in="cxx" to="rand.req.genl">C++20 <span title="rand.req.genl">§26.6.2.1</span></cxx-ref>.
+          <code>IntType</code> in <cxx-ref in="cxx" to="rand.req.genl">C++20 <span title="rand.req.genl">§26.6.3.1</span></cxx-ref>.
         </dd>
   </cxx-mandates>
         <cxx-preconditions id="rand.randint.4" para_num="4">
@@ -6136,7 +6136,7 @@ IntType randint(IntType a, IntType b);</cxx-signature></code></pre>
 
     <dt>Returns:</dt><dd>A random integer <var>i</var>, <code>a</code> ≤ <var>i</var> ≤ <code>b</code>,
           produced from a thread-local instance of <code>uniform_int_distribution&lt;IntType&gt;</code>
-          (<cxx-ref in="cxx" to="rand.dist.uni.int">C++20 <span title="rand.dist.uni.int">§26.6.8.2.1</span></cxx-ref>) invoked with the
+          (<cxx-ref in="cxx" to="rand.dist.uni.int">C++20 <span title="rand.dist.uni.int">§26.6.9.2.1</span></cxx-ref>) invoked with the
           per-thread engine.</dd>
   </cxx-returns>
 
