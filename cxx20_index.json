@@ -18,6 +18,7 @@
     "rand.predef": "26.6.6",
     "rand.req.genl": "26.6.3.1",
     "res.on.exception.handling": "16.4.6.13",
+    "res.on.functions": "16.4.5.8",
     "swappable.requirements": "16.4.4.3",
     "unord.hash": "20.14.19"
 }
