@@ -13,12 +13,35 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<polymer-element name="cxx-note" noscript>
-  <template><style>
+<polymer-element name="cxx-note">
+  <template>
+    <style>
+      :host { display: block; }
+      :host(.inline) { display: inline }
       .nowrap { white-space: nowrap; }
-      .notenum:after { content: "" counter(note) ""; counter-increment: note; }
-    </style><span class="nowrap">[ <em>Note <span class="notenum"></span>:</em></span>
+    </style><span class="nowrap">[ <em>Note{{note_num}}:</em></span>
     <content></content>
     <span class="nowrap">— <em>end note</em> ]</span>
   </template>
+  <script>
+    (function() {
+      function renumberNotes() {
+        document.querySelectorAll('cxx-section').array().forEach(function(section, index) {
+          // Only process leaf sections.
+          if (section.querySelectorAll('cxx-section').array().length > 0) return;
+
+          notes = section.querySelectorAll('cxx-note').array();
+          if (notes.length > 1) {
+            notes.forEach(function(note, index) {
+              note.note_num = " " + (index + 1);
+            });
+          }
+        });
+      }
+      Polymer('cxx-note', {
+        domReady: renumberNotes,
+        detached: renumberNotes,
+      });
+    })();
+  </script>
 </polymer-element>

@@ -13,15 +13,35 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<polymer-element name="cxx-example" noscript>
+<polymer-element name="cxx-example">
   <template>
     <style>
       :host { display: block }
       :host(.inline) { display: inline }
       .nowrap { white-space: nowrap; }
-    </style>
-    <span class="nowrap">[ <em>Example:</em></span>
+    </style><span class="nowrap">[ <em>Example{{example_num}}:</em></span>
     <content></content>
     <span class="nowrap">— <em>end example</em> ]</span>
   </template>
+  <script>
+    (function() {
+      function renumberExamples() {
+        document.querySelectorAll('cxx-section').array().forEach(function(section, index) {
+          // Only process leaf sections.
+          if (section.querySelectorAll('cxx-section').array().length > 0) return;
+
+          examples = section.querySelectorAll('cxx-example').array();
+          if (examples.length > 1) {
+            examples.forEach(function(example, index) {
+              example.example_num = " " + (index + 1);
+            });
+          }
+        });
+      }
+      Polymer('cxx-example', {
+        domReady: renumberExamples,
+        detached: renumberExamples,
+      });
+    })();
+  </script>
 </polymer-element>
