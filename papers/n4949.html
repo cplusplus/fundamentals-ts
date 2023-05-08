@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>N4949 Editor's Report: C++ Library Fundamentals v3 TS</title>
+    <style type="text/css">
+      html { margin: 0; padding: 0; color: black; background-color: white; }
+      body { padding: 2em; font-size: medium; font-family: "DejaVu Serif", serif; line-height: 150%; }
+      code { font-family: "DejaVu Sans Mono", monospace; color: #006; }
+
+      h1, h2, h3 { margin: 1.5em 0 .75em 0; line-height: 125%; }
+
+      .docinfo p { margin: 0; }
+      .docinfo address { font-style: normal; }
+
+      div.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1em;
+                 border-radius: 4px; line-height: 200%; }
+
+      div.strictpre { white-space: pre; }
+
+      sup, sub { line-height: 0; }
+
+      .quote { display: inline-block; clear: both; margin-left: 1ex;
+                 border: thin solid #E0E0E0; background-color: #F8F8F8; padding: 1ex; }
+
+      .modify { border-left: thick solid #999; border-right: thick solid #999; padding: 0 1em; }
+      .insert { border-left: thick solid #0A0; border-right: thick solid #0A0; padding: 0 1em; }
+      .comment { color: #753; }
+      .comment a:link, .comment a:visited { color: #A51; }
+
+      table { border-top: 2px solid black; border-bottom: 2px solid black; border-collapse: collapse; margin: 3em auto; }
+      thead th { border-bottom: 2px solid black; }
+      th.sep { border-top: 2px solid black; border-bottom: 2px solid black; }
+      th, td { text-align: left; padding: 0; margin: 0; }
+      tr:first-child td { padding-top: 1ex; }
+      tr:last-child td { padding-bottom: 1ex; }
+
+      td.code { white-space: pre-line; font-family: "DejaVu Sans Mono", monospace;
+                padding: 1em; line-height: 150%; }
+
+      table.x { caption-side: bottom; }
+      table.x caption { padding-top: 1ex; }
+      .x th, .x td { padding: 1ex 1ex 1ex 1ex; }
+      .x th:first-child, .x td:first-child { padding-left: 1ex; }
+      td.y { padding: 0 1em; }
+
+      p.skip { margin-top: 1em; }
+
+      ins { color: #090; }
+      del { color: #A00; }
+      ins code, del code { color: inherit; }
+
+      span.new { color: #080; font-weight: bold; }
+      span.old { color: #800; font-weight: bold; }
+
+      #toggleparams:checked ~ * .params { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>N4949 Editor&rsquo;s Report: C++ Extensions for Library Fundamentals, Version 3</h1>
+
+    <div class="docinfo">
+      <p>Date: 2023-05-08</p>
+      <address>Thomas K&ouml;ppe, Editor (Google DeepMind)  &lt;<a href="mailto:tkoeppe@google.com">tkoeppe@google.com</a>&gt;</address>
+    </div>
+
+    <h2>New papers</h2>
+
+    <ul>
+      <li>N4952 is the revised DTS document.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2023/n4949.html">N4949</a>
+        is this Editor&rsquo;s Report.</li>
+      <li><a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2023/n4948.html">N4948</a>
+        is the current working draft. It revises
+        <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2023/n4939.html">N4939</a>.</li>
+    </ul>
+
+    <h2>Change history and motions</h2>
+
+    <p>
+      There have not been any motions since the previous revision. This revision only contains
+      editorial changes, mainly those requested by the ISO secretariat in response to the
+      previous DTS ballot submission N4937, and the revised N4952 has been sent for DTS balloting.
+      N4952 and <a href="http://open-std.org/jtc1/sc22/wg21/docs/papers/2023/n4948.html">N4948</a>
+      have identical technical content. Notable changes:
+    </p>
+    <ul>
+      <li>
+        A new, unnumbered clause "Introduction" has been added which explains our use of stable
+        labels. The definition of "C++ Standard Library" has also been moved to this new clause,
+        and out of Terms and definitions".
+      </li>
+      <li>
+        Several erroneous numbers of C++20 subclauses have been fixed.
+      </li>
+      <li>
+        References to WG21 and to WG21 papers have been removed. These are inappropriate for
+        published ISO documents and were not adding much value.
+      </li>
+      <li>
+        Notes and examples are now numbered according to the ISO Drafting Directives, that is,
+        the number is only shown when there are multiple notes or examples in one subclause. (In
+        other words, there is never a "Note&nbsp;1" if there is not also a "Note&nbsp;2", etc.)
+      </li>
+    </ul>
+
+    <h2>Commit history</h2>
+
+    <p>From the <a href="https://github.com/cplusplus/fundamentals-ts">draft sources on GitHub</a>.</p>
+
+    <div class="code"><!--
+-->commit d96f9e5a272adbb0e6dad0e855930542d1c005b5
+Author: Alisdair Meredith &lt;alisdairm@me.com&gt;
+Date:   Fri Sep 9 11:59:45 2022 -0400
+
+    [func.wrap.func] Add C++20 deduction guides
+    
+    The deduction guides for `function` are present in the C++20 standard
+    and specified there, but we should include them in the class synopsis.</div>
+
+    <div class="code"><!--
+-->commit 595ee81a7d413c0b1f21d880bd69d6419f3e3068
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 01:32:56 2023 +0000
+
+    [bower] Add missing NESTC for &lt;wbr/&gt; elements</div>
+
+    <div class="code"><!--
+-->commit 24aa1c5530198594cc647adb76d33719f250a439
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 01:35:03 2023 +0000
+
+    [bower] Allow unnumbered clauses via 'number="none"'</div>
+
+    <div class="code"><!--
+-->commit c61be39cb67022577773a17fb5a88a324b5d21c7
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 02:05:27 2023 +0000
+
+    [general, mods] Use "this document" to refer to the TS</div>
+
+    <div class="code"><!--
+-->commit d383ae34ebd69e51b2f81a4a8de703fda7d25ce0
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 02:14:57 2023 +0000
+
+    [general.scope] Remove ineffective sentence, change "may" to "might"
+    
+    What makes content normative is whether or not it provides
+    requirements. "May" gives permission, which is not what we
+    mean here.</div>
+
+    <div class="code"><!--
+-->commit 07dac259680d4c813b2d9171e1a669559a6e6c61
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 09:38:38 2023 +0000
+
+    [bower] Allow terms and definitions within a CXX-CLAUSE</div>
+
+    <div class="code"><!--
+-->commit 191557495010cdc9b1a53f9fe4999e4cf4d5ab62
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 09:44:30 2023 +0000
+
+    [general, mods] References and Terms cleanup
+    
+    * References (Clause 2) only list references
+    * Terms and Definitions (Clause 3) now define the "C++ Standard Library".
+    * The erstwhile "C++ Standard" is now "ISO/IEC 14882:2020".
+    * The text explaining the use of C++ has been moved to [mods].</div>
+
+    <div class="code"><!--
+-->commit 05a14bc5883734120906b13f1d01f3929ee0ce80
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 10:08:23 2023 +0000
+
+    [general.terms] Update Terms and Definitions boilerplate</div>
+
+    <div class="code"><!--
+-->commit 88178e3c47ed2e966fc723e9748b2f84c1faad37
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 12:15:48 2023 +0000
+
+    [general.feature.test] Remove reference to papers
+    
+    Such references are not suitable for a published ISO document.</div>
+
+    <div class="code"><!--
+-->commit 067bbae4a1f2b875b7140dae8b03f4c166ae7664
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 17:59:10 2023 +0000
+
+    [bower (table, toc)] Avoid unfortunate page breaks</div>
+
+    <div class="code"><!--
+-->commit 195f00bdcf387f510541143795d1aa384ee833bc
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Tue Jan 31 22:27:00 2023 +0000
+
+    [bower, CSS] Separate page numbering for front matter</div>
+
+    <div class="code"><!--
+-->commit f38acfdb7218f6c39d5d625a2a16ce3b656dd009
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Feb 1 00:00:59 2023 +0000
+
+    [bower, CSS] Special first header</div>
+
+    <div class="code"><!--
+-->commit e7224a9fde084f439e64e6c6d7541ab84a2e2b8f
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Wed Feb 1 14:57:01 2023 +0000
+
+    [bower, note] Make notes numbered</div>
+
+    <div class="code"><!--
+-->commit 0511d28d2b38fdbd8c2793392bb7dd96eedde47c
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sun Apr 30 15:02:27 2023 +0100
+
+    [general.namespaces] Replace "This TS" with "This document"
+
+commit 74decdd571eabfe66a44afcb95ce630fd960d7dd
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sun Apr 30 15:37:30 2023 +0100
+
+    [general.feature.test] Remove "(Informative)" from heading.
+    
+    In accordance with the ISO drafting directives.</div>
+
+    <div class="code"><!--
+-->commit 2fa3b9e7b8a6c4330ced986c6bd1d9c25175524a
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sun Apr 30 16:22:50 2023 +0100
+
+    Update the C++20 stable label index</div>
+
+    <div class="code"><!--
+-->commit 61821d1f801c775387ec58972659e8950502a350
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sun Apr 30 16:48:08 2023 +0100
+
+    [general.feature.test] Remove mention of WG21
+    
+    Workgroup-level information does not belong in ISO documents.</div>
+
+    <div class="code"><!--
+-->commit 91b60947bdcd8905a465284e499744a7d6f52b73
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sun Apr 30 16:09:04 2023 +0100
+
+    [introduction, general] An "Introduction" clause.
+    
+    The "Introduction" clause contains an explanation of our use of stable
+    names, and the definition of "C++ Standard Library", both of which
+    where requested by ISO.</div>
+
+    <div class="code"><!--
+-->commit b0177d79cf532f6b5e4fcb36018df868fa3a2ddd
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sun Apr 30 18:01:00 2023 +0100
+
+    Shorter lines to allow larger font size.
+    
+    ISO requires 11pt for the body font and 10pt for notes and examples.</div>
+
+    <div class="code"><!--
+-->commit 9fba98422f2ae38bff89d78734b1d8d3c53f715c
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Sun Apr 30 16:40:32 2023 +0100
+
+    [mods, general.namespaces] Replace "edit instructions" with "modifications".
+    
+    ISO does not permit modifying an existing document in the way we used
+    to do with insert/delete edit instructions. Alternative wording was
+    proposed and is implemented here.</div>
+
+    <div class="code"><!--
+-->commit 91fbdbd015af0d0f2b3b342b12579240a8d7f505
+Author: Thomas Köppe &lt;tkoeppe@google.com&gt;
+Date:   Mon May 8 18:04:00 2023 +0100
+
+    [bower, note+example] Change numbering of Notes and Examples
+    
+    Notes and examples are numbered if and only if there is more than one.</div>
+
+  </body>
+</html>
