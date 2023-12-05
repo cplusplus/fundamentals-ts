@@ -965,7 +965,7 @@ explicit <i>scope-guard</i>(EFP&amp;&amp; f) noexcept(
   exit_function();</code></pre>
           <cxx-note>
             If <code>noexcept(exit_function())</code> is <code>false</code>,
-            <code>exit_function()</code> may throw an exception,
+            <code>exit_function()</code> can throw an exception,
             notwithstanding the restrictions of <cxx-ref in="cxx" to="res.on.exception.handling"></cxx-ref>.
           </cxx-note>
         </cxx-effects>
